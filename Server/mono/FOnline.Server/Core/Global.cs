@@ -592,9 +592,5 @@ namespace FOnline
         {
             Global_GC();
         }
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        public extern static bool AllocConsole();
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        public extern static bool FreeConsole();
     }
 }

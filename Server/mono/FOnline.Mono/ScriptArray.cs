@@ -10,7 +10,7 @@ namespace FOnline
     /// <summary>
     /// Wrapper for native CScriptArray class.
     /// </summary>
-    class ScriptArray
+    public class ScriptArray
     {
         [MethodImpl(MethodImplOptions.InternalCall)]
         extern internal static void AddRef(IntPtr ptr);
@@ -25,7 +25,7 @@ namespace FOnline
         [MethodImpl(MethodImplOptions.InternalCall)]
         extern internal static IntPtr CreateSize(uint length, IntPtr type);
         [MethodImpl(MethodImplOptions.InternalCall)]
-        extern internal static IntPtr GetType(string type);
+        extern public static IntPtr GetType(string type);
         [MethodImpl(MethodImplOptions.InternalCall)]
         extern internal static IntPtr At(IntPtr ptr, uint index);
         [MethodImpl(MethodImplOptions.InternalCall)]
@@ -43,12 +43,12 @@ namespace FOnline
     /// <typeparam name="T"></typeparam>
     public abstract class HandleArray<T> : ScriptArray<T> where T: IManagedWrapper
     {
-        internal HandleArray(IntPtr type)
+        public HandleArray(IntPtr type)
             : base(type)
         {
 
         }
-        internal HandleArray(IntPtr ptr, bool wrap)
+        public HandleArray(IntPtr ptr, bool wrap)
             : base(ptr, wrap)
         {
         }

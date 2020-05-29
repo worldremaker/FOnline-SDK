@@ -5,7 +5,6 @@ using System.Text;
 using System.IO;
 using System.Reflection;
 using main = FOnline.Main;
-using Mono.CSharp;
 using System.Threading;
 
 namespace FOnline

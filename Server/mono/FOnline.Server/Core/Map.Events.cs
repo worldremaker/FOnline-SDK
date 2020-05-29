@@ -67,56 +67,56 @@ namespace FOnline
         /// <summary>
         /// Raised when map is about to be garbaged.
         /// </summary>
-        public virtual event EventHandler<MapFinishEventArgs> Finish;
+        public event EventHandler<MapFinishEventArgs> Finish;
         // called by engine
         void RaiseFinish(bool to_delete)
         {
             if (Finish != null)
                 Finish(this, new MapFinishEventArgs(this, to_delete));
         }
-        public virtual event EventHandler<MapEventArgs> Loop;
+        public event EventHandler<MapEventArgs> Loop;
         // called by engine
         void RaiseLoop()
         {
             if (Loop != null)
                 Loop(this, new MapEventArgs(this));
         }
-        public virtual event EventHandler<MapInOutCritterEventArgs> InCritter;
+        public event EventHandler<MapInOutCritterEventArgs> InCritter;
         // called by engine
         void RaiseInCritter(Critter cr)
         {
             if (InCritter != null)
                 InCritter(this, new MapInOutCritterEventArgs(this, cr));
         }
-        public virtual event EventHandler<MapInOutCritterEventArgs> OutCritter;
+        public event EventHandler<MapInOutCritterEventArgs> OutCritter;
         // called by engine
         void RaiseOutCritter(Critter cr)
         {
             if (OutCritter != null)
                 OutCritter(this, new MapInOutCritterEventArgs(this, cr));
         }
-        public virtual event EventHandler<MapCritterDeadEventArgs> CritterDead;
+        public event EventHandler<MapCritterDeadEventArgs> CritterDead;
         // called by engine
         void RaiseCritterDead(Critter cr, Critter killer)
         {
             if (CritterDead != null)
                 CritterDead(this, new MapCritterDeadEventArgs(this, cr, killer));
         }
-        public virtual event EventHandler<MapEventArgs> TurnBasedBegin;
+        public event EventHandler<MapEventArgs> TurnBasedBegin;
         // called by engine
         void RaiseTurnBasedBegin()
         {
             if (TurnBasedBegin != null)
                 TurnBasedBegin(this, new MapEventArgs(this));
         }
-        public virtual event EventHandler<MapEventArgs> TurnBasedEnd;
+        public event EventHandler<MapEventArgs> TurnBasedEnd;
         // called by engine
         void RaiseTurnBasedEnd()
         {
             if (TurnBasedEnd != null)
                 TurnBasedEnd(this, new MapEventArgs(this));
         }
-        public virtual event EventHandler<MapTurnBasedProcessEventArgs> TurnBasedProcess;
+        public event EventHandler<MapTurnBasedProcessEventArgs> TurnBasedProcess;
         // called by engine
         void RaiseTurnBasedProcess(Critter cr, bool begin_turn)
         {

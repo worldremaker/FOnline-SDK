@@ -7,7 +7,7 @@ using System.Diagnostics;
 namespace FOnline
 {
     // internal common functionality
-    static class CoreUtils
+    public static class CoreUtils
     {
         public static ScriptString ParseFuncName(string func_name)
         {

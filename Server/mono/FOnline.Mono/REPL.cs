@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,18 +16,17 @@ namespace FOnline
         StringBuilder statement;
         public REPL()
         {
-            Global.AllocConsole();
+            AllocConsole();
             var stdout = new StreamWriter(Console.OpenStandardOutput());
             stdout.AutoFlush = true;
             Console.SetOut(stdout);
             Console.SetError(stdout);
             Console.SetIn(new StreamReader(Console.OpenStandardInput()));
-            Global.Log("Starting REPL...");
             Init();
         }
         public void Dispose()
         {
-            Global.FreeConsole();
+            FreeConsole();
         }
         void Init()
         {
@@ -104,5 +104,10 @@ namespace FOnline
             string prefix;
             return eval.GetCompletions(line, out prefix);
         }
+
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        public extern static bool AllocConsole();
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        public extern static bool FreeConsole(); 
     }
 }

@@ -414,7 +414,7 @@ namespace FOnline
     
 	public partial class Critter
 	{
-        public virtual event EventHandler<CritterEventArgs> Idle;
+        public event EventHandler<CritterEventArgs> Idle;
         // called by engine
         void RaiseIdle()
         {
@@ -426,7 +426,7 @@ namespace FOnline
         /// <summary>
         /// Raised when critter object is garbaged.
         /// </summary>
-        public virtual event EventHandler<CritterFinishEventArgs> Finish;
+        public event EventHandler<CritterFinishEventArgs> Finish;
         // called by engine
         void RaiseFinish(bool deleted)
         {
@@ -436,7 +436,7 @@ namespace FOnline
         /// <summary>
         /// Raised when critter is killed.
         /// </summary>
-        public virtual event EventHandler<CritterDeadEventArgs> Dead;
+        public event EventHandler<CritterDeadEventArgs> Dead;
         // called by engine
         void RaiseDead(Critter killer) 
         {
@@ -446,7 +446,7 @@ namespace FOnline
         /// <summary>
         /// Raised when critter respawns.
         /// </summary>
-        public virtual event EventHandler<CritterEventArgs> Respawn;
+        public event EventHandler<CritterEventArgs> Respawn;
         // called by engine
         void RaiseRespawn()
         {
@@ -456,10 +456,10 @@ namespace FOnline
         /// <summary>
         /// Raised when critter spots another.
         /// </summary>
-        public virtual event EventHandler<CritterVisEventArgs> ShowCritter;
-        public virtual event EventHandler<CritterVisEventArgs> ShowCritter1;
-        public virtual event EventHandler<CritterVisEventArgs> ShowCritter2;
-        public virtual event EventHandler<CritterVisEventArgs> ShowCritter3;
+        public event EventHandler<CritterVisEventArgs> ShowCritter;
+        public event EventHandler<CritterVisEventArgs> ShowCritter1;
+        public event EventHandler<CritterVisEventArgs> ShowCritter2;
+        public event EventHandler<CritterVisEventArgs> ShowCritter3;
         // called by engine
         void RaiseShowCritter(Critter show_cr)
         {
@@ -484,10 +484,10 @@ namespace FOnline
         /// <summary>
         /// Raised when critter leaves another field of sight.
         /// </summary>
-        public virtual event EventHandler<CritterVisEventArgs> HideCritter;
-        public virtual event EventHandler<CritterVisEventArgs> HideCritter1;
-        public virtual event EventHandler<CritterVisEventArgs> HideCritter2;
-        public virtual event EventHandler<CritterVisEventArgs> HideCritter3;
+        public event EventHandler<CritterVisEventArgs> HideCritter;
+        public event EventHandler<CritterVisEventArgs> HideCritter1;
+        public event EventHandler<CritterVisEventArgs> HideCritter2;
+        public event EventHandler<CritterVisEventArgs> HideCritter3;
         // called by engine
         void RaiseHideCritter(Critter hide_cr)
         {
@@ -512,28 +512,28 @@ namespace FOnline
         /// <summary>
         /// Raised when critter spots an item that's been placed on map (TODO desc)
         /// </summary>
-        public virtual event EventHandler<CritterShowItemOnMapEventArgs> ShowItemOnMap;
+        public event EventHandler<CritterShowItemOnMapEventArgs> ShowItemOnMap;
         // called by engine
         void RaiseShowItemOnMap(Item item, bool added, Critter dropper)
         {
             if (ShowItemOnMap != null)
                 ShowItemOnMap(this, new CritterShowItemOnMapEventArgs(this, item, added, dropper));
         }
-        public virtual event EventHandler<CritterChangeItemOnMapEventArgs> ChangeItemOnMap;
+        public event EventHandler<CritterChangeItemOnMapEventArgs> ChangeItemOnMap;
         // called by engine
         void RaiseChangeItemOnMap(Item item)
         {
             if (ChangeItemOnMap != null)
                 ChangeItemOnMap(this, new CritterChangeItemOnMapEventArgs(this, item));
         }
-        public virtual event EventHandler<CritterHideItemOnMapEventArgs> HideItemOnMap;
+        public event EventHandler<CritterHideItemOnMapEventArgs> HideItemOnMap;
         // called by engine
         void RaiseHideItemOnMap(Item item, bool removed, Critter picker)
         {
             if (HideItemOnMap != null)
                 HideItemOnMap(this, new CritterHideItemOnMapEventArgs(this, item, removed, picker));
         }
-        public virtual event EventHandler<CritterAttackEventArgs> Attack;
+        public event EventHandler<CritterAttackEventArgs> Attack;
         // called by engine
         bool RaiseAttack(Critter target)
         {
@@ -545,7 +545,7 @@ namespace FOnline
         /// <summary>
         /// Raised when critter is attacked.
         /// </summary>
-        public virtual event EventHandler<CritterAttackedEventArgs> Attacked;
+        public event EventHandler<CritterAttackedEventArgs> Attacked;
         // called by engine
         bool RaiseAttacked(Critter attacker)
         {
@@ -557,7 +557,7 @@ namespace FOnline
         /// <summary>
         /// Raised when someone attempts to rob the critter.
         /// </summary>
-        public virtual event EventHandler<CritterStealingEventArgs> Stealing;
+        public event EventHandler<CritterStealingEventArgs> Stealing;
         // called by engine
         void RaiseStealing(Critter thief, bool success, Item item, uint count)
         {
@@ -567,7 +567,7 @@ namespace FOnline
         /// <summary>
         /// Raised when critter receives message via Critter::SendMessage.
         /// </summary>
-        public virtual event EventHandler<CritterMessageEventArgs> Message;
+        public event EventHandler<CritterMessageEventArgs> Message;
         // called by engine
         void RaiseMessage(Critter from_cr, int num, int val)
         {
@@ -577,7 +577,7 @@ namespace FOnline
         /// <summary>
         /// Raised when critter uses an item on something.
         /// </summary>
-        public virtual event EventHandler<CritterUseItemEventArgs> UseItem;
+        public event EventHandler<CritterUseItemEventArgs> UseItem;
         // called by engine
         bool RaiseUseItem(Item item, Critter on_cr, Item on_item, IntPtr on_scenery)
         {
@@ -592,7 +592,7 @@ namespace FOnline
         /// <summary>
         /// Raised when someone uses an item on critter.
         /// </summary>
-        public virtual event EventHandler<CritterUseItemOnMeEventArgs> UseItemOnMe;
+        public event EventHandler<CritterUseItemOnMeEventArgs> UseItemOnMe;
         // called by engine
         bool RaiseUseItemOnMe(Critter who_use, Item item)
         {
@@ -607,7 +607,7 @@ namespace FOnline
         /// <summary>
         /// Raised when critter uses some skill.
         /// </summary>
-        public virtual event EventHandler<CritterUseSkillEventArgs> UseSkill;
+        public event EventHandler<CritterUseSkillEventArgs> UseSkill;
         // called by engine
         bool RaiseUseSkill(int skill, Critter on_cr, Item on_item, IntPtr on_scenery)
         {
@@ -622,7 +622,7 @@ namespace FOnline
         /// <summary>
         /// Raised when some critter uses skill on another.
         /// </summary>
-        public virtual event EventHandler<CritterUseSkillOnMeEventArgs> UseSkillOnMe;
+        public event EventHandler<CritterUseSkillOnMeEventArgs> UseSkillOnMe;
         // called by engine
         bool RaiseUseSkillOnMe(Critter who_use, int skill)
         {
@@ -637,7 +637,7 @@ namespace FOnline
         /// <summary>
         /// Raised when critter drops an item.
         /// </summary>
-        public virtual event EventHandler<CritterDropItemEventArgs> DropItem;
+        public event EventHandler<CritterDropItemEventArgs> DropItem;
         // called by engine
         void RaiseDropItem(Item item)
         {
@@ -648,21 +648,21 @@ namespace FOnline
         /// 
         /// </summary>
         // was supposed to be MoveItem, but it collided with MoveItem method...
-        public virtual event EventHandler<CritterMoveItemEventArgs> ItemMove;
+        public event EventHandler<CritterMoveItemEventArgs> ItemMove;
         // called by engine
         void RaiseMoveItem(Item item, byte from_slot)
         {
             if (ItemMove != null)
                 ItemMove(this, new CritterMoveItemEventArgs(this, item, (ItemSlot)from_slot));
         }
-        public virtual event EventHandler<CritterKnockoutEventArgs> Knockout;
+        public event EventHandler<CritterKnockoutEventArgs> Knockout;
         // called by engine
         void RaiseKnockout(uint anim2_begin, uint anim2_idle, uint anim2_end, uint lost_ap, uint knock_dist)
         {
             if (Knockout != null)
                 Knockout(this, new CritterKnockoutEventArgs(this, anim2_begin, anim2_idle, anim2_end, lost_ap, knock_dist));
         }
-        public virtual event EventHandler<CritterSmthKnockoutEventArgs> SmthKnockout;
+        public event EventHandler<CritterSmthKnockoutEventArgs> SmthKnockout;
         // called by engine
         void RaiseSmthKnockout(Critter from_cr, uint anim2_begin, uint anim2_idle, uint anim2_end, uint lost_ap, uint knock_dist)
         {
@@ -672,7 +672,7 @@ namespace FOnline
         /// <summary>
         /// Raised when critter sees some critter being killed.
         /// </summary>
-        public virtual event EventHandler<CritterSmthDeadEventArgs> SmthDead;
+        public event EventHandler<CritterSmthDeadEventArgs> SmthDead;
         // called by engine
         void RaiseSmthDead(Critter from_cr, Critter killer)
         {
@@ -682,7 +682,7 @@ namespace FOnline
         /// <summary>
         /// Raised after some critter attempted stealing in critter's field of sight.
         /// </summary>
-        public virtual event EventHandler<CritterSmthStealingEventArgs> SmthStealing;
+        public event EventHandler<CritterSmthStealingEventArgs> SmthStealing;
         // called by engine
         void RaiseSmthStealing(Critter from_cr, Critter thief, bool success, Item item, uint count)
         {
@@ -692,7 +692,7 @@ namespace FOnline
         /// <summary>
         /// Raised when critter sees other critter using skill on something.
         /// </summary>
-        public virtual event EventHandler<CritterSmthUseSkillEventArgs> SmthUseSkill;
+        public event EventHandler<CritterSmthUseSkillEventArgs> SmthUseSkill;
         // called by engine
         void RaiseSmthUseSkill(Critter from_cr, int skill, Critter on_cr, Item on_item, IntPtr on_scenery)
         {
@@ -702,7 +702,7 @@ namespace FOnline
         /// <summary>
         /// Raised when critter sees other critter dropping an item.
         /// </summary>
-        public virtual event EventHandler<CritterSmthDropItemEventArgs> SmthDropItem;
+        public event EventHandler<CritterSmthDropItemEventArgs> SmthDropItem;
         // called by engine
         void RaiseSmthDropItem(Critter from_cr, Item item)
         {
@@ -712,14 +712,14 @@ namespace FOnline
         /// <summary>
         /// Raised when critter sees other critter moving an item.
         /// </summary>
-        public virtual event EventHandler<CritterSmthMoveItemEventArgs> SmthMoveItem;
+        public event EventHandler<CritterSmthMoveItemEventArgs> SmthMoveItem;
         // called by engine
         void RaiseSmthMoveItem(Critter from_cr, Item item, ItemSlot from_slot)
         {
             if (SmthMoveItem != null)
                 SmthMoveItem(this, new CritterSmthMoveItemEventArgs(this, from_cr, item, from_slot));
         }
-        public virtual event EventHandler<CritterBarterEventArgs> Barter;
+        public event EventHandler<CritterBarterEventArgs> Barter;
         // called by native
         bool RaiseBarter(Critter cr_barter, bool attach, uint barter_count)
         {
@@ -731,7 +731,7 @@ namespace FOnline
             }
             return false;
         }
-        public virtual event EventHandler<CritterTalkEventArgs> Talk;
+        public event EventHandler<CritterTalkEventArgs> Talk;
         // called by native
         bool RaiseTalk(Critter cr_talk, bool attach, uint talk_count)
         {
@@ -746,7 +746,7 @@ namespace FOnline
         /// <summary>
         /// Raised when critter moves on globalmap.
         /// </summary>
-        public virtual event EventHandler<CritterGlobalProcessEventArgs> GlobalProcess;
+        public event EventHandler<CritterGlobalProcessEventArgs> GlobalProcess;
         // called by engine
         bool RaiseGlobalProcess(int type, Item car,
             ref float x, ref float y, ref float to_x, ref float to_y, ref float speed,
@@ -775,7 +775,7 @@ namespace FOnline
         /// <summary>
         /// Raised when critter gets into encounter.
         /// </summary>
-        public virtual event EventHandler<CritterGlobalInviteEventArgs> GlobalInvite;
+        public event EventHandler<CritterGlobalInviteEventArgs> GlobalInvite;
         // called by engine
         bool RaiseGlobalInvite(Item car, uint encounter_descriptor, int combat_mode,
             ref uint map_id, ref ushort hx, ref ushort hy, ref byte dir)
@@ -805,21 +805,21 @@ namespace FOnline
         /// <summary>
         /// Raised on every turn begin/end.
         /// </summary>
-        public virtual event EventHandler<CritterTurnBasedProcessEventArgs> TurnBasedProcess;
+        public event EventHandler<CritterTurnBasedProcessEventArgs> TurnBasedProcess;
         // called by engine
         void RaiseTurnBasedProcess(Map map, bool begin_turn)
         {
             if (TurnBasedProcess != null)
                 TurnBasedProcess(this, new CritterTurnBasedProcessEventArgs(this, map, begin_turn));
         }
-        public virtual event EventHandler<CritterSmthTurnBasedProcessEventArgs> SmthTurnBasedProcess;
+        public event EventHandler<CritterSmthTurnBasedProcessEventArgs> SmthTurnBasedProcess;
         // called by engine
         void RaiseSmthTurnBasedProcess(Critter from_cr, Map map, bool begin_turn)
         {
             if (SmthTurnBasedProcess != null)
                 SmthTurnBasedProcess(this, new CritterSmthTurnBasedProcessEventArgs(this, from_cr, map, begin_turn));
         }
-        public virtual event EventHandler<CritterEventPlaneBeginEndArgs> PlaneBegin;
+        public event EventHandler<CritterEventPlaneBeginEndArgs> PlaneBegin;
         // called by engine
         bool RaiseEventPlaneBegin(IntPtr plane, int reason, Critter some_cr, Item some_item, ref uint res)
         {
@@ -833,7 +833,7 @@ namespace FOnline
             }
             return false;
         }
-        public virtual event EventHandler<CritterEventPlaneBeginEndArgs> PlaneEnd;
+        public event EventHandler<CritterEventPlaneBeginEndArgs> PlaneEnd;
         // called by engine
         bool RaiseEventPlaneEnd(IntPtr plane, int reason, Critter some_cr, Item some_item, ref uint res)
         {
@@ -847,7 +847,7 @@ namespace FOnline
             }
             return false;
         }
-        public virtual event EventHandler<CritterEventPlaneRunArgs> PlaneRun;
+        public event EventHandler<CritterEventPlaneRunArgs> PlaneRun;
         // called by engine
         bool RaiseEventPlaneRun(IntPtr plane, int reason, ref uint p0, ref uint p1, ref uint p2, ref uint res)
         {

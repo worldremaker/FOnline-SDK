@@ -117,7 +117,7 @@ namespace FOnline
         /// <summary>
         /// Raised when item is about to be garbaged.
         /// </summary>
-        public virtual event EventHandler<ItemFinishEventArgs> Finish;
+        public event EventHandler<ItemFinishEventArgs> Finish;
         // called by engine
         void RaiseFinish(bool deleted)
         {
@@ -127,7 +127,7 @@ namespace FOnline
         /// <summary>
         /// Raised when item is used by critter to attack target critter.
         /// </summary>
-        public virtual event EventHandler<ItemAttackEventArgs> Attack;
+        public event EventHandler<ItemAttackEventArgs> Attack;
         // called by engine
         bool RaiseAttack(Critter cr, Critter target)
         {
@@ -142,7 +142,7 @@ namespace FOnline
         /// <summary>
         /// Raised when item is used on something.
         /// </summary>
-        public virtual event EventHandler<ItemUseEventArgs> Use;
+        public event EventHandler<ItemUseEventArgs> Use;
         // called by engine
         public bool RaiseUse(Critter cr, Critter on_critter, Item on_item, IntPtr on_scenery)
         {
@@ -157,7 +157,7 @@ namespace FOnline
         /// <summary>
         /// Raised when some item is used on this item.
         /// </summary>
-        public virtual event EventHandler<ItemUseOnMeEventArgs> UseOnMe;
+        public event EventHandler<ItemUseOnMeEventArgs> UseOnMe;
         // called by engine
         bool RaiseUseOnMe(Critter cr, Item used_item)
         {
@@ -172,7 +172,7 @@ namespace FOnline
         /// <summary>
         /// Raised when critter uses skill on item.
         /// </summary>
-        public virtual event EventHandler<ItemSkillEventArgs> Skill;
+        public event EventHandler<ItemSkillEventArgs> Skill;
         // called by engine
         bool RaiseSkill(Critter cr, int skill)
         {
@@ -187,7 +187,7 @@ namespace FOnline
         /// <summary>
         /// Raised when item is dropped.
         /// </summary>
-        public virtual event EventHandler<ItemDropEventArgs> Drop;
+        public event EventHandler<ItemDropEventArgs> Drop;
         // called by native
         void RaiseDrop(Critter cr)
         {
@@ -197,7 +197,7 @@ namespace FOnline
         /// <summary>
         /// Raised when item is moved from slot.
         /// </summary>
-        public virtual event EventHandler<ItemMoveEventArgs> Move;
+        public event EventHandler<ItemMoveEventArgs> Move;
         // called by engine
         void RaiseMove(Critter cr, byte from_slot)
         {
@@ -207,7 +207,7 @@ namespace FOnline
         /// <summary>
         /// Raised when critter walks over(enter or leaves) the item lying on ground.
         /// </summary>
-        public virtual event EventHandler<ItemWalkEventArgs> Walk;
+        public event EventHandler<ItemWalkEventArgs> Walk;
         // called by engine
         void RaiseWalk(Critter cr, bool entered, byte dir)
         {
