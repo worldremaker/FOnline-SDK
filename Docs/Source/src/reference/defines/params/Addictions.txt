@@ -1,5 +1,5 @@
 /**
- * \~russian @defgroup Addictions Привыкания
+ * \~russian @defgroup Addictions РџСЂРёРІС‹РєР°РЅРёСЏ
  * \~english @defgroup Addictions Addictions
  * \~ @ingroup Params
  */

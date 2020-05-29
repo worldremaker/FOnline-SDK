@@ -1,5 +1,5 @@
 /**
- * \~russian @defgroup Traits Òπειςϋ
+ * \~russian @defgroup Traits ΠΆΡ€ΠµΠΉΡ‚Ρ‹
  * \~english @defgroup Traits Traits
  * \~ @ingroup Params
  */

@@ -2,7 +2,7 @@
  * @defgroup PlanesTypes Planes types
  * @ingroup Defines
  *
- * \~russian Типы планов
+ * \~russian РўРёРїС‹ РїР»Р°РЅРѕРІ
  * \~english Plane types
  *
  * \~

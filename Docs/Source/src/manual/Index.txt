@@ -1,6 +1,6 @@
-/** \~russian @page manual Учебник
+/** \~russian @page manual РЈС‡РµР±РЅРёРє
 
-Подразделы:
+РџРѕРґСЂР°Р·РґРµР»С‹:
 
 @subpage about
 

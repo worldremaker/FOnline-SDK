@@ -1,4 +1,4 @@
-/** \~russian @page page_proto Прототипы
+/** \~russian @page page_proto РџСЂРѕС‚РѕС‚РёРїС‹
 
 @subpage page_protocritters
 

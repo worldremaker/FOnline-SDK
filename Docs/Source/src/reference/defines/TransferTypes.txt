@@ -2,7 +2,7 @@
  * @defgroup TransferTypes Transfer types
  * @ingroup Defines
  *
- * \~russian Типы трансфера
+ * \~russian РўРёРїС‹ С‚СЂР°РЅСЃС„РµСЂР°
  *
  * \~english Transfer types
  *
@@ -20,10 +20,10 @@
 #define TRANSFER_CRIT_STEAL         (5)
 #define TRANSFER_CRIT_BARTER        (6)
 
-/** \~russian Позволяет обмен с контейнером на любой дистанции. */
+/** \~russian РџРѕР·РІРѕР»СЏРµС‚ РѕР±РјРµРЅ СЃ РєРѕРЅС‚РµР№РЅРµСЂРѕРј РЅР° Р»СЋР±РѕР№ РґРёСЃС‚Р°РЅС†РёРё. */
 #define TRANSFER_FAR_CONT           (7)
 
-/** \~russian Позволяет обмен с криттером на любой дистанции. */
+/** \~russian РџРѕР·РІРѕР»СЏРµС‚ РѕР±РјРµРЅ СЃ РєСЂРёС‚С‚РµСЂРѕРј РЅР° Р»СЋР±РѕР№ РґРёСЃС‚Р°РЅС†РёРё. */
 #define TRANSFER_FAR_CRIT           (8)
 
 /*@}*/

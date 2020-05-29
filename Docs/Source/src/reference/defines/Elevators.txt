@@ -2,7 +2,7 @@
  * @defgroup Elevators Elevators
  * @ingroup Defines
  *
- * \~russian Интерфейсы лифтов.
+ * \~russian РРЅС‚РµСЂС„РµР№СЃС‹ Р»РёС„С‚РѕРІ.
  *
  * \~english Elevator graphical interfaces.
  *

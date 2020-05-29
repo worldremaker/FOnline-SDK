@@ -10,8 +10,8 @@ REM Choose doxygen configuration
 
 set doxygenconfig=
 
-if "%1" == "ru" set doxygenconfig=FOnlineDoc.cfg
-if "%1" == "en" set doxygenconfig=FOnlineDoc.en.cfg
+if "%1" == "ru" set doxygenconfig=FOnlineDocForCHM.cfg
+if "%1" == "en" set doxygenconfig=FOnlineDocForCHM.en.cfg
 
 if "%doxygenconfig%" == "" (
   echo Error: unknown language [%1]

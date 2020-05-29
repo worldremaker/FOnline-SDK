@@ -2,7 +2,7 @@
  * @defgroup BodyTypes Body types
  * @ingroup Defines
  *
- * \~russian Виды существ.
+ * \~russian Р’РёРґС‹ СЃСѓС‰РµСЃС‚РІ.
  * \~english Body types.
  *
  * \~

@@ -1,4 +1,4 @@
-﻿/** \~russian @page page_scripts Скрипты
+/** \~russian @page page_scripts Скрипты
 @subpage code_style
 
 @subpage data_types

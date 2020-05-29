@@ -2,7 +2,7 @@
  * @defgroup CarFlags Car flags
  * @ingroup Defines
  *
- * \~russian Флаги машин.
+ * \~russian Р¤Р»Р°РіРё РјР°С€РёРЅ.
  * \~english Car flags.
  *
  */

@@ -2,29 +2,29 @@
  * @defgroup Locker Locker
  * @ingroup Defines
  *
- * \~russian Флаги состояния замков.
+ * \~russian Р¤Р»Р°РіРё СЃРѕСЃС‚РѕСЏРЅРёСЏ Р·Р°РјРєРѕРІ.
  * \~english Locker state flags.
  *
  * \~ @see Item::LockerCondition
  */
 /*@{*/
 
-/** \~russian Открыт. */
+/** \~russian РћС‚РєСЂС‹С‚. */
 #define LOCKER_ISOPEN               (0x01)
 
-/** \~russian Заперт. */
+/** \~russian Р—Р°РїРµСЂС‚. */
 #define LOCKER_LOCKED               (0x02)
 
-/** \~russian Заклинило. */
+/** \~russian Р—Р°РєР»РёРЅРёР»Рѕ. */
 #define LOCKER_JAMMED               (0x04)
 
-/** \~russian Сломан. */
+/** \~russian РЎР»РѕРјР°РЅ. */
 #define LOCKER_BROKEN               (0x08)
 
-/** \~russian Невозможно открыть, не используя подходящий ключ. */
+/** \~russian РќРµРІРѕР·РјРѕР¶РЅРѕ РѕС‚РєСЂС‹С‚СЊ, РЅРµ РёСЃРїРѕР»СЊР·СѓСЏ РїРѕРґС…РѕРґСЏС‰РёР№ РєР»СЋС‡. */
 #define LOCKER_NOOPEN               (0x10)
 
-/** \~russian Электронный замок. */
+/** \~russian Р­Р»РµРєС‚СЂРѕРЅРЅС‹Р№ Р·Р°РјРѕРє. */
 #define LOCKER_ELECTRO              (0x20)
 
 /*@}*/

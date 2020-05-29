@@ -1,5 +1,5 @@
 /**
- * \~russian @defgroup Karma Карма
+ * \~russian @defgroup Karma РљР°СЂРјР°
  * \~english @defgroup Karma Karma
  * \~ @ingroup Params
  */

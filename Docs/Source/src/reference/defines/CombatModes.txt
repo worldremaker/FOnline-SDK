@@ -2,7 +2,7 @@
  * @defgroup CombatModes Combat modes
  * @ingroup Defines
  *
- * \~russian Режимы боя.
+ * \~russian Р РµР¶РёРјС‹ Р±РѕСЏ.
  * \~english Combat modes.
  *
  * \~
@@ -10,13 +10,13 @@
  */
 /*@{*/
 
-/** \~russian Любой. */
+/** \~russian Р›СЋР±РѕР№. */
 #define COMBAT_MODE_ANY             (0)
 
-/** \~russian Бой в реальном времени. */
+/** \~russian Р‘РѕР№ РІ СЂРµР°Р»СЊРЅРѕРј РІСЂРµРјРµРЅРё. */
 #define COMBAT_MODE_REAL_TIME       (1)
 
-/** \~russian Пошаговый бой. */
+/** \~russian РџРѕС€Р°РіРѕРІС‹Р№ Р±РѕР№. */
 #define COMBAT_MODE_TURN_BASED      (2)
 
 /*@}*/

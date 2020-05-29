@@ -15,14 +15,14 @@
  *
  * \image html logo.jpg
  *
- * \section manual_sec Учебник
+ * \section manual_sec РЈС‡РµР±РЅРёРє
  *
- * \section reference_sec Справочник
+ * \section reference_sec РЎРїСЂР°РІРѕС‡РЅРёРє
  *
- * Актуальность документации: ревизия №<a href="https://xp-dev.com/sc/change/76003/396" target="_blank">396</a> SDK.<br />
- * Об ошибках в документации сообщайте в этой теме: <a href="http://www.fonline.ru/forum/threads/2991/" target="_blank">http://www.fonline.ru/forum/threads/2991/</a><br />
+ * РђРєС‚СѓР°Р»СЊРЅРѕСЃС‚СЊ РґРѕРєСѓРјРµРЅС‚Р°С†РёРё: СЂРµРІРёР·РёСЏ в„–<a href="https://xp-dev.com/sc/change/76003/396" target="_blank">396</a> SDK.<br />
+ * РћР± РѕС€РёР±РєР°С… РІ РґРѕРєСѓРјРµРЅС‚Р°С†РёРё СЃРѕРѕР±С‰Р°Р№С‚Рµ РІ СЌС‚РѕР№ С‚РµРјРµ: <a href="http://www.fonline.ru/forum/threads/2991/" target="_blank">http://www.fonline.ru/forum/threads/2991/</a><br />
  *
- * \section other_formats Другие форматы:
+ * \section other_formats Р”СЂСѓРіРёРµ С„РѕСЂРјР°С‚С‹:
  * - <a href="./FOnline.chm.zip">Microsoft Compiled HTML Help (.chm)</a>
  *
  */

@@ -1,5 +1,5 @@
 /**
- * \~russian @defgroup Damages Травмы/болезни
+ * \~russian @defgroup Damages РўСЂР°РІРјС‹/Р±РѕР»РµР·РЅРё
  * \~english @defgroup Damages Damages
  * \~ @ingroup Params
  */

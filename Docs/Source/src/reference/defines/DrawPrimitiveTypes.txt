@@ -2,9 +2,9 @@
  * @defgroup DrawPrimitiveTypes Draw primitive types
  * @ingroup Defines
  *
- * \~russian Типы примитивов.
+ * \~russian РўРёРїС‹ РїСЂРёРјРёС‚РёРІРѕРІ.
  *
- * Подробнее о типах примитивов читайте здесь:
+ * РџРѕРґСЂРѕР±РЅРµРµ Рѕ С‚РёРїР°С… РїСЂРёРјРёС‚РёРІРѕРІ С‡РёС‚Р°Р№С‚Рµ Р·РґРµСЃСЊ:
  * - http://www.firststeps.ru/mfc/directx/dxhelp/r.php?33 (rus)
  * - <a href="http://msdn.microsoft.com/en-us/library/bb172589(VS.85).aspx">D3DPRIMITIVETYPE</a> (eng)
  *

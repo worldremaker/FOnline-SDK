@@ -1,4 +1,4 @@
-/** \~russian @page page_dialoguewriting Диалогописание
+/** \~russian @page page_dialoguewriting Р”РёР°Р»РѕРіРѕРїРёСЃР°РЅРёРµ
 
 @subpage page_dialogeditor
 

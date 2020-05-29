@@ -2,7 +2,7 @@
  * @defgroup SoundTypes Sound types
  * @ingroup Defines
  *
- * \~russian Виды звуков
+ * \~russian Р’РёРґС‹ Р·РІСѓРєРѕРІ
  *
  * \~english Sound types
  *

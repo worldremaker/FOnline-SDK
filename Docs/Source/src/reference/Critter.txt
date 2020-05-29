@@ -1,6 +1,6 @@
-/** \~russian Криттер.
+/** \~russian РљСЂРёС‚С‚РµСЂ.
  *
- * Под словом "криттер" подразумеваются как игроки, так и NPC.
+ * РџРѕРґ СЃР»РѕРІРѕРј "РєСЂРёС‚С‚РµСЂ" РїРѕРґСЂР°Р·СѓРјРµРІР°СЋС‚СЃСЏ РєР°Рє РёРіСЂРѕРєРё, С‚Р°Рє Рё NPC.
  *
  ** \~english Critter.
  *
@@ -13,13 +13,13 @@ class Critter
 {
 public:
     /**
-     * \~russian @name Общие поля
+     * \~russian @name РћР±С‰РёРµ РїРѕР»СЏ
      * \~english @name General fields
      * \~ @weight 200
      */
     //@{
 
-    /** \~russian Уникальный идентификатор криттера.
+    /** \~russian РЈРЅРёРєР°Р»СЊРЅС‹Р№ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РєСЂРёС‚С‚РµСЂР°.
      *
      ** \~english Critter's unique identifier.
      *
@@ -28,57 +28,57 @@ public:
      */
     const uint Id;
 
-    /** \~russian Позволяет определить валидность объекта. */
+    /** \~russian РџРѕР·РІРѕР»СЏРµС‚ РѕРїСЂРµРґРµР»РёС‚СЊ РІР°Р»РёРґРЅРѕСЃС‚СЊ РѕР±СЉРµРєС‚Р°. */
     /** \~english Allows to check whether underlying object is valid. */
     const bool IsNotValid;
 
-    /** \~russian Базовый тип анимации криттера. */
+    /** \~russian Р‘Р°Р·РѕРІС‹Р№ С‚РёРї Р°РЅРёРјР°С†РёРё РєСЂРёС‚С‚РµСЂР°. */
     /** \~english Critter common animation type. */
     const uint8 CrType;
 
-    /** \~russian Координата, по оси X, расположения криттера на карте. */
+    /** \~russian РљРѕРѕСЂРґРёРЅР°С‚Р°, РїРѕ РѕСЃРё X, СЂР°СЃРїРѕР»РѕР¶РµРЅРёСЏ РєСЂРёС‚С‚РµСЂР° РЅР° РєР°СЂС‚Рµ. */
     /** \~english Critter's location on the map, X axis. */
     const uint16 HexX;
 
-    /** \~russian Координата, по оси Y, расположения криттера на карте. */
+    /** \~russian РљРѕРѕСЂРґРёРЅР°С‚Р°, РїРѕ РѕСЃРё Y, СЂР°СЃРїРѕР»РѕР¶РµРЅРёСЏ РєСЂРёС‚С‚РµСЂР° РЅР° РєР°СЂС‚Рµ. */
     /** \~english Critter's location on the map, Y axis. */
     const uint16 HexY;
 
-    /** \~russian Координата, по оси X, расположения криттера на глобальной карте. */
+    /** \~russian РљРѕРѕСЂРґРёРЅР°С‚Р°, РїРѕ РѕСЃРё X, СЂР°СЃРїРѕР»РѕР¶РµРЅРёСЏ РєСЂРёС‚С‚РµСЂР° РЅР° РіР»РѕР±Р°Р»СЊРЅРѕР№ РєР°СЂС‚Рµ. */
     /** \~english Critter's position on worldmap, X-coordinate. */
     const uint16 WorldX;
 
-    /** \~russian Координата, по оси Y, расположения криттера на глобальной карте. */
+    /** \~russian РљРѕРѕСЂРґРёРЅР°С‚Р°, РїРѕ РѕСЃРё Y, СЂР°СЃРїРѕР»РѕР¶РµРЅРёСЏ РєСЂРёС‚С‚РµСЂР° РЅР° РіР»РѕР±Р°Р»СЊРЅРѕР№ РєР°СЂС‚Рµ. */
     /** \~english Critter's position on worldmap, Y-coordinate. */
     const uint16 WorldY;
 
-    /** \~russian Направление, в которое повернут криттер. */
+    /** \~russian РќР°РїСЂР°РІР»РµРЅРёРµ, РІ РєРѕС‚РѕСЂРѕРµ РїРѕРІРµСЂРЅСѓС‚ РєСЂРёС‚С‚РµСЂ. */
     /** \~english Critter's direction. */
     const uint8 Dir;
 
-    /** \~russian Текущее состояние криттера.
+    /** \~russian РўРµРєСѓС‰РµРµ СЃРѕСЃС‚РѕСЏРЅРёРµ РєСЂРёС‚С‚РµСЂР°.
      *
-     * Cм. @link CritterConditions Critter basic conditions@endlink.
+     * CРј. @link CritterConditions Critter basic conditions@endlink.
      *
      * \~english Current Critter's condition (see @link CritterConditions Critter basic conditions@endlink).
      */
     const uint8 Cond;
 
-    /** \~russian Уточняет состояние криттера.
+    /** \~russian РЈС‚РѕС‡РЅСЏРµС‚ СЃРѕСЃС‚РѕСЏРЅРёРµ РєСЂРёС‚С‚РµСЂР°.
      *
-     * См. @link CritterConditions Extended critter conditions@endlink.
+     * РЎРј. @link CritterConditions Extended critter conditions@endlink.
      *
      * \~english Critter's extended condition (see @link CritterConditions Extended critter conditions@endlink).
      */
     const uint8 CondExt;
 
-    /** \~russian Флаги криттера, предназначенные только для чтения.
+    /** \~russian Р¤Р»Р°РіРё РєСЂРёС‚С‚РµСЂР°, РїСЂРµРґРЅР°Р·РЅР°С‡РµРЅРЅС‹Рµ С‚РѕР»СЊРєРѕ РґР»СЏ С‡С‚РµРЅРёСЏ.
      *
-     *  См. @link CritterExtraFlags Critter extra flags@endlink.
+     *  РЎРј. @link CritterExtraFlags Critter extra flags@endlink.
      */
     const uint16 Flags;
 
-    /** \~russian Определяет роль криттера. Устанавливается по усмотрению разработчика скрипта.
+    /** \~russian РћРїСЂРµРґРµР»СЏРµС‚ СЂРѕР»СЊ РєСЂРёС‚С‚РµСЂР°. РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚СЃСЏ РїРѕ СѓСЃРјРѕС‚СЂРµРЅРёСЋ СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР° СЃРєСЂРёРїС‚Р°.
      *
      ** \~english Value describing role of the npc - usage depends on script.
      *
@@ -87,33 +87,33 @@ public:
      */
     int NpcRole;
 
-    /** \~russian Дистанция обнаружения для событий #CRITTER_EVENT_SHOW_CRITTER_1 и #CRITTER_EVENT_HIDE_CRITTER_1. */
+    /** \~russian Р”РёСЃС‚Р°РЅС†РёСЏ РѕР±РЅР°СЂСѓР¶РµРЅРёСЏ РґР»СЏ СЃРѕР±С‹С‚РёР№ #CRITTER_EVENT_SHOW_CRITTER_1 Рё #CRITTER_EVENT_HIDE_CRITTER_1. */
     /** \~english Distance used by following events #CRITTER_EVENT_SHOW_CRITTER_1 and #CRITTER_EVENT_HIDE_CRITTER_1. */
     uint ShowCritterDist1;
 
-    /** \~russian Дистанция обнаружения для события #CRITTER_EVENT_SHOW_CRITTER_2 и #CRITTER_EVENT_HIDE_CRITTER_2. */
+    /** \~russian Р”РёСЃС‚Р°РЅС†РёСЏ РѕР±РЅР°СЂСѓР¶РµРЅРёСЏ РґР»СЏ СЃРѕР±С‹С‚РёСЏ #CRITTER_EVENT_SHOW_CRITTER_2 Рё #CRITTER_EVENT_HIDE_CRITTER_2. */
     /** \~english Distance used by following events #CRITTER_EVENT_SHOW_CRITTER_2 and #CRITTER_EVENT_HIDE_CRITTER_2. */
     uint ShowCritterDist2;
 
-    /** \~russian Дистанция обнаружения для событий #CRITTER_EVENT_SHOW_CRITTER_3 и #CRITTER_EVENT_HIDE_CRITTER_3. */
+    /** \~russian Р”РёСЃС‚Р°РЅС†РёСЏ РѕР±РЅР°СЂСѓР¶РµРЅРёСЏ РґР»СЏ СЃРѕР±С‹С‚РёР№ #CRITTER_EVENT_SHOW_CRITTER_3 Рё #CRITTER_EVENT_HIDE_CRITTER_3. */
     /** \~english Distance used by following events #CRITTER_EVENT_SHOW_CRITTER_3 and #CRITTER_EVENT_HIDE_CRITTER_3. */
     uint ShowCritterDist3;
 
-    /** \~russian Позволяет узнать, бежал ли криттер в момент срабатывания событий триггера или предмета. */
+    /** \~russian РџРѕР·РІРѕР»СЏРµС‚ СѓР·РЅР°С‚СЊ, Р±РµР¶Р°Р» Р»Рё РєСЂРёС‚С‚РµСЂ РІ РјРѕРјРµРЅС‚ СЃСЂР°Р±Р°С‚С‹РІР°РЅРёСЏ СЃРѕР±С‹С‚РёР№ С‚СЂРёРіРіРµСЂР° РёР»Рё РїСЂРµРґРјРµС‚Р°. */
     bool IsRuning;
-	
-	/** \~russian Уточняет состояние криттера. Используется для анимаций. */
-	const uint Life;
-	
-	/** \~russian Уточняет состояние криттера. Используется для анимаций. */
-	const uint Knockout;
-	
-	/** \~russian Уточняет состояние криттера. Используется для анимаций. */
-	const uint Dead;
+    
+    /** \~russian РЈС‚РѕС‡РЅСЏРµС‚ СЃРѕСЃС‚РѕСЏРЅРёРµ РєСЂРёС‚С‚РµСЂР°. РСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ Р°РЅРёРјР°С†РёР№. */
+    const uint Life;
+    
+    /** \~russian РЈС‚РѕС‡РЅСЏРµС‚ СЃРѕСЃС‚РѕСЏРЅРёРµ РєСЂРёС‚С‚РµСЂР°. РСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ Р°РЅРёРјР°С†РёР№. */
+    const uint Knockout;
+    
+    /** \~russian РЈС‚РѕС‡РЅСЏРµС‚ СЃРѕСЃС‚РѕСЏРЅРёРµ РєСЂРёС‚С‚РµСЂР°. РСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ Р°РЅРёРјР°С†РёР№. */
+    const uint Dead;
 
-    /** \~russian Массив значений параметров криттера.
+    /** \~russian РњР°СЃСЃРёРІ Р·РЅР°С‡РµРЅРёР№ РїР°СЂР°РјРµС‚СЂРѕРІ РєСЂРёС‚С‚РµСЂР°.
      *
-     * Только для чтения.
+     * РўРѕР»СЊРєРѕ РґР»СЏ С‡С‚РµРЅРёСЏ.
      *
      * @see  ParamBase
      * @see  SetParameterGetBehaviour
@@ -121,7 +121,7 @@ public:
      */
     DataVal Param;
 
-    /** \~russian Массив базовых значений параметров криттера.
+    /** \~russian РњР°СЃСЃРёРІ Р±Р°Р·РѕРІС‹С… Р·РЅР°С‡РµРЅРёР№ РїР°СЂР°РјРµС‚СЂРѕРІ РєСЂРёС‚С‚РµСЂР°.
      *
      * @see  Param
      * @see  SetParameterChangeBehaviour
@@ -132,19 +132,19 @@ public:
     //@}
 
     /**
-     * \~russian @name Скрипты и события
+     * \~russian @name РЎРєСЂРёРїС‚С‹ Рё СЃРѕР±С‹С‚РёСЏ
      * \~english @name Scripts and events
      * \~ @weight 300
      */
     //@{
 
-    /** \~russian Устанавливает новый скрипт и вызывает в нем функцию инициализации с параметром @a firstTime равным @c true.
+    /** \~russian РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РЅРѕРІС‹Р№ СЃРєСЂРёРїС‚ Рё РІС‹Р·С‹РІР°РµС‚ РІ РЅРµРј С„СѓРЅРєС†РёСЋ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё СЃ РїР°СЂР°РјРµС‚СЂРѕРј @a firstTime СЂР°РІРЅС‹Рј @c true.
      *
-     * @param   script  Имя скрипта.
+     * @param   script  РРјСЏ СЃРєСЂРёРїС‚Р°.
      *
-     * @return  @c true в случае успеха; @c false в случае провала.
+     * @return  @c true РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС…Р°; @c false РІ СЃР»СѓС‡Р°Рµ РїСЂРѕРІР°Р»Р°.
      *
-     * @remarks Если скрипт или функция не найдена, то установки значения скрипта не произойдет.
+     * @remarks Р•СЃР»Рё СЃРєСЂРёРїС‚ РёР»Рё С„СѓРЅРєС†РёСЏ РЅРµ РЅР°Р№РґРµРЅР°, С‚Рѕ СѓСЃС‚Р°РЅРѕРІРєРё Р·РЅР°С‡РµРЅРёСЏ СЃРєСЂРёРїС‚Р° РЅРµ РїСЂРѕРёР·РѕР№РґРµС‚.
      *
      ** \~english Assigns given script and calls initialization function with @a firstTime set to @c true.
      *
@@ -156,11 +156,11 @@ public:
      */
     bool SetScript(string@+ script);
 
-    /** \~russian Возвращает ID текущего скрипта, связанного с данным криттером.
+    /** \~russian Р’РѕР·РІСЂР°С‰Р°РµС‚ ID С‚РµРєСѓС‰РµРіРѕ СЃРєСЂРёРїС‚Р°, СЃРІСЏР·Р°РЅРЅРѕРіРѕ СЃ РґР°РЅРЅС‹Рј РєСЂРёС‚С‚РµСЂРѕРј.
      *
-     * См. @b _scripts.fos, @b scripts.lst.
+     * РЎРј. @b _scripts.fos, @b scripts.lst.
      *
-     * @return ID текущего скрипта. 0, если скрипт не назначен.
+     * @return ID С‚РµРєСѓС‰РµРіРѕ СЃРєСЂРёРїС‚Р°. 0, РµСЃР»Рё СЃРєСЂРёРїС‚ РЅРµ РЅР°Р·РЅР°С‡РµРЅ.
      *
      ** \~english Retrieves the identifier of the script assigned to critter.
      *
@@ -170,10 +170,10 @@ public:
      */
     uint GetScriptId();
 
-    /** \~russian Биндит функцию-обработчика определенного события.
+    /** \~russian Р‘РёРЅРґРёС‚ С„СѓРЅРєС†РёСЋ-РѕР±СЂР°Р±РѕС‚С‡РёРєР° РѕРїСЂРµРґРµР»РµРЅРЅРѕРіРѕ СЃРѕР±С‹С‚РёСЏ.
      *
-     * @param  eventType  Тип события (см. @link CritterEvents Critter events@endlink).
-     * @param  funcName   Имя функции-обработчика.
+     * @param  eventType  РўРёРї СЃРѕР±С‹С‚РёСЏ (СЃРј. @link CritterEvents Critter events@endlink).
+     * @param  funcName   РРјСЏ С„СѓРЅРєС†РёРё-РѕР±СЂР°Р±РѕС‚С‡РёРєР°.
      *
      ** \~english Assigns the event handler for given event.
      *
@@ -185,214 +185,214 @@ public:
     //@}
 
     /**
-     * \~russian @name Вызов событий
+     * \~russian @name Р’С‹Р·РѕРІ СЃРѕР±С‹С‚РёР№
      * \~english @name Invoking events
      * \~ @weight 295
      */
 
     //@{
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_IDLE. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_IDLE. */
     /** \~english Invokes #CRITTER_EVENT_IDLE event. */
     void EventIdle();
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_FINISH. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_FINISH. */
     /** \~english Invokes #CRITTER_EVENT_FINISH event. */
     void EventFinish(bool deleted);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_DEAD. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_DEAD. */
     /** \~english Invokes #CRITTER_EVENT_DEAD event. */
     void EventDead(Critter@ killer);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_RESPAWN. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_RESPAWN. */
     /** \~english Invokes #CRITTER_EVENT_RESPAWN event. */
     void EventRespawn();
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_SHOW_CRITTER. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_SHOW_CRITTER. */
     /** \~english Invokes #CRITTER_EVENT_SHOW_CRITTER event. */
     void EventShowCritter(Critter& cr);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_HIDE_CRITTER. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_HIDE_CRITTER. */
     /** \~english Invokes #CRITTER_EVENT_HIDE_CRITTER event. */
     void EventHideCritter(Critter& cr);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_SHOW_ITEM_ON_MAP. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_SHOW_ITEM_ON_MAP. */
     /** \~english Invokes #CRITTER_EVENT_SHOW_ITEM_ON_MAP event. */
     void EventShowItemOnMap(Item& showItem, bool added, Critter@ dropper);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_CHANGE_ITEM_ON_MAP. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_CHANGE_ITEM_ON_MAP. */
     /** \~english Invokes #CRITTER_EVENT_CHANGE_ITEM_ON_MAP event. */
     void EventChangeItemOnMap(Item& item);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_HIDE_ITEM_ON_MAP. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_HIDE_ITEM_ON_MAP. */
     /** \~english Invokes #CRITTER_EVENT_HIDE_ITEM_ON_MAP event. */
     void EventHideItemOnMap(Item& hideItem, bool removed, Critter@ picker);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_ATTACKED. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_ATTACKED. */
     /** \~english Invokes #CRITTER_EVENT_ATTACKED event. */
-    bool EventAttacked(Critter& attacker);
+    bool EventAttacked(Critter& attacker, Item@ weapon);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_STEALING. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_STEALING. */
     /** \~english Invokes #CRITTER_EVENT_STEALING event. */
     void EventStealing(Critter& thief, bool success, Item& item, uint count);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_MESSAGE. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_MESSAGE. */
     /** \~english Invokes #CRITTER_EVENT_MESSAGE event. */
     void EventMessage(Critter& fromCrit, int message, int value);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_ATTACK. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_ATTACK. */
     /** \~english Invokes #CRITTER_EVENT_ATTACK event. */
-    bool EventAttack(Critter& target);
+    bool EventAttack(Critter& target, Item@ weapon);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_USE_ITEM. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_USE_ITEM. */
     /** \~english Invokes #CRITTER_EVENT_USE_ITEM event. */
     bool EventUseItem(Item& item, Critter@ onCritter, Item@ onItem, Scenery@ onScenery);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_USE_SKILL. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_USE_SKILL. */
     /** \~english Invokes #CRITTER_EVENT_USE_SKILL event. */
     bool EventUseSkill(int skill, Critter@ onCritter, Item@ onItem, Scenery@ onScenery);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_DROP_ITEM. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_DROP_ITEM. */
     /** \~english Invokes #CRITTER_EVENT_DROP_ITEM event. */
     void EventDropItem(Item& item);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_MOVE_ITEM. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_MOVE_ITEM. */
     /** \~english Invokes #CRITTER_EVENT_MOVE_ITEM event. */
     void EventMoveItem(Item& item, uint8 fromSlot);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_KNOCKOUT. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_KNOCKOUT. */
     /** \~english Invokes #CRITTER_EVENT_KNOCKOUT event. */
     void EventKnockout(uint anim2begin, uint anim2idle, uint anim2end, uint lostAp, uint knockDist);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_SMTH_STEALING. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_SMTH_STEALING. */
     /** \~english Invokes #CRITTER_EVENT_SMTH_STEALING event. */
     void EventSmthStealing(Critter& fromCrit, Critter& thief, bool success, Item& item, uint count);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_SMTH_ATTACK. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_SMTH_ATTACK. */
     /** \~english Invokes #CRITTER_EVENT_SMTH_ATTACK event. */
     void EventSmthAttack(Critter& fromCrit, Critter& target);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_SMTH_ATTACKED. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_SMTH_ATTACKED. */
     /** \~english Invokes #CRITTER_EVENT_SMTH_ATTACKED event. */
     void EventSmthAttack(Critter& fromCrit, Critter& target);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_SMTH_USE_ITEM. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_SMTH_USE_ITEM. */
     /** \~english Invokes #CRITTER_EVENT_SMTH_USE_ITEM event. */
     void EventSmthUseItem(Critter& fromCrit, Item& item, Critter@ onCritter, Item@ onItem, Scenery@ onScenery);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_SMTH_USE_SKILL. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_SMTH_USE_SKILL. */
     /** \~english Invokes #CRITTER_EVENT_SMTH_USE_SKILL event. */
     void EventSmthUseSkill(Critter& fromCrit, int skill, Critter@ onCritter, Item@ onItem, Scenery@ onScenery);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_SMTH_DROP_ITEM. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_SMTH_DROP_ITEM. */
     /** \~english Invokes #CRITTER_EVENT_SMTH_DROP_ITEM event. */
     void EventSmthDropItem(Critter& fromCrit, Item& item);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_SMTH_MOVE_ITEM. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_SMTH_MOVE_ITEM. */
     /** \~english Invokes #CRITTER_EVENT_SMTH_MOVE_ITEM event. */
     void EventSmthMoveItem(Critter& fromCrit, Item& item, uint8 fromSlot);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_SMTH_KNOCKOUT. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_SMTH_KNOCKOUT. */
     /** \~english Invokes #CRITTER_EVENT_SMTH_KNOCKOUT event. */
     void EventSmthKnockout(Critter& fromCrit, uint anim2begin, uint anim2idle, uint anim2end, uint lostAp, uint knockDist);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_BARTER. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_BARTER. */
     /** \~english Invokes #CRITTER_EVENT_BARTER event. */
     bool EventBarter(Critter& cr, bool attach, uint barterCount);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_TALK. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_TALK. */
     /** \~english Invokes #CRITTER_EVENT_TALK event. */
     bool EventTalk(Critter& cr, bool attach, uint talkCount);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_PLANE_BEGIN. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_PLANE_BEGIN. */
     /** \~english Invokes #CRITTER_EVENT_PLANE_BEGIN event. */
     bool EventPlaneBegin(NpcPlane& plane, uint childIndex, int reason, Critter@ someCr, Item@ someItem);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_PLANE_END. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_PLANE_END. */
     /** \~english Invokes #CRITTER_EVENT_PLANE_END event. */
     bool EventPlaneEnd(NpcPlane& plane, uint childIndex, int reason, Critter@ someCr, Item@ someItem);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_PLANE_RUN. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_PLANE_RUN. */
     /** \~english Invokes #CRITTER_EVENT_PLANE_RUN event. */
     bool EventPlaneRun(NpcPlane& plane, uint childIndex, int reason, uint& p0, uint& p1, uint& p2);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_SHOW_CRITTER_1. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_SHOW_CRITTER_1. */
     /** \~english Invokes #CRITTER_EVENT_SHOW_CRITTER_1 event. */
     void EventShowCritter1(Critter& cr);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_SHOW_CRITTER_2. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_SHOW_CRITTER_2. */
     /** \~english Invokes #CRITTER_EVENT_SHOW_CRITTER_2 event. */
     void EventShowCritter2(Critter& cr);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_SHOW_CRITTER_3. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_SHOW_CRITTER_3. */
     /** \~english Invokes #CRITTER_EVENT_SHOW_CRITTER_3 event. */
     void EventShowCritter3(Critter& cr);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_HIDE_CRITTER_1. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_HIDE_CRITTER_1. */
     /** \~english Invokes #CRITTER_EVENT_HIDE_CRITTER_1 event. */
     void EventHideCritter1(Critter& cr);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_HIDE_CRITTER_2. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_HIDE_CRITTER_2. */
     /** \~english Invokes #CRITTER_EVENT_HIDE_CRITTER_2 event. */
     void EventHideCritter2(Critter& cr);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_HIDE_CRITTER_3. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_HIDE_CRITTER_3. */
     /** \~english Invokes #CRITTER_EVENT_HIDE_CRITTER_3 event. */
     void EventHideCritter3(Critter& cr);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_GLOBAL_PROCESS. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_GLOBAL_PROCESS. */
     /** \~english Invokes #CRITTER_EVENT_GLOBAL_PROCESS event. */
     bool EventGlobalProcess(int type, Critter& cr, Item@ car, uint& x, uint& y, uint& toX, uint& toY, uint& speed, uint& encounterDescriptor, bool& waitForAnswer);
 
-    /** \~russian Принудительно вызывает событие #CRITTER_EVENT_GLOBAL_INVITE. */
+    /** \~russian РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ СЃРѕР±С‹С‚РёРµ #CRITTER_EVENT_GLOBAL_INVITE. */
     /** \~english Invokes #CRITTER_EVENT_GLOBAL_INVITE event. */
     bool EventGlobalInvite(Critter& leader, Item@ car, uint encounterDescriptor, int combatMode, uint& mapId, uint16& hexX, uint16& hexY, uint8& dir);
 
     //@}
 
     /**
-     * \~russian @name Карта
+     * \~russian @name РљР°СЂС‚Р°
      * \~english @name Map
      *
      * \~ @weight 290
      */
     //@{
 
-    /** \~russian Возвращает указатель на объект карты, на которой находится криттер.
+    /** \~russian Р’РѕР·РІСЂР°С‰Р°РµС‚ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РѕР±СЉРµРєС‚ РєР°СЂС‚С‹, РЅР° РєРѕС‚РѕСЂРѕР№ РЅР°С…РѕРґРёС‚СЃСЏ РєСЂРёС‚С‚РµСЂ.
      *
-     * @return Указатель на экземпляр класса Map. В случае провала – @c null.
+     * @return РЈРєР°Р·Р°С‚РµР»СЊ РЅР° СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° Map. Р’ СЃР»СѓС‡Р°Рµ РїСЂРѕРІР°Р»Р° вЂ“ @c null.
      *
      ** \~english Returns a handler to the map object on which the critter is located in.
      *
-     * @return Handler to the Map object in case of success, otherwise – @c null.
+     * @return Handler to the Map object in case of success, otherwise вЂ“ @c null.
      */
     Map@+ GetMap();
 
-    /** \~russian Возвращает уникальный ID карты, на которой находится криттер.
+    /** \~russian Р’РѕР·РІСЂР°С‰Р°РµС‚ СѓРЅРёРєР°Р»СЊРЅС‹Р№ ID РєР°СЂС‚С‹, РЅР° РєРѕС‚РѕСЂРѕР№ РЅР°С…РѕРґРёС‚СЃСЏ РєСЂРёС‚С‚РµСЂ.
      *
-     * @return ID карты. В случае провала – 0.
+     * @return ID РєР°СЂС‚С‹. Р’ СЃР»СѓС‡Р°Рµ РїСЂРѕРІР°Р»Р° вЂ“ 0.
      *
      ** \~english Retrieves the ID of the map critter is located in.
      *
-     * @return Map's ID. In case of failure (e.g. critter on worldmap)  – 0.
+     * @return Map's ID. In case of failure (e.g. critter on worldmap)  вЂ“ 0.
      */
     uint GetMapId();
 
-    /** \~russian Возвращает ID прототипа карты, на которой находится криттер.
+    /** \~russian Р’РѕР·РІСЂР°С‰Р°РµС‚ ID РїСЂРѕС‚РѕС‚РёРїР° РєР°СЂС‚С‹, РЅР° РєРѕС‚РѕСЂРѕР№ РЅР°С…РѕРґРёС‚СЃСЏ РєСЂРёС‚С‚РµСЂ.
      *
-     * @return ID прототипа карты. В случае провала – 0.
+     * @return ID РїСЂРѕС‚РѕС‚РёРїР° РєР°СЂС‚С‹. Р’ СЃР»СѓС‡Р°Рµ РїСЂРѕРІР°Р»Р° вЂ“ 0.
      *
      ** \~english Retrieves the ID number of map proto the critter is located in.
      *
-     * @return Map's proto ID. In case of failure (e.g. critter on worldmap)  – 0.
+     * @return Map's proto ID. In case of failure (e.g. critter on worldmap)  вЂ“ 0.
      */
     uint16 GetMapProtoId();
 
-    /** \~russian Позволяет получить состояние видимости указанной клетки глобальной карты мира для криттера.
+    /** \~russian РџРѕР·РІРѕР»СЏРµС‚ РїРѕР»СѓС‡РёС‚СЊ СЃРѕСЃС‚РѕСЏРЅРёРµ РІРёРґРёРјРѕСЃС‚Рё СѓРєР°Р·Р°РЅРЅРѕР№ РєР»РµС‚РєРё РіР»РѕР±Р°Р»СЊРЅРѕР№ РєР°СЂС‚С‹ РјРёСЂР° РґР»СЏ РєСЂРёС‚С‚РµСЂР°.
      *
-     * @param   zoneX, zoneY  Координаты клетки глобальной карты мира.
+     * @param   zoneX, zoneY  РљРѕРѕСЂРґРёРЅР°С‚С‹ РєР»РµС‚РєРё РіР»РѕР±Р°Р»СЊРЅРѕР№ РєР°СЂС‚С‹ РјРёСЂР°.
      *
-     * @return  Состояние видимости. См. @link GlobalMapFog Global map fog@endlink.
+     * @return  РЎРѕСЃС‚РѕСЏРЅРёРµ РІРёРґРёРјРѕСЃС‚Рё. РЎРј. @link GlobalMapFog Global map fog@endlink.
      *
      * @see     SetFog
      *
@@ -406,10 +406,10 @@ public:
      */
     int GetFog(uint16 zoneX, uint16 zoneY);
 
-    /** \~russian Позволяет изменить для криттера видимость указанной клетки глобальной карты мира.
+    /** \~russian РџРѕР·РІРѕР»СЏРµС‚ РёР·РјРµРЅРёС‚СЊ РґР»СЏ РєСЂРёС‚С‚РµСЂР° РІРёРґРёРјРѕСЃС‚СЊ СѓРєР°Р·Р°РЅРЅРѕР№ РєР»РµС‚РєРё РіР»РѕР±Р°Р»СЊРЅРѕР№ РєР°СЂС‚С‹ РјРёСЂР°.
      *
-     * @param zoneX, zoneY  Координаты клетки глобальной карты мира.
-     * @param fog           Устанавливаемое состояние видимости. См. @link GlobalMapFog Global map fog@endlink.
+     * @param zoneX, zoneY  РљРѕРѕСЂРґРёРЅР°С‚С‹ РєР»РµС‚РєРё РіР»РѕР±Р°Р»СЊРЅРѕР№ РєР°СЂС‚С‹ РјРёСЂР°.
+     * @param fog           РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРјРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ РІРёРґРёРјРѕСЃС‚Рё. РЎРј. @link GlobalMapFog Global map fog@endlink.
      *
      * @see GetFog
      *
@@ -425,16 +425,16 @@ public:
     //@}
 
     /**
-     * \~russian @name Cтатистика
+     * \~russian @name CС‚Р°С‚РёСЃС‚РёРєР°
      * \~english @name Statistics
      * \~ @weight 270
      */
     //@{
 
-    /** \~russian Добавляет указанное количество очков в указанную статистику криттера.
+    /** \~russian Р”РѕР±Р°РІР»СЏРµС‚ СѓРєР°Р·Р°РЅРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РѕС‡РєРѕРІ РІ СѓРєР°Р·Р°РЅРЅСѓСЋ СЃС‚Р°С‚РёСЃС‚РёРєСѓ РєСЂРёС‚С‚РµСЂР°.
      *
-     * @param  score  Номер статистики (см. @link Scores@endlink).
-     * @param  value  Количество очков.
+     * @param  score  РќРѕРјРµСЂ СЃС‚Р°С‚РёСЃС‚РёРєРё (СЃРј. @link Scores@endlink).
+     * @param  value  РљРѕР»РёС‡РµСЃС‚РІРѕ РѕС‡РєРѕРІ.
      *
      */
     void AddScore(int score, int value);
@@ -442,437 +442,437 @@ public:
     //@}
 
     /**
-     * \~russian @name Инвентарь
+     * \~russian @name РРЅРІРµРЅС‚Р°СЂСЊ
      * \~english @name Inventory
      * \~ @weight 260
      */
     //@{
 
-    /** \~russian Возвращает время обновления сумки.
+    /** \~russian Р’РѕР·РІСЂР°С‰Р°РµС‚ РІСЂРµРјСЏ РѕР±РЅРѕРІР»РµРЅРёСЏ СЃСѓРјРєРё.
      *
-     * @return Время обновления сумки в реальных минутах.
+     * @return Р’СЂРµРјСЏ РѕР±РЅРѕРІР»РµРЅРёСЏ СЃСѓРјРєРё РІ СЂРµР°Р»СЊРЅС‹С… РјРёРЅСѓС‚Р°С….
      *
      * @see    SetBagRefreshTime
      */
     uint GetBagRefreshTime();
 
-    /** \~russian Устанавливает время обновления сумки.
+    /** \~russian РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РІСЂРµРјСЏ РѕР±РЅРѕРІР»РµРЅРёСЏ СЃСѓРјРєРё.
      *
-     * Если время обновления равно 0, то берется время по-умолчанию:
-     * рандомно от 60 до 120 реальных минут.
+     * Р•СЃР»Рё РІСЂРµРјСЏ РѕР±РЅРѕРІР»РµРЅРёСЏ СЂР°РІРЅРѕ 0, С‚Рѕ Р±РµСЂРµС‚СЃСЏ РІСЂРµРјСЏ РїРѕ-СѓРјРѕР»С‡Р°РЅРёСЋ:
+     * СЂР°РЅРґРѕРјРЅРѕ РѕС‚ 60 РґРѕ 120 СЂРµР°Р»СЊРЅС‹С… РјРёРЅСѓС‚.
      *
-     * @param  realMinutes  Новое значение в реальных минутах.
+     * @param  realMinutes  РќРѕРІРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ СЂРµР°Р»СЊРЅС‹С… РјРёРЅСѓС‚Р°С….
      *
      * @see    GetBagRefreshTime
      */
     void SetBagRefreshTime(uint realMinutes);
 
-    /** \~russian Позволяет получить внутреннюю сумку криттера.
+    /** \~russian РџРѕР·РІРѕР»СЏРµС‚ РїРѕР»СѓС‡РёС‚СЊ РІРЅСѓС‚СЂРµРЅРЅСЋСЋ СЃСѓРјРєСѓ РєСЂРёС‚С‚РµСЂР°.
      *
-     * @param  pids       Массив, к которому будут дописаны номера прототипов предметов в сумке.
-     * @param  minCounts  Массив, к которому будут дописано минимальное количество предметов для каждого прототипа.
-     * @param  maxCounts  Массив, к которому будут дописано максимальное количество предметов для каждого прототипа.
-     * @param  slots      Массив, к которому будут дописаны номера слотов размещения для каждого прототипа.
+     * @param  pids       РњР°СЃСЃРёРІ, Рє РєРѕС‚РѕСЂРѕРјСѓ Р±СѓРґСѓС‚ РґРѕРїРёСЃР°РЅС‹ РЅРѕРјРµСЂР° РїСЂРѕС‚РѕС‚РёРїРѕРІ РїСЂРµРґРјРµС‚РѕРІ РІ СЃСѓРјРєРµ.
+     * @param  minCounts  РњР°СЃСЃРёРІ, Рє РєРѕС‚РѕСЂРѕРјСѓ Р±СѓРґСѓС‚ РґРѕРїРёСЃР°РЅРѕ РјРёРЅРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РїСЂРµРґРјРµС‚РѕРІ РґР»СЏ РєР°Р¶РґРѕРіРѕ РїСЂРѕС‚РѕС‚РёРїР°.
+     * @param  maxCounts  РњР°СЃСЃРёРІ, Рє РєРѕС‚РѕСЂРѕРјСѓ Р±СѓРґСѓС‚ РґРѕРїРёСЃР°РЅРѕ РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РїСЂРµРґРјРµС‚РѕРІ РґР»СЏ РєР°Р¶РґРѕРіРѕ РїСЂРѕС‚РѕС‚РёРїР°.
+     * @param  slots      РњР°СЃСЃРёРІ, Рє РєРѕС‚РѕСЂРѕРјСѓ Р±СѓРґСѓС‚ РґРѕРїРёСЃР°РЅС‹ РЅРѕРјРµСЂР° СЃР»РѕС‚РѕРІ СЂР°Р·РјРµС‰РµРЅРёСЏ РґР»СЏ РєР°Р¶РґРѕРіРѕ РїСЂРѕС‚РѕС‚РёРїР°.
      *
      * @see    SetInternalBag
      */
     uint GetInternalBag(uint16[]@+ pids, uint[]@+ minCounts, uint[]@+ maxCounts, int[]@+ slots);
 
-    /** \~russian Позволяет установить внутреннюю сумку криттера.
+    /** \~russian РџРѕР·РІРѕР»СЏРµС‚ СѓСЃС‚Р°РЅРѕРІРёС‚СЊ РІРЅСѓС‚СЂРµРЅРЅСЋСЋ СЃСѓРјРєСѓ РєСЂРёС‚С‚РµСЂР°.
      *
-     * Начальное состояние формируется из инвентаря NPC в маппере, если его параметр @a BagId равен 0.
+     * РќР°С‡Р°Р»СЊРЅРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ С„РѕСЂРјРёСЂСѓРµС‚СЃСЏ РёР· РёРЅРІРµРЅС‚Р°СЂСЏ NPC РІ РјР°РїРїРµСЂРµ, РµСЃР»Рё РµРіРѕ РїР°СЂР°РјРµС‚СЂ @a BagId СЂР°РІРµРЅ 0.
      *
-     * @param  pids       Массив с номерами прототипов предметов, которые будут содержаться в сумке.
-     * @param  minCounts  Массив, содержащий минимальное количество каждого предмета в сумке.
-     * @param  maxCounts  Массив, содержащий максимальное количество каждого предмета в сумке.
-     * @param  slots      Массив с номерами слотов, в которых должны размещаться предметы из сумки.
+     * @param  pids       РњР°СЃСЃРёРІ СЃ РЅРѕРјРµСЂР°РјРё РїСЂРѕС‚РѕС‚РёРїРѕРІ РїСЂРµРґРјРµС‚РѕРІ, РєРѕС‚РѕСЂС‹Рµ Р±СѓРґСѓС‚ СЃРѕРґРµСЂР¶Р°С‚СЊСЃСЏ РІ СЃСѓРјРєРµ.
+     * @param  minCounts  РњР°СЃСЃРёРІ, СЃРѕРґРµСЂР¶Р°С‰РёР№ РјРёРЅРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РєР°Р¶РґРѕРіРѕ РїСЂРµРґРјРµС‚Р° РІ СЃСѓРјРєРµ.
+     * @param  maxCounts  РњР°СЃСЃРёРІ, СЃРѕРґРµСЂР¶Р°С‰РёР№ РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РєР°Р¶РґРѕРіРѕ РїСЂРµРґРјРµС‚Р° РІ СЃСѓРјРєРµ.
+     * @param  slots      РњР°СЃСЃРёРІ СЃ РЅРѕРјРµСЂР°РјРё СЃР»РѕС‚РѕРІ, РІ РєРѕС‚РѕСЂС‹С… РґРѕР»Р¶РЅС‹ СЂР°Р·РјРµС‰Р°С‚СЊСЃСЏ РїСЂРµРґРјРµС‚С‹ РёР· СЃСѓРјРєРё.
      *
      * @see    GetInternalBag
      */
     void SetInternalBag(uint16[]& pids, uint[]@+ minCounts, uint[]@+ maxCounts, int[]@+ slots);
 
-    /** \~russian Возвращает количество всех предметов, находящихся в инвентаре криттера.
+    /** \~russian Р’РѕР·РІСЂР°С‰Р°РµС‚ РєРѕР»РёС‡РµСЃС‚РІРѕ РІСЃРµС… РїСЂРµРґРјРµС‚РѕРІ, РЅР°С…РѕРґСЏС‰РёС…СЃСЏ РІ РёРЅРІРµРЅС‚Р°СЂРµ РєСЂРёС‚С‚РµСЂР°.
      *
-     * @return Количество всех предметов.
+     * @return РљРѕР»РёС‡РµСЃС‚РІРѕ РІСЃРµС… РїСЂРµРґРјРµС‚РѕРІ.
      */
     uint ItemsCount();
 
-    /** \~russian Возвращает общий вес всех предметов, находящихся в инвентаре криттера.
+    /** \~russian Р’РѕР·РІСЂР°С‰Р°РµС‚ РѕР±С‰РёР№ РІРµСЃ РІСЃРµС… РїСЂРµРґРјРµС‚РѕРІ, РЅР°С…РѕРґСЏС‰РёС…СЃСЏ РІ РёРЅРІРµРЅС‚Р°СЂРµ РєСЂРёС‚С‚РµСЂР°.
      *
-     * @return Общий вес предметов в инвентаре.
+     * @return РћР±С‰РёР№ РІРµСЃ РїСЂРµРґРјРµС‚РѕРІ РІ РёРЅРІРµРЅС‚Р°СЂРµ.
      */
     uint ItemsWeight();
 
-    /** \~russian Возвращает общий объем всех предметов, находящихся в инвентаре криттера.
+    /** \~russian Р’РѕР·РІСЂР°С‰Р°РµС‚ РѕР±С‰РёР№ РѕР±СЉРµРј РІСЃРµС… РїСЂРµРґРјРµС‚РѕРІ, РЅР°С…РѕРґСЏС‰РёС…СЃСЏ РІ РёРЅРІРµРЅС‚Р°СЂРµ РєСЂРёС‚С‚РµСЂР°.
      *
-     * @return Общий объем предметов в инвентаре.
+     * @return РћР±С‰РёР№ РѕР±СЉРµРј РїСЂРµРґРјРµС‚РѕРІ РІ РёРЅРІРµРЅС‚Р°СЂРµ.
      */
     uint ItemsVolume();
 
-    /** \~russian Возвращает количество указанных предметов, находящихся в инвентаре криттера.
+    /** \~russian Р’РѕР·РІСЂР°С‰Р°РµС‚ РєРѕР»РёС‡РµСЃС‚РІРѕ СѓРєР°Р·Р°РЅРЅС‹С… РїСЂРµРґРјРµС‚РѕРІ, РЅР°С…РѕРґСЏС‰РёС…СЃСЏ РІ РёРЅРІРµРЅС‚Р°СЂРµ РєСЂРёС‚С‚РµСЂР°.
      *
-     * @param   protoId  ID прототипа предмета (см. файл @b ITEMPID.H).
+     * @param   protoId  ID РїСЂРѕС‚РѕС‚РёРїР° РїСЂРµРґРјРµС‚Р° (СЃРј. С„Р°Р№Р» @b ITEMPID.H).
      *
-     * @return  Количество предметов с указанным прототипом, находящихся в инвентаре.
+     * @return  РљРѕР»РёС‡РµСЃС‚РІРѕ РїСЂРµРґРјРµС‚РѕРІ СЃ СѓРєР°Р·Р°РЅРЅС‹Рј РїСЂРѕС‚РѕС‚РёРїРѕРј, РЅР°С…РѕРґСЏС‰РёС…СЃСЏ РІ РёРЅРІРµРЅС‚Р°СЂРµ.
      */
     uint CountItem(uint16 protoId);
 
-    /** \~russian Позволяет получить предмет с указанным прототипом,
-     *            находящийся в указанном слоте инвентаря криттера.
+    /** \~russian РџРѕР·РІРѕР»СЏРµС‚ РїРѕР»СѓС‡РёС‚СЊ РїСЂРµРґРјРµС‚ СЃ СѓРєР°Р·Р°РЅРЅС‹Рј РїСЂРѕС‚РѕС‚РёРїРѕРј,
+     *            РЅР°С…РѕРґСЏС‰РёР№СЃСЏ РІ СѓРєР°Р·Р°РЅРЅРѕРј СЃР»РѕС‚Рµ РёРЅРІРµРЅС‚Р°СЂСЏ РєСЂРёС‚С‚РµСЂР°.
      *
-     * @param  protoId  ID прототипа предмета (см. файл @b ITEMPID.H).
-     * @param  slot     Слот, в котором находится предмет (см. @link Slots@endlink).
-     *                  Если установлено значение: -1, то слот учитываться не будет.
+     * @param  protoId  ID РїСЂРѕС‚РѕС‚РёРїР° РїСЂРµРґРјРµС‚Р° (СЃРј. С„Р°Р№Р» @b ITEMPID.H).
+     * @param  slot     РЎР»РѕС‚, РІ РєРѕС‚РѕСЂРѕРј РЅР°С…РѕРґРёС‚СЃСЏ РїСЂРµРґРјРµС‚ (СЃРј. @link Slots@endlink).
+     *                  Р•СЃР»Рё СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ Р·РЅР°С‡РµРЅРёРµ: -1, С‚Рѕ СЃР»РѕС‚ СѓС‡РёС‚С‹РІР°С‚СЊСЃСЏ РЅРµ Р±СѓРґРµС‚.
      *
-     * @return Указатель на экземпляр класса Item, если предмет найден.
-     *         В противном случае – @c null.
+     * @return РЈРєР°Р·Р°С‚РµР»СЊ РЅР° СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° Item, РµСЃР»Рё РїСЂРµРґРјРµС‚ РЅР°Р№РґРµРЅ.
+     *         Р’ РїСЂРѕС‚РёРІРЅРѕРј СЃР»СѓС‡Р°Рµ вЂ“ @c null.
      */
     Item@+ GetItem(uint16 protoId, int slot);
 
-   /** \~russian Позволяет получить предмет с указанным идентификатором,
-     *           находящийся в инвентаре криттера.
+   /** \~russian РџРѕР·РІРѕР»СЏРµС‚ РїРѕР»СѓС‡РёС‚СЊ РїСЂРµРґРјРµС‚ СЃ СѓРєР°Р·Р°РЅРЅС‹Рј РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂРѕРј,
+     *           РЅР°С…РѕРґСЏС‰РёР№СЃСЏ РІ РёРЅРІРµРЅС‚Р°СЂРµ РєСЂРёС‚С‚РµСЂР°.
      *
-     * @param  itemId  ID предмета (см. файл @b ITEMPID.H).
+     * @param  itemId  ID РїСЂРµРґРјРµС‚Р° (СЃРј. С„Р°Р№Р» @b ITEMPID.H).
      *
-     * @return Указатель на экземпляр класса Item, если предмет найден.
-     *         В противном случае – @c null.
+     * @return РЈРєР°Р·Р°С‚РµР»СЊ РЅР° СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° Item, РµСЃР»Рё РїСЂРµРґРјРµС‚ РЅР°Р№РґРµРЅ.
+     *         Р’ РїСЂРѕС‚РёРІРЅРѕРј СЃР»СѓС‡Р°Рµ вЂ“ @c null.
      */
     Item@+ GetItemById(uint itemId);
 
-    /** \~russian Находит все предметы, которые находятся в инвентаре.
+    /** \~russian РќР°С…РѕРґРёС‚ РІСЃРµ РїСЂРµРґРјРµС‚С‹, РєРѕС‚РѕСЂС‹Рµ РЅР°С…РѕРґСЏС‚СЃСЏ РІ РёРЅРІРµРЅС‚Р°СЂРµ.
      *
-     * @param  slot   Слот, в котором находятся предметы (см. @link Slots@endlink).
-     *                Если установлено значение: -1, то слот учитываться не будет.
-     * @param  items  Массив указателей на предметы, которые находятся в инвентаре.
-     *                Массив не очищается, а дописывается с конца нужными предметами.
+     * @param  slot   РЎР»РѕС‚, РІ РєРѕС‚РѕСЂРѕРј РЅР°С…РѕРґСЏС‚СЃСЏ РїСЂРµРґРјРµС‚С‹ (СЃРј. @link Slots@endlink).
+     *                Р•СЃР»Рё СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ Р·РЅР°С‡РµРЅРёРµ: -1, С‚Рѕ СЃР»РѕС‚ СѓС‡РёС‚С‹РІР°С‚СЊСЃСЏ РЅРµ Р±СѓРґРµС‚.
+     * @param  items  РњР°СЃСЃРёРІ СѓРєР°Р·Р°С‚РµР»РµР№ РЅР° РїСЂРµРґРјРµС‚С‹, РєРѕС‚РѕСЂС‹Рµ РЅР°С…РѕРґСЏС‚СЃСЏ РІ РёРЅРІРµРЅС‚Р°СЂРµ.
+     *                РњР°СЃСЃРёРІ РЅРµ РѕС‡РёС‰Р°РµС‚СЃСЏ, Р° РґРѕРїРёСЃС‹РІР°РµС‚СЃСЏ СЃ РєРѕРЅС†Р° РЅСѓР¶РЅС‹РјРё РїСЂРµРґРјРµС‚Р°РјРё.
      *
-     * @return Количество найденных предметов.
+     * @return РљРѕР»РёС‡РµСЃС‚РІРѕ РЅР°Р№РґРµРЅРЅС‹С… РїСЂРµРґРјРµС‚РѕРІ.
      */
     uint GetItems(int slot, Item@[]@+ items);
 
-    /** \~russian Позволяет получить все предметы указанного типа, находящиеся в инвентаре криттера.
+    /** \~russian РџРѕР·РІРѕР»СЏРµС‚ РїРѕР»СѓС‡РёС‚СЊ РІСЃРµ РїСЂРµРґРјРµС‚С‹ СѓРєР°Р·Р°РЅРЅРѕРіРѕ С‚РёРїР°, РЅР°С…РѕРґСЏС‰РёРµСЃСЏ РІ РёРЅРІРµРЅС‚Р°СЂРµ РєСЂРёС‚С‚РµСЂР°.
      *
-     * @param   type   Тип предмета (см. @link ItemsTypes Items types@endlink).
-     * @param   items  Массив, в конец которого будут записаны найденные предметы.
+     * @param   type   РўРёРї РїСЂРµРґРјРµС‚Р° (СЃРј. @link ItemsTypes Items types@endlink).
+     * @param   items  РњР°СЃСЃРёРІ, РІ РєРѕРЅРµС† РєРѕС‚РѕСЂРѕРіРѕ Р±СѓРґСѓС‚ Р·Р°РїРёСЃР°РЅС‹ РЅР°Р№РґРµРЅРЅС‹Рµ РїСЂРµРґРјРµС‚С‹.
      *
-     * @return  Количество предметов указанного типа.
+     * @return  РљРѕР»РёС‡РµСЃС‚РІРѕ РїСЂРµРґРјРµС‚РѕРІ СѓРєР°Р·Р°РЅРЅРѕРіРѕ С‚РёРїР°.
      */
     uint GetItemsByType(int type, Item@[]@+ items);
 
-    /** \~russian Перемещает предмет из одного слота в другой.
+    /** \~russian РџРµСЂРµРјРµС‰Р°РµС‚ РїСЂРµРґРјРµС‚ РёР· РѕРґРЅРѕРіРѕ СЃР»РѕС‚Р° РІ РґСЂСѓРіРѕР№.
      *
-     * @param  objId   Уникальный ID предмета.
-     * @param  toSlot  Слот, в который перемещают предмет (см. @link Slots@endlink).
-     * @param  count   Количество перемещаемых предметов.
+     * @param  objId   РЈРЅРёРєР°Р»СЊРЅС‹Р№ ID РїСЂРµРґРјРµС‚Р°.
+     * @param  toSlot  РЎР»РѕС‚, РІ РєРѕС‚РѕСЂС‹Р№ РїРµСЂРµРјРµС‰Р°СЋС‚ РїСЂРµРґРјРµС‚ (СЃРј. @link Slots@endlink).
+     * @param  count   РљРѕР»РёС‡РµСЃС‚РІРѕ РїРµСЂРµРјРµС‰Р°РµРјС‹С… РїСЂРµРґРјРµС‚РѕРІ.
      *
-     * @return @c true – в случае удачного перемещения, @c false – в случае провала.
+     * @return @c true вЂ“ РІ СЃР»СѓС‡Р°Рµ СѓРґР°С‡РЅРѕРіРѕ РїРµСЂРµРјРµС‰РµРЅРёСЏ, @c false вЂ“ РІ СЃР»СѓС‡Р°Рµ РїСЂРѕРІР°Р»Р°.
      */
     bool MoveItem(uint objId, uint count, uint8 toSlot);
 
-    /** \~russian Добавляет предмет в инвентарь криттера.
+    /** \~russian Р”РѕР±Р°РІР»СЏРµС‚ РїСЂРµРґРјРµС‚ РІ РёРЅРІРµРЅС‚Р°СЂСЊ РєСЂРёС‚С‚РµСЂР°.
      *
-     * @param  protoId  Номер прототипа предмета (см. файл @b ITEMPID.H).
-     * @param  count    Количество предметов.
+     * @param  protoId  РќРѕРјРµСЂ РїСЂРѕС‚РѕС‚РёРїР° РїСЂРµРґРјРµС‚Р° (СЃРј. С„Р°Р№Р» @b ITEMPID.H).
+     * @param  count    РљРѕР»РёС‡РµСЃС‚РІРѕ РїСЂРµРґРјРµС‚РѕРІ.
      *
-     * @return Указатель на экземпляр класса Item. В случае провала – @c null.
+     * @return РЈРєР°Р·Р°С‚РµР»СЊ РЅР° СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° Item. Р’ СЃР»СѓС‡Р°Рµ РїСЂРѕРІР°Р»Р° вЂ“ @c null.
      */
     Item@+ AddItem(uint16 protoId, uint count);
 
-    /** \~russian Удаляет предмет из инвентаря криттера.
+    /** \~russian РЈРґР°Р»СЏРµС‚ РїСЂРµРґРјРµС‚ РёР· РёРЅРІРµРЅС‚Р°СЂСЏ РєСЂРёС‚С‚РµСЂР°.
      *
-     * @param  protoId  Номер прототипа предмета (см. файл @b ITEMPID.H).
-     * @param  count    Количество предметов.
+     * @param  protoId  РќРѕРјРµСЂ РїСЂРѕС‚РѕС‚РёРїР° РїСЂРµРґРјРµС‚Р° (СЃРј. С„Р°Р№Р» @b ITEMPID.H).
+     * @param  count    РљРѕР»РёС‡РµСЃС‚РІРѕ РїСЂРµРґРјРµС‚РѕРІ.
      *
-     * @return @c true – в случае удачного добавления; @c false – в случае провала.
+     * @return @c true вЂ“ РІ СЃР»СѓС‡Р°Рµ СѓРґР°С‡РЅРѕРіРѕ РґРѕР±Р°РІР»РµРЅРёСЏ; @c false вЂ“ РІ СЃР»СѓС‡Р°Рµ РїСЂРѕРІР°Р»Р°.
      */
     bool DeleteItem(uint16 protoId, uint count);
 
-    /** \~russian Заставляет криттера поднять предмет.
+    /** \~russian Р—Р°СЃС‚Р°РІР»СЏРµС‚ РєСЂРёС‚С‚РµСЂР° РїРѕРґРЅСЏС‚СЊ РїСЂРµРґРјРµС‚.
      *
-     * Для того, чтобы предмет был поднят удачно, криттер должен находиться не дальше,
-     * чем на 1 гексагон от предмета.
+     * Р”Р»СЏ С‚РѕРіРѕ, С‡С‚РѕР±С‹ РїСЂРµРґРјРµС‚ Р±С‹Р» РїРѕРґРЅСЏС‚ СѓРґР°С‡РЅРѕ, РєСЂРёС‚С‚РµСЂ РґРѕР»Р¶РµРЅ РЅР°С…РѕРґРёС‚СЊСЃСЏ РЅРµ РґР°Р»СЊС€Рµ,
+     * С‡РµРј РЅР° 1 РіРµРєСЃР°РіРѕРЅ РѕС‚ РїСЂРµРґРјРµС‚Р°.
      *
-     * @param  hexX, hexY  Координаты гексагона, на котором находится предмет.
-     * @param  protoId     Номер прототипа предмета (см. файл @b ITEMPID.H).
+     * @param  hexX, hexY  РљРѕРѕСЂРґРёРЅР°С‚С‹ РіРµРєСЃР°РіРѕРЅР°, РЅР° РєРѕС‚РѕСЂРѕРј РЅР°С…РѕРґРёС‚СЃСЏ РїСЂРµРґРјРµС‚.
+     * @param  protoId     РќРѕРјРµСЂ РїСЂРѕС‚РѕС‚РёРїР° РїСЂРµРґРјРµС‚Р° (СЃРј. С„Р°Р№Р» @b ITEMPID.H).
      *
-     * @return @c true – в случае поднятия,
-     *         @c false – в случае неудачного завершения работы функции.
+     * @return @c true вЂ“ РІ СЃР»СѓС‡Р°Рµ РїРѕРґРЅСЏС‚РёСЏ,
+     *         @c false вЂ“ РІ СЃР»СѓС‡Р°Рµ РЅРµСѓРґР°С‡РЅРѕРіРѕ Р·Р°РІРµСЂС€РµРЅРёСЏ СЂР°Р±РѕС‚С‹ С„СѓРЅРєС†РёРё.
      */
     bool PickItem(uint16 hexX, uint16 hexY, uint16 protoId);
 
-    /** \~russian Возвращает номер прототипа избранной вещи криттера для указанного слота.
+    /** \~russian Р’РѕР·РІСЂР°С‰Р°РµС‚ РЅРѕРјРµСЂ РїСЂРѕС‚РѕС‚РёРїР° РёР·Р±СЂР°РЅРЅРѕР№ РІРµС‰Рё РєСЂРёС‚С‚РµСЂР° РґР»СЏ СѓРєР°Р·Р°РЅРЅРѕРіРѕ СЃР»РѕС‚Р°.
      *
-     * Подроности см. в описании #SetFavoriteItem.
+     * РџРѕРґСЂРѕРЅРѕСЃС‚Рё СЃРј. РІ РѕРїРёСЃР°РЅРёРё #SetFavoriteItem.
      *
-     * @param  slot  Слот. Доступны три: @c SLOT_HAND1, @c SLOT_HAND2, @c SLOT_ARMOR.
+     * @param  slot  РЎР»РѕС‚. Р”РѕСЃС‚СѓРїРЅС‹ С‚СЂРё: @c SLOT_HAND1, @c SLOT_HAND2, @c SLOT_ARMOR.
      *
      * @see    SetFavoriteItem
      */
     uint16 GetFavoriteItem(int slot);
 
-    /** \~russian Устанавливает избранную вещь криттера для указанного слота.
+    /** \~russian РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РёР·Р±СЂР°РЅРЅСѓСЋ РІРµС‰СЊ РєСЂРёС‚С‚РµСЂР° РґР»СЏ СѓРєР°Р·Р°РЅРЅРѕРіРѕ СЃР»РѕС‚Р°.
      *
-     * Криттер, по окончании планов, может автоматически выбирать избранный предмет
-     * в нужный слот.
+     * РљСЂРёС‚С‚РµСЂ, РїРѕ РѕРєРѕРЅС‡Р°РЅРёРё РїР»Р°РЅРѕРІ, РјРѕР¶РµС‚ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р±РёСЂР°С‚СЊ РёР·Р±СЂР°РЅРЅС‹Р№ РїСЂРµРґРјРµС‚
+     * РІ РЅСѓР¶РЅС‹Р№ СЃР»РѕС‚.
      *
-     * Для отключения механизма можно установить криттеру перк #MODE_NO_FAVORITE_ITEM.
+     * Р”Р»СЏ РѕС‚РєР»СЋС‡РµРЅРёСЏ РјРµС…Р°РЅРёР·РјР° РјРѕР¶РЅРѕ СѓСЃС‚Р°РЅРѕРІРёС‚СЊ РєСЂРёС‚С‚РµСЂСѓ РїРµСЂРє #MODE_NO_FAVORITE_ITEM.
      *
-     * @param  slot  Слот. См. @link Slots@endlink.
-     *               Из них доступны три: @c SLOT_HAND1, @c SLOT_HAND2, @c SLOT_ARMOR.
-     * @param  pid   Номер прототипа избранной вещи.
+     * @param  slot  РЎР»РѕС‚. РЎРј. @link Slots@endlink.
+     *               РР· РЅРёС… РґРѕСЃС‚СѓРїРЅС‹ С‚СЂРё: @c SLOT_HAND1, @c SLOT_HAND2, @c SLOT_ARMOR.
+     * @param  pid   РќРѕРјРµСЂ РїСЂРѕС‚РѕС‚РёРїР° РёР·Р±СЂР°РЅРЅРѕР№ РІРµС‰Рё.
      *
      * @see    GetFavoriteItem
      */
     void SetFavoriteItem(int slot, uint16 pid);
 
-    /** \~russian Позволяет получить прототип предмета, который находится в указанном слоте.
+    /** \~russian РџРѕР·РІРѕР»СЏРµС‚ РїРѕР»СѓС‡РёС‚СЊ РїСЂРѕС‚РѕС‚РёРї РїСЂРµРґРјРµС‚Р°, РєРѕС‚РѕСЂС‹Р№ РЅР°С…РѕРґРёС‚СЃСЏ РІ СѓРєР°Р·Р°РЅРЅРѕРј СЃР»РѕС‚Рµ.
      *
-     * @param  slot  Слот (см. @link Slots@endlink).
+     * @param  slot  РЎР»РѕС‚ (СЃРј. @link Slots@endlink).
      *
-     * @return Указатель на экземпляр класса ProtoItem.
-     *         Если слот пуст, то возвращается @c null.
+     * @return РЈРєР°Р·Р°С‚РµР»СЊ РЅР° СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° ProtoItem.
+     *         Р•СЃР»Рё СЃР»РѕС‚ РїСѓСЃС‚, С‚Рѕ РІРѕР·РІСЂР°С‰Р°РµС‚СЃСЏ @c null.
      */
     ProtoItem@+ GetSlotProto(int slot);
 
     //@}
 
     /**
-     * \~russian @name Передвижение
+     * \~russian @name РџРµСЂРµРґРІРёР¶РµРЅРёРµ
      * \~english @name Movement
      * \~ @weight 250
      */
     //@{
 
-    /** \~russian Заставляет криттера пройти 1 гексагон в случайном направлении.
+    /** \~russian Р—Р°СЃС‚Р°РІР»СЏРµС‚ РєСЂРёС‚С‚РµСЂР° РїСЂРѕР№С‚Рё 1 РіРµРєСЃР°РіРѕРЅ РІ СЃР»СѓС‡Р°Р№РЅРѕРј РЅР°РїСЂР°РІР»РµРЅРёРё.
      *
-     * @return @c true – в случае удачного выполнения функции;
-     *         @c false – в случае провала.
+     * @return @c true вЂ“ РІ СЃР»СѓС‡Р°Рµ СѓРґР°С‡РЅРѕРіРѕ РІС‹РїРѕР»РЅРµРЅРёСЏ С„СѓРЅРєС†РёРё;
+     *         @c false вЂ“ РІ СЃР»СѓС‡Р°Рµ РїСЂРѕРІР°Р»Р°.
      *
      * @see    MoveToDir
      */
     bool MoveRandom();
 
-    /** \~russian Заставляет криттера пройти 1 гексагон в указанном направлении.
+    /** \~russian Р—Р°СЃС‚Р°РІР»СЏРµС‚ РєСЂРёС‚С‚РµСЂР° РїСЂРѕР№С‚Рё 1 РіРµРєСЃР°РіРѕРЅ РІ СѓРєР°Р·Р°РЅРЅРѕРј РЅР°РїСЂР°РІР»РµРЅРёРё.
      *
-     * @param  dir  Направление шага. Возможные значения:
-     *              0 – вверх-право, 1 – вправо, 2 – вниз-право и т.д.
+     * @param  dir  РќР°РїСЂР°РІР»РµРЅРёРµ С€Р°РіР°. Р’РѕР·РјРѕР¶РЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ:
+     *              0 вЂ“ РІРІРµСЂС…-РїСЂР°РІРѕ, 1 вЂ“ РІРїСЂР°РІРѕ, 2 вЂ“ РІРЅРёР·-РїСЂР°РІРѕ Рё С‚.Рґ.
      *
-     * @return @c true – в случае удачного выполнения функции;
-     *         @c false – в случае провала.
+     * @return @c true вЂ“ РІ СЃР»СѓС‡Р°Рµ СѓРґР°С‡РЅРѕРіРѕ РІС‹РїРѕР»РЅРµРЅРёСЏ С„СѓРЅРєС†РёРё;
+     *         @c false вЂ“ РІ СЃР»СѓС‡Р°Рµ РїСЂРѕРІР°Р»Р°.
      *
      * @see    MoveRandom
      */
     bool MoveToDir(uint8 dir);
 
-    /** \~russian Поворачивает криттера в указанном направлении.
+    /** \~russian РџРѕРІРѕСЂР°С‡РёРІР°РµС‚ РєСЂРёС‚С‚РµСЂР° РІ СѓРєР°Р·Р°РЅРЅРѕРј РЅР°РїСЂР°РІР»РµРЅРёРё.
      *
-     * @param  dir  Направление. Возможные значения:
-     *              0 – вверх-право, 1 – вправо, 2 – вниз-право и т.д.
+     * @param  dir  РќР°РїСЂР°РІР»РµРЅРёРµ. Р’РѕР·РјРѕР¶РЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ:
+     *              0 вЂ“ РІРІРµСЂС…-РїСЂР°РІРѕ, 1 вЂ“ РІРїСЂР°РІРѕ, 2 вЂ“ РІРЅРёР·-РїСЂР°РІРѕ Рё С‚.Рґ.
      *
      */
     void SetDir(uint8 dir);
 
-    /** \~russian Устанавливает домашнюю позицию криттера.
+    /** \~russian РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РґРѕРјР°С€РЅСЋСЋ РїРѕР·РёС†РёСЋ РєСЂРёС‚С‚РµСЂР°.
      *
-     * Криттер будет всегда возвращаться в эту позицию при отсутствии планов.
+     * РљСЂРёС‚С‚РµСЂ Р±СѓРґРµС‚ РІСЃРµРіРґР° РІРѕР·РІСЂР°С‰Р°С‚СЊСЃСЏ РІ СЌС‚Сѓ РїРѕР·РёС†РёСЋ РїСЂРё РѕС‚СЃСѓС‚СЃС‚РІРёРё РїР»Р°РЅРѕРІ.
      *
-     * @param  hexX, hexY  Координаты гексагона (позиции).
-     * @param  dir         Направление, в которое будет повернут криттер, будучи на этой позиции.
+     * @param  hexX, hexY  РљРѕРѕСЂРґРёРЅР°С‚С‹ РіРµРєСЃР°РіРѕРЅР° (РїРѕР·РёС†РёРё).
+     * @param  dir         РќР°РїСЂР°РІР»РµРЅРёРµ, РІ РєРѕС‚РѕСЂРѕРµ Р±СѓРґРµС‚ РїРѕРІРµСЂРЅСѓС‚ РєСЂРёС‚С‚РµСЂ, Р±СѓРґСѓС‡Рё РЅР° СЌС‚РѕР№ РїРѕР·РёС†РёРё.
      *
      * @see    GetHomePos
      */
     void SetHomePos(uint16 hexX, uint16 hexY, uint8 dir);
 
-    /** \~russian Возвращает домашнюю позицию криттера.
+    /** \~russian Р’РѕР·РІСЂР°С‰Р°РµС‚ РґРѕРјР°С€РЅСЋСЋ РїРѕР·РёС†РёСЋ РєСЂРёС‚С‚РµСЂР°.
      *
-     * @param  [out]  mapId       Переменная, в которую будет записан уникальный
-     *                            идентификатор карты домашней позиции криттера.
-     * @param  [out]  hexX, hexY  Переменные, в которые будут записаны координаты
-     *                            домашней позиции.
-     * @param  [out]  dir         Переменная, в которую будет записано направление,
-     *                            в которое повернут криттер, стоя на этой позиции.
+     * @param  [out]  mapId       РџРµСЂРµРјРµРЅРЅР°СЏ, РІ РєРѕС‚РѕСЂСѓСЋ Р±СѓРґРµС‚ Р·Р°РїРёСЃР°РЅ СѓРЅРёРєР°Р»СЊРЅС‹Р№
+     *                            РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РєР°СЂС‚С‹ РґРѕРјР°С€РЅРµР№ РїРѕР·РёС†РёРё РєСЂРёС‚С‚РµСЂР°.
+     * @param  [out]  hexX, hexY  РџРµСЂРµРјРµРЅРЅС‹Рµ, РІ РєРѕС‚РѕСЂС‹Рµ Р±СѓРґСѓС‚ Р·Р°РїРёСЃР°РЅС‹ РєРѕРѕСЂРґРёРЅР°С‚С‹
+     *                            РґРѕРјР°С€РЅРµР№ РїРѕР·РёС†РёРё.
+     * @param  [out]  dir         РџРµСЂРµРјРµРЅРЅР°СЏ, РІ РєРѕС‚РѕСЂСѓСЋ Р±СѓРґРµС‚ Р·Р°РїРёСЃР°РЅРѕ РЅР°РїСЂР°РІР»РµРЅРёРµ,
+     *                            РІ РєРѕС‚РѕСЂРѕРµ РїРѕРІРµСЂРЅСѓС‚ РєСЂРёС‚С‚РµСЂ, СЃС‚РѕСЏ РЅР° СЌС‚РѕР№ РїРѕР·РёС†РёРё.
      *
      * @see    SetHomePos
      */
     void GetHomePos(uint& mapId, uint16& hexX, uint16& hexY, uint8& dir);
 
-    /** \~russian Перемещает игрока или партию игроков на глобальную карту мира.
+    /** \~russian РџРµСЂРµРјРµС‰Р°РµС‚ РёРіСЂРѕРєР° РёР»Рё РїР°СЂС‚РёСЋ РёРіСЂРѕРєРѕРІ РЅР° РіР»РѕР±Р°Р»СЊРЅСѓСЋ РєР°СЂС‚Сѓ РјРёСЂР°.
      *
-     * @param   requestGroup  Указывает, нужно ли послать уведомление о перемещении
-     *                        всей партии данного игрока (@c true) или просто выкинуть игрока
-     *                        на глобал (@c false).
+     * @param   requestGroup  РЈРєР°Р·С‹РІР°РµС‚, РЅСѓР¶РЅРѕ Р»Рё РїРѕСЃР»Р°С‚СЊ СѓРІРµРґРѕРјР»РµРЅРёРµ Рѕ РїРµСЂРµРјРµС‰РµРЅРёРё
+     *                        РІСЃРµР№ РїР°СЂС‚РёРё РґР°РЅРЅРѕРіРѕ РёРіСЂРѕРєР° (@c true) РёР»Рё РїСЂРѕСЃС‚Рѕ РІС‹РєРёРЅСѓС‚СЊ РёРіСЂРѕРєР°
+     *                        РЅР° РіР»РѕР±Р°Р» (@c false).
      *
-     * @remarks Предназначена только для игроков.
+     * @remarks РџСЂРµРґРЅР°Р·РЅР°С‡РµРЅР° С‚РѕР»СЊРєРѕ РґР»СЏ РёРіСЂРѕРєРѕРІ.
      */
     bool TransitToGlobal(bool requestGroup);
 
-    /** \~russian Перемещает на глобал с группой.
+    /** \~russian РџРµСЂРµРјРµС‰Р°РµС‚ РЅР° РіР»РѕР±Р°Р» СЃ РіСЂСѓРїРїРѕР№.
      *
-     * @param  group  Массив криттеров, перемещаемых на глобал в группу с криттером.
+     * @param  group  РњР°СЃСЃРёРІ РєСЂРёС‚С‚РµСЂРѕРІ, РїРµСЂРµРјРµС‰Р°РµРјС‹С… РЅР° РіР»РѕР±Р°Р» РІ РіСЂСѓРїРїСѓ СЃ РєСЂРёС‚С‚РµСЂРѕРј.
      *
-     * @return @c true – если перемещение успешно; @c false – в противном случае.
+     * @return @c true вЂ“ РµСЃР»Рё РїРµСЂРµРјРµС‰РµРЅРёРµ СѓСЃРїРµС€РЅРѕ; @c false вЂ“ РІ РїСЂРѕС‚РёРІРЅРѕРј СЃР»СѓС‡Р°Рµ.
      *
-     * @remarks Криттер, у которого вызывается метод, должен находиться не на глобале.
+     * @remarks РљСЂРёС‚С‚РµСЂ, Сѓ РєРѕС‚РѕСЂРѕРіРѕ РІС‹Р·С‹РІР°РµС‚СЃСЏ РјРµС‚РѕРґ, РґРѕР»Р¶РµРЅ РЅР°С…РѕРґРёС‚СЊСЃСЏ РЅРµ РЅР° РіР»РѕР±Р°Р»Рµ.
      *
-     * @remarks Криттеры из группы могут находиться и на других картах. Если кто-то из
-     *          них находится на глобале, то в группу он не будет добавлен, но функция всё
-     *          равно завершится успешно и криттер, для которого был вызван метод, будет
-     *          перемещен на глобал.
+     * @remarks РљСЂРёС‚С‚РµСЂС‹ РёР· РіСЂСѓРїРїС‹ РјРѕРіСѓС‚ РЅР°С…РѕРґРёС‚СЊСЃСЏ Рё РЅР° РґСЂСѓРіРёС… РєР°СЂС‚Р°С…. Р•СЃР»Рё РєС‚Рѕ-С‚Рѕ РёР·
+     *          РЅРёС… РЅР°С…РѕРґРёС‚СЃСЏ РЅР° РіР»РѕР±Р°Р»Рµ, С‚Рѕ РІ РіСЂСѓРїРїСѓ РѕРЅ РЅРµ Р±СѓРґРµС‚ РґРѕР±Р°РІР»РµРЅ, РЅРѕ С„СѓРЅРєС†РёСЏ РІСЃС‘
+     *          СЂР°РІРЅРѕ Р·Р°РІРµСЂС€РёС‚СЃСЏ СѓСЃРїРµС€РЅРѕ Рё РєСЂРёС‚С‚РµСЂ, РґР»СЏ РєРѕС‚РѕСЂРѕРіРѕ Р±С‹Р» РІС‹Р·РІР°РЅ РјРµС‚РѕРґ, Р±СѓРґРµС‚
+     *          РїРµСЂРµРјРµС‰РµРЅ РЅР° РіР»РѕР±Р°Р».
      */
     bool TransitToGlobal(Critter@[]& group);
 
-    /** \~russian Перемещает криттера на глобал в группу указанного криттера.
+    /** \~russian РџРµСЂРµРјРµС‰Р°РµС‚ РєСЂРёС‚С‚РµСЂР° РЅР° РіР»РѕР±Р°Р» РІ РіСЂСѓРїРїСѓ СѓРєР°Р·Р°РЅРЅРѕРіРѕ РєСЂРёС‚С‚РµСЂР°.
      *
-     * @param   critterId  Идентификатор криттера, в группу которого происходит перемещение.
-     *                     Этот криттер должен находиться на глобале.
+     * @param   critterId  РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РєСЂРёС‚С‚РµСЂР°, РІ РіСЂСѓРїРїСѓ РєРѕС‚РѕСЂРѕРіРѕ РїСЂРѕРёСЃС…РѕРґРёС‚ РїРµСЂРµРјРµС‰РµРЅРёРµ.
+     *                     Р­С‚РѕС‚ РєСЂРёС‚С‚РµСЂ РґРѕР»Р¶РµРЅ РЅР°С…РѕРґРёС‚СЊСЃСЏ РЅР° РіР»РѕР±Р°Р»Рµ.
      *
-     * @return  @c true – если перемещение успешно; @c false – в противном случае.
+     * @return  @c true вЂ“ РµСЃР»Рё РїРµСЂРµРјРµС‰РµРЅРёРµ СѓСЃРїРµС€РЅРѕ; @c false вЂ“ РІ РїСЂРѕС‚РёРІРЅРѕРј СЃР»СѓС‡Р°Рµ.
      *
-     * @remarks Криттер, для которого вызывается метод, должен находиться не на глобале.
+     * @remarks РљСЂРёС‚С‚РµСЂ, РґР»СЏ РєРѕС‚РѕСЂРѕРіРѕ РІС‹Р·С‹РІР°РµС‚СЃСЏ РјРµС‚РѕРґ, РґРѕР»Р¶РµРЅ РЅР°С…РѕРґРёС‚СЊСЃСЏ РЅРµ РЅР° РіР»РѕР±Р°Р»Рµ.
      */
     bool TransitToGlobalGroup(uint critterId);
 
-    /** \~russian Перемещает криттера в указанный гексагон на текущей карте.
+    /** \~russian РџРµСЂРµРјРµС‰Р°РµС‚ РєСЂРёС‚С‚РµСЂР° РІ СѓРєР°Р·Р°РЅРЅС‹Р№ РіРµРєСЃР°РіРѕРЅ РЅР° С‚РµРєСѓС‰РµР№ РєР°СЂС‚Рµ.
      *
-     * @param   hexX, hexY  Координаты гексагона, в который нужно переместить криттера.
-     * @param   dir         Направление криттера после перемещения.
+     * @param   hexX, hexY  РљРѕРѕСЂРґРёРЅР°С‚С‹ РіРµРєСЃР°РіРѕРЅР°, РІ РєРѕС‚РѕСЂС‹Р№ РЅСѓР¶РЅРѕ РїРµСЂРµРјРµСЃС‚РёС‚СЊ РєСЂРёС‚С‚РµСЂР°.
+     * @param   dir         РќР°РїСЂР°РІР»РµРЅРёРµ РєСЂРёС‚С‚РµСЂР° РїРѕСЃР»Рµ РїРµСЂРµРјРµС‰РµРЅРёСЏ.
      *
-     * @remarks Для NPC автоматически прописывается новая домашняя позиция.
+     * @remarks Р”Р»СЏ NPC Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё РїСЂРѕРїРёСЃС‹РІР°РµС‚СЃСЏ РЅРѕРІР°СЏ РґРѕРјР°С€РЅСЏСЏ РїРѕР·РёС†РёСЏ.
      *
-     * @remarks Если параметр <tt>dir > 5</tt>, то направление криттера не меняется.
+     * @remarks Р•СЃР»Рё РїР°СЂР°РјРµС‚СЂ <tt>dir > 5</tt>, С‚Рѕ РЅР°РїСЂР°РІР»РµРЅРёРµ РєСЂРёС‚С‚РµСЂР° РЅРµ РјРµРЅСЏРµС‚СЃСЏ.
      */
     bool TransitToHex(uint16 hexX, uint16 hexY, uint8 dir);
 
-    /** \~russian Перемещает криттера на определенную карту, помещая его в указанный гексагон.
+    /** \~russian РџРµСЂРµРјРµС‰Р°РµС‚ РєСЂРёС‚С‚РµСЂР° РЅР° РѕРїСЂРµРґРµР»РµРЅРЅСѓСЋ РєР°СЂС‚Сѓ, РїРѕРјРµС‰Р°СЏ РµРіРѕ РІ СѓРєР°Р·Р°РЅРЅС‹Р№ РіРµРєСЃР°РіРѕРЅ.
      *
-     * @param   mapId       Идентификатор карты.
-     * @param   hexX, hexY  Координаты гексагона, на который помещается криттер. При передаче некорректных гексов
-     *                      Игрок перемещается в область рядом с машиной или на вход с номером 0, если машина отсутствует.
-     * @param   dir         Направление криттера после перемещения.
-     * @param   withGroup   Перемещать ли игрока вместе с группой или отдельно.
+     * @param   mapId       РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РєР°СЂС‚С‹.
+     * @param   hexX, hexY  РљРѕРѕСЂРґРёРЅР°С‚С‹ РіРµРєСЃР°РіРѕРЅР°, РЅР° РєРѕС‚РѕСЂС‹Р№ РїРѕРјРµС‰Р°РµС‚СЃСЏ РєСЂРёС‚С‚РµСЂ. РџСЂРё РїРµСЂРµРґР°С‡Рµ РЅРµРєРѕСЂСЂРµРєС‚РЅС‹С… РіРµРєСЃРѕРІ
+     *                      РРіСЂРѕРє РїРµСЂРµРјРµС‰Р°РµС‚СЃСЏ РІ РѕР±Р»Р°СЃС‚СЊ СЂСЏРґРѕРј СЃ РјР°С€РёРЅРѕР№ РёР»Рё РЅР° РІС…РѕРґ СЃ РЅРѕРјРµСЂРѕРј 0, РµСЃР»Рё РјР°С€РёРЅР° РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚.
+     * @param   dir         РќР°РїСЂР°РІР»РµРЅРёРµ РєСЂРёС‚С‚РµСЂР° РїРѕСЃР»Рµ РїРµСЂРµРјРµС‰РµРЅРёСЏ.
+     * @param   withGroup   РџРµСЂРµРјРµС‰Р°С‚СЊ Р»Рё РёРіСЂРѕРєР° РІРјРµСЃС‚Рµ СЃ РіСЂСѓРїРїРѕР№ РёР»Рё РѕС‚РґРµР»СЊРЅРѕ.
      *
-     * @remarks Для NPC автоматически прописывается новая домашняя позиция.
+     * @remarks Р”Р»СЏ NPC Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё РїСЂРѕРїРёСЃС‹РІР°РµС‚СЃСЏ РЅРѕРІР°СЏ РґРѕРјР°С€РЅСЏСЏ РїРѕР·РёС†РёСЏ.
      *
-     * @remarks Если параметр <tt>dir > 5</tt>, то направление криттера не меняется.
+     * @remarks Р•СЃР»Рё РїР°СЂР°РјРµС‚СЂ <tt>dir > 5</tt>, С‚Рѕ РЅР°РїСЂР°РІР»РµРЅРёРµ РєСЂРёС‚С‚РµСЂР° РЅРµ РјРµРЅСЏРµС‚СЃСЏ.
      */
     bool TransitToMap(uint mapId, uint16 hexX, uint16 hexY, uint8 dir, bool withGroup);
 
-    /** \~russian Перемещает криттера на определенную карту, помещая его в указанный гексагон.
+    /** \~russian РџРµСЂРµРјРµС‰Р°РµС‚ РєСЂРёС‚С‚РµСЂР° РЅР° РѕРїСЂРµРґРµР»РµРЅРЅСѓСЋ РєР°СЂС‚Сѓ, РїРѕРјРµС‰Р°СЏ РµРіРѕ РІ СѓРєР°Р·Р°РЅРЅС‹Р№ РіРµРєСЃР°РіРѕРЅ.
      *
-     * @param   mapId       Идентификатор карты.
-     * @param   hexX, hexY  Координаты гексагона, на который помещается криттер. При передаче некорректных гексов
-     *                      Игрок перемещается в область рядом с машиной или на вход с номером 0, если машина отсутствует.
-     * @param   dir         Направление криттера после перемещения.
+     * @param   mapId       РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РєР°СЂС‚С‹.
+     * @param   hexX, hexY  РљРѕРѕСЂРґРёРЅР°С‚С‹ РіРµРєСЃР°РіРѕРЅР°, РЅР° РєРѕС‚РѕСЂС‹Р№ РїРѕРјРµС‰Р°РµС‚СЃСЏ РєСЂРёС‚С‚РµСЂ. РџСЂРё РїРµСЂРµРґР°С‡Рµ РЅРµРєРѕСЂСЂРµРєС‚РЅС‹С… РіРµРєСЃРѕРІ
+     *                      РРіСЂРѕРє РїРµСЂРµРјРµС‰Р°РµС‚СЃСЏ РІ РѕР±Р»Р°СЃС‚СЊ СЂСЏРґРѕРј СЃ РјР°С€РёРЅРѕР№ РёР»Рё РЅР° РІС…РѕРґ СЃ РЅРѕРјРµСЂРѕРј 0, РµСЃР»Рё РјР°С€РёРЅР° РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚.
+     * @param   dir         РќР°РїСЂР°РІР»РµРЅРёРµ РєСЂРёС‚С‚РµСЂР° РїРѕСЃР»Рµ РїРµСЂРµРјРµС‰РµРЅРёСЏ.
      *
-     * @remarks Для NPC автоматически прописывается новая домашняя позиция.
+     * @remarks Р”Р»СЏ NPC Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё РїСЂРѕРїРёСЃС‹РІР°РµС‚СЃСЏ РЅРѕРІР°СЏ РґРѕРјР°С€РЅСЏСЏ РїРѕР·РёС†РёСЏ.
      *
-     * @remarks Если параметр <tt>dir > 5</tt>, то направление криттера не меняется.
+     * @remarks Р•СЃР»Рё РїР°СЂР°РјРµС‚СЂ <tt>dir > 5</tt>, С‚Рѕ РЅР°РїСЂР°РІР»РµРЅРёРµ РєСЂРёС‚С‚РµСЂР° РЅРµ РјРµРЅСЏРµС‚СЃСЏ.
      */
     bool TransitToMap(uint mapId, uint16 hexX, uint16 hexY, uint8 dir);
 
-    /** \~russian Перемещает криттера на определенную карту, помещая его на точку входа с указанным номером.
+    /** \~russian РџРµСЂРµРјРµС‰Р°РµС‚ РєСЂРёС‚С‚РµСЂР° РЅР° РѕРїСЂРµРґРµР»РµРЅРЅСѓСЋ РєР°СЂС‚Сѓ, РїРѕРјРµС‰Р°СЏ РµРіРѕ РЅР° С‚РѕС‡РєСѓ РІС…РѕРґР° СЃ СѓРєР°Р·Р°РЅРЅС‹Рј РЅРѕРјРµСЂРѕРј.
      *
-     * @param   mapId      Идентификатор карты.
-     * @param   entireNum  Номер точки входа (специально помеченной группы гексагонов).
+     * @param   mapId      РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РєР°СЂС‚С‹.
+     * @param   entireNum  РќРѕРјРµСЂ С‚РѕС‡РєРё РІС…РѕРґР° (СЃРїРµС†РёР°Р»СЊРЅРѕ РїРѕРјРµС‡РµРЅРЅРѕР№ РіСЂСѓРїРїС‹ РіРµРєСЃР°РіРѕРЅРѕРІ).
      *
-     * @remarks Для NPC автоматически прописывается новая домашняя позиция.
+     * @remarks Р”Р»СЏ NPC Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё РїСЂРѕРїРёСЃС‹РІР°РµС‚СЃСЏ РЅРѕРІР°СЏ РґРѕРјР°С€РЅСЏСЏ РїРѕР·РёС†РёСЏ.
      */
     bool TransitToMap(uint mapId, uint8 entireNum);
 
     //@}
 
     /**
-     * \~russian @name Разговор
+     * \~russian @name Р Р°Р·РіРѕРІРѕСЂ
      * \~english @name Talk
      * \~ @weight 240
      */
     //@{
 
-    /** \~russian Заставляет криттера сказать что-либо.
+    /** \~russian Р—Р°СЃС‚Р°РІР»СЏРµС‚ РєСЂРёС‚С‚РµСЂР° СЃРєР°Р·Р°С‚СЊ С‡С‚Рѕ-Р»РёР±Рѕ.
      *
-     * Если NPC мертв или упал на землю, то произносить фразу он не будет.
+     * Р•СЃР»Рё NPC РјРµСЂС‚РІ РёР»Рё СѓРїР°Р» РЅР° Р·РµРјР»СЋ, С‚Рѕ РїСЂРѕРёР·РЅРѕСЃРёС‚СЊ С„СЂР°Р·Сѓ РѕРЅ РЅРµ Р±СѓРґРµС‚.
      *
-     * @param  howSay  Тип фразы. Например: говорить спокойно, кричать и т.д.
-     *                 (см. @link SayTypes Say types@endlink).
-     * @param  text    Текст сообщения.
+     * @param  howSay  РўРёРї С„СЂР°Р·С‹. РќР°РїСЂРёРјРµСЂ: РіРѕРІРѕСЂРёС‚СЊ СЃРїРѕРєРѕР№РЅРѕ, РєСЂРёС‡Р°С‚СЊ Рё С‚.Рґ.
+     *                 (СЃРј. @link SayTypes Say types@endlink).
+     * @param  text    РўРµРєСЃС‚ СЃРѕРѕР±С‰РµРЅРёСЏ.
      */
     void Say(uint8 howSay, string@ text);
 
-    /** \~russian Заставляет криттера сказать что-либо.
+    /** \~russian Р—Р°СЃС‚Р°РІР»СЏРµС‚ РєСЂРёС‚С‚РµСЂР° СЃРєР°Р·Р°С‚СЊ С‡С‚Рѕ-Р»РёР±Рѕ.
      *
-     * Текст сообщения находится в файле. Если NPC мертв или упал на землю,
-     * то произносить фразу он не будет.
+     * РўРµРєСЃС‚ СЃРѕРѕР±С‰РµРЅРёСЏ РЅР°С…РѕРґРёС‚СЃСЏ РІ С„Р°Р№Р»Рµ. Р•СЃР»Рё NPC РјРµСЂС‚РІ РёР»Рё СѓРїР°Р» РЅР° Р·РµРјР»СЋ,
+     * С‚Рѕ РїСЂРѕРёР·РЅРѕСЃРёС‚СЊ С„СЂР°Р·Сѓ РѕРЅ РЅРµ Р±СѓРґРµС‚.
      *
-     * @param  howSay   Тип фразы, например: говорить спокойно, кричать и т.д.
-     *                  (см. @link SayTypes Say types@endlink).
-     * @param  textMsg  Название файла с текстами
-     *                  (см. @link MsgNums Msg nums@endlink).
-     * @param  strNum   Номер фразы в файле.
+     * @param  howSay   РўРёРї С„СЂР°Р·С‹, РЅР°РїСЂРёРјРµСЂ: РіРѕРІРѕСЂРёС‚СЊ СЃРїРѕРєРѕР№РЅРѕ, РєСЂРёС‡Р°С‚СЊ Рё С‚.Рґ.
+     *                  (СЃРј. @link SayTypes Say types@endlink).
+     * @param  textMsg  РќР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р° СЃ С‚РµРєСЃС‚Р°РјРё
+     *                  (СЃРј. @link MsgNums Msg nums@endlink).
+     * @param  strNum   РќРѕРјРµСЂ С„СЂР°Р·С‹ РІ С„Р°Р№Р»Рµ.
      */
     void SayMsg(uint8 howSay, uint16 textMsg, uint strNum);
 
-    /** \~russian Заставляет криттера сказать что-либо.
+    /** \~russian Р—Р°СЃС‚Р°РІР»СЏРµС‚ РєСЂРёС‚С‚РµСЂР° СЃРєР°Р·Р°С‚СЊ С‡С‚Рѕ-Р»РёР±Рѕ.
      *
-     * Текст сообщения находится в файле. Если NPC мертв или упал на землю,
-     * то произносить фразу он не будет.
+     * РўРµРєСЃС‚ СЃРѕРѕР±С‰РµРЅРёСЏ РЅР°С…РѕРґРёС‚СЃСЏ РІ С„Р°Р№Р»Рµ. Р•СЃР»Рё NPC РјРµСЂС‚РІ РёР»Рё СѓРїР°Р» РЅР° Р·РµРјР»СЋ,
+     * С‚Рѕ РїСЂРѕРёР·РЅРѕСЃРёС‚СЊ С„СЂР°Р·Сѓ РѕРЅ РЅРµ Р±СѓРґРµС‚.
      *
-     * @param  howSay   Тип фразы, например: говорить спокойно, кричать и т.д.
-     *                  (см. @link SayTypes Say types@endlink).
-     * @param  textMsg  Название файла с текстами (см. @link MsgNums Msg nums@endlink).
-     * @param  strNum   Номер фразы в файле.
-     * @param  lexems   Вставки текста
-     *                  (см. <a href="http://fonline.ru/fowork/wiki/index.php/Скрипты:_Работа_с_диалогом#@lex name@">Работа с диалогом</a>).
+     * @param  howSay   РўРёРї С„СЂР°Р·С‹, РЅР°РїСЂРёРјРµСЂ: РіРѕРІРѕСЂРёС‚СЊ СЃРїРѕРєРѕР№РЅРѕ, РєСЂРёС‡Р°С‚СЊ Рё С‚.Рґ.
+     *                  (СЃРј. @link SayTypes Say types@endlink).
+     * @param  textMsg  РќР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р° СЃ С‚РµРєСЃС‚Р°РјРё (СЃРј. @link MsgNums Msg nums@endlink).
+     * @param  strNum   РќРѕРјРµСЂ С„СЂР°Р·С‹ РІ С„Р°Р№Р»Рµ.
+     * @param  lexems   Р’СЃС‚Р°РІРєРё С‚РµРєСЃС‚Р°
+     *                  (СЃРј. <a href="http://fonline.ru/fowork/wiki/index.php/РЎРєСЂРёРїС‚С‹:_Р Р°Р±РѕС‚Р°_СЃ_РґРёР°Р»РѕРіРѕРј#@lex name@">Р Р°Р±РѕС‚Р° СЃ РґРёР°Р»РѕРіРѕРј</a>).
      */
     void SayMsg(uint8 howSay, uint16 textMsg, uint strNum, string& lexems);
 
     //@}
 
     /**
-     * \~russian @name Локации
+     * \~russian @name Р›РѕРєР°С†РёРё
      * \~english @name Locations
      * \~ @weight 230
      */
     //@{
 
-    /** \~russian Позволяет определить, знает ли игрок об указанной локации или нет.
+    /** \~russian РџРѕР·РІРѕР»СЏРµС‚ РѕРїСЂРµРґРµР»РёС‚СЊ, Р·РЅР°РµС‚ Р»Рё РёРіСЂРѕРє РѕР± СѓРєР°Р·Р°РЅРЅРѕР№ Р»РѕРєР°С†РёРё РёР»Рё РЅРµС‚.
      *
-     * @param  byId    Если указано значение @c true,
-     *                 то @a locNum расценивается как уникальный идентификатор локации;
-     *                 если @c false – то как номер прототипа.
-     * @param  locNum  Номер прототипа локации (см. файл @b _maps.fos) или
-     *                 уникальный идентификатор локации.
+     * @param  byId    Р•СЃР»Рё СѓРєР°Р·Р°РЅРѕ Р·РЅР°С‡РµРЅРёРµ @c true,
+     *                 С‚Рѕ @a locNum СЂР°СЃС†РµРЅРёРІР°РµС‚СЃСЏ РєР°Рє СѓРЅРёРєР°Р»СЊРЅС‹Р№ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р»РѕРєР°С†РёРё;
+     *                 РµСЃР»Рё @c false вЂ“ С‚Рѕ РєР°Рє РЅРѕРјРµСЂ РїСЂРѕС‚РѕС‚РёРїР°.
+     * @param  locNum  РќРѕРјРµСЂ РїСЂРѕС‚РѕС‚РёРїР° Р»РѕРєР°С†РёРё (СЃРј. С„Р°Р№Р» @b _maps.fos) РёР»Рё
+     *                 СѓРЅРёРєР°Р»СЊРЅС‹Р№ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р»РѕРєР°С†РёРё.
      *
-     * @return @c true – если знает; @c false – если нет.
+     * @return @c true вЂ“ РµСЃР»Рё Р·РЅР°РµС‚; @c false вЂ“ РµСЃР»Рё РЅРµС‚.
      *
      * @see    SetKnownLoc
      * @see    UnsetKnownLoc
      */
     bool IsKnownLoc(bool byId, uint locNum);
 
-    /** \~russian Делает локацию видимой для криттера.
+    /** \~russian Р”РµР»Р°РµС‚ Р»РѕРєР°С†РёСЋ РІРёРґРёРјРѕР№ РґР»СЏ РєСЂРёС‚С‚РµСЂР°.
      *
-     * @param  byId    Если указано значение @c true, то @a locNum расценивается
-     *                 как уникальный идентификатор локации, если @c false –
-     *                 то как номер прототипа.
-     * @param  locNum  Номер прототипа локации (см. файл @b _maps.fos) или
-     *                 уникальный идентификатор локации.
+     * @param  byId    Р•СЃР»Рё СѓРєР°Р·Р°РЅРѕ Р·РЅР°С‡РµРЅРёРµ @c true, С‚Рѕ @a locNum СЂР°СЃС†РµРЅРёРІР°РµС‚СЃСЏ
+     *                 РєР°Рє СѓРЅРёРєР°Р»СЊРЅС‹Р№ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р»РѕРєР°С†РёРё, РµСЃР»Рё @c false вЂ“
+     *                 С‚Рѕ РєР°Рє РЅРѕРјРµСЂ РїСЂРѕС‚РѕС‚РёРїР°.
+     * @param  locNum  РќРѕРјРµСЂ РїСЂРѕС‚РѕС‚РёРїР° Р»РѕРєР°С†РёРё (СЃРј. С„Р°Р№Р» @b _maps.fos) РёР»Рё
+     *                 СѓРЅРёРєР°Р»СЊРЅС‹Р№ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р»РѕРєР°С†РёРё.
      *
-     * @return @c true – в случае успеха; @c false – в случае провала.
+     * @return @c true вЂ“ РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС…Р°; @c false вЂ“ РІ СЃР»СѓС‡Р°Рµ РїСЂРѕРІР°Р»Р°.
      *
      * @see    IsKnownLoc
      * @see    UnsetKnownLoc
      */
     bool SetKnownLoc(bool byId, uint locNum);
 
-    /** \~russian Делает локацию невидимой для криттера.
+    /** \~russian Р”РµР»Р°РµС‚ Р»РѕРєР°С†РёСЋ РЅРµРІРёРґРёРјРѕР№ РґР»СЏ РєСЂРёС‚С‚РµСЂР°.
      *
-     * @param  byId    Если указано значение @c true, то @a locNum расценивается
-     *                 как уникальный идентификатор локации, если @c false –
-     *                 то как номер прототипа.
-     * @param  locNum  Номер прототипа локации (см. файл @b _maps.fos) или
-     *                 уникальный идентификатор локации.
+     * @param  byId    Р•СЃР»Рё СѓРєР°Р·Р°РЅРѕ Р·РЅР°С‡РµРЅРёРµ @c true, С‚Рѕ @a locNum СЂР°СЃС†РµРЅРёРІР°РµС‚СЃСЏ
+     *                 РєР°Рє СѓРЅРёРєР°Р»СЊРЅС‹Р№ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р»РѕРєР°С†РёРё, РµСЃР»Рё @c false вЂ“
+     *                 С‚Рѕ РєР°Рє РЅРѕРјРµСЂ РїСЂРѕС‚РѕС‚РёРїР°.
+     * @param  locNum  РќРѕРјРµСЂ РїСЂРѕС‚РѕС‚РёРїР° Р»РѕРєР°С†РёРё (СЃРј. С„Р°Р№Р» @b _maps.fos) РёР»Рё
+     *                 СѓРЅРёРєР°Р»СЊРЅС‹Р№ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р»РѕРєР°С†РёРё.
      *
-     * @return @c true – в случае успеха, @c false – в случае провала.
+     * @return @c true вЂ“ РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС…Р°, @c false вЂ“ РІ СЃР»СѓС‡Р°Рµ РїСЂРѕРІР°Р»Р°.
      *
      * @see    IsKnownLoc
      * @see    SetKnownLoc
@@ -882,128 +882,128 @@ public:
     //@}
 
     /**
-     * \~russian @name Планы
+     * \~russian @name РџР»Р°РЅС‹
      * \~english @name Plans
      * \~ @weight 220
      */
     //@{
 
-    /** \~russian Устанавливает план NPC.
+    /** \~russian РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РїР»Р°РЅ NPC.
      *
-     * План добавляется в очередь планов. Cортировка планов (т.е. определение порядка исполнения)
-     * при установке идет по их приоритету (см. NpcPlane::Priority).
+     * РџР»Р°РЅ РґРѕР±Р°РІР»СЏРµС‚СЃСЏ РІ РѕС‡РµСЂРµРґСЊ РїР»Р°РЅРѕРІ. CРѕСЂС‚РёСЂРѕРІРєР° РїР»Р°РЅРѕРІ (С‚.Рµ. РѕРїСЂРµРґРµР»РµРЅРёРµ РїРѕСЂСЏРґРєР° РёСЃРїРѕР»РЅРµРЅРёСЏ)
+     * РїСЂРё СѓСЃС‚Р°РЅРѕРІРєРµ РёРґРµС‚ РїРѕ РёС… РїСЂРёРѕСЂРёС‚РµС‚Сѓ (СЃРј. NpcPlane::Priority).
      *
-     * @param   plane  Устанавливаемый план.
+     * @param   plane  РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРјС‹Р№ РїР»Р°РЅ.
      *
-     * @return  @c true – в случае успеха; @c false – в случае неудачи.
+     * @return  @c true вЂ“ РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС…Р°; @c false вЂ“ РІ СЃР»СѓС‡Р°Рµ РЅРµСѓРґР°С‡Рё.
      *
-     * @remarks Для создания экземпляра класса NpcPlane используйте глобальную функцию ::CreatePlane.
+     * @remarks Р”Р»СЏ СЃРѕР·РґР°РЅРёСЏ СЌРєР·РµРјРїР»СЏСЂР° РєР»Р°СЃСЃР° NpcPlane РёСЃРїРѕР»СЊР·СѓР№С‚Рµ РіР»РѕР±Р°Р»СЊРЅСѓСЋ С„СѓРЅРєС†РёСЋ ::CreatePlane.
      */
     bool AddPlane(NpcPlane@+ plane);
 
-    /** \~russian Удаляет план по указанному индексу.
+    /** \~russian РЈРґР°Р»СЏРµС‚ РїР»Р°РЅ РїРѕ СѓРєР°Р·Р°РЅРЅРѕРјСѓ РёРЅРґРµРєСЃСѓ.
      *
-     * @param  index  Индекс удаляемого плана в очереди.
+     * @param  index  РРЅРґРµРєСЃ СѓРґР°Р»СЏРµРјРѕРіРѕ РїР»Р°РЅР° РІ РѕС‡РµСЂРµРґРё.
      *
-     * @return @c true – в случае успеха; @c false – в случае неудачи.
+     * @return @c true вЂ“ РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС…Р°; @c false вЂ“ РІ СЃР»СѓС‡Р°Рµ РЅРµСѓРґР°С‡Рё.
      */
     bool ErasePlane(uint index);
 
-    /** \~russian Удаляет план(ы) указанного типа.
+    /** \~russian РЈРґР°Р»СЏРµС‚ РїР»Р°РЅ(С‹) СѓРєР°Р·Р°РЅРЅРѕРіРѕ С‚РёРїР°.
      *
-     * @param  planeType Тип плана, который следует удалить
-     *                   (см. @link PlanesTypes Planes types@endlink).
-     *                   Если установлено значение: -1, то этот параметр учитываться не будет.
-     * @param  all       Если установлено значение @c true, то удаляются все планы указанного типа.
-     *                   Если установлено значение – @c false, то удаляется только один план
-     *                   указанного типа, находящийся в самом начале очереди.
+     * @param  planeType РўРёРї РїР»Р°РЅР°, РєРѕС‚РѕСЂС‹Р№ СЃР»РµРґСѓРµС‚ СѓРґР°Р»РёС‚СЊ
+     *                   (СЃРј. @link PlanesTypes Planes types@endlink).
+     *                   Р•СЃР»Рё СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ Р·РЅР°С‡РµРЅРёРµ: -1, С‚Рѕ СЌС‚РѕС‚ РїР°СЂР°РјРµС‚СЂ СѓС‡РёС‚С‹РІР°С‚СЊСЃСЏ РЅРµ Р±СѓРґРµС‚.
+     * @param  all       Р•СЃР»Рё СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ Р·РЅР°С‡РµРЅРёРµ @c true, С‚Рѕ СѓРґР°Р»СЏСЋС‚СЃСЏ РІСЃРµ РїР»Р°РЅС‹ СѓРєР°Р·Р°РЅРЅРѕРіРѕ С‚РёРїР°.
+     *                   Р•СЃР»Рё СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ Р·РЅР°С‡РµРЅРёРµ вЂ“ @c false, С‚Рѕ СѓРґР°Р»СЏРµС‚СЃСЏ С‚РѕР»СЊРєРѕ РѕРґРёРЅ РїР»Р°РЅ
+     *                   СѓРєР°Р·Р°РЅРЅРѕРіРѕ С‚РёРїР°, РЅР°С…РѕРґСЏС‰РёР№СЃСЏ РІ СЃР°РјРѕРј РЅР°С‡Р°Р»Рµ РѕС‡РµСЂРµРґРё.
      *
-     * @return Отрицательное значение в случае неудачи.
-     *         Все остальные значения в случае удачного выполнения функции.
+     * @return РћС‚СЂРёС†Р°С‚РµР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ СЃР»СѓС‡Р°Рµ РЅРµСѓРґР°С‡Рё.
+     *         Р’СЃРµ РѕСЃС‚Р°Р»СЊРЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ РІ СЃР»СѓС‡Р°Рµ СѓРґР°С‡РЅРѕРіРѕ РІС‹РїРѕР»РЅРµРЅРёСЏ С„СѓРЅРєС†РёРё.
      */
     uint ErasePlane(int planeType, bool all);
 
-    /** \~russian Возвращает текущий план.
+    /** \~russian Р’РѕР·РІСЂР°С‰Р°РµС‚ С‚РµРєСѓС‰РёР№ РїР»Р°РЅ.
      *
-     * @return Текущий план.
+     * @return РўРµРєСѓС‰РёР№ РїР»Р°РЅ.
      */
     NpcPlane@+ GetCurPlane();
 
-    /** \~russian Позволяет получить все текущие планы NPC.
+    /** \~russian РџРѕР·РІРѕР»СЏРµС‚ РїРѕР»СѓС‡РёС‚СЊ РІСЃРµ С‚РµРєСѓС‰РёРµ РїР»Р°РЅС‹ NPC.
      *
-     * @param   planes  Массив, в конец которого будут дописаны все текущие планы.
+     * @param   planes  РњР°СЃСЃРёРІ, РІ РєРѕРЅРµС† РєРѕС‚РѕСЂРѕРіРѕ Р±СѓРґСѓС‚ РґРѕРїРёСЃР°РЅС‹ РІСЃРµ С‚РµРєСѓС‰РёРµ РїР»Р°РЅС‹.
      *
-     * @return  Количество базовых планов.
+     * @return  РљРѕР»РёС‡РµСЃС‚РІРѕ Р±Р°Р·РѕРІС‹С… РїР»Р°РЅРѕРІ.
      *
-     * @remarks Чтобы просто узнать количество базовых планов,
-     *          в параметре @a planes можно передать значение @c null вместо списка.
+     * @remarks Р§С‚РѕР±С‹ РїСЂРѕСЃС‚Рѕ СѓР·РЅР°С‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ Р±Р°Р·РѕРІС‹С… РїР»Р°РЅРѕРІ,
+     *          РІ РїР°СЂР°РјРµС‚СЂРµ @a planes РјРѕР¶РЅРѕ РїРµСЂРµРґР°С‚СЊ Р·РЅР°С‡РµРЅРёРµ @c null РІРјРµСЃС‚Рѕ СЃРїРёСЃРєР°.
      */
     uint GetPlanes(NpcPlane@[]@+ planes);
 
-    /** \~russian Позволяет проверить, есть ли у криттера запланированные действия.
+    /** \~russian РџРѕР·РІРѕР»СЏРµС‚ РїСЂРѕРІРµСЂРёС‚СЊ, РµСЃС‚СЊ Р»Рё Сѓ РєСЂРёС‚С‚РµСЂР° Р·Р°РїР»Р°РЅРёСЂРѕРІР°РЅРЅС‹Рµ РґРµР№СЃС‚РІРёСЏ.
      *
-     * @return @c true – если у криттера нет запланированных действий;
-     *         @c false – если есть.
+     * @return @c true вЂ“ РµСЃР»Рё Сѓ РєСЂРёС‚С‚РµСЂР° РЅРµС‚ Р·Р°РїР»Р°РЅРёСЂРѕРІР°РЅРЅС‹С… РґРµР№СЃС‚РІРёР№;
+     *         @c false вЂ“ РµСЃР»Рё РµСЃС‚СЊ.
      */
     bool IsNoPlanes();
 
-    /** \~russian Позволяет узнать количество планов с заданным идентификатором.
+    /** \~russian РџРѕР·РІРѕР»СЏРµС‚ СѓР·РЅР°С‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ РїР»Р°РЅРѕРІ СЃ Р·Р°РґР°РЅРЅС‹Рј РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂРѕРј.
      *
-     * @param   identifier  Идентификатор планов.
-     * @param   planes  Массив, в конец которого будут дописаны все текущие планы.
+     * @param   identifier  РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РїР»Р°РЅРѕРІ.
+     * @param   planes  РњР°СЃСЃРёРІ, РІ РєРѕРЅРµС† РєРѕС‚РѕСЂРѕРіРѕ Р±СѓРґСѓС‚ РґРѕРїРёСЃР°РЅС‹ РІСЃРµ С‚РµРєСѓС‰РёРµ РїР»Р°РЅС‹.
      *
-     * @return  Количество найденных планов.
+     * @return  РљРѕР»РёС‡РµСЃС‚РІРѕ РЅР°Р№РґРµРЅРЅС‹С… РїР»Р°РЅРѕРІ.
      */
     uint GetPlanes(int identifier, NpcPlane@[]@+ planes);
 
-    /** \~russian Позволяет узнать количество планов с заданным параметром identifierExt.
+    /** \~russian РџРѕР·РІРѕР»СЏРµС‚ СѓР·РЅР°С‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ РїР»Р°РЅРѕРІ СЃ Р·Р°РґР°РЅРЅС‹Рј РїР°СЂР°РјРµС‚СЂРѕРј identifierExt.
      *
-     * @param   identifierExt  Параметр identifierExt планов, среди которых будет вестись поиск.
-     * @param   planes  Массив, в конец которого будут дописаны все текущие планы.
+     * @param   identifierExt  РџР°СЂР°РјРµС‚СЂ identifierExt РїР»Р°РЅРѕРІ, СЃСЂРµРґРё РєРѕС‚РѕСЂС‹С… Р±СѓРґРµС‚ РІРµСЃС‚РёСЃСЊ РїРѕРёСЃРє.
+     * @param   planes  РњР°СЃСЃРёРІ, РІ РєРѕРЅРµС† РєРѕС‚РѕСЂРѕРіРѕ Р±СѓРґСѓС‚ РґРѕРїРёСЃР°РЅС‹ РІСЃРµ С‚РµРєСѓС‰РёРµ РїР»Р°РЅС‹.
      *
-     * @return  Количество найденных планов.
+     * @return  РљРѕР»РёС‡РµСЃС‚РІРѕ РЅР°Р№РґРµРЅРЅС‹С… РїР»Р°РЅРѕРІ.
      */
     uint GetPlanesByExt(uint identifierExt, NpcPlane@[]@+ planes);
 
-    /** \~russian Позволяет узнать количество планов с заданными параметрами identifier и identifierExt.
+    /** \~russian РџРѕР·РІРѕР»СЏРµС‚ СѓР·РЅР°С‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ РїР»Р°РЅРѕРІ СЃ Р·Р°РґР°РЅРЅС‹РјРё РїР°СЂР°РјРµС‚СЂР°РјРё identifier Рё identifierExt.
      *
-     * @param   identifier  параметр identifier планов, среди которых будет вестись поиск.
-     * @param   identifierExt  параметр identifierExt планов, среди которых будет вестись поиск.
-     * @param   planes  Массив, в конец которого будут дописаны все текущие планы.
+     * @param   identifier  РїР°СЂР°РјРµС‚СЂ identifier РїР»Р°РЅРѕРІ, СЃСЂРµРґРё РєРѕС‚РѕСЂС‹С… Р±СѓРґРµС‚ РІРµСЃС‚РёСЃСЊ РїРѕРёСЃРє.
+     * @param   identifierExt  РїР°СЂР°РјРµС‚СЂ identifierExt РїР»Р°РЅРѕРІ, СЃСЂРµРґРё РєРѕС‚РѕСЂС‹С… Р±СѓРґРµС‚ РІРµСЃС‚РёСЃСЊ РїРѕРёСЃРє.
+     * @param   planes  РњР°СЃСЃРёРІ, РІ РєРѕРЅРµС† РєРѕС‚РѕСЂРѕРіРѕ Р±СѓРґСѓС‚ РґРѕРїРёСЃР°РЅС‹ РІСЃРµ С‚РµРєСѓС‰РёРµ РїР»Р°РЅС‹.
      *
-     * @return  Количество найденных планов.
+     * @return  РљРѕР»РёС‡РµСЃС‚РІРѕ РЅР°Р№РґРµРЅРЅС‹С… РїР»Р°РЅРѕРІ.
      */
     uint GetPlanes(int identifier, uint identifierExt, NpcPlane@[]@+ planes);
 
-    /** \~russian Cбрасывает все планы NPC. */
+    /** \~russian CР±СЂР°СЃС‹РІР°РµС‚ РІСЃРµ РїР»Р°РЅС‹ NPC. */
     /** \~english Drops all NPC planes. */
     void DropPlanes();
 
     //@}
 
     /**
-     * \~russian @name Уведомления
+     * \~russian @name РЈРІРµРґРѕРјР»РµРЅРёСЏ
      * \~english @name Notifications
      * \~ @weight 210
      */
     //@{
 
-    /** \~russian Отправляет игроку уведомление об изменившейся игровой переменной.
+    /** \~russian РћС‚РїСЂР°РІР»СЏРµС‚ РёРіСЂРѕРєСѓ СѓРІРµРґРѕРјР»РµРЅРёРµ РѕР± РёР·РјРµРЅРёРІС€РµР№СЃСЏ РёРіСЂРѕРІРѕР№ РїРµСЂРµРјРµРЅРЅРѕР№.
      *
-     * @param   var  Изменившаяся игровая переменная.
+     * @param   var  РР·РјРµРЅРёРІС€Р°СЏСЃСЏ РёРіСЂРѕРІР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ.
      *
-     * @remarks Только для игроков.
+     * @remarks РўРѕР»СЊРєРѕ РґР»СЏ РёРіСЂРѕРєРѕРІ.
      */
     void SendQuestVar(GameVar& var);
 
-    /** \~russian Служит для оповещения игроков о результатах боя.
+    /** \~russian РЎР»СѓР¶РёС‚ РґР»СЏ РѕРїРѕРІРµС‰РµРЅРёСЏ РёРіСЂРѕРєРѕРІ Рѕ СЂРµР·СѓР»СЊС‚Р°С‚Р°С… Р±РѕСЏ.
      *
-     * @param  combatResult  Массив, содержащий информацию о бое и его результате.
-     *                       Первый элемент массива должен содержать размер массива. Затем может
-     *                       следовать любое количество записей
-     *                       (детальную их спецификацию см. в @b combat_msg.fos).
+     * @param  combatResult  РњР°СЃСЃРёРІ, СЃРѕРґРµСЂР¶Р°С‰РёР№ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ Р±РѕРµ Рё РµРіРѕ СЂРµР·СѓР»СЊС‚Р°С‚Рµ.
+     *                       РџРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚ РјР°СЃСЃРёРІР° РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ СЂР°Р·РјРµСЂ РјР°СЃСЃРёРІР°. Р—Р°С‚РµРј РјРѕР¶РµС‚
+     *                       СЃР»РµРґРѕРІР°С‚СЊ Р»СЋР±РѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РїРёСЃРµР№
+     *                       (РґРµС‚Р°Р»СЊРЅСѓСЋ РёС… СЃРїРµС†РёС„РёРєР°С†РёСЋ СЃРј. РІ @b combat_msg.fos).
      *
-     * @remarks Только для игроков.
+     * @remarks РўРѕР»СЊРєРѕ РґР»СЏ РёРіСЂРѕРєРѕРІ.
      *
      ** \~english Sends the results of the combat to players.
      *
@@ -1015,25 +1015,25 @@ public:
      */
     void SendCombatResult(uint[]& combatResult);
 
-    /** \~russian Служит для разрешения отправки игроку информации о других криттерах.
+    /** \~russian РЎР»СѓР¶РёС‚ РґР»СЏ СЂР°Р·СЂРµС€РµРЅРёСЏ РѕС‚РїСЂР°РІРєРё РёРіСЂРѕРєСѓ РёРЅС„РѕСЂРјР°С†РёРё Рѕ РґСЂСѓРіРёС… РєСЂРёС‚С‚РµСЂР°С….
      *
-     * @param   index    Индекс параметра. См. @link Params Параметры криттеров@endlink.
-     * @param   enabled  Разрешить или запретить отправку.
+     * @param   index    РРЅРґРµРєСЃ РїР°СЂР°РјРµС‚СЂР°. РЎРј. @link Params РџР°СЂР°РјРµС‚СЂС‹ РєСЂРёС‚С‚РµСЂРѕРІ@endlink.
+     * @param   enabled  Р Р°Р·СЂРµС€РёС‚СЊ РёР»Рё Р·Р°РїСЂРµС‚РёС‚СЊ РѕС‚РїСЂР°РІРєСѓ.
      *
-     * @remarks По-умолчанию, все уведомления запрещены.
-     * @remarks Только для игроков.
+     * @remarks РџРѕ-СѓРјРѕР»С‡Р°РЅРёСЋ, РІСЃРµ СѓРІРµРґРѕРјР»РµРЅРёСЏ Р·Р°РїСЂРµС‰РµРЅС‹.
+     * @remarks РўРѕР»СЊРєРѕ РґР»СЏ РёРіСЂРѕРєРѕРІ.
      */
     void SetSendParam(uint index, bool enabled);
 
-    /** \~russian Отправляет сообщение другим криттерам.
+    /** \~russian РћС‚РїСЂР°РІР»СЏРµС‚ СЃРѕРѕР±С‰РµРЅРёРµ РґСЂСѓРіРёРј РєСЂРёС‚С‚РµСЂР°Рј.
      *
-     * Чтобы другой криттер прочитал это сообщение, для него должна быть описана
-     * предопределенная функция ::on_message. Сообщения принимаются в момент посылки.
+     * Р§С‚РѕР±С‹ РґСЂСѓРіРѕР№ РєСЂРёС‚С‚РµСЂ РїСЂРѕС‡РёС‚Р°Р» СЌС‚Рѕ СЃРѕРѕР±С‰РµРЅРёРµ, РґР»СЏ РЅРµРіРѕ РґРѕР»Р¶РЅР° Р±С‹С‚СЊ РѕРїРёСЃР°РЅР°
+     * РїСЂРµРґРѕРїСЂРµРґРµР»РµРЅРЅР°СЏ С„СѓРЅРєС†РёСЏ ::on_message. РЎРѕРѕР±С‰РµРЅРёСЏ РїСЂРёРЅРёРјР°СЋС‚СЃСЏ РІ РјРѕРјРµРЅС‚ РїРѕСЃС‹Р»РєРё.
      *
-     * @param  num  Номер сообщения.
-     * @param  val  Передаваемое значение.
-     * @param  to   Определяет, кому отсылается сообщение
-     *              (см. @link InSendMessage In SendMessage@endlink).
+     * @param  num  РќРѕРјРµСЂ СЃРѕРѕР±С‰РµРЅРёСЏ.
+     * @param  val  РџРµСЂРµРґР°РІР°РµРјРѕРµ Р·РЅР°С‡РµРЅРёРµ.
+     * @param  to   РћРїСЂРµРґРµР»СЏРµС‚, РєРѕРјСѓ РѕС‚СЃС‹Р»Р°РµС‚СЃСЏ СЃРѕРѕР±С‰РµРЅРёРµ
+     *              (СЃРј. @link InSendMessage In SendMessage@endlink).
      *
      * @see    CRITTER_EVENT_MESSAGE
      */
@@ -1042,31 +1042,31 @@ public:
     //@}
 
     /**
-     * \~russian @name Состояние
+     * \~russian @name РЎРѕСЃС‚РѕСЏРЅРёРµ
      * \~english @name State
      * \~ @weight 200
      */
     //@{
 
-    /** \~russian Проверяет, свободен ли криттер или нет.
+    /** \~russian РџСЂРѕРІРµСЂСЏРµС‚, СЃРІРѕР±РѕРґРµРЅ Р»Рё РєСЂРёС‚С‚РµСЂ РёР»Рё РЅРµС‚.
      *
-     * @return @c true – если криттер свободен; @c false – в противном случае.
+     * @return @c true вЂ“ РµСЃР»Рё РєСЂРёС‚С‚РµСЂ СЃРІРѕР±РѕРґРµРЅ; @c false вЂ“ РІ РїСЂРѕС‚РёРІРЅРѕРј СЃР»СѓС‡Р°Рµ.
      *
      * @see    IsBusy
      */
     bool IsFree();
 
-    /** \~russian Проверяет, занят ли криттер или нет.
+    /** \~russian РџСЂРѕРІРµСЂСЏРµС‚, Р·Р°РЅСЏС‚ Р»Рё РєСЂРёС‚С‚РµСЂ РёР»Рё РЅРµС‚.
      *
-     * @return @c true – если криттер занят; @c false – в противном случае.
+     * @return @c true вЂ“ РµСЃР»Рё РєСЂРёС‚С‚РµСЂ Р·Р°РЅСЏС‚; @c false вЂ“ РІ РїСЂРѕС‚РёРІРЅРѕРј СЃР»СѓС‡Р°Рµ.
      *
      * @see    IsFree
      */
     bool IsBusy();
 
-    /** \~russian Проверяет, мёртв ли криттер.
+    /** \~russian РџСЂРѕРІРµСЂСЏРµС‚, РјС‘СЂС‚РІ Р»Рё РєСЂРёС‚С‚РµСЂ.
      *
-     * @return @c true – если криттер мёртв; @c false – в противном случае.
+     * @return @c true вЂ“ РµСЃР»Рё РєСЂРёС‚С‚РµСЂ РјС‘СЂС‚РІ; @c false вЂ“ РІ РїСЂРѕС‚РёРІРЅРѕРј СЃР»СѓС‡Р°Рµ.
      *
      * @see    ToDead
      * @see    IsKnockout
@@ -1074,9 +1074,9 @@ public:
      */
     bool IsDead();
 
-    /** \~russian Проверяет, находится ли криттер в нокдауне.
+    /** \~russian РџСЂРѕРІРµСЂСЏРµС‚, РЅР°С…РѕРґРёС‚СЃСЏ Р»Рё РєСЂРёС‚С‚РµСЂ РІ РЅРѕРєРґР°СѓРЅРµ.
      *
-     * @return @c true – если криттер в нокдауне; @c false – в противном случае.
+     * @return @c true вЂ“ РµСЃР»Рё РєСЂРёС‚С‚РµСЂ РІ РЅРѕРєРґР°СѓРЅРµ; @c false вЂ“ РІ РїСЂРѕС‚РёРІРЅРѕРј СЃР»СѓС‡Р°Рµ.
      *
      * @see    ToKnockout
      * @see    IsDead
@@ -1084,9 +1084,9 @@ public:
      */
     bool IsKnockout();
 
-    /** \~russian Проверяет, жив ли криттер.
+    /** \~russian РџСЂРѕРІРµСЂСЏРµС‚, Р¶РёРІ Р»Рё РєСЂРёС‚С‚РµСЂ.
      *
-     * @return @c true – если криттер жив; @c false – в противном случае.
+     * @return @c true вЂ“ РµСЃР»Рё РєСЂРёС‚С‚РµСЂ Р¶РёРІ; @c false вЂ“ РІ РїСЂРѕС‚РёРІРЅРѕРј СЃР»СѓС‡Р°Рµ.
      *
      * @see    ToLife
      * @see    IsDead
@@ -1094,40 +1094,40 @@ public:
      */
     bool IsLife();
 
-    /** \~russian Убивает криттера.
+    /** \~russian РЈР±РёРІР°РµС‚ РєСЂРёС‚С‚РµСЂР°.
      *
-     * @param  anim2     Тип анимации смерти
-     *                   (см. <b>COND_DEAD_...</b> в @link CritterConditions Critter extended conditions@endlink).
-     * @param  killer    Указатель на криттера-убийцу.
+     * @param  anim2     РўРёРї Р°РЅРёРјР°С†РёРё СЃРјРµСЂС‚Рё
+     *                   (СЃРј. <b>COND_DEAD_...</b> РІ @link CritterConditions Critter extended conditions@endlink).
+     * @param  killer    РЈРєР°Р·Р°С‚РµР»СЊ РЅР° РєСЂРёС‚С‚РµСЂР°-СѓР±РёР№С†Сѓ.
      *
      * @see    IsDead
      */
     void ToDead(uint anim2, Critter@+ killer);
 
-    /** \~russian Посылает криттера в нокаут.
+    /** \~russian РџРѕСЃС‹Р»Р°РµС‚ РєСЂРёС‚С‚РµСЂР° РІ РЅРѕРєР°СѓС‚.
      *
-     * @param   anim2begin        анимации начала накаута
-     * @param   anim2idle         анимации нахождения в накауте
-     * @param   anim2end          анимации выхода из накаута
-     * @param   lostAp            Количество очков действия, необходимых для поднятия с земли.
-     * @param   knockHx, knockHy  Гекс, на который падает криттер.
+     * @param   anim2begin        Р°РЅРёРјР°С†РёРё РЅР°С‡Р°Р»Р° РЅР°РєР°СѓС‚Р°
+     * @param   anim2idle         Р°РЅРёРјР°С†РёРё РЅР°С…РѕР¶РґРµРЅРёСЏ РІ РЅР°РєР°СѓС‚Рµ
+     * @param   anim2end          Р°РЅРёРјР°С†РёРё РІС‹С…РѕРґР° РёР· РЅР°РєР°СѓС‚Р°
+     * @param   lostAp            РљРѕР»РёС‡РµСЃС‚РІРѕ РѕС‡РєРѕРІ РґРµР№СЃС‚РІРёСЏ, РЅРµРѕР±С…РѕРґРёРјС‹С… РґР»СЏ РїРѕРґРЅСЏС‚РёСЏ СЃ Р·РµРјР»Рё.
+     * @param   knockHx, knockHy  Р“РµРєСЃ, РЅР° РєРѕС‚РѕСЂС‹Р№ РїР°РґР°РµС‚ РєСЂРёС‚С‚РµСЂ.
      *
-     * @return  @c true – в случае успеха; @c false – в случае неудачи.
+     * @return  @c true вЂ“ РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС…Р°; @c false вЂ“ РІ СЃР»СѓС‡Р°Рµ РЅРµСѓРґР°С‡Рё.
      *
-     * @remarks Пока возможность указать гекс, на который упал криттер,
-     *          не реализована должным образом. Криттер в клиенте падает в отличный
-     *          от своей позиции гекс некорректно.
+     * @remarks РџРѕРєР° РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ СѓРєР°Р·Р°С‚СЊ РіРµРєСЃ, РЅР° РєРѕС‚РѕСЂС‹Р№ СѓРїР°Р» РєСЂРёС‚С‚РµСЂ,
+     *          РЅРµ СЂРµР°Р»РёР·РѕРІР°РЅР° РґРѕР»Р¶РЅС‹Рј РѕР±СЂР°Р·РѕРј. РљСЂРёС‚С‚РµСЂ РІ РєР»РёРµРЅС‚Рµ РїР°РґР°РµС‚ РІ РѕС‚Р»РёС‡РЅС‹Р№
+     *          РѕС‚ СЃРІРѕРµР№ РїРѕР·РёС†РёРё РіРµРєСЃ РЅРµРєРѕСЂСЂРµРєС‚РЅРѕ.
      *
      * @see     IsKnockout
      */
     bool ToKnockout(uint anim2begin, uint anim2idle, uint anim2end, uint lostAp, uint16 knockHx, uint16 knockHy);
 
-    /** \~russian Возвращает мертвого криттера к жизни.
+    /** \~russian Р’РѕР·РІСЂР°С‰Р°РµС‚ РјРµСЂС‚РІРѕРіРѕ РєСЂРёС‚С‚РµСЂР° Рє Р¶РёР·РЅРё.
      *
-     * Если позиция мёртвого криттера занята (например, другим криттером),
-     * то респаун не происходит.
+     * Р•СЃР»Рё РїРѕР·РёС†РёСЏ РјС‘СЂС‚РІРѕРіРѕ РєСЂРёС‚С‚РµСЂР° Р·Р°РЅСЏС‚Р° (РЅР°РїСЂРёРјРµСЂ, РґСЂСѓРіРёРј РєСЂРёС‚С‚РµСЂРѕРј),
+     * С‚Рѕ СЂРµСЃРїР°СѓРЅ РЅРµ РїСЂРѕРёСЃС…РѕРґРёС‚.
      *
-     * @return @c true – в случае успеха; @c false – в случае неудачи.
+     * @return @c true вЂ“ РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС…Р°; @c false вЂ“ РІ СЃР»СѓС‡Р°Рµ РЅРµСѓРґР°С‡Рё.
      *
      * @see    IsLife
      */
@@ -1136,179 +1136,179 @@ public:
     //@}
 
     /**
-     * \~russian @name Анимация
+     * \~russian @name РђРЅРёРјР°С†РёСЏ
      * \~english @name Animation
      * \~ @weight 190
      */
     //@{
 
-    /** \~russian Ставит указанную анимацию в очередь проигрываемых анимаций криттера.
+    /** \~russian РЎС‚Р°РІРёС‚ СѓРєР°Р·Р°РЅРЅСѓСЋ Р°РЅРёРјР°С†РёСЋ РІ РѕС‡РµСЂРµРґСЊ РїСЂРѕРёРіСЂС‹РІР°РµРјС‹С… Р°РЅРёРјР°С†РёР№ РєСЂРёС‚С‚РµСЂР°.
      *
-     * Для удобства пользуйтесь макросами (см. @b Animation в файле @b _macros.fos).
+     * Р”Р»СЏ СѓРґРѕР±СЃС‚РІР° РїРѕР»СЊР·СѓР№С‚РµСЃСЊ РјР°РєСЂРѕСЃР°РјРё (СЃРј. @b Animation РІ С„Р°Р№Р»Рµ @b _macros.fos).
      *
-     * Функция прекращает свою работу, когда началось проигрывание анимации.
+     * Р¤СѓРЅРєС†РёСЏ РїСЂРµРєСЂР°С‰Р°РµС‚ СЃРІРѕСЋ СЂР°Р±РѕС‚Сѓ, РєРѕРіРґР° РЅР°С‡Р°Р»РѕСЃСЊ РїСЂРѕРёРіСЂС‹РІР°РЅРёРµ Р°РЅРёРјР°С†РёРё.
      *
-     * Если функция была вызвана в момент, когда у криттера проигрывается какая-либо анимация,
-     * то проигрывание новой анимации будет занесено в очередь.
+     * Р•СЃР»Рё С„СѓРЅРєС†РёСЏ Р±С‹Р»Р° РІС‹Р·РІР°РЅР° РІ РјРѕРјРµРЅС‚, РєРѕРіРґР° Сѓ РєСЂРёС‚С‚РµСЂР° РїСЂРѕРёРіСЂС‹РІР°РµС‚СЃСЏ РєР°РєР°СЏ-Р»РёР±Рѕ Р°РЅРёРјР°С†РёСЏ,
+     * С‚Рѕ РїСЂРѕРёРіСЂС‹РІР°РЅРёРµ РЅРѕРІРѕР№ Р°РЅРёРјР°С†РёРё Р±СѓРґРµС‚ Р·Р°РЅРµСЃРµРЅРѕ РІ РѕС‡РµСЂРµРґСЊ.
      *
-     * @param  anim1         Первый индекс анимации (см. @b ANIM1_* в @b _animation.fos).
-     * @param  anim2         Второй индекс анимации (см. @b ANIM2_* в @b _animation.fos).
-     * @param  item          Указатель на предмет, используемый в анимации.
-     * @param  clearSequence Очистка очереди анимаций.
-     *                       При @c false анимация записывается в конец очереди.
-     * @param  delayPlay     Актуален при <code>clearSequence == false</code>.
-     *                       Указывает ставить ли анимацию в очередь или пропустить (не проигрывать,
-     *                       если в данный момент идет другая анимация).
+     * @param  anim1         РџРµСЂРІС‹Р№ РёРЅРґРµРєСЃ Р°РЅРёРјР°С†РёРё (СЃРј. @b ANIM1_* РІ @b _animation.fos).
+     * @param  anim2         Р’С‚РѕСЂРѕР№ РёРЅРґРµРєСЃ Р°РЅРёРјР°С†РёРё (СЃРј. @b ANIM2_* РІ @b _animation.fos).
+     * @param  item          РЈРєР°Р·Р°С‚РµР»СЊ РЅР° РїСЂРµРґРјРµС‚, РёСЃРїРѕР»СЊР·СѓРµРјС‹Р№ РІ Р°РЅРёРјР°С†РёРё.
+     * @param  clearSequence РћС‡РёСЃС‚РєР° РѕС‡РµСЂРµРґРё Р°РЅРёРјР°С†РёР№.
+     *                       РџСЂРё @c false Р°РЅРёРјР°С†РёСЏ Р·Р°РїРёСЃС‹РІР°РµС‚СЃСЏ РІ РєРѕРЅРµС† РѕС‡РµСЂРµРґРё.
+     * @param  delayPlay     РђРєС‚СѓР°Р»РµРЅ РїСЂРё <code>clearSequence == false</code>.
+     *                       РЈРєР°Р·С‹РІР°РµС‚ СЃС‚Р°РІРёС‚СЊ Р»Рё Р°РЅРёРјР°С†РёСЋ РІ РѕС‡РµСЂРµРґСЊ РёР»Рё РїСЂРѕРїСѓСЃС‚РёС‚СЊ (РЅРµ РїСЂРѕРёРіСЂС‹РІР°С‚СЊ,
+     *                       РµСЃР»Рё РІ РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ РёРґРµС‚ РґСЂСѓРіР°СЏ Р°РЅРёРјР°С†РёСЏ).
      *
      ** \~ @see #animation2d_process
      *     @see #animation3d_process
      */
     void Animate(uint anim1, uint anim2, Item@+ item, bool clearSequence, bool delayPlay);
 
-    /** \~russian Cмена типа криттера.
+    /** \~russian CРјРµРЅР° С‚РёРїР° РєСЂРёС‚С‚РµСЂР°.
      *
-     * @param  newType  Новый тип.
-     *                  См. <a href="http://www.fonline.ru/forum/showthread.php?t=4511">Таблицу типов криттеров и возможностей их анимации</a>.
+     * @param  newType  РќРѕРІС‹Р№ С‚РёРї.
+     *                  РЎРј. <a href="http://www.fonline.ru/forum/showthread.php?t=4511">РўР°Р±Р»РёС†Сѓ С‚РёРїРѕРІ РєСЂРёС‚С‚РµСЂРѕРІ Рё РІРѕР·РјРѕР¶РЅРѕСЃС‚РµР№ РёС… Р°РЅРёРјР°С†РёРё</a>.
      *
-     * @return @c true – в случае успеха, @c false – в противном случае.
+     * @return @c true вЂ“ РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС…Р°, @c false вЂ“ РІ РїСЂРѕС‚РёРІРЅРѕРј СЃР»СѓС‡Р°Рµ.
      */
     bool ChangeCrType(uint newType);
 
-    /** \~russian Позволяет определить возможность использования криттером
-     *            указанной анимации (оружия, действий)
+    /** \~russian РџРѕР·РІРѕР»СЏРµС‚ РѕРїСЂРµРґРµР»РёС‚СЊ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РєСЂРёС‚С‚РµСЂРѕРј
+     *            СѓРєР°Р·Р°РЅРЅРѕР№ Р°РЅРёРјР°С†РёРё (РѕСЂСѓР¶РёСЏ, РґРµР№СЃС‚РІРёР№)
      *
-     * @param   index  Индекс анимации.
+     * @param   index  РРЅРґРµРєСЃ Р°РЅРёРјР°С†РёРё.
      *
-     * @return  @c true – если анимация может использоваться,
-     *          @c false – в противном случае.
+     * @return  @c true вЂ“ РµСЃР»Рё Р°РЅРёРјР°С†РёСЏ РјРѕР¶РµС‚ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ,
+     *          @c false вЂ“ РІ РїСЂРѕС‚РёРІРЅРѕРј СЃР»СѓС‡Р°Рµ.
      */
     bool IsAnim1(uint index);
-	
-	/** \~russian Для смены данных значений на постоянной основе (например, положение сидя, лежа).
+    
+    /** \~russian Р”Р»СЏ СЃРјРµРЅС‹ РґР°РЅРЅС‹С… Р·РЅР°С‡РµРЅРёР№ РЅР° РїРѕСЃС‚РѕСЏРЅРЅРѕР№ РѕСЃРЅРѕРІРµ (РЅР°РїСЂРёРјРµСЂ, РїРѕР»РѕР¶РµРЅРёРµ СЃРёРґСЏ, Р»РµР¶Р°).
      *
-     * @param  cond   Для какого состаяния применить значения (см. COND_* в _defines.fos), при нуле применяется ко всем трем.
-     * @param  anim1  Значения анимаций.
-     * @param  anim2  Значения анимаций.
+     * @param  cond   Р”Р»СЏ РєР°РєРѕРіРѕ СЃРѕСЃС‚Р°СЏРЅРёСЏ РїСЂРёРјРµРЅРёС‚СЊ Р·РЅР°С‡РµРЅРёСЏ (СЃРј. COND_* РІ _defines.fos), РїСЂРё РЅСѓР»Рµ РїСЂРёРјРµРЅСЏРµС‚СЃСЏ РєРѕ РІСЃРµРј С‚СЂРµРј.
+     * @param  anim1  Р—РЅР°С‡РµРЅРёСЏ Р°РЅРёРјР°С†РёР№.
+     * @param  anim2  Р—РЅР°С‡РµРЅРёСЏ Р°РЅРёРјР°С†РёР№.
      *
      */
-	void SetAnims(int cond, uint anim1, uint anim2);
+    void SetAnims(int cond, uint anim1, uint anim2);
 
     //@}
 
     /**
-     * \~russian @name Для групп (партий)
+     * \~russian @name Р”Р»СЏ РіСЂСѓРїРї (РїР°СЂС‚РёР№)
      * \~english @name Party
      * \~ @weight 180
      */
     //@{
 
-    /** \~russian Ищет криттеров, входящих в группу во главе с криттером.
+    /** \~russian РС‰РµС‚ РєСЂРёС‚С‚РµСЂРѕРІ, РІС…РѕРґСЏС‰РёС… РІ РіСЂСѓРїРїСѓ РІРѕ РіР»Р°РІРµ СЃ РєСЂРёС‚С‚РµСЂРѕРј.
      *
-     * @param   findType  Тип поиска (см. @link CritterFindTypes Critter find types@endlink).
-     * @param   critters  Массив криттеров, в конец которого будут записаны найденные криттеры.
+     * @param   findType  РўРёРї РїРѕРёСЃРєР° (СЃРј. @link CritterFindTypes Critter find types@endlink).
+     * @param   critters  РњР°СЃСЃРёРІ РєСЂРёС‚С‚РµСЂРѕРІ, РІ РєРѕРЅРµС† РєРѕС‚РѕСЂРѕРіРѕ Р±СѓРґСѓС‚ Р·Р°РїРёСЃР°РЅС‹ РЅР°Р№РґРµРЅРЅС‹Рµ РєСЂРёС‚С‚РµСЂС‹.
      *
-     * @return  Количество найденных криттеров.
+     * @return  РљРѕР»РёС‡РµСЃС‚РІРѕ РЅР°Р№РґРµРЅРЅС‹С… РєСЂРёС‚С‚РµСЂРѕРІ.
      *
-     * @remarks Чтобы просто узнать количество найденных криттеров,
-     *          в параметре @a critters можно передать значение @c null вместо списка.
-     * @remarks Найденные криттеры будут отсортированы по отдалению от криттера.
+     * @remarks Р§С‚РѕР±С‹ РїСЂРѕСЃС‚Рѕ СѓР·РЅР°С‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ РЅР°Р№РґРµРЅРЅС‹С… РєСЂРёС‚С‚РµСЂРѕРІ,
+     *          РІ РїР°СЂР°РјРµС‚СЂРµ @a critters РјРѕР¶РЅРѕ РїРµСЂРµРґР°С‚СЊ Р·РЅР°С‡РµРЅРёРµ @c null РІРјРµСЃС‚Рѕ СЃРїРёСЃРєР°.
+     * @remarks РќР°Р№РґРµРЅРЅС‹Рµ РєСЂРёС‚С‚РµСЂС‹ Р±СѓРґСѓС‚ РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅС‹ РїРѕ РѕС‚РґР°Р»РµРЅРёСЋ РѕС‚ РєСЂРёС‚С‚РµСЂР°.
      */
     uint GetFollowGroup(int findType, Critter@[]@+ critters);
 
-    /** \~russian Позволяет получить лидера группы, в которую входит криттер.
+    /** \~russian РџРѕР·РІРѕР»СЏРµС‚ РїРѕР»СѓС‡РёС‚СЊ Р»РёРґРµСЂР° РіСЂСѓРїРїС‹, РІ РєРѕС‚РѕСЂСѓСЋ РІС…РѕРґРёС‚ РєСЂРёС‚С‚РµСЂ.
      *
-     * @return В том случае, если криттер видит лидера, то возвращается указатель
-     *         на лидера группы. В противном случае возвращается @c null.
+     * @return Р’ С‚РѕРј СЃР»СѓС‡Р°Рµ, РµСЃР»Рё РєСЂРёС‚С‚РµСЂ РІРёРґРёС‚ Р»РёРґРµСЂР°, С‚Рѕ РІРѕР·РІСЂР°С‰Р°РµС‚СЃСЏ СѓРєР°Р·Р°С‚РµР»СЊ
+     *         РЅР° Р»РёРґРµСЂР° РіСЂСѓРїРїС‹. Р’ РїСЂРѕС‚РёРІРЅРѕРј СЃР»СѓС‡Р°Рµ РІРѕР·РІСЂР°С‰Р°РµС‚СЃСЏ @c null.
      */
     Critter@+ GetFollowLeader();
 
-    /** \~russian Возвращает текущую группу на глобальной карте, в которую входит криттер.
+    /** \~russian Р’РѕР·РІСЂР°С‰Р°РµС‚ С‚РµРєСѓС‰СѓСЋ РіСЂСѓРїРїСѓ РЅР° РіР»РѕР±Р°Р»СЊРЅРѕР№ РєР°СЂС‚Рµ, РІ РєРѕС‚РѕСЂСѓСЋ РІС…РѕРґРёС‚ РєСЂРёС‚С‚РµСЂ.
      *
-     * @return Массив, содержащий всех криттеров, входящих в группу на глобальной карте.
-     *         Если криттер находится не на глобале, то будет возвращен @c null.
+     * @return РњР°СЃСЃРёРІ, СЃРѕРґРµСЂР¶Р°С‰РёР№ РІСЃРµС… РєСЂРёС‚С‚РµСЂРѕРІ, РІС…РѕРґСЏС‰РёС… РІ РіСЂСѓРїРїСѓ РЅР° РіР»РѕР±Р°Р»СЊРЅРѕР№ РєР°СЂС‚Рµ.
+     *         Р•СЃР»Рё РєСЂРёС‚С‚РµСЂ РЅР°С…РѕРґРёС‚СЃСЏ РЅРµ РЅР° РіР»РѕР±Р°Р»Рµ, С‚Рѕ Р±СѓРґРµС‚ РІРѕР·РІСЂР°С‰РµРЅ @c null.
      *
      */
     Critter@[]@+ GetGlobalGroup();
 
     //@}
 
-    /** \~russian @name Для работы со стеком противников
+    /** \~russian @name Р”Р»СЏ СЂР°Р±РѕС‚С‹ СЃРѕ СЃС‚РµРєРѕРј РїСЂРѕС‚РёРІРЅРёРєРѕРІ
      *
-     * Максимальная вместимость стека – 30.
+     * РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ РІРјРµСЃС‚РёРјРѕСЃС‚СЊ СЃС‚РµРєР° вЂ“ 30.
      *
      ** \~english @name Enemy stack
      *
-     * Maximum size of stack – 30.
+     * Maximum size of stack вЂ“ 30.
      *
      ** \~ @weight 170
      */
     //@{
 
-    /** \~russian Добавляет криттера с указанным ID в стек противников.
+    /** \~russian Р”РѕР±Р°РІР»СЏРµС‚ РєСЂРёС‚С‚РµСЂР° СЃ СѓРєР°Р·Р°РЅРЅС‹Рј ID РІ СЃС‚РµРє РїСЂРѕС‚РёРІРЅРёРєРѕРІ.
      *
-     * @param  critterId  ID добавляемого криттера.
+     * @param  critterId  ID РґРѕР±Р°РІР»СЏРµРјРѕРіРѕ РєСЂРёС‚С‚РµСЂР°.
      */
     void AddEnemyInStack(uint critterId);
 
-    /** \~russian Позволяет изменить размер стека противников.
+    /** \~russian РџРѕР·РІРѕР»СЏРµС‚ РёР·РјРµРЅРёС‚СЊ СЂР°Р·РјРµСЂ СЃС‚РµРєР° РїСЂРѕС‚РёРІРЅРёРєРѕРІ.
      *
-     * @param  newSize  Новый размер стека. Максимальное значение – 30.
+     * @param  newSize  РќРѕРІС‹Р№ СЂР°Р·РјРµСЂ СЃС‚РµРєР°. РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ вЂ“ 30.
      */
     void ChangeEnemyStackSize(uint newSize);
 
-    /** \~russian Позволяет проверить, находится ли криттер с указанным ID в стеке противников.
+    /** \~russian РџРѕР·РІРѕР»СЏРµС‚ РїСЂРѕРІРµСЂРёС‚СЊ, РЅР°С…РѕРґРёС‚СЃСЏ Р»Рё РєСЂРёС‚С‚РµСЂ СЃ СѓРєР°Р·Р°РЅРЅС‹Рј ID РІ СЃС‚РµРєРµ РїСЂРѕС‚РёРІРЅРёРєРѕРІ.
      *
-     * @param  critterId  ID проверяемого криттера.
+     * @param  critterId  ID РїСЂРѕРІРµСЂСЏРµРјРѕРіРѕ РєСЂРёС‚С‚РµСЂР°.
      *
-     * @return @c true если находится; @c false – если нет.
+     * @return @c true РµСЃР»Рё РЅР°С…РѕРґРёС‚СЃСЏ; @c false вЂ“ РµСЃР»Рё РЅРµС‚.
      */
     bool CheckEnemyInStack(uint critterId);
 
-    /** \~russian Очищает стек противников. */
+    /** \~russian РћС‡РёС‰Р°РµС‚ СЃС‚РµРє РїСЂРѕС‚РёРІРЅРёРєРѕРІ. */
     void ClearEnemyStack();
 
-    /** \~russian Удаляет криттера с указанным ID из стека противников.
+    /** \~russian РЈРґР°Р»СЏРµС‚ РєСЂРёС‚С‚РµСЂР° СЃ СѓРєР°Р·Р°РЅРЅС‹Рј ID РёР· СЃС‚РµРєР° РїСЂРѕС‚РёРІРЅРёРєРѕРІ.
      *
-     * @param  critterId  ID удаляемого криттера.
+     * @param  critterId  ID СѓРґР°Р»СЏРµРјРѕРіРѕ РєСЂРёС‚С‚РµСЂР°.
      */
     void EraseEnemyFromStack(uint critterId);
 
-    /** \~russian Позволяет получить ID всех противников, находящихся в стеке.
+    /** \~russian РџРѕР·РІРѕР»СЏРµС‚ РїРѕР»СѓС‡РёС‚СЊ ID РІСЃРµС… РїСЂРѕС‚РёРІРЅРёРєРѕРІ, РЅР°С…РѕРґСЏС‰РёС…СЃСЏ РІ СЃС‚РµРєРµ.
      *
-     * @param  enemyStack  Массив, в который будут записаны все ID врагов криттера.
+     * @param  enemyStack  РњР°СЃСЃРёРІ, РІ РєРѕС‚РѕСЂС‹Р№ Р±СѓРґСѓС‚ Р·Р°РїРёСЃР°РЅС‹ РІСЃРµ ID РІСЂР°РіРѕРІ РєСЂРёС‚С‚РµСЂР°.
      */
     void GetEnemyStack(uint[]& enemyStack);
 
     //@}
 
     /**
-     * \~russian @name Информация с голодисков
+     * \~russian @name РРЅС„РѕСЂРјР°С†РёСЏ СЃ РіРѕР»РѕРґРёСЃРєРѕРІ
      * \~english @name Holodisks
      * \~ @weight 160
      */
     //@{
 
-    /** \~russian Записывает в Пип-бой информацию с указанного голодиска.
+    /** \~russian Р—Р°РїРёСЃС‹РІР°РµС‚ РІ РџРёРї-Р±РѕР№ РёРЅС„РѕСЂРјР°С†РёСЋ СЃ СѓРєР°Р·Р°РЅРЅРѕРіРѕ РіРѕР»РѕРґРёСЃРєР°.
      *
-     * @param  holodiskNum  Номер голодиска.
+     * @param  holodiskNum  РќРѕРјРµСЂ РіРѕР»РѕРґРёСЃРєР°.
      * @see    EraseHolodiskInfo
      * @see    IsHolodiskInfo
      */
     void AddHolodiskInfo(uint holodiskNum);
 
-    /** \~russian Стирает из Пип-боя информацию с указанного голодиска.
+    /** \~russian РЎС‚РёСЂР°РµС‚ РёР· РџРёРї-Р±РѕСЏ РёРЅС„РѕСЂРјР°С†РёСЋ СЃ СѓРєР°Р·Р°РЅРЅРѕРіРѕ РіРѕР»РѕРґРёСЃРєР°.
      *
-     * @param  holodiskNum Номер голодиска.
+     * @param  holodiskNum РќРѕРјРµСЂ РіРѕР»РѕРґРёСЃРєР°.
      * @see    AddHolodiskInfo
      * @see    IsHolodiskInfo
      */
     void EraseHolodiskInfo(uint holodiskNum);
 
-    /** \~russian Позволяет проверить, содержится ли в Пип-бое информация с указанного голодиска.
+    /** \~russian РџРѕР·РІРѕР»СЏРµС‚ РїСЂРѕРІРµСЂРёС‚СЊ, СЃРѕРґРµСЂР¶РёС‚СЃСЏ Р»Рё РІ РџРёРї-Р±РѕРµ РёРЅС„РѕСЂРјР°С†РёСЏ СЃ СѓРєР°Р·Р°РЅРЅРѕРіРѕ РіРѕР»РѕРґРёСЃРєР°.
      *
-     * @param  holodiskNum  Номер голодиска.
+     * @param  holodiskNum  РќРѕРјРµСЂ РіРѕР»РѕРґРёСЃРєР°.
      *
-     * @return @c true – если содержится; @c false – если нет.
+     * @return @c true вЂ“ РµСЃР»Рё СЃРѕРґРµСЂР¶РёС‚СЃСЏ; @c false вЂ“ РµСЃР»Рё РЅРµС‚.
      *
      * @see    AddHolodiskInfo
      * @see    EraseHolodiskInfo
@@ -1318,314 +1318,319 @@ public:
     //@}
 
     /**
-     * \~russian @name Для работы с временными событиями криттера.
+     * \~russian @name Р”Р»СЏ СЂР°Р±РѕС‚С‹ СЃ РІСЂРµРјРµРЅРЅС‹РјРё СЃРѕР±С‹С‚РёСЏРјРё РєСЂРёС‚С‚РµСЂР°.
      * \~english @name %Critter time events
      * \~ @weight 150
      */
     //@{
 
-    /** \~russian Создает временное событие персонажа.
-	 *
-	 * @param  funcName  @ref term_func_link.
-	 * @param  duration  Игровое время (в игровых секундах) через которое должно произойти событие.
-	 * @param  int identifier  идентификатор, для удобного поиска событий в общем списке.
-	 *
-	 * @return  Возвращает true в случае успеха.
-	 *
-	 * @see  @ref  critters_time_events
-	 */
+    /** \~russian РЎРѕР·РґР°РµС‚ РІСЂРµРјРµРЅРЅРѕРµ СЃРѕР±С‹С‚РёРµ РїРµСЂСЃРѕРЅР°Р¶Р°.
+     *
+     * @param  funcName  @ref term_func_link.
+     * @param  duration  РРіСЂРѕРІРѕРµ РІСЂРµРјСЏ (РІ РёРіСЂРѕРІС‹С… СЃРµРєСѓРЅРґР°С…) С‡РµСЂРµР· РєРѕС‚РѕСЂРѕРµ РґРѕР»Р¶РЅРѕ РїСЂРѕРёР·РѕР№С‚Рё СЃРѕР±С‹С‚РёРµ.
+     * @param  identifier  РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ, РґР»СЏ СѓРґРѕР±РЅРѕРіРѕ РїРѕРёСЃРєР° СЃРѕР±С‹С‚РёР№ РІ РѕР±С‰РµРј СЃРїРёСЃРєРµ.
+     *
+     * @return  Р’РѕР·РІСЂР°С‰Р°РµС‚ true РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС…Р°.
+     *
+     * @see  @ref  critters_time_events
+     */
     bool AddTimeEvent(string& funcName, uint duration, int identifier);
-	
+    
 
-    /** \~russian Создает временное событие персонажа с указанием параметра rate.
-	 *
-	 * @param  funcName  @ref term_func_link.
-	 * @param  duration  Игровое время (в игровых секундах) через которое должно произойти событие.
-	 * @param  int identifier  идентификатор, для удобного поиска событий в общем списке.
-	 * @param  rate  дополнительный параметр, можно использовать для любых целей, если использован метод без указания значения rate, то данный параметр в функции обработчике будет равен нулю.
-	 *
-	 * @return  Возвращает true в случае успеха.
-	 *
-	 * @see  @ref  critters_time_events
-	 */
+    /** \~russian РЎРѕР·РґР°РµС‚ РІСЂРµРјРµРЅРЅРѕРµ СЃРѕР±С‹С‚РёРµ РїРµСЂСЃРѕРЅР°Р¶Р° СЃ СѓРєР°Р·Р°РЅРёРµРј РїР°СЂР°РјРµС‚СЂР° rate.
+     *
+     * @param  funcName  @ref term_func_link.
+     * @param  duration  РРіСЂРѕРІРѕРµ РІСЂРµРјСЏ (РІ РёРіСЂРѕРІС‹С… СЃРµРєСѓРЅРґР°С…) С‡РµСЂРµР· РєРѕС‚РѕСЂРѕРµ РґРѕР»Р¶РЅРѕ РїСЂРѕРёР·РѕР№С‚Рё СЃРѕР±С‹С‚РёРµ.
+     * @param  identifier  РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ, РґР»СЏ СѓРґРѕР±РЅРѕРіРѕ РїРѕРёСЃРєР° СЃРѕР±С‹С‚РёР№ РІ РѕР±С‰РµРј СЃРїРёСЃРєРµ.
+     * @param  rate  РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ, РјРѕР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РґР»СЏ Р»СЋР±С‹С… С†РµР»РµР№, РµСЃР»Рё РёСЃРїРѕР»СЊР·РѕРІР°РЅ РјРµС‚РѕРґ Р±РµР· СѓРєР°Р·Р°РЅРёСЏ Р·РЅР°С‡РµРЅРёСЏ rate, С‚Рѕ РґР°РЅРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ РІ С„СѓРЅРєС†РёРё РѕР±СЂР°Р±РѕС‚С‡РёРєРµ Р±СѓРґРµС‚ СЂР°РІРµРЅ РЅСѓР»СЋ.
+     *
+     * @return  Р’РѕР·РІСЂР°С‰Р°РµС‚ true РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС…Р°.
+     *
+     * @see  @ref  critters_time_events
+     */
     bool AddTimeEvent(string& funcName, uint duration, int identifier, uint rate);
 
-    /** \~russian Изменяет временное событие персонажа.
-	 *
-	 * @param  index  Индекс события, которое необходимо изменить.
-	 * @param  newDuration  Новый интервал до возникновения события.
-	 * @param  newRate  Новое значение параметра rate.
-	 *
-	 * @see  @ref  critters_time_events
-	 */
+    /** \~russian РР·РјРµРЅСЏРµС‚ РІСЂРµРјРµРЅРЅРѕРµ СЃРѕР±С‹С‚РёРµ РїРµСЂСЃРѕРЅР°Р¶Р°.
+     *
+     * @param  index  РРЅРґРµРєСЃ СЃРѕР±С‹С‚РёСЏ, РєРѕС‚РѕСЂРѕРµ РЅРµРѕР±С…РѕРґРёРјРѕ РёР·РјРµРЅРёС‚СЊ.
+     * @param  newDuration  РќРѕРІС‹Р№ РёРЅС‚РµСЂРІР°Р» РґРѕ РІРѕР·РЅРёРєРЅРѕРІРµРЅРёСЏ СЃРѕР±С‹С‚РёСЏ.
+     * @param  newRate  РќРѕРІРѕРµ Р·РЅР°С‡РµРЅРёРµ РїР°СЂР°РјРµС‚СЂР° rate.
+     *
+     * @see  @ref  critters_time_events
+     */
     void ChangeTimeEvent(uint index, uint newDuration, uint newRate);
 
-    /** \~russian Возвращает количество найденных событий персонажа по указанным параметрам.
-	 *
-	 * @param  identifier  Идентификатор указанный при создании события.
-	 * @param  indexes  Индексы событий.
-	 * @param  durations  Временные промежутки событий.
-	 * @param  rates  значения параметра rate тех событий.
-	 *
-	 * @return  Количество найденных событий.
-	 *
-	 * @see  @ref  critters_time_events
-	 */
+    /** \~russian Р’РѕР·РІСЂР°С‰Р°РµС‚ РєРѕР»РёС‡РµСЃС‚РІРѕ РЅР°Р№РґРµРЅРЅС‹С… СЃРѕР±С‹С‚РёР№ РїРµСЂСЃРѕРЅР°Р¶Р° РїРѕ СѓРєР°Р·Р°РЅРЅС‹Рј РїР°СЂР°РјРµС‚СЂР°Рј.
+     *
+     * @param  identifier  РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ СѓРєР°Р·Р°РЅРЅС‹Р№ РїСЂРё СЃРѕР·РґР°РЅРёРё СЃРѕР±С‹С‚РёСЏ.
+     * @param  indexes  РРЅРґРµРєСЃС‹ СЃРѕР±С‹С‚РёР№.
+     * @param  durations  Р’СЂРµРјРµРЅРЅС‹Рµ РїСЂРѕРјРµР¶СѓС‚РєРё СЃРѕР±С‹С‚РёР№.
+     * @param  rates  Р·РЅР°С‡РµРЅРёСЏ РїР°СЂР°РјРµС‚СЂР° rate С‚РµС… СЃРѕР±С‹С‚РёР№.
+     *
+     * @return  РљРѕР»РёС‡РµСЃС‚РІРѕ РЅР°Р№РґРµРЅРЅС‹С… СЃРѕР±С‹С‚РёР№.
+     *
+     * @see  @ref  critters_time_events
+     */
     uint GetTimeEvents(int identifier, uint[]@+ indexes, uint[]@+ durations, uint[]@+ rates);
 
-    /** \~russian Возвращает количество найденных событий персонажа, а так же их параметры identifier по указанным параметрам.
-	 *
-	 * @param  findIdentifiers  Идентификаторы найденных событий.
-	 * @param  identifiers  Идентификаторы указанные при создании событий.
-	 * @param  indexes  Индексы событий.
-	 * @param  durations  Временные промежутки событий.
-	 * @param  rates  значения параметра rate событий.
-	 *
-	 * @return  Количество найденных событий.
-	 *
-	 * @see  @ref  critters_time_events
-	 */
+    /** \~russian Р’РѕР·РІСЂР°С‰Р°РµС‚ РєРѕР»РёС‡РµСЃС‚РІРѕ РЅР°Р№РґРµРЅРЅС‹С… СЃРѕР±С‹С‚РёР№ РїРµСЂСЃРѕРЅР°Р¶Р°, Р° С‚Р°Рє Р¶Рµ РёС… РїР°СЂР°РјРµС‚СЂС‹ identifier РїРѕ СѓРєР°Р·Р°РЅРЅС‹Рј РїР°СЂР°РјРµС‚СЂР°Рј.
+     *
+     * @param  findIdentifiers  РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂС‹ РЅР°Р№РґРµРЅРЅС‹С… СЃРѕР±С‹С‚РёР№.
+     * @param  identifiers  РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂС‹ СѓРєР°Р·Р°РЅРЅС‹Рµ РїСЂРё СЃРѕР·РґР°РЅРёРё СЃРѕР±С‹С‚РёР№.
+     * @param  indexes  РРЅРґРµРєСЃС‹ СЃРѕР±С‹С‚РёР№.
+     * @param  durations  Р’СЂРµРјРµРЅРЅС‹Рµ РїСЂРѕРјРµР¶СѓС‚РєРё СЃРѕР±С‹С‚РёР№.
+     * @param  rates  Р·РЅР°С‡РµРЅРёСЏ РїР°СЂР°РјРµС‚СЂР° rate СЃРѕР±С‹С‚РёР№.
+     *
+     * @return  РљРѕР»РёС‡РµСЃС‚РІРѕ РЅР°Р№РґРµРЅРЅС‹С… СЃРѕР±С‹С‚РёР№.
+     *
+     * @see  @ref  critters_time_events
+     */
     uint GetTimeEvents(int[]& findIdentifiers, int[]@+ identifiers, uint[]@+ indexes, uint[]@+ durations, uint[]@+ rates);
 
-    /** \~russian Удаляет временное событие персонажа по индексу в массиве.
-	 *
-	 * @param  index  Индекс события, которое следует удалить
-	 *
-	 * @see  @ref  critters_time_events
-	 */
+    /** \~russian РЈРґР°Р»СЏРµС‚ РІСЂРµРјРµРЅРЅРѕРµ СЃРѕР±С‹С‚РёРµ РїРµСЂСЃРѕРЅР°Р¶Р° РїРѕ РёРЅРґРµРєСЃСѓ РІ РјР°СЃСЃРёРІРµ.
+     *
+     * @param  index  РРЅРґРµРєСЃ СЃРѕР±С‹С‚РёСЏ, РєРѕС‚РѕСЂРѕРµ СЃР»РµРґСѓРµС‚ СѓРґР°Р»РёС‚СЊ
+     *
+     * @see  @ref  critters_time_events
+     */
     void EraseTimeEvent(uint index);
 
-    /** \~russian Удаляет временные события персонажа с заданным идентификатором.
-	 *
-	 * @param  identifier  Идентификатор, указанный при создании, тех событий, которые следует удалить.
-	 *
-	 * @return  Количество удаленных событий
-	 *
-	 * @see  @ref  critters_time_events
-	 */
+    /** \~russian РЈРґР°Р»СЏРµС‚ РІСЂРµРјРµРЅРЅС‹Рµ СЃРѕР±С‹С‚РёСЏ РїРµСЂСЃРѕРЅР°Р¶Р° СЃ Р·Р°РґР°РЅРЅС‹Рј РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂРѕРј.
+     *
+     * @param  identifier  РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ, СѓРєР°Р·Р°РЅРЅС‹Р№ РїСЂРё СЃРѕР·РґР°РЅРёРё, С‚РµС… СЃРѕР±С‹С‚РёР№, РєРѕС‚РѕСЂС‹Рµ СЃР»РµРґСѓРµС‚ СѓРґР°Р»РёС‚СЊ.
+     *
+     * @return  РљРѕР»РёС‡РµСЃС‚РІРѕ СѓРґР°Р»РµРЅРЅС‹С… СЃРѕР±С‹С‚РёР№
+     *
+     * @see  @ref  critters_time_events
+     */
     uint EraseTimeEvents(int identifier);
 
-    /** \~russian Удаляет временные события персонажа с заданными идентификаторами.
-	 *
-	 * @param  identifiers  Массив идентификаторов тех событий, которые нужно удалить.
-	 *
-	 * @return  Количество удаленных событий.
-	 *
-	 * @see  @ref  critters_time_events
-	*/
+    /** \~russian РЈРґР°Р»СЏРµС‚ РІСЂРµРјРµРЅРЅС‹Рµ СЃРѕР±С‹С‚РёСЏ РїРµСЂСЃРѕРЅР°Р¶Р° СЃ Р·Р°РґР°РЅРЅС‹РјРё РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂР°РјРё.
+     *
+     * @param  identifiers  РњР°СЃСЃРёРІ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂРѕРІ С‚РµС… СЃРѕР±С‹С‚РёР№, РєРѕС‚РѕСЂС‹Рµ РЅСѓР¶РЅРѕ СѓРґР°Р»РёС‚СЊ.
+     *
+     * @return  РљРѕР»РёС‡РµСЃС‚РІРѕ СѓРґР°Р»РµРЅРЅС‹С… СЃРѕР±С‹С‚РёР№.
+     *
+     * @see  @ref  critters_time_events
+    */
     uint EraseTimeEvents(int[]& identifiers);
 
     //@}
 
-	/**
-     * \~russian @name Мультигексовость
+    /**
+     * \~russian @name РњСѓР»СЊС‚РёРіРµРєСЃРѕРІРѕСЃС‚СЊ
      * \~english @name Multihex
      *
      * \~ @weight 145
      */
     //@{
-	
-	/** \~russian Возвращает значение мултигексовости для персонажа */
-	uint GetMultihex();
-	
-	/** \~russian Устанавливает новое значение мультигексовости для персонажа
-	 *
-	 * \~russian @remarks при value равном -1 значение меняется на значение по-умолчанию (значение по-умолчанию указано в CritterType.cfg)
-	 */
-	void SetMultihex(int value);
-	
-	//@}
-	
+    
+    /** \~russian Р’РѕР·РІСЂР°С‰Р°РµС‚ Р·РЅР°С‡РµРЅРёРµ РјСѓР»С‚РёРіРµРєСЃРѕРІРѕСЃС‚Рё РґР»СЏ РїРµСЂСЃРѕРЅР°Р¶Р° */
+    uint GetMultihex();
+    
+    /** \~russian РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РЅРѕРІРѕРµ Р·РЅР°С‡РµРЅРёРµ РјСѓР»СЊС‚РёРіРµРєСЃРѕРІРѕСЃС‚Рё РґР»СЏ РїРµСЂСЃРѕРЅР°Р¶Р°
+     *
+     * \~russian @remarks РїСЂРё value СЂР°РІРЅРѕРј -1 Р·РЅР°С‡РµРЅРёРµ РјРµРЅСЏРµС‚СЃСЏ РЅР° Р·РЅР°С‡РµРЅРёРµ РїРѕ-СѓРјРѕР»С‡Р°РЅРёСЋ (Р·РЅР°С‡РµРЅРёРµ РїРѕ-СѓРјРѕР»С‡Р°РЅРёСЋ СѓРєР°Р·Р°РЅРѕ РІ CritterType.cfg)
+     */
+    void SetMultihex(int value);
+    
+    //@}
+    
     /**
-     * \~russian @name Прочее
+     * \~russian @name РџСЂРѕС‡РµРµ
      * \~english @name Miscellaneous
      * \~ @weight 140
      */
     //@{
 
-    /** \~russian Возвращает номер прототипа криттера. */
+    /** \~russian Р’РѕР·РІСЂР°С‰Р°РµС‚ РЅРѕРјРµСЂ РїСЂРѕС‚РѕС‚РёРїР° РєСЂРёС‚С‚РµСЂР°. */
     uint16 GetProtoId();
 
-    /** \~russian Позволяет проверить, является ли криттер NPC.
+    /** \~russian РџРѕР·РІРѕР»СЏРµС‚ РїСЂРѕРІРµСЂРёС‚СЊ, СЏРІР»СЏРµС‚СЃСЏ Р»Рё РєСЂРёС‚С‚РµСЂ NPC.
      *
-     * @return @c true – если криттер является NPC; @c false – в противном случае.
+     * @return @c true вЂ“ РµСЃР»Рё РєСЂРёС‚С‚РµСЂ СЏРІР»СЏРµС‚СЃСЏ NPC; @c false вЂ“ РІ РїСЂРѕС‚РёРІРЅРѕРј СЃР»СѓС‡Р°Рµ.
      */
     bool IsNpc();
 
-    /** \~russian Позволяет проверить, является ли криттер игроком.
+    /** \~russian РџРѕР·РІРѕР»СЏРµС‚ РїСЂРѕРІРµСЂРёС‚СЊ, СЏРІР»СЏРµС‚СЃСЏ Р»Рё РєСЂРёС‚С‚РµСЂ РёРіСЂРѕРєРѕРј.
      *
-     * @return @c true – если криттер является игроком; @c false – в противном случае.
+     * @return @c true вЂ“ РµСЃР»Рё РєСЂРёС‚С‚РµСЂ СЏРІР»СЏРµС‚СЃСЏ РёРіСЂРѕРєРѕРј; @c false вЂ“ РІ РїСЂРѕС‚РёРІРЅРѕРј СЃР»СѓС‡Р°Рµ.
      */
     bool IsPlayer();
 
-    /** \~russian Заставляет криттера подождать указанное количество времени.
+    /** \~russian Р—Р°СЃС‚Р°РІР»СЏРµС‚ РєСЂРёС‚С‚РµСЂР° РїРѕРґРѕР¶РґР°С‚СЊ СѓРєР°Р·Р°РЅРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РІСЂРµРјРµРЅРё.
      *
-     * Функция прекращает свою работу после окончания таймаута.\n
-	 * \b Примечание: Если функция вызвана во время движения @ref term_critter "персонажа", то он остановится.
-	 * 
-     * @param  ms  Время (в миллисекундах, 1 секунда = 1000 миллисекунд), которое криттер должен ждать.
+     * Р¤СѓРЅРєС†РёСЏ РїСЂРµРєСЂР°С‰Р°РµС‚ СЃРІРѕСЋ СЂР°Р±РѕС‚Сѓ РїРѕСЃР»Рµ РѕРєРѕРЅС‡Р°РЅРёСЏ С‚Р°Р№РјР°СѓС‚Р°.\n
+     * \b РџСЂРёРјРµС‡Р°РЅРёРµ: Р•СЃР»Рё С„СѓРЅРєС†РёСЏ РІС‹Р·РІР°РЅР° РІРѕ РІСЂРµРјСЏ РґРІРёР¶РµРЅРёСЏ @ref term_critter "РїРµСЂСЃРѕРЅР°Р¶Р°", С‚Рѕ РѕРЅ РѕСЃС‚Р°РЅРѕРІРёС‚СЃСЏ.
+     * 
+     * @param  ms  Р’СЂРµРјСЏ (РІ РјРёР»Р»РёСЃРµРєСѓРЅРґР°С…, 1 СЃРµРєСѓРЅРґР° = 1000 РјРёР»Р»РёСЃРµРєСѓРЅРґ), РєРѕС‚РѕСЂРѕРµ РєСЂРёС‚С‚РµСЂ РґРѕР»Р¶РµРЅ Р¶РґР°С‚СЊ.
      *
      * @see    CRITTER_EVENT_IDLE
      */
     void Wait(uint ms);
 
-    /** \~russian Показывает игроку содержимое контейнера.
+    /** \~russian РџРѕРєР°Р·С‹РІР°РµС‚ РёРіСЂРѕРєСѓ СЃРѕРґРµСЂР¶РёРјРѕРµ РєРѕРЅС‚РµР№РЅРµСЂР°.
      *
-     * @param  contCr        Указатель на криттера, инвентарь которого будет показан.
-     * @param  contItem      Указатель на предмет-контейнер, содержимое которого будет показано.
-     * @param  transferType  Тип обмена (см. @link TransferTypes Transfer types@endlink).
+     * @param  contCr        РЈРєР°Р·Р°С‚РµР»СЊ РЅР° РєСЂРёС‚С‚РµСЂР°, РёРЅРІРµРЅС‚Р°СЂСЊ РєРѕС‚РѕСЂРѕРіРѕ Р±СѓРґРµС‚ РїРѕРєР°Р·Р°РЅ.
+     * @param  contItem      РЈРєР°Р·Р°С‚РµР»СЊ РЅР° РїСЂРµРґРјРµС‚-РєРѕРЅС‚РµР№РЅРµСЂ, СЃРѕРґРµСЂР¶РёРјРѕРµ РєРѕС‚РѕСЂРѕРіРѕ Р±СѓРґРµС‚ РїРѕРєР°Р·Р°РЅРѕ.
+     * @param  transferType  РўРёРї РѕР±РјРµРЅР° (СЃРј. @link TransferTypes Transfer types@endlink).
      */
     void ShowContainer(Critter@+ contCr, Item@+ contItem, uint8 transferType);
 
-    /** \~russian Ищет криттеров в поле видимости.
+    /** \~russian РС‰РµС‚ РєСЂРёС‚С‚РµСЂРѕРІ РІ РїРѕР»Рµ РІРёРґРёРјРѕСЃС‚Рё.
      *
-     * @param   lookOnMe  При значении @c true ищутся те, кто видит криттера,
-     *                    а при @c false – те, кого видит криттер.
-     * @param   findType  Тип поиска (см. @link CritterFindTypes Critter find types@endlink).
-     * @param   critters  Массив криттеров, в конец которого будут записаны найденные криттеры.
+     * @param   lookOnMe  РџСЂРё Р·РЅР°С‡РµРЅРёРё @c true РёС‰СѓС‚СЃСЏ С‚Рµ, РєС‚Рѕ РІРёРґРёС‚ РєСЂРёС‚С‚РµСЂР°,
+     *                    Р° РїСЂРё @c false вЂ“ С‚Рµ, РєРѕРіРѕ РІРёРґРёС‚ РєСЂРёС‚С‚РµСЂ.
+     * @param   findType  РўРёРї РїРѕРёСЃРєР° (СЃРј. @link CritterFindTypes Critter find types@endlink).
+     * @param   critters  РњР°СЃСЃРёРІ РєСЂРёС‚С‚РµСЂРѕРІ, РІ РєРѕРЅРµС† РєРѕС‚РѕСЂРѕРіРѕ Р±СѓРґСѓС‚ Р·Р°РїРёСЃР°РЅС‹ РЅР°Р№РґРµРЅРЅС‹Рµ РєСЂРёС‚С‚РµСЂС‹.
      *
-     * @return  Количество записанных криттеров.
+     * @return  РљРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РїРёСЃР°РЅРЅС‹С… РєСЂРёС‚С‚РµСЂРѕРІ.
      *
-     * @remarks Чтобы просто узнать количество найденных криттеров,
-     *          в параметре @a critters можно передать значение @c null вместо списка.
+     * @remarks Р§С‚РѕР±С‹ РїСЂРѕСЃС‚Рѕ СѓР·РЅР°С‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ РЅР°Р№РґРµРЅРЅС‹С… РєСЂРёС‚С‚РµСЂРѕРІ,
+     *          РІ РїР°СЂР°РјРµС‚СЂРµ @a critters РјРѕР¶РЅРѕ РїРµСЂРµРґР°С‚СЊ Р·РЅР°С‡РµРЅРёРµ @c null РІРјРµСЃС‚Рѕ СЃРїРёСЃРєР°.
      *
-     * @remarks Найденные криттеры будут отсортированы по отдалению от криттера.
+     * @remarks РќР°Р№РґРµРЅРЅС‹Рµ РєСЂРёС‚С‚РµСЂС‹ Р±СѓРґСѓС‚ РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅС‹ РїРѕ РѕС‚РґР°Р»РµРЅРёСЋ РѕС‚ РєСЂРёС‚С‚РµСЂР°.
      */
     uint GetCritters(bool lookOnMe, int findType, Critter@[]@+ critters);
 
-    /** \~russian  Находит всех игроков, разговаривающих с криттером.
+    /** \~russian  РќР°С…РѕРґРёС‚ РІСЃРµС… РёРіСЂРѕРєРѕРІ, СЂР°Р·РіРѕРІР°СЂРёРІР°СЋС‰РёС… СЃ РєСЂРёС‚С‚РµСЂРѕРј.
      *
-     * @param   players  Массив криттеров, в который будут записаны разговаривающие с криттером игроки.
+     * @param   players  РњР°СЃСЃРёРІ РєСЂРёС‚С‚РµСЂРѕРІ, РІ РєРѕС‚РѕСЂС‹Р№ Р±СѓРґСѓС‚ Р·Р°РїРёСЃР°РЅС‹ СЂР°Р·РіРѕРІР°СЂРёРІР°СЋС‰РёРµ СЃ РєСЂРёС‚С‚РµСЂРѕРј РёРіСЂРѕРєРё.
      *
-     * @return  Количество игроков, разговаривающих с криттером.
+     * @return  РљРѕР»РёС‡РµСЃС‚РІРѕ РёРіСЂРѕРєРѕРІ, СЂР°Р·РіРѕРІР°СЂРёРІР°СЋС‰РёС… СЃ РєСЂРёС‚С‚РµСЂРѕРј.
      *
-     * @remarks Предназначена только для NPC.
-     * @remarks Если необходимо просто проверить, разговаривает ли кто-либо с криттером,
-     *          можно передать @c null в качестве значения аргумента @a players.
-     * @remarks На данный момент с каждым NPC может разговаривать максимум два игрока.
-     * @remarks Найденные криттеры будут отсортированы по отдалению от криттера.
+     * @remarks РџСЂРµРґРЅР°Р·РЅР°С‡РµРЅР° С‚РѕР»СЊРєРѕ РґР»СЏ NPC.
+     * @remarks Р•СЃР»Рё РЅРµРѕР±С…РѕРґРёРјРѕ РїСЂРѕСЃС‚Рѕ РїСЂРѕРІРµСЂРёС‚СЊ, СЂР°Р·РіРѕРІР°СЂРёРІР°РµС‚ Р»Рё РєС‚Рѕ-Р»РёР±Рѕ СЃ РєСЂРёС‚С‚РµСЂРѕРј,
+     *          РјРѕР¶РЅРѕ РїРµСЂРµРґР°С‚СЊ @c null РІ РєР°С‡РµСЃС‚РІРµ Р·РЅР°С‡РµРЅРёСЏ Р°СЂРіСѓРјРµРЅС‚Р° @a players.
+     * @remarks РќР° РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ СЃ РєР°Р¶РґС‹Рј NPC РјРѕР¶РµС‚ СЂР°Р·РіРѕРІР°СЂРёРІР°С‚СЊ РјР°РєСЃРёРјСѓРј РґРІР° РёРіСЂРѕРєР°.
+     * @remarks РќР°Р№РґРµРЅРЅС‹Рµ РєСЂРёС‚С‚РµСЂС‹ Р±СѓРґСѓС‚ РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅС‹ РїРѕ РѕС‚РґР°Р»РµРЅРёСЋ РѕС‚ РєСЂРёС‚С‚РµСЂР°.
      */
     uint GetTalkedPlayers(Critter@[]@+ players);
 
-    /** \~russian Сбрасывает таймеры на вызов обновлений Фикс-боя, точек входа в город и игровой статистики. */
+    /** \~russian РЎР±СЂР°СЃС‹РІР°РµС‚ С‚Р°Р№РјРµСЂС‹ РЅР° РІС‹Р·РѕРІ РѕР±РЅРѕРІР»РµРЅРёР№ Р¤РёРєСЃ-Р±РѕСЏ, С‚РѕС‡РµРє РІС…РѕРґР° РІ РіРѕСЂРѕРґ Рё РёРіСЂРѕРІРѕР№ СЃС‚Р°С‚РёСЃС‚РёРєРё. */
     void DropTimers();
 
-    /** \~russian Открывает окно на стороне клиента, позволяя обработать его ответ.
+    /** \~russian РћС‚РєСЂС‹РІР°РµС‚ РѕРєРЅРѕ РЅР° СЃС‚РѕСЂРѕРЅРµ РєР»РёРµРЅС‚Р°, РїРѕР·РІРѕР»СЏСЏ РѕР±СЂР°Р±РѕС‚Р°С‚СЊ РµРіРѕ РѕС‚РІРµС‚.
      *
-     * Подробности использования этой функции смотрите в статье <a href="http://fonline.ru/fowork/wiki/index.php/Скрипты: Взаимодействие с игроком">Взаимодействие с игроком</a>.
+     * РџРѕРґСЂРѕР±РЅРѕСЃС‚Рё РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ СЌС‚РѕР№ С„СѓРЅРєС†РёРё СЃРјРѕС‚СЂРёС‚Рµ РІ СЃС‚Р°С‚СЊРµ <a href="http://fonline.ru/fowork/wiki/index.php/РЎРєСЂРёРїС‚С‹: Р’Р·Р°РёРјРѕРґРµР№СЃС‚РІРёРµ СЃ РёРіСЂРѕРєРѕРј">Р’Р·Р°РёРјРѕРґРµР№СЃС‚РІРёРµ СЃ РёРіСЂРѕРєРѕРј</a>.
      *
-     * @param   screenType  Тип окна (см. @link ShowScreenModes Show screen modes@endlink).
-     * @param   param       Дополнительный параметр.
-     * @param   funcName    Вызываемая при ответе функция.
+     * @param   screenType  РўРёРї РѕРєРЅР° (СЃРј. @link ShowScreenModes Show screen modes@endlink).
+     * @param   param       Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ.
+     * @param   funcName    Р’С‹Р·С‹РІР°РµРјР°СЏ РїСЂРё РѕС‚РІРµС‚Рµ С„СѓРЅРєС†РёСЏ.
      *
-     * @remarks Ответ (вызов функции) вы сможете получить только на последний
-     *          вызванный @c ShowScreen, т.к. каждый вызов @c ShowScreen отменяет
-     *          ожидание предыдущего. Также у игрока всегда есть возможность не отвечать
-     *          на него, и тогда и функция не вызовется.
+     * @remarks РћС‚РІРµС‚ (РІС‹Р·РѕРІ С„СѓРЅРєС†РёРё) РІС‹ СЃРјРѕР¶РµС‚Рµ РїРѕР»СѓС‡РёС‚СЊ С‚РѕР»СЊРєРѕ РЅР° РїРѕСЃР»РµРґРЅРёР№
+     *          РІС‹Р·РІР°РЅРЅС‹Р№ @c ShowScreen, С‚.Рє. РєР°Р¶РґС‹Р№ РІС‹Р·РѕРІ @c ShowScreen РѕС‚РјРµРЅСЏРµС‚
+     *          РѕР¶РёРґР°РЅРёРµ РїСЂРµРґС‹РґСѓС‰РµРіРѕ. РўР°РєР¶Рµ Сѓ РёРіСЂРѕРєР° РІСЃРµРіРґР° РµСЃС‚СЊ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ РЅРµ РѕС‚РІРµС‡Р°С‚СЊ
+     *          РЅР° РЅРµРіРѕ, Рё С‚РѕРіРґР° Рё С„СѓРЅРєС†РёСЏ РЅРµ РІС‹Р·РѕРІРµС‚СЃСЏ.
      */
     void ShowScreen(int screenType, uint param, string& funcName);
 
-    /** \~russian Проигрывает звук с указанным именем на стороне клиента.
+    /** \~russian РџСЂРѕРёРіСЂС‹РІР°РµС‚ Р·РІСѓРє СЃ СѓРєР°Р·Р°РЅРЅС‹Рј РёРјРµРЅРµРј РЅР° СЃС‚РѕСЂРѕРЅРµ РєР»РёРµРЅС‚Р°.
      *
-     * @param  soundName  Имя звука в клиенте.
-     * @param  sendSelf   Отправлять ли сообщения о проигрывании самому себе.
+     * @param  soundName  РРјСЏ Р·РІСѓРєР° РІ РєР»РёРµРЅС‚Рµ.
+     * @param  sendSelf   РћС‚РїСЂР°РІР»СЏС‚СЊ Р»Рё СЃРѕРѕР±С‰РµРЅРёСЏ Рѕ РїСЂРѕРёРіСЂС‹РІР°РЅРёРё СЃР°РјРѕРјСѓ СЃРµР±Рµ.
      */
     void PlaySound(string& soundName, bool sendSelf);
 
-    /** \~russian Проигрывает звук с указанными составляющими на стороне клиента.
+    /** \~russian РџСЂРѕРёРіСЂС‹РІР°РµС‚ Р·РІСѓРє СЃ СѓРєР°Р·Р°РЅРЅС‹РјРё СЃРѕСЃС‚Р°РІР»СЏСЋС‰РёРјРё РЅР° СЃС‚РѕСЂРѕРЅРµ РєР»РёРµРЅС‚Р°.
      *
-     * @param  soundType, soundTypeExt, soundId, soundIdExt  Составляющие звука.
-     *                   Формула составления имени для некоторых soundType различается
-     *                   (см. @link SoundTypes Sound types@endlink).
-     * @param  sendSelf  Отправлять ли сообщения о проигрывании самому себе.
+     * @param  soundType, soundTypeExt, soundId, soundIdExt  РЎРѕСЃС‚Р°РІР»СЏСЋС‰РёРµ Р·РІСѓРєР°.
+     *                   Р¤РѕСЂРјСѓР»Р° СЃРѕСЃС‚Р°РІР»РµРЅРёСЏ РёРјРµРЅРё РґР»СЏ РЅРµРєРѕС‚РѕСЂС‹С… soundType СЂР°Р·Р»РёС‡Р°РµС‚СЃСЏ
+     *                   (СЃРј. @link SoundTypes Sound types@endlink).
+     * @param  sendSelf  РћС‚РїСЂР°РІР»СЏС‚СЊ Р»Рё СЃРѕРѕР±С‰РµРЅРёСЏ Рѕ РїСЂРѕРёРіСЂС‹РІР°РЅРёРё СЃР°РјРѕРјСѓ СЃРµР±Рµ.
      */
     void PlaySound(uint8 soundType, uint8 soundTypeExt,
         uint8 soundId, uint8 soundIdExt, bool sendSelf);
 
-    /** \~russian Вызывает скрипт на стороне клиента.
+    /** \~russian Р’С‹Р·С‹РІР°РµС‚ СЃРєСЂРёРїС‚ РЅР° СЃС‚РѕСЂРѕРЅРµ РєР»РёРµРЅС‚Р°.
      *
-     * Спецификация функции на стороне клиента (см. <strong>templates.fos</strong>):
+     * РЎРїРµС†РёС„РёРєР°С†РёСЏ С„СѓРЅРєС†РёРё РЅР° СЃС‚РѕСЂРѕРЅРµ РєР»РёРµРЅС‚Р° (СЃРј. <strong>templates.fos</strong>):
      * @code
      * void __FuncName(int param0, int param1, int param2, string@ param3, int[]@ param4);
      * @endcode
      *
-     * @param  funcName            Имя функции.
-     * @param  p0, p1, p2, p3, p4  Значения для передаваемых в функцию параметров.
+     * @param  funcName            РРјСЏ С„СѓРЅРєС†РёРё.
+     * @param  p0, p1, p2, p3, p4  Р—РЅР°С‡РµРЅРёСЏ РґР»СЏ РїРµСЂРµРґР°РІР°РµРјС‹С… РІ С„СѓРЅРєС†РёСЋ РїР°СЂР°РјРµС‚СЂРѕРІ.
      */
     void RunClientScript(string& funcName, int p0, int p1, int p2, string@+ p3, int[]@+ p4);
 
-    /** \~russian Устанавливает значения для лексем, использующихся в строках с описанием криттера.
+    /** \~russian РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ Р·РЅР°С‡РµРЅРёСЏ РґР»СЏ Р»РµРєСЃРµРј, РёСЃРїРѕР»СЊР·СѓСЋС‰РёС…СЃСЏ РІ СЃС‚СЂРѕРєР°С… СЃ РѕРїРёСЃР°РЅРёРµРј РєСЂРёС‚С‚РµСЂР°.
      *
-     * @param lexems Cтрока значений лексем (см. <a href="http://fonline.ru/fowork/wiki/index.php/Скрипты:_Работа_с_диалогом#@lex name@">описание тэга \@lex\@</a>, где описан формат строки).
+     * @param lexems CС‚СЂРѕРєР° Р·РЅР°С‡РµРЅРёР№ Р»РµРєСЃРµРј (СЃРј. <a href="http://fonline.ru/fowork/wiki/index.php/РЎРєСЂРёРїС‚С‹:_Р Р°Р±РѕС‚Р°_СЃ_РґРёР°Р»РѕРіРѕРј#@lex name@">РѕРїРёСЃР°РЅРёРµ С‚СЌРіР° \@lex\@</a>, РіРґРµ РѕРїРёСЃР°РЅ С„РѕСЂРјР°С‚ СЃС‚СЂРѕРєРё).
      */
     void SetLexems(string@+ lexems);
 
-    /** \~russian Позволяет проверить, может ли криттер перемещаться.
+    /** \~russian РџРѕР·РІРѕР»СЏРµС‚ РїСЂРѕРІРµСЂРёС‚СЊ, РјРѕР¶РµС‚ Р»Рё РєСЂРёС‚С‚РµСЂ РїРµСЂРµРјРµС‰Р°С‚СЊСЃСЏ.
      *
-     * Такие проверки актуальны, например, для турелей или хищных растений, в коде, где возможно
-     * перемещение криттеров: при взрывах или подобных критических атаках с отбрасыванием назад.
+     * РўР°РєРёРµ РїСЂРѕРІРµСЂРєРё Р°РєС‚СѓР°Р»СЊРЅС‹, РЅР°РїСЂРёРјРµСЂ, РґР»СЏ С‚СѓСЂРµР»РµР№ РёР»Рё С…РёС‰РЅС‹С… СЂР°СЃС‚РµРЅРёР№, РІ РєРѕРґРµ, РіРґРµ РІРѕР·РјРѕР¶РЅРѕ
+     * РїРµСЂРµРјРµС‰РµРЅРёРµ РєСЂРёС‚С‚РµСЂРѕРІ: РїСЂРё РІР·СЂС‹РІР°С… РёР»Рё РїРѕРґРѕР±РЅС‹С… РєСЂРёС‚РёС‡РµСЃРєРёС… Р°С‚Р°РєР°С… СЃ РѕС‚Р±СЂР°СЃС‹РІР°РЅРёРµРј РЅР°Р·Р°Рґ.
      */
     bool IsCanWalk();
 
-    /** \~russian Позволяет проверить, может ли криттер передвигаться бегом.
+    /** \~russian РџРѕР·РІРѕР»СЏРµС‚ РїСЂРѕРІРµСЂРёС‚СЊ, РјРѕР¶РµС‚ Р»Рё РєСЂРёС‚С‚РµСЂ РїРµСЂРµРґРІРёРіР°С‚СЊСЃСЏ Р±РµРіРѕРј.
      */
     bool IsCanRun();
 
-    /** \~russian Позволяет проверить, может ли криттер вращаться.
+    /** \~russian РџРѕР·РІРѕР»СЏРµС‚ РїСЂРѕРІРµСЂРёС‚СЊ, РјРѕР¶РµС‚ Р»Рё РєСЂРёС‚С‚РµСЂ РІСЂР°С‰Р°С‚СЊСЃСЏ.
      */
     bool IsCanRotate();
 
-    /** \~russian Позволяет проверить, может ли криттер атаковать прицельно.
+    /** \~russian РџРѕР·РІРѕР»СЏРµС‚ РїСЂРѕРІРµСЂРёС‚СЊ, РјРѕР¶РµС‚ Р»Рё РєСЂРёС‚С‚РµСЂ Р°С‚Р°РєРѕРІР°С‚СЊ РїСЂРёС†РµР»СЊРЅРѕ.
      *
-     * Значение проставляется в таблице криттеров.
+     * Р—РЅР°С‡РµРЅРёРµ РїСЂРѕСЃС‚Р°РІР»СЏРµС‚СЃСЏ РІ С‚Р°Р±Р»РёС†Рµ РєСЂРёС‚С‚РµСЂРѕРІ.
      *
      */
     bool IsCanAim();
 
-    /** Позволяет получить уровень доступа игрока.
+    /** РџРѕР·РІРѕР»СЏРµС‚ РїРѕР»СѓС‡РёС‚СЊ СѓСЂРѕРІРµРЅСЊ РґРѕСЃС‚СѓРїР° РёРіСЂРѕРєР°.
      *
-     * @return Уровень доступа игрока (см. @link AccessLevels Access levels@endlink).
+     * @return РЈСЂРѕРІРµРЅСЊ РґРѕСЃС‚СѓРїР° РёРіСЂРѕРєР° (СЃРј. @link AccessLevels Access levels@endlink).
      */
     int GetAccess();
 
-    /** \~russian Проверяет, виден ли указанный криттер криттеру.
+    /** \~russian РџСЂРѕРІРµСЂСЏРµС‚, РІРёРґРµРЅ Р»Рё СѓРєР°Р·Р°РЅРЅС‹Р№ РєСЂРёС‚С‚РµСЂ РєСЂРёС‚С‚РµСЂСѓ.
      *
-     * @param  cr  Криттер, видимость которого проверяется.
+     * @param  cr  РљСЂРёС‚С‚РµСЂ, РІРёРґРёРјРѕСЃС‚СЊ РєРѕС‚РѕСЂРѕРіРѕ РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ.
      *
-     * @return @c true – если указанный криттер виден; @c false – в противном случае.
+     * @return @c true вЂ“ РµСЃР»Рё СѓРєР°Р·Р°РЅРЅС‹Р№ РєСЂРёС‚С‚РµСЂ РІРёРґРµРЅ; @c false вЂ“ РІ РїСЂРѕС‚РёРІРЅРѕРј СЃР»СѓС‡Р°Рµ.
      */
     bool IsSee(Critter& cr);
 
-    /** \~russian Проверяет, виден ли криттер указанным криттером.
+    /** \~russian РџСЂРѕРІРµСЂСЏРµС‚, РІРёРґРµРЅ Р»Рё РєСЂРёС‚С‚РµСЂ СѓРєР°Р·Р°РЅРЅС‹Рј РєСЂРёС‚С‚РµСЂРѕРј.
      *
-     * @param  cr  Криттер, по отношению к которому проверяется видимость.
+     * @param  cr  РљСЂРёС‚С‚РµСЂ, РїРѕ РѕС‚РЅРѕС€РµРЅРёСЋ Рє РєРѕС‚РѕСЂРѕРјСѓ РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ РІРёРґРёРјРѕСЃС‚СЊ.
      *
-     * @return @c true – если криттер виден указанному криттеру;
-     *         @c false – в противном случае.
+     * @return @c true вЂ“ РµСЃР»Рё РєСЂРёС‚С‚РµСЂ РІРёРґРµРЅ СѓРєР°Р·Р°РЅРЅРѕРјСѓ РєСЂРёС‚С‚РµСЂСѓ;
+     *         @c false вЂ“ РІ РїСЂРѕС‚РёРІРЅРѕРј СЃР»СѓС‡Р°Рµ.
      */
     bool IsSeenBy(Critter& cr);
 
-    /** \~russian Проверяет, виден ли указанный предмет криттеру.
+    /** \~russian РџСЂРѕРІРµСЂСЏРµС‚, РІРёРґРµРЅ Р»Рё СѓРєР°Р·Р°РЅРЅС‹Р№ РїСЂРµРґРјРµС‚ РєСЂРёС‚С‚РµСЂСѓ.
      *
-     * @param  item  Предмет, видимость которого проверяется.
+     * @param  item  РџСЂРµРґРјРµС‚, РІРёРґРёРјРѕСЃС‚СЊ РєРѕС‚РѕСЂРѕРіРѕ РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ.
      *
-     * @return @c true – если указанный предмет виден; @c false – в противном случае.
+     * @return @c true вЂ“ РµСЃР»Рё СѓРєР°Р·Р°РЅРЅС‹Р№ РїСЂРµРґРјРµС‚ РІРёРґРµРЅ; @c false вЂ“ РІ РїСЂРѕС‚РёРІРЅРѕРј СЃР»СѓС‡Р°Рµ.
      */
     bool IsSee(Item& item);
 
-    /** \~russian Обновляет видимость криттера. */
+    /** \~russian РћР±РЅРѕРІР»СЏРµС‚ РІРёРґРёРјРѕСЃС‚СЊ РєСЂРёС‚С‚РµСЂР°. */
     void RefreshVisible();
 
-    /** \~russian Вызывает на стороне клиент зарезервированную функцию #critter_action.
+    /** \~russian Р’С‹Р·С‹РІР°РµС‚ РЅР° СЃС‚РѕСЂРѕРЅРµ РєР»РёРµРЅС‚ Р·Р°СЂРµР·РµСЂРІРёСЂРѕРІР°РЅРЅСѓСЋ С„СѓРЅРєС†РёСЋ #critter_action.
      *
-     * @param  action     Действие (см. @link CritterActions Действия криттеров@endlink).
-     * @param  actionExt  Параметр с дополнительной информацией о действии.
-     *                    Зависит от типа типа действия.
-     * @param  item       Предмет, участвующий в действии.
+     * @param  action     Р”РµР№СЃС‚РІРёРµ (СЃРј. @link CritterActions Р”РµР№СЃС‚РІРёСЏ РєСЂРёС‚С‚РµСЂРѕРІ@endlink).
+     * @param  actionExt  РџР°СЂР°РјРµС‚СЂ СЃ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕР№ РёРЅС„РѕСЂРјР°С†РёРµР№ Рѕ РґРµР№СЃС‚РІРёРё.
+     *                    Р—Р°РІРёСЃРёС‚ РѕС‚ С‚РёРїР° С‚РёРїР° РґРµР№СЃС‚РІРёСЏ.
+     * @param  item       РџСЂРµРґРјРµС‚, СѓС‡Р°СЃС‚РІСѓСЋС‰РёР№ РІ РґРµР№СЃС‚РІРёРё.
      *
      ** \~ @see #critter_action
      */
     void Action(int action, int actionExt, Item@+ item);
+    
+    /** \~russian Р’С‹Р·С‹РІР°РµС‚ РѕС‚РєР»СЋС‡РµРЅРёРµ РєР»РёРµРЅС‚Р°.
+     *
+     */
+    void Disconnect();
 
     //@}
 }

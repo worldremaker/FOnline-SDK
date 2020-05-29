@@ -1,5 +1,5 @@
 /**
- * \~russian @defgroup Perks Ïåğêè
+ * \~russian @defgroup Perks ĞŸĞµÑ€ĞºĞ¸
  * \~english @defgroup Perks Perks
  * \~ @ingroup Params
  */

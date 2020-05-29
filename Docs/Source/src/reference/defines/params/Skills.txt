@@ -1,62 +1,62 @@
 /**
- * \~russian @defgroup Skills Навыки
+ * \~russian @defgroup Skills РќР°РІС‹РєРё
  * \~english @defgroup Skills Skills
  * \~ @ingroup Params
  */
 /*@{*/
 
-/** \~russian Легкое оружие. */
+/** \~russian Р›РµРіРєРѕРµ РѕСЂСѓР¶РёРµ. */
 #define SK_SMALL_GUNS               (200)
 
-/** \~russian Тяжелое оружие. */
+/** \~russian РўСЏР¶РµР»РѕРµ РѕСЂСѓР¶РёРµ. */
 #define SK_BIG_GUNS                 (201)
 
-/** \~russian Энергетическое оружие. */
+/** \~russian Р­РЅРµСЂРіРµС‚РёС‡РµСЃРєРѕРµ РѕСЂСѓР¶РёРµ. */
 #define SK_ENERGY_WEAPONS           (202)
 
-/** \~russian Навык рукопашного боя. */
+/** \~russian РќР°РІС‹Рє СЂСѓРєРѕРїР°С€РЅРѕРіРѕ Р±РѕСЏ. */
 #define SK_UNARMED                  (203)
 
-/** \~russian Рукопашное оружие. */
+/** \~russian Р СѓРєРѕРїР°С€РЅРѕРµ РѕСЂСѓР¶РёРµ. */
 #define SK_MELEE_WEAPONS            (204)
 
-/** \~russian Метательное оружие. */
+/** \~russian РњРµС‚Р°С‚РµР»СЊРЅРѕРµ РѕСЂСѓР¶РёРµ. */
 #define SK_THROWING                 (205)
 
-/** \~russian Первая помощь. */
+/** \~russian РџРµСЂРІР°СЏ РїРѕРјРѕС‰СЊ. */
 #define SK_FIRST_AID                (206)
 
-/** \~russian Доктор. */
+/** \~russian Р”РѕРєС‚РѕСЂ. */
 #define SK_DOCTOR                   (207)
 
-/** \~russian Скрытность. */
+/** \~russian РЎРєСЂС‹С‚РЅРѕСЃС‚СЊ. */
 #define SK_SNEAK                    (208)
 
-/** \~russian Взлом. */
+/** \~russian Р’Р·Р»РѕРј. */
 #define SK_LOCKPICK                 (209)
 
-/** \~russian Воровство. */
+/** \~russian Р’РѕСЂРѕРІСЃС‚РІРѕ. */
 #define SK_STEAL                    (210)
 
-/** \~russian Ловушки. */
+/** \~russian Р›РѕРІСѓС€РєРё. */
 #define SK_TRAPS                    (211)
 
-/** \~russian Наука. */
+/** \~russian РќР°СѓРєР°. */
 #define SK_SCIENCE                  (212)
 
-/** \~russian Ремонт. */
+/** \~russian Р РµРјРѕРЅС‚. */
 #define SK_REPAIR                   (213)
 
-/** \~russian Речь. */
+/** \~russian Р РµС‡СЊ. */
 #define SK_SPEECH                   (214)
 
-/** \~russian Торговля. */
+/** \~russian РўРѕСЂРіРѕРІР»СЏ. */
 #define SK_BARTER                   (215)
 
-/** \~russian Азартные игры. */
+/** \~russian РђР·Р°СЂС‚РЅС‹Рµ РёРіСЂС‹. */
 #define SK_GAMBLING                 (216)
 
-/** \~russian Скиталец. */
+/** \~russian РЎРєРёС‚Р°Р»РµС†. */
 #define SK_OUTDOORSMAN              (217)
 
 /*@}*/

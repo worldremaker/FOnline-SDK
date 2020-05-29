@@ -2,7 +2,7 @@
  * @defgroup CritterConditions Critter conditions
  * @ingroup Defines
  *
- * \~russian Состояния криттера.
+ * \~russian РЎРѕСЃС‚РѕСЏРЅРёСЏ РєСЂРёС‚С‚РµСЂР°.
  * \~english Critter conditions.
  *
  */
@@ -15,16 +15,16 @@
  */
 //@{
 
-/** \~russian Криттер жив. */
+/** \~russian РљСЂРёС‚С‚РµСЂ Р¶РёРІ. */
 #define COND_LIFE                   (1)
 
-/** \~russian Криттер в нокауте. */
+/** \~russian РљСЂРёС‚С‚РµСЂ РІ РЅРѕРєР°СѓС‚Рµ. */
 #define COND_KNOCKOUT               (2)
 
-/** \~russian Криттер умер. */
+/** \~russian РљСЂРёС‚С‚РµСЂ СѓРјРµСЂ. */
 #define COND_DEAD                   (3)
 
-/** \~russian Криттер не в игре. */
+/** \~russian РљСЂРёС‚С‚РµСЂ РЅРµ РІ РёРіСЂРµ. */
 #define COND_NOT_IN_GAME            (4)
 
 //@}

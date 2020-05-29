@@ -1,4 +1,4 @@
-﻿/**
+/**
 
 \~russian @page page_format_fo3d Формат fo3d
 \~english @page page_format_fo3d fo3d format

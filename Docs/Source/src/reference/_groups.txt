@@ -1,10 +1,10 @@
 /**
- * \~russian @defgroup std Стандартные классы и функции
+ * \~russian @defgroup std РЎС‚Р°РЅРґР°СЂС‚РЅС‹Рµ РєР»Р°СЃСЃС‹ Рё С„СѓРЅРєС†РёРё
  *
- * Список стандартных классов и функций.
+ * РЎРїРёСЃРѕРє СЃС‚Р°РЅРґР°СЂС‚РЅС‹С… РєР»Р°СЃСЃРѕРІ Рё С„СѓРЅРєС†РёР№.
  *
- * Представленные здесь классы и функции доступны при скриптинге
- * как клиентской, так и серверной части FOnline.
+ * РџСЂРµРґСЃС‚Р°РІР»РµРЅРЅС‹Рµ Р·РґРµСЃСЊ РєР»Р°СЃСЃС‹ Рё С„СѓРЅРєС†РёРё РґРѕСЃС‚СѓРїРЅС‹ РїСЂРё СЃРєСЂРёРїС‚РёРЅРіРµ
+ * РєР°Рє РєР»РёРµРЅС‚СЃРєРѕР№, С‚Р°Рє Рё СЃРµСЂРІРµСЂРЅРѕР№ С‡Р°СЃС‚Рё FOnline.
  *
  * \~english @defgroup std Standard classes and functions
  *
@@ -15,33 +15,33 @@
  */
 
 /**
- * \~russian @defgroup Server API сервера
+ * \~russian @defgroup Server API СЃРµСЂРІРµСЂР°
  * \~english @defgroup Server Server API
  */
 
 /**
- * \~russian @defgroup Client API клиента
+ * \~russian @defgroup Client API РєР»РёРµРЅС‚Р°
  * \~english @defgroup Client Client API
  */
 
 /**
- * \~russian @defgroup Mapper API маппера
+ * \~russian @defgroup Mapper API РјР°РїРїРµСЂР°
  * \~english @defgroup Mapper Mapper API
  */
 
 /**
- * \~russian @defgroup Defines Константы
+ * \~russian @defgroup Defines РљРѕРЅСЃС‚Р°РЅС‚С‹
  * \~english @defgroup Defines Defines
  */
 
     /**
-     * \~russian @defgroup Events События
+     * \~russian @defgroup Events РЎРѕР±С‹С‚РёСЏ
      * \~english @defgroup Events Events
      * \~ @ingroup Defines
      */
 
     /**
-     * \~russian @defgroup Params Параметры криттеров
+     * \~russian @defgroup Params РџР°СЂР°РјРµС‚СЂС‹ РєСЂРёС‚С‚РµСЂРѕРІ
      * \~english @defgroup Params Critter parameters
      *
      * \~

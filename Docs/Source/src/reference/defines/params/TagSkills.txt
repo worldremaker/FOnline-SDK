@@ -1,5 +1,5 @@
 /**
- * \~russian @defgroup TagSkills Профильные навыки
+ * \~russian @defgroup TagSkills РџСЂРѕС„РёР»СЊРЅС‹Рµ РЅР°РІС‹РєРё
  * \~english @defgroup TagSkills Tagged skills
  * \~ @ingroup Params
  */

@@ -1,9 +1,9 @@
 /**
 
-\~russian @page page_format_fofrm Формат fofnt
+\~russian @page page_format_fofrm Р¤РѕСЂРјР°С‚ fofnt
 \~english @page page_format_fofrm fofrm fofnt
 \~
 
-Спецификация .fofont
+РЎРїРµС†РёС„РёРєР°С†РёСЏ .fofont
 
 */

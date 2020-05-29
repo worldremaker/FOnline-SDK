@@ -3,7 +3,7 @@
 
 struct MapperObject {
 /**
- * \~russian @name  Общие поля
+ * \~russian @name  РћР±С‰РёРµ РїРѕР»СЏ
  * \~english @name  Shared parameters
  * \~
  */
@@ -37,7 +37,7 @@ struct MapperObject {
 //@}
 
 /**
- * \~russian @name  Поля криттеров
+ * \~russian @name  РџРѕР»СЏ РєСЂРёС‚С‚РµСЂРѕРІ
  * \~english @name  Critter parameters
  * \~
  */
@@ -77,7 +77,7 @@ struct MapperObject {
 //@}
 
 /**
- * \~russian @name  Общие поля итемов и сценери
+ * \~russian @name  РћР±С‰РёРµ РїРѕР»СЏ РёС‚РµРјРѕРІ Рё СЃС†РµРЅРµСЂРё
  * \~english @name  Item/Scenery shared parameters
  * \~
  */
@@ -93,7 +93,7 @@ struct MapperObject {
 //@}
 
 /**
- * \~russian @name  Поля итемов
+ * \~russian @name  РџРѕР»СЏ РёС‚РµРјРѕРІ
  * \~english @name  Item parameters
  * \~
  */
@@ -122,7 +122,7 @@ struct MapperObject {
 //@}
 
 /**
- * \~russian @name  Поля сценери
+ * \~russian @name  РџРѕР»СЏ СЃС†РµРЅРµСЂРё
  * \~english @name  Scenery parameters
  * \~
  */
@@ -152,10 +152,14 @@ struct MapperMap {
     bool   NoLogOut;
     string ScriptModule;
     string ScriptFunc;
+    uint    GetTilesCount(uint16 hexX, uint16 hexY, bool roof) const;
+    void    DeleteTile(uint16 hexX, uint16 hexY, bool roof, uint index);
+    uint    GetTile(uint16 hexX, uint16 hexY, bool roof, uint index) const;
+    void    AddTile(uint16 hexX, uint16 hexY, int offsX, int offsY, int layer, bool roof, uint picHash);
 };
 
 /**
- * \~russian @name Зарезервированные функции
+ * \~russian @name Р—Р°СЂРµР·РµСЂРІРёСЂРѕРІР°РЅРЅС‹Рµ С„СѓРЅРєС†РёРё
  * \~english @name Reserved functions
  * \~
  */
@@ -174,8 +178,8 @@ void input_lost();
 //@}
 
 /**
- * \~russian @name Пользовательские функции
- * Вызываются из консоли используя символ '#'
+ * \~russian @name РџРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёРµ С„СѓРЅРєС†РёРё
+ * Р’С‹Р·С‹РІР°СЋС‚СЃСЏ РёР· РєРѕРЅСЃРѕР»Рё РёСЃРїРѕР»СЊР·СѓСЏ СЃРёРјРІРѕР» '#'
  * \~english @name User functions
  * Call in console using '#'
  * \~
@@ -185,13 +189,13 @@ string FuncName(string str);
 //@}
 
 /**
- * \~russian @name Глобальные функции
+ * \~russian @name Р“Р»РѕР±Р°Р»СЊРЅС‹Рµ С„СѓРЅРєС†РёРё
  * \~english @name Global functions
  * \~
  */
 //@{
 /**
- * \~russian Начальные параметры: 0 ST_DIALOG_ID, 1 ST_AI_ID, 2 ST_BAG_ID, 3 ST_TEAM_ID, 4 ST_NPC_ROLE, 5 ST_REPLICATION_TIME, 6..14 -1
+ * \~russian РќР°С‡Р°Р»СЊРЅС‹Рµ РїР°СЂР°РјРµС‚СЂС‹: 0 ST_DIALOG_ID, 1 ST_AI_ID, 2 ST_BAG_ID, 3 ST_TEAM_ID, 4 ST_NPC_ROLE, 5 ST_REPLICATION_TIME, 6..14 -1
  * \~english Init state: 0 ST_DIALOG_ID, 1 ST_AI_ID, 2 ST_BAG_ID, 3 ST_TEAM_ID, 4 ST_NPC_ROLE, 5 ST_REPLICATION_TIME, 6..14 -1
  * \~
  */
@@ -282,10 +286,6 @@ MapperObject@+ AddObject(uint16 hexX, uint16 hexY, int mapObjType, uint16 pid);
 MapperObject@+ GetObject(uint16 hexX, uint16 hexY, int mapObjType, uint16 pid, uint skip) const;
 uint    GetObjects(uint16 hexX, uint16 hexY, uint radius, int mapObjType, uint16 pid, MapperObject@[]@+ objects) const;
 void    UpdateObjects() const;
-uint    GetTilesCount(uint16 hexX, uint16 hexY, bool roof) const;
-void    DeleteTile(uint16 hexX, uint16 hexY, bool roof, uint index);
-uint    GetTile(uint16 hexX, uint16 hexY, bool roof, uint index) const;
-void    AddTile(uint16 hexX, uint16 hexY, int offsX, int offsY, int layer, bool roof, uint picHash);
 string@ GetTileName(uint16 hexX, uint16 hexY, bool roof, uint index) const;
 void    AddTileName(uint16 hexX, uint16 hexY, int offsX, int offsY, int layer, bool roof, string@+ picName);
 uint    GetDayTime(uint dayPart) const;
@@ -296,95 +296,97 @@ void    Resize(uint16 width, uint16 height);
 //@}
 
 /**
- * \~russian @name Функции для работы с константами (*Names.lst)
+ * \~russian @name Р¤СѓРЅРєС†РёРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РєРѕРЅСЃС‚Р°РЅС‚Р°РјРё (*Names.lst)
  * \~english @name For constants (*Names.lst)
  */
 //@{
 
-/** \~russian Определение значения константы по имени.
+/** \~russian РћРїСЂРµРґРµР»РµРЅРёРµ Р·РЅР°С‡РµРЅРёСЏ РєРѕРЅСЃС‚Р°РЅС‚С‹ РїРѕ РёРјРµРЅРё.
  *
- * @param  constCollection  Номер коллекции, см. Constants collections в _defines.fos.
- * @param  name             Имя константы.
+ * @param  constCollection  РќРѕРјРµСЂ РєРѕР»Р»РµРєС†РёРё, СЃРј. Constants collections РІ _defines.fos.
+ * @param  name             РРјСЏ РєРѕРЅСЃС‚Р°РЅС‚С‹.
  *
- * @return Значение константы.
+ * @return Р—РЅР°С‡РµРЅРёРµ РєРѕРЅСЃС‚Р°РЅС‚С‹.
  */
 int GetConstantValue(int constCollection, string@+ name);
 
-/** \~russian Определение имени константы по значению.
+/** \~russian РћРїСЂРµРґРµР»РµРЅРёРµ РёРјРµРЅРё РєРѕРЅСЃС‚Р°РЅС‚С‹ РїРѕ Р·РЅР°С‡РµРЅРёСЋ.
  *
- * @param  constCollection  Номер коллекции, см. Constants collections в _defines.fos.
- * @param  value            Значение константы.
+ * @param  constCollection  РќРѕРјРµСЂ РєРѕР»Р»РµРєС†РёРё, СЃРј. Constants collections РІ _defines.fos.
+ * @param  value            Р—РЅР°С‡РµРЅРёРµ РєРѕРЅСЃС‚Р°РЅС‚С‹.
  *
- * @return Имя константы.
+ * @return РРјСЏ РєРѕРЅСЃС‚Р°РЅС‚С‹.
  */
 string@ GetConstantName(int constCollection, int value);
 
-/** \~russian Добавление отдельной константы в коллекцию.
+/** \~russian Р”РѕР±Р°РІР»РµРЅРёРµ РѕС‚РґРµР»СЊРЅРѕР№ РєРѕРЅСЃС‚Р°РЅС‚С‹ РІ РєРѕР»Р»РµРєС†РёСЋ.
  *
- * @param  constCollection  Номер коллекции, см. Constants collections в _defines.fos.
- * @param  name             Имя константы.
- * @param  value            Значение константы.
+ * @param  constCollection  РќРѕРјРµСЂ РєРѕР»Р»РµРєС†РёРё, СЃРј. Constants collections РІ _defines.fos.
+ * @param  name             РРјСЏ РєРѕРЅСЃС‚Р°РЅС‚С‹.
+ * @param  value            Р—РЅР°С‡РµРЅРёРµ РєРѕРЅСЃС‚Р°РЅС‚С‹.
  *
  */
 void AddConstant(int constCollection, string@+ name, int value);
 
-/** \~russian Загрузка/перезагрузка коллекции.
+/** \~russian Р—Р°РіСЂСѓР·РєР°/РїРµСЂРµР·Р°РіСЂСѓР·РєР° РєРѕР»Р»РµРєС†РёРё.
  *
- * @param  constCollection  Номер коллекции, см. Constants collections в _defines.fos.
- * @param  fileName         Имя файла.
- * @param  pathType         Путь.
+ * @param  constCollection  РќРѕРјРµСЂ РєРѕР»Р»РµРєС†РёРё, СЃРј. Constants collections РІ _defines.fos.
+ * @param  fileName         РРјСЏ С„Р°Р№Р»Р°.
+ * @param  pathType         РџСѓС‚СЊ.
  *
  */
 bool LoadConstants(int constCollection, string@+ fileName, int pathType);
 //@}
 
-/** \~russian Указывает надо ли разбивать тайлы в папках по группам. Группа определяется как строка в имени файла до первого числа (например, abc12.png - группа abc), а если номера нет, то группа определяется как '<other>'. */
+/** \~russian РЈРєР°Р·С‹РІР°РµС‚ РЅР°РґРѕ Р»Рё СЂР°Р·Р±РёРІР°С‚СЊ С‚Р°Р№Р»С‹ РІ РїР°РїРєР°С… РїРѕ РіСЂСѓРїРїР°Рј. Р“СЂСѓРїРїР° РѕРїСЂРµРґРµР»СЏРµС‚СЃСЏ РєР°Рє СЃС‚СЂРѕРєР° РІ РёРјРµРЅРё С„Р°Р№Р»Р° РґРѕ РїРµСЂРІРѕРіРѕ С‡РёСЃР»Р° (РЅР°РїСЂРёРјРµСЂ, abc12.png - РіСЂСѓРїРїР° abc), Р° РµСЃР»Рё РЅРѕРјРµСЂР° РЅРµС‚, С‚Рѕ РіСЂСѓРїРїР° РѕРїСЂРµРґРµР»СЏРµС‚СЃСЏ РєР°Рє '<other>'. */
 __SplitTilesCollection
 
 /**
- * \~russian @name Геомертия игровой сетки
+ * \~russian @name Р“РµРѕРјРµСЂС‚РёСЏ РёРіСЂРѕРІРѕР№ СЃРµС‚РєРё
  * \~english @name Grid geometry
  * \~
- * В скрипте config.fos, в функции InitializeGeometry(), добавлены необходимые настройки для трех игр: Fallout1/2, Fallout Tactics и Arcanum. Данная функция вызывается в скриптах сервера, клиента и маппера, т.к. информация о геометрии нужна всем трем.
- * Четырехугольная изометрия использует восемь направлений, гексогональная шесть.\n
- * Рабочие спрайты для геометрии находятся в art/geometry/.\n
+ * Р’ СЃРєСЂРёРїС‚Рµ config.fos, РІ С„СѓРЅРєС†РёРё InitializeGeometry(), РґРѕР±Р°РІР»РµРЅС‹ РЅРµРѕР±С…РѕРґРёРјС‹Рµ РЅР°СЃС‚СЂРѕР№РєРё РґР»СЏ С‚СЂРµС… РёРіСЂ: Fallout1/2, Fallout Tactics Рё Arcanum. Р”Р°РЅРЅР°СЏ С„СѓРЅРєС†РёСЏ РІС‹Р·С‹РІР°РµС‚СЃСЏ РІ СЃРєСЂРёРїС‚Р°С… СЃРµСЂРІРµСЂР°, РєР»РёРµРЅС‚Р° Рё РјР°РїРїРµСЂР°, С‚.Рє. РёРЅС„РѕСЂРјР°С†РёСЏ Рѕ РіРµРѕРјРµС‚СЂРёРё РЅСѓР¶РЅР° РІСЃРµРј С‚СЂРµРј.
+ * Р§РµС‚С‹СЂРµС…СѓРіРѕР»СЊРЅР°СЏ РёР·РѕРјРµС‚СЂРёСЏ РёСЃРїРѕР»СЊР·СѓРµС‚ РІРѕСЃРµРјСЊ РЅР°РїСЂР°РІР»РµРЅРёР№, РіРµРєСЃРѕРіРѕРЅР°Р»СЊРЅР°СЏ С€РµСЃС‚СЊ.\n
+ * Р Р°Р±РѕС‡РёРµ СЃРїСЂР°Р№С‚С‹ РґР»СЏ РіРµРѕРјРµС‚СЂРёРё РЅР°С…РѕРґСЏС‚СЃСЏ РІ art/geometry/.\n
  */
 //@{
 
-/** \~russian Тип изометрии true - гексогональная, false - четырехугольная. */
+/** \~russian РўРёРї РёР·РѕРјРµС‚СЂРёРё true - РіРµРєСЃРѕРіРѕРЅР°Р»СЊРЅР°СЏ, false - С‡РµС‚С‹СЂРµС…СѓРіРѕР»СЊРЅР°СЏ. */
 bool __MapHexagonal;
 
-/** \~russian Ширина гекса */
+/** \~russian РЁРёСЂРёРЅР° РіРµРєСЃР° */
 int __MapHexWidth;
 
-/** \~russian Высота гекса */
+/** \~russian Р’С‹СЃРѕС‚Р° РіРµРєСЃР° */
 int __MapHexHeight;
 
-/** \~russian Высота линии гексов */
+/** \~russian Р’С‹СЃРѕС‚Р° Р»РёРЅРёРё РіРµРєСЃРѕРІ */
 int __MapHexLineHeight;
 
-/** \~russian Смещение тайлов земли по горизонтали */
+/** \~russian РЎРјРµС‰РµРЅРёРµ С‚Р°Р№Р»РѕРІ Р·РµРјР»Рё РїРѕ РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё */
 int __MapTileOffsX;
 
-/** \~russian Смещение тайлов земли по вертикали */
+/** \~russian РЎРјРµС‰РµРЅРёРµ С‚Р°Р№Р»РѕРІ Р·РµРјР»Рё РїРѕ РІРµСЂС‚РёРєР°Р»Рё */
 int __MapTileOffsY;
 
-/** \~russian Смещение тайлов крыши по горизонтали */
+/** \~russian РЎРјРµС‰РµРЅРёРµ С‚Р°Р№Р»РѕРІ РєСЂС‹С€Рё РїРѕ РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё */
 int __MapRoofOffsX;
 
-/** \~russian Смещение тайлов крыши по вертикали */
+/** \~russian РЎРјРµС‰РµРЅРёРµ С‚Р°Р№Р»РѕРІ РєСЂС‹С€Рё РїРѕ РІРµСЂС‚РёРєР°Р»Рё */
 int __MapRoofOffsY;
 
-/** \~russian Кол-во гексов на один тайл крыши (нужно для его корректного скрывания) */
+/** \~russian РљРѕР»-РІРѕ РіРµРєСЃРѕРІ РЅР° РѕРґРёРЅ С‚Р°Р№Р» РєСЂС‹С€Рё (РЅСѓР¶РЅРѕ РґР»СЏ РµРіРѕ РєРѕСЂСЂРµРєС‚РЅРѕРіРѕ СЃРєСЂС‹РІР°РЅРёСЏ) */
 int __MapRoofSkipSize;
 
-/** \~russian Угол для рендеринга трехмерных моделей */
+/** \~russian РЈРіРѕР» РґР»СЏ СЂРµРЅРґРµСЂРёРЅРіР° С‚СЂРµС…РјРµСЂРЅС‹С… РјРѕРґРµР»РµР№ */
 float __MapCameraAngle;
 
-/** \~russian Сглаживание пути при перемещениях */
+/** \~russian РЎРіР»Р°Р¶РёРІР°РЅРёРµ РїСѓС‚Рё РїСЂРё РїРµСЂРµРјРµС‰РµРЅРёСЏС… */
 bool __MapSmoothPath;
 
-/** \~russian Путь и префикс для файлов геометрии */
+/** \~russian РџСѓС‚СЊ Рё РїСЂРµС„РёРєСЃ РґР»СЏ С„Р°Р№Р»РѕРІ РіРµРѕРјРµС‚СЂРёРё */
 string __MapDataPrefix;
 
 //@}
+
+/*@}*/

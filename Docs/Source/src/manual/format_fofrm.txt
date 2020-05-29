@@ -1,4 +1,4 @@
-﻿/**
+/**
 
 \~russian @page page_format_fofrm Формат fofrm
 \~english @page page_format_fofrm fofrm format

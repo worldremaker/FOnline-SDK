@@ -2,7 +2,7 @@
  * @defgroup ItemsTypes Items types
  * @ingroup Defines
  *
- * \~russian Типы предметов.
+ * \~russian РўРёРїС‹ РїСЂРµРґРјРµС‚РѕРІ.
  * \~english Item types.
  *
  * \~
@@ -15,43 +15,43 @@
  */
 /*@{*/
 
-/** \~russian Тайлы */
+/** \~russian РўР°Р№Р»С‹ */
 #define ITEM_TYPE_TILE                   (0)
 
-/** \~russian Броня */
+/** \~russian Р‘СЂРѕРЅСЏ */
 #define ITEM_TYPE_ARMOR                  (1)
 
-/** \~russian Наркотик */
+/** \~russian РќР°СЂРєРѕС‚РёРє */
 #define ITEM_TYPE_DRUG                   (2)
 
-/** \~russian Оружие */
+/** \~russian РћСЂСѓР¶РёРµ */
 #define ITEM_TYPE_WEAPON                 (3)
 
-/** \~russian Патроны */
+/** \~russian РџР°С‚СЂРѕРЅС‹ */
 #define ITEM_TYPE_AMMO                   (4)
 
-/** \~russian Разное */
+/** \~russian Р Р°Р·РЅРѕРµ */
 #define ITEM_TYPE_MISC                   (5)
 
-/** \~russian Разное2 */
+/** \~russian Р Р°Р·РЅРѕРµ2 */
 #define ITEM_TYPE_MISC2                  (6)
 
-/** \~russian Ключ */
+/** \~russian РљР»СЋС‡ */
 #define ITEM_TYPE_KEY                    (7)
 
-/** \~russian Контейнер */
+/** \~russian РљРѕРЅС‚РµР№РЅРµСЂ */
 #define ITEM_TYPE_CONTAINER              (8)
 
-/** \~russian Дверь */
+/** \~russian Р”РІРµСЂСЊ */
 #define ITEM_TYPE_DOOR                   (9)
 
-/** \~russian Порталы */
+/** \~russian РџРѕСЂС‚Р°Р»С‹ */
 #define ITEM_TYPE_GRID                   (10)
 
-/** \~russian Сценери */
+/** \~russian РЎС†РµРЅРµСЂРё */
 #define ITEM_TYPE_GENERIC                (11)
 
-/** \~russian Стены */
+/** \~russian РЎС‚РµРЅС‹ */
 #define ITEM_TYPE_WALL                   (12)
 
 /*@}*/

@@ -1,63 +1,63 @@
 /**
- * \~russian @defgroup Stats Статы
+ * \~russian @defgroup Stats РЎС‚Р°С‚С‹
  * \~english @defgroup Stats Stats
  * \~ @ingroup Params
  */
 /*@{*/
 
-/** \~russian Сила. */
+/** \~russian РЎРёР»Р°. */
 /** \~english Strength.*/
 #define ST_STRENGTH                 (0) // Used in engine +++
 
-/** \~russian Восприятие. */
+/** \~russian Р’РѕСЃРїСЂРёСЏС‚РёРµ. */
 /** \~english Perception. */
 #define ST_PERCEPTION               (1)
 
-/** \~russian Выносливость. */
+/** \~russian Р’С‹РЅРѕСЃР»РёРІРѕСЃС‚СЊ. */
 /** \~english Endurance. */
 #define ST_ENDURANCE                (2)
 
-/** \~russian Харизма. */
+/** \~russian РҐР°СЂРёР·РјР°. */
 /** \~english Charisma. */
 #define ST_CHARISMA                 (3)
 
-/** \~russian Интеллект. */
+/** \~russian РРЅС‚РµР»Р»РµРєС‚. */
 /** \~english Intelligence. */
 #define ST_INTELLECT                (4)
 
-/** \~russian Ловкость. */
+/** \~russian Р›РѕРІРєРѕСЃС‚СЊ. */
 /** \~english Agility. */
 #define ST_AGILITY                  (5)
 
-/** \~russian Удача. */
+/** \~russian РЈРґР°С‡Р°. */
 /** \~english Luck. */
 #define ST_LUCK                     (6)
 
-/** \~russian Максимальное количество очков здоровья. */
+/** \~russian РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РѕС‡РєРѕРІ Р·РґРѕСЂРѕРІСЊСЏ. */
 /** \~english Maximum number of hit points. */
 #define ST_MAX_LIFE                 (7)
 
-/** \~russian Количество очков действия. */
+/** \~russian РљРѕР»РёС‡РµСЃС‚РІРѕ РѕС‡РєРѕРІ РґРµР№СЃС‚РІРёСЏ. */
 /** \~english Number of action points. */
 #define ST_ACTION_POINTS            (8)
 
-/** \~russian Класс брони. */
+/** \~russian РљР»Р°СЃСЃ Р±СЂРѕРЅРё. */
 /** \~english Armor class. */
 #define ST_ARMOR_CLASS              (9)
 
 #define ST_MELEE_DAMAGE             (10)
 
-/** \~russian Максимальный переносимый вес. */
+/** \~russian РњР°РєСЃРёРјР°Р»СЊРЅС‹Р№ РїРµСЂРµРЅРѕСЃРёРјС‹Р№ РІРµСЃ. */
 /** \~english Maximum weight critter can carry. */
 #define ST_CARRY_WEIGHT             (11)
 
 #define ST_SEQUENCE                 (12)
 
-/** \~russian Количество очков здоровья, восстанавливаемых при лечении (во время отдыха). */
+/** \~russian РљРѕР»РёС‡РµСЃС‚РІРѕ РѕС‡РєРѕРІ Р·РґРѕСЂРѕРІСЊСЏ, РІРѕСЃСЃС‚Р°РЅР°РІР»РёРІР°РµРјС‹С… РїСЂРё Р»РµС‡РµРЅРёРё (РІРѕ РІСЂРµРјСЏ РѕС‚РґС‹С…Р°). */
 /** \~english Number of hit points that are renewed periodically. */
 #define ST_HEALING_RATE             (13)
 
-/** \~russian Шанс на критическое попадание. */
+/** \~russian РЁР°РЅСЃ РЅР° РєСЂРёС‚РёС‡РµСЃРєРѕРµ РїРѕРїР°РґР°РЅРёРµ. */
 /** \~english Chance to cause critical-hit. */
 #define ST_CRITICAL_CHANCE          (14)
 
@@ -131,9 +131,9 @@
 #define ST_RADIOACTIVE              (65)
 #define ST_KILL_EXPERIENCE          (66)
 
-/** \~russian Тип тела криттера.
+/** \~russian РўРёРї С‚РµР»Р° РєСЂРёС‚С‚РµСЂР°.
  *
- * См. @link BodyTypes Body types@endlink.
+ * РЎРј. @link BodyTypes Body types@endlink.
  *
  */
 #define ST_BODY_TYPE                (67)
@@ -161,43 +161,43 @@
 #define ST_MOVE_AP                  (88) // Used in engine
 #define ST_NPC_ROLE                 (89) // Used in engine
 
-/** \~russian Вспомогательный стат, который может быть использован для сохранения какой-либо информации. */
+/** \~russian Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№ СЃС‚Р°С‚, РєРѕС‚РѕСЂС‹Р№ РјРѕР¶РµС‚ Р±С‹С‚СЊ РёСЃРїРѕР»СЊР·РѕРІР°РЅ РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ РєР°РєРѕР№-Р»РёР±Рѕ РёРЅС„РѕСЂРјР°С†РёРё. */
 /** \~english Additional stat that can be used to store any kind of info. */
 #define ST_VAR0                     (90)
 
-/** \~russian Вспомогательный стат, который может быть использован для сохранения какой-либо информации. */
+/** \~russian Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№ СЃС‚Р°С‚, РєРѕС‚РѕСЂС‹Р№ РјРѕР¶РµС‚ Р±С‹С‚СЊ РёСЃРїРѕР»СЊР·РѕРІР°РЅ РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ РєР°РєРѕР№-Р»РёР±Рѕ РёРЅС„РѕСЂРјР°С†РёРё. */
 /** \~english Additional stat that can be used to store any kind of info. */
 #define ST_VAR1                     (91)
 
-/** \~russian Вспомогательный стат, который может быть использован для сохранения какой-либо информации. */
+/** \~russian Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№ СЃС‚Р°С‚, РєРѕС‚РѕСЂС‹Р№ РјРѕР¶РµС‚ Р±С‹С‚СЊ РёСЃРїРѕР»СЊР·РѕРІР°РЅ РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ РєР°РєРѕР№-Р»РёР±Рѕ РёРЅС„РѕСЂРјР°С†РёРё. */
 /** \~english Additional stat that can be used to store any kind of info. */
 #define ST_VAR2                     (92)
 
-/** \~russian Вспомогательный стат, который может быть использован для сохранения какой-либо информации. */
+/** \~russian Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№ СЃС‚Р°С‚, РєРѕС‚РѕСЂС‹Р№ РјРѕР¶РµС‚ Р±С‹С‚СЊ РёСЃРїРѕР»СЊР·РѕРІР°РЅ РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ РєР°РєРѕР№-Р»РёР±Рѕ РёРЅС„РѕСЂРјР°С†РёРё. */
 /** \~english Additional stat that can be used to store any kind of info. */
 #define ST_VAR3                     (93)
 
-/** \~russian Вспомогательный стат, который может быть использован для сохранения какой-либо информации. */
+/** \~russian Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№ СЃС‚Р°С‚, РєРѕС‚РѕСЂС‹Р№ РјРѕР¶РµС‚ Р±С‹С‚СЊ РёСЃРїРѕР»СЊР·РѕРІР°РЅ РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ РєР°РєРѕР№-Р»РёР±Рѕ РёРЅС„РѕСЂРјР°С†РёРё. */
 /** \~english Additional stat that can be used to store any kind of info. */
 #define ST_VAR4                     (94)
 
-/** \~russian Вспомогательный стат, который может быть использован для сохранения какой-либо информации. */
+/** \~russian Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№ СЃС‚Р°С‚, РєРѕС‚РѕСЂС‹Р№ РјРѕР¶РµС‚ Р±С‹С‚СЊ РёСЃРїРѕР»СЊР·РѕРІР°РЅ РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ РєР°РєРѕР№-Р»РёР±Рѕ РёРЅС„РѕСЂРјР°С†РёРё. */
 /** \~english Additional stat that can be used to store any kind of info. */
 #define ST_VAR5                     (95)
 
-/** \~russian Вспомогательный стат, который может быть использован для сохранения какой-либо информации. */
+/** \~russian Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№ СЃС‚Р°С‚, РєРѕС‚РѕСЂС‹Р№ РјРѕР¶РµС‚ Р±С‹С‚СЊ РёСЃРїРѕР»СЊР·РѕРІР°РЅ РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ РєР°РєРѕР№-Р»РёР±Рѕ РёРЅС„РѕСЂРјР°С†РёРё. */
 /** \~english Additional stat that can be used to store any kind of info. */
 #define ST_VAR6                     (96)
 
-/** \~russian Вспомогательный стат, который может быть использован для сохранения какой-либо информации. */
+/** \~russian Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№ СЃС‚Р°С‚, РєРѕС‚РѕСЂС‹Р№ РјРѕР¶РµС‚ Р±С‹С‚СЊ РёСЃРїРѕР»СЊР·РѕРІР°РЅ РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ РєР°РєРѕР№-Р»РёР±Рѕ РёРЅС„РѕСЂРјР°С†РёРё. */
 /** \~english Additional stat that can be used to store any kind of info. */
 #define ST_VAR7                     (97)
 
-/** \~russian Вспомогательный стат, который может быть использован для сохранения какой-либо информации. */
+/** \~russian Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№ СЃС‚Р°С‚, РєРѕС‚РѕСЂС‹Р№ РјРѕР¶РµС‚ Р±С‹С‚СЊ РёСЃРїРѕР»СЊР·РѕРІР°РЅ РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ РєР°РєРѕР№-Р»РёР±Рѕ РёРЅС„РѕСЂРјР°С†РёРё. */
 /** \~english Additional stat that can be used to store any kind of info. */
 #define ST_VAR8                     (98)
 
-/** \~russian Вспомогательный стат, который может быть использован для сохранения какой-либо информации. */
+/** \~russian Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№ СЃС‚Р°С‚, РєРѕС‚РѕСЂС‹Р№ РјРѕР¶РµС‚ Р±С‹С‚СЊ РёСЃРїРѕР»СЊР·РѕРІР°РЅ РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ РєР°РєРѕР№-Р»РёР±Рѕ РёРЅС„РѕСЂРјР°С†РёРё. */
 /** \~english Additional stat that can be used to store any kind of info. */
 #define ST_VAR9                     (99)
 
@@ -206,9 +206,9 @@
 #define ST_RATE_OBJECT              (102) // Used in engine
 #define ST_FREE_BARTER_PLAYER       (103) // Used in engine
 
-/** \~russian Номер диалога, привязанного к криттеру.
+/** \~russian РќРѕРјРµСЂ РґРёР°Р»РѕРіР°, РїСЂРёРІСЏР·Р°РЅРЅРѕРіРѕ Рє РєСЂРёС‚С‚РµСЂСѓ.
  *
- * Cм. @b _dialogs.fos, @b dialogs.lst.
+ * CРј. @b _dialogs.fos, @b dialogs.lst.
  *
  * \~english Returns the id number of critter's dialog.
  *
@@ -218,11 +218,11 @@
 
 #define ST_AI_ID                    (105) // Used in engine
 
-/** \~russian Номера команды криттера.
+/** \~russian РќРѕРјРµСЂР° РєРѕРјР°РЅРґС‹ РєСЂРёС‚С‚РµСЂР°.
  *
- * Cм. @b _teams.fos, @b TEAMS.TXT.
+ * CРј. @b _teams.fos, @b TEAMS.TXT.
  *
- * @return  Номер команды криттера.
+ * @return  РќРѕРјРµСЂ РєРѕРјР°РЅРґС‹ РєСЂРёС‚С‚РµСЂР°.
  *
  ** \~english Returns the id number of critter's AI team.
  *
@@ -230,11 +230,11 @@
  */
 #define ST_TEAM_ID                  (106) // Used in engine
 
-/** \~russian Номер сумки криттера.
+/** \~russian РќРѕРјРµСЂ СЃСѓРјРєРё РєСЂРёС‚С‚РµСЂР°.
  *
- * Cм. @b _bags.fos, @b BAGS.TXT.
+ * CРј. @b _bags.fos, @b BAGS.TXT.
  *
- * @return Номер сумки.
+ * @return РќРѕРјРµСЂ СЃСѓРјРєРё.
  *
  * @see    ::GetBagItems
  *         Critter::SetBagRefreshTime
@@ -249,9 +249,9 @@
 #define ST_DEAD_BLOCKER_ID          (113)
 #define ST_CURRENT_ARMOR_PERK       (114)
 
-/** \~russian Определяет максимальную дистанцию, с которой можно инициировать диалог с NPC.
+/** \~russian РћРїСЂРµРґРµР»СЏРµС‚ РјР°РєСЃРёРјР°Р»СЊРЅСѓСЋ РґРёСЃС‚Р°РЅС†РёСЋ, СЃ РєРѕС‚РѕСЂРѕР№ РјРѕР¶РЅРѕ РёРЅРёС†РёРёСЂРѕРІР°С‚СЊ РґРёР°Р»РѕРі СЃ NPC.
  *
- * @remarks Если значение стата равно @c 0, то тогда используется значение из глобальной переменной #__TalkDistance.
+ * @remarks Р•СЃР»Рё Р·РЅР°С‡РµРЅРёРµ СЃС‚Р°С‚Р° СЂР°РІРЅРѕ @c 0, С‚Рѕ С‚РѕРіРґР° РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ Р·РЅР°С‡РµРЅРёРµ РёР· РіР»РѕР±Р°Р»СЊРЅРѕР№ РїРµСЂРµРјРµРЅРЅРѕР№ #__TalkDistance.
  *
  ** \~ @see __TalkDistance
  */
@@ -259,11 +259,11 @@
 
 #define ST_SCALE_FACTOR             (116) // Used in engine
 
-/** \~russian Максимальное количество одновременно запущенных диалогов.
+/** \~russian РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РѕРґРЅРѕРІСЂРµРјРµРЅРЅРѕ Р·Р°РїСѓС‰РµРЅРЅС‹С… РґРёР°Р»РѕРіРѕРІ.
  *
- * ST_MAX_TALKERS < 0 - диалог не может быть начат;
- * ST_MAX_TALKERS == 0 - значение берется из глобальной переменной __NpcMaxTalkers;
- * ST_MAX_TALKERS > 0 - берется данное значение.
+ * ST_MAX_TALKERS < 0 - РґРёР°Р»РѕРі РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РЅР°С‡Р°С‚;
+ * ST_MAX_TALKERS == 0 - Р·РЅР°С‡РµРЅРёРµ Р±РµСЂРµС‚СЃСЏ РёР· РіР»РѕР±Р°Р»СЊРЅРѕР№ РїРµСЂРµРјРµРЅРЅРѕР№ __NpcMaxTalkers;
+ * ST_MAX_TALKERS > 0 - Р±РµСЂРµС‚СЃСЏ РґР°РЅРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ.
  * @see    __NpcMaxTalkers
  */
 #define ST_MAX_TALKERS              (119) // Used in engine

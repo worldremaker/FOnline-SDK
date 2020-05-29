@@ -2,7 +2,7 @@
  * @defgroup MsgNums Msg nums
  * @ingroup Defines
  *
- * \~russian Номера файлов *.msg с текстами игры.
+ * \~russian РќРѕРјРµСЂР° С„Р°Р№Р»РѕРІ *.msg СЃ С‚РµРєСЃС‚Р°РјРё РёРіСЂС‹.
  * \~english Identity numbers of game *.msg files.
  *
  * \~

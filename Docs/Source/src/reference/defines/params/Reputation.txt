@@ -1,5 +1,5 @@
 /**
- * \~russian @defgroup Reputation Репутация
+ * \~russian @defgroup Reputation Р РµРїСѓС‚Р°С†РёСЏ
  * \~english @defgroup Reputation Reputation
  * \~ @ingroup Params
  */

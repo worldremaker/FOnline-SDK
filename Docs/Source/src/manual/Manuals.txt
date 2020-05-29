@@ -1,4 +1,4 @@
-/** \~russian @page page_manuals Пособия
+/** \~russian @page page_manuals РџРѕСЃРѕР±РёСЏ
 
 @subpage page_manualdialogue
 

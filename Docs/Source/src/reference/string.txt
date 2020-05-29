@@ -1,4 +1,4 @@
-/** \~russian Класс для работы со строками.
+/** \~russian РљР»Р°СЃСЃ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃРѕ СЃС‚СЂРѕРєР°РјРё.
  *
  ** \~english String class.
  *
@@ -7,7 +7,7 @@
 class string
 {
     /**
-     * \~russian @name Конструкторы
+     * \~russian @name РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
      * \~english @name Constructors
      */
     //@{
@@ -17,12 +17,12 @@ class string
 
     //@}
 
-    /** \~russian Возвращает длину строки. */
+    /** \~russian Р’РѕР·РІСЂР°С‰Р°РµС‚ РґР»РёРЅСѓ СЃС‚СЂРѕРєРё. */
     /** \~english Returns the length of the string. */
     uint length() const;
 
     /**
-     * \~russian @name Перегруженные операторы
+     * \~russian @name РџРµСЂРµРіСЂСѓР¶РµРЅРЅС‹Рµ РѕРїРµСЂР°С‚РѕСЂС‹
      * \~english @name Operator overloads
      */
      //@{

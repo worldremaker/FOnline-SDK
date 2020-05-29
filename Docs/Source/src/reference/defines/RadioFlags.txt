@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @defgroup RadioFlags Radio flags
  * @ingroup Defines
  *
