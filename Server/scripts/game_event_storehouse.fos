@@ -1,13 +1,13 @@
 // Author: rifleman17
-// Хранилище отобранных у игроков и других нпц предметов на глобальной карте
+// РҐСЂР°РЅРёР»РёС‰Рµ РѕС‚РѕР±СЂР°РЅРЅС‹С… Сѓ РёРіСЂРѕРєРѕРІ Рё РґСЂСѓРіРёС… РЅРїС† РїСЂРµРґРјРµС‚РѕРІ РЅР° РіР»РѕР±Р°Р»СЊРЅРѕР№ РєР°СЂС‚Рµ
 #include "_macros.fos"
 #include "entire.fos"
 #include "_npc_pids.fos"
 #include "_bags.fos"
 #include "_teams.fos"
 
-#define LOC_DELTA              ( 3 * __GlobalMapZoneLength ) // Радиус установки локации
-#define LOC_SEARCH             ( 6 * __GlobalMapZoneLength ) // Радиус поиска локации
+#define LOC_DELTA              ( 3 * __GlobalMapZoneLength ) // Р Р°РґРёСѓСЃ СѓСЃС‚Р°РЅРѕРІРєРё Р»РѕРєР°С†РёРё
+#define LOC_SEARCH             ( 6 * __GlobalMapZoneLength ) // Р Р°РґРёСѓСЃ РїРѕРёСЃРєР° Р»РѕРєР°С†РёРё
 #define ENTIRE_GUARD           ( 177 )
 #define ENTIRE_DIR             ( 178 )
 #define MAX_CONTAINER_ITEMS    ( 200 )
@@ -28,9 +28,9 @@ const uint16[][] GlobalCoords =
 // GameEvent
 uint e_CreateStoreHouse( uint[] @ values )
 {
-    // Выбираем случайные координаты
+    // Р’С‹Р±РёСЂР°РµРј СЃР»СѓС‡Р°Р№РЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹
     uint idx = Random( 0, GlobalCoords.length() - 1 );
-    // Ищем склад
+    // РС‰РµРј СЃРєР»Р°Рґ
     Location@[] locations;
     if( GetLocations( GlobalCoords[ idx ][ 0 ], GlobalCoords[ idx ][ 1 ], LOC_SEARCH, locations ) > 0 )
     {
@@ -41,11 +41,11 @@ uint e_CreateStoreHouse( uint[] @ values )
             {
                 GameVar@ isStoreHouse = GetLocalVar( LLVAR_storehouse_cont_id, loc.Id );
                 if( valid( isStoreHouse ) && isStoreHouse > 0 )
-                    return 0;                     // в данном регионе уже есть склад
+                    return 0;                     // РІ РґР°РЅРЅРѕРј СЂРµРіРёРѕРЅРµ СѓР¶Рµ РµСЃС‚СЊ СЃРєР»Р°Рґ
             }
         }
     }
-    // Не найдена локация в данной области
+    // РќРµ РЅР°Р№РґРµРЅР° Р»РѕРєР°С†РёСЏ РІ РґР°РЅРЅРѕР№ РѕР±Р»Р°СЃС‚Рё
     uint locId = CreateLocation( LOCATION_DesertEncounter12,
                                  GlobalCoords[ idx ][ 0 ] + Random( -1 * LOC_DELTA, LOC_DELTA ),
                                  GlobalCoords[ idx ][ 1 ] + Random( -1 * LOC_DELTA, LOC_DELTA ),
@@ -118,7 +118,7 @@ void _MapInCritter( Map& map, Critter& cr )
 
 void SaveLoot2Storehouse( uint16 WorldX, uint16 WorldY, Item@[] items )
 {
-    // Ищем локацию
+    // РС‰РµРј Р»РѕРєР°С†РёСЋ
     Location@[] locations;
     Location@ storeHouse;
     GameVar@  isStoreHouse;

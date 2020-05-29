@@ -45,7 +45,7 @@ void _VirginIdle( Critter& virgin )
     {
         virgin.SendMessage( 1220, 0, MESSAGE_TO_ALL_ON_MAP );
     }
-    // virgin.Say(SAY_NORM_ON_HEAD, "Иди сюда, милашка!");
+    // virgin.Say(SAY_NORM_ON_HEAD, "РРґРё СЃСЋРґР°, РјРёР»Р°С€РєР°!");
     virgin.Wait( 10000 );
 }
 

@@ -1,5 +1,5 @@
 // Author: rifleman17
-// Квест "Рискованное дельце"
+// РљРІРµСЃС‚ "Р РёСЃРєРѕРІР°РЅРЅРѕРµ РґРµР»СЊС†Рµ"
 
 #include "_macros.fos"
 #include "_colors.fos"
@@ -27,7 +27,7 @@ void r_Attack( Critter& player, Critter@ npc )
 void _HoloInit( Item& item, bool firstTime )
 {
     item.HolodiskNumber = 109;
-    // подписываемся на использование голодиска клешней
+    // РїРѕРґРїРёСЃС‹РІР°РµРјСЃСЏ РЅР° РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РіРѕР»РѕРґРёСЃРєР° РєР»РµС€РЅРµР№
     item.SetEvent( ITEM_EVENT_USE, "_HoloUse" );
     item.Update();
 }
@@ -154,14 +154,14 @@ void dlg_Stat( Critter& player, Critter@ npc, string@ lexems )
 }
 
 /*
-   @lex when@ Последние зафиксированные пуски МБР.
-   Канада: @lex canada@.
-   Кишинев: @lex kishinev@.
-   Баку: @lex baku@.
-   Токио: @lex tokio@.
-   Екатеринбург: @lex eburg@.
-   Челябинск: 0.
-   Владивосток: @lex vladik@.
-   Райчихинск: @lex ray@.
-   Фукусима: @lex fukusima@.
+   @lex when@ РџРѕСЃР»РµРґРЅРёРµ Р·Р°С„РёРєСЃРёСЂРѕРІР°РЅРЅС‹Рµ РїСѓСЃРєРё РњР‘Р .
+   РљР°РЅР°РґР°: @lex canada@.
+   РљРёС€РёРЅРµРІ: @lex kishinev@.
+   Р‘Р°РєСѓ: @lex baku@.
+   РўРѕРєРёРѕ: @lex tokio@.
+   Р•РєР°С‚РµСЂРёРЅР±СѓСЂРі: @lex eburg@.
+   Р§РµР»СЏР±РёРЅСЃРє: 0.
+   Р’Р»Р°РґРёРІРѕСЃС‚РѕРє: @lex vladik@.
+   Р Р°Р№С‡РёС…РёРЅСЃРє: @lex ray@.
+   Р¤СѓРєСѓСЃРёРјР°: @lex fukusima@.
  */

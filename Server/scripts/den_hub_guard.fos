@@ -40,8 +40,8 @@ void _GuardStealing( Critter& npc, Critter& thief, bool success, Item& item, uin
 {
     if( success == false )
     {
-        npc.SendMessage( 124, thief.Id, MESSAGE_TO_ALL_ON_MAP );     // и сообщает об этом охране
-        npc.SayMsg( SAY_SHOUT_ON_HEAD, TEXTMSG_TEXT, STR_ALARM );    // Ругань
+        npc.SendMessage( 124, thief.Id, MESSAGE_TO_ALL_ON_MAP );     // Рё СЃРѕРѕР±С‰Р°РµС‚ РѕР± СЌС‚РѕРј РѕС…СЂР°РЅРµ
+        npc.SayMsg( SAY_SHOUT_ON_HEAD, TEXTMSG_TEXT, STR_ALARM );    // Р СѓРіР°РЅСЊ
         _NpcEraseAllPlanesAttack( npc );
         AddAttackPlane( npc, 0, thief );
     }

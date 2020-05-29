@@ -7,7 +7,7 @@ import bool AddAttackPlane( Critter& npc, uint priority, Critter& target ) from 
 
 uint MaisonId = 0;
 
-// Мэйсон загораживает проход к Сальваторе. Может отойти только, если у игрока есть доступ
+// РњСЌР№СЃРѕРЅ Р·Р°РіРѕСЂР°Р¶РёРІР°РµС‚ РїСЂРѕС…РѕРґ Рє РЎР°Р»СЊРІР°С‚РѕСЂРµ. РњРѕР¶РµС‚ РѕС‚РѕР№С‚Рё С‚РѕР»СЊРєРѕ, РµСЃР»Рё Сѓ РёРіСЂРѕРєР° РµСЃС‚СЊ РґРѕСЃС‚СѓРї
 void _MasonInit( Critter& cr, bool firstTime )
 {
     MaisonId = cr.Id;

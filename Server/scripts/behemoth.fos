@@ -1,28 +1,28 @@
 // Author: rifleman17
-// Ðàäèîóïðàâëÿåìûå ÍÏÖ
+// Ð Ð°Ð´Ð¸Ð¾ÑƒÐ¿Ñ€Ð°Ð²Ð»ÑÐµÐ¼Ñ‹Ðµ ÐÐŸÐ¦
 #include "_macros.fos"
 #include "_msgstr.fos"
 #include "entire.fos"
 
-#define VAR_OWNER              ( 200 ) // Íîìåð ïåðåìåííîé äëÿ íïö, â êîòîðîé õðàíèòñÿ Id âëàäåëüöà
-#define VAR_RADIO              ( 201 ) // Íîìåð ïåðåìåííîé äëÿ íïö, â êîòîðîé õðàíèòñÿ íîìåð ðàäèîêàíàëà
-#define VAR_LAST_COMMAND       ( 202 ) // Íîìåð ïåðåìåííîé äëÿ íïö, â êîòîðîé õðàíèòñÿ âðåìÿ ïîñëåäíåé êîìàíäû.
-#define VAR_LAST_ORDER         ( 204 ) // Íîìåð ïåðåìåííîé äëÿ íïö, â êîòîðîé õðàíèòñÿ âðåìÿ ïðèíÿòèÿ ïîñëåäíåãî ïðèêàçà
-#define VAR_ORDER_TYPE         ( 203 ) // Òèï ïðèêàçà, âûïîëíÿåìîãî íïö
-#define VAR_PARAM_1            ( 205 ) // Íîìåð ïåðåìåííîé äëÿ íïö, â êîòîðîé õðàíèòñÿ íåêèé ïàðàìåòð ïðèêàçà
-#define VAR_PARAM_2            ( 206 ) // Íîìåð ïåðåìåííîé äëÿ íïö, â êîòîðîé õðàíèòñÿ âòîðîé ïàðàìåòð ïðèêàçà
-#define VAR_LAST_REPORT        ( 207 ) // Âðåìÿ ïîñëåäíåãî ðàïîðòà
+#define VAR_OWNER              ( 200 ) // ÐÐ¾Ð¼ÐµÑ€ Ð¿ÐµÑ€ÐµÐ¼ÐµÐ½Ð½Ð¾Ð¹ Ð´Ð»Ñ Ð½Ð¿Ñ†, Ð² ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð¹ Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑÑ Id Ð²Ð»Ð°Ð´ÐµÐ»ÑŒÑ†Ð°
+#define VAR_RADIO              ( 201 ) // ÐÐ¾Ð¼ÐµÑ€ Ð¿ÐµÑ€ÐµÐ¼ÐµÐ½Ð½Ð¾Ð¹ Ð´Ð»Ñ Ð½Ð¿Ñ†, Ð² ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð¹ Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑÑ Ð½Ð¾Ð¼ÐµÑ€ Ñ€Ð°Ð´Ð¸Ð¾ÐºÐ°Ð½Ð°Ð»Ð°
+#define VAR_LAST_COMMAND       ( 202 ) // ÐÐ¾Ð¼ÐµÑ€ Ð¿ÐµÑ€ÐµÐ¼ÐµÐ½Ð½Ð¾Ð¹ Ð´Ð»Ñ Ð½Ð¿Ñ†, Ð² ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð¹ Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑÑ Ð²Ñ€ÐµÐ¼Ñ Ð¿Ð¾ÑÐ»ÐµÐ´Ð½ÐµÐ¹ ÐºÐ¾Ð¼Ð°Ð½Ð´Ñ‹.
+#define VAR_LAST_ORDER         ( 204 ) // ÐÐ¾Ð¼ÐµÑ€ Ð¿ÐµÑ€ÐµÐ¼ÐµÐ½Ð½Ð¾Ð¹ Ð´Ð»Ñ Ð½Ð¿Ñ†, Ð² ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð¹ Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑÑ Ð²Ñ€ÐµÐ¼Ñ Ð¿Ñ€Ð¸Ð½ÑÑ‚Ð¸Ñ Ð¿Ð¾ÑÐ»ÐµÐ´Ð½ÐµÐ³Ð¾ Ð¿Ñ€Ð¸ÐºÐ°Ð·Ð°
+#define VAR_ORDER_TYPE         ( 203 ) // Ð¢Ð¸Ð¿ Ð¿Ñ€Ð¸ÐºÐ°Ð·Ð°, Ð²Ñ‹Ð¿Ð¾Ð»Ð½ÑÐµÐ¼Ð¾Ð³Ð¾ Ð½Ð¿Ñ†
+#define VAR_PARAM_1            ( 205 ) // ÐÐ¾Ð¼ÐµÑ€ Ð¿ÐµÑ€ÐµÐ¼ÐµÐ½Ð½Ð¾Ð¹ Ð´Ð»Ñ Ð½Ð¿Ñ†, Ð² ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð¹ Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑÑ Ð½ÐµÐºÐ¸Ð¹ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€ Ð¿Ñ€Ð¸ÐºÐ°Ð·Ð°
+#define VAR_PARAM_2            ( 206 ) // ÐÐ¾Ð¼ÐµÑ€ Ð¿ÐµÑ€ÐµÐ¼ÐµÐ½Ð½Ð¾Ð¹ Ð´Ð»Ñ Ð½Ð¿Ñ†, Ð² ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð¹ Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑÑ Ð²Ñ‚Ð¾Ñ€Ð¾Ð¹ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€ Ð¿Ñ€Ð¸ÐºÐ°Ð·Ð°
+#define VAR_LAST_REPORT        ( 207 ) // Ð’Ñ€ÐµÐ¼Ñ Ð¿Ð¾ÑÐ»ÐµÐ´Ð½ÐµÐ³Ð¾ Ñ€Ð°Ð¿Ð¾Ñ€Ñ‚Ð°
 
-#define TYPE_ORDER_ROUTE       ( 1 )   // Òèï ïðèêàçà "ìàðøðóò"
-#define TYPE_ORDER_CAMERA      ( 2 )   // Òèï ïðèêàçà "êàìåðà", ïðîñìîòð ìåñòíîñòè, íà êîòîðîé íàõîäèòñÿ áåãåìîò
-#define TYPE_ORDER_MESSAGE     ( 3 )   // Ðîáîò ïðîèçíîñèò ðåïëèêó èãðîêà
-#define TYPE_ORDER_MOVE        ( 4 )   // Ðîáîò äâèãàåòñÿ âïåðåä íà èêñ ãåêñîâ
-#define TYPE_ORDER_PATROL      ( 5 )   // Ðîáîò ñîîáùàåò î òåõ, êîãî âèäèò
-#define TYPE_ORDER_ATTACK      ( 6 )   // Ðîáîò àòàêóåò äðóãèõ áåãåìîòîâ
+#define TYPE_ORDER_ROUTE       ( 1 )   // Ð¢Ð¸Ð¿ Ð¿Ñ€Ð¸ÐºÐ°Ð·Ð° "Ð¼Ð°Ñ€ÑˆÑ€ÑƒÑ‚"
+#define TYPE_ORDER_CAMERA      ( 2 )   // Ð¢Ð¸Ð¿ Ð¿Ñ€Ð¸ÐºÐ°Ð·Ð° "ÐºÐ°Ð¼ÐµÑ€Ð°", Ð¿Ñ€Ð¾ÑÐ¼Ð¾Ñ‚Ñ€ Ð¼ÐµÑÑ‚Ð½Ð¾ÑÑ‚Ð¸, Ð½Ð° ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð¹ Ð½Ð°Ñ…Ð¾Ð´Ð¸Ñ‚ÑÑ Ð±ÐµÐ³ÐµÐ¼Ð¾Ñ‚
+#define TYPE_ORDER_MESSAGE     ( 3 )   // Ð Ð¾Ð±Ð¾Ñ‚ Ð¿Ñ€Ð¾Ð¸Ð·Ð½Ð¾ÑÐ¸Ñ‚ Ñ€ÐµÐ¿Ð»Ð¸ÐºÑƒ Ð¸Ð³Ñ€Ð¾ÐºÐ°
+#define TYPE_ORDER_MOVE        ( 4 )   // Ð Ð¾Ð±Ð¾Ñ‚ Ð´Ð²Ð¸Ð³Ð°ÐµÑ‚ÑÑ Ð²Ð¿ÐµÑ€ÐµÐ´ Ð½Ð° Ð¸ÐºÑ Ð³ÐµÐºÑÐ¾Ð²
+#define TYPE_ORDER_PATROL      ( 5 )   // Ð Ð¾Ð±Ð¾Ñ‚ ÑÐ¾Ð¾Ð±Ñ‰Ð°ÐµÑ‚ Ð¾ Ñ‚ÐµÑ…, ÐºÐ¾Ð³Ð¾ Ð²Ð¸Ð´Ð¸Ñ‚
+#define TYPE_ORDER_ATTACK      ( 6 )   // Ð Ð¾Ð±Ð¾Ñ‚ Ð°Ñ‚Ð°ÐºÑƒÐµÑ‚ Ð´Ñ€ÑƒÐ³Ð¸Ñ… Ð±ÐµÐ³ÐµÐ¼Ð¾Ñ‚Ð¾Ð²
 
-#define STR_EXECUTE            ( 606 ) // Âûïîëíÿþ...
-#define STR_CANNOT_EXECUTE     ( 605 ) // Íå ìîãó âûïîëíèòü...
-#define STR_PLANES_EXECUTED    ( 607 ) // Âñå ïðèêàçû âûïîëíåíû
+#define STR_EXECUTE            ( 606 ) // Ð’Ñ‹Ð¿Ð¾Ð»Ð½ÑÑŽ...
+#define STR_CANNOT_EXECUTE     ( 605 ) // ÐÐµ Ð¼Ð¾Ð³Ñƒ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ...
+#define STR_PLANES_EXECUTED    ( 607 ) // Ð’ÑÐµ Ð¿Ñ€Ð¸ÐºÐ°Ð·Ñ‹ Ð²Ñ‹Ð¿Ð¾Ð»Ð½ÐµÐ½Ñ‹
 
 #define _GetOwnerId            # (crId) ( GetLocalVar( VAR_OWNER, crId ).GetValue() )
 #define _GetRadioChannel       # (crId) ( GetLocalVar( VAR_RADIO, crId ).GetValue() )
@@ -50,14 +50,14 @@
 
 #define DL                     # (s) ( Log( s ) )
 // #define DL#(s)
-// todo: ñäåëàòü ïåðèîäè÷åñêóþ î÷èñòêó ïëàíîâ åñëè îíè íå âûïîëíåíû äëèòåëüíîå âðåìÿ
+// todo: ÑÐ´ÐµÐ»Ð°Ñ‚ÑŒ Ð¿ÐµÑ€Ð¸Ð¾Ð´Ð¸Ñ‡ÐµÑÐºÑƒÑŽ Ð¾Ñ‡Ð¸ÑÑ‚ÐºÑƒ Ð¿Ð»Ð°Ð½Ð¾Ð² ÐµÑÐ»Ð¸ Ð¾Ð½Ð¸ Ð½Ðµ Ð²Ñ‹Ð¿Ð¾Ð»Ð½ÐµÐ½Ñ‹ Ð´Ð»Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾Ðµ Ð²Ñ€ÐµÐ¼Ñ
 import bool AddWalkPlane( Critter& npc, uint priority, int identifier, uint identifierExt, uint16 hexX, uint16 hexY, uint8 dir, bool run, uint cut ) from "npc_planes";
 import bool AddMiscPlane( Critter& npc, uint priority, uint waitSecond, string@ funcName ) from "npc_planes";
 import bool AddAttackPlane( Critter& npc, uint priority, Critter& target ) from "npc_planes";
 
 uint16[] restrictedLocations = { LOCATION_Replication1, LOCATION_Replication2, LOCATION_Replication3, LOCATION_Replication4, LOCATION_ReplicationHell };
 
-string[] commands = { "ÌÀÐØÐÓÒ", "ROUTE", "ÊÀÌÅÐÀ", "CAMERA", "ÑÎÎÁÙÅÍÈÅ", "MESSAGE", "ÕÎÄ", "MOVE", "ÏÀÒÐÓËÜ", "PATROL", "ÑÌÅÍÀÊÀÍÀËÀ", "CHANGECHANNEL", "ÀÒÀÊÀ", "ATTACK" };
+string[] commands = { "ÐœÐÐ Ð¨Ð Ð£Ð¢", "ROUTE", "ÐšÐÐœÐ•Ð Ð", "CAMERA", "Ð¡ÐžÐžÐ‘Ð©Ð•ÐÐ˜Ð•", "MESSAGE", "Ð¥ÐžÐ”", "MOVE", "ÐŸÐÐ¢Ð Ð£Ð›Ð¬", "PATROL", "Ð¡ÐœÐ•ÐÐÐšÐÐÐÐ›Ð", "CHANGECHANNEL", "ÐÐ¢ÐÐšÐ", "ATTACK" };
 
 int[] behemoths;
 int[] listenedChannels;
@@ -71,7 +71,7 @@ void RememberBehemoth( Critter& cr )
     {
         DL( "adding channel " + channel );
         listenedChannels.insertLast( channel );
-        AddTextListener( SAY_RADIO, "ÊÎÌÀÍÄÀ", channel, "behemoth@listen_Behemoth" );
+        AddTextListener( SAY_RADIO, "ÐšÐžÐœÐÐÐ”Ð", channel, "behemoth@listen_Behemoth" );
         // AddTextListener(SAY_RADIO, "COMMAND", channel, "behemoth@listen_Behemoth");
     }
 }
@@ -97,7 +97,7 @@ void ChangeChannel( Critter& cr, uint newChannel )
         if( !usedChannel )
         {
             DL( "erasing channel" );
-            EraseTextListener( SAY_RADIO, "ÊÎÌÀÍÄÀ", listenedChannels[ i ] );
+            EraseTextListener( SAY_RADIO, "ÐšÐžÐœÐÐÐ”Ð", listenedChannels[ i ] );
             // EraseTextListener(SAY_RADIO, "COMMAND", listenedChannels[i]);
             listenedChannels.removeAt( i );
             l--;
@@ -149,7 +149,7 @@ void BehemothCommand( uint behemothId, string cmd )
             globalX = GetIntValue( valuesStr, 2, -1 );
             globalY = GetIntValue( valuesStr, 3, -1 );
             Location@[] locations;
-            // Ïåðåäàíû êîîðäèíàòû, êóäà íóæíî äâèãàòüñÿ.
+            // ÐŸÐµÑ€ÐµÐ´Ð°Ð½Ñ‹ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ñ‹, ÐºÑƒÐ´Ð° Ð½ÑƒÐ¶Ð½Ð¾ Ð´Ð²Ð¸Ð³Ð°Ñ‚ÑŒÑÑ.
             if( globalX > 0 && globalY > 0 && GetLocations( globalX, globalY, __GlobalMapZoneLength, locations ) > 0 )
             {
                 for( uint i = 0, l = locations.length(); i < l; i++ )
@@ -185,9 +185,9 @@ void BehemothCommand( uint behemothId, string cmd )
         }
         else if( _IsCmdMove( firstKeyWord ) )
         {
-            // âòîðîå ñëîâî ÷èñëî ãåêñîâ, íà êîòîðîå íàäî ïåðåéòè, òðåòüå - íàïðàâëåíèå â êîòîðîì íàäî äâèãàòüñÿ
-            // åñëè ÷èñëî ãåêñîâ = 0, ïðîñòî áóäåò èçìåíåíî íàïðàâëåíèå
-            // åñëè âòîðîãî ñëîâà íåò, äâèæåíèå áóäåò ïðîèçâîäèòüñÿ â ñóùåñòâóþùåì  íàïðàâëåíèè
+            // Ð²Ñ‚Ð¾Ñ€Ð¾Ðµ ÑÐ»Ð¾Ð²Ð¾ Ñ‡Ð¸ÑÐ»Ð¾ Ð³ÐµÐºÑÐ¾Ð², Ð½Ð° ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ðµ Ð½Ð°Ð´Ð¾ Ð¿ÐµÑ€ÐµÐ¹Ñ‚Ð¸, Ñ‚Ñ€ÐµÑ‚ÑŒÐµ - Ð½Ð°Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð² ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð¼ Ð½Ð°Ð´Ð¾ Ð´Ð²Ð¸Ð³Ð°Ñ‚ÑŒÑÑ
+            // ÐµÑÐ»Ð¸ Ñ‡Ð¸ÑÐ»Ð¾ Ð³ÐµÐºÑÐ¾Ð² = 0, Ð¿Ñ€Ð¾ÑÑ‚Ð¾ Ð±ÑƒÐ´ÐµÑ‚ Ð¸Ð·Ð¼ÐµÐ½ÐµÐ½Ð¾ Ð½Ð°Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ
+            // ÐµÑÐ»Ð¸ Ð²Ñ‚Ð¾Ñ€Ð¾Ð³Ð¾ ÑÐ»Ð¾Ð²Ð° Ð½ÐµÑ‚, Ð´Ð²Ð¸Ð¶ÐµÐ½Ð¸Ðµ Ð±ÑƒÐ´ÐµÑ‚ Ð¿Ñ€Ð¾Ð¸Ð·Ð²Ð¾Ð´Ð¸Ñ‚ÑŒÑÑ Ð² ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÑŽÑ‰ÐµÐ¼  Ð½Ð°Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ð¸
             int steps = GetIntValue( valuesStr, 2, 0 );
             int dir = GetIntValue( valuesStr, 3, 6 );
             SetOrder( behemothId, TYPE_ORDER_MOVE, steps, dir );
@@ -196,7 +196,7 @@ void BehemothCommand( uint behemothId, string cmd )
         }
         else if( _IsCmdPatrol( firstKeyWord ) )
         {
-            // óêàçûâàåòñÿ ðàäèóñ, íî íå áîëüøå 10 ãåêñîâ, â ïðåäåëàõ êîòîðîãî ðîáîò ïåðåäàåò ïî ðàäèî íèêè âñåõ èãðîêîâ, êîãî âñòðå÷àåò
+            // ÑƒÐºÐ°Ð·Ñ‹Ð²Ð°ÐµÑ‚ÑÑ Ñ€Ð°Ð´Ð¸ÑƒÑ, Ð½Ð¾ Ð½Ðµ Ð±Ð¾Ð»ÑŒÑˆÐµ 10 Ð³ÐµÐºÑÐ¾Ð², Ð² Ð¿Ñ€ÐµÐ´ÐµÐ»Ð°Ñ… ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð³Ð¾ Ñ€Ð¾Ð±Ð¾Ñ‚ Ð¿ÐµÑ€ÐµÐ´Ð°ÐµÑ‚ Ð¿Ð¾ Ñ€Ð°Ð´Ð¸Ð¾ Ð½Ð¸ÐºÐ¸ Ð²ÑÐµÑ… Ð¸Ð³Ñ€Ð¾ÐºÐ¾Ð², ÐºÐ¾Ð³Ð¾ Ð²ÑÑ‚Ñ€ÐµÑ‡Ð°ÐµÑ‚
             int radius = CLAMP( GetIntValue( valuesStr, 2, 0 ), 0, 30 );
             SetOrder( behemothId, TYPE_ORDER_PATROL, radius, 0 );
             RunOrder( behemothId, TYPE_ORDER_PATROL );
@@ -292,7 +292,7 @@ void RunOrder( uint crId, uint orderType )
 }
 
 
-// Ñêðèïò áåãåìîòà
+// Ð¡ÐºÑ€Ð¸Ð¿Ñ‚ Ð±ÐµÐ³ÐµÐ¼Ð¾Ñ‚Ð°
 void _BehemothInit( Critter& cr, bool firstTime )
 {
     RememberBehemoth( cr );
@@ -310,7 +310,7 @@ bool _BehemothOnGlobal( Critter& cr, int type, Item@ car, float& x, float& y, fl
 {
     if( encounterDescriptor != 0 )
     {
-        return false;         // Ýíêàóíòåð
+        return false;         // Ð­Ð½ÐºÐ°ÑƒÐ½Ñ‚ÐµÑ€
     }
     if( _GetOrderType( cr.Id ) == TYPE_ORDER_ROUTE )
     {
@@ -411,7 +411,7 @@ void _BehemothSmthDead( Critter& cr, Critter& fromCr, Critter@ killer )
 bool _BehemothAttacked( Critter& cr, Critter& attacker )
 {
     GameVar@ rpt = GetLocalVar( VAR_LAST_REPORT, cr.Id );
-    string   attackerName = "íåêòî";
+    string   attackerName = "Ð½ÐµÐºÑ‚Ð¾";
     if( valid( rpt ) && rpt < ( __FullSecond - REAL_MINUTE( 1 ) ) )
     {
         if( attacker.IsPlayer() )
@@ -455,7 +455,7 @@ bool _BehemothUseSkillOnMe( Critter& cr, Critter& whoUse, int skill )
     return true;
 }
 
-// Ìàðøðóò/Route
+// ÐœÐ°Ñ€ÑˆÑ€ÑƒÑ‚/Route
 void RunOrderRoute( Critter& cr )
 {
     Map@ map = cr.GetMap();
@@ -478,7 +478,7 @@ void plane_ToGlobal( Critter& cr )
     cr.TransitToGlobal( false );
 }
 
-// Êàìåðà
+// ÐšÐ°Ð¼ÐµÑ€Ð°
 void RunOrderCamera( Critter& cr )
 {
     Map@ map = cr.GetMap();
@@ -507,13 +507,13 @@ uint e_ShowCamera( uint[] @ values )
     return 0;
 }
 
-// Ñîîáùåíèå
+// Ð¡Ð¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ
 void RunOrderMessage( Critter& cr, string message )
 {
     cr.Say( SAY_NORM, message );
 }
 
-// Äâèæåíèå
+// Ð”Ð²Ð¸Ð¶ÐµÐ½Ð¸Ðµ
 void RunOrderMove( Critter& cr )
 {
     Map@ map = cr.GetMap();
@@ -533,7 +533,7 @@ void RunOrderMove( Critter& cr )
     AddWalkPlane( cr, AI_PLANE_WALK_PRIORITY, PLANE_MOVE, __FullSecond, hx, hy, dir, false, 0 );
 }
 
-// Àòàêà
+// ÐÑ‚Ð°ÐºÐ°
 void RunOrderAttack( Critter& cr )
 {
     Map@ map = cr.GetMap();
@@ -552,7 +552,7 @@ void RunOrderAttack( Critter& cr )
     }
 }
 
-// Ïàòðóëü
+// ÐŸÐ°Ñ‚Ñ€ÑƒÐ»ÑŒ
 void RunOrderPatrol( Critter& cr )
 {
     DL( "patrol, radius =" + cr.ShowCritterDist1 );

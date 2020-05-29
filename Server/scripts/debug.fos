@@ -220,7 +220,7 @@ void kill( Critter& player, int param0, int param1, int param2 )
     Critter@ target = GetCritter( param0 );
     if( not valid( target ) )
         return;
-    target.Say( SAY_NETMSG, "Кара небесная поразила вас!" );
+    target.Say( SAY_NETMSG, "РљР°СЂР° РЅРµР±РµСЃРЅР°СЏ РїРѕСЂР°Р·РёР»Р° РІР°СЃ!" );
     target.ToDead( def( param1, ANIM2_DEAD_PULSE_DUST ), player );
     // target.SetTimeout(TO_REPLICATION, 3);
 }
@@ -352,11 +352,11 @@ void ToMapEntire( Critter& player, int mapPid, int entire, int skip )
     }
     else
     {
-        player.Say( SAY_NETMSG, "Карта с pid=" + mapPid + " не найдена" );
+        player.Say( SAY_NETMSG, "РљР°СЂС‚Р° СЃ pid=" + mapPid + " РЅРµ РЅР°Р№РґРµРЅР°" );
     }
 }
 
-// ищет нпц по диалогу на карте указанного прототипа
+// РёС‰РµС‚ РЅРїС† РїРѕ РґРёР°Р»РѕРіСѓ РЅР° РєР°СЂС‚Рµ СѓРєР°Р·Р°РЅРЅРѕРіРѕ РїСЂРѕС‚РѕС‚РёРїР°
 void NpcByDialog( Critter& player, int mapPid, int dialog, int )
 {
     Map@ map = ::GetMapByPid( mapPid, 0 );
@@ -367,7 +367,7 @@ void NpcByDialog( Critter& player, int mapPid, int dialog, int )
         if( map.GetCritters( 0, FIND_ALL | FIND_ONLY_NPC, npc ) == 0 )
         {
 
-            player.Say( SAY_NETMSG, "не найдено нпц с таким диалогом" );
+            player.Say( SAY_NETMSG, "РЅРµ РЅР°Р№РґРµРЅРѕ РЅРїС† СЃ С‚Р°РєРёРј РґРёР°Р»РѕРіРѕРј" );
 
         }
         else
@@ -382,7 +382,7 @@ void NpcByDialog( Critter& player, int mapPid, int dialog, int )
                     idF = ( idF == 0 ? npc[ i ].Id : idF );
                 }
             }
-            player.Say( SAY_NETMSG, "Найдено нпц, в штуках:" + l + " Id первого:" + idF );
+            player.Say( SAY_NETMSG, "РќР°Р№РґРµРЅРѕ РЅРїС†, РІ С€С‚СѓРєР°С…:" + l + " Id РїРµСЂРІРѕРіРѕ:" + idF );
         }
     }
 
@@ -400,7 +400,7 @@ void Siren( Critter& cr, int, int, int )
     Map @ map = cr.GetMap();
     if( !valid( map ) )
     {
-        cr.Say( SAY_NETMSG, "Невозможно проиграть звук на глобальной карте" );
+        cr.Say( SAY_NETMSG, "РќРµРІРѕР·РјРѕР¶РЅРѕ РїСЂРѕРёРіСЂР°С‚СЊ Р·РІСѓРє РЅР° РіР»РѕР±Р°Р»СЊРЅРѕР№ РєР°СЂС‚Рµ" );
         return;
     }
     map.PlaySound( "AIRSIREN.OGG" );

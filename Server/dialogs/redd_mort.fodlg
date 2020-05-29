@@ -35,62 +35,62 @@ lang=russ engl
 0 11010r*var p q_chosen = 2&
 
 [russ]
-{100}{}{Морт}
-{1000}{}{Преддиалоговые установки}
-{1010}{}{не знаком}
-{1020}{}{знаком}
-{2000}{}{Рад приветствовать нового клиента! Что будем брать, из дерева или камня? Если мертвец был сильно облучен, могу предложить специальный вариант, обшитый изнутри свинцом.}
-{2010}{}{Меня интересует ваш прошлый заказ. Скажите, вы когда-нибудь хоронили собаку?}
-{2020}{}{Ой, я, кажется, не туда зашёл! [Уйти]}
-{3000}{}{Приветствую Вас. Вам, наконец, понадобился гроб?}
-{3010}{}{Спасибо хаббологам, нет.}
-{3020}{}{Вот твои лопаты, а теперь рассказывай все, что знаешь!}
-{4000}{}{[Гробовщик заметно занервничал] Какая такая собака? Вы что, из санитарной службы Города-Убежище? У меня все документы в порядке, хороню кого закажут!}
-{4010}{}{Нет, что вы, это мой личный интерес! Вы ведь знаете что-то об этом?}
-{4020}{}{Да, я оттуда! Говори или сам ляжешь в одно из своих изделий!}
-{4030}{}{Успокойтесь, я просто хочу знать, не приходил ли кто-то навестить «Догмита»!}
-{5000}{}{Хорошо-хорошо! [Натянуто улыбается] Есть у меня необычная могилка. Ещё мой папаша за ней ухаживал, и мне передал, будь он неладен. Говорил, что хороший человек попросил, хоть и кладбище наше для людей, ну, в общем, только вам по секрету: там действительно покоится чей-то пёс!}
-{5010}{}{Так-то лучше! Вот, значит, говорите, где собака зарыта... А не помните случайно или папаня ваш не рассказывал — заходил кто навестить собачку-то?}
-{6000}{}{Ага! Прям щас! [Смеется] А знаешь что? У меня лопат не хватает. Принеси пару штук -  расскажу что знаю. А пока проваливай!}
-{6010}{}{Эх, кентавр с тобой! [Уходя Вы думаете, что работа гробовщика явно накладывает отпечаток на моральный облик человека]}
-{7000}{}{Захаживал один! В синем костюме, ещё с цифрами какими-то на спине. Одним словом, клоун какой-то.}
-{7010}{}{Отлично! Наверное, давно это было, может, ещё что-то припомните?}
-{8000}{}{Почему-то я вам верю. Есть у меня необычная могилка. Ещё мой папаша за ней ухаживал, и мне передал, будь он неладен. Говорил, что хороший человек попросил, хоть и кладбище нашел для людей, ну в общем только вам по секрету: там действительно покоится чей-то пёс!}
-{8010}{}{Так-то лучше! Вот, значит, говорите, где собака зарыта... А не помните случайно или папаня ваш не рассказывал — заходил кто навестить собачку-то?}
-{9000}{}{Да нет же! Совсем недавно заходил! Тоже выспрашивал, ходил вокруг да около. Несколько недель назад был в нашем городе, а потом вместе с караваном каким-то отправился.}
-{9010}{}{Надеюсь, Избранный ещё жив. Опиши, как он выглядел?}
-{10000}{}{Не знаю я никакого Избранного! Выглядел как обычный человек: две руки, две ноги. Вижу, ты тоже какой-то странный, наверное, это заразно, иди лучше в бар, выпей чего-нибудь покрепче и проспись! Я больше ничего не знаю. [Гробовщик выпроваживает вас за дверь]}
-{10010}{}{[Уйти]}
-{11000}{}{С тобой приятно иметь дело! Знаю, что несколько недель назад заходил какой-то странный тип в синем костюме с номером, выспрашивал про могилу, а потом ушел с одним из караванов. Все, теперь проваливай, если заказ делать не собираешься!}
-{11010}{}{[Уйти]}
+{100}{}{РњРѕСЂС‚}
+{1000}{}{РџСЂРµРґРґРёР°Р»РѕРіРѕРІС‹Рµ СѓСЃС‚Р°РЅРѕРІРєРё}
+{1010}{}{РЅРµ Р·РЅР°РєРѕРј}
+{1020}{}{Р·РЅР°РєРѕРј}
+{2000}{}{Р Р°Рґ РїСЂРёРІРµС‚СЃС‚РІРѕРІР°С‚СЊ РЅРѕРІРѕРіРѕ РєР»РёРµРЅС‚Р°! Р§С‚Рѕ Р±СѓРґРµРј Р±СЂР°С‚СЊ, РёР· РґРµСЂРµРІР° РёР»Рё РєР°РјРЅСЏ? Р•СЃР»Рё РјРµСЂС‚РІРµС† Р±С‹Р» СЃРёР»СЊРЅРѕ РѕР±Р»СѓС‡РµРЅ, РјРѕРіСѓ РїСЂРµРґР»РѕР¶РёС‚СЊ СЃРїРµС†РёР°Р»СЊРЅС‹Р№ РІР°СЂРёР°РЅС‚, РѕР±С€РёС‚С‹Р№ РёР·РЅСѓС‚СЂРё СЃРІРёРЅС†РѕРј.}
+{2010}{}{РњРµРЅСЏ РёРЅС‚РµСЂРµСЃСѓРµС‚ РІР°С€ РїСЂРѕС€Р»С‹Р№ Р·Р°РєР°Р·. РЎРєР°Р¶РёС‚Рµ, РІС‹ РєРѕРіРґР°-РЅРёР±СѓРґСЊ С…РѕСЂРѕРЅРёР»Рё СЃРѕР±Р°РєСѓ?}
+{2020}{}{РћР№, СЏ, РєР°Р¶РµС‚СЃСЏ, РЅРµ С‚СѓРґР° Р·Р°С€С‘Р»! [РЈР№С‚Рё]}
+{3000}{}{РџСЂРёРІРµС‚СЃС‚РІСѓСЋ Р’Р°СЃ. Р’Р°Рј, РЅР°РєРѕРЅРµС†, РїРѕРЅР°РґРѕР±РёР»СЃСЏ РіСЂРѕР±?}
+{3010}{}{РЎРїР°СЃРёР±Рѕ С…Р°Р±Р±РѕР»РѕРіР°Рј, РЅРµС‚.}
+{3020}{}{Р’РѕС‚ С‚РІРѕРё Р»РѕРїР°С‚С‹, Р° С‚РµРїРµСЂСЊ СЂР°СЃСЃРєР°Р·С‹РІР°Р№ РІСЃРµ, С‡С‚Рѕ Р·РЅР°РµС€СЊ!}
+{4000}{}{[Р“СЂРѕР±РѕРІС‰РёРє Р·Р°РјРµС‚РЅРѕ Р·Р°РЅРµСЂРІРЅРёС‡Р°Р»] РљР°РєР°СЏ С‚Р°РєР°СЏ СЃРѕР±Р°РєР°? Р’С‹ С‡С‚Рѕ, РёР· СЃР°РЅРёС‚Р°СЂРЅРѕР№ СЃР»СѓР¶Р±С‹ Р“РѕСЂРѕРґР°-РЈР±РµР¶РёС‰Рµ? РЈ РјРµРЅСЏ РІСЃРµ РґРѕРєСѓРјРµРЅС‚С‹ РІ РїРѕСЂСЏРґРєРµ, С…РѕСЂРѕРЅСЋ РєРѕРіРѕ Р·Р°РєР°Р¶СѓС‚!}
+{4010}{}{РќРµС‚, С‡С‚Рѕ РІС‹, СЌС‚Рѕ РјРѕР№ Р»РёС‡РЅС‹Р№ РёРЅС‚РµСЂРµСЃ! Р’С‹ РІРµРґСЊ Р·РЅР°РµС‚Рµ С‡С‚Рѕ-С‚Рѕ РѕР± СЌС‚РѕРј?}
+{4020}{}{Р”Р°, СЏ РѕС‚С‚СѓРґР°! Р“РѕРІРѕСЂРё РёР»Рё СЃР°Рј Р»СЏР¶РµС€СЊ РІ РѕРґРЅРѕ РёР· СЃРІРѕРёС… РёР·РґРµР»РёР№!}
+{4030}{}{РЈСЃРїРѕРєРѕР№С‚РµСЃСЊ, СЏ РїСЂРѕСЃС‚Рѕ С…РѕС‡Сѓ Р·РЅР°С‚СЊ, РЅРµ РїСЂРёС…РѕРґРёР» Р»Рё РєС‚Рѕ-С‚Рѕ РЅР°РІРµСЃС‚РёС‚СЊ В«Р”РѕРіРјРёС‚Р°В»!}
+{5000}{}{РҐРѕСЂРѕС€Рѕ-С…РѕСЂРѕС€Рѕ! [РќР°С‚СЏРЅСѓС‚Рѕ СѓР»С‹Р±Р°РµС‚СЃСЏ] Р•СЃС‚СЊ Сѓ РјРµРЅСЏ РЅРµРѕР±С‹С‡РЅР°СЏ РјРѕРіРёР»РєР°. Р•С‰С‘ РјРѕР№ РїР°РїР°С€Р° Р·Р° РЅРµР№ СѓС…Р°Р¶РёРІР°Р», Рё РјРЅРµ РїРµСЂРµРґР°Р», Р±СѓРґСЊ РѕРЅ РЅРµР»Р°РґРµРЅ. Р“РѕРІРѕСЂРёР», С‡С‚Рѕ С…РѕСЂРѕС€РёР№ С‡РµР»РѕРІРµРє РїРѕРїСЂРѕСЃРёР», С…РѕС‚СЊ Рё РєР»Р°РґР±РёС‰Рµ РЅР°С€Рµ РґР»СЏ Р»СЋРґРµР№, РЅСѓ, РІ РѕР±С‰РµРј, С‚РѕР»СЊРєРѕ РІР°Рј РїРѕ СЃРµРєСЂРµС‚Сѓ: С‚Р°Рј РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ РїРѕРєРѕРёС‚СЃСЏ С‡РµР№-С‚Рѕ РїС‘СЃ!}
+{5010}{}{РўР°Рє-С‚Рѕ Р»СѓС‡С€Рµ! Р’РѕС‚, Р·РЅР°С‡РёС‚, РіРѕРІРѕСЂРёС‚Рµ, РіРґРµ СЃРѕР±Р°РєР° Р·Р°СЂС‹С‚Р°... Рђ РЅРµ РїРѕРјРЅРёС‚Рµ СЃР»СѓС‡Р°Р№РЅРѕ РёР»Рё РїР°РїР°РЅСЏ РІР°С€ РЅРµ СЂР°СЃСЃРєР°Р·С‹РІР°Р» вЂ” Р·Р°С…РѕРґРёР» РєС‚Рѕ РЅР°РІРµСЃС‚РёС‚СЊ СЃРѕР±Р°С‡РєСѓ-С‚Рѕ?}
+{6000}{}{РђРіР°! РџСЂСЏРј С‰Р°СЃ! [РЎРјРµРµС‚СЃСЏ] Рђ Р·РЅР°РµС€СЊ С‡С‚Рѕ? РЈ РјРµРЅСЏ Р»РѕРїР°С‚ РЅРµ С…РІР°С‚Р°РµС‚. РџСЂРёРЅРµСЃРё РїР°СЂСѓ С€С‚СѓРє -  СЂР°СЃСЃРєР°Р¶Сѓ С‡С‚Рѕ Р·РЅР°СЋ. Рђ РїРѕРєР° РїСЂРѕРІР°Р»РёРІР°Р№!}
+{6010}{}{Р­С…, РєРµРЅС‚Р°РІСЂ СЃ С‚РѕР±РѕР№! [РЈС…РѕРґСЏ Р’С‹ РґСѓРјР°РµС‚Рµ, С‡С‚Рѕ СЂР°Р±РѕС‚Р° РіСЂРѕР±РѕРІС‰РёРєР° СЏРІРЅРѕ РЅР°РєР»Р°РґС‹РІР°РµС‚ РѕС‚РїРµС‡Р°С‚РѕРє РЅР° РјРѕСЂР°Р»СЊРЅС‹Р№ РѕР±Р»РёРє С‡РµР»РѕРІРµРєР°]}
+{7000}{}{Р—Р°С…Р°Р¶РёРІР°Р» РѕРґРёРЅ! Р’ СЃРёРЅРµРј РєРѕСЃС‚СЋРјРµ, РµС‰С‘ СЃ С†РёС„СЂР°РјРё РєР°РєРёРјРё-С‚Рѕ РЅР° СЃРїРёРЅРµ. РћРґРЅРёРј СЃР»РѕРІРѕРј, РєР»РѕСѓРЅ РєР°РєРѕР№-С‚Рѕ.}
+{7010}{}{РћС‚Р»РёС‡РЅРѕ! РќР°РІРµСЂРЅРѕРµ, РґР°РІРЅРѕ СЌС‚Рѕ Р±С‹Р»Рѕ, РјРѕР¶РµС‚, РµС‰С‘ С‡С‚Рѕ-С‚Рѕ РїСЂРёРїРѕРјРЅРёС‚Рµ?}
+{8000}{}{РџРѕС‡РµРјСѓ-С‚Рѕ СЏ РІР°Рј РІРµСЂСЋ. Р•СЃС‚СЊ Сѓ РјРµРЅСЏ РЅРµРѕР±С‹С‡РЅР°СЏ РјРѕРіРёР»РєР°. Р•С‰С‘ РјРѕР№ РїР°РїР°С€Р° Р·Р° РЅРµР№ СѓС…Р°Р¶РёРІР°Р», Рё РјРЅРµ РїРµСЂРµРґР°Р», Р±СѓРґСЊ РѕРЅ РЅРµР»Р°РґРµРЅ. Р“РѕРІРѕСЂРёР», С‡С‚Рѕ С…РѕСЂРѕС€РёР№ С‡РµР»РѕРІРµРє РїРѕРїСЂРѕСЃРёР», С…РѕС‚СЊ Рё РєР»Р°РґР±РёС‰Рµ РЅР°С€РµР» РґР»СЏ Р»СЋРґРµР№, РЅСѓ РІ РѕР±С‰РµРј С‚РѕР»СЊРєРѕ РІР°Рј РїРѕ СЃРµРєСЂРµС‚Сѓ: С‚Р°Рј РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ РїРѕРєРѕРёС‚СЃСЏ С‡РµР№-С‚Рѕ РїС‘СЃ!}
+{8010}{}{РўР°Рє-С‚Рѕ Р»СѓС‡С€Рµ! Р’РѕС‚, Р·РЅР°С‡РёС‚, РіРѕРІРѕСЂРёС‚Рµ, РіРґРµ СЃРѕР±Р°РєР° Р·Р°СЂС‹С‚Р°... Рђ РЅРµ РїРѕРјРЅРёС‚Рµ СЃР»СѓС‡Р°Р№РЅРѕ РёР»Рё РїР°РїР°РЅСЏ РІР°С€ РЅРµ СЂР°СЃСЃРєР°Р·С‹РІР°Р» вЂ” Р·Р°С…РѕРґРёР» РєС‚Рѕ РЅР°РІРµСЃС‚РёС‚СЊ СЃРѕР±Р°С‡РєСѓ-С‚Рѕ?}
+{9000}{}{Р”Р° РЅРµС‚ Р¶Рµ! РЎРѕРІСЃРµРј РЅРµРґР°РІРЅРѕ Р·Р°С…РѕРґРёР»! РўРѕР¶Рµ РІС‹СЃРїСЂР°С€РёРІР°Р», С…РѕРґРёР» РІРѕРєСЂСѓРі РґР° РѕРєРѕР»Рѕ. РќРµСЃРєРѕР»СЊРєРѕ РЅРµРґРµР»СЊ РЅР°Р·Р°Рґ Р±С‹Р» РІ РЅР°С€РµРј РіРѕСЂРѕРґРµ, Р° РїРѕС‚РѕРј РІРјРµСЃС‚Рµ СЃ РєР°СЂР°РІР°РЅРѕРј РєР°РєРёРј-С‚Рѕ РѕС‚РїСЂР°РІРёР»СЃСЏ.}
+{9010}{}{РќР°РґРµСЋСЃСЊ, РР·Р±СЂР°РЅРЅС‹Р№ РµС‰С‘ Р¶РёРІ. РћРїРёС€Рё, РєР°Рє РѕРЅ РІС‹РіР»СЏРґРµР»?}
+{10000}{}{РќРµ Р·РЅР°СЋ СЏ РЅРёРєР°РєРѕРіРѕ РР·Р±СЂР°РЅРЅРѕРіРѕ! Р’С‹РіР»СЏРґРµР» РєР°Рє РѕР±С‹С‡РЅС‹Р№ С‡РµР»РѕРІРµРє: РґРІРµ СЂСѓРєРё, РґРІРµ РЅРѕРіРё. Р’РёР¶Сѓ, С‚С‹ С‚РѕР¶Рµ РєР°РєРѕР№-С‚Рѕ СЃС‚СЂР°РЅРЅС‹Р№, РЅР°РІРµСЂРЅРѕРµ, СЌС‚Рѕ Р·Р°СЂР°Р·РЅРѕ, РёРґРё Р»СѓС‡С€Рµ РІ Р±Р°СЂ, РІС‹РїРµР№ С‡РµРіРѕ-РЅРёР±СѓРґСЊ РїРѕРєСЂРµРїС‡Рµ Рё РїСЂРѕСЃРїРёСЃСЊ! РЇ Р±РѕР»СЊС€Рµ РЅРёС‡РµРіРѕ РЅРµ Р·РЅР°СЋ. [Р“СЂРѕР±РѕРІС‰РёРє РІС‹РїСЂРѕРІР°Р¶РёРІР°РµС‚ РІР°СЃ Р·Р° РґРІРµСЂСЊ]}
+{10010}{}{[РЈР№С‚Рё]}
+{11000}{}{РЎ С‚РѕР±РѕР№ РїСЂРёСЏС‚РЅРѕ РёРјРµС‚СЊ РґРµР»Рѕ! Р—РЅР°СЋ, С‡С‚Рѕ РЅРµСЃРєРѕР»СЊРєРѕ РЅРµРґРµР»СЊ РЅР°Р·Р°Рґ Р·Р°С…РѕРґРёР» РєР°РєРѕР№-С‚Рѕ СЃС‚СЂР°РЅРЅС‹Р№ С‚РёРї РІ СЃРёРЅРµРј РєРѕСЃС‚СЋРјРµ СЃ РЅРѕРјРµСЂРѕРј, РІС‹СЃРїСЂР°С€РёРІР°Р» РїСЂРѕ РјРѕРіРёР»Сѓ, Р° РїРѕС‚РѕРј СѓС€РµР» СЃ РѕРґРЅРёРј РёР· РєР°СЂР°РІР°РЅРѕРІ. Р’СЃРµ, С‚РµРїРµСЂСЊ РїСЂРѕРІР°Р»РёРІР°Р№, РµСЃР»Рё Р·Р°РєР°Р· РґРµР»Р°С‚СЊ РЅРµ СЃРѕР±РёСЂР°РµС€СЊСЃСЏ!}
+{11010}{}{[РЈР№С‚Рё]}
 
 [engl]
 {100}{}{Mort}
 {1000}{}{Initial preferences}
 {1010}{}{not know}
 {1020}{}{know}
-{2000}{}{It’s a pleasure to greet a new client! What are we going to buy, out of wood or stone? If diseased were irradiating badly I can propose special version, trimmed with lead from the inside.}
+{2000}{}{ItвЂ™s a pleasure to greet a new client! What are we going to buy, out of wood or stone? If diseased were irradiating badly I can propose special version, trimmed with lead from the inside.}
 {2010}{}{Im interested in your last order. Tell me, have you ever buried a dog?}
 {2020}{}{Ops, wrong number! [Leave]}
 {3000}{}{Greeting you. You need a coffin at last?}
 {3010}{}{Thanks to hubologists, no.}
 {3020}{}{Here are your shovels, now tell me everything you know!}
-{4000}{}{[Graver become noticeably nervous] Whhhat dog? What are you, from Vault-City health service or what? My documents are all right, I bury who I’ve been ordered to!}
+{4000}{}{[Graver become noticeably nervous] Whhhat dog? What are you, from Vault-City health service or what? My documents are all right, I bury who IвЂ™ve been ordered to!}
 {4010}{}{No, this is only a personal interest! You know something about this, right?}
 {4020}{}{Yes, I am! Now start talking or you gonna lie down in one of your own production!}
 {4030}{}{Come down, I just wanna know did somebody came to visit Dogmeat!}
-{5000}{}{Ok-ok! [Smiles forcedly] I have some unusual grave. Even my dad used to look after it, and handed over to me, amiss with him. He said, that some nice man asked him to, even if this is a graveyard for people, well, I’m gonna tell you a secret: someone’s dog does lies there indeed!}
-{5010}{}{Now that’s better! So, talk where the dog is buried.. Do you remember by any chance or maybe your dad told you, did someone ever visit the dog, huh?}
-{6000}{}{Yeah! Right! [Laughing] You know what? I have a want of shovels. Bring me some – I will tell you what I know. Meanwhile make yourself scarce!}
-{6010}{}{Ah, centaur on your head! [While leaving you thinks that gravamen work definitely has an effect on human’s morale]}
+{5000}{}{Ok-ok! [Smiles forcedly] I have some unusual grave. Even my dad used to look after it, and handed over to me, amiss with him. He said, that some nice man asked him to, even if this is a graveyard for people, well, IвЂ™m gonna tell you a secret: someoneвЂ™s dog does lies there indeed!}
+{5010}{}{Now thatвЂ™s better! So, talk where the dog is buried.. Do you remember by any chance or maybe your dad told you, did someone ever visit the dog, huh?}
+{6000}{}{Yeah! Right! [Laughing] You know what? I have a want of shovels. Bring me some вЂ“ I will tell you what I know. Meanwhile make yourself scarce!}
+{6010}{}{Ah, centaur on your head! [While leaving you thinks that gravamen work definitely has an effect on humanвЂ™s morale]}
 {7000}{}{There was one man! In a blue suit with numbers on his back. In short, some clown.}
 {7010}{}{Great! I must have gone ages since there, do you remember something else?}
-{8000}{}{For some reason I don’t trust you. I have some unusual grave. Even my dad used to look after it, and handed over to me, amiss with him. He said, that some nice man asked him to, even if this is a graveyard for people, well, I’m gonna tell you a secret: someone’s dog does lies there indeed!}
-{8010}{}{Now that’s better! So, talk where the dog is buried.. Do you remember by any chance or maybe your dad told you, did someone ever visit the dog, huh?}
+{8000}{}{For some reason I donвЂ™t trust you. I have some unusual grave. Even my dad used to look after it, and handed over to me, amiss with him. He said, that some nice man asked him to, even if this is a graveyard for people, well, IвЂ™m gonna tell you a secret: someoneвЂ™s dog does lies there indeed!}
+{8010}{}{Now thatвЂ™s better! So, talk where the dog is buried.. Do you remember by any chance or maybe your dad told you, did someone ever visit the dog, huh?}
 {9000}{}{Not at all! He was here not so long ago! Also asked, and beat about the bush. Few weeks ago visited our town and then left with some caravan.}
 {9010}{}{I hope the Chosen One is still alive. Can you describe his appearance?}
-{10000}{}{I don’t know any Chosen One! He looked like a common man: two arms, two legs. As I can see, you are also somewhat strange, it must be infectious, go to the bar, have a booze and slip-over! I don’t know anything. [Graver shows you the door]}
+{10000}{}{I donвЂ™t know any Chosen One! He looked like a common man: two arms, two legs. As I can see, you are also somewhat strange, it must be infectious, go to the bar, have a booze and slip-over! I donвЂ™t know anything. [Graver shows you the door]}
 {10010}{}{[Leave]}
-{11000}{}{It’s a pleasure to have a business with ya! All I know is that some strange guy in blue suit with number was here asked about the grave and then left with some caravan. Now get off if you don’t have the intension to order something!}
+{11000}{}{ItвЂ™s a pleasure to have a business with ya! All I know is that some strange guy in blue suit with number was here asked about the grave and then left with some caravan. Now get off if you donвЂ™t have the intension to order something!}
 {11010}{}{[Leave]}
 

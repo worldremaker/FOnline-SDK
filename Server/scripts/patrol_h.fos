@@ -1,7 +1,7 @@
 // Author: rifleman17
-// Скрипт патрульных для некоей локации
-// используется с помощью #include
-// Перед инклудом необходимо добавить дефайн с определением имени скрипта  #define SCRIPTNAME- требуется в misc-планах
+// РЎРєСЂРёРїС‚ РїР°С‚СЂСѓР»СЊРЅС‹С… РґР»СЏ РЅРµРєРѕРµР№ Р»РѕРєР°С†РёРё
+// РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ СЃ РїРѕРјРѕС‰СЊСЋ #include
+// РџРµСЂРµРґ РёРЅРєР»СѓРґРѕРј РЅРµРѕР±С…РѕРґРёРјРѕ РґРѕР±Р°РІРёС‚СЊ РґРµС„Р°Р№РЅ СЃ РѕРїСЂРµРґРµР»РµРЅРёРµРј РёРјРµРЅРё СЃРєСЂРёРїС‚Р°  #define SCRIPTNAME- С‚СЂРµР±СѓРµС‚СЃСЏ РІ misc-РїР»Р°РЅР°С…
 
 #include "_macros.fos"
 #include "_npc_pids.fos"
@@ -67,10 +67,10 @@ void _PatrollerInit( Critter& cr, bool firstTime )
 
 }
 
-// точка патрулирования
+// С‚РѕС‡РєР° РїР°С‚СЂСѓР»РёСЂРѕРІР°РЅРёСЏ
 class PatrolPoint
 {
-    // конструктор
+    // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
     PatrolPoint( Map & map, uint eHexNum, uint waitMinutes )
     {
         this.MapId = map.Id;
@@ -78,9 +78,9 @@ class PatrolPoint
         this.WaitMinutes = waitMinutes;
     }
 
-    uint EHexNum;     // номер Entire гекса
-    uint WaitMinutes; // время, которое ждет патрульный в данной точке патрулирования
-    uint MapId;       // ид карты, на каторой устроен патруль
+    uint EHexNum;     // РЅРѕРјРµСЂ Entire РіРµРєСЃР°
+    uint WaitMinutes; // РІСЂРµРјСЏ, РєРѕС‚РѕСЂРѕРµ Р¶РґРµС‚ РїР°С‚СЂСѓР»СЊРЅС‹Р№ РІ РґР°РЅРЅРѕР№ С‚РѕС‡РєРµ РїР°С‚СЂСѓР»РёСЂРѕРІР°РЅРёСЏ
+    uint MapId;       // РёРґ РєР°СЂС‚С‹, РЅР° РєР°С‚РѕСЂРѕР№ СѓСЃС‚СЂРѕРµРЅ РїР°С‚СЂСѓР»СЊ
 
     Map @ PatrolMap()
     {
@@ -95,7 +95,7 @@ class PatrolPoint
             return null;
         }
     }
-    // ближайшая свободная точка рядом с гексом патрульной точки
+    // Р±Р»РёР¶Р°Р№С€Р°СЏ СЃРІРѕР±РѕРґРЅР°СЏ С‚РѕС‡РєР° СЂСЏРґРѕРј СЃ РіРµРєСЃРѕРј РїР°С‚СЂСѓР»СЊРЅРѕР№ С‚РѕС‡РєРё
     bool GetNearPatrolPoint( uint& x, uint& y )
     {
         Map @map = GetMap( this.MapId );
@@ -109,7 +109,7 @@ class PatrolPoint
         return result;
     }
 }
-// маршрут патрулирования
+// РјР°СЂС€СЂСѓС‚ РїР°С‚СЂСѓР»РёСЂРѕРІР°РЅРёСЏ
 class PatrolRoute
 {
     PatrolRoute()
@@ -150,10 +150,10 @@ class PatrolInfo
         this.AlivePatrollers = 0;
     }
 
-    PatrolRoute Route;      // маршрут патрулирования
-    Patroller[] Patrollers; // нпц-патрульные
-    uint[] AcceptedPlayers; // игроки, которым разрешено находиться здесь.
-    uint AlivePatrollers;   // число живых патрульных
+    PatrolRoute Route;      // РјР°СЂС€СЂСѓС‚ РїР°С‚СЂСѓР»РёСЂРѕРІР°РЅРёСЏ
+    Patroller[] Patrollers; // РЅРїС†-РїР°С‚СЂСѓР»СЊРЅС‹Рµ
+    uint[] AcceptedPlayers; // РёРіСЂРѕРєРё, РєРѕС‚РѕСЂС‹Рј СЂР°Р·СЂРµС€РµРЅРѕ РЅР°С…РѕРґРёС‚СЊСЃСЏ Р·РґРµСЃСЊ.
+    uint AlivePatrollers;   // С‡РёСЃР»Рѕ Р¶РёРІС‹С… РїР°С‚СЂСѓР»СЊРЅС‹С…
 
     void AddPatroller( uint dialog, uint pid, uint bag, uint team, uint ai, uint lvl )
     {
@@ -268,7 +268,7 @@ class PatrolInfo
                 continue;
             if( !cr.IsLife() )
                 continue;
-            // проверку на совпадение карты можно не делать
+            // РїСЂРѕРІРµСЂРєСѓ РЅР° СЃРѕРІРїР°РґРµРЅРёРµ РєР°СЂС‚С‹ РјРѕР¶РЅРѕ РЅРµ РґРµР»Р°С‚СЊ
             if( GetDistantion( x, y, cr.HexX, cr.HexY ) > MAX_DIST_TOBEGIN_PATROL )
             {
                 if( cr.IsNoPlanes() )
@@ -280,7 +280,7 @@ class PatrolInfo
         return true;
     }
 
-    // криттер = патрульный
+    // РєСЂРёС‚С‚РµСЂ = РїР°С‚СЂСѓР»СЊРЅС‹Р№
     bool IsPatroller( Critter& cr )
     {
         for( uint i = 0; i < this.Patrollers.length(); i++ )
@@ -297,13 +297,13 @@ class PatrolInfo
         {
             if( this.AcceptedPlayers[ i ] == player.Id )
             {
-                return;                // уже записан
+                return;                // СѓР¶Рµ Р·Р°РїРёСЃР°РЅ
             }
         }
         this.AcceptedPlayers.insertLast( player.Id );
     }
 
-    // игроку разрешили тут находиться
+    // РёРіСЂРѕРєСѓ СЂР°Р·СЂРµС€РёР»Рё С‚СѓС‚ РЅР°С…РѕРґРёС‚СЊСЃСЏ
     bool IsPlayerAccepted( Critter& player )
     {
         for( uint i = 0; i < this.AcceptedPlayers.length(); i++ )
@@ -317,9 +317,9 @@ class PatrolInfo
     }
 }
 
-// глоб переменная уровня скрипта
+// РіР»РѕР± РїРµСЂРµРјРµРЅРЅР°СЏ СѓСЂРѕРІРЅСЏ СЃРєСЂРёРїС‚Р°
 PatrolInfo pInfo;
-/* ********************* События патрульных *********************** */
+/* ********************* РЎРѕР±С‹С‚РёСЏ РїР°С‚СЂСѓР»СЊРЅС‹С… *********************** */
 void _ShowCritter1( Critter& cr, Critter& showCrit )
 {
     if( showCrit.IsNpc() )
@@ -414,7 +414,7 @@ void _SmthUseSkill( Critter& cr, Critter& fromCr, int skill, Critter@ onCritter,
     }
 }
 
-// начинается или заканчивается диалог с игроком
+// РЅР°С‡РёРЅР°РµС‚СЃСЏ РёР»Рё Р·Р°РєР°РЅС‡РёРІР°РµС‚СЃСЏ РґРёР°Р»РѕРі СЃ РёРіСЂРѕРєРѕРј
 bool _PatrollerTalk( Critter& cr, Critter& player, bool attach, uint talkCount )
 {
     if( !attach )
@@ -425,12 +425,12 @@ bool _PatrollerTalk( Critter& cr, Critter& player, bool attach, uint talkCount )
             Critter @ pat = GetCritter( pInfo.Patrollers[ i ].Id );
             if( !valid( pat ) )
                 continue;
-            // если хотя бы один патрульный с кем то разговаривает, патруль не идет дальше
+            // РµСЃР»Рё С…РѕС‚СЏ Р±С‹ РѕРґРёРЅ РїР°С‚СЂСѓР»СЊРЅС‹Р№ СЃ РєРµРј С‚Рѕ СЂР°Р·РіРѕРІР°СЂРёРІР°РµС‚, РїР°С‚СЂСѓР»СЊ РЅРµ РёРґРµС‚ РґР°Р»СЊС€Рµ
             if( pat.GetTalkedPlayers( null ) > 0 )
                 return true;
 
         }
-        // все разговоры закончены, следующая точка патрулирования
+        // РІСЃРµ СЂР°Р·РіРѕРІРѕСЂС‹ Р·Р°РєРѕРЅС‡РµРЅС‹, СЃР»РµРґСѓСЋС‰Р°СЏ С‚РѕС‡РєР° РїР°С‚СЂСѓР»РёСЂРѕРІР°РЅРёСЏ
         pInfo.MovePatrol();
     }
     else
@@ -468,7 +468,7 @@ int _PatrollerPlaneBegin( Critter& cr, NpcPlane& plane, int reason, Critter@ som
                     }
                 }
 
-                DL( "план добавлен" );
+                DL( "РїР»Р°РЅ РґРѕР±Р°РІР»РµРЅ" );
                 if( !hasTarger )
                     AddAttackPlane( pat, AI_PLANE_ATTACK_PRIORITY + 1, target, false );
             }
@@ -512,5 +512,5 @@ int _PatrollerPlaneEnd( Critter& cr, NpcPlane& plane, int reason, Critter@ someC
     return PLANE_RUN_GLOBAL;
 }
 
-/* *Диалоги. Помните - нужно указывать имя своего скрипта, в котором
-   включен файл patrol_h, а не самого хидера */
+/* *Р”РёР°Р»РѕРіРё. РџРѕРјРЅРёС‚Рµ - РЅСѓР¶РЅРѕ СѓРєР°Р·С‹РІР°С‚СЊ РёРјСЏ СЃРІРѕРµРіРѕ СЃРєСЂРёРїС‚Р°, РІ РєРѕС‚РѕСЂРѕРј
+   РІРєР»СЋС‡РµРЅ С„Р°Р№Р» patrol_h, Р° РЅРµ СЃР°РјРѕРіРѕ С…РёРґРµСЂР° */

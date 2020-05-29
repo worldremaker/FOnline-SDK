@@ -3,7 +3,7 @@
 /*
    rifleman17
 
-   Шаблоны поведения НПЦ: снайпер, терминатор, медик, слеер
+   РЁР°Р±Р»РѕРЅС‹ РїРѕРІРµРґРµРЅРёСЏ РќРџР¦: СЃРЅР°Р№РїРµСЂ, С‚РµСЂРјРёРЅР°С‚РѕСЂ, РјРµРґРёРє, СЃР»РµРµСЂ
  */
 
 import void SetSniperStats( Critter& cr, uint8 lvl ) from "pattern_sniper";
@@ -14,12 +14,12 @@ import void SetTermStats( Critter& cr, uint8 lvl )   from "pattern_term";
 #define NPCROLE_SNIPER1    ( 21 )
 #define NPCROLE_SNIPER2    ( 22 )
 #define NPCROLE_SNIPER3    ( 23 )
-#define NPCROLE_SNIPER4    ( 24 )                               // Самый крутой
+#define NPCROLE_SNIPER4    ( 24 )                               // РЎР°РјС‹Р№ РєСЂСѓС‚РѕР№
 #define NPCROLE_TERM1      ( 31 )
 #define NPCROLE_TERM2      ( 32 )
 #define NPCROLE_TERM3      ( 33 )
 #define NPCROLE_TERM4      ( 34 )
-#define NPCROLE_TERM5      ( 35 )                               // Самый прокачаный терм
+#define NPCROLE_TERM5      ( 35 )                               // РЎР°РјС‹Р№ РїСЂРѕРєР°С‡Р°РЅС‹Р№ С‚РµСЂРј
 #define NPCROLE_MEDIC1     ( 41 )
 #define NPCROLE_MEDIC2     ( 42 )
 #define NPCROLE_MEDIC3     ( 43 )
@@ -31,7 +31,7 @@ import void SetTermStats( Critter& cr, uint8 lvl )   from "pattern_term";
 #define NPCROLE_SLAYER4    ( 54 )
 #define NPCROLE_SLAYER5    ( 55 )
 
-// установить шаблон можно с помощью роли нпц
+// СѓСЃС‚Р°РЅРѕРІРёС‚СЊ С€Р°Р±Р»РѕРЅ РјРѕР¶РЅРѕ СЃ РїРѕРјРѕС‰СЊСЋ СЂРѕР»Рё РЅРїС†
 void _PatternInit( Critter& cr, bool firstTime )
 {
     switch( cr.Stat[ ST_NPC_ROLE ] )

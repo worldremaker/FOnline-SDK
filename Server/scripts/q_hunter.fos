@@ -1,5 +1,5 @@
 // Author: rifleman17
-// Квесты цепочки "Лучший охотник Пустоши."
+// РљРІРµСЃС‚С‹ С†РµРїРѕС‡РєРё "Р›СѓС‡С€РёР№ РѕС…РѕС‚РЅРёРє РџСѓСЃС‚РѕС€Рё."
 
 #include "_colors.fos"
 #include "_macros.fos"
@@ -18,7 +18,7 @@ import bool AddAttackPlane( Critter& npc, uint priority, Critter& target ) from 
 // #define DL            # (s) ( Log( "" + s ) )
 #define DL            # ( s )
 
-// Часть первая: Тестовое задание
+// Р§Р°СЃС‚СЊ РїРµСЂРІР°СЏ: РўРµСЃС‚РѕРІРѕРµ Р·Р°РґР°РЅРёРµ
 
 void dlg_Colorize( Critter& player, Critter@ npc, string@ lexems )
 {
@@ -76,7 +76,7 @@ uint cte_Comment( Critter& cr, int identifier, uint& rate )
 
 import void _TraderInit( Critter& trader, bool firstTime ) from "trader";
 
-// Скрипт торговли для Хьюза
+// РЎРєСЂРёРїС‚ С‚РѕСЂРіРѕРІР»Рё РґР»СЏ РҐСЊСЋР·Р°
 void _HoughInit( Critter& cr, bool firstTime )
 {
     _TraderInit( cr, firstTime );
@@ -115,8 +115,8 @@ bool _HoughBarter( Critter& cr, Critter& barterCr, bool attach, uint barterCount
     if( attach )
     {
         uint[] values = { cr.Id };
-        // Сюда добавить добавление в инвентарь различных девайсов
-        // 1. Дудка
+        // РЎСЋРґР° РґРѕР±Р°РІРёС‚СЊ РґРѕР±Р°РІР»РµРЅРёРµ РІ РёРЅРІРµРЅС‚Р°СЂСЊ СЂР°Р·Р»РёС‡РЅС‹С… РґРµРІР°Р№СЃРѕРІ
+        // 1. Р”СѓРґРєР°
         Item@ flute =  _CritGetItem( cr, PID_LOURENCE_FLUTE );
         Item@ fluteBarter = _CritGetItem( barterCr, PID_LOURENCE_FLUTE );
         if( !valid( flute ) && !valid( fluteBarter ) )
@@ -130,7 +130,7 @@ bool _HoughBarter( Critter& cr, Critter& barterCr, bool attach, uint barterCount
                     values.insertLast( flute.Id );
             }
         }
-        // 2. Cупертоксин
+        // 2. CСѓРїРµСЂС‚РѕРєСЃРёРЅ
         GameVar@ toxineAccepted = GetLocalVar( LVAR_q_mod_lourence_floater, barterCr.Id );
         if( valid( toxineAccepted ) && toxineAccepted > 0 )
         {
@@ -163,7 +163,7 @@ bool _HoughBarter( Critter& cr, Critter& barterCr, bool attach, uint barterCount
 
         }
 
-        // После всех проверок
+        // РџРѕСЃР»Рµ РІСЃРµС… РїСЂРѕРІРµСЂРѕРє
         if( values.length() > 1 )
             CreateTimeEvent( __FullSecond + REAL_MINUTE( 10 ), "e_DeleteItemsHough", values, false );
     }
@@ -192,7 +192,7 @@ uint e_DeleteItemsHough( uint[] @ values )
     return 0;
 }
 
-// Скрипт лоуренса
+// РЎРєСЂРёРїС‚ Р»РѕСѓСЂРµРЅСЃР°
 void _LourenceInit( Critter& cr, bool firstTime )
 {
     cr.StatBase[ ST_MAX_TALKERS ]        = 1;
@@ -207,7 +207,7 @@ void _LourenceInit( Critter& cr, bool firstTime )
 }
 
 
-// Вертиберд
+// Р’РµСЂС‚РёР±РµСЂРґ
 void _VertiberdInit( Item& item, bool firstTime )
 {
     _CarSetNoLockpick( item );
@@ -229,7 +229,7 @@ bool _VertiberdSkill( Item& item, Critter& cr, int skill )
     return true;
 }
 
-// Ультразвуковой свисток
+// РЈР»СЊС‚СЂР°Р·РІСѓРєРѕРІРѕР№ СЃРІРёСЃС‚РѕРє
 void _FluteInit( Item& item, bool firstTime )
 {
 
@@ -243,9 +243,9 @@ void _FluteInit( Item& item, bool firstTime )
     item.SetEvent( ITEM_EVENT_USE, "_FluteUse" );
 }
 
-#define STR_RAT_CATCHED    ( 27 ) // Вы применили ультразвуковой гипнотизатор на мутировавшую крысу. Теперь ее можно положить себе в рюкзак. Если, конечно, она не очухается.
-#define STR_EMPTY          ( 28 ) // В свистке закончились заряды. При последнем неаккуратном применении прибор был уничтожен.
-#define STR_WRONGRAT       ( 29 ) // Крыса не реагирует на воздействие гипнотизатора. Попробуйте найти менее устойчивый экземпляр, где-нибудь в Пустоши.
+#define STR_RAT_CATCHED    ( 27 ) // Р’С‹ РїСЂРёРјРµРЅРёР»Рё СѓР»СЊС‚СЂР°Р·РІСѓРєРѕРІРѕР№ РіРёРїРЅРѕС‚РёР·Р°С‚РѕСЂ РЅР° РјСѓС‚РёСЂРѕРІР°РІС€СѓСЋ РєСЂС‹СЃСѓ. РўРµРїРµСЂСЊ РµРµ РјРѕР¶РЅРѕ РїРѕР»РѕР¶РёС‚СЊ СЃРµР±Рµ РІ СЂСЋРєР·Р°Рє. Р•СЃР»Рё, РєРѕРЅРµС‡РЅРѕ, РѕРЅР° РЅРµ РѕС‡СѓС…Р°РµС‚СЃСЏ.
+#define STR_EMPTY          ( 28 ) // Р’ СЃРІРёСЃС‚РєРµ Р·Р°РєРѕРЅС‡РёР»РёСЃСЊ Р·Р°СЂСЏРґС‹. РџСЂРё РїРѕСЃР»РµРґРЅРµРј РЅРµР°РєРєСѓСЂР°С‚РЅРѕРј РїСЂРёРјРµРЅРµРЅРёРё РїСЂРёР±РѕСЂ Р±С‹Р» СѓРЅРёС‡С‚РѕР¶РµРЅ.
+#define STR_WRONGRAT       ( 29 ) // РљСЂС‹СЃР° РЅРµ СЂРµР°РіРёСЂСѓРµС‚ РЅР° РІРѕР·РґРµР№СЃС‚РІРёРµ РіРёРїРЅРѕС‚РёР·Р°С‚РѕСЂР°. РџРѕРїСЂРѕР±СѓР№С‚Рµ РЅР°Р№С‚Рё РјРµРЅРµРµ СѓСЃС‚РѕР№С‡РёРІС‹Р№ СЌРєР·РµРјРїР»СЏСЂ, РіРґРµ-РЅРёР±СѓРґСЊ РІ РџСѓСЃС‚РѕС€Рё.
 
 bool _FluteUse( Item& item, Critter& cr, Critter@ onCritter, Item@ onItem, Scenery@ onScenery )
 {
@@ -290,7 +290,7 @@ bool _FluteUse( Item& item, Critter& cr, Critter@ onCritter, Item@ onItem, Scene
     return false;
 }
 
-// Диалоги, установка переменных, отвечающих за частоту появления разных предметов в инвентаре Хьюза
+// Р”РёР°Р»РѕРіРё, СѓСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРјРµРЅРЅС‹С…, РѕС‚РІРµС‡Р°СЋС‰РёС… Р·Р° С‡Р°СЃС‚РѕС‚Сѓ РїРѕСЏРІР»РµРЅРёСЏ СЂР°Р·РЅС‹С… РїСЂРµРґРјРµС‚РѕРІ РІ РёРЅРІРµРЅС‚Р°СЂРµ РҐСЊСЋР·Р°
 void r_SetTO( Critter& player, Critter@ npc, int timeoutNum, int realHours )
 {
     GameVar@ to = GetLocalVar( timeoutNum, player.Id );
@@ -299,7 +299,7 @@ void r_SetTO( Critter& player, Critter@ npc, int timeoutNum, int realHours )
     DL( "" + ( __FullSecond + REAL_HOUR( realHours ) ) );
 }
 
-// Сдача крыс лоуренсу при выполнении квеста "пляши под мою дудку"
+// РЎРґР°С‡Р° РєСЂС‹СЃ Р»РѕСѓСЂРµРЅСЃСѓ РїСЂРё РІС‹РїРѕР»РЅРµРЅРёРё РєРІРµСЃС‚Р° "РїР»СЏС€Рё РїРѕРґ РјРѕСЋ РґСѓРґРєСѓ"
 void r_AwakeRats( Critter& cr, Critter@ npc )
 {
     if( valid( npc ) && npc.IsNoPlanes() )
@@ -332,11 +332,11 @@ uint cte_Comment1( Critter& cr, int identifier, uint& rate )
     return 0;
 }
 
-// Приманка лоуренса
+// РџСЂРёРјР°РЅРєР° Р»РѕСѓСЂРµРЅСЃР°
 
-#define STR_WRONG_PLACE    ( 33 )  // Неудачно выбрано место для использования приманки.
-#define STR_SUCCESS        ( 34 )  // Вы открываете крышку и у вас кружится голова от ужасной вони. Вы выливаете содержимое банки на свою одежду. Теперь остается только ждать, пока появятся крысы.
-#define STR_FOO            ( 35 )  // Фу!!! Чем это от тебя воняет, @lex name@@??!!@@Ну и вонища!!!@@Проклятье! @lex name@!! Отойди от меня на другую сторону улицы. Или лучше вали куда подальше!@@Дерьмо! Кто-то навалил в штаны?@@Буэ... Меня сейчас вырвет! @lex name@, пошел вон!@@Что это за ужасный запах?!@@Что это за невыносимая вонь?@@*Зажимает ноздри пальцами*@@Уберите это дерьмо от меня!!
+#define STR_WRONG_PLACE    ( 33 )  // РќРµСѓРґР°С‡РЅРѕ РІС‹Р±СЂР°РЅРѕ РјРµСЃС‚Рѕ РґР»СЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РїСЂРёРјР°РЅРєРё.
+#define STR_SUCCESS        ( 34 )  // Р’С‹ РѕС‚РєСЂС‹РІР°РµС‚Рµ РєСЂС‹С€РєСѓ Рё Сѓ РІР°СЃ РєСЂСѓР¶РёС‚СЃСЏ РіРѕР»РѕРІР° РѕС‚ СѓР¶Р°СЃРЅРѕР№ РІРѕРЅРё. Р’С‹ РІС‹Р»РёРІР°РµС‚Рµ СЃРѕРґРµСЂР¶РёРјРѕРµ Р±Р°РЅРєРё РЅР° СЃРІРѕСЋ РѕРґРµР¶РґСѓ. РўРµРїРµСЂСЊ РѕСЃС‚Р°РµС‚СЃСЏ С‚РѕР»СЊРєРѕ Р¶РґР°С‚СЊ, РїРѕРєР° РїРѕСЏРІСЏС‚СЃСЏ РєСЂС‹СЃС‹.
+#define STR_FOO            ( 35 )  // Р¤Сѓ!!! Р§РµРј СЌС‚Рѕ РѕС‚ С‚РµР±СЏ РІРѕРЅСЏРµС‚, @lex name@@??!!@@РќСѓ Рё РІРѕРЅРёС‰Р°!!!@@РџСЂРѕРєР»СЏС‚СЊРµ! @lex name@!! РћС‚РѕР№РґРё РѕС‚ РјРµРЅСЏ РЅР° РґСЂСѓРіСѓСЋ СЃС‚РѕСЂРѕРЅСѓ СѓР»РёС†С‹. РР»Рё Р»СѓС‡С€Рµ РІР°Р»Рё РєСѓРґР° РїРѕРґР°Р»СЊС€Рµ!@@Р”РµСЂСЊРјРѕ! РљС‚Рѕ-С‚Рѕ РЅР°РІР°Р»РёР» РІ С€С‚Р°РЅС‹?@@Р‘СѓСЌ... РњРµРЅСЏ СЃРµР№С‡Р°СЃ РІС‹СЂРІРµС‚! @lex name@, РїРѕС€РµР» РІРѕРЅ!@@Р§С‚Рѕ СЌС‚Рѕ Р·Р° СѓР¶Р°СЃРЅС‹Р№ Р·Р°РїР°С…?!@@Р§С‚Рѕ СЌС‚Рѕ Р·Р° РЅРµРІС‹РЅРѕСЃРёРјР°СЏ РІРѕРЅСЊ?@@*Р—Р°Р¶РёРјР°РµС‚ РЅРѕР·РґСЂРё РїР°Р»СЊС†Р°РјРё*@@РЈР±РµСЂРёС‚Рµ СЌС‚Рѕ РґРµСЂСЊРјРѕ РѕС‚ РјРµРЅСЏ!!
 #define ENTIRE_SPAWN       ( 17 )
 #define ENTIRE_MOVETO      ( 18 )
 

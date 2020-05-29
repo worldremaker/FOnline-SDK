@@ -1,7 +1,7 @@
 #include "_macros.fos"
 
 #define RESET_ANYDATA_AFTER    ( 60 * 60 )
-// Работает только для карт в одном экземпляре
+// Р Р°Р±РѕС‚Р°РµС‚ С‚РѕР»СЊРєРѕ РґР»СЏ РєР°СЂС‚ РІ РѕРґРЅРѕРј СЌРєР·РµРјРїР»СЏСЂРµ
 void ShowElevator( Critter& player, uint8 elevatorType, uint[] mapPids, uint entireNum )
 {
     player.Wait( 0 );
@@ -9,7 +9,7 @@ void ShowElevator( Critter& player, uint8 elevatorType, uint[] mapPids, uint ent
     if( !valid( playerMap ) )
         return;
     uint mPid = playerMap.GetProtoId();
-    uint curLevel = 0;     // Этаж, на котором находится игрок
+    uint curLevel = 0;     // Р­С‚Р°Р¶, РЅР° РєРѕС‚РѕСЂРѕРј РЅР°С…РѕРґРёС‚СЃСЏ РёРіСЂРѕРє
     switch( elevatorType )
     {
     case 0:
@@ -39,9 +39,9 @@ void ShowElevator( Critter& player, uint8 elevatorType, uint[] mapPids, uint ent
         }
         data.insertLast( mapPids[ i ] );
     }
-    // cохраняем описание лифта в anydata
+    // cРѕС…СЂР°РЅСЏРµРј РѕРїРёСЃР°РЅРёРµ Р»РёС„С‚Р° РІ anydata
     SetAnyData( AnyDataKey( player.Id, playerMap.Id ), data );
-    // добавляем событие очистки  AnyData (если игрок так и не воспользовался лифтом)
+    // РґРѕР±Р°РІР»СЏРµРј СЃРѕР±С‹С‚РёРµ РѕС‡РёСЃС‚РєРё  AnyData (РµСЃР»Рё РёРіСЂРѕРє С‚Р°Рє Рё РЅРµ РІРѕСЃРїРѕР»СЊР·РѕРІР°Р»СЃСЏ Р»РёС„С‚РѕРј)
     uint[] values = { player.Id, playerMap.Id };
     CreateTimeEvent( __FullSecond + RESET_ANYDATA_AFTER, "e_ResetAnyData", values, true );
     player.ShowScreen( SCREEN_ELEVATOR, ELEVATOR_X( elevatorType, curLevel ), "answer_SelectLevel" );

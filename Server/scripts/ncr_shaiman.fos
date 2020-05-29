@@ -1,25 +1,25 @@
 #include "_macros.fos"
 #include "_msgstr.fos"
 
-#define NOP_INFO             ( 2 )                                          // смещение, по которому хранится описание и заголовок предмета "нота протеста"
-#define BOSA_INFO            ( 2 )                                          // смещение, по которому хранится описание предемета "кейс с ответом братства"
+#define NOP_INFO             ( 2 )                                          // СЃРјРµС‰РµРЅРёРµ, РїРѕ РєРѕС‚РѕСЂРѕРјСѓ С…СЂР°РЅРёС‚СЃСЏ РѕРїРёСЃР°РЅРёРµ Рё Р·Р°РіРѕР»РѕРІРѕРє РїСЂРµРґРјРµС‚Р° "РЅРѕС‚Р° РїСЂРѕС‚РµСЃС‚Р°"
+#define BOSA_INFO            ( 2 )                                          // СЃРјРµС‰РµРЅРёРµ, РїРѕ РєРѕС‚РѕСЂРѕРјСѓ С…СЂР°РЅРёС‚СЃСЏ РѕРїРёСЃР°РЅРёРµ РїСЂРµРґРµРјРµС‚Р° "РєРµР№СЃ СЃ РѕС‚РІРµС‚РѕРј Р±СЂР°С‚СЃС‚РІР°"
 
-#define LOCKPICK_NEEDED      ( 150 )                                        // скил отмычек, необходимый чтобы открыть сейф
-#define MAX_RANDOM           ( 15 )                                         // верхний предел рандомайзера при определении шанса "открыл нет"
+#define LOCKPICK_NEEDED      ( 150 )                                        // СЃРєРёР» РѕС‚РјС‹С‡РµРє, РЅРµРѕР±С…РѕРґРёРјС‹Р№ С‡С‚РѕР±С‹ РѕС‚РєСЂС‹С‚СЊ СЃРµР№С„
+#define MAX_RANDOM           ( 15 )                                         // РІРµСЂС…РЅРёР№ РїСЂРµРґРµР» СЂР°РЅРґРѕРјР°Р№Р·РµСЂР° РїСЂРё РѕРїСЂРµРґРµР»РµРЅРёРё С€Р°РЅСЃР° "РѕС‚РєСЂС‹Р» РЅРµС‚"
 
-#define STR_FAIL_LOCKPICK    ( 2960 )                                       // текст для чата при провале взлома
-#define STR_SUCC_LOCKPICK    ( 2961 )                                       // текст для чата при успешном взломе кейса
+#define STR_FAIL_LOCKPICK    ( 2960 )                                       // С‚РµРєСЃС‚ РґР»СЏ С‡Р°С‚Р° РїСЂРё РїСЂРѕРІР°Р»Рµ РІР·Р»РѕРјР°
+#define STR_SUCC_LOCKPICK    ( 2961 )                                       // С‚РµРєСЃС‚ РґР»СЏ С‡Р°С‚Р° РїСЂРё СѓСЃРїРµС€РЅРѕРј РІР·Р»РѕРјРµ РєРµР№СЃР°
 
-#define HOLO_INFO_NUM        ( 54 )                                         // номер записи в FOHOLO для сохранения в архив игроку текста "письма паладинов" при взломе сейфа.
+#define HOLO_INFO_NUM        ( 54 )                                         // РЅРѕРјРµСЂ Р·Р°РїРёСЃРё РІ FOHOLO РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ РІ Р°СЂС…РёРІ РёРіСЂРѕРєСѓ С‚РµРєСЃС‚Р° "РїРёСЃСЊРјР° РїР°Р»Р°РґРёРЅРѕРІ" РїСЂРё РІР·Р»РѕРјРµ СЃРµР№С„Р°.
 
-#define BOS_SEARCH_RADIUS    ( 20 )                                         // радиус поиска дружественных нпц, которые подключаются к разговору
+#define BOS_SEARCH_RADIUS    ( 20 )                                         // СЂР°РґРёСѓСЃ РїРѕРёСЃРєР° РґСЂСѓР¶РµСЃС‚РІРµРЅРЅС‹С… РЅРїС†, РєРѕС‚РѕСЂС‹Рµ РїРѕРґРєР»СЋС‡Р°СЋС‚СЃСЏ Рє СЂР°Р·РіРѕРІРѕСЂСѓ
 
-#define STR_FIRST_CONF       ( 6 )                                          // первая строка разговора Братьев стали при написании письма
-#define STR_LAST_CONF        ( 22 )                                         // последняя строка
+#define STR_FIRST_CONF       ( 6 )                                          // РїРµСЂРІР°СЏ СЃС‚СЂРѕРєР° СЂР°Р·РіРѕРІРѕСЂР° Р‘СЂР°С‚СЊРµРІ СЃС‚Р°Р»Рё РїСЂРё РЅР°РїРёСЃР°РЅРёРё РїРёСЃСЊРјР°
+#define STR_LAST_CONF        ( 22 )                                         // РїРѕСЃР»РµРґРЅСЏСЏ СЃС‚СЂРѕРєР°
 
-#define BOS_COME_PRIORITY    ( 41 )                                         // приоритет плана "подойти к главному"
-#define BOS_WAIT_PRIORITY    ( 40 )                                         // приоритет плана "подождать у главного к главному"
-// NoteOfProtest - игроку выдается нота протеста, которую нужно отнести в убежище 15
+#define BOS_COME_PRIORITY    ( 41 )                                         // РїСЂРёРѕСЂРёС‚РµС‚ РїР»Р°РЅР° "РїРѕРґРѕР№С‚Рё Рє РіР»Р°РІРЅРѕРјСѓ"
+#define BOS_WAIT_PRIORITY    ( 40 )                                         // РїСЂРёРѕСЂРёС‚РµС‚ РїР»Р°РЅР° "РїРѕРґРѕР¶РґР°С‚СЊ Сѓ РіР»Р°РІРЅРѕРіРѕ Рє РіР»Р°РІРЅРѕРјСѓ"
+// NoteOfProtest - РёРіСЂРѕРєСѓ РІС‹РґР°РµС‚СЃСЏ РЅРѕС‚Р° РїСЂРѕС‚РµСЃС‚Р°, РєРѕС‚РѕСЂСѓСЋ РЅСѓР¶РЅРѕ РѕС‚РЅРµСЃС‚Рё РІ СѓР±РµР¶РёС‰Рµ 15
 
 
 import bool GetFreeHex( Map& map, uint radius, uint16& hx, uint16& hy ) from "caravan";
@@ -49,11 +49,11 @@ void _BOSAnswerInit( Item& item, bool firstTime )
     item.SetEvent( ITEM_EVENT_SKILL, "e_BOSAnswerSkill" );
     item.Update();
 }
-// комментарий одного из рядом стоящих НПЦ
-// strNum - номер строки с текстом
-// radius - радиус поиска нпц, который скажет реплику
-// sayType - тип разговора, которым будет сказана реплика
-// maxTalkers - максимальное число говорящих нпц
+// РєРѕРјРјРµРЅС‚Р°СЂРёР№ РѕРґРЅРѕРіРѕ РёР· СЂСЏРґРѕРј СЃС‚РѕСЏС‰РёС… РќРџР¦
+// strNum - РЅРѕРјРµСЂ СЃС‚СЂРѕРєРё СЃ С‚РµРєСЃС‚РѕРј
+// radius - СЂР°РґРёСѓСЃ РїРѕРёСЃРєР° РЅРїС†, РєРѕС‚РѕСЂС‹Р№ СЃРєР°Р¶РµС‚ СЂРµРїР»РёРєСѓ
+// sayType - С‚РёРї СЂР°Р·РіРѕРІРѕСЂР°, РєРѕС‚РѕСЂС‹Рј Р±СѓРґРµС‚ СЃРєР°Р·Р°РЅР° СЂРµРїР»РёРєР°
+// maxTalkers - РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ С‡РёСЃР»Рѕ РіРѕРІРѕСЂСЏС‰РёС… РЅРїС†
 void r_NpcCommentT( Critter& player, Critter@ npc, int strNum, int radius, int sayType, int maxTalkers )
 {
     if( !valid( npc ) )
@@ -112,7 +112,7 @@ void r_BeginConference( Critter& player, Critter@ npc )
         return;
     }
     Critter@[] critters;
-    // собираем всех соседних братьев стали
+    // СЃРѕР±РёСЂР°РµРј РІСЃРµС… СЃРѕСЃРµРґРЅРёС… Р±СЂР°С‚СЊРµРІ СЃС‚Р°Р»Рё
     map.GetCrittersHex( npc.HexX, npc.HexY, BOS_SEARCH_RADIUS, FIND_LIFE | FIND_ONLY_NPC, critters );
     uint16 hX = npc.HexX;
     uint16 hY = npc.HexY;
@@ -130,7 +130,7 @@ void r_BeginConference( Critter& player, Critter@ npc )
     AddMiscPlane( npc, BOS_WAIT_PRIORITY, __FullSecond + 4 * 60, "ncr_shaiman@plane_NextWisp" );
 
 }
-// говорим следующую фразу
+// РіРѕРІРѕСЂРёРј СЃР»РµРґСѓСЋС‰СѓСЋ С„СЂР°Р·Сѓ
 void plane_NextWisp( Critter& cr )
 {
     r_NpcCommentT( cr, cr, cr.StatBase[ ST_VAR1 ], BOS_SEARCH_RADIUS, SAY_WHISP_ON_HEAD, 1 );
@@ -205,7 +205,7 @@ bool e_BOSAnswerSkill( Item& item, Critter& cr, int skill )
     else
     {
 
-        return false;        // без подсказок) cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, STR_FAIL_LOCKPICK);
+        return false;        // Р±РµР· РїРѕРґСЃРєР°Р·РѕРє) cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, STR_FAIL_LOCKPICK);
     }
 
 }

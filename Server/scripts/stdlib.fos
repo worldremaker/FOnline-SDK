@@ -215,8 +215,8 @@ Critter@ GetNearCritterWithRole( Map@ map, uint16 hexX, int hexY, uint radius, i
 
 
 /**
-   атаковать игрока
-   Использовать этот тригер для охраны серьезных обьектов не рекомендуеться.
+   Р°С‚Р°РєРѕРІР°С‚СЊ РёРіСЂРѕРєР°
+   РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ СЌС‚РѕС‚ С‚СЂРёРіРµСЂ РґР»СЏ РѕС…СЂР°РЅС‹ СЃРµСЂСЊРµР·РЅС‹С… РѕР±СЊРµРєС‚РѕРІ РЅРµ СЂРµРєРѕРјРµРЅРґСѓРµС‚СЊСЃСЏ.
    param=1
  */
 void Attack( Critter& player, int npcRole )
@@ -232,7 +232,7 @@ void Attack( Critter& player, int npcRole )
 }
 
 /**
-   охрана останавливает атаку
+   РѕС…СЂР°РЅР° РѕСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ Р°С‚Р°РєСѓ
    param=1
  */
 void AttackStop( Critter& player, int npcRole )
@@ -247,7 +247,7 @@ void AttackStop( Critter& player, int npcRole )
         Critter@ npc = map.GetNpc( npcRole, FIND_LIFE_AND_KO | FIND_ONLY_NPC, i );
         planes.resize( 0 );
         uint     count = npc.GetPlanes( planes );
-        // проходимся по списку планов в поисках маркированного плана
+        // РїСЂРѕС…РѕРґРёРјСЃСЏ РїРѕ СЃРїРёСЃРєСѓ РїР»Р°РЅРѕРІ РІ РїРѕРёСЃРєР°С… РјР°СЂРєРёСЂРѕРІР°РЅРЅРѕРіРѕ РїР»Р°РЅР°
         for( uint j = 0; j < count; j++ )
             if( ( planes[ j ].Attack_TargId == player.Id ) and
                 ( planes[ j ].Priority == AI_PLANE_ATTACK_PRIORITY + 1 ) )
@@ -258,8 +258,8 @@ void AttackStop( Critter& player, int npcRole )
 }
 
 /**
-   убивает игрока особой смертью
-   type - тип смерти (COND_DEAD_*)
+   СѓР±РёРІР°РµС‚ РёРіСЂРѕРєР° РѕСЃРѕР±РѕР№ СЃРјРµСЂС‚СЊСЋ
+   type - С‚РёРї СЃРјРµСЂС‚Рё (COND_DEAD_*)
  */
 void Kill( Critter& player, int type )
 {
@@ -271,9 +271,9 @@ void Kill( Critter& player, int type )
 
 
 /**
-   повреждает игрока
-   dmg - сколько
-   type - тип повреждения (DAMAGE_*)
+   РїРѕРІСЂРµР¶РґР°РµС‚ РёРіСЂРѕРєР°
+   dmg - СЃРєРѕР»СЊРєРѕ
+   type - С‚РёРї РїРѕРІСЂРµР¶РґРµРЅРёСЏ (DAMAGE_*)
  */
 void Damage( Critter& player, int dmg, int type, int dir )
 {
@@ -283,12 +283,12 @@ void Damage( Critter& player, int dmg, int type, int dir )
     return;
 }
 
-/** Телепортирует игрока на указанную точке на карте в рамках указанной локации.
+/** РўРµР»РµРїРѕСЂС‚РёСЂСѓРµС‚ РёРіСЂРѕРєР° РЅР° СѓРєР°Р·Р°РЅРЅСѓСЋ С‚РѕС‡РєРµ РЅР° РєР°СЂС‚Рµ РІ СЂР°РјРєР°С… СѓРєР°Р·Р°РЅРЅРѕР№ Р»РѕРєР°С†РёРё.
  *
- * @param  cr           Перемещаемый криттер.
- * @param  locPid       PID локации (см. @b CITY.TXT).
- * @param  mapIndex     Номер карты на локации.
- * @param  entranceNum  Номер точки входа.
+ * @param  cr           РџРµСЂРµРјРµС‰Р°РµРјС‹Р№ РєСЂРёС‚С‚РµСЂ.
+ * @param  locPid       PID Р»РѕРєР°С†РёРё (СЃРј. @b CITY.TXT).
+ * @param  mapIndex     РќРѕРјРµСЂ РєР°СЂС‚С‹ РЅР° Р»РѕРєР°С†РёРё.
+ * @param  entranceNum  РќРѕРјРµСЂ С‚РѕС‡РєРё РІС…РѕРґР°.
  *
  */
 bool TransitToMap( Critter& cr, int locPid, int mapIndex, int entranceNum )
@@ -319,18 +319,18 @@ bool TransitToMap( Critter& cr, int locPid, int mapIndex, int entranceNum )
 
 
 
-// Динамическая награда за квесты
-// base = база расчета опыта в процентах от уровня, от 1 до 25 макс
+// Р”РёРЅР°РјРёС‡РµСЃРєР°СЏ РЅР°РіСЂР°РґР° Р·Р° РєРІРµСЃС‚С‹
+// base = Р±Р°Р·Р° СЂР°СЃС‡РµС‚Р° РѕРїС‹С‚Р° РІ РїСЂРѕС†РµРЅС‚Р°С… РѕС‚ СѓСЂРѕРІРЅСЏ, РѕС‚ 1 РґРѕ 25 РјР°РєСЃ
 void QuestRewardExperience( Critter& cr, uint8 base )
 {
     cr.StatBase[ ST_EXPERIENCE ] += CLAMP( ( cr.Stat[ ST_LEVEL ] * 1000 ) * CLAMP( base, 1, 100 ) / 100, 0, 100000 );
 }
 
-// Устанавливает прирост навыка в зависимости от уровня навыка криттера
+// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РїСЂРёСЂРѕСЃС‚ РЅР°РІС‹РєР° РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ СѓСЂРѕРІРЅСЏ РЅР°РІС‹РєР° РєСЂРёС‚С‚РµСЂР°
 #define STR_SKILL_UP    ( 15 )
 void SkillUp( Critter& player, int skill )
 {
-    uint value = 9;     // Базовый прирост, навык меньше 81
+    uint value = 9;     // Р‘Р°Р·РѕРІС‹Р№ РїСЂРёСЂРѕСЃС‚, РЅР°РІС‹Рє РјРµРЅСЊС€Рµ 81
     if( player.Skill[ skill ] > 80 && player.Skill[ skill ] < 101 )
         value = 7;
     if( player.Skill[ skill ] > 100 )

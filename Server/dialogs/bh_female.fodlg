@@ -1,5 +1,5 @@
 [comment]
-Ваши комментарии / Your comments.
+Р’Р°С€Рё РєРѕРјРјРµРЅС‚Р°СЂРёРё / Your comments.
 
 [data]
 lang=russ engl
@@ -11,12 +11,12 @@ lang=russ engl
 2 2000 NOT_ANSWER_CLOSE_DIALOG 0&
 
 [russ]
-{100}{}{Женщина}
-{200}{}{Вы видите: горожанка.}
-{210}{}{Вы видите жительницу города. Хотя ее одежда не из роскошных, она все равно выглядит гордо и уверенно.}
-{1000}{}{Преддиалоговые установки}
-{1010}{}{Ответ}
-{2000}{}{Бедные люди.@@О, посмотрите-ка, что из пустыни выползло.@@Некоторые мои лучшие друзья -- мутанты и гули.@@Если бы у нас было больше лампочек...@@Чем это воняет?@@Я боюсь, что НКР может попробовать захватить нас.@@Интересно, стоит перебираться в Нью-Рино или поискать другое место?@@Я не имею ничего против мутантов, но они так забавно выглядят...@@Жизнь - сильная штука. А вот Филова рыгаловка, кажется, не очень...@@У моего кота изо рта пахнет кошачьей едой.}
+{100}{}{Р–РµРЅС‰РёРЅР°}
+{200}{}{Р’С‹ РІРёРґРёС‚Рµ: РіРѕСЂРѕР¶Р°РЅРєР°.}
+{210}{}{Р’С‹ РІРёРґРёС‚Рµ Р¶РёС‚РµР»СЊРЅРёС†Сѓ РіРѕСЂРѕРґР°. РҐРѕС‚СЏ РµРµ РѕРґРµР¶РґР° РЅРµ РёР· СЂРѕСЃРєРѕС€РЅС‹С…, РѕРЅР° РІСЃРµ СЂР°РІРЅРѕ РІС‹РіР»СЏРґРёС‚ РіРѕСЂРґРѕ Рё СѓРІРµСЂРµРЅРЅРѕ.}
+{1000}{}{РџСЂРµРґРґРёР°Р»РѕРіРѕРІС‹Рµ СѓСЃС‚Р°РЅРѕРІРєРё}
+{1010}{}{РћС‚РІРµС‚}
+{2000}{}{Р‘РµРґРЅС‹Рµ Р»СЋРґРё.@@Рћ, РїРѕСЃРјРѕС‚СЂРёС‚Рµ-РєР°, С‡С‚Рѕ РёР· РїСѓСЃС‚С‹РЅРё РІС‹РїРѕР»Р·Р»Рѕ.@@РќРµРєРѕС‚РѕСЂС‹Рµ РјРѕРё Р»СѓС‡С€РёРµ РґСЂСѓР·СЊСЏ -- РјСѓС‚Р°РЅС‚С‹ Рё РіСѓР»Рё.@@Р•СЃР»Рё Р±С‹ Сѓ РЅР°СЃ Р±С‹Р»Рѕ Р±РѕР»СЊС€Рµ Р»Р°РјРїРѕС‡РµРє...@@Р§РµРј СЌС‚Рѕ РІРѕРЅСЏРµС‚?@@РЇ Р±РѕСЋСЃСЊ, С‡С‚Рѕ РќРљР  РјРѕР¶РµС‚ РїРѕРїСЂРѕР±РѕРІР°С‚СЊ Р·Р°С…РІР°С‚РёС‚СЊ РЅР°СЃ.@@РРЅС‚РµСЂРµСЃРЅРѕ, СЃС‚РѕРёС‚ РїРµСЂРµР±РёСЂР°С‚СЊСЃСЏ РІ РќСЊСЋ-Р РёРЅРѕ РёР»Рё РїРѕРёСЃРєР°С‚СЊ РґСЂСѓРіРѕРµ РјРµСЃС‚Рѕ?@@РЇ РЅРµ РёРјРµСЋ РЅРёС‡РµРіРѕ РїСЂРѕС‚РёРІ РјСѓС‚Р°РЅС‚РѕРІ, РЅРѕ РѕРЅРё С‚Р°Рє Р·Р°Р±Р°РІРЅРѕ РІС‹РіР»СЏРґСЏС‚...@@Р–РёР·РЅСЊ - СЃРёР»СЊРЅР°СЏ С€С‚СѓРєР°. Рђ РІРѕС‚ Р¤РёР»РѕРІР° СЂС‹РіР°Р»РѕРІРєР°, РєР°Р¶РµС‚СЃСЏ, РЅРµ РѕС‡РµРЅСЊ...@@РЈ РјРѕРµРіРѕ РєРѕС‚Р° РёР·Рѕ СЂС‚Р° РїР°С…РЅРµС‚ РєРѕС€Р°С‡СЊРµР№ РµРґРѕР№.}
 
 [engl]
 {100}{}{Female townsperson}
@@ -24,5 +24,5 @@ lang=russ engl
 {210}{}{You see a female townsperson. Though her clothing is not fine, she seems proud of herself.}
 {1000}{}{Initial preferences}
 {1010}{}{Reply.}
-{2000}{}{Those poor people.@@Well, look what the desert dragged in.@@Some of my best friends are mutants and ghouls...@@I wish we had some more lightbulbs.@@What’s that smell?@@I’m worried that NCR might try to suck us in.@@Do you think New Reno would be a good place to live?@@I don’t have anything against mutants, but they’re so funny looking.@@Life is hard. Phil’s rotgut shouldn’t be.@@I can’t believe that son of a bitch.@@My cat’s breath smells like cat food.}
+{2000}{}{Those poor people.@@Well, look what the desert dragged in.@@Some of my best friends are mutants and ghouls...@@I wish we had some more lightbulbs.@@WhatвЂ™s that smell?@@IвЂ™m worried that NCR might try to suck us in.@@Do you think New Reno would be a good place to live?@@I donвЂ™t have anything against mutants, but theyвЂ™re so funny looking.@@Life is hard. PhilвЂ™s rotgut shouldnвЂ™t be.@@I canвЂ™t believe that son of a bitch.@@My catвЂ™s breath smells like cat food.}
 

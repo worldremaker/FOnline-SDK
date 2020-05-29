@@ -5,22 +5,22 @@
 #include "entire.fos"
 
 
-#define INTRO_WORLD_X              ( 5 )    // координаты расположения стартовой локации на глобале, ось Х
-#define INTRO_WORLD_Y              ( 5 )    // координаты расположения стартовой локации на глобале, ось У
-#define ENTIRE_ENTRANCE1           ( 0 )    // номер Entire-гекса, на котором начинает игрок
-#define ENTIRE_ENTRANCE2           ( 240 )  // номер Entire-гекса, на котором начинает игрок
-#define TRIBAL_INT                 ( 3 )    // максимальный интелект, при котором вместо кожаной куртки у игрока будет скин дикаря
-#define MAINQ_ST_START_COMPLETE    ( 1 )    // Сюжетный квест: игрок вышел со стартовой локации. Используется при проверке, где должен появиться игрок
-#define MAINQ_ST_INTRO_COMPLETE    ( 2 )    // Сюжетный квест: игрок вышел из локации интро.
-#define HOLODISK_INFO_INTRO        ( 43 )   // номер голодиска, выдаваемого в центре репликации по завершению интерлюдии
-#define STR_NOTIFY_HOLODISK        ( 6000 ) // В вашем Пипбое записана важная информация.
+#define INTRO_WORLD_X              ( 5 )    // РєРѕРѕСЂРґРёРЅР°С‚С‹ СЂР°СЃРїРѕР»РѕР¶РµРЅРёСЏ СЃС‚Р°СЂС‚РѕРІРѕР№ Р»РѕРєР°С†РёРё РЅР° РіР»РѕР±Р°Р»Рµ, РѕСЃСЊ РҐ
+#define INTRO_WORLD_Y              ( 5 )    // РєРѕРѕСЂРґРёРЅР°С‚С‹ СЂР°СЃРїРѕР»РѕР¶РµРЅРёСЏ СЃС‚Р°СЂС‚РѕРІРѕР№ Р»РѕРєР°С†РёРё РЅР° РіР»РѕР±Р°Р»Рµ, РѕСЃСЊ РЈ
+#define ENTIRE_ENTRANCE1           ( 0 )    // РЅРѕРјРµСЂ Entire-РіРµРєСЃР°, РЅР° РєРѕС‚РѕСЂРѕРј РЅР°С‡РёРЅР°РµС‚ РёРіСЂРѕРє
+#define ENTIRE_ENTRANCE2           ( 240 )  // РЅРѕРјРµСЂ Entire-РіРµРєСЃР°, РЅР° РєРѕС‚РѕСЂРѕРј РЅР°С‡РёРЅР°РµС‚ РёРіСЂРѕРє
+#define TRIBAL_INT                 ( 3 )    // РјР°РєСЃРёРјР°Р»СЊРЅС‹Р№ РёРЅС‚РµР»РµРєС‚, РїСЂРё РєРѕС‚РѕСЂРѕРј РІРјРµСЃС‚Рѕ РєРѕР¶Р°РЅРѕР№ РєСѓСЂС‚РєРё Сѓ РёРіСЂРѕРєР° Р±СѓРґРµС‚ СЃРєРёРЅ РґРёРєР°СЂСЏ
+#define MAINQ_ST_START_COMPLETE    ( 1 )    // РЎСЋР¶РµС‚РЅС‹Р№ РєРІРµСЃС‚: РёРіСЂРѕРє РІС‹С€РµР» СЃРѕ СЃС‚Р°СЂС‚РѕРІРѕР№ Р»РѕРєР°С†РёРё. РСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РїСЂРё РїСЂРѕРІРµСЂРєРµ, РіРґРµ РґРѕР»Р¶РµРЅ РїРѕСЏРІРёС‚СЊСЃСЏ РёРіСЂРѕРє
+#define MAINQ_ST_INTRO_COMPLETE    ( 2 )    // РЎСЋР¶РµС‚РЅС‹Р№ РєРІРµСЃС‚: РёРіСЂРѕРє РІС‹С€РµР» РёР· Р»РѕРєР°С†РёРё РёРЅС‚СЂРѕ.
+#define HOLODISK_INFO_INTRO        ( 43 )   // РЅРѕРјРµСЂ РіРѕР»РѕРґРёСЃРєР°, РІС‹РґР°РІР°РµРјРѕРіРѕ РІ С†РµРЅС‚СЂРµ СЂРµРїР»РёРєР°С†РёРё РїРѕ Р·Р°РІРµСЂС€РµРЅРёСЋ РёРЅС‚РµСЂР»СЋРґРёРё
+#define STR_NOTIFY_HOLODISK        ( 6000 ) // Р’ РІР°С€РµРј РџРёРїР±РѕРµ Р·Р°РїРёСЃР°РЅР° РІР°Р¶РЅР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ.
 
 // #define DL                         # (s) ( Log( "" + s ) )
 #define DL                         # (s)
 import void ReplicateCritter( Critter& cr )  from "replication";
 import void FlushScreen( Critter& cr, uint fromColor, uint toColor, uint timeMs ) from "effects";
 
-// Статус основного квеста
+// РЎС‚Р°С‚СѓСЃ РѕСЃРЅРѕРІРЅРѕРіРѕ РєРІРµСЃС‚Р°
 bool SetMainQuest( uint playerId, int value )
 {
     GameVar @ qVar = GetLocalVar( LVAR_q_main_quest, playerId );
@@ -31,7 +31,7 @@ bool SetMainQuest( uint playerId, int value )
     return true;
 }
 
-// Проверка: Вышел ли игрок со стартовой локации
+// РџСЂРѕРІРµСЂРєР°: Р’С‹С€РµР» Р»Рё РёРіСЂРѕРє СЃРѕ СЃС‚Р°СЂС‚РѕРІРѕР№ Р»РѕРєР°С†РёРё
 bool CheckPlayerCompleteStart( Critter& player )
 {
     GameVar @ storyLine = GetLocalVar( LVAR_q_main_quest, player.Id );
@@ -44,7 +44,7 @@ bool CheckPlayerCompleteStart( Critter& player )
 
 }
 
-// Проверка: Вышел ли игрок со второй сюжетной карты
+// РџСЂРѕРІРµСЂРєР°: Р’С‹С€РµР» Р»Рё РёРіСЂРѕРє СЃРѕ РІС‚РѕСЂРѕР№ СЃСЋР¶РµС‚РЅРѕР№ РєР°СЂС‚С‹
 bool CheckPlayerCompleteIntro( Critter& player )
 {
     GameVar @ storyLine = GetLocalVar( LVAR_q_main_quest, player.Id );
@@ -57,11 +57,11 @@ bool CheckPlayerCompleteIntro( Critter& player )
 
 }
 
-// Создание локации начала игры для персонажа, который только что был зарегистрирован
-// Возвращает истину если локация нужна, создалась и игрок телепортирован на карту
+// РЎРѕР·РґР°РЅРёРµ Р»РѕРєР°С†РёРё РЅР°С‡Р°Р»Р° РёРіСЂС‹ РґР»СЏ РїРµСЂСЃРѕРЅР°Р¶Р°, РєРѕС‚РѕСЂС‹Р№ С‚РѕР»СЊРєРѕ С‡С‚Рѕ Р±С‹Р» Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅ
+// Р’РѕР·РІСЂР°С‰Р°РµС‚ РёСЃС‚РёРЅСѓ РµСЃР»Рё Р»РѕРєР°С†РёСЏ РЅСѓР¶РЅР°, СЃРѕР·РґР°Р»Р°СЃСЊ Рё РёРіСЂРѕРє С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° РєР°СЂС‚Сѓ
 bool SetPlayerStartLocation( Critter& player )
 {
-    // Стартовые локации не нужно сохранять. Иначе, если регистрировать тучу персонажей, для каждого придется сохранить свою локацию
+    // РЎС‚Р°СЂС‚РѕРІС‹Рµ Р»РѕРєР°С†РёРё РЅРµ РЅСѓР¶РЅРѕ СЃРѕС…СЂР°РЅСЏС‚СЊ. РРЅР°С‡Рµ, РµСЃР»Рё СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊ С‚СѓС‡Сѓ РїРµСЂСЃРѕРЅР°Р¶РµР№, РґР»СЏ РєР°Р¶РґРѕРіРѕ РїСЂРёРґРµС‚СЃСЏ СЃРѕС…СЂР°РЅРёС‚СЊ СЃРІРѕСЋ Р»РѕРєР°С†РёСЋ
     uint locId = CreateLocation( LOCATION_IntroMartin, INTRO_WORLD_X, INTRO_WORLD_Y, null );
     if( locId == 0 )
         return false;
@@ -74,7 +74,7 @@ bool SetPlayerStartLocation( Critter& player )
     if( !player.TransitToMap( map.Id, ( Random( 0, 1 ) == 0 ? ENTIRE_ENTRANCE1 : ENTIRE_ENTRANCE2 ) ) )
         return false;
 
-    // Изменение типа криттера, чтобы не было пижамы с рождения
+    // РР·РјРµРЅРµРЅРёРµ С‚РёРїР° РєСЂРёС‚С‚РµСЂР°, С‡С‚РѕР±С‹ РЅРµ Р±С‹Р»Рѕ РїРёР¶Р°РјС‹ СЃ СЂРѕР¶РґРµРЅРёСЏ
     #ifndef PLAYERS_3D
     int crType = ( player.Stat[ ST_GENDER ] == GENDER_MALE ? CRTYPE_DW_LEATHER_JACKET_M : CRTYPE_DW_LEATHER_JACKET_F );
     if( player.Stat[ ST_INTELLECT ] <= TRIBAL_INT )
@@ -101,8 +101,8 @@ bool SetPlayerStartLocation( Critter& player )
     return true;
 }
 
-// Отправляет игрока на вторую локацию
-// Возвращает истину если локация нужна, создалась и игрок телепортирован на карту
+// РћС‚РїСЂР°РІР»СЏРµС‚ РёРіСЂРѕРєР° РЅР° РІС‚РѕСЂСѓСЋ Р»РѕРєР°С†РёСЋ
+// Р’РѕР·РІСЂР°С‰Р°РµС‚ РёСЃС‚РёРЅСѓ РµСЃР»Рё Р»РѕРєР°С†РёСЏ РЅСѓР¶РЅР°, СЃРѕР·РґР°Р»Р°СЃСЊ Рё РёРіСЂРѕРє С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° РєР°СЂС‚Сѓ
 bool SetPlayerIntroLocation( Critter& player )
 {
     uint locId = CreateLocation( LOCATION_IntroInit, INTRO_WORLD_X, INTRO_WORLD_Y, null );
@@ -119,34 +119,34 @@ bool SetPlayerIntroLocation( Critter& player )
     return true;
 }
 
-// Пытается установить начальную локацию для игрока (либо стартовая карта с виком/кессиди итд, либо вторая карта с убийством
-// true - локация была установлена
-// false - не получилось установить, или уже не требуется
+// РџС‹С‚Р°РµС‚СЃСЏ СѓСЃС‚Р°РЅРѕРІРёС‚СЊ РЅР°С‡Р°Р»СЊРЅСѓСЋ Р»РѕРєР°С†РёСЋ РґР»СЏ РёРіСЂРѕРєР° (Р»РёР±Рѕ СЃС‚Р°СЂС‚РѕРІР°СЏ РєР°СЂС‚Р° СЃ РІРёРєРѕРј/РєРµСЃСЃРёРґРё РёС‚Рґ, Р»РёР±Рѕ РІС‚РѕСЂР°СЏ РєР°СЂС‚Р° СЃ СѓР±РёР№СЃС‚РІРѕРј
+// true - Р»РѕРєР°С†РёСЏ Р±С‹Р»Р° СѓСЃС‚Р°РЅРѕРІР»РµРЅР°
+// false - РЅРµ РїРѕР»СѓС‡РёР»РѕСЃСЊ СѓСЃС‚Р°РЅРѕРІРёС‚СЊ, РёР»Рё СѓР¶Рµ РЅРµ С‚СЂРµР±СѓРµС‚СЃСЏ
 bool SetPlayerStoryLineLocation( Critter& player ) // Export
 {
-    // Игрок уже завершил вступление
+    // РРіСЂРѕРє СѓР¶Рµ Р·Р°РІРµСЂС€РёР» РІСЃС‚СѓРїР»РµРЅРёРµ
     if( CheckPlayerCompleteIntro( player ) )
         return false;
     if( !CheckPlayerCompleteStart( player ) )
     {
-        // Игрок только зарегистрировался, или в последний раз вышел в оффлайн из стартовой локации
+        // РРіСЂРѕРє С‚РѕР»СЊРєРѕ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°Р»СЃСЏ, РёР»Рё РІ РїРѕСЃР»РµРґРЅРёР№ СЂР°Р· РІС‹С€РµР» РІ РѕС„С„Р»Р°Р№РЅ РёР· СЃС‚Р°СЂС‚РѕРІРѕР№ Р»РѕРєР°С†РёРё
         return SetPlayerStartLocation( player );
     }
     else
     {
-        // Игрок уже выходил из стартовой локации
+        // РРіСЂРѕРє СѓР¶Рµ РІС‹С…РѕРґРёР» РёР· СЃС‚Р°СЂС‚РѕРІРѕР№ Р»РѕРєР°С†РёРё
         return SetPlayerIntroLocation( player );
     }
 }
 
-// Перенос игрока со стартовой локации в результате диалога с ключевым персонажем
+// РџРµСЂРµРЅРѕСЃ РёРіСЂРѕРєР° СЃРѕ СЃС‚Р°СЂС‚РѕРІРѕР№ Р»РѕРєР°С†РёРё РІ СЂРµР·СѓР»СЊС‚Р°С‚Рµ РґРёР°Р»РѕРіР° СЃ РєР»СЋС‡РµРІС‹Рј РїРµСЂСЃРѕРЅР°Р¶РµРј
 void r_TransitToIntro( Critter& player, Critter @ npc )
 {
     SetPlayerIntroLocation( player );
     SetMainQuest( player.Id, MAINQ_ST_START_COMPLETE );
 }
 
-// обработка триггеров входа в лифт
+// РѕР±СЂР°Р±РѕС‚РєР° С‚СЂРёРіРіРµСЂРѕРІ РІС…РѕРґР° РІ Р»РёС„С‚
 void t_KillPlayerOnIntro( Critter& player, Scenery& trigger, bool entered, uint8 dir )
 {
     player.Wait( 3000 );
@@ -160,7 +160,7 @@ void t_KillPlayerOnIntro( Critter& player, Scenery& trigger, bool entered, uint8
 
 import void door_open( Critter& player, Scenery& trigger, bool entered, uint8 dir, int entireNum ) from "trigger";
 
-// Гром и молния при инициации
+// Р“СЂРѕРј Рё РјРѕР»РЅРёСЏ РїСЂРё РёРЅРёС†РёР°С†РёРё
 #define HEX_LIGHTNING    ( 323 )
 void t_Initiation( Critter& player, Scenery& trigger, bool entered, uint8 dir, int param )
 {
@@ -250,7 +250,7 @@ uint e_KillPlayer( uint[] @ values )
     Critter @ player = GetCritter( values[ 0 ] );
     if( !valid( player ) )
         return 0;
-    player.PlaySound( "WA@2XXX1.acm", true );  // выстрел
+    player.PlaySound( "WA@2XXX1.acm", true );  // РІС‹СЃС‚СЂРµР»
     return 0;
 }
 
@@ -259,7 +259,7 @@ uint e_OnPlayerDead( uint[] @ values )
     Critter @ player = GetCritter( values[ 0 ] );
     if( !valid( player ) )
         return 0;
-    player.PlaySound( ( player.Stat[ ST_GENDER ] == GENDER_MALE ? "HFXXXBF.acm" : "HMXXXBF.acm" ), true ); // стон
+    player.PlaySound( ( player.Stat[ ST_GENDER ] == GENDER_MALE ? "HFXXXBF.acm" : "HMXXXBF.acm" ), true ); // СЃС‚РѕРЅ
     player.ToDead( 0, null );
     return 0;
 }

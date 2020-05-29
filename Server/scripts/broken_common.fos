@@ -1,8 +1,8 @@
 // Author: rifleman17
-// Квесты Брокен Хиллс
+// РљРІРµСЃС‚С‹ Р‘СЂРѕРєРµРЅ РҐРёР»Р»СЃ
 #include "_macros.fos"
 
-// Квест "Рога изобилия".
+// РљРІРµСЃС‚ "Р РѕРіР° РёР·РѕР±РёР»РёСЏ".
 
 #define PID_SABOTEUR_MALE      ( 252 )
 #define PID_SABOTEUR_FEMALE    ( 253 )
@@ -11,13 +11,13 @@
 #define STR_LOW_SCIENCE        ( 5901 )
 #define STR_HIGH_SCIENCE       ( 5902 )
 #define MIN_SCIENCE            ( 120 )
-#define URANIUM_DISCOUNT       ( 25 )                  // Скидка в процентах на уран для выполнившего квест
+#define URANIUM_DISCOUNT       ( 25 )                  // РЎРєРёРґРєР° РІ РїСЂРѕС†РµРЅС‚Р°С… РЅР° СѓСЂР°РЅ РґР»СЏ РІС‹РїРѕР»РЅРёРІС€РµРіРѕ РєРІРµСЃС‚
 
 import void _TraderInit( Critter& trader, bool firstTime ) from "trader";
 import void _NpcInit( Critter& npc, bool firstTime ) from "encounter_npc";
 import void _NpcDead( Critter& npc, Critter@ killer ) from "encounter_npc";
 
-// Подсчет убитых саботажников для квеста
+// РџРѕРґСЃС‡РµС‚ СѓР±РёС‚С‹С… СЃР°Р±РѕС‚Р°Р¶РЅРёРєРѕРІ РґР»СЏ РєРІРµСЃС‚Р°
 void CountDeadSaboteurs( Critter& cr, Map @ map, Critter @ killer )
 {
     if( !valid( map ) || !valid( killer ) || cr.IsPlayer() )

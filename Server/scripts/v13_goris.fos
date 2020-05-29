@@ -8,17 +8,17 @@
 #include "_bags.fos"
 
 // Defines
-#define QUEST_TIMEOUT    ( 1 )          // Переодичность, в игровых сутках, с которой квест "Яйцо" дается игрокам.
+#define QUEST_TIMEOUT    ( 1 )          // РџРµСЂРµРѕРґРёС‡РЅРѕСЃС‚СЊ, РІ РёРіСЂРѕРІС‹С… СЃСѓС‚РєР°С…, СЃ РєРѕС‚РѕСЂРѕР№ РєРІРµСЃС‚ "РЇР№С†Рѕ" РґР°РµС‚СЃСЏ РёРіСЂРѕРєР°Рј.
 uint QuestAllowTime = 0;
 
 
-/* =================== Диалоги =================== */
+/* =================== Р”РёР°Р»РѕРіРё =================== */
 
 
 bool d_QuestCheck( Critter& player, Critter@ npc )
 {
 
-    // Проверяем как давно квест брался другими игроками
+    // РџСЂРѕРІРµСЂСЏРµРј РєР°Рє РґР°РІРЅРѕ РєРІРµСЃС‚ Р±СЂР°Р»СЃСЏ РґСЂСѓРіРёРјРё РёРіСЂРѕРєР°РјРё
     if( QuestAllowTime < __FullSecond )
         return true;
     return false;
@@ -29,7 +29,7 @@ bool d_QuestCheck( Critter& player, Critter@ npc )
 bool d_QuestNotCheck( Critter& player, Critter@ npc )
 {
 
-    // Проверяем как давно квест брался другими игроками
+    // РџСЂРѕРІРµСЂСЏРµРј РєР°Рє РґР°РІРЅРѕ РєРІРµСЃС‚ Р±СЂР°Р»СЃСЏ РґСЂСѓРіРёРјРё РёРіСЂРѕРєР°РјРё
     if( !d_QuestCheck( player, npc ) )
         return true;
     return false;
@@ -37,7 +37,7 @@ bool d_QuestNotCheck( Critter& player, Critter@ npc )
 }
 
 
-// Проверяем в броне ли игрок.
+// РџСЂРѕРІРµСЂСЏРµРј РІ Р±СЂРѕРЅРµ Р»Рё РёРіСЂРѕРє.
 bool d_ArmorCheck( Critter& player, Critter@ npc )
 {
 
@@ -62,7 +62,7 @@ bool d_ArmorCheck( Critter& player, Critter@ npc )
 }
 
 
-// Проверяем в броне ли игрок.
+// РџСЂРѕРІРµСЂСЏРµРј РІ Р±СЂРѕРЅРµ Р»Рё РёРіСЂРѕРє.
 bool d_ArmorNotCheck( Critter& player, Critter@ npc )
 {
 
@@ -87,7 +87,7 @@ void r_AddEgg( Critter& player, Critter@ npc )
     /*int[] ChangeStages = { 0, 3, 5 };
        SetGroupQuestStage( player, ChangeStages, 1 );*/
 
-    // Устанавливаем таймаут для квеста. Квест не может быть взят другими игроками ранее чем через QUEST_TIMEOUT суток.
+    // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј С‚Р°Р№РјР°СѓС‚ РґР»СЏ РєРІРµСЃС‚Р°. РљРІРµСЃС‚ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РІР·СЏС‚ РґСЂСѓРіРёРјРё РёРіСЂРѕРєР°РјРё СЂР°РЅРµРµ С‡РµРј С‡РµСЂРµР· QUEST_TIMEOUT СЃСѓС‚РѕРє.
     QuestAllowTime = __FullSecond + ( 60 * 60 * 24 * QUEST_TIMEOUT );
 
 }
@@ -160,7 +160,7 @@ Critter@ DclawKid( Map& map, uint EntSpawn )
 
     int[] params =
     {
-        ST_DIALOG_ID, DIALOG_mob_int_deathclaw, ST_BAG_ID, BAG_Empty, ST_REPLICATION_TIME, 60 * 24 * 7 /*репликация раз в неделю*/,
+        ST_DIALOG_ID, DIALOG_mob_int_deathclaw, ST_BAG_ID, BAG_Empty, ST_REPLICATION_TIME, 60 * 24 * 7 /*СЂРµРїР»РёРєР°С†РёСЏ СЂР°Р· РІ РЅРµРґРµР»СЋ*/,
         ST_MAX_LIFE, 180, ST_ACTION_POINTS, 8, ST_INTELLECT, 8, ST_KILL_EXPERIENCE, 100
     };
     // Critter@ cr = map.AddNpc( NPC_PID_SmToughDeathclaw, x, y, Random(0,5));

@@ -19,8 +19,8 @@ import void GUI_Render( bool mainScreen ) from "client_gui";
 import bool GUI_MouseDown( int click, int x, int y ) from "client_gui";
 import bool GUI_MouseUp( int click, int x, int y ) from "client_gui";
 import void GUI_MouseMove( int x, int y ) from "client_gui";
-import bool GUI_KeyDown( uint8 key ) from "client_gui";
-import bool GUI_KeyUp( uint8 key ) from "client_gui";
+import bool GUI_KeyDown( uint8 key, string& keyText ) from "client_gui";
+import bool GUI_KeyUp( uint8 key, string& keyText ) from "client_gui";
 import void GUI_InputLost() from "client_gui";
 import bool PerkCheck( CritterCl& cr, uint perk ) from "perks";
 import void CritterGenerate( int[]& data ) from "parameters";
@@ -38,6 +38,7 @@ import void Set3DRegistrationGender( int gender ) from "client_3d_cha_reg";
 import void Fill3DRegistrationParameters( int[]& params ) from "client_3d_cha_reg";
 #endif
 import void PlayAnimSound( uint crType, int gender, uint anim1, uint anim2 ) from "animation";
+import uint CheckPlayerName( const string& name ) from "parameters";
 
 // //////////////////////////////////////////////////////////////////////////////////////////////////
 // Call on client loaded or new client_main.fos script received.
@@ -160,14 +161,14 @@ void render_iface( uint layer )
     {
         // Here you can draw on global map
 
-        // bool  __GmapActive - àêòèâíà ëè ãëîáàëüíàÿ êàðòà è âñå ëè ñëåäóþùèå íèæåïðèâåäåííûå ïåðåìåííûå êîððåêòíû;
-        // bool  __GmapWait   - âêëþ÷åí ðåæèì îæèäàíèÿ îòâåòà î ïîäòâåðæäåíèè ýíêàóíòåðà;
-        // float __GmapZoom   - òåêóùèé ìàñøòàá, íå çàáûâàéòå ó÷èòûâàòü åãî ïðè ðèñîâàíèè íà êàðòå;
-        // int   __GmapOffsetX/Y   - ñìåùåíèå êàðòû îò íóëåâîé êîîðäèíàòû (âåðõíèé-ëåâûé óãîë);
-        // int   __GmapGroupCurX/Y - êîîðäèíàòû ãðóïïû èãðîêà;
-        // int   __GmapGroupToX/Y  - êîîðäèíàòû òî÷êè íàçíà÷åíèÿ;
-        // float __GmapGroupSpeed  - òåêóùàÿ ñêîðîñòü ïåðåäâèæåíèÿ.
-        // Äëÿ ïðèìåðà, ðàñ÷åò òåêóùåãî ïèêñåëÿ ãðóïïû:
+        // bool  __GmapActive - Ð°ÐºÑ‚Ð¸Ð²Ð½Ð° Ð»Ð¸ Ð³Ð»Ð¾Ð±Ð°Ð»ÑŒÐ½Ð°Ñ ÐºÐ°Ñ€Ñ‚Ð° Ð¸ Ð²ÑÐµ Ð»Ð¸ ÑÐ»ÐµÐ´ÑƒÑŽÑ‰Ð¸Ðµ Ð½Ð¸Ð¶ÐµÐ¿Ñ€Ð¸Ð²ÐµÐ´ÐµÐ½Ð½Ñ‹Ðµ Ð¿ÐµÑ€ÐµÐ¼ÐµÐ½Ð½Ñ‹Ðµ ÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð½Ñ‹;
+        // bool  __GmapWait   - Ð²ÐºÐ»ÑŽÑ‡ÐµÐ½ Ñ€ÐµÐ¶Ð¸Ð¼ Ð¾Ð¶Ð¸Ð´Ð°Ð½Ð¸Ñ Ð¾Ñ‚Ð²ÐµÑ‚Ð° Ð¾ Ð¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð¸Ð¸ ÑÐ½ÐºÐ°ÑƒÐ½Ñ‚ÐµÑ€Ð°;
+        // float __GmapZoom   - Ñ‚ÐµÐºÑƒÑ‰Ð¸Ð¹ Ð¼Ð°ÑÑˆÑ‚Ð°Ð±, Ð½Ðµ Ð·Ð°Ð±Ñ‹Ð²Ð°Ð¹Ñ‚Ðµ ÑƒÑ‡Ð¸Ñ‚Ñ‹Ð²Ð°Ñ‚ÑŒ ÐµÐ³Ð¾ Ð¿Ñ€Ð¸ Ñ€Ð¸ÑÐ¾Ð²Ð°Ð½Ð¸Ð¸ Ð½Ð° ÐºÐ°Ñ€Ñ‚Ðµ;
+        // int   __GmapOffsetX/Y   - ÑÐ¼ÐµÑ‰ÐµÐ½Ð¸Ðµ ÐºÐ°Ñ€Ñ‚Ñ‹ Ð¾Ñ‚ Ð½ÑƒÐ»ÐµÐ²Ð¾Ð¹ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ñ‹ (Ð²ÐµÑ€Ñ…Ð½Ð¸Ð¹-Ð»ÐµÐ²Ñ‹Ð¹ ÑƒÐ³Ð¾Ð»);
+        // int   __GmapGroupCurX/Y - ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ñ‹ Ð³Ñ€ÑƒÐ¿Ð¿Ñ‹ Ð¸Ð³Ñ€Ð¾ÐºÐ°;
+        // int   __GmapGroupToX/Y  - ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ñ‹ Ñ‚Ð¾Ñ‡ÐºÐ¸ Ð½Ð°Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ñ;
+        // float __GmapGroupSpeed  - Ñ‚ÐµÐºÑƒÑ‰Ð°Ñ ÑÐºÐ¾Ñ€Ð¾ÑÑ‚ÑŒ Ð¿ÐµÑ€ÐµÐ´Ð²Ð¸Ð¶ÐµÐ½Ð¸Ñ.
+        // Ð”Ð»Ñ Ð¿Ñ€Ð¸Ð¼ÐµÑ€Ð°, Ñ€Ð°ÑÑ‡ÐµÑ‚ Ñ‚ÐµÐºÑƒÑ‰ÐµÐ³Ð¾ Ð¿Ð¸ÐºÑÐµÐ»Ñ Ð³Ñ€ÑƒÐ¿Ð¿Ñ‹:
         // x = __GmapGroupX / __GmapZoom + __GmapOffsetX, y = __GmapGroupY / __GmapZoom + __GmapOffsetY.
     }
 }
@@ -201,7 +202,7 @@ void mouse_move( int x, int y )
 // Keyboard behaviours. Key codes look in _client_defines.fos DirectInput keyboard scan codes.
 // Return true to disable engine events.
 bool AltDown = false;
-bool key_down( uint8 key )
+bool key_down( uint8 key, string& keyText )
 {
     // Effect example, temporary
     if( key == DIK_LMENU || key == DIK_RMENU )
@@ -226,17 +227,17 @@ bool key_down( uint8 key )
     if( key == DIK_Z )
         __MapZooming = true;
 
-    return GUI_KeyDown( key );
+    return GUI_KeyDown( key, keyText );
 }
 
-bool key_up( uint8 key )
+bool key_up( uint8 key, string& keyText )
 {
     if( key == DIK_LMENU || key == DIK_RMENU )
         AltDown = false;
     if( key == DIK_Z )
         __MapZooming = false;
 
-    return GUI_KeyUp( key );
+    return GUI_KeyUp( key, keyText );
 }
 
 // //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -339,7 +340,7 @@ bool in_message( string& message, int& sayType, uint& critterId, uint& delay )
 // Call on send message.
 bool out_message( string& message, int& sayType )
 {
-    if( message[ 0 ] == '~' ) // Command
+    if( message[ 0 ] == "~" ) // Command
     {
         if( message == "~names" )
         {
@@ -360,6 +361,7 @@ bool out_message( string& message, int& sayType )
             RunServerScriptUnsafe( "nopvp_maps@unsafe_CritterToGlobal", 0, 0, 0, null, null );
             return false;
         }
+
         if( message.length() > 8 && substring( message, 0, 8 ) == "~ignore " )
         {
             IgnorePlayer( message );
@@ -372,33 +374,31 @@ bool out_message( string& message, int& sayType )
 
     if( sayType == SAY_NORM )
     {
-        if( message.length() > 2 && ( message[ 0 ] == '/' || message[ 0 ] == '.' ) )
+        if( message.length() > 2 && ( message[ 0 ] == "/" || message[ 0 ] == "." ) )
         {
-            int  eraseCount = 1;
-            int8 ch = message[ 1 ];
-            if(     ch == 'ê' || ch == 'Ê' || ch == 's' || ch == 'S' )
+            string ch = message[ 1 ];
+            if(     ch == "Ðº" || ch == "Ðš" || ch == "s" || ch == "S" )
                 sayType = SAY_SHOUT;
-            else if( ch == 'ý' || ch == 'Ý' || ch == 'e' || ch == 'E' )
+            else if( ch == "Ñ" || ch == "Ð­" || ch == "e" || ch == "E" )
                 sayType = SAY_EMOTE;
-            else if( ch == 'ø' || ch == 'Ø' || ch == 'w' || ch == 'W' )
+            else if( ch == "Ñˆ" || ch == "Ð¨" || ch == "w" || ch == "W" )
                 sayType = SAY_WHISP;
-            else if( ch == 'ñ' || ch == 'Ñ' || ch == '$'             )
+            else if( ch == "Ñ" || ch == "Ð¡" || ch == "$" )
                 sayType = SAY_SOCIAL;
-            else if( ch == 'ð' || ch == 'Ð' || ch == 'r' || ch == 'R' )
+            else if( ch == "Ñ€" || ch == "Ð " || ch == "r" || ch == "R" )
                 sayType = SAY_RADIO;
 
             if( sayType != SAY_NORM )
             {
-                eraseCount++;
-                if( message[ 2 ] == ' ' )
-                    eraseCount++;
+                message[ 0 ] = "";
+                message[ 0 ] = "";
+                while( message[ 0 ] == " " )
+                    message[ 0 ] = "";
             }
-
-            message = substring( message, eraseCount, message.length() - eraseCount );
         }
         else if(         // RegExp: [*]([^*].*[^*])[*]
-            message.length() >= 4 && message[ 0 ] == '*' && message[ 1 ] != '*' &&
-            message[ message.length() - 2 ] != '*' && message[ message.length() - 1 ] == '*' )
+            message.length() >= 4 && message[ 0 ] == "*" && message[ 1 ] != "*" &&
+            message[ message.length() - 2 ] != "*" && message[ message.length() - 1 ] == "*" )
         {
             sayType = SAY_EMOTE;
             message = substring( message, 1, message.length() - 2 );
@@ -408,7 +408,7 @@ bool out_message( string& message, int& sayType )
     bool result = false;
     for( uint i = 0, j = message.length(); i < j; i++ )
     {
-        if( message[ i ] != ' ' )
+        if( message[ i ] != " " )
         {
             result = true;
             break;
@@ -1275,7 +1275,7 @@ string critter_description( CritterCl& cr, int lookType )
     // Additional description
     if( lookType == CRITTER_LOOK_FULL )
     {
-        if( result.length() > 0 && result[ result.length() - 1 ] != '.' )
+        if( result.length() > 0 && result[ result.length() - 1 ] != "." )
             result += ".";
         result += " ";
 
@@ -1460,11 +1460,19 @@ void player_data_generate( int[]& data )
     #endif
 }
 
-bool player_data_check( int[]& data )
+bool player_data_check( string& name, int[]& data )
 {
     #ifdef PLAYERS_3D
     Fill3DRegistrationParameters( data );
     #endif
+
+    // Check name
+    uint nameError = CheckPlayerName( name );
+    if( nameError != 0 )
+    {
+        Message( GetMsgStr( TEXTMSG_GAME, nameError ) );
+        return false;
+    }
 
     return CritterGenerateCheck( data );
 }

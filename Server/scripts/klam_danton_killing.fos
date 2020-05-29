@@ -1,6 +1,6 @@
-// Author: Тринитротолуол
+// Author: РўСЂРёРЅРёС‚СЂРѕС‚РѕР»СѓРѕР»
 
-// Для квеста "Проучить Дантона".
+// Р”Р»СЏ РєРІРµСЃС‚Р° "РџСЂРѕСѓС‡РёС‚СЊ Р”Р°РЅС‚РѕРЅР°".
 
 #include "_macros.fos"
 
@@ -28,7 +28,7 @@ void _DantonDead( Critter& danton, Critter@ player )
     GameVar@ var = GetLocalVar( LVAR_q_klam_josall_danton, player.Id );
     if( not valid( var ) )
     {
-        Log( "ERROR: not valid GameVar №" + LVAR_q_klam_josall_danton );
+        Log( "ERROR: not valid GameVar в„–" + LVAR_q_klam_josall_danton );
         return;
     }
     if( var != 1 )

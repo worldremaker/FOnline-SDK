@@ -17,10 +17,10 @@ void _RaidersCampInit( Map& camp, bool firstTime )
 void _CampInCritter( Map& camp, Critter& player )
 {
 
-    // Сразу проверим игрок ли криттер
+    // РЎСЂР°Р·Сѓ РїСЂРѕРІРµСЂРёРј РёРіСЂРѕРє Р»Рё РєСЂРёС‚С‚РµСЂ
     if( player.IsPlayer() )
     {
-        // Если игрок не взял квест (например прицепился к группе позже), гоним его.
+        // Р•СЃР»Рё РёРіСЂРѕРє РЅРµ РІР·СЏР» РєРІРµСЃС‚ (РЅР°РїСЂРёРјРµСЂ РїСЂРёС†РµРїРёР»СЃСЏ Рє РіСЂСѓРїРїРµ РїРѕР·Р¶Рµ), РіРѕРЅРёРј РµРіРѕ.
         GameVar@ quest = GetLocalVar( LVAR_q_arroyo_mynoc_defence, player.Id );
         if( valid( quest ) )
         {
@@ -44,13 +44,13 @@ void _CampOutCritter( Map& camp, Critter& player )
 
     uint[] RaidersCount( 1 );
     uint[] LastGoupArrDef;
-    // Сразу проверим игрок ли криттер
+    // РЎСЂР°Р·Сѓ РїСЂРѕРІРµСЂРёРј РёРіСЂРѕРє Р»Рё РєСЂРёС‚С‚РµСЂ
     if( player.IsPlayer() )
     {
         GetAnyData( "ArrouoRaidersCount", RaidersCount );
         if( RaidersCount[ 0 ] == 0 )
         {
-            // Если все рейдеры убиты, даем опыт и устанавливаем значение квестовой переменной.
+            // Р•СЃР»Рё РІСЃРµ СЂРµР№РґРµСЂС‹ СѓР±РёС‚С‹, РґР°РµРј РѕРїС‹С‚ Рё СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј Р·РЅР°С‡РµРЅРёРµ РєРІРµСЃС‚РѕРІРѕР№ РїРµСЂРµРјРµРЅРЅРѕР№.
             GetAnyData( "LastGoupArrDef", LastGoupArrDef );
             GameVar@ quest = GetLocalVar( LVAR_q_arroyo_mynoc_defence, player.Id );
             if( valid( quest ) )
@@ -58,7 +58,7 @@ void _CampOutCritter( Map& camp, Critter& player )
                 if( quest.GetValue() == 1 )
                 {
                     quest = 2;
-                    // Делим опыт на всю банду.
+                    // Р”РµР»РёРј РѕРїС‹С‚ РЅР° РІСЃСЋ Р±Р°РЅРґСѓ.
                     uint Exp = 6000 / LastGoupArrDef.length();
                     if( Exp % 10 <= 5 )
                     {
@@ -75,7 +75,7 @@ void _CampOutCritter( Map& camp, Critter& player )
                 else if( quest.GetValue() == 3 )
                 {
                     quest = 6;
-                    // Делим опыт на всю банду.
+                    // Р”РµР»РёРј РѕРїС‹С‚ РЅР° РІСЃСЋ Р±Р°РЅРґСѓ.
                     uint Exp = 9000 / LastGoupArrDef.length();
                     if( Exp % 10 <= 5 )
                     {
@@ -90,7 +90,7 @@ void _CampOutCritter( Map& camp, Critter& player )
                     player.ReputationBase[ REPUTATION_ARROYO ] += 3;
                 }
             }
-            // Теперь уберём локацию с карты игрока. Нечего ему здесь больше делать.
+            // РўРµРїРµСЂСЊ СѓР±РµСЂС‘Рј Р»РѕРєР°С†РёСЋ СЃ РєР°СЂС‚С‹ РёРіСЂРѕРєР°. РќРµС‡РµРіРѕ РµРјСѓ Р·РґРµСЃСЊ Р±РѕР»СЊС€Рµ РґРµР»Р°С‚СЊ.
             GameVar@ campLoc = GetGlobalVar( GVAR_arroyo_mynoc_map );
             if( valid( campLoc ) )
             {

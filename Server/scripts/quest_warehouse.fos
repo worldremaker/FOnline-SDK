@@ -156,7 +156,7 @@ uint ProcessMainQuest( Critter& player, int newVal )
     if( not CheckNewQuestValue( player, LVAR_q_warehouse, newVal ) )
         return FD_GENERIC_ERROR;
 
-    // Выдача квеста
+    // Р’С‹РґР°С‡Р° РєРІРµСЃС‚Р°
     if( newVal == MAINQUEST_GIVED )
     {
         Map@ map = player.GetMap();
@@ -197,7 +197,7 @@ uint ProcessMainQuest( Critter& player, int newVal )
         if( not isMalePresent )
             return FD_LOW_PLAYERS;
 
-        // Проверка численности.
+        // РџСЂРѕРІРµСЂРєР° С‡РёСЃР»РµРЅРЅРѕСЃС‚Рё.
         if( questCr.length() < MIN_PLAYERS )
             return FD_LOW_PLAYERS;
         if( questCr.length() > MAX_PLAYERS )
@@ -208,11 +208,11 @@ uint ProcessMainQuest( Critter& player, int newVal )
         if( aproxLevel < MIN_APROX_LEVEL )
             return FD_LOW_LEVEL;
 
-        // Сохроняем данные о команде.
+        // РЎРѕС…СЂРѕРЅСЏРµРј РґР°РЅРЅС‹Рµ Рѕ РєРѕРјР°РЅРґРµ.
         if( not SetAnyData( "Warehouse_" + player.Id, questData ) )
             return FD_GENERIC_ERROR;
 
-        // Отмечаем квест.
+        // РћС‚РјРµС‡Р°РµРј РєРІРµСЃС‚.
         for( uint i = 0; i < questCr.length(); i++ )
         {
             Critter@ cr = questCr[ i ];
@@ -231,7 +231,7 @@ uint ProcessMainQuest( Critter& player, int newVal )
             crQuestDataId = player.Id;
         }
     }
-    // Выполнение
+    // Р’С‹РїРѕР»РЅРµРЅРёРµ
     else
     {
         uint[] questCrIds;
@@ -241,13 +241,13 @@ uint ProcessMainQuest( Critter& player, int newVal )
 
         if( newVal == MAINQUEST_MARK_FAIL || newVal == MAINQUEST_MARK_DONE )
         {
-            // Осторожно удаляем локацию
+            // РћСЃС‚РѕСЂРѕР¶РЅРѕ СѓРґР°Р»СЏРµРј Р»РѕРєР°С†РёСЋ
             uint      locId = GetLocId( player );
             Location@ loc = GetLocation( locId );
             if( valid( loc ) )
                 loc.AutoGarbage = true;
 
-            // Стираем данные
+            // РЎС‚РёСЂР°РµРј РґР°РЅРЅС‹Рµ
             GameVar@ crQuestDataId = GetLocalVar( LVAR_warehouse_data_id, player.Id );
             if( valid( crQuestDataId ) && crQuestDataId != 0 )
                 EraseAnyData( "Warehouse_" + crQuestDataId.GetValue() );

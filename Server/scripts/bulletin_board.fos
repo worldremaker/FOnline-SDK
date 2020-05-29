@@ -1,5 +1,5 @@
 // Author: rifleman17
-// Доска объявлений с возможностью оставлять сообщения
+// Р”РѕСЃРєР° РѕР±СЉСЏРІР»РµРЅРёР№ СЃ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊСЋ РѕСЃС‚Р°РІР»СЏС‚СЊ СЃРѕРѕР±С‰РµРЅРёСЏ
 
 #include "_macros.fos"
 #include "serializator.fos"
@@ -183,7 +183,7 @@ class BBMessenger
         return null;
     }
 
-    // readFrom - порядковый номер в уже отобранных публичных объявлениях
+    // readFrom - РїРѕСЂСЏРґРєРѕРІС‹Р№ РЅРѕРјРµСЂ РІ СѓР¶Рµ РѕС‚РѕР±СЂР°РЅРЅС‹С… РїСѓР±Р»РёС‡РЅС‹С… РѕР±СЉСЏРІР»РµРЅРёСЏС…
     BBMessage[] GetPublicMessages( uint mapId, uint readFrom, uint count )
     {
         uint[] msgIds;
@@ -222,7 +222,7 @@ void SaveMessengerData()
     Messenger.Save();
 }
 
-// Функционал для досок
+// Р¤СѓРЅРєС†РёРѕРЅР°Р» РґР»СЏ РґРѕСЃРѕРє
 bool d_IsSelfMsg( Critter& cr, Critter@ npc )
 {
     Map@ map = cr.GetMap();
@@ -378,22 +378,22 @@ void dlg_PublicMsg5( Critter& cr, Critter@ npc, string@ lexems )
     }
 }
 
-// Альдо и запись текста игрока на доску объявлений
-#define ENTIRE_ALDO         ( 31 ) // Гекс, к которому подходит Альдо перед началом записи
-#define STR_CANT_REACH      ( 1 )  // Не могу к доске подобраться. Обожди, пока разойдутся все.
-#define STR_IN_PLACE        ( 2 )  // Давай, говори, чего писать будем... Буду записывать все, что скажешь, после слова "Начали"
-#define STR_FINISHED        ( 3 )  // Все готово, проверяй...
-#define STR_NEXT            ( 4 )  // Если чего еще нужно написать, говори. Все после слова "Далее" я занесу сюда. Когда закончишь, скажи "Хватит".
-#define DLG_NOTFOUND        ( 34 ) // Номер ветки диалога "нет таких..."
-#define DLG_FOUND           ( 35 ) // Хорошо, напишем персональное объявление... Пойдем со мной, продиктуешь.
-#define CTE_CLEAR_VARS      ( 26 ) // Событие очистки переменных.
+// РђР»СЊРґРѕ Рё Р·Р°РїРёСЃСЊ С‚РµРєСЃС‚Р° РёРіСЂРѕРєР° РЅР° РґРѕСЃРєСѓ РѕР±СЉСЏРІР»РµРЅРёР№
+#define ENTIRE_ALDO         ( 31 ) // Р“РµРєСЃ, Рє РєРѕС‚РѕСЂРѕРјСѓ РїРѕРґС…РѕРґРёС‚ РђР»СЊРґРѕ РїРµСЂРµРґ РЅР°С‡Р°Р»РѕРј Р·Р°РїРёСЃРё
+#define STR_CANT_REACH      ( 1 )  // РќРµ РјРѕРіСѓ Рє РґРѕСЃРєРµ РїРѕРґРѕР±СЂР°С‚СЊСЃСЏ. РћР±РѕР¶РґРё, РїРѕРєР° СЂР°Р·РѕР№РґСѓС‚СЃСЏ РІСЃРµ.
+#define STR_IN_PLACE        ( 2 )  // Р”Р°РІР°Р№, РіРѕРІРѕСЂРё, С‡РµРіРѕ РїРёСЃР°С‚СЊ Р±СѓРґРµРј... Р‘СѓРґСѓ Р·Р°РїРёСЃС‹РІР°С‚СЊ РІСЃРµ, С‡С‚Рѕ СЃРєР°Р¶РµС€СЊ, РїРѕСЃР»Рµ СЃР»РѕРІР° "РќР°С‡Р°Р»Рё"
+#define STR_FINISHED        ( 3 )  // Р’СЃРµ РіРѕС‚РѕРІРѕ, РїСЂРѕРІРµСЂСЏР№...
+#define STR_NEXT            ( 4 )  // Р•СЃР»Рё С‡РµРіРѕ РµС‰Рµ РЅСѓР¶РЅРѕ РЅР°РїРёСЃР°С‚СЊ, РіРѕРІРѕСЂРё. Р’СЃРµ РїРѕСЃР»Рµ СЃР»РѕРІР° "Р”Р°Р»РµРµ" СЏ Р·Р°РЅРµСЃСѓ СЃСЋРґР°. РљРѕРіРґР° Р·Р°РєРѕРЅС‡РёС€СЊ, СЃРєР°Р¶Рё "РҐРІР°С‚РёС‚".
+#define DLG_NOTFOUND        ( 34 ) // РќРѕРјРµСЂ РІРµС‚РєРё РґРёР°Р»РѕРіР° "РЅРµС‚ С‚Р°РєРёС…..."
+#define DLG_FOUND           ( 35 ) // РҐРѕСЂРѕС€Рѕ, РЅР°РїРёС€РµРј РїРµСЂСЃРѕРЅР°Р»СЊРЅРѕРµ РѕР±СЉСЏРІР»РµРЅРёРµ... РџРѕР№РґРµРј СЃРѕ РјРЅРѕР№, РїСЂРѕРґРёРєС‚СѓРµС€СЊ.
+#define CTE_CLEAR_VARS      ( 26 ) // РЎРѕР±С‹С‚РёРµ РѕС‡РёСЃС‚РєРё РїРµСЂРµРјРµРЅРЅС‹С….
 #define CTE_CONFIRM_SAVE    ( 27 )
 #define _RightKeyWord       # (text) ( text.length() < KEYWORD.length() ? false : substring( text, 0, KEYWORD.length() ) == KEYWORD )
 #define _RightKeyWord2      # (text) ( text.length() < KEYWORD2.length() ? false : substring( text, 0, KEYWORD2.length() ) == KEYWORD2 )
 #define _RightKeyWord3      # (text) ( text.length() < KEYWORD3.length() ? false : substring( text, 0, KEYWORD3.length() ) == KEYWORD3 )
-#define KEYWORD             ( "Начали" )
-#define KEYWORD2            ( "Далее" )
-#define KEYWORD3            ( "Хватит" )
+#define KEYWORD             ( "РќР°С‡Р°Р»Рё" )
+#define KEYWORD2            ( "Р”Р°Р»РµРµ" )
+#define KEYWORD3            ( "РҐРІР°С‚РёС‚" )
 #define _MsgFromText        # (text) ( substring( text, 6, text.length() - 1 ) )
 #define _MsgFromText2       # (text) ( substring( text, 5, text.length() - 1 ) )
 import bool AddWalkPlane( Critter& npc, uint entire, uint cut, bool run ) from "npc_planes";

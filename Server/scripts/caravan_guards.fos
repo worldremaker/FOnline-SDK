@@ -7,10 +7,10 @@
 
 
 
-#define MESSAGE_CARAVANEER_GOTO_HOME    ( 212 )                       // проводник отправит это сообщение, если двигает к домашней позиции
-#define NPC_ROLE_CARAVAN_BOSS           ( 117 )                       // босс каравана
-#define NPC_ROLE_CARAVAN_GUIDE          ( 118 )                       // проводник
-#define NPC_ROLE_CARAVAN_GUARD          ( 119 )                       // охранник каравана(НПЦ)
+#define MESSAGE_CARAVANEER_GOTO_HOME    ( 212 )                       // РїСЂРѕРІРѕРґРЅРёРє РѕС‚РїСЂР°РІРёС‚ СЌС‚Рѕ СЃРѕРѕР±С‰РµРЅРёРµ, РµСЃР»Рё РґРІРёРіР°РµС‚ Рє РґРѕРјР°С€РЅРµР№ РїРѕР·РёС†РёРё
+#define NPC_ROLE_CARAVAN_BOSS           ( 117 )                       // Р±РѕСЃСЃ РєР°СЂР°РІР°РЅР°
+#define NPC_ROLE_CARAVAN_GUIDE          ( 118 )                       // РїСЂРѕРІРѕРґРЅРёРє
+#define NPC_ROLE_CARAVAN_GUARD          ( 119 )                       // РѕС…СЂР°РЅРЅРёРє РєР°СЂР°РІР°РЅР°(РќРџР¦)
 
 #define NpcRole                         StatBase[ ST_NPC_ROLE ]
 #define CrvId                           StatBase[ ST_VAR0 ]
@@ -18,16 +18,16 @@
 #define NervosityLvl                    StatBase[ ST_VAR2 ]
 #define IdleCount                       StatBase[ ST_VAR3 ]
 
-// типовые фразы
+// С‚РёРїРѕРІС‹Рµ С„СЂР°Р·С‹
 
-#define PHRASE_BORING                   ( 2 )                               // охранник заскучал
-#define PHRASE_ATTACKED                 ( 5 )                               // фраза если охранник атакован
-#define PHRASE_LOW_HP                   ( 6 )                               // фраза если у охранника осталось мало хп
-#define PHRASE_KILL_SOMEONE             ( 7 )                               // фраза при убийстве охранником кого-либо
-// задачи
+#define PHRASE_BORING                   ( 2 )                               // РѕС…СЂР°РЅРЅРёРє Р·Р°СЃРєСѓС‡Р°Р»
+#define PHRASE_ATTACKED                 ( 5 )                               // С„СЂР°Р·Р° РµСЃР»Рё РѕС…СЂР°РЅРЅРёРє Р°С‚Р°РєРѕРІР°РЅ
+#define PHRASE_LOW_HP                   ( 6 )                               // С„СЂР°Р·Р° РµСЃР»Рё Сѓ РѕС…СЂР°РЅРЅРёРєР° РѕСЃС‚Р°Р»РѕСЃСЊ РјР°Р»Рѕ С…Рї
+#define PHRASE_KILL_SOMEONE             ( 7 )                               // С„СЂР°Р·Р° РїСЂРё СѓР±РёР№СЃС‚РІРµ РѕС…СЂР°РЅРЅРёРєРѕРј РєРѕРіРѕ-Р»РёР±Рѕ
+// Р·Р°РґР°С‡Рё
 
-#define PLANE_GOTO_HOME                 ( 405 )                             // гвард идет на новое место дислокации
-#define MSG_WHERE_IS_DA_LEADER          ( 211 )                             // номер сообщения, которое отправляет охранник, когда хочет приблизиться к караванщику
+#define PLANE_GOTO_HOME                 ( 405 )                             // РіРІР°СЂРґ РёРґРµС‚ РЅР° РЅРѕРІРѕРµ РјРµСЃС‚Рѕ РґРёСЃР»РѕРєР°С†РёРё
+#define MSG_WHERE_IS_DA_LEADER          ( 211 )                             // РЅРѕРјРµСЂ СЃРѕРѕР±С‰РµРЅРёСЏ, РєРѕС‚РѕСЂРѕРµ РѕС‚РїСЂР°РІР»СЏРµС‚ РѕС…СЂР°РЅРЅРёРє, РєРѕРіРґР° С…РѕС‡РµС‚ РїСЂРёР±Р»РёР·РёС‚СЊСЃСЏ Рє РєР°СЂР°РІР°РЅС‰РёРєСѓ
 
 /* ---------------------- imports ----------------------*/
 import bool AddAttackPlane( Critter& npc, uint priority, Critter& target ) from "npc_planes";
@@ -35,14 +35,14 @@ import bool AddAttackPlane( Critter& npc, uint priority, uint critId ) from "npc
 import bool AddWalkPlane( Critter& npc, uint priority, uint16 hexX, uint16 hexY, uint8 dir, bool run, uint cut ) from "npc_planes";
 import bool AddMiscPlane( Critter& npc, uint priority, uint waitSecond, string@ funcName ) from "npc_planes";
 import bool AddWalkPlane( Critter& npc, uint priority, int identifier, uint identifierExt, uint16 hexX, uint16 hexY, uint8 dir, bool run, uint cut ) from "npc_planes";
-/*---------------------- получение нескольких нпц-охранников ----------------------*/
-// пытается сказать фразу в кассу к происходящему событию
-// с учетом уровня "нервозности" гарда
-// чем выше уровень нервозности, тем выше шанс
-// guard - охранник
-// msgId - номер строки в диалоге охранника
-// boost - увеличивает вероятность
-// если фраза сказана - функция вернет true, иначе false
+/*---------------------- РїРѕР»СѓС‡РµРЅРёРµ РЅРµСЃРєРѕР»СЊРєРёС… РЅРїС†-РѕС…СЂР°РЅРЅРёРєРѕРІ ----------------------*/
+// РїС‹С‚Р°РµС‚СЃСЏ СЃРєР°Р·Р°С‚СЊ С„СЂР°Р·Сѓ РІ РєР°СЃСЃСѓ Рє РїСЂРѕРёСЃС…РѕРґСЏС‰РµРјСѓ СЃРѕР±С‹С‚РёСЋ
+// СЃ СѓС‡РµС‚РѕРј СѓСЂРѕРІРЅСЏ "РЅРµСЂРІРѕР·РЅРѕСЃС‚Рё" РіР°СЂРґР°
+// С‡РµРј РІС‹С€Рµ СѓСЂРѕРІРµРЅСЊ РЅРµСЂРІРѕР·РЅРѕСЃС‚Рё, С‚РµРј РІС‹С€Рµ С€Р°РЅСЃ
+// guard - РѕС…СЂР°РЅРЅРёРє
+// msgId - РЅРѕРјРµСЂ СЃС‚СЂРѕРєРё РІ РґРёР°Р»РѕРіРµ РѕС…СЂР°РЅРЅРёРєР°
+// boost - СѓРІРµР»РёС‡РёРІР°РµС‚ РІРµСЂРѕСЏС‚РЅРѕСЃС‚СЊ
+// РµСЃР»Рё С„СЂР°Р·Р° СЃРєР°Р·Р°РЅР° - С„СѓРЅРєС†РёСЏ РІРµСЂРЅРµС‚ true, РёРЅР°С‡Рµ false
 bool _SayNervous( Critter& guard, uint msgID, uint boost )
 {
     DL2( "try say nrv" + DLGSTR( guard.Stat[ ST_DIALOG_ID ], msgID ) );
@@ -53,7 +53,7 @@ bool _SayNervous( Critter& guard, uint msgID, uint boost )
     }
     return false;
 }
-// охранник подходит к проводнику
+// РѕС…СЂР°РЅРЅРёРє РїРѕРґС…РѕРґРёС‚ Рє РїСЂРѕРІРѕРґРЅРёРєСѓ
 void _MoveToCaravanLeader( Critter& guard, Critter& leader, uint radius )
 {
     uint16 hx = leader.HexX;
@@ -72,14 +72,14 @@ void _MoveToCaravanLeader( Critter& guard, Critter& leader, uint radius )
         AddWalkPlane( guard, AI_PLANE_WALK_PRIORITY, PLANE_GOTO_HOME, 0, hx, hy, Random( 1, 5 ), run, 1 );
     }
 }
-/*-------------------- -----обработка------   -------------------*/
-// Охранник на локации, и ничего особенного не делает _GuardIdle
-// иногда говорит случайную фразу из диалога
+/*-------------------- -----РѕР±СЂР°Р±РѕС‚РєР°------   -------------------*/
+// РћС…СЂР°РЅРЅРёРє РЅР° Р»РѕРєР°С†РёРё, Рё РЅРёС‡РµРіРѕ РѕСЃРѕР±РµРЅРЅРѕРіРѕ РЅРµ РґРµР»Р°РµС‚ _GuardIdle
+// РёРЅРѕРіРґР° РіРѕРІРѕСЂРёС‚ СЃР»СѓС‡Р°Р№РЅСѓСЋ С„СЂР°Р·Сѓ РёР· РґРёР°Р»РѕРіР°
 void _GuardIdle( Critter& guard )
 {
     CaravanInfo@ ci = _GetCaravan( guard.CrvId );
-    // Удаление охранника, если он непонятно где завис
-    // Охранники должны существовать только в момент движения или остановки каравана на энке
+    // РЈРґР°Р»РµРЅРёРµ РѕС…СЂР°РЅРЅРёРєР°, РµСЃР»Рё РѕРЅ РЅРµРїРѕРЅСЏС‚РЅРѕ РіРґРµ Р·Р°РІРёСЃ
+    // РћС…СЂР°РЅРЅРёРєРё РґРѕР»Р¶РЅС‹ СЃСѓС‰РµСЃС‚РІРѕРІР°С‚СЊ С‚РѕР»СЊРєРѕ РІ РјРѕРјРµРЅС‚ РґРІРёР¶РµРЅРёСЏ РёР»Рё РѕСЃС‚Р°РЅРѕРІРєРё РєР°СЂР°РІР°РЅР° РЅР° СЌРЅРєРµ
     if( valid( ci ) )
     {
         if( ci.CaravanStatus == CRV_STATUS_BEFORE_START || ci.CaravanStatus == CRV_STATUS_PREPARE || ci.CaravanStatus == CRV_STATUS_END )
@@ -118,7 +118,7 @@ void _GuardIdle( Critter& guard )
 
     }
 }
-// Пришло сообщение отправленное с помощью Critter::SendMessage.
+// РџСЂРёС€Р»Рѕ СЃРѕРѕР±С‰РµРЅРёРµ РѕС‚РїСЂР°РІР»РµРЅРЅРѕРµ СЃ РїРѕРјРѕС‰СЊСЋ Critter::SendMessage.
 void _GuardOnMessage( Critter& guard, Critter& fromCr, int message, int value )
 {
     if( message == MESSAGE_CARAVANEER_GOTO_HOME )
@@ -134,16 +134,16 @@ void _GuardOnMessage( Critter& guard, Critter& fromCr, int message, int value )
 
 }
 
-// завершение выполнения некоего плана охранником
+// Р·Р°РІРµСЂС€РµРЅРёРµ РІС‹РїРѕР»РЅРµРЅРёСЏ РЅРµРєРѕРµРіРѕ РїР»Р°РЅР° РѕС…СЂР°РЅРЅРёРєРѕРј
 int _GuardPlaneEnd( Critter& guard, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem )
 {
-    // нпц без проблем дошел до домашней позиции
+    // РЅРїС† Р±РµР· РїСЂРѕР±Р»РµРј РґРѕС€РµР» РґРѕ РґРѕРјР°С€РЅРµР№ РїРѕР·РёС†РёРё
     if( plane.Identifier == PLANE_GOTO_HOME && reason == REASON_SUCCESS )
     {
         guard.SetHomePos( guard.HexX, guard.HexY, Random( 1, 5 ) );
     }
     // guard.Say(SAY_NORM_ON_HEAD, "reason = " +reason);
-    // у нпц проблемы - не может дойти до домашней позиции
+    // Сѓ РЅРїС† РїСЂРѕР±Р»РµРјС‹ - РЅРµ РјРѕР¶РµС‚ РґРѕР№С‚Рё РґРѕ РґРѕРјР°С€РЅРµР№ РїРѕР·РёС†РёРё
     else if( plane.Identifier == PLANE_GOTO_HOME )
     {
         if( reason == REASON_HEX_TOO_FAR ||
@@ -161,7 +161,7 @@ int _GuardPlaneEnd( Critter& guard, NpcPlane& plane, int reason, Critter@ someCr
     return PLANE_RUN_GLOBAL;
 }
 
-// убит ктото
+// СѓР±РёС‚ РєС‚РѕС‚Рѕ
 void _SomeCritterDead( Critter& guard, Critter& fromCrit, Critter@ killer )
 {
     if( !valid( killer ) )
@@ -175,7 +175,7 @@ void _SomeCritterDead( Critter& guard, Critter& fromCrit, Critter@ killer )
         return;
     }
 }
-// атакован кем-то
+// Р°С‚Р°РєРѕРІР°РЅ РєРµРј-С‚Рѕ
 bool _GuardAttacked( Critter& guard, Critter& attacker )
 {
 
@@ -191,7 +191,7 @@ bool _GuardAttacked( Critter& guard, Critter& attacker )
     return false;
 }
 
-// охранник обворован
+// РѕС…СЂР°РЅРЅРёРє РѕР±РІРѕСЂРѕРІР°РЅ
 void _GuardStealing( Critter& cr, Critter& thief, bool success, Item& item, uint count )
 {
     if( success && thief.IsPlayer() )
@@ -202,7 +202,7 @@ void _GuardStealing( Critter& cr, Critter& thief, bool success, Item& item, uint
     }
 }
 
-// убит патрульный ГУ
+// СѓР±РёС‚ РїР°С‚СЂСѓР»СЊРЅС‹Р№ Р“РЈ
 void _VCPatrolDead( Critter& cr, Critter@ killer )
 {
     CaravanInfo@ ci = _GetCaravan( cr.CrvId );
@@ -223,8 +223,8 @@ void _VCPatrolDead( Critter& cr, Critter@ killer )
         }
     }
 }
-/*-------------------------специфические обработки-------------------------*/
-// Находчивый Василий нервно шарится по округе гораздо чаще, чем остальные
+/*-------------------------СЃРїРµС†РёС„РёС‡РµСЃРєРёРµ РѕР±СЂР°Р±РѕС‚РєРё-------------------------*/
+// РќР°С…РѕРґС‡РёРІС‹Р№ Р’Р°СЃРёР»РёР№ РЅРµСЂРІРЅРѕ С€Р°СЂРёС‚СЃСЏ РїРѕ РѕРєСЂСѓРіРµ РіРѕСЂР°Р·РґРѕ С‡Р°С‰Рµ, С‡РµРј РѕСЃС‚Р°Р»СЊРЅС‹Рµ
 void e_VasyaIdle( Critter& guard )
 {
     if( guard.IsNoPlanes() )
@@ -239,8 +239,8 @@ void e_VasyaIdle( Critter& guard )
 
     _GuardIdle( guard );
 }
-/*-------------------------планы---------------------------------*/
-// охранник подходит ближе к проводнику, если у него нет других целей
+/*-------------------------РїР»Р°РЅС‹---------------------------------*/
+// РѕС…СЂР°РЅРЅРёРє РїРѕРґС…РѕРґРёС‚ Р±Р»РёР¶Рµ Рє РїСЂРѕРІРѕРґРЅРёРєСѓ, РµСЃР»Рё Сѓ РЅРµРіРѕ РЅРµС‚ РґСЂСѓРіРёС… С†РµР»РµР№
 void plane_MiscGoHomePos( Critter& guard )
 {
 
@@ -248,7 +248,7 @@ void plane_MiscGoHomePos( Critter& guard )
 
 }
 
-/*-------------------------инициализация-------------------------*/
+/*-------------------------РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ-------------------------*/
 void _DefaultGuardInit( Critter& guard, bool firstTime )
 {
     if( guard.IsDead() )
@@ -279,12 +279,12 @@ void _DefaultGuardInit( Critter& guard, bool firstTime )
     guard.SetEvent( CRITTER_EVENT_IDLE, "_GuardIdle" );
     guard.SetEvent( CRITTER_EVENT_DEAD, "_GuardDead" );
 
-    // охранников не ограбить
+    // РѕС…СЂР°РЅРЅРёРєРѕРІ РЅРµ РѕРіСЂР°Р±РёС‚СЊ
     guard.ModeBase[ MODE_NO_STEAL ] = 1;
-    // торговать они не будут
+    // С‚РѕСЂРіРѕРІР°С‚СЊ РѕРЅРё РЅРµ Р±СѓРґСѓС‚
     guard.ModeBase[ MODE_NO_BARTER ] = 1;
     guard.ModeBase[ MODE_NO_LOOT ] = 0;
-    // из мертвых не встанут
+    // РёР· РјРµСЂС‚РІС‹С… РЅРµ РІСЃС‚Р°РЅСѓС‚
     guard.StatBase[ ST_REPLICATION_TIME ] = -1;
 }
 
@@ -301,7 +301,7 @@ uint cte_DeleteCaravanGuard( Critter& cr, int identifier, uint& rate )
         DeleteNpc( cr );
     return 0;
 }
-// тоже, но бесконечные патроны
+// С‚РѕР¶Рµ, РЅРѕ Р±РµСЃРєРѕРЅРµС‡РЅС‹Рµ РїР°С‚СЂРѕРЅС‹
 void _DefaultGuardInitUnlimAmmo( Critter& guard, bool firstTime )
 {
     guard.ModeBase[ MODE_UNLIMITED_AMMO ] = 1;
@@ -315,7 +315,7 @@ void _VCPatrolInit( Critter& guard, bool firstTime )
     guard.SetEvent( CRITTER_EVENT_DEAD, "_VCPatrolDead" );
 }
 
-// Патрульные для квеста Патруль Рейнджеров
+// РџР°С‚СЂСѓР»СЊРЅС‹Рµ РґР»СЏ РєРІРµСЃС‚Р° РџР°С‚СЂСѓР»СЊ Р РµР№РЅРґР¶РµСЂРѕРІ
 void _NcrRangerPatrolInit( Critter& guard, bool firstTime )
 {
     GameVar @ qVar = GetLocalVar( LVAR_q_ncr_hate_patrol, guard.Id );
@@ -331,7 +331,7 @@ void _NcrRangerPatrolInit( Critter& guard, bool firstTime )
     guard.ModeBase[ MODE_UNLIMITED_AMMO ] = 1;
     _DefaultGuardInit( guard, firstTime );
 }
-/*-------------------------специфическая-------------------------*/
+/*-------------------------СЃРїРµС†РёС„РёС‡РµСЃРєР°СЏ-------------------------*/
 void _BomberInit( Critter& guard, bool firstTime )
 {
     if( firstTime )
@@ -415,12 +415,12 @@ void _VasyaInit( Critter& guard, bool firstTime )
         guard.MoveItem( item1.Id, 1, SLOT_ARMOR );
         // #define PID_LIGHTER                         (101) //Zippo
         guard.AddItem( PID_LIGHTER, 1 );
-        // #define PID_CIGARETTES                      (541) //Сигареты
+        // #define PID_CIGARETTES                      (541) //РЎРёРіР°СЂРµС‚С‹
         guard.AddItem( PID_CIGARETTES, 1 );
     }
     // default init
     _DefaultGuardInit( guard, firstTime );
-    // поторговать с Василием? легко!
+    // РїРѕС‚РѕСЂРіРѕРІР°С‚СЊ СЃ Р’Р°СЃРёР»РёРµРј? Р»РµРіРєРѕ!
     guard.ModeBase[ MODE_NO_BARTER ] = 0;
     guard.SetEvent( CRITTER_EVENT_IDLE, "e_VasyaIdle" );
 }
@@ -533,7 +533,7 @@ void _RatInit( Critter& guard, bool firstTime )
         guard.AddItem( PID_4_7MM_CASELESS, 50 );
         // #define PID_STIMPAK                         (40)
         guard.AddItem( PID_STIMPAK, 5 );
-        // #define PID_SHOVEL                          (289) //Лопата
+        // #define PID_SHOVEL                          (289) //Р›РѕРїР°С‚Р°
         guard.AddItem( PID_SHOVEL, 1 );
         // #define PID_SUPER_STIMPAK
         guard.AddItem( PID_SUPER_STIMPAK, 1 );
@@ -578,13 +578,13 @@ void _PetreskuInit( Critter& guard, bool firstTime )
 void _BHCaravanGuardInit( Critter& guard, bool firstTime )
 {
     _DefaultGuardInitUnlimAmmo( guard, firstTime );
-    // охранников не ограбить
+    // РѕС…СЂР°РЅРЅРёРєРѕРІ РЅРµ РѕРіСЂР°Р±РёС‚СЊ
     guard.ModeBase[ MODE_NO_STEAL ] = 0;
     guard.ModeBase[ MODE_NO_LOOT ] = 0;
     guard.SetEvent( CRITTER_EVENT_STEALING, "_GuardStealing" );
 }
 // */
-/* ************************************* Поведение караванщика ************************************** */
+/* ************************************* РџРѕРІРµРґРµРЅРёРµ РєР°СЂР°РІР°РЅС‰РёРєР° ************************************** */
 void _AmplifyCaravaneer( Critter& cr )
 {
     DL( "Critter level = " + cr.Stat[ ST_LEVEL ] );
@@ -603,12 +603,12 @@ void _AmplifyCaravaneer( Critter& cr, uint lvl )
     cr.StatBase[ ST_EXPLODE_RESIST ] = CLAMP( cr.StatBase[ ST_EXPLODE_RESIST ] + lvl * 20, 30, 250 );
     cr.StatBase[ ST_NORMAL_RESIST ] = CLAMP( cr.StatBase[ ST_ELECTRO_RESIST ] + lvl * 20, 30, 250 );
 }
-// настройка поведения караванщика
+// РЅР°СЃС‚СЂРѕР№РєР° РїРѕРІРµРґРµРЅРёСЏ РєР°СЂР°РІР°РЅС‰РёРєР°
 void _SetEvents( Critter& cr, uint model )
 {
     switch( model )
     {
-    // трус
+    // С‚СЂСѓСЃ
     case MODEL_CRVNR_COWARD:
         cr.StatBase[ ST_AI_ID ] = AIPACKET_PRIMITIVE_COWARD;
         cr.SetEvent( CRITTER_EVENT_ATTACKED, "e_CowardAttacked" );
@@ -620,7 +620,7 @@ void _SetEvents( Critter& cr, uint model )
 
 bool e_CowardAttacked( Critter& cr, Critter& attacker )
 {
-    // если здоровье нпц <95%
+    // РµСЃР»Рё Р·РґРѕСЂРѕРІСЊРµ РЅРїС† <95%
     // cr.Say(SAY_NORM_ON_HEAD,"my health = "+ cr.StatBase[ST_CURRENT_HP] + " max hp = "+cr.StatBase[ST_MAX_LIFE]);
     if( cr.StatBase[ ST_MAX_LIFE ] * 75 > cr.StatBase[ ST_CURRENT_HP ] * 100 )
     {
@@ -640,6 +640,6 @@ bool e_CowardAttacked( Critter& cr, Critter& attacker )
     }
     return false;
 }
-// караванщик отбегает и ждет несколько минут
+// РєР°СЂР°РІР°РЅС‰РёРє РѕС‚Р±РµРіР°РµС‚ Рё Р¶РґРµС‚ РЅРµСЃРєРѕР»СЊРєРѕ РјРёРЅСѓС‚
 void plane_MiscWaitInAttack( Critter& cr )
 {}

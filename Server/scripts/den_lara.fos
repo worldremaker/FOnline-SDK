@@ -6,8 +6,8 @@ void _LaraInit( Critter& lara, bool firstTime )
     lara.SetEvent( CRITTER_EVENT_BARTER, "_EventBarter" );
 }
 
-/** Обрабатывает события бартера.
- * С Ларой могут торговать только те, к кому она лояльна.
+/** РћР±СЂР°Р±Р°С‚С‹РІР°РµС‚ СЃРѕР±С‹С‚РёСЏ Р±Р°СЂС‚РµСЂР°.
+ * РЎ Р›Р°СЂРѕР№ РјРѕРіСѓС‚ С‚РѕСЂРіРѕРІР°С‚СЊ С‚РѕР»СЊРєРѕ С‚Рµ, Рє РєРѕРјСѓ РѕРЅР° Р»РѕСЏР»СЊРЅР°.
  */
 bool _EventBarter( Critter& lara, Critter& player, bool attach, uint barterCount )
 {

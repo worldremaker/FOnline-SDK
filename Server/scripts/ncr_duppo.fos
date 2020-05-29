@@ -6,5 +6,5 @@ void _DuppoInit( Critter& dappo, bool firstTime )
 {
 
     _TraderInit( dappo, firstTime );
-    // караваны будут новые
+    // РєР°СЂР°РІР°РЅС‹ Р±СѓРґСѓС‚ РЅРѕРІС‹Рµ
 }

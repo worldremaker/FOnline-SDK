@@ -67,7 +67,7 @@ bool s_Mine( Critter& cr, Scenery& sc, int skill, Item@ item )
     successChance = CLAMP( successChance, 10, 95 );
     int roll = Random( 1, 100 );
 
-    // шанс выбить простой камень
+    // С€Р°РЅСЃ РІС‹Р±РёС‚СЊ РїСЂРѕСЃС‚РѕР№ РєР°РјРµРЅСЊ
     if( roll <= successChance )
     {
         cr.AddItem( PID_URANIUM_ORE, 1 );
@@ -79,7 +79,7 @@ bool s_Mine( Critter& cr, Scenery& sc, int skill, Item@ item )
         // cr.Say(SAY_NETMSG, "Fail. Roll/Chance = " + roll + "/" + successChance);
         cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, STR_MINE_STONE );
         // r17 091228>
-        // добавление камня всегда, если не досталось урановой руды
+        // РґРѕР±Р°РІР»РµРЅРёРµ РєР°РјРЅСЏ РІСЃРµРіРґР°, РµСЃР»Рё РЅРµ РґРѕСЃС‚Р°Р»РѕСЃСЊ СѓСЂР°РЅРѕРІРѕР№ СЂСѓРґС‹
         cr.AddItem( PID_ROCK, 1 );
         // <r17
     }

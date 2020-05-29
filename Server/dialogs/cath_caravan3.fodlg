@@ -1,5 +1,5 @@
 [comment]
-Ваши комментарии / Your comments.
+Р’Р°С€Рё РєРѕРјРјРµРЅС‚Р°СЂРёРё / Your comments.
 
 [data]
 lang=russ engl
@@ -12,8 +12,8 @@ lang=russ engl
 0 2010&
 
 [russ]
-{100}{}{Караванщик}
-{200}{}{Вы видите караванщика.}
+{100}{}{РљР°СЂР°РІР°РЅС‰РёРє}
+{200}{}{Р’С‹ РІРёРґРёС‚Рµ РєР°СЂР°РІР°РЅС‰РёРєР°.}
 {1000}{}{Predialogue installations}
 {1010}{}{---}
 {2000}{}{My feet hurt.@@Time for some rest and relaxation.@@Guard duty has been pretty calm lately.@@Can't you see I'm trying to rest.@@Leave me alone I'm tired.}

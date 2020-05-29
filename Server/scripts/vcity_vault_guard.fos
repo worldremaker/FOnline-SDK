@@ -4,6 +4,6 @@
 void _VaultGuardInit( Critter& cr, bool firstTime )
 {}
 
-// игрок идет в само убежище
+// РёРіСЂРѕРє РёРґРµС‚ РІ СЃР°РјРѕ СѓР±РµР¶РёС‰Рµ
 void t_in_vault( Critter& player, Scenery& trigger, bool entered, uint8 dir )
 {}

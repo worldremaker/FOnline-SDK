@@ -3,49 +3,49 @@
 #include "_teams.fos"
 
 
-#define RND_COORD_OFFSET         # (offset) ( offset * __GlobalMapZoneLength + Random( -( __GlobalMapZoneLength / 2 ), ( __GlobalMapZoneLength / 2 ) ) ) // случайное смещение на глобальной карте
+#define RND_COORD_OFFSET         # (offset) ( offset * __GlobalMapZoneLength + Random( -( __GlobalMapZoneLength / 2 ), ( __GlobalMapZoneLength / 2 ) ) ) // СЃР»СѓС‡Р°Р№РЅРѕРµ СЃРјРµС‰РµРЅРёРµ РЅР° РіР»РѕР±Р°Р»СЊРЅРѕР№ РєР°СЂС‚Рµ
 
-#define LOC_PID_START            ( LOCATION_Quest_NCR_SIEGE1 )                                                                                           // начала диапазона локаций лагерей нападающих
-#define LOC_PID_END              ( LOCATION_Quest_NCR_SIEGE5 )                                                                                           // конец диапазона локаций лагерей нападающих
+#define LOC_PID_START            ( LOCATION_Quest_NCR_SIEGE1 )                                                                                           // РЅР°С‡Р°Р»Р° РґРёР°РїР°Р·РѕРЅР° Р»РѕРєР°С†РёР№ Р»Р°РіРµСЂРµР№ РЅР°РїР°РґР°СЋС‰РёС…
+#define LOC_PID_END              ( LOCATION_Quest_NCR_SIEGE5 )                                                                                           // РєРѕРЅРµС† РґРёР°РїР°Р·РѕРЅР° Р»РѕРєР°С†РёР№ Р»Р°РіРµСЂРµР№ РЅР°РїР°РґР°СЋС‰РёС…
 
-#define MIN_SIEGE_LOCS           ( 4 )                                                                                                                   // минимальное число локаций с лагерями
-#define MAX_SIEGE_LOCS           ( 8 )                                                                                                                   // максимальное число локаций с лагерями
+#define MIN_SIEGE_LOCS           ( 4 )                                                                                                                   // РјРёРЅРёРјР°Р»СЊРЅРѕРµ С‡РёСЃР»Рѕ Р»РѕРєР°С†РёР№ СЃ Р»Р°РіРµСЂСЏРјРё
+#define MAX_SIEGE_LOCS           ( 8 )                                                                                                                   // РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ С‡РёСЃР»Рѕ Р»РѕРєР°С†РёР№ СЃ Р»Р°РіРµСЂСЏРјРё
 
-#define STR_BEGIN_SIEGE_RADIO    ( 2940 )                                                                                                                // сообщение, которое отправляется по радио при начале осады
-#define STR_END_SIEGE_RADIO      ( 2941 )                                                                                                                // сообщение, которое отправляется по радио когда осада закончена
-#define STR_SIEGE_MAP_ENTER      ( 2942 )                                                                                                                // сообщение на входе в карту для игрока
+#define STR_BEGIN_SIEGE_RADIO    ( 2940 )                                                                                                                // СЃРѕРѕР±С‰РµРЅРёРµ, РєРѕС‚РѕСЂРѕРµ РѕС‚РїСЂР°РІР»СЏРµС‚СЃСЏ РїРѕ СЂР°РґРёРѕ РїСЂРё РЅР°С‡Р°Р»Рµ РѕСЃР°РґС‹
+#define STR_END_SIEGE_RADIO      ( 2941 )                                                                                                                // СЃРѕРѕР±С‰РµРЅРёРµ, РєРѕС‚РѕСЂРѕРµ РѕС‚РїСЂР°РІР»СЏРµС‚СЃСЏ РїРѕ СЂР°РґРёРѕ РєРѕРіРґР° РѕСЃР°РґР° Р·Р°РєРѕРЅС‡РµРЅР°
+#define STR_SIEGE_MAP_ENTER      ( 2942 )                                                                                                                // СЃРѕРѕР±С‰РµРЅРёРµ РЅР° РІС…РѕРґРµ РІ РєР°СЂС‚Сѓ РґР»СЏ РёРіСЂРѕРєР°
 
-#define SIEGE_CHANNEL            ( 0 )                                                                                                                   // номер радиоканала, на котором вещает Элиза из нкр при начале и конце осады
-#define RMSG_NEXT                ( 60 * 60 * 12 )                                                                                                        // период между сообщениями Элизы, 12 игровых часов
+#define SIEGE_CHANNEL            ( 0 )                                                                                                                   // РЅРѕРјРµСЂ СЂР°РґРёРѕРєР°РЅР°Р»Р°, РЅР° РєРѕС‚РѕСЂРѕРј РІРµС‰Р°РµС‚ Р­Р»РёР·Р° РёР· РЅРєСЂ РїСЂРё РЅР°С‡Р°Р»Рµ Рё РєРѕРЅС†Рµ РѕСЃР°РґС‹
+#define RMSG_NEXT                ( 60 * 60 * 12 )                                                                                                        // РїРµСЂРёРѕРґ РјРµР¶РґСѓ СЃРѕРѕР±С‰РµРЅРёСЏРјРё Р­Р»РёР·С‹, 12 РёРіСЂРѕРІС‹С… С‡Р°СЃРѕРІ
 
-#define NPC_ROLE_RAIDER          ( 17 )                                                                                                                  // роль рядового рейдера
+#define NPC_ROLE_RAIDER          ( 17 )                                                                                                                  // СЂРѕР»СЊ СЂСЏРґРѕРІРѕРіРѕ СЂРµР№РґРµСЂР°
 
-#define Q_ST_ACTIVE              ( 1 )                                                                                                                   // статус квеста - взят, не выполнен
-#define Q_ST_COMPLETE            ( 2 )                                                                                                                   // cтатус квеста - задание выполнено
-#define Q_ST_CLOSED              ( 3 )                                                                                                                   // статус квеста - сдан
+#define Q_ST_ACTIVE              ( 1 )                                                                                                                   // СЃС‚Р°С‚СѓСЃ РєРІРµСЃС‚Р° - РІР·СЏС‚, РЅРµ РІС‹РїРѕР»РЅРµРЅ
+#define Q_ST_COMPLETE            ( 2 )                                                                                                                   // cС‚Р°С‚СѓСЃ РєРІРµСЃС‚Р° - Р·Р°РґР°РЅРёРµ РІС‹РїРѕР»РЅРµРЅРѕ
+#define Q_ST_CLOSED              ( 3 )                                                                                                                   // СЃС‚Р°С‚СѓСЃ РєРІРµСЃС‚Р° - СЃРґР°РЅ
 
-#define FIRST_SIEGE_EVENT        ( 30 * 3 * 60 * 60 * 24 )                                                                                               // первая осада через 6 месяцев
-#define NEXT_SIEGE_EVENT         ( 30 * 3 * 60 * 60 * 24 )                                                                                               // первая осада через 6 месяцев
+#define FIRST_SIEGE_EVENT        ( 30 * 3 * 60 * 60 * 24 )                                                                                               // РїРµСЂРІР°СЏ РѕСЃР°РґР° С‡РµСЂРµР· 6 РјРµСЃСЏС†РµРІ
+#define NEXT_SIEGE_EVENT         ( 30 * 3 * 60 * 60 * 24 )                                                                                               // РїРµСЂРІР°СЏ РѕСЃР°РґР° С‡РµСЂРµР· 6 РјРµСЃСЏС†РµРІ
 
-#define START_COMPELIXITY        ( 1 )                                                                                                                   // стартовая сложность осады
-#define MAX_COMPLEXITY           ( 6 )                                                                                                                   // максимальная сложность осады
+#define START_COMPELIXITY        ( 1 )                                                                                                                   // СЃС‚Р°СЂС‚РѕРІР°СЏ СЃР»РѕР¶РЅРѕСЃС‚СЊ РѕСЃР°РґС‹
+#define MAX_COMPLEXITY           ( 6 )                                                                                                                   // РјР°РєСЃРёРјР°Р»СЊРЅР°СЏ СЃР»РѕР¶РЅРѕСЃС‚СЊ РѕСЃР°РґС‹
 
 import void DefineInvasionEvent() from "ncr_invasion";
 
-// метод для генерации случайной локации
-// xOff, yOff - смешения относительно НКР по х и у - чтобы локации были в разных клетках вокруг города
-// pidCLoc - код прототипа случайной локации, вокруг которой будет размещена новая локация
-// pidNewLoc - прототип новой локации
+// РјРµС‚РѕРґ РґР»СЏ РіРµРЅРµСЂР°С†РёРё СЃР»СѓС‡Р°Р№РЅРѕР№ Р»РѕРєР°С†РёРё
+// xOff, yOff - СЃРјРµС€РµРЅРёСЏ РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ РќРљР  РїРѕ С… Рё Сѓ - С‡С‚РѕР±С‹ Р»РѕРєР°С†РёРё Р±С‹Р»Рё РІ СЂР°Р·РЅС‹С… РєР»РµС‚РєР°С… РІРѕРєСЂСѓРі РіРѕСЂРѕРґР°
+// pidCLoc - РєРѕРґ РїСЂРѕС‚РѕС‚РёРїР° СЃР»СѓС‡Р°Р№РЅРѕР№ Р»РѕРєР°С†РёРё, РІРѕРєСЂСѓРі РєРѕС‚РѕСЂРѕР№ Р±СѓРґРµС‚ СЂР°Р·РјРµС‰РµРЅР° РЅРѕРІР°СЏ Р»РѕРєР°С†РёСЏ
+// pidNewLoc - РїСЂРѕС‚РѕС‚РёРї РЅРѕРІРѕР№ Р»РѕРєР°С†РёРё
 Location @ _GetSiegeCamp( int8 xOff, int8 yOff, uint pidCLoc, uint pidNewLoc )
 {
-    Location @ locCenter = GetLocationByPid( pidCLoc, 0 );  // локация центральная
+    Location @ locCenter = GetLocationByPid( pidCLoc, 0 );  // Р»РѕРєР°С†РёСЏ С†РµРЅС‚СЂР°Р»СЊРЅР°СЏ
     if( !valid( locCenter ) )
         return null;
 
     uint xGlobal = locCenter.WorldX + RND_COORD_OFFSET( xOff );
     uint yGlobal = locCenter.WorldY + RND_COORD_OFFSET( yOff );
 
-    uint locId = CreateLocation( pidNewLoc, xGlobal, yGlobal, null );   // новая локация
+    uint locId = CreateLocation( pidNewLoc, xGlobal, yGlobal, null );   // РЅРѕРІР°СЏ Р»РѕРєР°С†РёСЏ
     if( locId == 0 )
     {
         Log( "Create Location fail. Pid" + pidNewLoc + "; GlobalX=" + xGlobal + "; GlobalY=" + yGlobal );
@@ -55,26 +55,26 @@ Location @ _GetSiegeCamp( int8 xOff, int8 yOff, uint pidCLoc, uint pidNewLoc )
     return GetLocation( locId );
 
 }
-// объявление первой осады
+// РѕР±СЉСЏРІР»РµРЅРёРµ РїРµСЂРІРѕР№ РѕСЃР°РґС‹
 void DeclareSiegeEvent( Map& map )
 {
-    // value = сложность осады
+    // value = СЃР»РѕР¶РЅРѕСЃС‚СЊ РѕСЃР°РґС‹
     uint eId = CreateTimeEvent( __FullSecond + FIRST_SIEGE_EVENT, "e_BeginSiege", START_COMPELIXITY, true );
 }
 
-// начало осады
+// РЅР°С‡Р°Р»Рѕ РѕСЃР°РґС‹
 uint e_BeginSiege( uint[] @ values )
 {
-    // генерация локаций.
+    // РіРµРЅРµСЂР°С†РёСЏ Р»РѕРєР°С†РёР№.
     uint complexity = START_COMPELIXITY;     // CLAMP(values[0], START_COMPELIXITY, MAX_COMPLEXITY);
     DL( "compl =" + complexity );
-    // глобальная переменная - число лагерей
+    // РіР»РѕР±Р°Р»СЊРЅР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ - С‡РёСЃР»Рѕ Р»Р°РіРµСЂРµР№
     GameVar @ siegeNum = GetGlobalVar( GVAR_ncr_siege_camps_num );
 
 
     if( !valid( siegeNum ) )
         return 0;
-    // предыдущая осада закончилась
+    // РїСЂРµРґС‹РґСѓС‰Р°СЏ РѕСЃР°РґР° Р·Р°РєРѕРЅС‡РёР»Р°СЃСЊ
     if( siegeNum > 0 )
     {
         DL( "Previous Siege not ended" );
@@ -85,8 +85,8 @@ uint e_BeginSiege( uint[] @ values )
 
     DL( "LocNum: " + siegeNum.GetValue() );
 
-    uint xOff = 0;     // смещение относительно центра нкр по оси Х
-    uint yOff = 0;     // по оси У
+    uint xOff = 0;     // СЃРјРµС‰РµРЅРёРµ РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ С†РµРЅС‚СЂР° РЅРєСЂ РїРѕ РѕСЃРё РҐ
+    uint yOff = 0;     // РїРѕ РѕСЃРё РЈ
     uint locNum = uint( siegeNum.GetValue() );
 
 
@@ -132,12 +132,12 @@ uint e_BeginSiege( uint[] @ values )
 
     }
     complexity++;
-    // следующая осада
+    // СЃР»РµРґСѓСЋС‰Р°СЏ РѕСЃР°РґР°
     CreateTimeEvent( __FullSecond + NEXT_SIEGE_EVENT, "e_BeginSiege", complexity, true );
     CreateTimeEvent( __FullSecond + RMSG_NEXT, "e_SayElizeRadio", true );
-    // сообщение по радио от Элизы
+    // СЃРѕРѕР±С‰РµРЅРёРµ РїРѕ СЂР°РґРёРѕ РѕС‚ Р­Р»РёР·С‹
     RadioMessageMsg( SIEGE_CHANNEL, TEXTMSG_TEXT, STR_BEGIN_SIEGE_RADIO );
-    // объявляем нападение на НКР
+    // РѕР±СЉСЏРІР»СЏРµРј РЅР°РїР°РґРµРЅРёРµ РЅР° РќРљР 
     DefineInvasionEvent();
     return 0;
 }
@@ -151,7 +151,7 @@ uint e_SayElizeRadio( uint[] @ values )
     if( siegeNum == 0 )
         return 0;
 
-    // сообщение по радио от Элизы
+    // СЃРѕРѕР±С‰РµРЅРёРµ РїРѕ СЂР°РґРёРѕ РѕС‚ Р­Р»РёР·С‹
     RadioMessageMsg( SIEGE_CHANNEL, TEXTMSG_TEXT, STR_BEGIN_SIEGE_RADIO );
 
     return RMSG_NEXT;
@@ -179,7 +179,7 @@ void _MapInit( Map& map, bool firstTime )
 
 import void _ExplodeInit( Item& item, bool firstTime ) from "explode";
 
-// зарядка мин, расставленных в маппере
+// Р·Р°СЂСЏРґРєР° РјРёРЅ, СЂР°СЃСЃС‚Р°РІР»РµРЅРЅС‹С… РІ РјР°РїРїРµСЂРµ
 void ActivateMines( Map& map )
 {
     Item@[]  items;
@@ -249,7 +249,7 @@ void e_RaiderDead( Critter& cr, Critter@ killer )
     DL( "all ok" );
     if( map.GetNpcCount( NPC_ROLE_RAIDER, FIND_LIFE | FIND_ONLY_NPC ) == 0 )
     {
-        DL( "Все рейдеры мертвы" );
+        DL( "Р’СЃРµ СЂРµР№РґРµСЂС‹ РјРµСЂС‚РІС‹" );
         Location @loc = map.GetLocation();
         if( valid( loc ) )
             loc.AutoGarbage = true;
@@ -259,14 +259,14 @@ void e_RaiderDead( Critter& cr, Critter@ killer )
 
         if( !valid( siegeNum ) )
             return;
-        // уменьшаем счетчик локаций
-        DL( "Число локаций с рейдерами: " + siegeNum.GetValue() );
+        // СѓРјРµРЅСЊС€Р°РµРј СЃС‡РµС‚С‡РёРє Р»РѕРєР°С†РёР№
+        DL( "Р§РёСЃР»Рѕ Р»РѕРєР°С†РёР№ СЃ СЂРµР№РґРµСЂР°РјРё: " + siegeNum.GetValue() );
         if( siegeNum.GetValue() > 0 )
         {
             siegeNum = siegeNum.GetValue() - 1;
         }
-        // если игрок присутствует в этот момент в локации, живой или мертвый
-        // он получает статус квеста "выполнено"
+        // РµСЃР»Рё РёРіСЂРѕРє РїСЂРёСЃСѓС‚СЃС‚РІСѓРµС‚ РІ СЌС‚РѕС‚ РјРѕРјРµРЅС‚ РІ Р»РѕРєР°С†РёРё, Р¶РёРІРѕР№ РёР»Рё РјРµСЂС‚РІС‹Р№
+        // РѕРЅ РїРѕР»СѓС‡Р°РµС‚ СЃС‚Р°С‚СѓСЃ РєРІРµСЃС‚Р° "РІС‹РїРѕР»РЅРµРЅРѕ"
         Critter@[] critters;
         map.GetCritters( 0, FIND_ALL | FIND_ONLY_PLAYERS, critters );
         DL( "players: " + critters.length() );
@@ -287,8 +287,8 @@ void e_RaiderDead( Critter& cr, Critter@ killer )
 }
 
 
-#define RAIDER_PRICE    ( 400 )                              // награда за одного убитого рейдера
-// награда за убийство рейдеров
+#define RAIDER_PRICE    ( 400 )                              // РЅР°РіСЂР°РґР° Р·Р° РѕРґРЅРѕРіРѕ СѓР±РёС‚РѕРіРѕ СЂРµР№РґРµСЂР°
+// РЅР°РіСЂР°РґР° Р·Р° СѓР±РёР№СЃС‚РІРѕ СЂРµР№РґРµСЂРѕРІ
 void r_GrantPlayer( Critter& player, Critter@ cr )
 {
     GameVar @ counter = GetLocalVar( LVAR_ncr_siege_kills_counter, player.Id );
@@ -302,8 +302,8 @@ void r_GrantPlayer( Critter& player, Critter@ cr )
     counter = 10;
 }
 
-// тестирование сркиптов
-// ~run ncr_siege BS 0 0 0 p0 - сложность
+// С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ СЃСЂРєРёРїС‚РѕРІ
+// ~run ncr_siege BS 0 0 0 p0 - СЃР»РѕР¶РЅРѕСЃС‚СЊ
 void BS( Critter& cr, int p0, int p1, int p2 )
 {
     uint[] v( 1 );

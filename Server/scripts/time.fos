@@ -16,7 +16,7 @@
 //  %MINUTE% - minute;
 //  %SECOND% - second;
 // To show names of values add "-STR" to format tag (%MONTH% -> %MONTH-STR%), supported by month and day of week.
-// Example: GetTimeString("%HOUR%:%MINUTE% %DAY% (%DOW-STR%) %MONTH-STR% %YEAR%",fullSecond) -> "14:05 23 (Sunday) November 2299"/"14:05 23 (Воскресенье) Ноябрь 2299".
+// Example: GetTimeString("%HOUR%:%MINUTE% %DAY% (%DOW-STR%) %MONTH-STR% %YEAR%",fullSecond) -> "14:05 23 (Sunday) November 2299"/"14:05 23 (Р’РѕСЃРєСЂРµСЃРµРЅСЊРµ) РќРѕСЏР±СЂСЊ 2299".
 
 #include "_defines.fos"
 
@@ -142,7 +142,7 @@ string@ GetTimeString( const string& format, int year, int month, int day, int d
 }
 #endif
 
-// Возвращает представление времени в виде строки в формате dd.mm.yy hh:mm. rifleman17
+// Р’РѕР·РІСЂР°С‰Р°РµС‚ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ РІСЂРµРјРµРЅРё РІ РІРёРґРµ СЃС‚СЂРѕРєРё РІ С„РѕСЂРјР°С‚Рµ dd.mm.yy hh:mm. rifleman17
 string DateTimeToString( uint gameTime )
 {
     uint16 year = 0;

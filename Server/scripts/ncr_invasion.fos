@@ -4,25 +4,25 @@
 #include "_teams.fos"
 #include "encounter_npc.fos"
 
-#define LOC_PID_START          ( LOCATION_Quest_NCR_SIEGE1 ) // начала диапазона локаций лагерей нападающих
-#define LOC_PID_END            ( LOCATION_Quest_NCR_SIEGE5 ) // конец диапазона локаций лагерей нападающих
-#define NPC_ROLE_RAIDER        ( 17 )                        // роль рядового рейдера
+#define LOC_PID_START          ( LOCATION_Quest_NCR_SIEGE1 ) // РЅР°С‡Р°Р»Р° РґРёР°РїР°Р·РѕРЅР° Р»РѕРєР°С†РёР№ Р»Р°РіРµСЂРµР№ РЅР°РїР°РґР°СЋС‰РёС…
+#define LOC_PID_END            ( LOCATION_Quest_NCR_SIEGE5 ) // РєРѕРЅРµС† РґРёР°РїР°Р·РѕРЅР° Р»РѕРєР°С†РёР№ Р»Р°РіРµСЂРµР№ РЅР°РїР°РґР°СЋС‰РёС…
+#define NPC_ROLE_RAIDER        ( 17 )                        // СЂРѕР»СЊ СЂСЏРґРѕРІРѕРіРѕ СЂРµР№РґРµСЂР°
 
-#define GANG_SIZE              ( 6 )                         // размер одной банды
+#define GANG_SIZE              ( 6 )                         // СЂР°Р·РјРµСЂ РѕРґРЅРѕР№ Р±Р°РЅРґС‹
 
-#define ENTIRE_HEX_NUM         ( 111 )                       // номер гекса на котором появляются рейдеры
+#define ENTIRE_HEX_NUM         ( 111 )                       // РЅРѕРјРµСЂ РіРµРєСЃР° РЅР° РєРѕС‚РѕСЂРѕРј РїРѕСЏРІР»СЏСЋС‚СЃСЏ СЂРµР№РґРµСЂС‹
 
-#define STR_SHOUT_RAIDERS      ( 2950 )                      // номер cстроки, которое периодически выкрикивают рейдеры
-#define STR_ELIZE_RADIO        ( 2951 )                      // номер строки из fotext которое отправляется по радио в начале нападения
+#define STR_SHOUT_RAIDERS      ( 2950 )                      // РЅРѕРјРµСЂ cСЃС‚СЂРѕРєРё, РєРѕС‚РѕСЂРѕРµ РїРµСЂРёРѕРґРёС‡РµСЃРєРё РІС‹РєСЂРёРєРёРІР°СЋС‚ СЂРµР№РґРµСЂС‹
+#define STR_ELIZE_RADIO        ( 2951 )                      // РЅРѕРјРµСЂ СЃС‚СЂРѕРєРё РёР· fotext РєРѕС‚РѕСЂРѕРµ РѕС‚РїСЂР°РІР»СЏРµС‚СЃСЏ РїРѕ СЂР°РґРёРѕ РІ РЅР°С‡Р°Р»Рµ РЅР°РїР°РґРµРЅРёСЏ
 
-#define MSG_ATTACK             ( 6 )                         // сообщение "атаковать цель"
-#define MSG_RAIDER_KILLED      ( 7 )                         // сообщение "нашего убили"
+#define MSG_ATTACK             ( 6 )                         // СЃРѕРѕР±С‰РµРЅРёРµ "Р°С‚Р°РєРѕРІР°С‚СЊ С†РµР»СЊ"
+#define MSG_RAIDER_KILLED      ( 7 )                         // СЃРѕРѕР±С‰РµРЅРёРµ "РЅР°С€РµРіРѕ СѓР±РёР»Рё"
 
-#define ENEMY_SEARCH_RAD       ( 35 )                        // радиуск поиска врагов в гексах
+#define ENEMY_SEARCH_RAD       ( 35 )                        // СЂР°РґРёСѓСЃРє РїРѕРёСЃРєР° РІСЂР°РіРѕРІ РІ РіРµРєСЃР°С…
 
-#define NEXT_INVASION          ( 1 * 5 * 24 * 60 * 60 )      // время следующего нападения (через 5 дней)
+#define NEXT_INVASION          ( 1 * 5 * 24 * 60 * 60 )      // РІСЂРµРјСЏ СЃР»РµРґСѓСЋС‰РµРіРѕ РЅР°РїР°РґРµРЅРёСЏ (С‡РµСЂРµР· 5 РґРЅРµР№)
 
-#define TIME_TO_DELETE_DEAD    ( 1 * 60 * 60 )               // трупы удаляются через час
+#define TIME_TO_DELETE_DEAD    ( 1 * 60 * 60 )               // С‚СЂСѓРїС‹ СѓРґР°Р»СЏСЋС‚СЃСЏ С‡РµСЂРµР· С‡Р°СЃ
 
 import bool GetNearEntire( Map& map, int number, uint16& hx, uint16& hy ) from "entire";
 import bool GetFreeHex( Map& map, uint radius, uint16& hx, uint16& hy ) from "caravan";
@@ -41,7 +41,7 @@ uint e_BeginInvasion( uint[] @ values )
     if( !valid( invasionStatus ) )
         return 0;
     if( invasionStatus.GetValue() == 1 )
-        return 60 * 60 * 24;                              // откладываем выполнение на следующий день
+        return 60 * 60 * 24;                              // РѕС‚РєР»Р°РґС‹РІР°РµРј РІС‹РїРѕР»РЅРµРЅРёРµ РЅР° СЃР»РµРґСѓСЋС‰РёР№ РґРµРЅСЊ
 
     GameVar @ campsNum = GetGlobalVar( GVAR_ncr_siege_camps_num );
     if( !valid( campsNum ) )
@@ -113,7 +113,7 @@ uint e_BeginInvasion( uint[] @ values )
     DL( "invasion done" );
 
     RadioMessageMsg( 0, TEXTMSG_TEXT, STR_ELIZE_RADIO );
-    invasionStatus = 1;     // нападение началось!
+    invasionStatus = 1;     // РЅР°РїР°РґРµРЅРёРµ РЅР°С‡Р°Р»РѕСЃСЊ!
     return 0;
 }
 
@@ -160,7 +160,7 @@ uint e_DeleteDeadRaider( uint[] @ values )
 
 void _RaiderDead( Critter& cr, Critter@ killer )
 {
-    // добавляем событие удаления трупа
+    // РґРѕР±Р°РІР»СЏРµРј СЃРѕР±С‹С‚РёРµ СѓРґР°Р»РµРЅРёСЏ С‚СЂСѓРїР°
     CreateTimeEvent( __FullSecond + TIME_TO_DELETE_DEAD, "e_DeleteDeadRaider", cr.Id, true );
     //
     if( !valid( killer ) )
@@ -168,14 +168,14 @@ void _RaiderDead( Critter& cr, Critter@ killer )
     cr.SendMessage( MSG_RAIDER_KILLED, killer.Id, MESSAGE_TO_ALL_ON_MAP );
     _NpcDead( cr, killer );
 
-    // работа с переменными
+    // СЂР°Р±РѕС‚Р° СЃ РїРµСЂРµРјРµРЅРЅС‹РјРё
     if( killer.IsPlayer() )
     {
         GameVar @ qVar = GetLocalVar( LVAR_q_ncr_elize_invasion, killer.Id );
         if( valid( qVar ) && qVar.GetValue() == 1 )
             qVar = 2;
     }
-    // проверка, если все рейдеры мертвы, присваиваем всем игрокам статус квеста: выполнено
+    // РїСЂРѕРІРµСЂРєР°, РµСЃР»Рё РІСЃРµ СЂРµР№РґРµСЂС‹ РјРµСЂС‚РІС‹, РїСЂРёСЃРІР°РёРІР°РµРј РІСЃРµРј РёРіСЂРѕРєР°Рј СЃС‚Р°С‚СѓСЃ РєРІРµСЃС‚Р°: РІС‹РїРѕР»РЅРµРЅРѕ
     Map @ map = cr.GetMap();
     if( !valid( map ) )
         return;
@@ -185,7 +185,7 @@ void _RaiderDead( Critter& cr, Critter@ killer )
     if( invadersNum > 0 )
         return;
 
-    // все рейдеры мертвы
+    // РІСЃРµ СЂРµР№РґРµСЂС‹ РјРµСЂС‚РІС‹
     GameVar @ invasionStatus = GetGlobalVar( GVAR_ncr_invasion );
     if( !valid( invasionStatus ) )
         return;
@@ -282,7 +282,7 @@ void _OnShowCritter( Critter& cr, Critter& showCrit )
     }
 }
 
-// если путь заблокирован, уменьшаем приоритет плана, если есть хотя бы еще один план
+// РµСЃР»Рё РїСѓС‚СЊ Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅ, СѓРјРµРЅСЊС€Р°РµРј РїСЂРёРѕСЂРёС‚РµС‚ РїР»Р°РЅР°, РµСЃР»Рё РµСЃС‚СЊ С…РѕС‚СЏ Р±С‹ РµС‰Рµ РѕРґРёРЅ РїР»Р°РЅ
 int _OnInvaderPlaneEnd( Critter& cr, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem )
 {
     if( _NpcPlaneEnd( cr, plane, reason, someCr, someItem ) == PLANE_RUN_GLOBAL )
@@ -293,7 +293,7 @@ int _OnInvaderPlaneEnd( Critter& cr, NpcPlane& plane, int reason, Critter@ someC
         if( cr.GetPlanes( null ) > 1 && plane.Priority > 1 )
             plane.Priority--;
     }
-    else if( reason == REASON_GAG_CRITTER ) // к двери не пройти, мешает другой нпц
+    else if( reason == REASON_GAG_CRITTER ) // Рє РґРІРµСЂРё РЅРµ РїСЂРѕР№С‚Рё, РјРµС€Р°РµС‚ РґСЂСѓРіРѕР№ РЅРїС†
     {
         if( valid( someCr ) )
         {

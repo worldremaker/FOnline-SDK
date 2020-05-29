@@ -1,6 +1,6 @@
 // Author: heX
-// Отец Клифф
-// читает проповедь в 18 часов
+// РћС‚РµС† РљР»РёС„С„
+// С‡РёС‚Р°РµС‚ РїСЂРѕРїРѕРІРµРґСЊ РІ 18 С‡Р°СЃРѕРІ
 #include "_macros.fos"
 
 import uint GetNearFullSecond( uint16 year, uint16 month, uint16 day, uint16 hour, uint16 minute, uint16 second ) from "time";

@@ -13,9 +13,9 @@
 #define MapLimitSet            # (value)  SetData( 60, value )
 #define TimeRenewGet           GetData( 61 )
 #define TimeRenewSet           # (value) SetData( 61, value )
-#define RENEW_TIME             ( 60 * 60 * 24 * 7 ) // Обновление лимитов карты на автоматы раз в неделю
-#define MAX_ONEHANDED_LIMIT    ( 8000 )             // Максимальная сумма, которую можно выжать из автоматов(без учета джекпотов)
-#define STR_EMPTY              ( 2001 )             // Реплика "деньги в автомате закончились"
+#define RENEW_TIME             ( 60 * 60 * 24 * 7 ) // РћР±РЅРѕРІР»РµРЅРёРµ Р»РёРјРёС‚РѕРІ РєР°СЂС‚С‹ РЅР° Р°РІС‚РѕРјР°С‚С‹ СЂР°Р· РІ РЅРµРґРµР»СЋ
+#define MAX_ONEHANDED_LIMIT    ( 8000 )             // РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ СЃСѓРјРјР°, РєРѕС‚РѕСЂСѓСЋ РјРѕР¶РЅРѕ РІС‹Р¶Р°С‚СЊ РёР· Р°РІС‚РѕРјР°С‚РѕРІ(Р±РµР· СѓС‡РµС‚Р° РґР¶РµРєРїРѕС‚РѕРІ)
+#define STR_EMPTY              ( 2001 )             // Р РµРїР»РёРєР° "РґРµРЅСЊРіРё РІ Р°РІС‚РѕРјР°С‚Рµ Р·Р°РєРѕРЅС‡РёР»РёСЃСЊ"
 
 
 bool s_Onehanded( Critter& cr, Scenery& onehanded, int skill, Item@ item )
@@ -26,7 +26,7 @@ bool s_Onehanded( Critter& cr, Scenery& onehanded, int skill, Item@ item )
         return true;
     }
 
-    // Сheck map weekly OneHanded limit Expire
+    // РЎheck map weekly OneHanded limit Expire
     Map@ map = cr.GetMap();
     if( !valid( map ) )
         return true;

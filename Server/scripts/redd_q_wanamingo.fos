@@ -1,32 +1,32 @@
 // Author: heX
-// Групповой квест: Охота на ванаминго!
-// Выдает Марион(шериф) в Реддинге
+// Р“СЂСѓРїРїРѕРІРѕР№ РєРІРµСЃС‚: РћС…РѕС‚Р° РЅР° РІР°РЅР°РјРёРЅРіРѕ!
+// Р’С‹РґР°РµС‚ РњР°СЂРёРѕРЅ(С€РµСЂРёС„) РІ Р РµРґРґРёРЅРіРµ
 // ver 1.0
 /*
-   Групповой квест: Охота на ванаминго!
-   Выдает Марион(шериф) в Реддинге.
-   На карте появляется локация с пещерой ванаминго.
+   Р“СЂСѓРїРїРѕРІРѕР№ РєРІРµСЃС‚: РћС…РѕС‚Р° РЅР° РІР°РЅР°РјРёРЅРіРѕ!
+   Р’С‹РґР°РµС‚ РњР°СЂРёРѕРЅ(С€РµСЂРёС„) РІ Р РµРґРґРёРЅРіРµ.
+   РќР° РєР°СЂС‚Рµ РїРѕСЏРІР»СЏРµС‚СЃСЏ Р»РѕРєР°С†РёСЏ СЃ РїРµС‰РµСЂРѕР№ РІР°РЅР°РјРёРЅРіРѕ.
 
-   Ограничения (покачто сняты):
-   5..10 человек.
-   сумма уровней группы не меньше 50.
-   выдается раз в две недели.
+   РћРіСЂР°РЅРёС‡РµРЅРёСЏ (РїРѕРєР°С‡С‚Рѕ СЃРЅСЏС‚С‹):
+   5..10 С‡РµР»РѕРІРµРє.
+   СЃСѓРјРјР° СѓСЂРѕРІРЅРµР№ РіСЂСѓРїРїС‹ РЅРµ РјРµРЅСЊС€Рµ 50.
+   РІС‹РґР°РµС‚СЃСЏ СЂР°Р· РІ РґРІРµ РЅРµРґРµР»Рё.
 
-   Фичи (покачто не реализованны):
-   если сильно отрицательная карма то
-   Марион может выдать квест одному игроку,
-   причем будет убеждать его что там всего пара ванаминго и ничего опастного.
+   Р¤РёС‡Рё (РїРѕРєР°С‡С‚Рѕ РЅРµ СЂРµР°Р»РёР·РѕРІР°РЅРЅС‹):
+   РµСЃР»Рё СЃРёР»СЊРЅРѕ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅР°СЏ РєР°СЂРјР° С‚Рѕ
+   РњР°СЂРёРѕРЅ РјРѕР¶РµС‚ РІС‹РґР°С‚СЊ РєРІРµСЃС‚ РѕРґРЅРѕРјСѓ РёРіСЂРѕРєСѓ,
+   РїСЂРёС‡РµРј Р±СѓРґРµС‚ СѓР±РµР¶РґР°С‚СЊ РµРіРѕ С‡С‚Рѕ С‚Р°Рј РІСЃРµРіРѕ РїР°СЂР° РІР°РЅР°РјРёРЅРіРѕ Рё РЅРёС‡РµРіРѕ РѕРїР°СЃС‚РЅРѕРіРѕ.
 
-   БАГИ:
-   Неправильное название яйца. нужно юзать mob_egg.fodlg
-   Алиен вываливается за стенку. (вверху по центру) OK?
-   Затыкание проходов.
-   Переключение автомата квеста в обратные состояния.
-   рандомное начало атаки если долго не атакуют.
-   убрать вождение по кругу.
-   учитывать лечения стимами.
-   больше опыта и денег
-   повесить скрипт в maps.txt и map_init тут
+   Р‘РђР“Р:
+   РќРµРїСЂР°РІРёР»СЊРЅРѕРµ РЅР°Р·РІР°РЅРёРµ СЏР№С†Р°. РЅСѓР¶РЅРѕ СЋР·Р°С‚СЊ mob_egg.fodlg
+   РђР»РёРµРЅ РІС‹РІР°Р»РёРІР°РµС‚СЃСЏ Р·Р° СЃС‚РµРЅРєСѓ. (РІРІРµСЂС…Сѓ РїРѕ С†РµРЅС‚СЂСѓ) OK?
+   Р—Р°С‚С‹РєР°РЅРёРµ РїСЂРѕС…РѕРґРѕРІ.
+   РџРµСЂРµРєР»СЋС‡РµРЅРёРµ Р°РІС‚РѕРјР°С‚Р° РєРІРµСЃС‚Р° РІ РѕР±СЂР°С‚РЅС‹Рµ СЃРѕСЃС‚РѕСЏРЅРёСЏ.
+   СЂР°РЅРґРѕРјРЅРѕРµ РЅР°С‡Р°Р»Рѕ Р°С‚Р°РєРё РµСЃР»Рё РґРѕР»РіРѕ РЅРµ Р°С‚Р°РєСѓСЋС‚.
+   СѓР±СЂР°С‚СЊ РІРѕР¶РґРµРЅРёРµ РїРѕ РєСЂСѓРіСѓ.
+   СѓС‡РёС‚С‹РІР°С‚СЊ Р»РµС‡РµРЅРёСЏ СЃС‚РёРјР°РјРё.
+   Р±РѕР»СЊС€Рµ РѕРїС‹С‚Р° Рё РґРµРЅРµРі
+   РїРѕРІРµСЃРёС‚СЊ СЃРєСЂРёРїС‚ РІ maps.txt Рё map_init С‚СѓС‚
  */
 
 #include "_macros.fos"
@@ -52,10 +52,10 @@ import void ActivateMobScript( Map& map ) from "mob";
 #endif
 #define MAX_PLAYERS      ( 10 )
 
-// макс тварей
+// РјР°РєСЃ С‚РІР°СЂРµР№
 #define MAX_CRIT         ( 32 )
 
-// позиция
+// РїРѕР·РёС†РёСЏ
 #define REDD_POS_X       ( 13 * __GlobalMapZoneLength - __GlobalMapZoneLength / 2 )
 #define REDD_POS_Y       ( 10 * __GlobalMapZoneLength - __GlobalMapZoneLength / 2 )
 
@@ -64,12 +64,12 @@ import void ActivateMobScript( Map& map ) from "mob";
 #define VarAids          StatBase[ ST_VAR2 ]
 
 // <--- r17
-#define NPC_ROLE_COW     ( 13 )     // брамины
-#define NPC_ROLE_EGG     ( 5 )      // яйца ванаминго
-#define NPC_ROLE_WAN1    ( 1 )      // первые три ванаминго на карте
+#define NPC_ROLE_COW     ( 13 )     // Р±СЂР°РјРёРЅС‹
+#define NPC_ROLE_EGG     ( 5 )      // СЏР№С†Р° РІР°РЅР°РјРёРЅРіРѕ
+#define NPC_ROLE_WAN1    ( 1 )      // РїРµСЂРІС‹Рµ С‚СЂРё РІР°РЅР°РјРёРЅРіРѕ РЅР° РєР°СЂС‚Рµ
 // ---> r17
 
-// надо часть этих данных хранить в базе - на случай перезагрузки.
+// РЅР°РґРѕ С‡Р°СЃС‚СЊ СЌС‚РёС… РґР°РЅРЅС‹С… С…СЂР°РЅРёС‚СЊ РІ Р±Р°Р·Рµ - РЅР° СЃР»СѓС‡Р°Р№ РїРµСЂРµР·Р°РіСЂСѓР·РєРё.
 uint[] GlobalGroupsIds;
 uint GlobalMapId;
 int  GlobalWanMax;
@@ -100,8 +100,8 @@ void DL( string @ s )
 //	Log("\n"+ s +"\n");
 }
 
-// удаляем локацию с выводком гекко
-/* старый вариант - Hexor
+// СѓРґР°Р»СЏРµРј Р»РѕРєР°С†РёСЋ СЃ РІС‹РІРѕРґРєРѕРј РіРµРєРєРѕ
+/* СЃС‚Р°СЂС‹Р№ РІР°СЂРёР°РЅС‚ - Hexor
    void DeleteWanMap()
    {
         GameVar@ game_map=GetGlobalVar(GVAR_redd_marion_wan_location);
@@ -116,9 +116,9 @@ void DL( string @ s )
                         return;
                 }
 
-                DeleteLocation(loc.Id); // но всетаки мы ее добьем
-                // возможно это плохое решение - тамже могут быть люди...
-                game_map=0;// зануляем
+                DeleteLocation(loc.Id); // РЅРѕ РІСЃРµС‚Р°РєРё РјС‹ РµРµ РґРѕР±СЊРµРј
+                // РІРѕР·РјРѕР¶РЅРѕ СЌС‚Рѕ РїР»РѕС…РѕРµ СЂРµС€РµРЅРёРµ - С‚Р°РјР¶Рµ РјРѕРіСѓС‚ Р±С‹С‚СЊ Р»СЋРґРё...
+                game_map=0;// Р·Р°РЅСѓР»СЏРµРј
         }
 
 
@@ -129,7 +129,7 @@ void DL( string @ s )
 void DeleteWanMap()
 {
     DL( "Delete Wanamingo Location started" );
-    // поиск локации
+    // РїРѕРёСЃРє Р»РѕРєР°С†РёРё
     GameVar@ game_map = GetGlobalVar( GVAR_redd_marion_wan_location );
     if( valid( game_map ) )
     {
@@ -143,7 +143,7 @@ void DeleteWanMap()
             }
             else
             {
-                // ищем игроков из списка, которые все еще могут находиться на локации
+                // РёС‰РµРј РёРіСЂРѕРєРѕРІ РёР· СЃРїРёСЃРєР°, РєРѕС‚РѕСЂС‹Рµ РІСЃРµ РµС‰Рµ РјРѕРіСѓС‚ РЅР°С…РѕРґРёС‚СЊСЃСЏ РЅР° Р»РѕРєР°С†РёРё
                 for( uint i = 0; i < GlobalGroupsIds.length(); i++ )
                 {
                     Critter @player = GetCritter( GlobalGroupsIds[ i ] );
@@ -161,27 +161,27 @@ void DeleteWanMap()
                         }
                         if( player_loc.GetProtoId() == loc.GetProtoId() )
                         {
-                            // найден игрок в локации "пещера ванаминго"
-                            // переносим игрока на глобальную карту
-                            player.Say( SAY_NETMSG, "Вы услышали далекий шум, который нарастал и приближался. Задрожали стены пещеры, и с потолка посыпались камни. Только чудом вам удалось выбраться из пещеры Ванаминго." );
+                            // РЅР°Р№РґРµРЅ РёРіСЂРѕРє РІ Р»РѕРєР°С†РёРё "РїРµС‰РµСЂР° РІР°РЅР°РјРёРЅРіРѕ"
+                            // РїРµСЂРµРЅРѕСЃРёРј РёРіСЂРѕРєР° РЅР° РіР»РѕР±Р°Р»СЊРЅСѓСЋ РєР°СЂС‚Сѓ
+                            player.Say( SAY_NETMSG, "Р’С‹ СѓСЃР»С‹С€Р°Р»Рё РґР°Р»РµРєРёР№ С€СѓРј, РєРѕС‚РѕСЂС‹Р№ РЅР°СЂР°СЃС‚Р°Р» Рё РїСЂРёР±Р»РёР¶Р°Р»СЃСЏ. Р—Р°РґСЂРѕР¶Р°Р»Рё СЃС‚РµРЅС‹ РїРµС‰РµСЂС‹, Рё СЃ РїРѕС‚РѕР»РєР° РїРѕСЃС‹РїР°Р»РёСЃСЊ РєР°РјРЅРё. РўРѕР»СЊРєРѕ С‡СѓРґРѕРј РІР°Рј СѓРґР°Р»РѕСЃСЊ РІС‹Р±СЂР°С‚СЊСЃСЏ РёР· РїРµС‰РµСЂС‹ Р’Р°РЅР°РјРёРЅРіРѕ." );
                             player.TransitToGlobal( false );
                         }
                     }
-                    // забываем где оно
+                    // Р·Р°Р±С‹РІР°РµРј РіРґРµ РѕРЅРѕ
                     if( player.IsKnownLoc( true, loc.Id ) )
                     {
                         player.UnsetKnownLoc( true, loc.Id );
                         DL( "Player id " + player.Id + "UnsetKnownLoc" );
                     }
                 }
-                // удаление локации
+                // СѓРґР°Р»РµРЅРёРµ Р»РѕРєР°С†РёРё
                 DeleteLocation( loc.Id );
                 game_map = 0;
             }
         }
     }
 
-    // однозначная очистка и инициализация переменных
+    // РѕРґРЅРѕР·РЅР°С‡РЅР°СЏ РѕС‡РёСЃС‚РєР° Рё РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РїРµСЂРµРјРµРЅРЅС‹С…
     GlobalGroupsIds.resize( 0 );
     GlobalMapId = 0;
     GlobalWanMax = 0;
@@ -199,7 +199,7 @@ void DeleteWanMap()
 
 }
 // --------->r17
-// собрать нпц по номеру роли
+// СЃРѕР±СЂР°С‚СЊ РЅРїС† РїРѕ РЅРѕРјРµСЂСѓ СЂРѕР»Рё
 uint GetCrittersByRole( Map& map, uint x, uint y, uint radius, int role, Critter@[] @ critters ) // lib
 {
     Critter@[] cTmp;
@@ -211,30 +211,30 @@ uint GetCrittersByRole( Map& map, uint x, uint y, uint radius, int role, Critter
 }
 
 // ////////////////////////////////////////////////
-/* r17 не используется
-   // квест доступен?
+/* r17 РЅРµ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ
+   // РєРІРµСЃС‚ РґРѕСЃС‚СѓРїРµРЅ?
    bool r_CheckQuestAvailable(Critter& player, Critter@ npc, int val)
    {
         return true;
    }
 
-   // проверка: квест уже выполняют?
+   // РїСЂРѕРІРµСЂРєР°: РєРІРµСЃС‚ СѓР¶Рµ РІС‹РїРѕР»РЅСЏСЋС‚?
    bool r_CheckQuestIsRun(Critter& player, Critter@ npc, int val)
    {
         GameVar@ game_map=GetGlobalVar(GVAR_redd_marion_wan_location);
         GameVar@ timeout=GetGlobalVar(GVAR_redd_marion_wan_timeout);
 
-        // убиваем карту если квест устарел.
-        // Цитата из мануала:
-        // "Не рекомендуется выполнять какие-либо конкретные действия в функции-условии, она для этого не предназначена."
-        // Ну да фиг с ним, ничего плохого не должно произойти... (heX посмотрел взглядом налево, затем направо, и продолжил писать...)
+        // СѓР±РёРІР°РµРј РєР°СЂС‚Сѓ РµСЃР»Рё РєРІРµСЃС‚ СѓСЃС‚Р°СЂРµР».
+        // Р¦РёС‚Р°С‚Р° РёР· РјР°РЅСѓР°Р»Р°:
+        // "РќРµ СЂРµРєРѕРјРµРЅРґСѓРµС‚СЃСЏ РІС‹РїРѕР»РЅСЏС‚СЊ РєР°РєРёРµ-Р»РёР±Рѕ РєРѕРЅРєСЂРµС‚РЅС‹Рµ РґРµР№СЃС‚РІРёСЏ РІ С„СѓРЅРєС†РёРё-СѓСЃР»РѕРІРёРё, РѕРЅР° РґР»СЏ СЌС‚РѕРіРѕ РЅРµ РїСЂРµРґРЅР°Р·РЅР°С‡РµРЅР°."
+        // РќСѓ РґР° С„РёРі СЃ РЅРёРј, РЅРёС‡РµРіРѕ РїР»РѕС…РѕРіРѕ РЅРµ РґРѕР»Р¶РЅРѕ РїСЂРѕРёР·РѕР№С‚Рё... (heX РїРѕСЃРјРѕС‚СЂРµР» РІР·РіР»СЏРґРѕРј РЅР°Р»РµРІРѕ, Р·Р°С‚РµРј РЅР°РїСЂР°РІРѕ, Рё РїСЂРѕРґРѕР»Р¶РёР» РїРёСЃР°С‚СЊ...)
         if (
                 (uint(timeout.GetValue()) > __FullSecond) or
                 (timeout.GetValue()==0) or
                 (game_map.GetValue()==0)
                 )
-        { // Если прошло больше суток но квест невыполнен то
-                DeleteWanMap(); // удаляем карту
+        { // Р•СЃР»Рё РїСЂРѕС€Р»Рѕ Р±РѕР»СЊС€Рµ СЃСѓС‚РѕРє РЅРѕ РєРІРµСЃС‚ РЅРµРІС‹РїРѕР»РЅРµРЅ С‚Рѕ
+                DeleteWanMap(); // СѓРґР°Р»СЏРµРј РєР°СЂС‚Сѓ
                 for(uint i=0;i<GlobalGroups.length();i++)
                         QuestCompleteNotify(GlobalGroups[i]);
                 timeout=0;
@@ -247,21 +247,21 @@ uint GetCrittersByRole( Map& map, uint x, uint y, uint radius, int role, Critter
    }
    ///////////////////////////////////////////
  */
-// охотники идут!
-/* вариант Hexor'a
+// РѕС…РѕС‚РЅРёРєРё РёРґСѓС‚!
+/* РІР°СЂРёР°РЅС‚ Hexor'a
    void r_GotoHunter(Critter& player, Critter@ npc, int val)
    {
         Critter@[] groups;
         groups.insertLast(@player);
         player.GetFollowGroup(FIND_ALL,groups);
 
-        // инициализирует квест!
+        // РёРЅРёС†РёР°Р»РёР·РёСЂСѓРµС‚ РєРІРµСЃС‚!
         for(uint i=0;i<groups.length();i++)
-                SetQuestState(groups[i],1); // квест взят
+                SetQuestState(groups[i],1); // РєРІРµСЃС‚ РІР·СЏС‚
 
         ////////////////////////////////////
 
-        // создали позицию
+        // СЃРѕР·РґР°Р»Рё РїРѕР·РёС†РёСЋ
         int x,y;
         x=-1; y=1;
         /*if (Random(1,4)!=1) {
@@ -271,24 +271,24 @@ uint GetCrittersByRole( Map& map, uint x, uint y, uint radius, int role, Critter
                 x=Random(-1,1);
                 y=Random(-1,1);
                 if(x==0 and y==0)
-                        {x=-2; y=-2;} // неповезло...
+                        {x=-2; y=-2;} // РЅРµРїРѕРІРµР·Р»Рѕ...
                 }*//*
 
         GameVar@ game_map=GetGlobalVar(GVAR_redd_marion_wan_location);
         GameVar@ game_time=GetGlobalVar(GVAR_redd_marion_wan_timeout);
         game_time=__FullSecond + (60 * 60 * 24);
 
-        // удаляем старую карту если она есть
+        // СѓРґР°Р»СЏРµРј СЃС‚Р°СЂСѓСЋ РєР°СЂС‚Сѓ РµСЃР»Рё РѕРЅР° РµСЃС‚СЊ
         DeleteWanMap();
 
-        // создали карту
+        // СЃРѕР·РґР°Р»Рё РєР°СЂС‚Сѓ
         GlobalMapId=CreateLocation(
                 LOCATION_Wanamingo_Cavern,
                 REDD_POS_X + x*__GlobalMapZoneLength + Random(-(__GlobalMapZoneLength/2),(__GlobalMapZoneLength/2)),
                 REDD_POS_Y + y*__GlobalMapZoneLength + Random(-(__GlobalMapZoneLength/2),(__GlobalMapZoneLength/2)),
                 groups);
 
-        // записали в глобальную игровую переменную
+        // Р·Р°РїРёСЃР°Р»Рё РІ РіР»РѕР±Р°Р»СЊРЅСѓСЋ РёРіСЂРѕРІСѓСЋ РїРµСЂРµРјРµРЅРЅСѓСЋ
         game_map=GlobalMapId;
 
         Location@ loc=GetLocation(GlobalMapId);
@@ -301,7 +301,7 @@ uint GetCrittersByRole( Map& map, uint x, uint y, uint radius, int role, Critter
         if(not valid(loc)) return;
         Map@ map=loc.GetMapByIndex(0);
 
-        // BAG: если был рестарт сервера то прерывания слетают - нужно учитывать это.
+        // BAG: РµСЃР»Рё Р±С‹Р» СЂРµСЃС‚Р°СЂС‚ СЃРµСЂРІРµСЂР° С‚Рѕ РїСЂРµСЂС‹РІР°РЅРёСЏ СЃР»РµС‚Р°СЋС‚ - РЅСѓР¶РЅРѕ СѓС‡РёС‚С‹РІР°С‚СЊ СЌС‚Рѕ.
         map.SetEvent(MAP_EVENT_IN_CRITTER, "map_incoming");
         map.SetEvent(MAP_EVENT_OUT_CRITTER, "map_leave");
         map.SetEvent(MAP_EVENT_FINISH, "map_deleting");
@@ -312,7 +312,7 @@ uint GetCrittersByRole( Map& map, uint x, uint y, uint radius, int role, Critter
         Critter@[] critters;
         c=GetCrittersByRole(map,x,y,20,13,critters);
         DL("cr before adding npc2"+c.length());//r17
-        c=GetCrittersByRole(map,x,y,20,2,critters);//r17 - не въехал, кто это с NPC_ROLE = 2, таких нет на карте
+        c=GetCrittersByRole(map,x,y,20,2,critters);//r17 - РЅРµ РІСЉРµС…Р°Р», РєС‚Рѕ СЌС‚Рѕ СЃ NPC_ROLE = 2, С‚Р°РєРёС… РЅРµС‚ РЅР° РєР°СЂС‚Рµ
         DL("cr after adding npc2"+c.length());//r17
         for(uint i=0;i<critters.length();i++)
                 critters[i].ToDead(ANIM2_DEAD_BLOODY_SINGLE, null);
@@ -328,10 +328,10 @@ uint GetCrittersByRole( Map& map, uint x, uint y, uint radius, int role, Critter
 
         int wan;
         wan = groups.length()*5;
-        //wan += Random(-5,5); // небольшой рандом
+        //wan += Random(-5,5); // РЅРµР±РѕР»СЊС€РѕР№ СЂР°РЅРґРѕРј
         wan=CLAMP(wan,16,64);
 
-        // глобалы
+        // РіР»РѕР±Р°Р»С‹
         GlobalWanCount=wan;
         GlobalWanMax=wan;
         GlobalWanSpawn=wan;
@@ -366,7 +366,7 @@ Location @ _GetNewWanLoc( Critter@[] grp )
     }
 
     loc.Visible = false;
-    loc.AutoGarbage = false;  // чтобы сборщик не убил локацию до того, как там не побывали игроки
+    loc.AutoGarbage = false;  // С‡С‚РѕР±С‹ СЃР±РѕСЂС‰РёРє РЅРµ СѓР±РёР» Р»РѕРєР°С†РёСЋ РґРѕ С‚РѕРіРѕ, РєР°Рє С‚Р°Рј РЅРµ РїРѕР±С‹РІР°Р»Рё РёРіСЂРѕРєРё
     loc.Radius = 8;
 
     return loc;
@@ -377,12 +377,12 @@ void r_GotoHunter( Critter& player, Critter@ npc, int val )
 
     if( !_TimeOutIsFree() )
     {
-        // по идее сюда игрок никогда не должен попасть
+        // РїРѕ РёРґРµРµ СЃСЋРґР° РёРіСЂРѕРє РЅРёРєРѕРіРґР° РЅРµ РґРѕР»Р¶РµРЅ РїРѕРїР°СЃС‚СЊ
         DL( "Wanamingo quest: TIMEOUT is not free " );
         return;
     }
 
-    // удаляем старую карту если она есть
+    // СѓРґР°Р»СЏРµРј СЃС‚Р°СЂСѓСЋ РєР°СЂС‚Сѓ РµСЃР»Рё РѕРЅР° РµСЃС‚СЊ
     DeleteWanMap();
 
     Critter@[] groups;
@@ -397,17 +397,17 @@ void r_GotoHunter( Critter& player, Critter@ npc, int val )
         }
     }
 
-    // инициализирует квест!
+    // РёРЅРёС†РёР°Р»РёР·РёСЂСѓРµС‚ РєРІРµСЃС‚!
     for( uint i = 0; i < groups.length(); i++ )
     {
         if( GetQuestState( groups[ i ] ) == 0 )
         {
-            SetQuestState( groups[ i ], 1 );        // квест взят
+            SetQuestState( groups[ i ], 1 );        // РєРІРµСЃС‚ РІР·СЏС‚
         }
     }
 
     // //////////////////////////////////
-    // создали позицию
+    // СЃРѕР·РґР°Р»Рё РїРѕР·РёС†РёСЋ
 
     GameVar@ game_map = GetGlobalVar( GVAR_redd_marion_wan_location );
     GameVar@ game_time = GetGlobalVar( GVAR_redd_marion_wan_timeout );
@@ -419,7 +419,7 @@ void r_GotoHunter( Critter& player, Critter@ npc, int val )
     if( not valid( loc ) )
         return;
     GlobalMapId = loc.Id;
-    // записали в глобальную игровую переменную
+    // Р·Р°РїРёСЃР°Р»Рё РІ РіР»РѕР±Р°Р»СЊРЅСѓСЋ РёРіСЂРѕРІСѓСЋ РїРµСЂРµРјРµРЅРЅСѓСЋ
     game_map = GlobalMapId;
 
     Map@ map = loc.GetMapByIndex( 0 );
@@ -428,7 +428,7 @@ void r_GotoHunter( Critter& player, Critter@ npc, int val )
     if( CreateTimeEvent( game_time.GetValue(), "e_TimeExpired", 0, false ) == 0 )
     {
         DL( "Time event create fail, " + GetLastError() );
-    }                                                                                                                           // эвент не создался, но оставим все как есть, поскольку удаление произойдет при следующей активации квеста кем-то
+    }                                                                                                                           // СЌРІРµРЅС‚ РЅРµ СЃРѕР·РґР°Р»СЃСЏ, РЅРѕ РѕСЃС‚Р°РІРёРј РІСЃРµ РєР°Рє РµСЃС‚СЊ, РїРѕСЃРєРѕР»СЊРєСѓ СѓРґР°Р»РµРЅРёРµ РїСЂРѕРёР·РѕР№РґРµС‚ РїСЂРё СЃР»РµРґСѓСЋС‰РµР№ Р°РєС‚РёРІР°С†РёРё РєРІРµСЃС‚Р° РєРµРј-С‚Рѕ
 
     uint16 x = 0, y = 0;
     int    c;
@@ -437,7 +437,7 @@ void r_GotoHunter( Critter& player, Critter@ npc, int val )
 
     Critter@[] critters;
 
-    c = GetCrittersByRole( map, x, y, 20, NPC_ROLE_COW, critters ); // убитые брамины на карте
+    c = GetCrittersByRole( map, x, y, 20, NPC_ROLE_COW, critters ); // СѓР±РёС‚С‹Рµ Р±СЂР°РјРёРЅС‹ РЅР° РєР°СЂС‚Рµ
 
     for( uint i = 0; i < critters.length(); i++ )
     {
@@ -462,7 +462,7 @@ void r_GotoHunter( Critter& player, Critter@ npc, int val )
     wan = groups.length() * 5;
     wan = CLAMP( wan, 16, 64 );
 
-    // глобалы
+    // РіР»РѕР±Р°Р»С‹
     GlobalWanCount = wan;
     GlobalWanMax = wan;
     GlobalWanSpawn = wan;
@@ -474,20 +474,20 @@ void r_GotoHunter( Critter& player, Critter@ npc, int val )
     DL( "Quest started successful. Location added" );
 }
 
-// r 17 - инициализация карты с ванаминго
+// r 17 - РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РєР°СЂС‚С‹ СЃ РІР°РЅР°РјРёРЅРіРѕ
 void _WanMapInit( Map& map, bool firstTime )
 {
     DL( "Begin Wan Map init" );
-    // это было в map_activate_mob_script.fos
+    // СЌС‚Рѕ Р±С‹Р»Рѕ РІ map_activate_mob_script.fos
     ActivateMobScript( map );
 
     map.SetEvent( MAP_EVENT_IN_CRITTER, "map_incoming_r17" );
     map.SetEvent( MAP_EVENT_OUT_CRITTER, "map_leave_r17" );
-    // map.SetEvent(MAP_EVENT_FINISH, "map_deleting_r17"); удаление можно не обрабатывать, иначе при рестарте сервера карта не сохранится
+    // map.SetEvent(MAP_EVENT_FINISH, "map_deleting_r17"); СѓРґР°Р»РµРЅРёРµ РјРѕР¶РЅРѕ РЅРµ РѕР±СЂР°Р±Р°С‚С‹РІР°С‚СЊ, РёРЅР°С‡Рµ РїСЂРё СЂРµСЃС‚Р°СЂС‚Рµ СЃРµСЂРІРµСЂР° РєР°СЂС‚Р° РЅРµ СЃРѕС…СЂР°РЅРёС‚СЃСЏ
 
     DL( "Wan Map init success" );
 }
-// на зачистку шахты даются только одни сутки
+// РЅР° Р·Р°С‡РёСЃС‚РєСѓ С€Р°С…С‚С‹ РґР°СЋС‚СЃСЏ С‚РѕР»СЊРєРѕ РѕРґРЅРё СЃСѓС‚РєРё
 uint e_TimeExpired( uint[] @ values )
 {
     DeleteWanMap();
@@ -495,8 +495,8 @@ uint e_TimeExpired( uint[] @ values )
 }
 
 // /////////////////////////////////////////////////////
-// механику на карте не трогал r17
-// спавнить ванаминго
+// РјРµС…Р°РЅРёРєСѓ РЅР° РєР°СЂС‚Рµ РЅРµ С‚СЂРѕРіР°Р» r17
+// СЃРїР°РІРЅРёС‚СЊ РІР°РЅР°РјРёРЅРіРѕ
 Critter@ SpawnWan( Map& map, uint8 EntSpawn, uint8 level )
 {
     uint16 x = 0, y = 0;
@@ -510,7 +510,7 @@ Critter@ SpawnWan( Map& map, uint8 EntSpawn, uint8 level )
     Critter@ cr = map.AddNpc( NPC_PID_ToughAlien, x, y, Random( 0, 5 ), params, null, "mob@_MobInit" );
     if( valid( cr ) )
     {
-        // прерывания
+        // РїСЂРµСЂС‹РІР°РЅРёСЏ
         cr.SetEvent( CRITTER_EVENT_DEAD, "wan_dead" );
     }
     if( not valid( cr ) )
@@ -521,7 +521,7 @@ Critter@ SpawnWan( Map& map, uint8 EntSpawn, uint8 level )
     return cr;
 }
 
-// спавнить ванаминго из нор
+// СЃРїР°РІРЅРёС‚СЊ РІР°РЅР°РјРёРЅРіРѕ РёР· РЅРѕСЂ
 bool SpawnWan2()
 {
     // uint8 ent=Random(1,5);
@@ -549,7 +549,7 @@ bool SpawnWan2()
         AddAttackPlane( cr, AI_PLANE_ATTACK_PRIORITY + 10, globalCr );
         GlobalWanSpawn--;
         // BREAK!!!
-        // все игроки враги
+        // РІСЃРµ РёРіСЂРѕРєРё РІСЂР°РіРё
         for( uint i2 = 0; i2 < GlobalGroupsIds.length(); i2++ )
             cr.AddEnemyInStack( GlobalGroupsIds[ i2 ] );
     }
@@ -567,31 +567,31 @@ uint e_Spawn( uint[] @ values )
         return 5 * 60;
 }
 
-// Алерт
+// РђР»РµСЂС‚
 uint e_Alert( uint[] @ values )
 {
     for( uint i = 0; i < GlobalGroupsIds.length(); i++ )
     {
         Critter@ cr = GetCritter( GlobalGroupsIds[ i ] );
         if( valid( cr ) )
-            cr.Say( SAY_NETMSG, "Вы слышите шорох..." );
+            cr.Say( SAY_NETMSG, "Р’С‹ СЃР»С‹С€РёС‚Рµ С€РѕСЂРѕС…..." );
     }
     return 0;
 }
 
-// Алерт
+// РђР»РµСЂС‚
 uint e_Alert2( uint[] @ values )
 {
     for( uint i = 0; i < GlobalGroupsIds.length(); i++ )
     {
         Critter@ cr = GetCritter( GlobalGroupsIds[ i ] );
         if( valid( cr ) )
-            cr.Say( SAY_NETMSG, "Кажется у вас проблемы!" );
+            cr.Say( SAY_NETMSG, "РљР°Р¶РµС‚СЃСЏ Сѓ РІР°СЃ РїСЂРѕР±Р»РµРјС‹!" );
     }
     return 0;
 }
 
-// начать спавн ванаминго!
+// РЅР°С‡Р°С‚СЊ СЃРїР°РІРЅ РІР°РЅР°РјРёРЅРіРѕ!
 void BeginSpawn()
 {
     if( CreateTimeEvent( __FullSecond + 3 * 60, "e_Spawn", false ) == 0 )
@@ -610,42 +610,42 @@ void spawn( Critter& player, int param0, int param1, int param2 )
 }
 #endif
 
-// выдача опыта в зависимости от счетчиков
+// РІС‹РґР°С‡Р° РѕРїС‹С‚Р° РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ СЃС‡РµС‚С‡РёРєРѕРІ
 int GetExpa( Critter& player )
 {
-    int kls = player.VarKills; // килсы
-    int aid = player.VarAids;  // хиляние
+    int kls = player.VarKills; // РєРёР»СЃС‹
+    int aid = player.VarAids;  // С…РёР»СЏРЅРёРµ
     if( kls == 0 and aid == 0 )
-        return 0;              // фиг вам халявщики, а не опыт!
+        return 0;              // С„РёРі РІР°Рј С…Р°Р»СЏРІС‰РёРєРё, Р° РЅРµ РѕРїС‹С‚!
     int expa = 500;
     if( kls >= 10 or aid >= 2 )
         expa += 1500;
     return expa;
 }
 
-// квест выполнен! поздравляем игрока!
+// РєРІРµСЃС‚ РІС‹РїРѕР»РЅРµРЅ! РїРѕР·РґСЂР°РІР»СЏРµРј РёРіСЂРѕРєР°!
 void QuestCompleteNotify( Critter& player )
 {
-    if( GetQuestState( player ) == 2 )  // пришол и
+    if( GetQuestState( player ) == 2 )  // РїСЂРёС€РѕР» Рё
     {
-        SetQuestState( player, 3 );     // победил!
+        SetQuestState( player, 3 );     // РїРѕР±РµРґРёР»!
         #ifdef debag
-        player.Say( SAY_NETMSG, "Квест выполнен!" );
-        player.Say( SAY_NETMSG, "Убито ванаминго: " + player.VarKills );
-        player.Say( SAY_NETMSG, "Лечений: " + player.VarAids );
+        player.Say( SAY_NETMSG, "РљРІРµСЃС‚ РІС‹РїРѕР»РЅРµРЅ!" );
+        player.Say( SAY_NETMSG, "РЈР±РёС‚Рѕ РІР°РЅР°РјРёРЅРіРѕ: " + player.VarKills );
+        player.Say( SAY_NETMSG, "Р›РµС‡РµРЅРёР№: " + player.VarAids );
         #endif
-        player.StatBase[ ST_EXPERIENCE ] += GetExpa( player ); // УРА!!!
+        player.StatBase[ ST_EXPERIENCE ] += GetExpa( player ); // РЈР Рђ!!!
     }
-    else if( GetQuestState( player ) == 1 )                    // не заходил на локацию
+    else if( GetQuestState( player ) == 1 )                    // РЅРµ Р·Р°С…РѕРґРёР» РЅР° Р»РѕРєР°С†РёСЋ
         SetQuestState( player, 5 );
-    else                                                       // не пришол
-        SetQuestState( player, 0 );                            // сбрасываем нафиг
+    else                                                       // РЅРµ РїСЂРёС€РѕР»
+        SetQuestState( player, 0 );                            // СЃР±СЂР°СЃС‹РІР°РµРј РЅР°С„РёРі
 }
 
 // ///////////////////////////////////////////////
-// обработчики прерываний
+// РѕР±СЂР°Р±РѕС‚С‡РёРєРё РїСЂРµСЂС‹РІР°РЅРёР№
 
-// игрок уходит с карты
+// РёРіСЂРѕРє СѓС…РѕРґРёС‚ СЃ РєР°СЂС‚С‹
 void map_leave( Map& map, Critter& player )
 {
     DL( "Map leave begin" );  // r17
@@ -653,7 +653,7 @@ void map_leave( Map& map, Critter& player )
     {
         GlobalHumanCount--;
         DL( "GlobalHuman " + GlobalHumanCount ); // r17
-        if( GlobalHumanCount == 0 )              // если больше нет никого
+        if( GlobalHumanCount == 0 )              // РµСЃР»Рё Р±РѕР»СЊС€Рµ РЅРµС‚ РЅРёРєРѕРіРѕ
             DeleteWanMap();
 
         remove_events( player );
@@ -662,13 +662,13 @@ void map_leave( Map& map, Critter& player )
         // player.ModeBase[MODE_NO_KNOCK]=0;
         #endif
 
-        if( not player.IsDead() )          // если еще жив
+        if( not player.IsDead() )          // РµСЃР»Рё РµС‰Рµ Р¶РёРІ
         {
-            if( GlobalWanCount > 0 )       // если гекко еще остались
+            if( GlobalWanCount > 0 )       // РµСЃР»Рё РіРµРєРєРѕ РµС‰Рµ РѕСЃС‚Р°Р»РёСЃСЊ
             {
                 if( GetQuestState( player ) == 2 )
                 {
-                    SetQuestState( player, 6 );                 // сбежал
+                    SetQuestState( player, 6 );                 // СЃР±РµР¶Р°Р»
                 }
             }
         }
@@ -682,10 +682,10 @@ void map_leave_r17( Map& map, Critter& player )
 {
     if( player.IsPlayer() )
     {
-        // игрок покидает локацию, но другие игроки могли там остаться
-        // отменяем запоминание локации для игрока
-        // удалять локацию не нужно, она сама удалится при срабатывании эвента или при окончании таймаута
-        // в принципе, имеет смысл включить автосбор локации мусорщиком при первом выходе игрока с локации, но нужно убедиться, что не будет проблем при последующих попытках удаления по расписанию
+        // РёРіСЂРѕРє РїРѕРєРёРґР°РµС‚ Р»РѕРєР°С†РёСЋ, РЅРѕ РґСЂСѓРіРёРµ РёРіСЂРѕРєРё РјРѕРіР»Рё С‚Р°Рј РѕСЃС‚Р°С‚СЊСЃСЏ
+        // РѕС‚РјРµРЅСЏРµРј Р·Р°РїРѕРјРёРЅР°РЅРёРµ Р»РѕРєР°С†РёРё РґР»СЏ РёРіСЂРѕРєР°
+        // СѓРґР°Р»СЏС‚СЊ Р»РѕРєР°С†РёСЋ РЅРµ РЅСѓР¶РЅРѕ, РѕРЅР° СЃР°РјР° СѓРґР°Р»РёС‚СЃСЏ РїСЂРё СЃСЂР°Р±Р°С‚С‹РІР°РЅРёРё СЌРІРµРЅС‚Р° РёР»Рё РїСЂРё РѕРєРѕРЅС‡Р°РЅРёРё С‚Р°Р№РјР°СѓС‚Р°
+        // РІ РїСЂРёРЅС†РёРїРµ, РёРјРµРµС‚ СЃРјС‹СЃР» РІРєР»СЋС‡РёС‚СЊ Р°РІС‚РѕСЃР±РѕСЂ Р»РѕРєР°С†РёРё РјСѓСЃРѕСЂС‰РёРєРѕРј РїСЂРё РїРµСЂРІРѕРј РІС‹С…РѕРґРµ РёРіСЂРѕРєР° СЃ Р»РѕРєР°С†РёРё, РЅРѕ РЅСѓР¶РЅРѕ СѓР±РµРґРёС‚СЊСЃСЏ, С‡С‚Рѕ РЅРµ Р±СѓРґРµС‚ РїСЂРѕР±Р»РµРј РїСЂРё РїРѕСЃР»РµРґСѓСЋС‰РёС… РїРѕРїС‹С‚РєР°С… СѓРґР°Р»РµРЅРёСЏ РїРѕ СЂР°СЃРїРёСЃР°РЅРёСЋ
         GlobalHumanCount--;
 
         Location @loc = map.GetLocation();
@@ -705,13 +705,13 @@ void map_leave_r17( Map& map, Critter& player )
         #ifdef debag
         // player.ModeBase[MODE_NO_KNOCK]=0;
         #endif
-        if( !player.IsDead() )          // если еще жив
+        if( !player.IsDead() )          // РµСЃР»Рё РµС‰Рµ Р¶РёРІ
         {
-            if( GlobalWanCount > 0 )    // если гекко еще остались
+            if( GlobalWanCount > 0 )    // РµСЃР»Рё РіРµРєРєРѕ РµС‰Рµ РѕСЃС‚Р°Р»РёСЃСЊ
             {
                 if( GetQuestState( player ) == 2 )
                 {
-                    SetQuestState( player, 6 );                 // сбежал
+                    SetQuestState( player, 6 );                 // СЃР±РµР¶Р°Р»
                 }
             }
         }
@@ -719,7 +719,7 @@ void map_leave_r17( Map& map, Critter& player )
     }
 
     DL( "Player has left wan map. Player ID " + player.Id );
-    // на карте никого не осталось, можно сразу удалять
+    // РЅР° РєР°СЂС‚Рµ РЅРёРєРѕРіРѕ РЅРµ РѕСЃС‚Р°Р»РѕСЃСЊ, РјРѕР¶РЅРѕ СЃСЂР°Р·Сѓ СѓРґР°Р»СЏС‚СЊ
     if( _MapHasPlayers( map ) )
     {
         DeleteWanMap();
@@ -733,14 +733,14 @@ void map_incoming_r17( Map& map, Critter& player )
     Location @ loc = map.GetLocation();
     if( valid( loc ) )
     {
-        // все таки добавил автосборщик, иначе где-то залипало и карта не удалялась
+        // РІСЃРµ С‚Р°РєРё РґРѕР±Р°РІРёР» Р°РІС‚РѕСЃР±РѕСЂС‰РёРє, РёРЅР°С‡Рµ РіРґРµ-С‚Рѕ Р·Р°Р»РёРїР°Р»Рѕ Рё РєР°СЂС‚Р° РЅРµ СѓРґР°Р»СЏР»Р°СЃСЊ
         loc.AutoGarbage = true;
     }
 
     if( player.IsPlayer() )
     {
 
-        SetQuestState( player, 2 );     // пришли
+        SetQuestState( player, 2 );     // РїСЂРёС€Р»Рё
         GlobalHumanCount++;
 
         remove_events( player );
@@ -748,17 +748,17 @@ void map_incoming_r17( Map& map, Critter& player )
         player.SetEvent( CRITTER_EVENT_USE_SKILL, "player_doctor" );
         player.SetEvent( CRITTER_EVENT_DEAD, "player_dead_r_17" );
         #ifdef debag
-        // выдаем имунитет к падениям (пока не поправят баг к шансом падения)
-        // player.ModeBase[MODE_NO_KNOCK]=0;//=1 режим сохраняется надолго, поэтому отключил r17
+        // РІС‹РґР°РµРј РёРјСѓРЅРёС‚РµС‚ Рє РїР°РґРµРЅРёСЏРј (РїРѕРєР° РЅРµ РїРѕРїСЂР°РІСЏС‚ Р±Р°Рі Рє С€Р°РЅСЃРѕРј РїР°РґРµРЅРёСЏ)
+        // player.ModeBase[MODE_NO_KNOCK]=0;//=1 СЂРµР¶РёРј СЃРѕС…СЂР°РЅСЏРµС‚СЃСЏ РЅР°РґРѕР»РіРѕ, РїРѕСЌС‚РѕРјСѓ РѕС‚РєР»СЋС‡РёР» r17
         #endif
     }
 }
 
-// игрок умер во время квеста
+// РёРіСЂРѕРє СѓРјРµСЂ РІРѕ РІСЂРµРјСЏ РєРІРµСЃС‚Р°
 void player_dead_r_17( Critter& player, Critter@ killer )
 {
-    SetQuestState( player, 4 );              // умер
-    if( player.VarKills * 2 > GlobalWanMax ) // убил больше половины
+    SetQuestState( player, 4 );              // СѓРјРµСЂ
+    if( player.VarKills * 2 > GlobalWanMax ) // СѓР±РёР» Р±РѕР»СЊС€Рµ РїРѕР»РѕРІРёРЅС‹
     {
         player.StatBase[ ST_EXPERIENCE ] += 5000;
     }
@@ -783,7 +783,7 @@ bool _MapHasPlayers( Map& map )
     }
     return false;
 }
-// удаление карты
+// СѓРґР°Р»РµРЅРёРµ РєР°СЂС‚С‹
 void map_deleting_r17( Map& map, bool deleted )
 {
     DL( "Map finish started" );
@@ -795,14 +795,14 @@ void map_deleting_r17( Map& map, bool deleted )
             cr.UnsetKnownLoc( true, loc.Id );
     }
 
-    // чтобы без проблем можно было взять новый квест
+    // С‡С‚РѕР±С‹ Р±РµР· РїСЂРѕР±Р»РµРј РјРѕР¶РЅРѕ Р±С‹Р»Рѕ РІР·СЏС‚СЊ РЅРѕРІС‹Р№ РєРІРµСЃС‚
     GameVar@ mapid = GetGlobalVar( GVAR_redd_marion_wan_location );
     mapid = 0;
     DL( "Map finish ended" );
 }
 
 
-// игрок пришол на карту
+// РёРіСЂРѕРє РїСЂРёС€РѕР» РЅР° РєР°СЂС‚Сѓ
 void map_incoming( Map& map, Critter& player )
 {
     // Begin turn based combat
@@ -811,40 +811,40 @@ void map_incoming( Map& map, Critter& player )
 
     if( player.IsPlayer() )
     {
-        if( GlobalHumanCount > 0 )          // есть ктото уже есть то
+        if( GlobalHumanCount > 0 )          // РµСЃС‚СЊ РєС‚РѕС‚Рѕ СѓР¶Рµ РµСЃС‚СЊ С‚Рѕ
         {
             Location@ loc = GetLocation( map.Id );
             // if (loc.GeckCount>0) loc.GeckCount--;
         }
 
-        SetQuestState( player, 2 ); // пришли
+        SetQuestState( player, 2 ); // РїСЂРёС€Р»Рё
         GlobalHumanCount++;
-        player.VarKills = 0;        // килсы
-        player.VarAids = 0;         // хиляние
+        player.VarKills = 0;        // РєРёР»СЃС‹
+        player.VarAids = 0;         // С…РёР»СЏРЅРёРµ
         player.SetEvent( CRITTER_EVENT_USE_SKILL, "player_doctor" );
         player.SetEvent( CRITTER_EVENT_DEAD, "player_dead" );
         #ifdef debag
-        // выдаем имунитет к падениям (пока не поправят баг к шансом падения)
+        // РІС‹РґР°РµРј РёРјСѓРЅРёС‚РµС‚ Рє РїР°РґРµРЅРёСЏРј (РїРѕРєР° РЅРµ РїРѕРїСЂР°РІСЏС‚ Р±Р°Рі Рє С€Р°РЅСЃРѕРј РїР°РґРµРЅРёСЏ)
         // player.ModeBase[MODE_NO_KNOCK]=1;
         #endif
     }
 }
 
-// удаляем прерывания у игрока
+// СѓРґР°Р»СЏРµРј РїСЂРµСЂС‹РІР°РЅРёСЏ Сѓ РёРіСЂРѕРєР°
 void remove_events( Critter& player )
 {
     player.SetEvent( CRITTER_EVENT_USE_SKILL, "" );
     player.SetEvent( CRITTER_EVENT_DEAD, "" );
-    player.VarKills = 0; // килсы
-    player.VarAids = 0;  // хиляние
+    player.VarKills = 0; // РєРёР»СЃС‹
+    player.VarAids = 0;  // С…РёР»СЏРЅРёРµ
 }
 
-// игрок умер во время квеста
+// РёРіСЂРѕРє СѓРјРµСЂ РІРѕ РІСЂРµРјСЏ РєРІРµСЃС‚Р°
 void player_dead( Critter& player, Critter@ killer )
 {
     remove_events( player );
-    SetQuestState( player, 4 );              // умер
-    if( player.VarKills > GlobalWanMax / 2 ) // убил больше половины
+    SetQuestState( player, 4 );              // СѓРјРµСЂ
+    if( player.VarKills > GlobalWanMax / 2 ) // СѓР±РёР» Р±РѕР»СЊС€Рµ РїРѕР»РѕРІРёРЅС‹
     {
         player.StatBase[ ST_EXPERIENCE ] += 5000;
     }
@@ -852,11 +852,11 @@ void player_dead( Critter& player, Critter@ killer )
     {
         player.StatBase[ ST_EXPERIENCE ] += 500;
     }
-    player.VarKills = 0; // килсы
-    player.VarAids = 0;  // хиляние
+    player.VarKills = 0; // РєРёР»СЃС‹
+    player.VarAids = 0;  // С…РёР»СЏРЅРёРµ
 }
 
-// AHTUNG - карта сворачиваеться нафиг
+// AHTUNG - РєР°СЂС‚Р° СЃРІРѕСЂР°С‡РёРІР°РµС‚СЊСЃСЏ РЅР°С„РёРі
 void map_deleting( Map& map, bool deleted )
 {
     Location@ loc = map.GetLocation();
@@ -873,18 +873,18 @@ void map_deleting( Map& map, bool deleted )
 
 bool player_doctor( Critter& crit, int skill, Critter@ onCritter, Item@ onItem, Scenery@ onScenery )
 {
-    // цепочка if
+    // С†РµРїРѕС‡РєР° if
     if( skill == SK_FIRST_AID )
         if( valid( onCritter ) )
-            if( onCritter.IsPlayer() )                         // игрока
-                if( crit.Id != onCritter.Id )                  // не сам себя
-                    if( crit.Timeout[ TO_SK_FIRST_AID ] <= 0 ) // уже можно
+            if( onCritter.IsPlayer() )                         // РёРіСЂРѕРєР°
+                if( crit.Id != onCritter.Id )                  // РЅРµ СЃР°Рј СЃРµР±СЏ
+                    if( crit.Timeout[ TO_SK_FIRST_AID ] <= 0 ) // СѓР¶Рµ РјРѕР¶РЅРѕ
                         crit.VarAids++;
-    // и всетаки он вылечил его (ну или пытался, что тоже важно)
-    return false;                                              // вызываем глобальный обработчик
+    // Рё РІСЃРµС‚Р°РєРё РѕРЅ РІС‹Р»РµС‡РёР» РµРіРѕ (РЅСѓ РёР»Рё РїС‹С‚Р°Р»СЃСЏ, С‡С‚Рѕ С‚РѕР¶Рµ РІР°Р¶РЅРѕ)
+    return false;                                              // РІС‹Р·С‹РІР°РµРј РіР»РѕР±Р°Р»СЊРЅС‹Р№ РѕР±СЂР°Р±РѕС‚С‡РёРє
 }
 
-// смерть трех ванаминго которые стоят в начале
+// СЃРјРµСЂС‚СЊ С‚СЂРµС… РІР°РЅР°РјРёРЅРіРѕ РєРѕС‚РѕСЂС‹Рµ СЃС‚РѕСЏС‚ РІ РЅР°С‡Р°Р»Рµ
 void wan_dead_low( Critter& crit, Critter@ killer )
 {
     GlobalWanCountLow--;
@@ -898,11 +898,11 @@ void wan_dead( Critter& crit, Critter@ killer )
     if( killer.IsPlayer() )
         killer.VarKills++;
     GlobalWanCount--;
-    // если гекко кончились
+    // РµСЃР»Рё РіРµРєРєРѕ РєРѕРЅС‡РёР»РёСЃСЊ
     if( GlobalWanCount == 0 )
     {
-        // квест выполнен!
-        // нужно уведомить участников
+        // РєРІРµСЃС‚ РІС‹РїРѕР»РЅРµРЅ!
+        // РЅСѓР¶РЅРѕ СѓРІРµРґРѕРјРёС‚СЊ СѓС‡Р°СЃС‚РЅРёРєРѕРІ
         for( uint i = 0; i < GlobalGroupsIds.length(); i++ )
         {
             Critter@ cr = GetCritter( GlobalGroupsIds[ i ] );
@@ -914,32 +914,32 @@ void wan_dead( Critter& crit, Critter@ killer )
         if( valid( mapid ) && mapid.GetValue() != 0 )
         {
             Location@ loc = GetLocation( mapid.GetValue() );
-            loc.AutoGarbage = true; // разрешаем сбор карты мусорщиком (на всякий случай)
-            mapid = 0;              // снимаем метку
+            loc.AutoGarbage = true; // СЂР°Р·СЂРµС€Р°РµРј СЃР±РѕСЂ РєР°СЂС‚С‹ РјСѓСЃРѕСЂС‰РёРєРѕРј (РЅР° РІСЃСЏРєРёР№ СЃР»СѓС‡Р°Р№)
+            mapid = 0;              // СЃРЅРёРјР°РµРј РјРµС‚РєСѓ
         }
     }
 }
-/*-----Вспомогательные функции(r17)------>-->-->*/
-// проверка, что таймаут не закончен
-// true  - таймаут завершен, либо не назначался раньше
-// false - таймер тикает, нельзя ничего делать
+/*-----Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Рµ С„СѓРЅРєС†РёРё(r17)------>-->-->*/
+// РїСЂРѕРІРµСЂРєР°, С‡С‚Рѕ С‚Р°Р№РјР°СѓС‚ РЅРµ Р·Р°РєРѕРЅС‡РµРЅ
+// true  - С‚Р°Р№РјР°СѓС‚ Р·Р°РІРµСЂС€РµРЅ, Р»РёР±Рѕ РЅРµ РЅР°Р·РЅР°С‡Р°Р»СЃСЏ СЂР°РЅСЊС€Рµ
+// false - С‚Р°Р№РјРµСЂ С‚РёРєР°РµС‚, РЅРµР»СЊР·СЏ РЅРёС‡РµРіРѕ РґРµР»Р°С‚СЊ
 bool _TimeOutIsFree()
 {
     GameVar@ game_time = GetGlobalVar( GVAR_redd_marion_wan_timeout );
     if( !valid( game_time ) )
     {
-        DL( "ошибка: не найдена переменная GVAR_redd_marion_wan_timeout" );
+        DL( "РѕС€РёР±РєР°: РЅРµ РЅР°Р№РґРµРЅР° РїРµСЂРµРјРµРЅРЅР°СЏ GVAR_redd_marion_wan_timeout" );
         return false;
     }
 
     if( game_time.GetValue() == 0 )
     {
         return true;
-    }                                              // с таймаутом все нормально, он сброшен
+    }                                              // СЃ С‚Р°Р№РјР°СѓС‚РѕРј РІСЃРµ РЅРѕСЂРјР°Р»СЊРЅРѕ, РѕРЅ СЃР±СЂРѕС€РµРЅ
 
     if( __FullSecond >= uint( game_time.GetValue() ) )
     {
-        DL( "Время на квест истекло" );
+        DL( "Р’СЂРµРјСЏ РЅР° РєРІРµСЃС‚ РёСЃС‚РµРєР»Рѕ" );
         return true;
     }
     else
@@ -947,24 +947,24 @@ bool _TimeOutIsFree()
         return false;
     }
 }
-// проверка - квест выполняется или нет
+// РїСЂРѕРІРµСЂРєР° - РєРІРµСЃС‚ РІС‹РїРѕР»РЅСЏРµС‚СЃСЏ РёР»Рё РЅРµС‚
 bool _QuestAlreadyRun()
 {
     return GlobalMapId != 0;
 }
-/*---------------Диалоги (r17) ---------->-->-->*/
-// проверка доступности квеста
+/*---------------Р”РёР°Р»РѕРіРё (r17) ---------->-->-->*/
+// РїСЂРѕРІРµСЂРєР° РґРѕСЃС‚СѓРїРЅРѕСЃС‚Рё РєРІРµСЃС‚Р°
 bool d_CheckQAccess( Critter& player, Critter@ npc )
 {
-    // квест доступен, если никто его не выполняет в данный момент
-    // проверка, суток должно было хватить, чтобы игроки прошли эту шахту
-    // квест не выполняется, можно брать
+    // РєРІРµСЃС‚ РґРѕСЃС‚СѓРїРµРЅ, РµСЃР»Рё РЅРёРєС‚Рѕ РµРіРѕ РЅРµ РІС‹РїРѕР»РЅСЏРµС‚ РІ РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚
+    // РїСЂРѕРІРµСЂРєР°, СЃСѓС‚РѕРє РґРѕР»Р¶РЅРѕ Р±С‹Р»Рѕ С…РІР°С‚РёС‚СЊ, С‡С‚РѕР±С‹ РёРіСЂРѕРєРё РїСЂРѕС€Р»Рё СЌС‚Сѓ С€Р°С…С‚Сѓ
+    // РєРІРµСЃС‚ РЅРµ РІС‹РїРѕР»РЅСЏРµС‚СЃСЏ, РјРѕР¶РЅРѕ Р±СЂР°С‚СЊ
     if( !_QuestAlreadyRun() )
         return true;
-    // квест выполняется, проверяем таймаут квеста
+    // РєРІРµСЃС‚ РІС‹РїРѕР»РЅСЏРµС‚СЃСЏ, РїСЂРѕРІРµСЂСЏРµРј С‚Р°Р№РјР°СѓС‚ РєРІРµСЃС‚Р°
     return ( _TimeOutIsFree() );
 
 }
 
 
-/*-<--<--<--------Диалоги (r17) -----------------*/
+/*-<--<--<--------Р”РёР°Р»РѕРіРё (r17) -----------------*/

@@ -1,5 +1,5 @@
 [comment]
-Ваши комментарии / Your comments.
+Р’Р°С€Рё РєРѕРјРјРµРЅС‚Р°СЂРёРё / Your comments.
 
 [data]
 lang=russ engl
@@ -11,20 +11,20 @@ lang=russ engl
 2 2000 NOT_ANSWER_CLOSE_DIALOG 0&
 
 [russ]
-{100}{}{Мертвяк}
-{200}{}{Вы видите: мутант.}
-{210}{}{Вы видите отвратительное мутировавшее существо, с пятнистой кожей и жуткой ухмылкой.}
-{210}{}{Вы видите мертвяка. Его кожа, готова вот вот разорваться. Остальным обитателям городка до него нет дела.}
-{1000}{}{Преддиалоговые установки}
-{1010}{}{Ответ}
-{2000}{}{На очистительном заводе трудная работа.@@Не люблю я работать поблизости от кислот.@@Похоже, в этом городе становится слишком много народа.@@Не все люди плохие.@@Добро пожаловать в Брокен Хиллс.@@Мы много работали, чтобы сделать Брокен Хиллс таким, какой он сейчас.@@Когда в следующий раз будут кормить?}
+{100}{}{РњРµСЂС‚РІСЏРє}
+{200}{}{Р’С‹ РІРёРґРёС‚Рµ: РјСѓС‚Р°РЅС‚.}
+{210}{}{Р’С‹ РІРёРґРёС‚Рµ РѕС‚РІСЂР°С‚РёС‚РµР»СЊРЅРѕРµ РјСѓС‚РёСЂРѕРІР°РІС€РµРµ СЃСѓС‰РµСЃС‚РІРѕ, СЃ РїСЏС‚РЅРёСЃС‚РѕР№ РєРѕР¶РµР№ Рё Р¶СѓС‚РєРѕР№ СѓС…РјС‹Р»РєРѕР№.}
+{210}{}{Р’С‹ РІРёРґРёС‚Рµ РјРµСЂС‚РІСЏРєР°. Р•РіРѕ РєРѕР¶Р°, РіРѕС‚РѕРІР° РІРѕС‚ РІРѕС‚ СЂР°Р·РѕСЂРІР°С‚СЊСЃСЏ. РћСЃС‚Р°Р»СЊРЅС‹Рј РѕР±РёС‚Р°С‚РµР»СЏРј РіРѕСЂРѕРґРєР° РґРѕ РЅРµРіРѕ РЅРµС‚ РґРµР»Р°.}
+{1000}{}{РџСЂРµРґРґРёР°Р»РѕРіРѕРІС‹Рµ СѓСЃС‚Р°РЅРѕРІРєРё}
+{1010}{}{РћС‚РІРµС‚}
+{2000}{}{РќР° РѕС‡РёСЃС‚РёС‚РµР»СЊРЅРѕРј Р·Р°РІРѕРґРµ С‚СЂСѓРґРЅР°СЏ СЂР°Р±РѕС‚Р°.@@РќРµ Р»СЋР±Р»СЋ СЏ СЂР°Р±РѕС‚Р°С‚СЊ РїРѕР±Р»РёР·РѕСЃС‚Рё РѕС‚ РєРёСЃР»РѕС‚.@@РџРѕС…РѕР¶Рµ, РІ СЌС‚РѕРј РіРѕСЂРѕРґРµ СЃС‚Р°РЅРѕРІРёС‚СЃСЏ СЃР»РёС€РєРѕРј РјРЅРѕРіРѕ РЅР°СЂРѕРґР°.@@РќРµ РІСЃРµ Р»СЋРґРё РїР»РѕС…РёРµ.@@Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РІ Р‘СЂРѕРєРµРЅ РҐРёР»Р»СЃ.@@РњС‹ РјРЅРѕРіРѕ СЂР°Р±РѕС‚Р°Р»Рё, С‡С‚РѕР±С‹ СЃРґРµР»Р°С‚СЊ Р‘СЂРѕРєРµРЅ РҐРёР»Р»СЃ С‚Р°РєРёРј, РєР°РєРѕР№ РѕРЅ СЃРµР№С‡Р°СЃ.@@РљРѕРіРґР° РІ СЃР»РµРґСѓСЋС‰РёР№ СЂР°Р· Р±СѓРґСѓС‚ РєРѕСЂРјРёС‚СЊ?}
 
 [engl]
 {100}{}{Ghoul townsperson}
 {200}{}{You see a ghoul townsperson.}
 {210}{}{You see a weird mutant thing, with splotchy skin and a ghastly smile.}
-{210}{}{You see a ghoul. Its skin looks like it’s ready to slough off the creature. It also looks like it’s readily accepted by the other townsfolk.}
+{210}{}{You see a ghoul. Its skin looks like itвЂ™s ready to slough off the creature. It also looks like itвЂ™s readily accepted by the other townsfolk.}
 {1000}{}{Initial preferences}
 {1010}{}{Reply}
-{2000}{}{Refinery work is tough.@@The mutants and humans seem to be on edge lately.@@I don’t like working near acid.@@This town is getting too full lately, it seems.@@Humans ain’t all bad.@@Welcome to Broken Hills.@@Where’d Hank go? Has anyone seen Hank?@@We’ve worked hard to make Broken Hills what it is today.@@When’s the next meal, anyway?}
+{2000}{}{Refinery work is tough.@@The mutants and humans seem to be on edge lately.@@I donвЂ™t like working near acid.@@This town is getting too full lately, it seems.@@Humans ainвЂ™t all bad.@@Welcome to Broken Hills.@@WhereвЂ™d Hank go? Has anyone seen Hank?@@WeвЂ™ve worked hard to make Broken Hills what it is today.@@WhenвЂ™s the next meal, anyway?}
 

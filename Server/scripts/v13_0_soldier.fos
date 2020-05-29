@@ -61,7 +61,7 @@ void _SoldierGetMessage( Critter& soldier, Critter& fromCr, int message, int val
 }
 
 
-// Если солдат обнаружил закладывающего взрывчатку игрока - атакуем его.
+// Р•СЃР»Рё СЃРѕР»РґР°С‚ РѕР±РЅР°СЂСѓР¶РёР» Р·Р°РєР»Р°РґС‹РІР°СЋС‰РµРіРѕ РІР·СЂС‹РІС‡Р°С‚РєСѓ РёРіСЂРѕРєР° - Р°С‚Р°РєСѓРµРј РµРіРѕ.
 void _SoldierMined( Critter& soldier, Critter& dropper, Item& item )
 {
 
@@ -74,7 +74,7 @@ void _SoldierMined( Critter& soldier, Critter& dropper, Item& item )
     if( !dropper.IsLife() )
         return;
 
-    // Заминировать нас не так-то просто, нужно быть действительно мастером и удачливым ловкачем.
+    // Р—Р°РјРёРЅРёСЂРѕРІР°С‚СЊ РЅР°СЃ РЅРµ С‚Р°Рє-С‚Рѕ РїСЂРѕСЃС‚Рѕ, РЅСѓР¶РЅРѕ Р±С‹С‚СЊ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ РјР°СЃС‚РµСЂРѕРј Рё СѓРґР°С‡Р»РёРІС‹Рј Р»РѕРІРєР°С‡РµРј.
     if( IsMined( soldier, item, dropper, soldier.StatBase[ ST_PERCEPTION ] * 20, Pids_MiscActiveExplosions ) )
     {
         AddAttackPlane( soldier, 0, dropper.Id );
@@ -83,7 +83,7 @@ void _SoldierMined( Critter& soldier, Critter& dropper, Item& item )
 }
 
 
-// Если сержант на КПП убит, один из солдат займёт его место, если хоть один из солдат жив.
+// Р•СЃР»Рё СЃРµСЂР¶Р°РЅС‚ РЅР° РљРџРџ СѓР±РёС‚, РѕРґРёРЅ РёР· СЃРѕР»РґР°С‚ Р·Р°Р№РјС‘С‚ РµРіРѕ РјРµСЃС‚Рѕ, РµСЃР»Рё С…РѕС‚СЊ РѕРґРёРЅ РёР· СЃРѕР»РґР°С‚ Р¶РёРІ.
 void _GuardianDead( Critter& soldier, Critter& guardian, Critter@ killer )
 {
 
@@ -114,7 +114,7 @@ void _GuardianDead( Critter& soldier, Critter& guardian, Critter@ killer )
 }
 
 
-// Если NPC атакован одним из "своих" - не атакуем его.
+// Р•СЃР»Рё NPC Р°С‚Р°РєРѕРІР°РЅ РѕРґРЅРёРј РёР· "СЃРІРѕРёС…" - РЅРµ Р°С‚Р°РєСѓРµРј РµРіРѕ.
 int _FriendlyFirePlane( Critter& guardian, NpcPlane& plane, int reason, Critter@ some, Item@ someItem )
 {
 
@@ -132,7 +132,7 @@ int _FriendlyFirePlane( Critter& guardian, NpcPlane& plane, int reason, Critter@
 
 
 
-// Если NPC атакован одним из "своих" - не атакуем его.
+// Р•СЃР»Рё NPC Р°С‚Р°РєРѕРІР°РЅ РѕРґРЅРёРј РёР· "СЃРІРѕРёС…" - РЅРµ Р°С‚Р°РєСѓРµРј РµРіРѕ.
 bool _FriendlyFire( Critter& guardian, Critter& attacker )
 {
 

@@ -1,8 +1,8 @@
 #ifndef _SQUAD_MARCH_
 #define _SQUAD_MARCH_
 
-// Система отдачи приказов, выполнения для нпц и контроля выполнения для игроков
-//  Приказы на перемещения по карте
+// РЎРёСЃС‚РµРјР° РѕС‚РґР°С‡Рё РїСЂРёРєР°Р·РѕРІ, РІС‹РїРѕР»РЅРµРЅРёСЏ РґР»СЏ РЅРїС† Рё РєРѕРЅС‚СЂРѕР»СЏ РІС‹РїРѕР»РЅРµРЅРёСЏ РґР»СЏ РёРіСЂРѕРєРѕРІ
+//  РџСЂРёРєР°Р·С‹ РЅР° РїРµСЂРµРјРµС‰РµРЅРёСЏ РїРѕ РєР°СЂС‚Рµ
 
 #include "_macros.fos"
 #include "serializator.fos"
@@ -11,28 +11,28 @@
 #define ORDER_TYPE_MOVE      ( 1 )
 #define ORDER_TYPE_DIR       ( 2 )
 #define ORDER_TYPE_ARM       ( 3 )
-#define MAX_EXECUTE_TRIES    ( 10 )               // Максимальное число попыток выполнить приказ. Приказ не выполняется, если у нпц есть еще хоть какие-то планы
-#define RECHECK_TIME         ( REAL_SECOND( 5 ) ) // Время последующей проверки при провале выполнения приказа.
+#define MAX_EXECUTE_TRIES    ( 10 )               // РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ С‡РёСЃР»Рѕ РїРѕРїС‹С‚РѕРє РІС‹РїРѕР»РЅРёС‚СЊ РїСЂРёРєР°Р·. РџСЂРёРєР°Р· РЅРµ РІС‹РїРѕР»РЅСЏРµС‚СЃСЏ, РµСЃР»Рё Сѓ РЅРїС† РµСЃС‚СЊ РµС‰Рµ С…РѕС‚СЊ РєР°РєРёРµ-С‚Рѕ РїР»Р°РЅС‹
+#define RECHECK_TIME         ( REAL_SECOND( 5 ) ) // Р’СЂРµРјСЏ РїРѕСЃР»РµРґСѓСЋС‰РµР№ РїСЂРѕРІРµСЂРєРё РїСЂРё РїСЂРѕРІР°Р»Рµ РІС‹РїРѕР»РЅРµРЅРёСЏ РїСЂРёРєР°Р·Р°.
 #define _MarchKey            # (crId) ( "MarchQueue_" + crId )
 #define _CommanderKey        # (crId) ( "MarchCommander_" + crId )
 #define PID_UNARMED          ( 0 )                // 1000)
 // #define DL #(s) (Log(s))
 #define DL                   # ( s )
-#define STR_LOOSE            ( 5917 )             // Вы что-то сделали не так. Задание провалено.
+#define STR_LOOSE            ( 5917 )             // Р’С‹ С‡С‚Рѕ-С‚Рѕ СЃРґРµР»Р°Р»Рё РЅРµ С‚Р°Рє. Р—Р°РґР°РЅРёРµ РїСЂРѕРІР°Р»РµРЅРѕ.
 
 import bool AddWalkPlane( Critter& npc, uint priority, uint16 hexX, uint16 hexY, uint8 dir, bool run, uint cut ) from "npc_planes";
 
-class MarchOrder                 // Вспомогательный класс. Приказ криттеру на выполнение некоторых действий
+class MarchOrder                 // Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№ РєР»Р°СЃСЃ. РџСЂРёРєР°Р· РєСЂРёС‚С‚РµСЂСѓ РЅР° РІС‹РїРѕР»РЅРµРЅРёРµ РЅРµРєРѕС‚РѕСЂС‹С… РґРµР№СЃС‚РІРёР№
 {
-    uint8  Type;                 // Тип приказа
-    uint16 HexX;                 // Точка, в которой должен стоять игрок. Ось икс
-    uint16 HexY;                 // Точка, в которой должен стоять игрок. Ось игрек
-    uint8  Steps;                // Число шагов, которые нужно сделать
-    uint8  Dir;                  // Направление, в котором должен смотреть игрок
-    bool   Armed;                // Вооружен
-    bool   Run;                  // Бежать во время перемещения
-    uint   TimeCheck;            // Относительное время проверки, когда игрок должен выполнить приказ TODO: Удалить это время
-    uint   TimeNext;             // Относительное время отдачи следующего приказа
+    uint8  Type;                 // РўРёРї РїСЂРёРєР°Р·Р°
+    uint16 HexX;                 // РўРѕС‡РєР°, РІ РєРѕС‚РѕСЂРѕР№ РґРѕР»Р¶РµРЅ СЃС‚РѕСЏС‚СЊ РёРіСЂРѕРє. РћСЃСЊ РёРєСЃ
+    uint16 HexY;                 // РўРѕС‡РєР°, РІ РєРѕС‚РѕСЂРѕР№ РґРѕР»Р¶РµРЅ СЃС‚РѕСЏС‚СЊ РёРіСЂРѕРє. РћСЃСЊ РёРіСЂРµРє
+    uint8  Steps;                // Р§РёСЃР»Рѕ С€Р°РіРѕРІ, РєРѕС‚РѕСЂС‹Рµ РЅСѓР¶РЅРѕ СЃРґРµР»Р°С‚СЊ
+    uint8  Dir;                  // РќР°РїСЂР°РІР»РµРЅРёРµ, РІ РєРѕС‚РѕСЂРѕРј РґРѕР»Р¶РµРЅ СЃРјРѕС‚СЂРµС‚СЊ РёРіСЂРѕРє
+    bool   Armed;                // Р’РѕРѕСЂСѓР¶РµРЅ
+    bool   Run;                  // Р‘РµР¶Р°С‚СЊ РІРѕ РІСЂРµРјСЏ РїРµСЂРµРјРµС‰РµРЅРёСЏ
+    uint   TimeCheck;            // РћС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕРµ РІСЂРµРјСЏ РїСЂРѕРІРµСЂРєРё, РєРѕРіРґР° РёРіСЂРѕРє РґРѕР»Р¶РµРЅ РІС‹РїРѕР»РЅРёС‚СЊ РїСЂРёРєР°Р· TODO: РЈРґР°Р»РёС‚СЊ СЌС‚Рѕ РІСЂРµРјСЏ
+    uint   TimeNext;             // РћС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕРµ РІСЂРµРјСЏ РѕС‚РґР°С‡Рё СЃР»РµРґСѓСЋС‰РµРіРѕ РїСЂРёРєР°Р·Р°
 
     void Save( string key )
     {
@@ -92,8 +92,8 @@ class MarchOrder                 // Вспомогательный класс. Приказ криттеру на вы
     }
 }
 
-// Формулировки приказов
-// Приказ ЗАНЯТЬ ПОЗИЦИЮ
+// Р¤РѕСЂРјСѓР»РёСЂРѕРІРєРё РїСЂРёРєР°Р·РѕРІ
+// РџСЂРёРєР°Р· Р—РђРќРЇРўР¬ РџРћР—РР¦РР®
 MarchOrder@ DefineSetPosition( uint16 hexX, uint16 hexY, uint8 dir, bool run, uint timeCheck, uint timeNext )
 {
     MarchOrder@ order = MarchOrder();
@@ -107,7 +107,7 @@ MarchOrder@ DefineSetPosition( uint16 hexX, uint16 hexY, uint8 dir, bool run, ui
     return order;
 }
 
-// Приказ ПЕРЕМЕСТИТЬСЯ
+// РџСЂРёРєР°Р· РџР•Р Р•РњР•РЎРўРРўР¬РЎРЇ
 MarchOrder@ DefineMove( uint8 steps,  uint8 dir, bool run, uint timeCheck, uint timeNext )
 {
     MarchOrder@ order = MarchOrder();
@@ -120,7 +120,7 @@ MarchOrder@ DefineMove( uint8 steps,  uint8 dir, bool run, uint timeCheck, uint 
     return order;
 }
 
-// Приказ ПОВОРОТ
+// РџСЂРёРєР°Р· РџРћР’РћР РћРў
 MarchOrder @ DefineDirection( uint8 dir, uint timeCheck, uint timeNext )
 {
     MarchOrder@ order = MarchOrder();
@@ -131,7 +131,7 @@ MarchOrder @ DefineDirection( uint8 dir, uint timeCheck, uint timeNext )
     return order;
 }
 
-// Приказ ВЗЯТЬ/УБРАТЬ ОРУЖИЕ
+// РџСЂРёРєР°Р· Р’Р—РЇРўР¬/РЈР‘Р РђРўР¬ РћР РЈР–РР•
 MarchOrder @ DefineArmWeapon( bool armed, uint timeCheck, uint timeNext )
 {
     MarchOrder@ order = MarchOrder();
@@ -142,8 +142,8 @@ MarchOrder @ DefineArmWeapon( bool armed, uint timeCheck, uint timeNext )
     return order;
 }
 
-// Класс для реализации строевой подготовки. Несколько последовательных приказов для каждого криттера.
-// Определяющий параметр - Id криттера, у одного криттера - только одна очередь приказов
+// РљР»Р°СЃСЃ РґР»СЏ СЂРµР°Р»РёР·Р°С†РёРё СЃС‚СЂРѕРµРІРѕР№ РїРѕРґРіРѕС‚РѕРІРєРё. РќРµСЃРєРѕР»СЊРєРѕ РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅС‹С… РїСЂРёРєР°Р·РѕРІ РґР»СЏ РєР°Р¶РґРѕРіРѕ РєСЂРёС‚С‚РµСЂР°.
+// РћРїСЂРµРґРµР»СЏСЋС‰РёР№ РїР°СЂР°РјРµС‚СЂ - Id РєСЂРёС‚С‚РµСЂР°, Сѓ РѕРґРЅРѕРіРѕ РєСЂРёС‚С‚РµСЂР° - С‚РѕР»СЊРєРѕ РѕРґРЅР° РѕС‡РµСЂРµРґСЊ РїСЂРёРєР°Р·РѕРІ
 class MarchQueue
 {
     MarchQueue( Critter & cr )
@@ -160,10 +160,10 @@ class MarchQueue
         this.Auto = false;
     }
 
-    bool Auto;                      // Признак: все приказы назначаются автоматически, с помощью time_events
-    uint CritterId;                 // Исполнитель приказа
-    int8 OrderCurrent;              // Текущий номер приказа
-    MarchOrder[] Orders;            // Приказы в порядке выполнения
+    bool Auto;                      // РџСЂРёР·РЅР°Рє: РІСЃРµ РїСЂРёРєР°Р·С‹ РЅР°Р·РЅР°С‡Р°СЋС‚СЃСЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё, СЃ РїРѕРјРѕС‰СЊСЋ time_events
+    uint CritterId;                 // РСЃРїРѕР»РЅРёС‚РµР»СЊ РїСЂРёРєР°Р·Р°
+    int8 OrderCurrent;              // РўРµРєСѓС‰РёР№ РЅРѕРјРµСЂ РїСЂРёРєР°Р·Р°
+    MarchOrder[] Orders;            // РџСЂРёРєР°Р·С‹ РІ РїРѕСЂСЏРґРєРµ РІС‹РїРѕР»РЅРµРЅРёСЏ
 
     void AddOrder( MarchOrder@ order )
     {
@@ -231,8 +231,8 @@ class MarchQueue
             cr.ModeBase[ MODE_NO_HOME ] = 0;
     }
 
-    // Подтверждает выполнение текущего приказа неким криттером. В результате подтверждения координаты
-    //  предыдущего приказа приравниваются к текущему положению криттера
+    // РџРѕРґС‚РІРµСЂР¶РґР°РµС‚ РІС‹РїРѕР»РЅРµРЅРёРµ С‚РµРєСѓС‰РµРіРѕ РїСЂРёРєР°Р·Р° РЅРµРєРёРј РєСЂРёС‚С‚РµСЂРѕРј. Р’ СЂРµР·СѓР»СЊС‚Р°С‚Рµ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ РєРѕРѕСЂРґРёРЅР°С‚С‹
+    //  РїСЂРµРґС‹РґСѓС‰РµРіРѕ РїСЂРёРєР°Р·Р° РїСЂРёСЂР°РІРЅРёРІР°СЋС‚СЃСЏ Рє С‚РµРєСѓС‰РµРјСѓ РїРѕР»РѕР¶РµРЅРёСЋ РєСЂРёС‚С‚РµСЂР°
     void ConfirmOrder()
     {
         if( this.OrderCurrent < 0 )
@@ -249,7 +249,7 @@ class MarchQueue
         this.Save();
     }
 
-    // Проверяет что все условия приказа выполнены
+    // РџСЂРѕРІРµСЂСЏРµС‚ С‡С‚Рѕ РІСЃРµ СѓСЃР»РѕРІРёСЏ РїСЂРёРєР°Р·Р° РІС‹РїРѕР»РЅРµРЅС‹
     bool CheckOrderCompleted()
     {
         if( this.OrderCurrent < 0 )
@@ -266,7 +266,7 @@ class MarchQueue
         case ORDER_TYPE_POS:
             return ( cr.HexX == order.HexX && cr.HexY == cr.HexY );
         case ORDER_TYPE_MOVE:
-            if( this.OrderCurrent == 0 )                   // первый шаг, исходная координата неизвестна
+            if( this.OrderCurrent == 0 )                   // РїРµСЂРІС‹Р№ С€Р°Рі, РёСЃС…РѕРґРЅР°СЏ РєРѕРѕСЂРґРёРЅР°С‚Р° РЅРµРёР·РІРµСЃС‚РЅР°
             {
                 return true;
             }
@@ -309,7 +309,7 @@ class MarchQueue
     {
         Critter@ cr = GetCritter( this.CritterId );
         if( !valid( cr ) || cr.IsPlayer() )
-            return;             // Игроком выполнить приказ с помощью скрипта нельзя, разумеется
+            return;             // РРіСЂРѕРєРѕРј РІС‹РїРѕР»РЅРёС‚СЊ РїСЂРёРєР°Р· СЃ РїРѕРјРѕС‰СЊСЋ СЃРєСЂРёРїС‚Р° РЅРµР»СЊР·СЏ, СЂР°Р·СѓРјРµРµС‚СЃСЏ
         cr.ModeBase[ MODE_NO_HOME ] = 1;
         MarchOrder@ order = this.Orders[ OrderCurrent ];
         if( !valid( order ) )
@@ -331,7 +331,7 @@ class MarchQueue
             AddWalkPlane( cr, 0, order.HexX, order.HexY, order.Dir, order.Run, 0 );
             break;
         case ORDER_TYPE_MOVE:
-            if( this.OrderCurrent == 0 )                   // первый шаг, исходная координата неизвестна
+            if( this.OrderCurrent == 0 )                   // РїРµСЂРІС‹Р№ С€Р°Рі, РёСЃС…РѕРґРЅР°СЏ РєРѕРѕСЂРґРёРЅР°С‚Р° РЅРµРёР·РІРµСЃС‚РЅР°
             {
                 break;
             }
@@ -354,9 +354,9 @@ class MarchQueue
             if( order.Armed )
             {
                 if( valid( weapon ) && !weapon.Proto.Weapon_IsUnarmed )
-                    break;                             // В руках оружие
+                    break;                             // Р’ СЂСѓРєР°С… РѕСЂСѓР¶РёРµ
                 pid1 = cr.GetFavoriteItem( SLOT_HAND1 );
-                // Проверяем, что у нпц в другом слоте
+                // РџСЂРѕРІРµСЂСЏРµРј, С‡С‚Рѕ Сѓ РЅРїС† РІ РґСЂСѓРіРѕРј СЃР»РѕС‚Рµ
                 pid2 = cr.GetFavoriteItem( SLOT_HAND2 );
                 @proto = GetProtoItem( pid2 );
                 if( !valid( proto ) || proto.Type != ITEM_TYPE_WEAPON )
@@ -379,11 +379,11 @@ class MarchQueue
                 if( valid( weapon ) && !weapon.Proto.Weapon_IsUnarmed )
                 {
                     pid1 = weapon.GetProtoId();
-                    // Проверяем, что у нпц в другом слоте
+                    // РџСЂРѕРІРµСЂСЏРµРј, С‡С‚Рѕ Сѓ РЅРїС† РІ РґСЂСѓРіРѕРј СЃР»РѕС‚Рµ
                     pid2 = cr.GetFavoriteItem( SLOT_HAND2 );
                     @proto = GetProtoItem( pid2 );
                     if( !valid( proto ) || proto.Type == ITEM_TYPE_WEAPON )
-                        pid2 = PID_UNARMED;                                 // Убирание оружия - имитируем с помощью выбора любимым оружием рукопашного удара
+                        pid2 = PID_UNARMED;                                 // РЈР±РёСЂР°РЅРёРµ РѕСЂСѓР¶РёСЏ - РёРјРёС‚РёСЂСѓРµРј СЃ РїРѕРјРѕС‰СЊСЋ РІС‹Р±РѕСЂР° Р»СЋР±РёРјС‹Рј РѕСЂСѓР¶РёРµРј СЂСѓРєРѕРїР°С€РЅРѕРіРѕ СѓРґР°СЂР°
                     cr.DropPlanes();
                     cr.SetFavoriteItem( SLOT_HAND1, pid2 );
                     cr.SetFavoriteItem( SLOT_HAND2, pid1 );
@@ -406,12 +406,12 @@ class MarchQueue
             @order = this.Orders[ this.OrderCurrent ];
             if( order.TimeNext == 0 )
             {
-                this.Erase();                 // Выполнение всех приказов закончено
+                this.Erase();                 // Р’С‹РїРѕР»РЅРµРЅРёРµ РІСЃРµС… РїСЂРёРєР°Р·РѕРІ Р·Р°РєРѕРЅС‡РµРЅРѕ
                 return;
             }
             else
             {
-                newIndex = 0;                 // Повторяем заново
+                newIndex = 0;                 // РџРѕРІС‚РѕСЂСЏРµРј Р·Р°РЅРѕРІРѕ
             }
         }
         this.OrderCurrent = newIndex;
@@ -429,10 +429,10 @@ class MarchQueue
     }
 }
 
-// Атоматическая проверка, что приказ выполнен для НПЦ с очередью приказов с установленным флагом Auto
-// Проверяется, что план выполнен, у НПЦ нет других планов, если это верно, отдается следующий приказ
-// иначе делается MAX_EXECUTE_TRIES попыток выполнить приказ
-// если приказ не выполним, очередь приказов отменяется
+// РђС‚РѕРјР°С‚РёС‡РµСЃРєР°СЏ РїСЂРѕРІРµСЂРєР°, С‡С‚Рѕ РїСЂРёРєР°Р· РІС‹РїРѕР»РЅРµРЅ РґР»СЏ РќРџР¦ СЃ РѕС‡РµСЂРµРґСЊСЋ РїСЂРёРєР°Р·РѕРІ СЃ СѓСЃС‚Р°РЅРѕРІР»РµРЅРЅС‹Рј С„Р»Р°РіРѕРј Auto
+// РџСЂРѕРІРµСЂСЏРµС‚СЃСЏ, С‡С‚Рѕ РїР»Р°РЅ РІС‹РїРѕР»РЅРµРЅ, Сѓ РќРџР¦ РЅРµС‚ РґСЂСѓРіРёС… РїР»Р°РЅРѕРІ, РµСЃР»Рё СЌС‚Рѕ РІРµСЂРЅРѕ, РѕС‚РґР°РµС‚СЃСЏ СЃР»РµРґСѓСЋС‰РёР№ РїСЂРёРєР°Р·
+// РёРЅР°С‡Рµ РґРµР»Р°РµС‚СЃСЏ MAX_EXECUTE_TRIES РїРѕРїС‹С‚РѕРє РІС‹РїРѕР»РЅРёС‚СЊ РїСЂРёРєР°Р·
+// РµСЃР»Рё РїСЂРёРєР°Р· РЅРµ РІС‹РїРѕР»РЅРёРј, РѕС‡РµСЂРµРґСЊ РїСЂРёРєР°Р·РѕРІ РѕС‚РјРµРЅСЏРµС‚СЃСЏ
 uint e_NextOrder( uint[] @ values )
 {
     DL( "next order" );
@@ -501,7 +501,7 @@ class SquadCommander
             EraseAnyData( key );
     }
 
-    bool CheckCommandExecuted()     // Проверка только для игроков
+    bool CheckCommandExecuted()     // РџСЂРѕРІРµСЂРєР° С‚РѕР»СЊРєРѕ РґР»СЏ РёРіСЂРѕРєРѕРІ
     {
         for( uint i = 0, l = this.Squad.length(); i < l; i++ )
         {
@@ -522,7 +522,7 @@ class SquadCommander
         return true;
     }
 
-    void Command( uint strNum )   // strNum - номер строки из диалога
+    void Command( uint strNum )   // strNum - РЅРѕРјРµСЂ СЃС‚СЂРѕРєРё РёР· РґРёР°Р»РѕРіР°
     {
         Critter@ cr = GetCritter( this.CommanderId );
         if( valid( cr ) && strNum >= 0 )

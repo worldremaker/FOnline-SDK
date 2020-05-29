@@ -1,5 +1,5 @@
 // Author: rifleman17
-// Скрипт для карт марипозы. Генерация книжек и радиация
+// РЎРєСЂРёРїС‚ РґР»СЏ РєР°СЂС‚ РјР°СЂРёРїРѕР·С‹. Р“РµРЅРµСЂР°С†РёСЏ РєРЅРёР¶РµРє Рё СЂР°РґРёР°С†РёСЏ
 // map_mariposa@_MapInit
 
 import void _MediumRadiation( Map& map, bool firstTime ) from "map_radiation";

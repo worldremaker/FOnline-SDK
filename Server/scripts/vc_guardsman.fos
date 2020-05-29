@@ -1,14 +1,14 @@
 // Author: rifleman17
-// Скрипты для квестовой линии "Гвардеец Города-Убежища"
+// РЎРєСЂРёРїС‚С‹ РґР»СЏ РєРІРµСЃС‚РѕРІРѕР№ Р»РёРЅРёРё "Р“РІР°СЂРґРµРµС† Р“РѕСЂРѕРґР°-РЈР±РµР¶РёС‰Р°"
 #include "_macros.fos"
 #include "squad_march.fos"
 
 import void SetDeterioration( Item& item, int deteriorationProcent )  from "repair";
 import int  GetDeteriorationProcent( Item& item ) from "repair";
 
-// Квест "Самоделкин":
-//  Тренировка по надлежащему уходу за оружием
-//  Выдача двух сломанных Штурмовых винтовок
+// РљРІРµСЃС‚ "РЎР°РјРѕРґРµР»РєРёРЅ":
+//  РўСЂРµРЅРёСЂРѕРІРєР° РїРѕ РЅР°РґР»РµР¶Р°С‰РµРјСѓ СѓС…РѕРґСѓ Р·Р° РѕСЂСѓР¶РёРµРј
+//  Р’С‹РґР°С‡Р° РґРІСѓС… СЃР»РѕРјР°РЅРЅС‹С… РЁС‚СѓСЂРјРѕРІС‹С… РІРёРЅС‚РѕРІРѕРє
 void r_GiveWearItems( Critter& player, Critter@ npc, int pid, int count, int deteriorationPercent )
 {
     Item@ item;
@@ -41,21 +41,21 @@ bool d_CheckWear( Critter& player, Critter@ npc, int pid, int count, int deterio
     return ( num >= count );
 }
 
-// Квест "Строевая подготовка":
-//  Персонаж должен встать в одну линию с НПЦ-гвардейцами и повторять их движения по команде капитана Хартманна
-#define ROLE_MARCH             ( 91 )        // Номер роли НПЦ, которые принимают участие в марше
-#define ROLE_COMMANDER         ( 92 )        // Хартманн
-#define STR_RIGHT_POSITION     ( 5915 )      // Вы в правильной позиции. Оставайтесь на месте до первой команды. Равнение на середину!
-#define STR_WRONG_POSITION     ( 5916 )      // Да сколько можно? Стать в строй, черт тебя дери! Иначе отправлю к мамочке!
-#define STR_MARCH_FAILED       ( 9 )         // Это чучело безнадеждно. Я так и думал.
-#define STR_MARCH_COMPLETED    ( 10 )        // Неплохо... Неплохо. Не ожидал.
-#define STR_LOOSE              ( 5917 )      // Вы что-то сделали не так. Задание провалено.
-#define POS_X                  ( 65 )        // Позиция игрока в начале квеста
+// РљРІРµСЃС‚ "РЎС‚СЂРѕРµРІР°СЏ РїРѕРґРіРѕС‚РѕРІРєР°":
+//  РџРµСЂСЃРѕРЅР°Р¶ РґРѕР»Р¶РµРЅ РІСЃС‚Р°С‚СЊ РІ РѕРґРЅСѓ Р»РёРЅРёСЋ СЃ РќРџР¦-РіРІР°СЂРґРµР№С†Р°РјРё Рё РїРѕРІС‚РѕСЂСЏС‚СЊ РёС… РґРІРёР¶РµРЅРёСЏ РїРѕ РєРѕРјР°РЅРґРµ РєР°РїРёС‚Р°РЅР° РҐР°СЂС‚РјР°РЅРЅР°
+#define ROLE_MARCH             ( 91 )        // РќРѕРјРµСЂ СЂРѕР»Рё РќРџР¦, РєРѕС‚РѕСЂС‹Рµ РїСЂРёРЅРёРјР°СЋС‚ СѓС‡Р°СЃС‚РёРµ РІ РјР°СЂС€Рµ
+#define ROLE_COMMANDER         ( 92 )        // РҐР°СЂС‚РјР°РЅРЅ
+#define STR_RIGHT_POSITION     ( 5915 )      // Р’С‹ РІ РїСЂР°РІРёР»СЊРЅРѕР№ РїРѕР·РёС†РёРё. РћСЃС‚Р°РІР°Р№С‚РµСЃСЊ РЅР° РјРµСЃС‚Рµ РґРѕ РїРµСЂРІРѕР№ РєРѕРјР°РЅРґС‹. Р Р°РІРЅРµРЅРёРµ РЅР° СЃРµСЂРµРґРёРЅСѓ!
+#define STR_WRONG_POSITION     ( 5916 )      // Р”Р° СЃРєРѕР»СЊРєРѕ РјРѕР¶РЅРѕ? РЎС‚Р°С‚СЊ РІ СЃС‚СЂРѕР№, С‡РµСЂС‚ С‚РµР±СЏ РґРµСЂРё! РРЅР°С‡Рµ РѕС‚РїСЂР°РІР»СЋ Рє РјР°РјРѕС‡РєРµ!
+#define STR_MARCH_FAILED       ( 9 )         // Р­С‚Рѕ С‡СѓС‡РµР»Рѕ Р±РµР·РЅР°РґРµР¶РґРЅРѕ. РЇ С‚Р°Рє Рё РґСѓРјР°Р».
+#define STR_MARCH_COMPLETED    ( 10 )        // РќРµРїР»РѕС…Рѕ... РќРµРїР»РѕС…Рѕ. РќРµ РѕР¶РёРґР°Р».
+#define STR_LOOSE              ( 5917 )      // Р’С‹ С‡С‚Рѕ-С‚Рѕ СЃРґРµР»Р°Р»Рё РЅРµ С‚Р°Рє. Р—Р°РґР°РЅРёРµ РїСЂРѕРІР°Р»РµРЅРѕ.
+#define POS_X                  ( 65 )        // РџРѕР·РёС†РёСЏ РёРіСЂРѕРєР° РІ РЅР°С‡Р°Р»Рµ РєРІРµСЃС‚Р°
 #define POS_Y                  ( 132 )
-#define LAST_ORDER             ( 7 )         // Последний приказ
+#define LAST_ORDER             ( 7 )         // РџРѕСЃР»РµРґРЅРёР№ РїСЂРёРєР°Р·
 
-// Обработка наступания игроком на триггер перед началом тренировки
-// Служит сигналом к началу
+// РћР±СЂР°Р±РѕС‚РєР° РЅР°СЃС‚СѓРїР°РЅРёСЏ РёРіСЂРѕРєРѕРј РЅР° С‚СЂРёРіРіРµСЂ РїРµСЂРµРґ РЅР°С‡Р°Р»РѕРј С‚СЂРµРЅРёСЂРѕРІРєРё
+// РЎР»СѓР¶РёС‚ СЃРёРіРЅР°Р»РѕРј Рє РЅР°С‡Р°Р»Сѓ
 void t_Enter( Critter& player, Scenery& trigger, bool entered, uint8 dir )
 {
     if( !player.IsPlayer() || !entered )
@@ -73,20 +73,20 @@ void t_Enter( Critter& player, Scenery& trigger, bool entered, uint8 dir )
     if( !valid( cr ) || cr.Stat[ ST_VAR9 ] > 0 )
         return;
     uint[] values = { cr.Id, player.Id, 0 };
-    cr.StatBase[ ST_VAR9 ] = player.Id;    // Сохранение кода игрока, чтобы нпц не спамил свои реплики при многократных входах-выходах на гекс
+    cr.StatBase[ ST_VAR9 ] = player.Id;    // РЎРѕС…СЂР°РЅРµРЅРёРµ РєРѕРґР° РёРіСЂРѕРєР°, С‡С‚РѕР±С‹ РЅРїС† РЅРµ СЃРїР°РјРёР» СЃРІРѕРё СЂРµРїР»РёРєРё РїСЂРё РјРЅРѕРіРѕРєСЂР°С‚РЅС‹С… РІС…РѕРґР°С…-РІС‹С…РѕРґР°С… РЅР° РіРµРєСЃ
     qVar = 2;
     CreateTimeEvent( __FullSecond + REAL_SECOND( 3 ), "e_TimeToStart", values, false );
     CreateTimeEvent( __FullSecond + REAL_MINUTE( 15 ), "e_ResetCommander", values, true );
 
 }
 
-// Контрольная очистка переменных через 15 реальных минут, если что-то пошло не так, и все данные не удалились
+// РљРѕРЅС‚СЂРѕР»СЊРЅР°СЏ РѕС‡РёСЃС‚РєР° РїРµСЂРµРјРµРЅРЅС‹С… С‡РµСЂРµР· 15 СЂРµР°Р»СЊРЅС‹С… РјРёРЅСѓС‚, РµСЃР»Рё С‡С‚Рѕ-С‚Рѕ РїРѕС€Р»Рѕ РЅРµ С‚Р°Рє, Рё РІСЃРµ РґР°РЅРЅС‹Рµ РЅРµ СѓРґР°Р»РёР»РёСЃСЊ
 uint e_ResetCommander( uint[] @ values )
 {
     Critter@ cr = GetCritter( values[ 0 ] );
     uint     idPlayer = values[ 1 ];
     if( !valid( cr ) || uint( cr.Stat[ ST_VAR9 ] ) != idPlayer )
-        return 0;         // Если уже другой персонаж занимается строевой подготовкой, для него будет персональный эвент
+        return 0;         // Р•СЃР»Рё СѓР¶Рµ РґСЂСѓРіРѕР№ РїРµСЂСЃРѕРЅР°Р¶ Р·Р°РЅРёРјР°РµС‚СЃСЏ СЃС‚СЂРѕРµРІРѕР№ РїРѕРґРіРѕС‚РѕРІРєРѕР№, РґР»СЏ РЅРµРіРѕ Р±СѓРґРµС‚ РїРµСЂСЃРѕРЅР°Р»СЊРЅС‹Р№ СЌРІРµРЅС‚
     SquadCommander@ cmdr = SquadCommander( cr );
     if( valid( cmdr ) )
     {
@@ -97,7 +97,7 @@ uint e_ResetCommander( uint[] @ values )
     return 0;
 }
 
-// Сброс глобальной переменной и переменных командира
+// РЎР±СЂРѕСЃ РіР»РѕР±Р°Р»СЊРЅРѕР№ РїРµСЂРµРјРµРЅРЅРѕР№ Рё РїРµСЂРµРјРµРЅРЅС‹С… РєРѕРјР°РЅРґРёСЂР°
 void ResetCommander( Critter& cr )
 {
     cr.StatBase[ ST_VAR9 ] = 0;
@@ -106,16 +106,16 @@ void ResetCommander( Critter& cr )
         status = 0;
 }
 
-// Проверка, что игрок в нужной позиции и запуск очереди приказов
+// РџСЂРѕРІРµСЂРєР°, С‡С‚Рѕ РёРіСЂРѕРє РІ РЅСѓР¶РЅРѕР№ РїРѕР·РёС†РёРё Рё Р·Р°РїСѓСЃРє РѕС‡РµСЂРµРґРё РїСЂРёРєР°Р·РѕРІ
 uint e_TimeToStart( uint[] @ values )
 {
     Critter@ npc    = GetCritter( values[ 0 ] );
     Critter@ player = GetCritter( values[ 1 ] );
     if( !valid( npc ) || !valid( player ) )
         return 0;
-    if( player.HexX != POS_X || player.HexY != POS_Y ) // Игрок не находится в нужной позиции
+    if( player.HexX != POS_X || player.HexY != POS_Y ) // РРіСЂРѕРє РЅРµ РЅР°С…РѕРґРёС‚СЃСЏ РІ РЅСѓР¶РЅРѕР№ РїРѕР·РёС†РёРё
     {
-        if( values[ 2 ] > 5 )                          // Максимум 5 проверок, потом заново
+        if( values[ 2 ] > 5 )                          // РњР°РєСЃРёРјСѓРј 5 РїСЂРѕРІРµСЂРѕРє, РїРѕС‚РѕРј Р·Р°РЅРѕРІРѕ
         {
             ResetCommander( npc );
             return 0;
@@ -131,7 +131,7 @@ uint e_TimeToStart( uint[] @ values )
         return 0;
     }
     status = 1;
-    Map@            map = npc.GetMap(); // Поиск нпц-гвардейцев
+    Map@            map = npc.GetMap(); // РџРѕРёСЃРє РЅРїС†-РіРІР°СЂРґРµР№С†РµРІ
     Critter@[] critters;
     uint            num = map.GetNpcCount( ROLE_MARCH, FIND_LIFE | FIND_ONLY_NPC );
     uint[] values_new = { 0, npc.Id, player.Id };
@@ -172,7 +172,7 @@ uint e_TimeToStart( uint[] @ values )
     return 0;
 }
 
-// Время отдавать новый приказ
+// Р’СЂРµРјСЏ РѕС‚РґР°РІР°С‚СЊ РЅРѕРІС‹Р№ РїСЂРёРєР°Р·
 uint e_NextGuardOrder( uint[] @ values )
 {
     Critter@ cr = GetCritter( values[ 1 ] );
@@ -205,20 +205,20 @@ uint e_NextGuardOrder( uint[] @ values )
     return REAL_SECOND( 6 );
 }
 
-// Бонусы Гвардии для игроков
+// Р‘РѕРЅСѓСЃС‹ Р“РІР°СЂРґРёРё РґР»СЏ РёРіСЂРѕРєРѕРІ
 #define CTE_ID_SALARY        ( 224 )
 #define GAME_DAY             # (days) ( days * 24 * 60 * 60 )
-#define PRIVATE_MONEY        ( 68 )     // Жалование рядового
-#define JSERGEANT_MONEY      ( 98 )     // Жалование младшего сержанта
-#define SSERGEANT_MONEY      ( 151 )    // Жалование старшего сержанта
-#define LEUTENANT_MONEY      ( 360 )    // Жалование лейтенанта
+#define PRIVATE_MONEY        ( 68 )     // Р–Р°Р»РѕРІР°РЅРёРµ СЂСЏРґРѕРІРѕРіРѕ
+#define JSERGEANT_MONEY      ( 98 )     // Р–Р°Р»РѕРІР°РЅРёРµ РјР»Р°РґС€РµРіРѕ СЃРµСЂР¶Р°РЅС‚Р°
+#define SSERGEANT_MONEY      ( 151 )    // Р–Р°Р»РѕРІР°РЅРёРµ СЃС‚Р°СЂС€РµРіРѕ СЃРµСЂР¶Р°РЅС‚Р°
+#define LEUTENANT_MONEY      ( 360 )    // Р–Р°Р»РѕРІР°РЅРёРµ Р»РµР№С‚РµРЅР°РЅС‚Р°
 #define RANK_NONE            ( 0 )
 #define RANK_PRIVATE         ( 1 )
 #define RANK_JUN_SERGEANT    ( 2 )
 #define RANK_SEN_SERGEANT    ( 3 )
 #define RANK_LEUTENANT       ( 4 )
 
-// Ежедневное жалование
+// Р•Р¶РµРґРЅРµРІРЅРѕРµ Р¶Р°Р»РѕРІР°РЅРёРµ
 void r_SetGuardSalary( Critter& player, Critter@ npc )
 {
     player.AddTimeEvent( "cte_GuardsmanSalary", GAME_DAY( 1 ), CTE_ID_SALARY );
@@ -262,7 +262,7 @@ uint cte_GuardsmanSalary( Critter& cr, int identifier, uint& rate )
     return GAME_DAY( 1 );
 }
 
-// Квест Пойди туда - не знаю куда
+// РљРІРµСЃС‚ РџРѕР№РґРё С‚СѓРґР° - РЅРµ Р·РЅР°СЋ РєСѓРґР°
 void _MutantsCaveInit( Map& map, bool firstTime )
 {
     map.SetEvent( MAP_EVENT_IN_CRITTER, "_CaveInCritter" );
@@ -324,7 +324,7 @@ void _OutGroundInCritter( Map& map, Critter& cr )
     }
 }
 
-// Опасная Охота
+// РћРїР°СЃРЅР°СЏ РћС…РѕС‚Р°
 
 import void r_ShowLocation( Critter& player, Critter@ npc, int qVar, int counterVar, int locPid, int locX, int locY ) from "hostile_location_quest";
 import void r_ShowLocation2( Critter& player, Critter@ npc, int qVar, int counterVar, int locPid, int locX, int locY ) from "hostile_location_quest";
@@ -351,7 +351,7 @@ void r_ShowCave( Critter& player, Critter@ npc )
 }
 
 
-// Нанимаемый мутант
+// РќР°РЅРёРјР°РµРјС‹Р№ РјСѓС‚Р°РЅС‚
 
 void _CharleyInit( Critter& cr, bool firstTime )
 {

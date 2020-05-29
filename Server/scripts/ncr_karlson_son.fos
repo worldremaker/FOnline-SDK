@@ -1,16 +1,16 @@
 // Author: rifleman17
 #include "_macros.fos"
 
-#define RUN_PLANE_ID         ( 111 )                               // код плана "бежать от игрока"
-#define MAX_RUNS             ( 5 )                                 // число перебежек
-#define SON_WAIT_PRIORITY    ( 100 )                               // приоритет плана "подожди игрока"
-#define SEARCH_RADIUS        ( 3 )                                 // расстояние в гексах до игрока, в котором он должен быть вовремя остановок мальчика
-#define RUN_RADIUS           ( 5 )                                 // расстояние, на которое бежит мальчик (20)
+#define RUN_PLANE_ID         ( 111 )                               // РєРѕРґ РїР»Р°РЅР° "Р±РµР¶Р°С‚СЊ РѕС‚ РёРіСЂРѕРєР°"
+#define MAX_RUNS             ( 5 )                                 // С‡РёСЃР»Рѕ РїРµСЂРµР±РµР¶РµРє
+#define SON_WAIT_PRIORITY    ( 100 )                               // РїСЂРёРѕСЂРёС‚РµС‚ РїР»Р°РЅР° "РїРѕРґРѕР¶РґРё РёРіСЂРѕРєР°"
+#define SEARCH_RADIUS        ( 3 )                                 // СЂР°СЃСЃС‚РѕСЏРЅРёРµ РІ РіРµРєСЃР°С… РґРѕ РёРіСЂРѕРєР°, РІ РєРѕС‚РѕСЂРѕРј РѕРЅ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РІРѕРІСЂРµРјСЏ РѕСЃС‚Р°РЅРѕРІРѕРє РјР°Р»СЊС‡РёРєР°
+#define RUN_RADIUS           ( 5 )                                 // СЂР°СЃСЃС‚РѕСЏРЅРёРµ, РЅР° РєРѕС‚РѕСЂРѕРµ Р±РµР¶РёС‚ РјР°Р»СЊС‡РёРє (20)
 
-#define Q_STAT_FAILED        ( 4 )                                 // статус квеста - провален (не догнал)
-#define Q_STAT_CATCHED       ( 5 )                                 // статус квеста - выполнен
+#define Q_STAT_FAILED        ( 4 )                                 // СЃС‚Р°С‚СѓСЃ РєРІРµСЃС‚Р° - РїСЂРѕРІР°Р»РµРЅ (РЅРµ РґРѕРіРЅР°Р»)
+#define Q_STAT_CATCHED       ( 5 )                                 // СЃС‚Р°С‚СѓСЃ РєРІРµСЃС‚Р° - РІС‹РїРѕР»РЅРµРЅ
 
-#define STR_RUN              ( 1 )                                 // строка, которую произносит человек
+#define STR_RUN              ( 1 )                                 // СЃС‚СЂРѕРєР°, РєРѕС‚РѕСЂСѓСЋ РїСЂРѕРёР·РЅРѕСЃРёС‚ С‡РµР»РѕРІРµРє
 
 import bool GetFreeHex( Map& map, uint radius, uint16& hx, uint16& hy ) from "caravan";
 import bool AddMiscPlane( Critter& npc, uint priority, uint waitSecond, string@ funcName ) from "npc_planes";

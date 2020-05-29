@@ -1,28 +1,28 @@
 // Author: rifleman17
-/* Специальный энкаунтер "Телепортатор".
-   Положить в шкаф некоторое количество предметов и обменять их на что-то случайное такого же веса.
-   Если в шкафу - игрок, он обменяется координатами со случайным игроком в одном из городов.
-   Если в шкафу - нпц, нпц будет удален, вместо него появится агрессивный робот, Мистер Handy
+/* РЎРїРµС†РёР°Р»СЊРЅС‹Р№ СЌРЅРєР°СѓРЅС‚РµСЂ "РўРµР»РµРїРѕСЂС‚Р°С‚РѕСЂ".
+   РџРѕР»РѕР¶РёС‚СЊ РІ С€РєР°С„ РЅРµРєРѕС‚РѕСЂРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РїСЂРµРґРјРµС‚РѕРІ Рё РѕР±РјРµРЅСЏС‚СЊ РёС… РЅР° С‡С‚Рѕ-С‚Рѕ СЃР»СѓС‡Р°Р№РЅРѕРµ С‚Р°РєРѕРіРѕ Р¶Рµ РІРµСЃР°.
+   Р•СЃР»Рё РІ С€РєР°С„Сѓ - РёРіСЂРѕРє, РѕРЅ РѕР±РјРµРЅСЏРµС‚СЃСЏ РєРѕРѕСЂРґРёРЅР°С‚Р°РјРё СЃРѕ СЃР»СѓС‡Р°Р№РЅС‹Рј РёРіСЂРѕРєРѕРј РІ РѕРґРЅРѕРј РёР· РіРѕСЂРѕРґРѕРІ.
+   Р•СЃР»Рё РІ С€РєР°С„Сѓ - РЅРїС†, РЅРїС† Р±СѓРґРµС‚ СѓРґР°Р»РµРЅ, РІРјРµСЃС‚Рѕ РЅРµРіРѕ РїРѕСЏРІРёС‚СЃСЏ Р°РіСЂРµСЃСЃРёРІРЅС‹Р№ СЂРѕР±РѕС‚, РњРёСЃС‚РµСЂ Handy
 
-   42/63 - координаты телепорта
+   42/63 - РєРѕРѕСЂРґРёРЅР°С‚С‹ С‚РµР»РµРїРѕСЂС‚Р°
  */
 
 #include "_macros.fos"
 #include "pids_groups.fos"
 #include "utils_for_array.fos"
 
-#define LIMIT_WEIGHT            ( 10000 )                                // Ограничение на вес при передаче предметов
-#define MAX_WEIGHT              ( 50000 )                                // Максимальный вес телепортируемых предметов
-#define PID_SCENERY_COMPUTER    ( 222 )                                  // Код прототипа объекта "компьютер"
-#define PID_ENEMY               ( 73 )                                   // Код прототипа нпц-робота (мистер Хенди), который будет помещен в телепорте, если пересылается нпц
+#define LIMIT_WEIGHT            ( 10000 )                                // РћРіСЂР°РЅРёС‡РµРЅРёРµ РЅР° РІРµСЃ РїСЂРё РїРµСЂРµРґР°С‡Рµ РїСЂРµРґРјРµС‚РѕРІ
+#define MAX_WEIGHT              ( 50000 )                                // РњР°РєСЃРёРјР°Р»СЊРЅС‹Р№ РІРµСЃ С‚РµР»РµРїРѕСЂС‚РёСЂСѓРµРјС‹С… РїСЂРµРґРјРµС‚РѕРІ
+#define PID_SCENERY_COMPUTER    ( 222 )                                  // РљРѕРґ РїСЂРѕС‚РѕС‚РёРїР° РѕР±СЉРµРєС‚Р° "РєРѕРјРїСЊСЋС‚РµСЂ"
+#define PID_ENEMY               ( 73 )                                   // РљРѕРґ РїСЂРѕС‚РѕС‚РёРїР° РЅРїС†-СЂРѕР±РѕС‚Р° (РјРёСЃС‚РµСЂ РҐРµРЅРґРё), РєРѕС‚РѕСЂС‹Р№ Р±СѓРґРµС‚ РїРѕРјРµС‰РµРЅ РІ С‚РµР»РµРїРѕСЂС‚Рµ, РµСЃР»Рё РїРµСЂРµСЃС‹Р»Р°РµС‚СЃСЏ РЅРїС†
 
-#define STR_FIRST               ( 2500 )                                 // Случайный гав-гав собаки
+#define STR_FIRST               ( 2500 )                                 // РЎР»СѓС‡Р°Р№РЅС‹Р№ РіР°РІ-РіР°РІ СЃРѕР±Р°РєРё
 #define STR_LAST                ( 2507 )
 
 import void QuakeScreen( Map& map ) from "effects";
 import bool AddPickPlane( Critter& npc, uint priority, Item@ item, uint useItemId, bool toOpen ) from "npc_planes";
 
-uint CountWeight( Map @ map, uint16 x, uint16 y )                          // Подсчет веса итемов, лежащих на некоей карте в указанных координатах
+uint CountWeight( Map @ map, uint16 x, uint16 y )                          // РџРѕРґСЃС‡РµС‚ РІРµСЃР° РёС‚РµРјРѕРІ, Р»РµР¶Р°С‰РёС… РЅР° РЅРµРєРѕРµР№ РєР°СЂС‚Рµ РІ СѓРєР°Р·Р°РЅРЅС‹С… РєРѕРѕСЂРґРёРЅР°С‚Р°С…
 {
     if( !valid( map ) )
         return 0;
@@ -33,16 +33,16 @@ uint CountWeight( Map @ map, uint16 x, uint16 y )                          // По
     {
         weight += items[ i ].Proto.Weight;
     }
-    DeleteItems( items );   // удаление всех итемов
+    DeleteItems( items );   // СѓРґР°Р»РµРЅРёРµ РІСЃРµС… РёС‚РµРјРѕРІ
     return CLAMP( weight, 0, MAX_WEIGHT );
 }
 
-void AddRandomItems( Map @map, uint16 x, uint16 y, uint maxWeight )       // добавление случайного набора итемов на карту в указанные координаты
+void AddRandomItems( Map @map, uint16 x, uint16 y, uint maxWeight )       // РґРѕР±Р°РІР»РµРЅРёРµ СЃР»СѓС‡Р°Р№РЅРѕРіРѕ РЅР°Р±РѕСЂР° РёС‚РµРјРѕРІ РЅР° РєР°СЂС‚Сѓ РІ СѓРєР°Р·Р°РЅРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹
 {
     if( !valid( map ) )
         return;
     uint16[] pids;
-    // Сбор всех массивов в один
+    // РЎР±РѕСЂ РІСЃРµС… РјР°СЃСЃРёРІРѕРІ РІ РѕРґРёРЅ
     MergeArrays( pids, Pids_WeaponSmallGuns );
     MergeArrays( pids, Pids_WeaponMelee );
     MergeArrays( pids, Pids_WeaponEnergo );
@@ -51,17 +51,17 @@ void AddRandomItems( Map @map, uint16 x, uint16 y, uint maxWeight )       // доб
     MergeArrays( pids, Pids_ArmorMedium );
     MergeArrays( pids, Pids_ArmorHeavy );
     MergeArrays( pids, Pids_Ammo );
-    MergeArrays( pids, Pids_Ammo );   // удвоенный шанс
+    MergeArrays( pids, Pids_Ammo );   // СѓРґРІРѕРµРЅРЅС‹Р№ С€Р°РЅСЃ
     MergeArrays( pids, Pids_AllDrugs );
     MergeArrays( pids, Pids_MiscExplosions );
     MergeArrays( pids, Pids_MiscPartsBasic );
     MergeArrays( pids, Pids_MiscPartsBasic );
-    MergeArrays( pids, Pids_MiscPartsBasic ); // 4х шанс
+    MergeArrays( pids, Pids_MiscPartsBasic ); // 4С… С€Р°РЅСЃ
     MergeArrays( pids, Pids_MiscAllTools );
     MergeArrays( pids, Pids_MiscOther );
-    MergeArrays( pids, Pids_MiscOther );      // удвоенный шанс
+    MergeArrays( pids, Pids_MiscOther );      // СѓРґРІРѕРµРЅРЅС‹Р№ С€Р°РЅСЃ
     uint   curWeight = 0;
-    int16  triesNum = 150;                    // максимум 150 попыток
+    int16  triesNum = 150;                    // РјР°РєСЃРёРјСѓРј 150 РїРѕРїС‹С‚РѕРє
     uint   idx = 0;
     uint16 pid = 0;
     ProtoItem @ proto;
@@ -72,10 +72,10 @@ void AddRandomItems( Map @map, uint16 x, uint16 y, uint maxWeight )       // доб
     {
         triesNum--;
         itemCount = 1;
-        len = pids.length();                  // Длина массива могла измениться
+        len = pids.length();                  // Р”Р»РёРЅР° РјР°СЃСЃРёРІР° РјРѕРіР»Р° РёР·РјРµРЅРёС‚СЊСЃСЏ
         idx = Random( 0, len - 1 );
         pid = pids[ idx ];
-        if( Present( pid, Pids_ArmorHeavy ) ) // Тяжелая броня только в единственном экземпляре, не зависимо от прототипа и факта, влезет или нет
+        if( Present( pid, Pids_ArmorHeavy ) ) // РўСЏР¶РµР»Р°СЏ Р±СЂРѕРЅСЏ С‚РѕР»СЊРєРѕ РІ РµРґРёРЅСЃС‚РІРµРЅРЅРѕРј СЌРєР·РµРјРїР»СЏСЂРµ, РЅРµ Р·Р°РІРёСЃРёРјРѕ РѕС‚ РїСЂРѕС‚РѕС‚РёРїР° Рё С„Р°РєС‚Р°, РІР»РµР·РµС‚ РёР»Рё РЅРµС‚
         {
             for( uint i = 0, l = Pids_ArmorHeavy.length(); i < l; i++ )
             {
@@ -83,22 +83,22 @@ void AddRandomItems( Map @map, uint16 x, uint16 y, uint maxWeight )       // доб
             }
         }
         @ proto = GetProtoItem( pid );
-        weight = CLAMP( proto.Weight, 200, proto.Weight ); // Если предмет ничего не весит, считаем, что он весит 200 грамм
+        weight = CLAMP( proto.Weight, 200, proto.Weight ); // Р•СЃР»Рё РїСЂРµРґРјРµС‚ РЅРёС‡РµРіРѕ РЅРµ РІРµСЃРёС‚, СЃС‡РёС‚Р°РµРј, С‡С‚Рѕ РѕРЅ РІРµСЃРёС‚ 200 РіСЂР°РјРј
         if( Present( pid, Pids_Ammo ) )
         {
-            itemCount = Random( 1, 120 );                  // Патроны не должны быть в количестве = 1
+            itemCount = Random( 1, 120 );                  // РџР°С‚СЂРѕРЅС‹ РЅРµ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РєРѕР»РёС‡РµСЃС‚РІРµ = 1
             weight *= itemCount;
         }
-        if( curWeight + weight <= maxWeight )              // Подходит по весу
+        if( curWeight + weight <= maxWeight )              // РџРѕРґС…РѕРґРёС‚ РїРѕ РІРµСЃСѓ
         {
-            pids.removeAt( FindInArray( pids, pid ) );     // Предметы только по одному разу попадаются
+            pids.removeAt( FindInArray( pids, pid ) );     // РџСЂРµРґРјРµС‚С‹ С‚РѕР»СЊРєРѕ РїРѕ РѕРґРЅРѕРјСѓ СЂР°Р·Сѓ РїРѕРїР°РґР°СЋС‚СЃСЏ
             curWeight += weight;
             map.AddItem( x, y, pid, itemCount );
         }
     }
 }
 
-Critter @ GetCritterInPlace( Critter & player, int x, int y )                    // Поиск криттера на гексе карты
+Critter @ GetCritterInPlace( Critter & player, int x, int y )                    // РџРѕРёСЃРє РєСЂРёС‚С‚РµСЂР° РЅР° РіРµРєСЃРµ РєР°СЂС‚С‹
 {
     Map @ map  = player.GetMap();
     if( !valid( map ) )
@@ -106,7 +106,7 @@ Critter @ GetCritterInPlace( Critter & player, int x, int y )                   
     return map.GetCritter( x, y );
 }
 
-Critter @ GetRandomPlayer()                                                     // Случайный игрок на произвольной карте с pid от LOCATION_Den до LOCATION_ReplicationHell
+Critter @ GetRandomPlayer()                                                     // РЎР»СѓС‡Р°Р№РЅС‹Р№ РёРіСЂРѕРє РЅР° РїСЂРѕРёР·РІРѕР»СЊРЅРѕР№ РєР°СЂС‚Рµ СЃ pid РѕС‚ LOCATION_Den РґРѕ LOCATION_ReplicationHell
 {
     int  tries = 20;
     uint locPid = 0;
@@ -117,7 +117,7 @@ Critter @ GetRandomPlayer()                                                     
     uint l = 0;
     while( tries > 0 )
     {
-        tries--;         // Счетчик для сокращения числа циклов
+        tries--;         // РЎС‡РµС‚С‡РёРє РґР»СЏ СЃРѕРєСЂР°С‰РµРЅРёСЏ С‡РёСЃР»Р° С†РёРєР»РѕРІ
         locPid = Random( LOCATION_Den, LOCATION_ReplicationHell );
         @ loc = GetLocationByPid( locPid, 0 );
         if( !valid( loc ) )
@@ -138,7 +138,7 @@ Critter @ GetRandomPlayer()                                                     
     return null;
 }
 
-bool d_CheckIsPlayerInPlace( Critter& player, Critter @ npc, int x, int y )         // На карте с игроком в указанных координатах есть другой игрок
+bool d_CheckIsPlayerInPlace( Critter& player, Critter @ npc, int x, int y )         // РќР° РєР°СЂС‚Рµ СЃ РёРіСЂРѕРєРѕРј РІ СѓРєР°Р·Р°РЅРЅС‹С… РєРѕРѕСЂРґРёРЅР°С‚Р°С… РµСЃС‚СЊ РґСЂСѓРіРѕР№ РёРіСЂРѕРє
 {
     Critter @ cr = GetCritterInPlace( player, x, y );
     if( !valid( cr ) )
@@ -146,7 +146,7 @@ bool d_CheckIsPlayerInPlace( Critter& player, Critter @ npc, int x, int y )     
     return cr.IsPlayer();
 }
 
-bool d_CheckIsNpcInPlace( Critter& player, Critter @ npc, int x, int y )             // В указанном месте есть НПЦ
+bool d_CheckIsNpcInPlace( Critter& player, Critter @ npc, int x, int y )             // Р’ СѓРєР°Р·Р°РЅРЅРѕРј РјРµСЃС‚Рµ РµСЃС‚СЊ РќРџР¦
 {
     Critter @ cr = GetCritterInPlace( player, x, y );
     if( !valid( cr ) )
@@ -154,14 +154,14 @@ bool d_CheckIsNpcInPlace( Critter& player, Critter @ npc, int x, int y )        
     return cr.IsNpc();
 }
 
-bool d_CheckIsNotAnyCritterInPlace( Critter& player, Critter @ npc, int x, int y )    // В указанном месте нет никого
+bool d_CheckIsNotAnyCritterInPlace( Critter& player, Critter @ npc, int x, int y )    // Р’ СѓРєР°Р·Р°РЅРЅРѕРј РјРµСЃС‚Рµ РЅРµС‚ РЅРёРєРѕРіРѕ
 {
     if( !valid( player.GetMap() ) )
         return false;
     return ( !d_CheckIsNpcInPlace( player, npc, x, y ) && !d_CheckIsPlayerInPlace( player, npc, x, y ) );
 }
 
-void r_ChangeItems( Critter& cr, Critter @ npc, int hexX, int hexY, int canOverweight ) // Замена итемов на некоем гексе карты на случайные итемы такого же веса
+void r_ChangeItems( Critter& cr, Critter @ npc, int hexX, int hexY, int canOverweight ) // Р—Р°РјРµРЅР° РёС‚РµРјРѕРІ РЅР° РЅРµРєРѕРµРј РіРµРєСЃРµ РєР°СЂС‚С‹ РЅР° СЃР»СѓС‡Р°Р№РЅС‹Рµ РёС‚РµРјС‹ С‚Р°РєРѕРіРѕ Р¶Рµ РІРµСЃР°
 {
     Map@ map = cr.GetMap();
     if( !valid( map ) )
@@ -169,12 +169,12 @@ void r_ChangeItems( Critter& cr, Critter @ npc, int hexX, int hexY, int canOverw
     uint weight = CountWeight( map, hexX, hexY );
     if( canOverweight < 1 )
         weight = CLAMP( weight, 0, LIMIT_WEIGHT );
-    QuakeScreen( map );         // Спецэффекты
+    QuakeScreen( map );         // РЎРїРµС†СЌС„С„РµРєС‚С‹
     AddRandomItems( map, hexX, hexY, weight );
 }
 
-// Обмен координатами между игроком в указанных координатах и случайным другим игроком. Либо удаление нпц и добавление агрессивного боевого робота, если в координатах нпц.
-// Внимание - нет проверки, что нпц=мерк. Могут пропадать в неизвестном направлении.
+// РћР±РјРµРЅ РєРѕРѕСЂРґРёРЅР°С‚Р°РјРё РјРµР¶РґСѓ РёРіСЂРѕРєРѕРј РІ СѓРєР°Р·Р°РЅРЅС‹С… РєРѕРѕСЂРґРёРЅР°С‚Р°С… Рё СЃР»СѓС‡Р°Р№РЅС‹Рј РґСЂСѓРіРёРј РёРіСЂРѕРєРѕРј. Р›РёР±Рѕ СѓРґР°Р»РµРЅРёРµ РЅРїС† Рё РґРѕР±Р°РІР»РµРЅРёРµ Р°РіСЂРµСЃСЃРёРІРЅРѕРіРѕ Р±РѕРµРІРѕРіРѕ СЂРѕР±РѕС‚Р°, РµСЃР»Рё РІ РєРѕРѕСЂРґРёРЅР°С‚Р°С… РЅРїС†.
+// Р’РЅРёРјР°РЅРёРµ - РЅРµС‚ РїСЂРѕРІРµСЂРєРё, С‡С‚Рѕ РЅРїС†=РјРµСЂРє. РњРѕРіСѓС‚ РїСЂРѕРїР°РґР°С‚СЊ РІ РЅРµРёР·РІРµСЃС‚РЅРѕРј РЅР°РїСЂР°РІР»РµРЅРёРё.
 void r_SwapCritters( Critter& player, Critter @ npc, int hexX, int hexY )
 {
     if( d_CheckIsNotAnyCritterInPlace( player, npc, hexX, hexY ) )
@@ -215,10 +215,10 @@ void r_SwapCritters( Critter& player, Critter @ npc, int hexX, int hexY )
     }
 }
 
-// Скрипт собаки, которая будет подбирать съедобные итемы (полностью скопировано из den_poorman.fos)
-// Собака нужна для того, чтобы ее можно было провести в телепортатор
+// РЎРєСЂРёРїС‚ СЃРѕР±Р°РєРё, РєРѕС‚РѕСЂР°СЏ Р±СѓРґРµС‚ РїРѕРґР±РёСЂР°С‚СЊ СЃСЉРµРґРѕР±РЅС‹Рµ РёС‚РµРјС‹ (РїРѕР»РЅРѕСЃС‚СЊСЋ СЃРєРѕРїРёСЂРѕРІР°РЅРѕ РёР· den_poorman.fos)
+// РЎРѕР±Р°РєР° РЅСѓР¶РЅР° РґР»СЏ С‚РѕРіРѕ, С‡С‚РѕР±С‹ РµРµ РјРѕР¶РЅРѕ Р±С‹Р»Рѕ РїСЂРѕРІРµСЃС‚Рё РІ С‚РµР»РµРїРѕСЂС‚Р°С‚РѕСЂ
 
-// Cъедобные для собаки итемы
+// CСЉРµРґРѕР±РЅС‹Рµ РґР»СЏ СЃРѕР±Р°РєРё РёС‚РµРјС‹
 const uint[] EatPid =
 {
     PID_IGUANA_ON_A_STICK, PID_MEAT_ON_A_STICK,
@@ -231,18 +231,18 @@ void _DogInit( Critter& dog, bool firstTime )
     dog.ModeBase[ MODE_NO_HOME ] = 1;
     dog.SetEvent( CRITTER_EVENT_SHOW_ITEM_ON_MAP, "_DogShowItemOnMap" );
     dog.SetEvent( CRITTER_EVENT_HIDE_ITEM_ON_MAP, "_DogHideItemOnMap" );
-    dog.StatBase[ ST_VAR0 ] = 0; // Тут будет хранится Id итема, который мы хотим съесть.
+    dog.StatBase[ ST_VAR0 ] = 0; // РўСѓС‚ Р±СѓРґРµС‚ С…СЂР°РЅРёС‚СЃСЏ Id РёС‚РµРјР°, РєРѕС‚РѕСЂС‹Р№ РјС‹ С…РѕС‚РёРј СЃСЉРµСЃС‚СЊ.
 }
 
 void _DogShowItemOnMap( Critter& poorman, Item& item, bool added, Critter@ dropper )
 {
-    // Можем ли мы сейчас подойти.
+    // РњРѕР¶РµРј Р»Рё РјС‹ СЃРµР№С‡Р°СЃ РїРѕРґРѕР№С‚Рё.
     if( poorman.StatBase[ ST_VAR0 ] != 0 )
         return;
     if( not poorman.IsNoPlanes() )
         return;
 
-    // Смотрим, съедобен ли итем.
+    // РЎРјРѕС‚СЂРёРј, СЃСЉРµРґРѕР±РµРЅ Р»Рё РёС‚РµРј.
     for( uint i = 0; i < EatPid.length(); i++ )
     {
         if( item.GetProtoId() != EatPid[ i ] )
@@ -256,7 +256,7 @@ void _DogShowItemOnMap( Critter& poorman, Item& item, bool added, Critter@ dropp
 
 void _DogHideItemOnMap( Critter& poorman, Item& item, bool deleted, Critter@ picker )
 {
-    // Проверим, может кто-то поднял нашу еду.
+    // РџСЂРѕРІРµСЂРёРј, РјРѕР¶РµС‚ РєС‚Рѕ-С‚Рѕ РїРѕРґРЅСЏР» РЅР°С€Сѓ РµРґСѓ.
     if( uint( poorman.StatBase[ ST_VAR0 ] ) != item.Id )
         return;
     poorman.StatBase[ ST_VAR0 ] = 0;
@@ -267,11 +267,11 @@ void _DogHideItemOnMap( Critter& poorman, Item& item, bool deleted, Critter@ pic
         _NpcEraseAllPlanesPick( poorman );
         poorman.Wait( 3000 );
     }
-    // Это мы сами подняли, едим.
+    // Р­С‚Рѕ РјС‹ СЃР°РјРё РїРѕРґРЅСЏР»Рё, РµРґРёРј.
     else
     {
         poorman.DeleteItem( item.GetProtoId(), item.GetCount() );
-        poorman.Say( SAY_NORM_ON_HEAD, "Гав!" );
+        poorman.Say( SAY_NORM_ON_HEAD, "Р“Р°РІ!" );
         poorman.Wait( 3000 );
     }
 }

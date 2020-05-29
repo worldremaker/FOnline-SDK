@@ -1276,7 +1276,7 @@ void ApplyDamage( AttackStruct& attack, Critter& target, uint rounds, bool isCri
         target.Say( SAY_NETMSG, "No PvP." );
         return;
     }
-    // Мины от игроков, ушедших на глобал
+    // РњРёРЅС‹ РѕС‚ РёРіСЂРѕРєРѕРІ, СѓС€РµРґС€РёС… РЅР° РіР»РѕР±Р°Р»
     if( targetIsPlayer && !validAttacker && target.Mode[ MODE_NO_PVP ] != 0 )
     {
         target.Say( SAY_NETMSG, "No PvP." );
@@ -1908,7 +1908,7 @@ void CommenceExplosion( AttackStruct& attack, Map@ map, uint16 tx, uint16 ty, Cr
     {
         weapPid = ammoPid;
         attack.DmgType = DAMAGE_EMP;
-        attack.DmgMin += 30;         // Увеличение дамага, чтобы приблизить значения к ЕМП гранате
+        attack.DmgMin += 30;         // РЈРІРµР»РёС‡РµРЅРёРµ РґР°РјР°РіР°, С‡С‚РѕР±С‹ РїСЂРёР±Р»РёР·РёС‚СЊ Р·РЅР°С‡РµРЅРёСЏ Рє Р•РњРџ РіСЂР°РЅР°С‚Рµ
         attack.DmgMax += 40;
     }
     CommenceExplosion( attack, map, tx, ty, target, weapPid, isCritical, intentionallyId, isRocket, results );

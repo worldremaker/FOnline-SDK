@@ -34,7 +34,7 @@ void t_AttackStop( Critter& player, Scenery& trigger, bool entered, uint8 dir, i
         Critter@ npc = map.GetNpc( npcRole, FIND_LIFE_AND_KO | FIND_ONLY_NPC, i );
         planes.resize( 0 );
         uint     count = npc.GetPlanes( planes );
-        // проходимся по списку планов в поисках маркированного плана
+        // РїСЂРѕС…РѕРґРёРјСЃСЏ РїРѕ СЃРїРёСЃРєСѓ РїР»Р°РЅРѕРІ РІ РїРѕРёСЃРєР°С… РјР°СЂРєРёСЂРѕРІР°РЅРЅРѕРіРѕ РїР»Р°РЅР°
         for( uint j = 0; j < count; j++ )
             if( ( planes[ j ].Attack_TargId == player.Id ) and
                 ( planes[ j ].Priority == AI_PLANE_ATTACK_PRIORITY_MARK ) )
@@ -73,19 +73,19 @@ void door_close( Critter& player, Scenery& trigger, bool entered, uint8 dir, int
 }
 
 import void ShowElevator( Critter& player, uint8 elevatorType, uint[] mapPids, uint entireNum ) from "elevator";
-// лифт, всего существуют 8 типов лифтов. Максимум - 4 этажа
-// для четырехэтажного отдельный триггер
-// 1ый параметр - номер гекса, на который попадет игрок
-// остальные параметры - коды прототипов карт
+// Р»РёС„С‚, РІСЃРµРіРѕ СЃСѓС‰РµСЃС‚РІСѓСЋС‚ 8 С‚РёРїРѕРІ Р»РёС„С‚РѕРІ. РњР°РєСЃРёРјСѓРј - 4 СЌС‚Р°Р¶Р°
+// РґР»СЏ С‡РµС‚С‹СЂРµС…СЌС‚Р°Р¶РЅРѕРіРѕ РѕС‚РґРµР»СЊРЅС‹Р№ С‚СЂРёРіРіРµСЂ
+// 1С‹Р№ РїР°СЂР°РјРµС‚СЂ - РЅРѕРјРµСЂ РіРµРєСЃР°, РЅР° РєРѕС‚РѕСЂС‹Р№ РїРѕРїР°РґРµС‚ РёРіСЂРѕРє
+// РѕСЃС‚Р°Р»СЊРЅС‹Рµ РїР°СЂР°РјРµС‚СЂС‹ - РєРѕРґС‹ РїСЂРѕС‚РѕС‚РёРїРѕРІ РєР°СЂС‚
 void t_Elevator4( Critter& player, Scenery& trigger, bool entered, uint8 dir, int entireExit, int map1Pid, int map2Pid, int map3Pid, int map4Pid )
 {
     uint[] pids = { uint( map1Pid ), uint( map2Pid ), uint( map3Pid ), uint( map4Pid ) };
     ShowElevator( player, 0, pids, entireExit );
 }
-// лифт, в котором меньше чем 4 этажа
-// 1ый параметр - номер гекса, на который попадет игрок
-// 2о1 параметр - типа лифта (от 1 до 8. см. _defines.fos, секцию // Elevators)
-// 3ий..5ый параметры - коды протоипов карт
+// Р»РёС„С‚, РІ РєРѕС‚РѕСЂРѕРј РјРµРЅСЊС€Рµ С‡РµРј 4 СЌС‚Р°Р¶Р°
+// 1С‹Р№ РїР°СЂР°РјРµС‚СЂ - РЅРѕРјРµСЂ РіРµРєСЃР°, РЅР° РєРѕС‚РѕСЂС‹Р№ РїРѕРїР°РґРµС‚ РёРіСЂРѕРє
+// 2Рѕ1 РїР°СЂР°РјРµС‚СЂ - С‚РёРїР° Р»РёС„С‚Р° (РѕС‚ 1 РґРѕ 8. СЃРј. _defines.fos, СЃРµРєС†РёСЋ // Elevators)
+// 3РёР№..5С‹Р№ РїР°СЂР°РјРµС‚СЂС‹ - РєРѕРґС‹ РїСЂРѕС‚РѕРёРїРѕРІ РєР°СЂС‚
 void t_Elevator( Critter& player, Scenery& trigger, bool entered, uint8 dir, int entireExit, int elevatorType, int map1Pid, int map2Pid, int map3Pid )
 {
     if( entered )
@@ -106,7 +106,7 @@ void t_Elevator( Critter& player, Scenery& trigger, bool entered, uint8 dir, int
     }
 }
 
-// Диалог с НПЦ рядом с триггером,  с определенной ролью. 1 параметр - роль НПЦ.
+// Р”РёР°Р»РѕРі СЃ РќРџР¦ СЂСЏРґРѕРј СЃ С‚СЂРёРіРіРµСЂРѕРј,  СЃ РѕРїСЂРµРґРµР»РµРЅРЅРѕР№ СЂРѕР»СЊСЋ. 1 РїР°СЂР°РјРµС‚СЂ - СЂРѕР»СЊ РќРџР¦.
 void t_DialogNpc( Critter& player, Scenery& trigger, bool entered, uint8 dir, int npcRole )
 {
     player.Wait( 0 );

@@ -1,5 +1,5 @@
 // Author: rifleman17
-// Скрипты для квестовой цепочки на поддержку Линетт. ГУ.
+// РЎРєСЂРёРїС‚С‹ РґР»СЏ РєРІРµСЃС‚РѕРІРѕР№ С†РµРїРѕС‡РєРё РЅР° РїРѕРґРґРµСЂР¶РєСѓ Р›РёРЅРµС‚С‚. Р“РЈ.
 #include "_ai.fos"
 #include "_bags.fos"
 #include "_colors.fos"
@@ -10,9 +10,9 @@
 #include "_msgstr.fos"
 
 
-// Наемный убийца, преследующий игрока, если тот отказался поддержать Линетт.
-#define STR_KILLER_DEAD                ( 7100 ) // Вот сука черномазая, говорила – легкая мишень…
-#define STR_KILLER_KILL                ( 7101 ) // Ха, как эта черная сука и обещала – раз плюнуть…
+// РќР°РµРјРЅС‹Р№ СѓР±РёР№С†Р°, РїСЂРµСЃР»РµРґСѓСЋС‰РёР№ РёРіСЂРѕРєР°, РµСЃР»Рё С‚РѕС‚ РѕС‚РєР°Р·Р°Р»СЃСЏ РїРѕРґРґРµСЂР¶Р°С‚СЊ Р›РёРЅРµС‚С‚.
+#define STR_KILLER_DEAD                ( 7100 ) // Р’РѕС‚ СЃСѓРєР° С‡РµСЂРЅРѕРјР°Р·Р°СЏ, РіРѕРІРѕСЂРёР»Р° вЂ“ Р»РµРіРєР°СЏ РјРёС€РµРЅСЊвЂ¦
+#define STR_KILLER_KILL                ( 7101 ) // РҐР°, РєР°Рє СЌС‚Р° С‡РµСЂРЅР°СЏ СЃСѓРєР° Рё РѕР±РµС‰Р°Р»Р° вЂ“ СЂР°Р· РїР»СЋРЅСѓС‚СЊвЂ¦
 
 import void _SniperDead( Critter& cr, Critter@ killer ) from "pattern_sniper";
 import void SetSniperStats( Critter& cr, uint8 lvl ) from "pattern_sniper";
@@ -30,7 +30,7 @@ void _KillerInit( Critter& cr, bool firstTime )
     }
     cr.StatBase[ ST_DIALOG_ID ] = DIALOG_vc_killer;
     cr.StatBase[ ST_REPLICATION_TIME ] = -1;
-    cr.StatBase[ ST_TEAM_ID ] = TEAM_Slaver;   // Чтобы не было конфликта с наемниками, если они вдруг есть у игрока в команде
+    cr.StatBase[ ST_TEAM_ID ] = TEAM_Slaver;   // Р§С‚РѕР±С‹ РЅРµ Р±С‹Р»Рѕ РєРѕРЅС„Р»РёРєС‚Р° СЃ РЅР°РµРјРЅРёРєР°РјРё, РµСЃР»Рё РѕРЅРё РІРґСЂСѓРі РµСЃС‚СЊ Сѓ РёРіСЂРѕРєР° РІ РєРѕРјР°РЅРґРµ
     SetSniperStats( cr, 0 );
     cr.SetEvent( CRITTER_EVENT_DEAD, "_KillerDead" );
     cr.SetEvent( CRITTER_EVENT_SMTH_DEAD, "_KillerSmthDead" );
@@ -54,17 +54,17 @@ void _KillerSmthDead( Critter& cr, Critter& fromCr, Critter@ killer )
     }
 }
 
-// Арест
-// Для нпц, которые могут быть подвергнуты аресту, необходимо установить спец роль в маппере, а также
-// внести номер диалога в массив prisonerDialogs. Соответствующие реплики добавить в диалог вручную
+// РђСЂРµСЃС‚
+// Р”Р»СЏ РЅРїС†, РєРѕС‚РѕСЂС‹Рµ РјРѕРіСѓС‚ Р±С‹С‚СЊ РїРѕРґРІРµСЂРіРЅСѓС‚С‹ Р°СЂРµСЃС‚Сѓ, РЅРµРѕР±С…РѕРґРёРјРѕ СѓСЃС‚Р°РЅРѕРІРёС‚СЊ СЃРїРµС† СЂРѕР»СЊ РІ РјР°РїРїРµСЂРµ, Р° С‚Р°РєР¶Рµ
+// РІРЅРµСЃС‚Рё РЅРѕРјРµСЂ РґРёР°Р»РѕРіР° РІ РјР°СЃСЃРёРІ prisonerDialogs. РЎРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёРµ СЂРµРїР»РёРєРё РґРѕР±Р°РІРёС‚СЊ РІ РґРёР°Р»РѕРі РІСЂСѓС‡РЅСѓСЋ
 #define ROLE_PRISONER                  ( 1701 )
-#define FORCE_DIALOG_FOUND_PRISONER    ( 23 )  // Найден заключенный, можно давать квест
-#define FORCE_DIALOG_NOT_FOUND         ( 46 )  // Не найден заключенный, нельзя давать квест
+#define FORCE_DIALOG_FOUND_PRISONER    ( 23 )  // РќР°Р№РґРµРЅ Р·Р°РєР»СЋС‡РµРЅРЅС‹Р№, РјРѕР¶РЅРѕ РґР°РІР°С‚СЊ РєРІРµСЃС‚
+#define FORCE_DIALOG_NOT_FOUND         ( 46 )  // РќРµ РЅР°Р№РґРµРЅ Р·Р°РєР»СЋС‡РµРЅРЅС‹Р№, РЅРµР»СЊР·СЏ РґР°РІР°С‚СЊ РєРІРµСЃС‚
 #define HEX_FIRST                      ( 164 )
-#define HEX_LAST                       ( 167 ) // Игрок должен находиться внутри многоугольника, ограниченного этими гексами
-#define HEX_PRISON                     ( 168 ) // Место заключения
-#define STR_ARESTHIM                   ( 2 )   // Пакуйте товарища!
-#define STR_PRISONER_SHOUT             ( 1 )   // Вы не имеете права!@@Я буду жаловаться!@@Это произвол!@@Ты! Ты поплатишься за это!@@Я выйду отсюда через полчаса, вы все заплатите!
+#define HEX_LAST                       ( 167 ) // РРіСЂРѕРє РґРѕР»Р¶РµРЅ РЅР°С…РѕРґРёС‚СЊСЃСЏ РІРЅСѓС‚СЂРё РјРЅРѕРіРѕСѓРіРѕР»СЊРЅРёРєР°, РѕРіСЂР°РЅРёС‡РµРЅРЅРѕРіРѕ СЌС‚РёРјРё РіРµРєСЃР°РјРё
+#define HEX_PRISON                     ( 168 ) // РњРµСЃС‚Рѕ Р·Р°РєР»СЋС‡РµРЅРёСЏ
+#define STR_ARESTHIM                   ( 2 )   // РџР°РєСѓР№С‚Рµ С‚РѕРІР°СЂРёС‰Р°!
+#define STR_PRISONER_SHOUT             ( 1 )   // Р’С‹ РЅРµ РёРјРµРµС‚Рµ РїСЂР°РІР°!@@РЇ Р±СѓРґСѓ Р¶Р°Р»РѕРІР°С‚СЊСЃСЏ!@@Р­С‚Рѕ РїСЂРѕРёР·РІРѕР»!@@РўС‹! РўС‹ РїРѕРїР»Р°С‚РёС€СЊСЃСЏ Р·Р° СЌС‚Рѕ!@@РЇ РІС‹Р№РґСѓ РѕС‚СЃСЋРґР° С‡РµСЂРµР· РїРѕР»С‡Р°СЃР°, РІС‹ РІСЃРµ Р·Р°РїР»Р°С‚РёС‚Рµ!
 
 
 uint[] prisonerDialogs = { DIALOG_vc_kohl, DIALOG_vc_randal, DIALOG_vc_ed };
@@ -88,7 +88,7 @@ Critter@ GetPrisoner( Location& loc, uint dialog )
             {
                 @cr = map.GetNpc( ROLE_PRISONER, FIND_LIFE | FIND_ONLY_NPC, j );
                 if( valid( cr ) && cr.Stat[ ST_DIALOG_ID ] == int(dialog) && !IsMerc( cr ) )
-                    return cr;                     // Если нпц является чьим-то мерком уже, его засадить в тюрьму не получится
+                    return cr;                     // Р•СЃР»Рё РЅРїС† СЏРІР»СЏРµС‚СЃСЏ С‡СЊРёРј-С‚Рѕ РјРµСЂРєРѕРј СѓР¶Рµ, РµРіРѕ Р·Р°СЃР°РґРёС‚СЊ РІ С‚СЋСЂСЊРјСѓ РЅРµ РїРѕР»СѓС‡РёС‚СЃСЏ
             }
         }
     }
@@ -122,12 +122,12 @@ uint r_TrySelectPrisoner( Critter& player, Critter@ npc )
     return FORCE_DIALOG_NOT_FOUND;
 }
 
-// @lex name@ - имя искомого заключенного
+// @lex name@ - РёРјСЏ РёСЃРєРѕРјРѕРіРѕ Р·Р°РєР»СЋС‡РµРЅРЅРѕРіРѕ
 void dlg_PrisonerName( Critter& player, Critter@ npc, string@ lexems )
 {
     if( !IS_DIALOG_GENERATED( lexems ) )
         return;
-    lexems = "$nameИзбранный";
+    lexems = "$nameРР·Р±СЂР°РЅРЅС‹Р№";
     GameVar@ crId = GetLocalVar( LVAR_vc_lynett_prisoner_id, player.Id );
     if( !valid( crId ) || crId == 0 )
         return;
@@ -143,8 +143,8 @@ bool _PrisonerTalk( Critter& cr, Critter& player, bool attach, uint talkCount )
     GameVar@ f = GetUnicumVar( UVAR_npc_story, player.Id, cr.Id );
     if( !valid( f ) )
         return true;
-    // для контроля запуска нужного диалога используется переменная npc_story
-    // поскольку нпц в любом случае нужен для скриптов в диалоге, а если не проверять запуск второго диалога, он тоже будет отменен
+    // РґР»СЏ РєРѕРЅС‚СЂРѕР»СЏ Р·Р°РїСѓСЃРєР° РЅСѓР¶РЅРѕРіРѕ РґРёР°Р»РѕРіР° РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РїРµСЂРµРјРµРЅРЅР°СЏ npc_story
+    // РїРѕСЃРєРѕР»СЊРєСѓ РЅРїС† РІ Р»СЋР±РѕРј СЃР»СѓС‡Р°Рµ РЅСѓР¶РµРЅ РґР»СЏ СЃРєСЂРёРїС‚РѕРІ РІ РґРёР°Р»РѕРіРµ, Р° РµСЃР»Рё РЅРµ РїСЂРѕРІРµСЂСЏС‚СЊ Р·Р°РїСѓСЃРє РІС‚РѕСЂРѕРіРѕ РґРёР°Р»РѕРіР°, РѕРЅ С‚РѕР¶Рµ Р±СѓРґРµС‚ РѕС‚РјРµРЅРµРЅ
     if( attach )
     {
         GameVar@ crId = GetLocalVar( LVAR_vc_lynett_prisoner_id, player.Id );
@@ -153,9 +153,9 @@ bool _PrisonerTalk( Critter& cr, Critter& player, bool attach, uint talkCount )
             if( f == 0 )
                 f = 1;
             else
-                return true;                 // Второй вызов диалога, уже нужного
+                return true;                 // Р’С‚РѕСЂРѕР№ РІС‹Р·РѕРІ РґРёР°Р»РѕРіР°, СѓР¶Рµ РЅСѓР¶РЅРѕРіРѕ
 
-            // player.Say(SAY_NETMSG, "DEBUG: подмена диалога...");
+            // player.Say(SAY_NETMSG, "DEBUG: РїРѕРґРјРµРЅР° РґРёР°Р»РѕРіР°...");
             RunDialog( player, cr, DIALOG_vc_telman, false );
             cr.MercBase[ MERC_CANCEL_ON_GLOBAL ] = 1;
             return false;
@@ -169,7 +169,7 @@ bool _PrisonerTalk( Critter& cr, Critter& player, bool attach, uint talkCount )
     return true;
 }
 
-// Переключение статуса квеста происходит при наступании НПЦ на спецтриггер, если игрок тоже находится в здании
+// РџРµСЂРµРєР»СЋС‡РµРЅРёРµ СЃС‚Р°С‚СѓСЃР° РєРІРµСЃС‚Р° РїСЂРѕРёСЃС…РѕРґРёС‚ РїСЂРё РЅР°СЃС‚СѓРїР°РЅРёРё РќРџР¦ РЅР° СЃРїРµС†С‚СЂРёРіРіРµСЂ, РµСЃР»Рё РёРіСЂРѕРє С‚РѕР¶Рµ РЅР°С…РѕРґРёС‚СЃСЏ РІ Р·РґР°РЅРёРё
 void t_Arest( Critter& cr, Scenery& trigger, bool entered, uint8 dir )
 {
     if( cr.IsNpc() && IsMerc( cr ) && !entered )
@@ -206,20 +206,20 @@ uint e_PrisonerTalk( uint[] @ values )
     return 0;
 }
 
-// Подлог
-#define ENTIRE_SPAWN_GUARD     ( 170 )  // гекс на котором генерятся гвардейцы
-#define ENTIRE_MOVETO          ( 171 )  // Гекс, к которому перемещаются гвардейцы в момент обыска
-#define HEX_FORG_FIRST         ( 172 )  // Комната МакКлюра
+// РџРѕРґР»РѕРі
+#define ENTIRE_SPAWN_GUARD     ( 170 )  // РіРµРєСЃ РЅР° РєРѕС‚РѕСЂРѕРј РіРµРЅРµСЂСЏС‚СЃСЏ РіРІР°СЂРґРµР№С†С‹
+#define ENTIRE_MOVETO          ( 171 )  // Р“РµРєСЃ, Рє РєРѕС‚РѕСЂРѕРјСѓ РїРµСЂРµРјРµС‰Р°СЋС‚СЃСЏ РіРІР°СЂРґРµР№С†С‹ РІ РјРѕРјРµРЅС‚ РѕР±С‹СЃРєР°
+#define HEX_FORG_FIRST         ( 172 )  // РљРѕРјРЅР°С‚Р° РњР°РєРљР»СЋСЂР°
 #define HEX_FORG_LAST          ( 175 )
-#define ROLE_MACLUR            ( 35 )   // роль - Макклюр
-#define ROLE_WITNESS           ( 1702 ) // роль - свидетель
-#define MIN_SNEAK              ( 50 )   // минимальный сник, при котором макклюр не заметит игрока
+#define ROLE_MACLUR            ( 35 )   // СЂРѕР»СЊ - РњР°РєРєР»СЋСЂ
+#define ROLE_WITNESS           ( 1702 ) // СЂРѕР»СЊ - СЃРІРёРґРµС‚РµР»СЊ
+#define MIN_SNEAK              ( 50 )   // РјРёРЅРёРјР°Р»СЊРЅС‹Р№ СЃРЅРёРє, РїСЂРё РєРѕС‚РѕСЂРѕРј РјР°РєРєР»СЋСЂ РЅРµ Р·Р°РјРµС‚РёС‚ РёРіСЂРѕРєР°
 #define STR_CATCH_LOW_SNEAK    ( 5920 )
-#define CTE_DELETE             ( 176 )  // ид события на удаление гвардейца
-#define STR_NO_WITNESS         ( 5921 ) // Мало просто забрать подложные документы, нужно сделать это при свидетелях...
-#define STR_PLAYER             ( 5922 ) // Свидетели, подтвердите – найдены документы – письменный договор МакКлюра с Бишопом из Нью-Рено.
-#define STR_GUARDS             ( 5923 ) // Так точно!@@Подтверждаем!
-#define STR_MCCLURE            ( 5924 ) // Бред!
+#define CTE_DELETE             ( 176 )  // РёРґ СЃРѕР±С‹С‚РёСЏ РЅР° СѓРґР°Р»РµРЅРёРµ РіРІР°СЂРґРµР№С†Р°
+#define STR_NO_WITNESS         ( 5921 ) // РњР°Р»Рѕ РїСЂРѕСЃС‚Рѕ Р·Р°Р±СЂР°С‚СЊ РїРѕРґР»РѕР¶РЅС‹Рµ РґРѕРєСѓРјРµРЅС‚С‹, РЅСѓР¶РЅРѕ СЃРґРµР»Р°С‚СЊ СЌС‚Рѕ РїСЂРё СЃРІРёРґРµС‚РµР»СЏС…...
+#define STR_PLAYER             ( 5922 ) // РЎРІРёРґРµС‚РµР»Рё, РїРѕРґС‚РІРµСЂРґРёС‚Рµ вЂ“ РЅР°Р№РґРµРЅС‹ РґРѕРєСѓРјРµРЅС‚С‹ вЂ“ РїРёСЃСЊРјРµРЅРЅС‹Р№ РґРѕРіРѕРІРѕСЂ РњР°РєРљР»СЋСЂР° СЃ Р‘РёС€РѕРїРѕРј РёР· РќСЊСЋ-Р РµРЅРѕ.
+#define STR_GUARDS             ( 5923 ) // РўР°Рє С‚РѕС‡РЅРѕ!@@РџРѕРґС‚РІРµСЂР¶РґР°РµРј!
+#define STR_MCCLURE            ( 5924 ) // Р‘СЂРµРґ!
 
 
 import void SetDeleteItem( Item& item, uint delHours ) from "item";
@@ -231,12 +231,12 @@ void r_AddDocs( Critter& player, Critter@ npc )
         item.SetScript( "_LynDocsInit" );
 }
 
-// При выкладывании предмета в ящик проверяется, находится ли персонаж в снике, если нет и рядом стоит МакКлюр, подлог не удается
+// РџСЂРё РІС‹РєР»Р°РґС‹РІР°РЅРёРё РїСЂРµРґРјРµС‚Р° РІ СЏС‰РёРє РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ, РЅР°С…РѕРґРёС‚СЃСЏ Р»Рё РїРµСЂСЃРѕРЅР°Р¶ РІ СЃРЅРёРєРµ, РµСЃР»Рё РЅРµС‚ Рё СЂСЏРґРѕРј СЃС‚РѕРёС‚ РњР°РєРљР»СЋСЂ, РїРѕРґР»РѕРі РЅРµ СѓРґР°РµС‚СЃСЏ
 void _LynDocsInit( Item& item, bool firstTime )
 {
     item.SetEvent( ITEM_EVENT_SKILL, "_LynDocsPutCont" );
     if( firstTime )
-        SetDeleteItem( item, 24 * 3 );     // Предмет существует только трое игровых суток
+        SetDeleteItem( item, 24 * 3 );     // РџСЂРµРґРјРµС‚ СЃСѓС‰РµСЃС‚РІСѓРµС‚ С‚РѕР»СЊРєРѕ С‚СЂРѕРµ РёРіСЂРѕРІС‹С… СЃСѓС‚РѕРє
 }
 
 bool _LynDocsPutCont( Item& item, Critter& cr, int skill )
@@ -255,7 +255,7 @@ bool _LynDocsPutCont( Item& item, Critter& cr, int skill )
             {
                 cr.StatBase[ ST_EXPERIENCE ] += 2000;
                 qVar = 2;
-                return false;                 // Навык достаточен, персонаж в снике
+                return false;                 // РќР°РІС‹Рє РґРѕСЃС‚Р°С‚РѕС‡РµРЅ, РїРµСЂСЃРѕРЅР°Р¶ РІ СЃРЅРёРєРµ
             }
             if( valid( npc ) && npc.IsLife() && IsCritterInDeadZone( npc, map, 0, HEX_FORG_FIRST, HEX_FORG_LAST ) )
             {
@@ -267,7 +267,7 @@ bool _LynDocsPutCont( Item& item, Critter& cr, int skill )
             {
                 cr.StatBase[ ST_EXPERIENCE ] += 2000;
                 qVar = 2;
-                return false;                 // Макклюра нет на месте
+                return false;                 // РњР°РєРєР»СЋСЂР° РЅРµС‚ РЅР° РјРµСЃС‚Рµ
             }
         }
     }
@@ -326,7 +326,7 @@ uint e_Answer( uint[] @ values )
     }
     return 0;
 }
-// Появление гвардейцев на входе к Макклюру. Гвардейцы будут ждать игрока не более суток, потом будут удалены.
+// РџРѕСЏРІР»РµРЅРёРµ РіРІР°СЂРґРµР№С†РµРІ РЅР° РІС…РѕРґРµ Рє РњР°РєРєР»СЋСЂСѓ. Р“РІР°СЂРґРµР№С†С‹ Р±СѓРґСѓС‚ Р¶РґР°С‚СЊ РёРіСЂРѕРєР° РЅРµ Р±РѕР»РµРµ СЃСѓС‚РѕРє, РїРѕС‚РѕРј Р±СѓРґСѓС‚ СѓРґР°Р»РµРЅС‹.
 void r_AddGuards( Critter& cr, Critter@ npc )
 {
     Map@ map = cr.GetMap();
@@ -359,7 +359,7 @@ uint cte_DeleteGuard( Critter& cr, int identifier, uint& stage )
     return 0;
 }
 
-// Смена домашней позиции у гвардейцев
+// РЎРјРµРЅР° РґРѕРјР°С€РЅРµР№ РїРѕР·РёС†РёРё Сѓ РіРІР°СЂРґРµР№С†РµРІ
 void r_MoveInto( Critter& cr, Critter@ npc )
 {
     Map@     map = cr.GetMap();

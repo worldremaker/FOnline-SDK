@@ -1,11 +1,11 @@
 // Author: Dagnir
-// "Скрипт" с параметрами для нпц.
-// Просто для того, чтобы с ними драться прикольней было.
-// Обычно после этих строчек включают макросы:
+// "РЎРєСЂРёРїС‚" СЃ РїР°СЂР°РјРµС‚СЂР°РјРё РґР»СЏ РЅРїС†.
+// РџСЂРѕСЃС‚Рѕ РґР»СЏ С‚РѕРіРѕ, С‡С‚РѕР±С‹ СЃ РЅРёРјРё РґСЂР°С‚СЊСЃСЏ РїСЂРёРєРѕР»СЊРЅРµР№ Р±С‹Р»Рѕ.
+// РћР±С‹С‡РЅРѕ РїРѕСЃР»Рµ СЌС‚РёС… СЃС‚СЂРѕС‡РµРє РІРєР»СЋС‡Р°СЋС‚ РјР°РєСЂРѕСЃС‹:
 
 #include "_macros.fos"
 
-// Вроде больше ничего не понадобится.
+// Р’СЂРѕРґРµ Р±РѕР»СЊС€Рµ РЅРёС‡РµРіРѕ РЅРµ РїРѕРЅР°РґРѕР±РёС‚СЃСЏ.
 
 /*
         npc.StatBase[] = ;
@@ -13,7 +13,7 @@
         npc.ModeBase[] = ;
  */
 
-// Жители мирные.
+// Р–РёС‚РµР»Рё РјРёСЂРЅС‹Рµ.
 
 void _VillagerInit( Critter& npc, bool firstTime )
 {
@@ -25,7 +25,7 @@ void _VillagerInit( Critter& npc, bool firstTime )
     npc.ModeBase[ MODE_NO_ENEMY_STACK ] = 1;
 }
 
-// Крестьяне, которые бомжи в палатках.
+// РљСЂРµСЃС‚СЊСЏРЅРµ, РєРѕС‚РѕСЂС‹Рµ Р±РѕРјР¶Рё РІ РїР°Р»Р°С‚РєР°С….
 
 void _PeasantInit( Critter& npc, bool firstTime )
 {
@@ -43,7 +43,7 @@ void _ChildInit( Critter& npc, bool firstTime )
     npc.ModeBase[ MODE_NO_ENEMY_STACK ] = 1;
 }
 
-// Воины, охотники.
+// Р’РѕРёРЅС‹, РѕС…РѕС‚РЅРёРєРё.
 
 void _WarriorInit( Critter& npc, bool firstTime )
 {
@@ -61,7 +61,7 @@ void _WarriorInit( Critter& npc, bool firstTime )
     npc.StatBase[ ST_BONUS_LOOK ] = 10;
 }
 
-// Крутые охотники.
+// РљСЂСѓС‚С‹Рµ РѕС…РѕС‚РЅРёРєРё.
 
 void _CoolWarriorInit( Critter& npc, bool firstTime )
 {
@@ -80,7 +80,7 @@ void _CoolWarriorInit( Critter& npc, bool firstTime )
     npc.StatBase[ ST_BONUS_LOOK ] = 20;
 }
 
-// Выходцы, живущие снаружи.
+// Р’С‹С…РѕРґС†С‹, Р¶РёРІСѓС‰РёРµ СЃРЅР°СЂСѓР¶Рё.
 
 void _DwellerInit( Critter& npc, bool firstTime )
 {
@@ -92,7 +92,7 @@ void _DwellerInit( Critter& npc, bool firstTime )
     npc.StatBase[ ST_KILL_EXPERIENCE ] = 80;
 }
 
-// Выходцы, живущие внутри, слабаки.
+// Р’С‹С…РѕРґС†С‹, Р¶РёРІСѓС‰РёРµ РІРЅСѓС‚СЂРё, СЃР»Р°Р±Р°РєРё.
 
 void _TempleDwellerInit( Critter& npc, bool firstTime )
 {
@@ -101,7 +101,7 @@ void _TempleDwellerInit( Critter& npc, bool firstTime )
     npc.StatBase[ ST_KILL_EXPERIENCE ] = 30;
 }
 
-// Охрана
+// РћС…СЂР°РЅР°
 
 void _GuardInit( Critter& npc, bool firstTime )
 {
@@ -118,7 +118,7 @@ void _GuardInit( Critter& npc, bool firstTime )
     npc.StatBase[ ST_BONUS_LOOK ] = 15;
 }
 
-// Охрана покруче.
+// РћС…СЂР°РЅР° РїРѕРєСЂСѓС‡Рµ.
 
 void _CoolGuardInit( Critter& npc, bool firstTime )
 {
@@ -142,7 +142,7 @@ void _CoolGuardInit( Critter& npc, bool firstTime )
     npc.StatBase[ ST_BONUS_LOOK ] = 25;
 }
 
-// Минок.
+// РњРёРЅРѕРє.
 
 void _MynocInit( Critter& npc, bool firstTime )
 {

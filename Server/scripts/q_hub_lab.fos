@@ -1,21 +1,21 @@
 // Author: rifleman17
-// Ñêðèïòû äëÿ êâåñòîâîé ëîêàöèè "ëàáîðàòîðèÿ õàáîëîãîâ".
+// Ð¡ÐºÑ€Ð¸Ð¿Ñ‚Ñ‹ Ð´Ð»Ñ ÐºÐ²ÐµÑÑ‚Ð¾Ð²Ð¾Ð¹ Ð»Ð¾ÐºÐ°Ñ†Ð¸Ð¸ "Ð»Ð°Ð±Ð¾Ñ€Ð°Ñ‚Ð¾Ñ€Ð¸Ñ Ñ…Ð°Ð±Ð¾Ð»Ð¾Ð³Ð¾Ð²".
 #include "_macros.fos"
 #include "_animation.fos"
 
-#define ENTIRE_HONOMER        ( 43 ) // Ìåñòî ñïàâíà ïðîâîäíèêà.
+#define ENTIRE_HONOMER        ( 43 ) // ÐœÐµÑÑ‚Ð¾ ÑÐ¿Ð°Ð²Ð½Ð° Ð¿Ñ€Ð¾Ð²Ð¾Ð´Ð½Ð¸ÐºÐ°.
 #define NPCPID_HONOMER        ( 279 )
-#define ENTIRE_LAB_ENTER      ( 1 )  // Ìåñòî, êóäà ïðèõîäèò íïö ñ ñîïðîâîæäàþùèì
+#define ENTIRE_LAB_ENTER      ( 1 )  // ÐœÐµÑÑ‚Ð¾, ÐºÑƒÐ´Ð° Ð¿Ñ€Ð¸Ñ…Ð¾Ð´Ð¸Ñ‚ Ð½Ð¿Ñ† Ñ ÑÐ¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¼
 #define CTE_CLEAR_FOLLOWER    ( 121 )
 #define LAB_WORLD_X           ( 532 )
 #define LAB_WORLD_Y           ( 1435 )
 #define DIALOG_GUARD          ( 2 )
 #define ROLE_GUARD            ( 18 )
-#define ENTIRE_DOOR_NEAR      ( 19 ) // Ãåêñ ïåðåä äâåðüþ, íà êîòîðîì áóäåò ïåðåõîäèòü õîíîìåð ïåðåä åå îòêðûòèåì
-#define ENTIRE_REPAIR         ( 20 ) // Ãåêñ íà êîòîðîì Õîíîìåð îñòàíàâëèâàåòñÿ äëÿ ðåìîíòà
-#define ENTIRE_DOOR           ( 21 ) // Ãåêñ ïîä äâåðüþ
+#define ENTIRE_DOOR_NEAR      ( 19 ) // Ð“ÐµÐºÑ Ð¿ÐµÑ€ÐµÐ´ Ð´Ð²ÐµÑ€ÑŒÑŽ, Ð½Ð° ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð¼ Ð±ÑƒÐ´ÐµÑ‚ Ð¿ÐµÑ€ÐµÑ…Ð¾Ð´Ð¸Ñ‚ÑŒ Ñ…Ð¾Ð½Ð¾Ð¼ÐµÑ€ Ð¿ÐµÑ€ÐµÐ´ ÐµÐµ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚Ð¸ÐµÐ¼
+#define ENTIRE_REPAIR         ( 20 ) // Ð“ÐµÐºÑ Ð½Ð° ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð¼ Ð¥Ð¾Ð½Ð¾Ð¼ÐµÑ€ Ð¾ÑÑ‚Ð°Ð½Ð°Ð²Ð»Ð¸Ð²Ð°ÐµÑ‚ÑÑ Ð´Ð»Ñ Ñ€ÐµÐ¼Ð¾Ð½Ñ‚Ð°
+#define ENTIRE_DOOR           ( 21 ) // Ð“ÐµÐºÑ Ð¿Ð¾Ð´ Ð´Ð²ÐµÑ€ÑŒÑŽ
 #define MSG_DIALOG_END        ( 4023 )
-#define ROLE_START_DIALOG     ( 22 ) // Ðîëü íïö, êîòîðûé çàòåâàåò îáñóæäåíèå ïðîèçîøåäøåãî
+#define ROLE_START_DIALOG     ( 22 ) // Ð Ð¾Ð»ÑŒ Ð½Ð¿Ñ†, ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ð¹ Ð·Ð°Ñ‚ÐµÐ²Ð°ÐµÑ‚ Ð¾Ð±ÑÑƒÐ¶Ð´ÐµÐ½Ð¸Ðµ Ð¿Ñ€Ð¾Ð¸Ð·Ð¾ÑˆÐµÐ´ÑˆÐµÐ³Ð¾
 #define PID_DOOR              ( 2019 )
 #define STR_ALARM             ( 8030 )
 #define STR_OPEN              ( 8031 )
@@ -31,7 +31,7 @@ import bool _GuardedItemSkill( Item& item, Critter& cr, int skill ) from "item";
 import bool IsLocalNpc( Critter@ cr, Map@ map ) from "npc_revenge";
 import bool AddAttackPlane( Critter& npc, uint priority, Critter& target ) from "npc_planes";
 
-// Êâåñò "Ñåêðåòíàÿ ëàáîðàòîðèÿ õàáîëîãîâ".
+// ÐšÐ²ÐµÑÑ‚ "Ð¡ÐµÐºÑ€ÐµÑ‚Ð½Ð°Ñ Ð»Ð°Ð±Ð¾Ñ€Ð°Ñ‚Ð¾Ñ€Ð¸Ñ Ñ…Ð°Ð±Ð¾Ð»Ð¾Ð³Ð¾Ð²".
 bool d_IsHonomerNear( Critter& player, Critter@ npc )
 {
     Map@ map = player.GetMap();
@@ -52,7 +52,7 @@ bool d_NoHonomerNear( Critter& player, Critter@ npc )
     return !d_IsHonomerNear( player, npc );
 }
 
-// Äîáàâëåíèå ïðîâîäíèêà íà êàðòó sf_hubb.
+// Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ñ€Ð¾Ð²Ð¾Ð´Ð½Ð¸ÐºÐ° Ð½Ð° ÐºÐ°Ñ€Ñ‚Ñƒ sf_hubb.
 void AddNewHonomer()
 {
     Map@   map = GetMapByPid( MAP_sf_hubb, 0 );
@@ -100,8 +100,8 @@ int _HonomerPlaneEnd( Critter& cr, NpcPlane& plane, int reason, Critter@ someCr,
         {
             if( hx == cr.HexX && hy == cr.HexY )
             {
-                // Õîíîìåð ñòîèò ïåðåä äâåðüþ
-                // Îòêðûâàåì äâåðü è äàåì ïëàí íà ïðîäâèæåíèå ê êîìïó
+                // Ð¥Ð¾Ð½Ð¾Ð¼ÐµÑ€ ÑÑ‚Ð¾Ð¸Ñ‚ Ð¿ÐµÑ€ÐµÐ´ Ð´Ð²ÐµÑ€ÑŒÑŽ
+                // ÐžÑ‚ÐºÑ€Ñ‹Ð²Ð°ÐµÐ¼ Ð´Ð²ÐµÑ€ÑŒ Ð¸ Ð´Ð°ÐµÐ¼ Ð¿Ð»Ð°Ð½ Ð½Ð° Ð¿Ñ€Ð¾Ð´Ð²Ð¸Ð¶ÐµÐ½Ð¸Ðµ Ðº ÐºÐ¾Ð¼Ð¿Ñƒ
                 map.GetEntireCoords( ENTIRE_DOOR, 0, hx, hy );
                 Item@ door = map.GetItem( hx, hy, PID_DOOR );
                 if( valid( door ) )
@@ -148,7 +148,7 @@ bool _HonomerGlobalProcess( Critter& cr, int type, Item@ car, float& x, float& y
         Critter@[] group = cr.GetGlobalGroup();
         GameVar@ playerId = GetLocalVar( LVAR_sf_honomer_playerid, cr.Id );
 
-        if( valid( playerId ) )     // Ïðîâåðêà ÷òî èãðîê â ãðóïïå ñ íïö
+        if( valid( playerId ) )     // ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ñ‡Ñ‚Ð¾ Ð¸Ð³Ñ€Ð¾Ðº Ð² Ð³Ñ€ÑƒÐ¿Ð¿Ðµ Ñ Ð½Ð¿Ñ†
         {
             Critter@ player = GetCritter( playerId.GetValue() );
             if( valid( player ) )
@@ -165,7 +165,7 @@ bool _HonomerGlobalProcess( Critter& cr, int type, Item@ car, float& x, float& y
         }
         if( !ok )
         {
-            // Íåò èãðîêà â ãðóïïå
+            // ÐÐµÑ‚ Ð¸Ð³Ñ€Ð¾ÐºÐ° Ð² Ð³Ñ€ÑƒÐ¿Ð¿Ðµ
             DeleteNpc( cr );
             return true;
         }
@@ -208,8 +208,8 @@ bool _HonomerGlobalProcess( Critter& cr, int type, Item@ car, float& x, float& y
                 return true;
             }
         }
-        // íå íàéäåíà ëîêàöèÿ èëè ïåðåìåííàÿ
-        // òàêîãî ïðîèçîéòè íå ìîæåò, íî íà âñÿêèé ñëó÷àé...
+        // Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð° Ð»Ð¾ÐºÐ°Ñ†Ð¸Ñ Ð¸Ð»Ð¸ Ð¿ÐµÑ€ÐµÐ¼ÐµÐ½Ð½Ð°Ñ
+        // Ñ‚Ð°ÐºÐ¾Ð³Ð¾ Ð¿Ñ€Ð¾Ð¸Ð·Ð¾Ð¹Ñ‚Ð¸ Ð½Ðµ Ð¼Ð¾Ð¶ÐµÑ‚, Ð½Ð¾ Ð½Ð° Ð²ÑÑÐºÐ¸Ð¹ ÑÐ»ÑƒÑ‡Ð°Ð¹...
         DeleteNpc( cr );
         return true;
     }
@@ -266,7 +266,7 @@ void r_SetFollower( Critter& player, Critter@ npc )
     if( valid( playerId ) )
     {
         playerId = player.Id;
-        // ×åðåç èãðîâîé äåíü ñáðàñûâàåì Id
+        // Ð§ÐµÑ€ÐµÐ· Ð¸Ð³Ñ€Ð¾Ð²Ð¾Ð¹ Ð´ÐµÐ½ÑŒ ÑÐ±Ñ€Ð°ÑÑ‹Ð²Ð°ÐµÐ¼ Id
         if( npc.GetTimeEvents( CTE_CLEAR_FOLLOWER, null, null, null ) > 0 )
             npc.EraseTimeEvents( CTE_CLEAR_FOLLOWER );
         npc.AddTimeEvent( "cte_ClearFollower", 60 * 60 * 24, CTE_CLEAR_FOLLOWER, 0 );
@@ -332,7 +332,7 @@ void AttackPlayer( Critter& target )
     }
 }
 
-// Îõðàííèê ëàáû
+// ÐžÑ…Ñ€Ð°Ð½Ð½Ð¸Ðº Ð»Ð°Ð±Ñ‹
 void _DoorGuardInit( Critter& cr, bool firstTime )
 {
     cr.SetEvent( CRITTER_EVENT_MESSAGE, "_DoorGuardMessage" );
@@ -359,7 +359,7 @@ void _DoorGuardMessage( Critter& cr, Critter& fromCr, int message, int value )
     }
 }
 
-// Äâåðü
+// Ð”Ð²ÐµÑ€ÑŒ
 void _DoorInit( Item& item, bool firstTime )
 {
     item.SetEvent( ITEM_EVENT_SKILL, "_DoorSkill" );
@@ -372,7 +372,7 @@ bool _DoorSkill( Item& item, Critter& cr, int skill )
     return false;
 }
 
-// Ëàáîðàíòû
+// Ð›Ð°Ð±Ð¾Ñ€Ð°Ð½Ñ‚Ñ‹
 void _HubInit( Critter& cr, bool firstTime )
 {
     if( cr.Stat[ ST_NPC_ROLE ] == ROLE_START_DIALOG )
@@ -386,7 +386,7 @@ void _HubMessage( Critter& cr, Critter& fromCr, int message, int value )
         _NpcMessage( cr, fromCr, message, value );
 }
 
-// Íà÷àëî äèàëîãà ìåæäó õàáîëîãàìè, êîãäà èãðîê íàñòóïèò íà òðèããåð
+// ÐÐ°Ñ‡Ð°Ð»Ð¾ Ð´Ð¸Ð°Ð»Ð¾Ð³Ð° Ð¼ÐµÐ¶Ð´Ñƒ Ñ…Ð°Ð±Ð¾Ð»Ð¾Ð³Ð°Ð¼Ð¸, ÐºÐ¾Ð³Ð´Ð° Ð¸Ð³Ñ€Ð¾Ðº Ð½Ð°ÑÑ‚ÑƒÐ¿Ð¸Ñ‚ Ð½Ð° Ñ‚Ñ€Ð¸Ð³Ð³ÐµÑ€
 void t_NpcDialog( Critter& player, Scenery& trigger, bool entered, uint8 dir )
 {
     Map@     map = player.GetMap();
@@ -398,7 +398,7 @@ void t_NpcDialog( Critter& player, Scenery& trigger, bool entered, uint8 dir )
     }
 }
 
-// Àâòîìàòè÷åñêîå çàêðûòèå äâåðè, åñëè Õîíîìåð âûøåë
+// ÐÐ²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¾Ðµ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ Ð´Ð²ÐµÑ€Ð¸, ÐµÑÐ»Ð¸ Ð¥Ð¾Ð½Ð¾Ð¼ÐµÑ€ Ð²Ñ‹ÑˆÐµÐ»
 void t_CloseDoor( Critter& cr, Scenery& trigger, bool entered, uint8 dir )
 {
     if( cr.IsNpc() && cr.Stat[ ST_DIALOG_ID ] == DIALOG_sf_honomer )
@@ -419,10 +419,10 @@ void t_CloseDoor( Critter& cr, Scenery& trigger, bool entered, uint8 dir )
             }
         }
     }
-    // TODO: ñäåëàòü îòêðûòèå äâåðè, åñëè èãðîê íàñòóïèë íà òðèããåð, äâåðü çàêðûòà, è èãðîê â ðîáå
+    // TODO: ÑÐ´ÐµÐ»Ð°Ñ‚ÑŒ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ Ð´Ð²ÐµÑ€Ð¸, ÐµÑÐ»Ð¸ Ð¸Ð³Ñ€Ð¾Ðº Ð½Ð°ÑÑ‚ÑƒÐ¿Ð¸Ð» Ð½Ð° Ñ‚Ñ€Ð¸Ð³Ð³ÐµÑ€, Ð´Ð²ÐµÑ€ÑŒ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð°, Ð¸ Ð¸Ð³Ñ€Ð¾Ðº Ð² Ñ€Ð¾Ð±Ðµ
 }
 
-// Åñëè èãðîê íå â ðîáå íàñòóïèë íà òðèããåð, áóäåò àòàêîâàí
+// Ð•ÑÐ»Ð¸ Ð¸Ð³Ñ€Ð¾Ðº Ð½Ðµ Ð² Ñ€Ð¾Ð±Ðµ Ð½Ð°ÑÑ‚ÑƒÐ¿Ð¸Ð» Ð½Ð° Ñ‚Ñ€Ð¸Ð³Ð³ÐµÑ€, Ð±ÑƒÐ´ÐµÑ‚ Ð°Ñ‚Ð°ÐºÐ¾Ð²Ð°Ð½
 void t_Attack( Critter& cr, Scenery& trigger, bool entered, uint8 dir )
 {
     if( cr.Mode[ MODE_HIDE ] > 0 )

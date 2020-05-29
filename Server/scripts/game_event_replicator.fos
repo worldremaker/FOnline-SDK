@@ -18,11 +18,11 @@
 #define ENTIRE_SCIENTIST       ( 142 )
 #define ENTIRE_DEAD_GUARD      ( 143 )
 #define ENTIRE_DEAD_ZOMBIE     ( 144 )
-#define ENTIRE_ZOMBIE_0        ( 145 ) // Место спавна и первоначальных брожений
-#define ENTIRE_ZOMBIE_1        ( 146 ) // Первая точка, к которой идут гули
-#define ENTIRE_ZOMBIE_2        ( 147 ) // Вторая точка
-#define ENTIRE_ZOMBIE_3        ( 148 ) // Третья, после этого гули выбираются на поверхность
-#define ENTIRE_ZOMBIE_EXIT     ( 289 ) // Гекс, с которого гули выходят на глобал
+#define ENTIRE_ZOMBIE_0        ( 145 ) // РњРµСЃС‚Рѕ СЃРїР°РІРЅР° Рё РїРµСЂРІРѕРЅР°С‡Р°Р»СЊРЅС‹С… Р±СЂРѕР¶РµРЅРёР№
+#define ENTIRE_ZOMBIE_1        ( 146 ) // РџРµСЂРІР°СЏ С‚РѕС‡РєР°, Рє РєРѕС‚РѕСЂРѕР№ РёРґСѓС‚ РіСѓР»Рё
+#define ENTIRE_ZOMBIE_2        ( 147 ) // Р’С‚РѕСЂР°СЏ С‚РѕС‡РєР°
+#define ENTIRE_ZOMBIE_3        ( 148 ) // РўСЂРµС‚СЊСЏ, РїРѕСЃР»Рµ СЌС‚РѕРіРѕ РіСѓР»Рё РІС‹Р±РёСЂР°СЋС‚СЃСЏ РЅР° РїРѕРІРµСЂС…РЅРѕСЃС‚СЊ
+#define ENTIRE_ZOMBIE_EXIT     ( 289 ) // Р“РµРєСЃ, СЃ РєРѕС‚РѕСЂРѕРіРѕ РіСѓР»Рё РІС‹С…РѕРґСЏС‚ РЅР° РіР»РѕР±Р°Р»
 
 #define EVENT_ZOMBIE_STOP      ( 12 )
 
@@ -32,13 +32,13 @@
 
 #define ENTIRE_WARIOR          ( 303 )
 #define ENTIRE_LOOK_TO         ( 304 )
-#define NPC_ROLE_DEF           ( 304 )              // Роль для всех временных нпц на поверхности
+#define NPC_ROLE_DEF           ( 304 )              // Р РѕР»СЊ РґР»СЏ РІСЃРµС… РІСЂРµРјРµРЅРЅС‹С… РЅРїС† РЅР° РїРѕРІРµСЂС…РЅРѕСЃС‚Рё
 
-#define TIME_MOVE              ( REAL_MINUTE( 1 ) ) // Время, после которого гули меняют свое положение
+#define TIME_MOVE              ( REAL_MINUTE( 1 ) ) // Р’СЂРµРјСЏ, РїРѕСЃР»Рµ РєРѕС‚РѕСЂРѕРіРѕ РіСѓР»Рё РјРµРЅСЏСЋС‚ СЃРІРѕРµ РїРѕР»РѕР¶РµРЅРёРµ
 
-#define MSG_ALARM              ( 300 )              // Номер сообщения, на которое зомби реагируют
+#define MSG_ALARM              ( 300 )              // РќРѕРјРµСЂ СЃРѕРѕР±С‰РµРЅРёСЏ, РЅР° РєРѕС‚РѕСЂРѕРµ Р·РѕРјР±Рё СЂРµР°РіРёСЂСѓСЋС‚
 
-#define PID_ZOMBIE             ( 529 )              // Прототип критттера-зомби
+#define PID_ZOMBIE             ( 529 )              // РџСЂРѕС‚РѕС‚РёРї РєСЂРёС‚С‚С‚РµСЂР°-Р·РѕРјР±Рё
 #define EVENT_ZOMBIE           ( 11 )
 #define ROLE_ZOMBIE            ( 123 )
 
@@ -77,7 +77,7 @@ uint e_BeginEvent( uint[] @ values )
 
 uint e_StopEvent( uint[] @ values )
 {
-    // Остановка эвента
+    // РћСЃС‚Р°РЅРѕРІРєР° СЌРІРµРЅС‚Р°
     StopEvent();
     return 0;
 }
@@ -93,7 +93,7 @@ void SetReplicationAbandoned()
         Map@ map = loc.GetMapByIndex( 0 );
         if( valid( map ) )
         {
-            // Расположение укреплений из мешков
+            // Р Р°СЃРїРѕР»РѕР¶РµРЅРёРµ СѓРєСЂРµРїР»РµРЅРёР№ РёР· РјРµС€РєРѕРІ
             for( uint i = 0, l = entiresSandbags.length(); i < l; i++ )
                 for( uint j = entiresSandbags[ i ][ 0 ], k = entiresSandbags[ i ][ 1 ]; j <= k; j++ )
                 {
@@ -102,8 +102,8 @@ void SetReplicationAbandoned()
                 }
 
         }
-        // Расстановка нпц
-        // Смоллет
+        // Р Р°СЃСЃС‚Р°РЅРѕРІРєР° РЅРїС†
+        // РЎРјРѕР»Р»РµС‚
         uint16 xC = 0;
         uint16 yC = 0;
         GetEntireFreeHex( map, ENTIRE_LOOK_TO, xC, yC );
@@ -192,7 +192,7 @@ void PlaceReplicatorTanks( Map& map )
     }
 }
 
-// Остановка эвента
+// РћСЃС‚Р°РЅРѕРІРєР° СЌРІРµРЅС‚Р°
 void StopEvent()
 {
     GameVar@ status = GetGlobalVar( StatusGVar );
@@ -225,7 +225,7 @@ uint e_DeleteSandbags( uint[] @ values )
     Map@ map  = GetMap( values[ 0 ] );
     if( valid( map ) )
     {
-        // Перенос игроков на глобал
+        // РџРµСЂРµРЅРѕСЃ РёРіСЂРѕРєРѕРІ РЅР° РіР»РѕР±Р°Р»
         Critter@[] critters;
         if( map.GetCritters( 0, FIND_ONLY_PLAYERS | FIND_LIFE, critters ) > 0 )
         {
@@ -238,7 +238,7 @@ uint e_DeleteSandbags( uint[] @ values )
                 }
             }
         }
-        // удаление мешков
+        // СѓРґР°Р»РµРЅРёРµ РјРµС€РєРѕРІ
         Item@[] items;
         map.GetItems( PID_SANDBAG_1, items );
         map.GetItems( PID_SANDBAG_2, items );
@@ -251,8 +251,8 @@ uint e_DeleteSandbags( uint[] @ values )
             if( valid( item ) )
                 DeleteItem( item );
         }
-        // удаление зомби
-        // удаление хабологов
+        // СѓРґР°Р»РµРЅРёРµ Р·РѕРјР±Рё
+        // СѓРґР°Р»РµРЅРёРµ С…Р°Р±РѕР»РѕРіРѕРІ
         critters.resize( 0 );
         if( map.GetCritters( 0, FIND_ONLY_NPC | FIND_ALL, critters ) > 0 )
         {
@@ -267,7 +267,7 @@ uint e_DeleteSandbags( uint[] @ values )
     return 0;
 }
 
-// Скрипт люка
+// РЎРєСЂРёРїС‚ Р»СЋРєР°
 void t_ReplDoor( Critter& player, Scenery& trigger, bool entered, uint8 dir )
 {
     if( player.IsPlayer() )
@@ -331,18 +331,18 @@ bool s_ReplDoor( Critter& player, Scenery& scenery, int skill, Item@ item )
     return false;
 }
 
-// Скрипт карты
+// РЎРєСЂРёРїС‚ РєР°СЂС‚С‹
 void _MapInit( Map& map, bool firstTime )
 {
     map.SetEvent( MAP_EVENT_LOOP_0, "_MapLoop0" );
-    map.SetEvent( MAP_EVENT_LOOP_1, "_MapLoop1" );   // Появление мобов
+    map.SetEvent( MAP_EVENT_LOOP_1, "_MapLoop1" );   // РџРѕСЏРІР»РµРЅРёРµ РјРѕР±РѕРІ
     map.SetEvent( MAP_EVENT_LOOP_2, "_MapLoop2" );
     map.SetLoopTime( 0, 5000 );
     map.SetLoopTime( 1, 60000 );
     map.SetLoopTime( 2, 30000 );
 }
 
-// Случайная подсветка репликатора, чтобы было понятно какой взрывать
+// РЎР»СѓС‡Р°Р№РЅР°СЏ РїРѕРґСЃРІРµС‚РєР° СЂРµРїР»РёРєР°С‚РѕСЂР°, С‡С‚РѕР±С‹ Р±С‹Р»Рѕ РїРѕРЅСЏС‚РЅРѕ РєР°РєРѕР№ РІР·СЂС‹РІР°С‚СЊ
 
 void _MapLoop0( Map& map )
 {
@@ -365,12 +365,12 @@ void _MapLoop0( Map& map )
     }
 }
 
-// Генерация мобов, если их меньше 20
+// Р“РµРЅРµСЂР°С†РёСЏ РјРѕР±РѕРІ, РµСЃР»Рё РёС… РјРµРЅСЊС€Рµ 20
 void _MapLoop1( Map& map )
 {
     if( !CheckEventStatus( EVENT_ZOMBIE, PHASE_STATE_RUNNING ) )
     {
-        // DL("loop 1---- убрать");
+        // DL("loop 1---- СѓР±СЂР°С‚СЊ");
         // return;
     }
     if( map.GetCritters( PID_ZOMBIE, FIND_LIFE_AND_KO | FIND_ONLY_NPC, null ) < 20 )
@@ -379,7 +379,7 @@ void _MapLoop1( Map& map )
         uint numRepl = map.GetItems( PID_REPLICATOR_TANK, replicators );
         if( numRepl == 0 )
         {
-            // Остановка события
+            // РћСЃС‚Р°РЅРѕРІРєР° СЃРѕР±С‹С‚РёСЏ
             RunGameEvent( EVENT_ZOMBIE_STOP );
             map.SetScript( "" );
             return;
@@ -398,8 +398,8 @@ void _MapLoop1( Map& map )
                     hY = replicator.HexY;
                     if( GetFreeHex( map, 7, hX, hY ) )
                     {
-                        // в ST_VAR1 записываем текущий ближайший гекс, рядом с которым он крутится
-                        // в ST_VAR2 - время спавна
+                        // РІ ST_VAR1 Р·Р°РїРёСЃС‹РІР°РµРј С‚РµРєСѓС‰РёР№ Р±Р»РёР¶Р°Р№С€РёР№ РіРµРєСЃ, СЂСЏРґРѕРј СЃ РєРѕС‚РѕСЂС‹Рј РѕРЅ РєСЂСѓС‚РёС‚СЃСЏ
+                        // РІ ST_VAR2 - РІСЂРµРјСЏ СЃРїР°РІРЅР°
                         int[] params = { ST_TEAM_ID, TEAM_Mob1, ST_VAR1, ENTIRE_ZOMBIE_0, ST_VAR2, __FullSecond, ST_NPC_ROLE, ROLE_ZOMBIE };
                         map.AddNpc( PID_ZOMBIE, hX, hY, 6, params, null, "game_event_replicator@_ZombieInit" );
                         map.SetTextMsg( replicator.HexX, replicator.HexY, COLOR_GREEN, TEXTMSG_TEXT, 4003 );
@@ -410,7 +410,7 @@ void _MapLoop1( Map& map )
     }
 }
 
-// Перемещение мобов на следующий пункт сбора
+// РџРµСЂРµРјРµС‰РµРЅРёРµ РјРѕР±РѕРІ РЅР° СЃР»РµРґСѓСЋС‰РёР№ РїСѓРЅРєС‚ СЃР±РѕСЂР°
 void _MapLoop2( Map& map )
 {
     Critter@[] zombies;
@@ -434,7 +434,7 @@ void _MapLoop2( Map& map )
                 switch( entire )
                 {
                 case ENTIRE_ZOMBIE_EXIT:
-                    // TODO:// Здесь нужно переключить счетчик сбежавших омбей
+                    // TODO:// Р—РґРµСЃСЊ РЅСѓР¶РЅРѕ РїРµСЂРµРєР»СЋС‡РёС‚СЊ СЃС‡РµС‚С‡РёРє СЃР±РµР¶Р°РІС€РёС… РѕРјР±РµР№
                     DeleteNpc( cr );
                     return;
                 case ENTIRE_ZOMBIE_0:
@@ -466,13 +466,13 @@ void _MapLoop2( Map& map )
     }
 }
 
-// Cкрипт репликатора. Если у игрока взят квест, при применении взрывчатки на репликатор устанавливается таймер на взрыв.
+// CРєСЂРёРїС‚ СЂРµРїР»РёРєР°С‚РѕСЂР°. Р•СЃР»Рё Сѓ РёРіСЂРѕРєР° РІР·СЏС‚ РєРІРµСЃС‚, РїСЂРё РїСЂРёРјРµРЅРµРЅРёРё РІР·СЂС‹РІС‡Р°С‚РєРё РЅР° СЂРµРїР»РёРєР°С‚РѕСЂ СѓСЃС‚Р°РЅР°РІР»РёРІР°РµС‚СЃСЏ С‚Р°Р№РјРµСЂ РЅР° РІР·СЂС‹РІ.
 
-#define QVAR_EXPLODE            ( LVAR_q_ge_repl_explode_tank ) // Локальная переменная, статус квеста "Горячий shotdown."
-#define STATUS_QVAR_ACTIVE      ( 1 )                           // Взорвите репликационный чан, который вышел из строя.
-#define STATUS_QVAR_SETUP       ( 2 )                           // Взрывчатка установлена. Уносите ноги, пока пластид не разнес к чертям все вокруг!
-#define STATUS_QVAR_EXECUTED    ( 3 )                           // Вы взорвали один из репликационных чанов, производящих полчища безумных гулей. Возвращайтесь на поверхность и требуйте награду.
-#define TOUT_EXPLODE            ( REAL_SECOND( 5 ) )            // Время до взрыва после установки взрывчатки
+#define QVAR_EXPLODE            ( LVAR_q_ge_repl_explode_tank ) // Р›РѕРєР°Р»СЊРЅР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ, СЃС‚Р°С‚СѓСЃ РєРІРµСЃС‚Р° "Р“РѕСЂСЏС‡РёР№ shotdown."
+#define STATUS_QVAR_ACTIVE      ( 1 )                           // Р’Р·РѕСЂРІРёС‚Рµ СЂРµРїР»РёРєР°С†РёРѕРЅРЅС‹Р№ С‡Р°РЅ, РєРѕС‚РѕСЂС‹Р№ РІС‹С€РµР» РёР· СЃС‚СЂРѕСЏ.
+#define STATUS_QVAR_SETUP       ( 2 )                           // Р’Р·СЂС‹РІС‡Р°С‚РєР° СѓСЃС‚Р°РЅРѕРІР»РµРЅР°. РЈРЅРѕСЃРёС‚Рµ РЅРѕРіРё, РїРѕРєР° РїР»Р°СЃС‚РёРґ РЅРµ СЂР°Р·РЅРµСЃ Рє С‡РµСЂС‚СЏРј РІСЃРµ РІРѕРєСЂСѓРі!
+#define STATUS_QVAR_EXECUTED    ( 3 )                           // Р’С‹ РІР·РѕСЂРІР°Р»Рё РѕРґРёРЅ РёР· СЂРµРїР»РёРєР°С†РёРѕРЅРЅС‹С… С‡Р°РЅРѕРІ, РїСЂРѕРёР·РІРѕРґСЏС‰РёС… РїРѕР»С‡РёС‰Р° Р±РµР·СѓРјРЅС‹С… РіСѓР»РµР№. Р’РѕР·РІСЂР°С‰Р°Р№С‚РµСЃСЊ РЅР° РїРѕРІРµСЂС…РЅРѕСЃС‚СЊ Рё С‚СЂРµР±СѓР№С‚Рµ РЅР°РіСЂР°РґСѓ.
+#define TOUT_EXPLODE            ( REAL_SECOND( 5 ) )            // Р’СЂРµРјСЏ РґРѕ РІР·СЂС‹РІР° РїРѕСЃР»Рµ СѓСЃС‚Р°РЅРѕРІРєРё РІР·СЂС‹РІС‡Р°С‚РєРё
 
 void _ReplTankInit( Item& item, bool firstTime )
 {
@@ -489,7 +489,7 @@ bool _ReplTankUseOnMe( Item& item, Critter& cr, Item@ usedItem )
     if( ( usedItem.GetProtoId() == PID_PLASTIC_EXPLOSIVES || usedItem.GetProtoId() == PID_ACTIVE_PLASTIC_EXPLOSIVE ) && valid( qVar ) && qVar == STATUS_QVAR_ACTIVE )
     {
         DeleteItem( usedItem );
-        // Создаем событие взрыва и сообщаем игроку о том, что надо убегать
+        // РЎРѕР·РґР°РµРј СЃРѕР±С‹С‚РёРµ РІР·СЂС‹РІР° Рё СЃРѕРѕР±С‰Р°РµРј РёРіСЂРѕРєСѓ Рѕ С‚РѕРј, С‡С‚Рѕ РЅР°РґРѕ СѓР±РµРіР°С‚СЊ
         qVar = STATUS_QVAR_SETUP;
         uint mapId = 0;
         Map@ map = cr.GetMap();
@@ -521,7 +521,7 @@ uint e_ExplodeReplTank( uint[] @ values )
         GameVar@ qVar = GetLocalVar( QVAR_EXPLODE, cr.Id );
         if( valid( qVar ) && qVar == STATUS_QVAR_SETUP )
         {
-            // Сообщение о выполнении квеста
+            // РЎРѕРѕР±С‰РµРЅРёРµ Рѕ РІС‹РїРѕР»РЅРµРЅРёРё РєРІРµСЃС‚Р°
             qVar = STATUS_QVAR_EXECUTED;
             SkillUp( cr, SK_TRAPS );
         }
@@ -536,12 +536,12 @@ uint e_ExplodeReplTank( uint[] @ values )
     return 0;
 }
 
-// Скрипт зомби на поверхности
+// РЎРєСЂРёРїС‚ Р·РѕРјР±Рё РЅР° РїРѕРІРµСЂС…РЅРѕСЃС‚Рё
 void _ZombieOutInit( Critter& cr, bool firstTime )
 {
     cr.StatBase[ ST_REPLICATION_TIME ] = -1;
     cr.SetEvent( CRITTER_EVENT_DEAD, "_OnZombieDead" );
-    // При атаке на зомби, все остальные тоже сходят с ума
+    // РџСЂРё Р°С‚Р°РєРµ РЅР° Р·РѕРјР±Рё, РІСЃРµ РѕСЃС‚Р°Р»СЊРЅС‹Рµ С‚РѕР¶Рµ СЃС…РѕРґСЏС‚ СЃ СѓРјР°
     cr.SetEvent( CRITTER_EVENT_ATTACKED, "_OnZombieAttackedGround" );
     cr.SetEvent( CRITTER_EVENT_MESSAGE, "_OnZombieMessage" );
     cr.SetEvent( CRITTER_EVENT_IDLE, "_OnZombieIdleGround" );
@@ -590,7 +590,7 @@ void _OnZombieIdleGround( Critter& cr )
     {
         if( GetDistantion( cr.HexX, cr.HexY, hX, hY ) < 6 )
         {
-            // Выход на глобал
+            // Р’С‹С…РѕРґ РЅР° РіР»РѕР±Р°Р»
             DeleteNpc( cr );
             return;
         }
@@ -603,12 +603,12 @@ void _OnZombieIdleGround( Critter& cr )
         }
     }
 }
-// Скрипт зомби в подземелье
+// РЎРєСЂРёРїС‚ Р·РѕРјР±Рё РІ РїРѕРґР·РµРјРµР»СЊРµ
 void _ZombieInit( Critter& cr, bool firstTime )
 {
     cr.StatBase[ ST_REPLICATION_TIME ] = -1;
     cr.SetEvent( CRITTER_EVENT_DEAD, "_OnZombieDead" );
-    // При атаке на зомби, все остальные тоже сходят с ума
+    // РџСЂРё Р°С‚Р°РєРµ РЅР° Р·РѕРјР±Рё, РІСЃРµ РѕСЃС‚Р°Р»СЊРЅС‹Рµ С‚РѕР¶Рµ СЃС…РѕРґСЏС‚ СЃ СѓРјР°
     cr.SetEvent( CRITTER_EVENT_ATTACKED, "_OnZombieAttacked" );
     cr.SetEvent( CRITTER_EVENT_MESSAGE, "_OnZombieMessage" );
     cr.SetEvent( CRITTER_EVENT_IDLE, "_OnZombieIdle" );
@@ -616,14 +616,14 @@ void _ZombieInit( Critter& cr, bool firstTime )
 }
 
 
-// PLANE_RUN_GLOBAL - вызвать глобальный обработчик, который определит сохранить или удалить план;
-// PLANE_KEEP - сохранить план, без вызова глобального обработчика;
-// PLANE_DISCARD - удалить план, без вызова глобального обработчика.
+// PLANE_RUN_GLOBAL - РІС‹Р·РІР°С‚СЊ РіР»РѕР±Р°Р»СЊРЅС‹Р№ РѕР±СЂР°Р±РѕС‚С‡РёРє, РєРѕС‚РѕСЂС‹Р№ РѕРїСЂРµРґРµР»РёС‚ СЃРѕС…СЂР°РЅРёС‚СЊ РёР»Рё СѓРґР°Р»РёС‚СЊ РїР»Р°РЅ;
+// PLANE_KEEP - СЃРѕС…СЂР°РЅРёС‚СЊ РїР»Р°РЅ, Р±РµР· РІС‹Р·РѕРІР° РіР»РѕР±Р°Р»СЊРЅРѕРіРѕ РѕР±СЂР°Р±РѕС‚С‡РёРєР°;
+// PLANE_DISCARD - СѓРґР°Р»РёС‚СЊ РїР»Р°РЅ, Р±РµР· РІС‹Р·РѕРІР° РіР»РѕР±Р°Р»СЊРЅРѕРіРѕ РѕР±СЂР°Р±РѕС‚С‡РёРєР°.
 int _OnZombiePlaneEnd( Critter& cr, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem )
 {
     if( reason != REASON_SUCCESS && cr.IsLife() )
     {
-        // Проверяем, не домой ли он шел
+        // РџСЂРѕРІРµСЂСЏРµРј, РЅРµ РґРѕРјРѕР№ Р»Рё РѕРЅ С€РµР»
         uint16 hx = 0;
         uint16 hy = 0;
         uint8  dir = 0;
@@ -636,7 +636,7 @@ int _OnZombiePlaneEnd( Critter& cr, NpcPlane& plane, int reason, Critter@ someCr
             plane.Walk_Dir == dir &&
             map.GetPathLength( cr.HexX, cr.HexY, hx, hy, 0 ) == 0 )
         {
-            // Застрял
+            // Р—Р°СЃС‚СЂСЏР»
             DL( "Homepos gag" );
             if( GetEntireFreeHex( map, cr.Stat[ ST_VAR1 ], hx, hy ) )
             {
@@ -690,7 +690,7 @@ void        _OnZombieMessage( Critter& cr, Critter& fromCr, int message, int val
     if( message == MSG_ALARM && cr.IsNpc() && cr.GetPlanes( AI_PLANE_ATTACK, null ) == 0 )
     {
         Critter@ target = GetCritter( value );
-        // if(valid(target) && target.Stat[ST_NPC_ROLE] != ROLE_ZOMBIE) Фильтр по роли, чтобы не били своих - пусть бьют
+        // if(valid(target) && target.Stat[ST_NPC_ROLE] != ROLE_ZOMBIE) Р¤РёР»СЊС‚СЂ РїРѕ СЂРѕР»Рё, С‡С‚РѕР±С‹ РЅРµ Р±РёР»Рё СЃРІРѕРёС… - РїСѓСЃС‚СЊ Р±СЊСЋС‚
         if( valid( target ) )
         {
             AddAttackPlane( cr, 0, target );
@@ -722,7 +722,7 @@ void _OnZombieDead( Critter& cr, Critter@ killer )
         }
     }
     cr.AddTimeEvent( "cte_RespawnZombie", REAL_SECOND( Random( 30, 90 ) ), killerId );
-    // TODO: добавить счетчик убитых зомби сюда
+    // TODO: РґРѕР±Р°РІРёС‚СЊ СЃС‡РµС‚С‡РёРє СѓР±РёС‚С‹С… Р·РѕРјР±Рё СЃСЋРґР°
 }
 
 #define STR_RESPAWN    ( 4000 )
@@ -760,7 +760,7 @@ uint cte_RespawnZombie( Critter& cr, int identifier, uint& rate )
     return 0;
 }
 
-// Хабологи-торговцы на репл. станциях
+// РҐР°Р±РѕР»РѕРіРё-С‚РѕСЂРіРѕРІС†С‹ РЅР° СЂРµРїР». СЃС‚Р°РЅС†РёСЏС…
 
 void t_Notify( Critter& player, Scenery& trigger, bool entered, uint8 dir )
 {

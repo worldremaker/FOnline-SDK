@@ -5,7 +5,7 @@
 
 import uint GetCarCost( uint16 protoCar ) from "car";
 
-// —Ï. ‰Ë‡ÎÓ„ 739 nr_t-ray
+// –°–º. –¥–∏–∞–ª–æ–≥ 739 nr_t-ray
 
 #define FD_NO_MONEY                ( 5 )
 #define FD_NO_PLACES               ( 6 )

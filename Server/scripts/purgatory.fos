@@ -5,14 +5,14 @@
 #include "_bags.fos"
 
 #define TIME_NEXT_RADIO_STAGE1    ( REAL_MINUTE( 5 ) )
-#define STR_RADIO_STAGE1          ( 7120 )             // Внимание! Открыт набор участников для Испытания в Чистилище. Для того, чтобы подать заявку найдите Экзекутора на входе любого города Пустоши.
-#define STR_KILL                  ( 7121 )             // Мощный электрически разряд из пипбоя отправляет вас на небеса. Правда, вам показалось, что удар был нанесен в шею, откуда-то сзади.
+#define STR_RADIO_STAGE1          ( 7120 )             // Р’РЅРёРјР°РЅРёРµ! РћС‚РєСЂС‹С‚ РЅР°Р±РѕСЂ СѓС‡Р°СЃС‚РЅРёРєРѕРІ РґР»СЏ РСЃРїС‹С‚Р°РЅРёСЏ РІ Р§РёСЃС‚РёР»РёС‰Рµ. Р”Р»СЏ С‚РѕРіРѕ, С‡С‚РѕР±С‹ РїРѕРґР°С‚СЊ Р·Р°СЏРІРєСѓ РЅР°Р№РґРёС‚Рµ Р­РєР·РµРєСѓС‚РѕСЂР° РЅР° РІС…РѕРґРµ Р»СЋР±РѕРіРѕ РіРѕСЂРѕРґР° РџСѓСЃС‚РѕС€Рё.
+#define STR_KILL                  ( 7121 )             // РњРѕС‰РЅС‹Р№ СЌР»РµРєС‚СЂРёС‡РµСЃРєРё СЂР°Р·СЂСЏРґ РёР· РїРёРїР±РѕСЏ РѕС‚РїСЂР°РІР»СЏРµС‚ РІР°СЃ РЅР° РЅРµР±РµСЃР°. РџСЂР°РІРґР°, РІР°Рј РїРѕРєР°Р·Р°Р»РѕСЃСЊ, С‡С‚Рѕ СѓРґР°СЂ Р±С‹Р» РЅР°РЅРµСЃРµРЅ РІ С€РµСЋ, РѕС‚РєСѓРґР°-С‚Рѕ СЃР·Р°РґРё.
 #define STR_ITEMS                 ( 7122 )
 #define SPAWN_ENTIRE              # (locPid)               ( ( locPid == LOCATION_ReplicationHell ) ? 242 : 0 )
-#define ENTIRE_NOPVP_FIRST        ( 100 )              // Первый спецгекс нопвп зоны
-#define ENTIRE_NOPVP_LAST         ( 103 )              // Первый спецгекс нопвп зоны
-#define CTE_NOPVP_OFF             ( 42 )               // Идентификатор события "очистить нопвп режим"
-#define TIME_CHECK                ( REAL_MINUTE( 1 ) ) // Время проверки, не вышел ли игрок с нопвп зоны
+#define ENTIRE_NOPVP_FIRST        ( 100 )              // РџРµСЂРІС‹Р№ СЃРїРµС†РіРµРєСЃ РЅРѕРїРІРї Р·РѕРЅС‹
+#define ENTIRE_NOPVP_LAST         ( 103 )              // РџРµСЂРІС‹Р№ СЃРїРµС†РіРµРєСЃ РЅРѕРїРІРї Р·РѕРЅС‹
+#define CTE_NOPVP_OFF             ( 42 )               // РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ СЃРѕР±С‹С‚РёСЏ "РѕС‡РёСЃС‚РёС‚СЊ РЅРѕРїРІРї СЂРµР¶РёРј"
+#define TIME_CHECK                ( REAL_MINUTE( 1 ) ) // Р’СЂРµРјСЏ РїСЂРѕРІРµСЂРєРё, РЅРµ РІС‹С€РµР» Р»Рё РёРіСЂРѕРє СЃ РЅРѕРїРІРї Р·РѕРЅС‹
 #define PURGATORY_WORLD_X         ( 800 )
 #define PURGATORY_WORLD_Y         ( 500 )
 #define ENTIRE_TEAM_1             ( 33 )
@@ -31,9 +31,9 @@ import string DateTimeToString( uint gameTime ) from "time";
 
 BattleInfo@ bInfo;
 
-uint        TeamContainerId; // код контейнера для игроков в составе команды
+uint        TeamContainerId; // РєРѕРґ РєРѕРЅС‚РµР№РЅРµСЂР° РґР»СЏ РёРіСЂРѕРєРѕРІ РІ СЃРѕСЃС‚Р°РІРµ РєРѕРјР°РЅРґС‹
 
-// Обработчики смены состояний и инвайта
+// РћР±СЂР°Р±РѕС‚С‡РёРєРё СЃРјРµРЅС‹ СЃРѕСЃС‚РѕСЏРЅРёР№ Рё РёРЅРІР°Р№С‚Р°
 
 class PurgatoryStageChangedHandler : IBattleInfoStageChangedHandler, IBattleInfoCallBack
 {
@@ -49,7 +49,7 @@ class PurgatoryStageChangedHandler : IBattleInfoStageChangedHandler, IBattleInfo
                 if( valid( map ) )
                 {
                     map.SetEvent( MAP_EVENT_LOOP_0, "_PurgatoryLoop" );
-                    map.SetLoopTime( 0, 25000 );                    // Раз в 25 секунд
+                    map.SetLoopTime( 0, 25000 );                    // Р Р°Р· РІ 25 СЃРµРєСѓРЅРґ
                     Critter@[] players;
                     map.GetCritters( 0, FIND_ALL | FIND_ONLY_PLAYERS, players );
                     for( uint i = 0, l = players.length(); i < l; i++ )
@@ -62,7 +62,7 @@ class PurgatoryStageChangedHandler : IBattleInfoStageChangedHandler, IBattleInfo
         }
         if( bInfo.Stage == STAGE_FINISH )
         {
-            // Завершение испытания
+            // Р—Р°РІРµСЂС€РµРЅРёРµ РёСЃРїС‹С‚Р°РЅРёСЏ
             Location@ loc = GetLocationByPid( LOCATION_Purgatory, 0 );
             if( valid( loc ) )
             {
@@ -96,8 +96,8 @@ class PurgatoryStageChangedHandler : IBattleInfoStageChangedHandler, IBattleInfo
                     }
                     if( prizeContainers.length() > 0 && points > 0 )
                     {
-                        // Раздача призов
-                        // Сначала обязательные призы
+                        // Р Р°Р·РґР°С‡Р° РїСЂРёР·РѕРІ
+                        // РЎРЅР°С‡Р°Р»Р° РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Рµ РїСЂРёР·С‹
                         for( int i = 0; i < alive; i++ )
                         {
                             _RndCont( prizeContainers ).AddItem( PID_BOTTLE_CAPS, points * 50, 0 );
@@ -107,7 +107,7 @@ class PurgatoryStageChangedHandler : IBattleInfoStageChangedHandler, IBattleInfo
                             _RndCont( prizeContainers ).AddItem( PID_STIMPAK, 5, 0 );
                         }
                         uint rnd = Random( 1, 3 );
-                        // ПА
+                        // РџРђ
                         if( points > 200 && rnd == 1 )
                         {
                             _RndCont( prizeContainers ).AddItem( PID_POWERED_ARMOR, 1, 0 );
@@ -248,7 +248,7 @@ class PurgatoryInviteCallback : IBattleTeamInviteCallback
 
     void OnTransit( Critter@ cr )
     {
-        // не требуется
+        // РЅРµ С‚СЂРµР±СѓРµС‚СЃСЏ
     }
 }
 
@@ -281,7 +281,7 @@ uint e_RunPreparationStage( uint[] @ values )
     bInfo.PrepareBattle();
     uint16 x = 0;
     uint16 y = 0;
-    // Расстановка нпц-нанимателей
+    // Р Р°СЃСЃС‚Р°РЅРѕРІРєР° РЅРїС†-РЅР°РЅРёРјР°С‚РµР»РµР№
     for( uint i = LOCATION_Den; i < = LOCATION_ReplicationHell; i++ )
     {
         if( LOCATION_IS_CITY( i ) || i == LOCATION_ReplicationHell )
@@ -321,7 +321,7 @@ uint e_RadioPurgatory1( uint[] @ values )
     return 0;
 }
 
-// экзекуторы
+// СЌРєР·РµРєСѓС‚РѕСЂС‹
 
 void _RiperInit( Critter& cr, bool firstTime )
 {
@@ -345,7 +345,7 @@ void _RiperIdle( Critter& cr )
     cr.StatBase[ ST_CURRENT_HP ] = cr.Stat[ ST_MAX_LIFE ];
 }
 
-// второй этап: перемещение игроков к бою
+// РІС‚РѕСЂРѕР№ СЌС‚Р°Рї: РїРµСЂРµРјРµС‰РµРЅРёРµ РёРіСЂРѕРєРѕРІ Рє Р±РѕСЋ
 
 uint e_RunBeginStage( uint[] @ values )
 {
@@ -353,8 +353,8 @@ uint e_RunBeginStage( uint[] @ values )
     Critter@  cr;
     Location@ loc;
     Map@      map;
-    // Добавление в участники каждой команды по одному нпц из хранилища
-    // Чтобы бой состоялся, даже есть только один игрок
+    // Р”РѕР±Р°РІР»РµРЅРёРµ РІ СѓС‡Р°СЃС‚РЅРёРєРё РєР°Р¶РґРѕР№ РєРѕРјР°РЅРґС‹ РїРѕ РѕРґРЅРѕРјСѓ РЅРїС† РёР· С…СЂР°РЅРёР»РёС‰Р°
+    // Р§С‚РѕР±С‹ Р±РѕР№ СЃРѕСЃС‚РѕСЏР»СЃСЏ, РґР°Р¶Рµ РµСЃС‚СЊ С‚РѕР»СЊРєРѕ РѕРґРёРЅ РёРіСЂРѕРє
     @map = GetMapByPid( MAP_purgatory3, 0 );
     if( valid( map ) )
         map.GetCritters( 0, FIND_LIFE | FIND_ONLY_NPC, critters );
@@ -364,7 +364,7 @@ uint e_RunBeginStage( uint[] @ values )
     bInfo.BeginBattle();
 
     critters.resize( 0 );
-    // Удаление экзекуторов
+    // РЈРґР°Р»РµРЅРёРµ СЌРєР·РµРєСѓС‚РѕСЂРѕРІ
     for( uint i = LOCATION_Den; i < = LOCATION_ReplicationHell; i++ )
     {
         if( LOCATION_IS_CITY( i ) || i == LOCATION_ReplicationHell )
@@ -387,7 +387,7 @@ uint e_RunBeginStage( uint[] @ values )
     return 0;
 }
 
-// третий этап: начало боя
+// С‚СЂРµС‚РёР№ СЌС‚Р°Рї: РЅР°С‡Р°Р»Рѕ Р±РѕСЏ
 uint e_RunFightStage( uint[] @ values )
 {
     bInfo.Fight();
@@ -395,7 +395,7 @@ uint e_RunFightStage( uint[] @ values )
     return 0;
 }
 
-// четвертый этап: завершение боя после того, как истекло время
+// С‡РµС‚РІРµСЂС‚С‹Р№ СЌС‚Р°Рї: Р·Р°РІРµСЂС€РµРЅРёРµ Р±РѕСЏ РїРѕСЃР»Рµ С‚РѕРіРѕ, РєР°Рє РёСЃС‚РµРєР»Рѕ РІСЂРµРјСЏ
 uint e_RunEndStage( uint[] @ values )
 {
     if( bInfo.Stage == STAGE_FIGHT )
@@ -403,7 +403,7 @@ uint e_RunEndStage( uint[] @ values )
     return 0;
 }
 
-// Карты чистилища
+// РљР°СЂС‚С‹ С‡РёСЃС‚РёР»РёС‰Р°
 void _PurgatoryInit( Map& map, bool firstTime )
 {
     map.SetEvent( MAP_EVENT_IN_CRITTER, "_PurgatoryMapIn" );
@@ -501,9 +501,9 @@ void dlg_Team4( Critter& player, Critter@ npc, string@ lexems )
     lexems = "$players" + GetTeamPlayers( bInfo.Teams[ 3 ] );
 }
 
-// Генерация итемов в ящиках
-// На третьей карте Чистилища стоят ящики с лутом
-// периодически совершается попытка переместить из одного из ящиков содержимое на территорию бг
+// Р“РµРЅРµСЂР°С†РёСЏ РёС‚РµРјРѕРІ РІ СЏС‰РёРєР°С…
+// РќР° С‚СЂРµС‚СЊРµР№ РєР°СЂС‚Рµ Р§РёСЃС‚РёР»РёС‰Р° СЃС‚РѕСЏС‚ СЏС‰РёРєРё СЃ Р»СѓС‚РѕРј
+// РїРµСЂРёРѕРґРёС‡РµСЃРєРё СЃРѕРІРµСЂС€Р°РµС‚СЃСЏ РїРѕРїС‹С‚РєР° РїРµСЂРµРјРµСЃС‚РёС‚СЊ РёР· РѕРґРЅРѕРіРѕ РёР· СЏС‰РёРєРѕРІ СЃРѕРґРµСЂР¶РёРјРѕРµ РЅР° С‚РµСЂСЂРёС‚РѕСЂРёСЋ Р±Рі
 void _PurgatoryLoop( Map& map )
 {
     if( valid( bInfo ) && bInfo.Stage == STAGE_FIGHT )
@@ -542,7 +542,7 @@ void _PurgatoryLoop( Map& map )
     }
 }
 
-// Удаление локации после того, как время истекло
+// РЈРґР°Р»РµРЅРёРµ Р»РѕРєР°С†РёРё РїРѕСЃР»Рµ С‚РѕРіРѕ, РєР°Рє РІСЂРµРјСЏ РёСЃС‚РµРєР»Рѕ
 uint e_DeletePurgatory( uint[] @ values )
 {
     Location@ loc = GetLocation( values[ 0 ] );

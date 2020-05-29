@@ -23,8 +23,8 @@ void _RaiderInit( Critter& raider, bool firstTime )
     raider.SetEvent( CRITTER_EVENT_IDLE, "_RaiderIdle" );
     raider.SetEvent( CRITTER_EVENT_DEAD, "_RaiderDead" );
     raider.SetEvent( CRITTER_EVENT_MESSAGE, "_RaiderAlarm" );
-    raider.StatBase[ ST_VAR0 ] = 0;   // Id àòàêóåìîãî èãðîêà.
-    // Çàïèñûâàåì ãðóïïó ðåéäåðîâ. Ýòè äàííûå èñïîëüçóþòñÿ ïðè âûõîäå ñ êàðòû, äëÿ îïðåäåëåíèÿ âñå-ëè ðåéäåðû óáèòû...
+    raider.StatBase[ ST_VAR0 ] = 0;   // Id Ð°Ñ‚Ð°ÐºÑƒÐµÐ¼Ð¾Ð³Ð¾ Ð¸Ð³Ñ€Ð¾ÐºÐ°.
+    // Ð—Ð°Ð¿Ð¸ÑÑ‹Ð²Ð°ÐµÐ¼ Ð³Ñ€ÑƒÐ¿Ð¿Ñƒ Ñ€ÐµÐ¹Ð´ÐµÑ€Ð¾Ð². Ð­Ñ‚Ð¸ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÑŽÑ‚ÑÑ Ð¿Ñ€Ð¸ Ð²Ñ‹Ñ…Ð¾Ð´Ðµ Ñ ÐºÐ°Ñ€Ñ‚Ñ‹, Ð´Ð»Ñ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ñ Ð²ÑÐµ-Ð»Ð¸ Ñ€ÐµÐ¹Ð´ÐµÑ€Ñ‹ ÑƒÐ±Ð¸Ñ‚Ñ‹...
     if( firstTime )
     {
         RaidersCount[ 0 ] = RaidersCount[ 0 ] + 1;
@@ -37,7 +37,7 @@ void _RaiderInit( Critter& raider, bool firstTime )
 void _RaiderSaw( Critter& raider, Critter& player )
 {
 
-    // Ïðîâåðÿåì ñâîáîäåí ëè êðèòòåð
+    // ÐŸÑ€Ð¾Ð²ÐµÑ€ÑÐµÐ¼ ÑÐ²Ð¾Ð±Ð¾Ð´ÐµÐ½ Ð»Ð¸ ÐºÑ€Ð¸Ñ‚Ñ‚ÐµÑ€
     if( raider.StatBase[ ST_VAR0 ] != 0 )
         return;
     if( not raider.IsNoPlanes() )
@@ -70,7 +70,7 @@ void _RaiderSaw( Critter& raider, Critter& player )
 void _RaiderHide( Critter& raider, Critter& player )
 {
 
-    // Åñëè èãðîê ïðîïàë èç ïîëÿ çðåíèÿ, óáèðàåì ïëàí àòàêè
+    // Ð•ÑÐ»Ð¸ Ð¸Ð³Ñ€Ð¾Ðº Ð¿Ñ€Ð¾Ð¿Ð°Ð» Ð¸Ð· Ð¿Ð¾Ð»Ñ Ð·Ñ€ÐµÐ½Ð¸Ñ, ÑƒÐ±Ð¸Ñ€Ð°ÐµÐ¼ Ð¿Ð»Ð°Ð½ Ð°Ñ‚Ð°ÐºÐ¸
     if( player.IsPlayer() && raider.StatBase[ ST_VAR0 ] != 0 )
     {
         if( Random( 0, 10 ) == 0 )
@@ -88,7 +88,7 @@ void _RaiderHide( Critter& raider, Critter& player )
 void _RaiderIdle( Critter& raider )
 {
 
-    // Èùåì èãðîêîâ è àòàêóåì
+    // Ð˜Ñ‰ÐµÐ¼ Ð¸Ð³Ñ€Ð¾ÐºÐ¾Ð² Ð¸ Ð°Ñ‚Ð°ÐºÑƒÐµÐ¼
     Critter@[] players;
     raider.GetCritters( false, FIND_ONLY_PLAYERS | FIND_LIFE_AND_KO, players );
     if( players.length() > 0 )

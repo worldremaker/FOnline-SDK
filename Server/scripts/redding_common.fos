@@ -6,7 +6,7 @@
 #define STR_GRAVE                ( 5425 )
 // #define DL#(s) (Log(s))
 #define DL                       # ( s )
-// Скрипт охраны Hex'a
+// РЎРєСЂРёРїС‚ РѕС…СЂР°РЅС‹ Hex'a
 
 class CGuardsManagerForNCR : CGuardsManager
 {
@@ -17,7 +17,7 @@ class CGuardsManagerForNCR : CGuardsManager
     }
 }
 
-// класс с алгоритмом
+// РєР»Р°СЃСЃ СЃ Р°Р»РіРѕСЂРёС‚РјРѕРј
 CGuardsManagerForNCR Grd;
 
 bool GuardItemTest( Item@ item ) // export
@@ -25,7 +25,7 @@ bool GuardItemTest( Item@ item ) // export
     return Grd.GuardItemTest( item );
 }
 
-// Усиление нпц
+// РЈСЃРёР»РµРЅРёРµ РЅРїС†
 void PowerNpc( Critter& cr )
 {
     cr.StatBase[ ST_STRENGTH ] = Random( 8, 10 );
@@ -131,21 +131,21 @@ bool _SmthUseItem( Critter& cr, Critter& whoUse, Item& item )
     return false;
 }
 
-// Квест "На Связи" Доктор Джонсон
+// РљРІРµСЃС‚ "РќР° РЎРІСЏР·Рё" Р”РѕРєС‚РѕСЂ Р”Р¶РѕРЅСЃРѕРЅ
 #define DOCTOR_CHANNEL           ( 1717 )
 #define STR_FIRST                ( 3300 )
 #define STR_LAST                 ( 3340 )
 #define STR_BREAK_FIRST          ( 3341 )
 #define STR_BREAK_LAST           ( 3343 )
 
-// Проверка, в инвентаре игрока есть радио с нужной волной
+// РџСЂРѕРІРµСЂРєР°, РІ РёРЅРІРµРЅС‚Р°СЂРµ РёРіСЂРѕРєР° РµСЃС‚СЊ СЂР°РґРёРѕ СЃ РЅСѓР¶РЅРѕР№ РІРѕР»РЅРѕР№
 bool d_CheckRadio( Critter& player, Critter@ npc )
 {
     Item@[] items;
     player.GetItems( -1, items );
     for( uint i = 0, l = items.length(); i < l; i++ )
     {
-        if( items[ i ].GetProtoId() == PID_RADIO && items[ i ].RadioChannel == DOCTOR_CHANNEL )   // TODO: вставить проверку канала
+        if( items[ i ].GetProtoId() == PID_RADIO && items[ i ].RadioChannel == DOCTOR_CHANNEL )   // TODO: РІСЃС‚Р°РІРёС‚СЊ РїСЂРѕРІРµСЂРєСѓ РєР°РЅР°Р»Р°
             return true;
     }
     return false;

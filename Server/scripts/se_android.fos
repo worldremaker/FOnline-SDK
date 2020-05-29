@@ -1,13 +1,13 @@
 // Author: rifleman17
-// Квест-специальный энкаунтер. Две последовательные локации
-// На первой игрок находит труп нпц с рацией, если он возьмет рацию, может услышать сообщение о том, что где-то в Пустоши найден военный склад. На самом деле это - ловушка, в которой его поджидает сумасшедший ученый.
-// При заходе на вторую локацию персонаж попадает на хирургический стол, где его оперируют и персонаж превращается в андроида.
+// РљРІРµСЃС‚-СЃРїРµС†РёР°Р»СЊРЅС‹Р№ СЌРЅРєР°СѓРЅС‚РµСЂ. Р”РІРµ РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅС‹Рµ Р»РѕРєР°С†РёРё
+// РќР° РїРµСЂРІРѕР№ РёРіСЂРѕРє РЅР°С…РѕРґРёС‚ С‚СЂСѓРї РЅРїС† СЃ СЂР°С†РёРµР№, РµСЃР»Рё РѕРЅ РІРѕР·СЊРјРµС‚ СЂР°С†РёСЋ, РјРѕР¶РµС‚ СѓСЃР»С‹С€Р°С‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ Рѕ С‚РѕРј, С‡С‚Рѕ РіРґРµ-С‚Рѕ РІ РџСѓСЃС‚РѕС€Рё РЅР°Р№РґРµРЅ РІРѕРµРЅРЅС‹Р№ СЃРєР»Р°Рґ. РќР° СЃР°РјРѕРј РґРµР»Рµ СЌС‚Рѕ - Р»РѕРІСѓС€РєР°, РІ РєРѕС‚РѕСЂРѕР№ РµРіРѕ РїРѕРґР¶РёРґР°РµС‚ СЃСѓРјР°СЃС€РµРґС€РёР№ СѓС‡РµРЅС‹Р№.
+// РџСЂРё Р·Р°С…РѕРґРµ РЅР° РІС‚РѕСЂСѓСЋ Р»РѕРєР°С†РёСЋ РїРµСЂСЃРѕРЅР°Р¶ РїРѕРїР°РґР°РµС‚ РЅР° С…РёСЂСѓСЂРіРёС‡РµСЃРєРёР№ СЃС‚РѕР», РіРґРµ РµРіРѕ РѕРїРµСЂРёСЂСѓСЋС‚ Рё РїРµСЂСЃРѕРЅР°Р¶ РїСЂРµРІСЂР°С‰Р°РµС‚СЃСЏ РІ Р°РЅРґСЂРѕРёРґР°.
 #include "_macros.fos"
 #include "_colors.fos"
 #include "utils_for_array.fos"
 
 
-#define STR_RADIO_MESSAGE     ( 70070 )   // Группа "Браво", ответьте. Группа "Браво", ответьте. Докладываю. Склад высокотехнологичного вооружения расконсервирован. Нам потребуются еще люди, чтобы забрать все. Также нам потребуется еще один грузовик. Повторяю наши координаты: Долина Смерти, зона.. *помехи* ...
+#define STR_RADIO_MESSAGE     ( 70070 )   // Р“СЂСѓРїРїР° "Р‘СЂР°РІРѕ", РѕС‚РІРµС‚СЊС‚Рµ. Р“СЂСѓРїРїР° "Р‘СЂР°РІРѕ", РѕС‚РІРµС‚СЊС‚Рµ. Р”РѕРєР»Р°РґС‹РІР°СЋ. РЎРєР»Р°Рґ РІС‹СЃРѕРєРѕС‚РµС…РЅРѕР»РѕРіРёС‡РЅРѕРіРѕ РІРѕРѕСЂСѓР¶РµРЅРёСЏ СЂР°СЃРєРѕРЅСЃРµСЂРІРёСЂРѕРІР°РЅ. РќР°Рј РїРѕС‚СЂРµР±СѓСЋС‚СЃСЏ РµС‰Рµ Р»СЋРґРё, С‡С‚РѕР±С‹ Р·Р°Р±СЂР°С‚СЊ РІСЃРµ. РўР°РєР¶Рµ РЅР°Рј РїРѕС‚СЂРµР±СѓРµС‚СЃСЏ РµС‰Рµ РѕРґРёРЅ РіСЂСѓР·РѕРІРёРє. РџРѕРІС‚РѕСЂСЏСЋ РЅР°С€Рё РєРѕРѕСЂРґРёРЅР°С‚С‹: Р”РѕР»РёРЅР° РЎРјРµСЂС‚Рё, Р·РѕРЅР°.. *РїРѕРјРµС…Рё* ...
 // debug log
 // #define DL #(s) (Log("android: " + s))
 #define DL                    # (s)
@@ -75,27 +75,27 @@ uint e_AndroidRadio( uint[] @ values )
             DL( "count radio messages:" + values[ 1 ] );
             Critter@ cr = GetCritter( item.CritId );
             GameVar@ seAndroid = GetLocalVar( LVAR_special_android, item.CritId );
-            if( valid( seAndroid ) && seAndroid.GetValue() < 2 && item.RadioChannel == values[ 3 ] ) // Про локацию пока не известно, радио на нужной волне
+            if( valid( seAndroid ) && seAndroid.GetValue() < 2 && item.RadioChannel == values[ 3 ] ) // РџСЂРѕ Р»РѕРєР°С†РёСЋ РїРѕРєР° РЅРµ РёР·РІРµСЃС‚РЅРѕ, СЂР°РґРёРѕ РЅР° РЅСѓР¶РЅРѕР№ РІРѕР»РЅРµ
                 seAndroid = 2;
             DL( "seAndroidValue: " + seAndroid.GetValue() );
-            if( values[ 1 ] < 5 )                                                                    // Максимум 5 повторов раз в 20 секунд на нужной радиоволне
+            if( values[ 1 ] < 5 )                                                                    // РњР°РєСЃРёРјСѓРј 5 РїРѕРІС‚РѕСЂРѕРІ СЂР°Р· РІ 20 СЃРµРєСѓРЅРґ РЅР° РЅСѓР¶РЅРѕР№ СЂР°РґРёРѕРІРѕР»РЅРµ
                 return __TimeMultiplier * 20;
         }
     }
     return 0;
 }
 
-// Локация с лабораторией
-#define ENTIRE_DOOR_GROUND    ( 17 )           // Номер гекса, на котором стоит дверь
-#define ENTIRE_CONTAINER      ( 25 )           // Номер гекса, на котором стоит ящик для вещей игрока
-#define PID_CONTAINER         ( 135 )          // Номер контейнера для вещей игрока
-#define ENTIRE_KNOCKOUT       ( 26 )           // Гекс, на котором будет лежать игрок после того, как попадет в лабораторию
-#define CTE_CHECK_KNOCKOUT    ( 128 )          // Номер события проверки, вышел ли игрок из нокаута.
-#define PID_GROUND_DOOR       ( 2421 )         // Номер прототипа двери, которая закрывается после того, как первый персонаж попался в лапы хирургу
-#define STR_LIFT_BROKEN       ( 70072 )        // Лифт не функционирует. Видимо, заблокирован откуда-то снизу.
-#define KEY_DOOR_ID           ( 16643 )        // Код ключа к двери
+// Р›РѕРєР°С†РёСЏ СЃ Р»Р°Р±РѕСЂР°С‚РѕСЂРёРµР№
+#define ENTIRE_DOOR_GROUND    ( 17 )           // РќРѕРјРµСЂ РіРµРєСЃР°, РЅР° РєРѕС‚РѕСЂРѕРј СЃС‚РѕРёС‚ РґРІРµСЂСЊ
+#define ENTIRE_CONTAINER      ( 25 )           // РќРѕРјРµСЂ РіРµРєСЃР°, РЅР° РєРѕС‚РѕСЂРѕРј СЃС‚РѕРёС‚ СЏС‰РёРє РґР»СЏ РІРµС‰РµР№ РёРіСЂРѕРєР°
+#define PID_CONTAINER         ( 135 )          // РќРѕРјРµСЂ РєРѕРЅС‚РµР№РЅРµСЂР° РґР»СЏ РІРµС‰РµР№ РёРіСЂРѕРєР°
+#define ENTIRE_KNOCKOUT       ( 26 )           // Р“РµРєСЃ, РЅР° РєРѕС‚РѕСЂРѕРј Р±СѓРґРµС‚ Р»РµР¶Р°С‚СЊ РёРіСЂРѕРє РїРѕСЃР»Рµ С‚РѕРіРѕ, РєР°Рє РїРѕРїР°РґРµС‚ РІ Р»Р°Р±РѕСЂР°С‚РѕСЂРёСЋ
+#define CTE_CHECK_KNOCKOUT    ( 128 )          // РќРѕРјРµСЂ СЃРѕР±С‹С‚РёСЏ РїСЂРѕРІРµСЂРєРё, РІС‹С€РµР» Р»Рё РёРіСЂРѕРє РёР· РЅРѕРєР°СѓС‚Р°.
+#define PID_GROUND_DOOR       ( 2421 )         // РќРѕРјРµСЂ РїСЂРѕС‚РѕС‚РёРїР° РґРІРµСЂРё, РєРѕС‚РѕСЂР°СЏ Р·Р°РєСЂС‹РІР°РµС‚СЃСЏ РїРѕСЃР»Рµ С‚РѕРіРѕ, РєР°Рє РїРµСЂРІС‹Р№ РїРµСЂСЃРѕРЅР°Р¶ РїРѕРїР°Р»СЃСЏ РІ Р»Р°РїС‹ С…РёСЂСѓСЂРіСѓ
+#define STR_LIFT_BROKEN       ( 70072 )        // Р›РёС„С‚ РЅРµ С„СѓРЅРєС†РёРѕРЅРёСЂСѓРµС‚. Р’РёРґРёРјРѕ, Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅ РѕС‚РєСѓРґР°-С‚Рѕ СЃРЅРёР·Сѓ.
+#define KEY_DOOR_ID           ( 16643 )        // РљРѕРґ РєР»СЋС‡Р° Рє РґРІРµСЂРё
 
-// Скрипт двери. Пока не вошел ни один игрок она и открывается и закрывается.
+// РЎРєСЂРёРїС‚ РґРІРµСЂРё. РџРѕРєР° РЅРµ РІРѕС€РµР» РЅРё РѕРґРёРЅ РёРіСЂРѕРє РѕРЅР° Рё РѕС‚РєСЂС‹РІР°РµС‚СЃСЏ Рё Р·Р°РєСЂС‹РІР°РµС‚СЃСЏ.
 void _GroundDoorInit( Item& item, bool firstTime )
 {
     item.SetEvent( ITEM_EVENT_SKILL, "_UseGroundDoor" );
@@ -126,7 +126,7 @@ void t_TransitPlayer( Critter& player, Scenery& trigger, bool entered, uint8 dir
     GameVar@  playerIn = GetLocalVar( LLVAR_se_android_player_in, loc.Id );
     if( valid( playerIn ) && playerIn == 0 )
     {
-        // Переносим игрока в подвал, кладем в нокаут
+        // РџРµСЂРµРЅРѕСЃРёРј РёРіСЂРѕРєР° РІ РїРѕРґРІР°Р», РєР»Р°РґРµРј РІ РЅРѕРєР°СѓС‚
         Map@     basement = loc.GetMapByIndex( 1 );
         GameVar@ playerId = GetLocalVar( LLVAR_se_android_player_id, loc.Id );
         uint16   x = 0;
@@ -139,9 +139,9 @@ void t_TransitPlayer( Critter& player, Scenery& trigger, bool entered, uint8 dir
             player.TransitToMap( basement.Id, x, y, 3 );
             FlushScreen( player, COLOR_BLACK, COLOR_BLACK, 1000 );
             playerId = player.Id;
-            player.AddTimeEvent( "cte_CheckPlayerKnockOut", __TimeMultiplier * 60 * 30, 0 );       // Подстраховка
+            player.AddTimeEvent( "cte_CheckPlayerKnockOut", __TimeMultiplier * 60 * 30, 0 );       // РџРѕРґСЃС‚СЂР°С…РѕРІРєР°
             player.ToKnockout( KNOCKOUT_ANIM2_DEFAULT( true ), 100000, player.HexX, player.HexY );
-            // Все вещи игрока перекладываем в разные ящики
+            // Р’СЃРµ РІРµС‰Рё РёРіСЂРѕРєР° РїРµСЂРµРєР»Р°РґС‹РІР°РµРј РІ СЂР°Р·РЅС‹Рµ СЏС‰РёРєРё
             Item@[] items;
             if( player.GetItems( -1, items ) > 0 )
             {
@@ -169,9 +169,9 @@ void t_TransitPlayer( Critter& player, Scenery& trigger, bool entered, uint8 dir
             }
             RunDoctorMonologue( basement );
         }
-        // Игрок внутри, больше никто туда не попадет
+        // РРіСЂРѕРє РІРЅСѓС‚СЂРё, Р±РѕР»СЊС€Рµ РЅРёРєС‚Рѕ С‚СѓРґР° РЅРµ РїРѕРїР°РґРµС‚
         playerIn = 1;
-        // Закрываем дверь
+        // Р—Р°РєСЂС‹РІР°РµРј РґРІРµСЂСЊ
         map.GetEntireCoords( ENTIRE_DOOR_GROUND, 0, x, y, dir );
         Item@ door = map.GetItem( x, y, PID_GROUND_DOOR );
         if( valid( door ) )
@@ -204,8 +204,8 @@ uint cte_CheckPlayerKnockOut( Critter& cr, int identifier, uint& rate )
     return 0;
 }
 
-// Внешний уровень
-#define STR_MAP_IN           ( 70071 )      // Похоже, вы наткнулись на тот самый "военный склад", о котором услышали по рации. Однако, этот небольшой бункер выглядит необычно для склада. Очень необычно.
+// Р’РЅРµС€РЅРёР№ СѓСЂРѕРІРµРЅСЊ
+#define STR_MAP_IN           ( 70071 )      // РџРѕС…РѕР¶Рµ, РІС‹ РЅР°С‚РєРЅСѓР»РёСЃСЊ РЅР° С‚РѕС‚ СЃР°РјС‹Р№ "РІРѕРµРЅРЅС‹Р№ СЃРєР»Р°Рґ", Рѕ РєРѕС‚РѕСЂРѕРј СѓСЃР»С‹С€Р°Р»Рё РїРѕ СЂР°С†РёРё. РћРґРЅР°РєРѕ, СЌС‚РѕС‚ РЅРµР±РѕР»СЊС€РѕР№ Р±СѓРЅРєРµСЂ РІС‹РіР»СЏРґРёС‚ РЅРµРѕР±С‹С‡РЅРѕ РґР»СЏ СЃРєР»Р°РґР°. РћС‡РµРЅСЊ РЅРµРѕР±С‹С‡РЅРѕ.
 void _GroundInit( Map& map, bool firstTime )
 {
     DL( "Groun map Init" );
@@ -217,7 +217,7 @@ void _GroundInCritter( Map& map, Critter& cr )
     cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, STR_MAP_IN );
 }
 
-// Монолог хирурга
+// РњРѕРЅРѕР»РѕРі С…РёСЂСѓСЂРіР°
 #define ROLE_DOCTOR          ( 17 )
 
 import void SetMonologue( Critter@ cr, uint firstStr, uint lastStr, uint nextMsg, uint nextDialog, uint8 sayType ) from "monologue";
@@ -265,11 +265,11 @@ void RunDoctorMonologue( Map& map )
     cr.StatBase[ ST_VAR1 ] = 1;
 }
 
-// Перенос в камеру
-#define ENTIRE_DOC_POS       ( 27 )    // dir = 0 Положение доктора после того, как игрок уже превращен в андроида
-#define ENTIRE_PLAYER_POS    ( 28 )    // dir = 3 Положение персонажа после превращения (в камере)
-#define ENTIRE_DOC_HOME      ( 29 )    // dir = 3 Домашняя позиция доктора после диалога
-#define STR_AWAKE            ( 70091 ) // Реплика при пробуждении
+// РџРµСЂРµРЅРѕСЃ РІ РєР°РјРµСЂСѓ
+#define ENTIRE_DOC_POS       ( 27 )    // dir = 0 РџРѕР»РѕР¶РµРЅРёРµ РґРѕРєС‚РѕСЂР° РїРѕСЃР»Рµ С‚РѕРіРѕ, РєР°Рє РёРіСЂРѕРє СѓР¶Рµ РїСЂРµРІСЂР°С‰РµРЅ РІ Р°РЅРґСЂРѕРёРґР°
+#define ENTIRE_PLAYER_POS    ( 28 )    // dir = 3 РџРѕР»РѕР¶РµРЅРёРµ РїРµСЂСЃРѕРЅР°Р¶Р° РїРѕСЃР»Рµ РїСЂРµРІСЂР°С‰РµРЅРёСЏ (РІ РєР°РјРµСЂРµ)
+#define ENTIRE_DOC_HOME      ( 29 )    // dir = 3 Р”РѕРјР°С€РЅСЏСЏ РїРѕР·РёС†РёСЏ РґРѕРєС‚РѕСЂР° РїРѕСЃР»Рµ РґРёР°Р»РѕРіР°
+#define STR_AWAKE            ( 70091 ) // Р РµРїР»РёРєР° РїСЂРё РїСЂРѕР±СѓР¶РґРµРЅРёРё
 void TransformPlayer( Map& map, Critter& player, Critter& doctor )
 {
     DL( "TRANSFORM" );
@@ -300,7 +300,7 @@ uint e_AwakePlayer( uint[] @ values )
     {
         player.StatBase[ ST_EXPERIENCE ] += 4000;
         player.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, STR_AWAKE );
-        player.ToDead( ANIM2_DEAD_BACK, null );       // TODO: убрать
+        player.ToDead( ANIM2_DEAD_BACK, null );       // TODO: СѓР±СЂР°С‚СЊ
         player.StatBase[ ST_CURRENT_AP ] = 0;
         player.ToLife();
         RunDialog( player, doctor, true );
@@ -322,9 +322,9 @@ void r_SendDoctorHome( Critter& player, Critter@ npc )
     }
 }
 
-// Взрывы на выходе из лаборатории
-#define ENTIRE_EXPLODE       ( 30 )    // Номера гексов, на которых будут взрывы
-#define STR_OUT              ( 70095 ) // Вам чудом удалось пройти мимо ловушек безумца. Но сейчас нужно делать ноги.
+// Р’Р·СЂС‹РІС‹ РЅР° РІС‹С…РѕРґРµ РёР· Р»Р°Р±РѕСЂР°С‚РѕСЂРёРё
+#define ENTIRE_EXPLODE       ( 30 )    // РќРѕРјРµСЂР° РіРµРєСЃРѕРІ, РЅР° РєРѕС‚РѕСЂС‹С… Р±СѓРґСѓС‚ РІР·СЂС‹РІС‹
+#define STR_OUT              ( 70095 ) // Р’Р°Рј С‡СѓРґРѕРј СѓРґР°Р»РѕСЃСЊ РїСЂРѕР№С‚Рё РјРёРјРѕ Р»РѕРІСѓС€РµРє Р±РµР·СѓРјС†Р°. РќРѕ СЃРµР№С‡Р°СЃ РЅСѓР¶РЅРѕ РґРµР»Р°С‚СЊ РЅРѕРіРё.
 #include "entire.fos"
 import void ExplodeEx( Map& map, uint16 hexX, uint16 hexY, uint16 effectPid, uint effectRadius, uint damage, uint damageType, uint damageRadius, uint ownerId ) from "explode";
 
@@ -376,11 +376,11 @@ uint e_DeleteMap( uint[] @ values )
     }
     return 0;
 }
-// Части тела в банках с биогелем
-#define STR_EMPTY            ( 70092 )   // Больше в этих коробках ничего нет.@@Эти ящики пусты.
-#define STR_OPEN_POT         ( 70096 )   // Строка при открытии банки
-#define STR_FOUND            ( 70093 )   // В одном из ящиков вы обнаружили странную стеклянную банку с формалином.
-#define STR_UNLUCK           ( 70094 )   // Вы не нашли ничего интересного в этих старых коробках.@@Удача вам не улыбнулось. Вы ничего не нашли в ящиках.
+// Р§Р°СЃС‚Рё С‚РµР»Р° РІ Р±Р°РЅРєР°С… СЃ Р±РёРѕРіРµР»РµРј
+#define STR_EMPTY            ( 70092 )   // Р‘РѕР»СЊС€Рµ РІ СЌС‚РёС… РєРѕСЂРѕР±РєР°С… РЅРёС‡РµРіРѕ РЅРµС‚.@@Р­С‚Рё СЏС‰РёРєРё РїСѓСЃС‚С‹.
+#define STR_OPEN_POT         ( 70096 )   // РЎС‚СЂРѕРєР° РїСЂРё РѕС‚РєСЂС‹С‚РёРё Р±Р°РЅРєРё
+#define STR_FOUND            ( 70093 )   // Р’ РѕРґРЅРѕРј РёР· СЏС‰РёРєРѕРІ РІС‹ РѕР±РЅР°СЂСѓР¶РёР»Рё СЃС‚СЂР°РЅРЅСѓСЋ СЃС‚РµРєР»СЏРЅРЅСѓСЋ Р±Р°РЅРєСѓ СЃ С„РѕСЂРјР°Р»РёРЅРѕРј.
+#define STR_UNLUCK           ( 70094 )   // Р’С‹ РЅРµ РЅР°С€Р»Рё РЅРёС‡РµРіРѕ РёРЅС‚РµСЂРµСЃРЅРѕРіРѕ РІ СЌС‚РёС… СЃС‚Р°СЂС‹С… РєРѕСЂРѕР±РєР°С….@@РЈРґР°С‡Р° РІР°Рј РЅРµ СѓР»С‹Р±РЅСѓР»РѕСЃСЊ. Р’С‹ РЅРёС‡РµРіРѕ РЅРµ РЅР°С€Р»Рё РІ СЏС‰РёРєР°С….
 void _PotInit( Item& item, bool firstTime )
 {
     GameVar@ num = GetLocalVar( LIVAR_se_android_item_num, item.Id );
@@ -451,8 +451,8 @@ bool s_Boxes( Critter& player, Scenery& scenery, int skill, Item@ itemUse, int c
         return false;
     Map@      map = player.GetMap();
     Location@ loc = map.GetLocation();
-    // Проверяем, что в этом контейнере еще не нашли ничего.
-    // Заодно запоминаем последнюю незаполненную переменную
+    // РџСЂРѕРІРµСЂСЏРµРј, С‡С‚Рѕ РІ СЌС‚РѕРј РєРѕРЅС‚РµР№РЅРµСЂРµ РµС‰Рµ РЅРµ РЅР°С€Р»Рё РЅРёС‡РµРіРѕ.
+    // Р—Р°РѕРґРЅРѕ Р·Р°РїРѕРјРёРЅР°РµРј РїРѕСЃР»РµРґРЅСЋСЋ РЅРµР·Р°РїРѕР»РЅРµРЅРЅСѓСЋ РїРµСЂРµРјРµРЅРЅСѓСЋ
     uint id = scenery.HexX * scenery.HexY;
     int  varNum = -1;
     for( int i = LLVAR_se_android_t_founded; i <= LLVAR_se_android_l_founded; i++ )
@@ -462,7 +462,7 @@ bool s_Boxes( Critter& player, Scenery& scenery, int skill, Item@ itemUse, int c
         {
             if( found == 0 && varNum < 0 )
                 varNum = i;
-            if( found == id || varNum == LLVAR_se_android_l_founded )           // Эти ящики уже обыскивали, либо найдены все предметы
+            if( found == id || varNum == LLVAR_se_android_l_founded )           // Р­С‚Рё СЏС‰РёРєРё СѓР¶Рµ РѕР±С‹СЃРєРёРІР°Р»Рё, Р»РёР±Рѕ РЅР°Р№РґРµРЅС‹ РІСЃРµ РїСЂРµРґРјРµС‚С‹
             {
                 player.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, STR_EMPTY );
                 return true;
@@ -470,7 +470,7 @@ bool s_Boxes( Critter& player, Scenery& scenery, int skill, Item@ itemUse, int c
         }
     }
     player.Wait( 1000 );
-    chance = chance - ( varNum - LLVAR_se_android_t_founded ) * 10; // Каждый последующий предмет найти сложнее
+    chance = chance - ( varNum - LLVAR_se_android_t_founded ) * 10; // РљР°Р¶РґС‹Р№ РїРѕСЃР»РµРґСѓСЋС‰РёР№ РїСЂРµРґРјРµС‚ РЅР°Р№С‚Рё СЃР»РѕР¶РЅРµРµ
     if( Random( 5, 95 ) > chance || Random( 1, 2 ) == 1 )
     {
         player.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, STR_UNLUCK );

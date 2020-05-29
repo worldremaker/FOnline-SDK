@@ -1,4 +1,4 @@
-// Ñêðèïòû ñîâåòíèêà Âåéñòèíà
+// Ð¡ÐºÑ€Ð¸Ð¿Ñ‚Ñ‹ ÑÐ¾Ð²ÐµÑ‚Ð½Ð¸ÐºÐ° Ð’ÐµÐ¹ÑÑ‚Ð¸Ð½Ð°
 // rifleman17
 
 
@@ -10,19 +10,19 @@
 import bool AddWalkPlane( Critter& npc, uint priority, int identifier, uint identifierExt, uint16 hexX, uint16 hexY, uint8 dir, bool run, uint cut ) from "npc_planes";
 import uint GetNearFullSecond( uint16 year, uint16 month, uint16 day, uint16 hour, uint16 minute, uint16 second ) from "time";
 import bool AddMiscPlane( Critter& npc, uint priority, uint waitSecond, string@ funcName ) from "npc_planes";
-#define PLANE_MOVE_TO_EXIT_GRID          ( 17 )                      // ïëàí: Âåéñòèí èäåò ê âûõîäó èç ëîêàöèè äëÿ ïîñëåäóþùåãî òåëåïîðòà.
-#define MAP_PID_NCR_COUNCIL              ( 43 )                      // ïðîòîòèï êàðòû ÍÊÐ - çäàíèå ïðàâèòåëüñòâà
-#define ENT_HEX_ID_COUNCIL_HOME          ( 17 )                      // íîìåð EN ãåêñà - èñõîäíàÿ ïîçèöèÿ â çäàíèè ïðàâèòåëüñòâà
-#define ENT_HEX_ID_COUNSIL_TRANSIT       ( 18 )                      // íîìåð EN ãåêñà - ïîçèöèÿ ïåðåä âûõîäîì èç ëîêàöèè  ïðàâèòåëüñòâà
-#define MAP_PID_RANCH                    ( 44 )                      // ïðîòîòèï êàðòû ÍÊÐ - Ðàí÷î âåéñòèíà
-#define ENT_HEX_ID_RANCH_HOME            ( 17 )                      // íîìåð EN ãåêñà - èñõîäíàÿ ïîçèöèÿ íà Ðàí÷î
-#define ENT_HEX_ID_RANCH_TRANSIT         ( 18 )                      // íîìåð EN ãåêñà - ïîçèöèÿ ïåðåä âûõîäîì èç Ðàí÷î
+#define PLANE_MOVE_TO_EXIT_GRID          ( 17 )                      // Ð¿Ð»Ð°Ð½: Ð’ÐµÐ¹ÑÑ‚Ð¸Ð½ Ð¸Ð´ÐµÑ‚ Ðº Ð²Ñ‹Ñ…Ð¾Ð´Ñƒ Ð¸Ð· Ð»Ð¾ÐºÐ°Ñ†Ð¸Ð¸ Ð´Ð»Ñ Ð¿Ð¾ÑÐ»ÐµÐ´ÑƒÑŽÑ‰ÐµÐ³Ð¾ Ñ‚ÐµÐ»ÐµÐ¿Ð¾Ñ€Ñ‚Ð°.
+#define MAP_PID_NCR_COUNCIL              ( 43 )                      // Ð¿Ñ€Ð¾Ñ‚Ð¾Ñ‚Ð¸Ð¿ ÐºÐ°Ñ€Ñ‚Ñ‹ ÐÐšÐ  - Ð·Ð´Ð°Ð½Ð¸Ðµ Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÐµÐ»ÑŒÑÑ‚Ð²Ð°
+#define ENT_HEX_ID_COUNCIL_HOME          ( 17 )                      // Ð½Ð¾Ð¼ÐµÑ€ EN Ð³ÐµÐºÑÐ° - Ð¸ÑÑ…Ð¾Ð´Ð½Ð°Ñ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ñ Ð² Ð·Ð´Ð°Ð½Ð¸Ð¸ Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÐµÐ»ÑŒÑÑ‚Ð²Ð°
+#define ENT_HEX_ID_COUNSIL_TRANSIT       ( 18 )                      // Ð½Ð¾Ð¼ÐµÑ€ EN Ð³ÐµÐºÑÐ° - Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ñ Ð¿ÐµÑ€ÐµÐ´ Ð²Ñ‹Ñ…Ð¾Ð´Ð¾Ð¼ Ð¸Ð· Ð»Ð¾ÐºÐ°Ñ†Ð¸Ð¸  Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÐµÐ»ÑŒÑÑ‚Ð²Ð°
+#define MAP_PID_RANCH                    ( 44 )                      // Ð¿Ñ€Ð¾Ñ‚Ð¾Ñ‚Ð¸Ð¿ ÐºÐ°Ñ€Ñ‚Ñ‹ ÐÐšÐ  - Ð Ð°Ð½Ñ‡Ð¾ Ð²ÐµÐ¹ÑÑ‚Ð¸Ð½Ð°
+#define ENT_HEX_ID_RANCH_HOME            ( 17 )                      // Ð½Ð¾Ð¼ÐµÑ€ EN Ð³ÐµÐºÑÐ° - Ð¸ÑÑ…Ð¾Ð´Ð½Ð°Ñ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ñ Ð½Ð° Ð Ð°Ð½Ñ‡Ð¾
+#define ENT_HEX_ID_RANCH_TRANSIT         ( 18 )                      // Ð½Ð¾Ð¼ÐµÑ€ EN Ð³ÐµÐºÑÐ° - Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ñ Ð¿ÐµÑ€ÐµÐ´ Ð²Ñ‹Ñ…Ð¾Ð´Ð¾Ð¼ Ð¸Ð· Ð Ð°Ð½Ñ‡Ð¾
 
-#define NPC_ROLE_WESTIN                  ( 19 )                      // ðîëü = âåéñòèí
+#define NPC_ROLE_WESTIN                  ( 19 )                      // Ñ€Ð¾Ð»ÑŒ = Ð²ÐµÐ¹ÑÑ‚Ð¸Ð½
 
 /*
-   {2930}{}{Òÿæåëûé äåíü...}
-   {2931}{}{Íó âîò, îïÿòü íóæíî êóäà-òî èäòè...}
+   {2930}{}{Ð¢ÑÐ¶ÐµÐ»Ñ‹Ð¹ Ð´ÐµÐ½ÑŒ...}
+   {2931}{}{ÐÑƒ Ð²Ð¾Ñ‚, Ð¾Ð¿ÑÑ‚ÑŒ Ð½ÑƒÐ¶Ð½Ð¾ ÐºÑƒÐ´Ð°-Ñ‚Ð¾ Ð¸Ð´Ñ‚Ð¸...}
  */
 
 #define STR_NUM_GO_HOME                  ( 2930 )
@@ -43,10 +43,10 @@ void _WestinInit( Critter& westin, bool firstTime )
     // ~settime 99 2246 11 3 20 50
     if( firstTime )
     {
-        // êàæäûå èãðîâûå ñóòêè Âåéñòèí óõîäèò ñ ðàáîòû äî ñâîåãî Ðàí÷î â 21:00
+        // ÐºÐ°Ð¶Ð´Ñ‹Ðµ Ð¸Ð³Ñ€Ð¾Ð²Ñ‹Ðµ ÑÑƒÑ‚ÐºÐ¸ Ð’ÐµÐ¹ÑÑ‚Ð¸Ð½ ÑƒÑ…Ð¾Ð´Ð¸Ñ‚ Ñ Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹ Ð´Ð¾ ÑÐ²Ð¾ÐµÐ³Ð¾ Ð Ð°Ð½Ñ‡Ð¾ Ð² 21:00
         westin.StatBase[ ST_VAR4 ] = CreateTimeEvent( GetNearFullSecond( 0, 0, 0, 21, 0, 0 ), "e_EveryEvening", westin.Id, true );
 
-        // êàæäûå èãðîâûå ñóòêè Âåéñòèí ïûòàåòñÿ äîéòè äî çäàíèÿ ïðàâèòåëüñòâà â 07:00
+        // ÐºÐ°Ð¶Ð´Ñ‹Ðµ Ð¸Ð³Ñ€Ð¾Ð²Ñ‹Ðµ ÑÑƒÑ‚ÐºÐ¸ Ð’ÐµÐ¹ÑÑ‚Ð¸Ð½ Ð¿Ñ‹Ñ‚Ð°ÐµÑ‚ÑÑ Ð´Ð¾Ð¹Ñ‚Ð¸ Ð´Ð¾ Ð·Ð´Ð°Ð½Ð¸Ñ Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÐµÐ»ÑŒÑÑ‚Ð²Ð° Ð² 07:00
         westin.StatBase[ ST_VAR5 ] = CreateTimeEvent( GetNearFullSecond( 0, 0, 0, 7, 0, 0 ), "e_EveryMorning", westin.Id, true );
     }
     westin.StatBase[ ST_NPC_ROLE ] = NPC_ROLE_WESTIN;
@@ -54,7 +54,7 @@ void _WestinInit( Critter& westin, bool firstTime )
 
 }
 
-// ïðè óäàëåíèè íïö óäàëÿþòñÿ îáðàáîò÷èêè âðåìåííûõ ñîáûòèé, ÷òîáû íå áûëî îøèáîê î null ptr
+// Ð¿Ñ€Ð¸ ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ð¸ Ð½Ð¿Ñ† ÑƒÐ´Ð°Ð»ÑÑŽÑ‚ÑÑ Ð¾Ð±Ñ€Ð°Ð±Ð¾Ñ‚Ñ‡Ð¸ÐºÐ¸ Ð²Ñ€ÐµÐ¼ÐµÐ½Ð½Ñ‹Ñ… ÑÐ¾Ð±Ñ‹Ñ‚Ð¸Ð¹, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð½Ðµ Ð±Ñ‹Ð»Ð¾ Ð¾ÑˆÐ¸Ð±Ð¾Ðº Ð¾ null ptr
 void _WestinFinish( Critter& westin, bool deleted )
 {
     // if (!valid(westin.GetMap())){Log("Bla... no map.." );}
@@ -63,15 +63,15 @@ void _WestinFinish( Critter& westin, bool deleted )
     {
         EraseTimeEvent( westin.StatBase[ ST_VAR4 ] );
         EraseTimeEvent( westin.StatBase[ ST_VAR5 ] );
-        // åñëè Âåéñòèí áûë íà êàðòå Ðàí÷î, åãî íóæíî òåëåïîðòèðîâàòü â êîíñóëüñòâî
+        // ÐµÑÐ»Ð¸ Ð’ÐµÐ¹ÑÑ‚Ð¸Ð½ Ð±Ñ‹Ð» Ð½Ð° ÐºÐ°Ñ€Ñ‚Ðµ Ð Ð°Ð½Ñ‡Ð¾, ÐµÐ³Ð¾ Ð½ÑƒÐ¶Ð½Ð¾ Ñ‚ÐµÐ»ÐµÐ¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð² ÐºÐ¾Ð½ÑÑƒÐ»ÑŒÑÑ‚Ð²Ð¾
     }
-    // Log("\n mapId: "+westin.GetMap().Id + "\n ïðîòî óäàëÿåìîé:"+ westin.GetMap().GetProtoId()+ "\n êóäà ïîéòè:"+ westin.MapPidTo);
+    // Log("\n mapId: "+westin.GetMap().Id + "\n Ð¿Ñ€Ð¾Ñ‚Ð¾ ÑƒÐ´Ð°Ð»ÑÐµÐ¼Ð¾Ð¹:"+ westin.GetMap().GetProtoId()+ "\n ÐºÑƒÐ´Ð° Ð¿Ð¾Ð¹Ñ‚Ð¸:"+ westin.MapPidTo);
 }
 
-// âå÷åðíåå ñîáûòèå
+// Ð²ÐµÑ‡ÐµÑ€Ð½ÐµÐµ ÑÐ¾Ð±Ñ‹Ñ‚Ð¸Ðµ
 uint e_EveryEvening( uint[] @ values )
 {
-    // Log("âå÷åðíÿÿ ïðîãóëêà âåéñòèíà");
+    // Log("Ð²ÐµÑ‡ÐµÑ€Ð½ÑÑ Ð¿Ñ€Ð¾Ð³ÑƒÐ»ÐºÐ° Ð²ÐµÐ¹ÑÑ‚Ð¸Ð½Ð°");
 
     Critter@ westin = GetCritter( values[ 0 ] );
     uint     time = GetNearFullSecond( 0, 0, 0, 21, 0, 0 ) - __FullSecond;
@@ -86,10 +86,10 @@ uint e_EveryEvening( uint[] @ values )
     }
 
     westin.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_TEXT, STR_NUM_GO_HOME );
-    // êóäà òåëåïîðòèðîâàòüñÿ
+    // ÐºÑƒÐ´Ð° Ñ‚ÐµÐ»ÐµÐ¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒÑÑ
     westin.MapPidTo = MAP_PID_RANCH;
     westin.HexNumTo = ENT_HEX_ID_RANCH_HOME;
-    // êîîðäèíàòû ãåêñà, äî êîòîðîãî äîëæåí äîéòè Âåéñòèí ïåðåä òåëåïîðòîì
+    // ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ñ‹ Ð³ÐµÐºÑÐ°, Ð´Ð¾ ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð³Ð¾ Ð´Ð¾Ð»Ð¶ÐµÐ½ Ð´Ð¾Ð¹Ñ‚Ð¸ Ð’ÐµÐ¹ÑÑ‚Ð¸Ð½ Ð¿ÐµÑ€ÐµÐ´ Ñ‚ÐµÐ»ÐµÐ¿Ð¾Ñ€Ñ‚Ð¾Ð¼
 
 
     if( westin.GetMap().GetProtoId() == MAP_PID_RANCH )
@@ -110,10 +110,10 @@ uint e_EveryEvening( uint[] @ values )
     return time;
 }
 
-// óòðåííåå ñîáûòèå
+// ÑƒÑ‚Ñ€ÐµÐ½Ð½ÐµÐµ ÑÐ¾Ð±Ñ‹Ñ‚Ð¸Ðµ
 uint e_EveryMorning( uint[] @ values )
 {
-    // Log("óòðåííÿÿ ïðîãóëêà âåéñòèíà");
+    // Log("ÑƒÑ‚Ñ€ÐµÐ½Ð½ÑÑ Ð¿Ñ€Ð¾Ð³ÑƒÐ»ÐºÐ° Ð²ÐµÐ¹ÑÑ‚Ð¸Ð½Ð°");
 
     Critter@ westin = GetCritter( values[ 0 ] );
     uint     time = GetNearFullSecond( 0, 0, 0, 7, 0, 0 ) - __FullSecond;
@@ -138,7 +138,7 @@ uint e_EveryMorning( uint[] @ values )
         return time;
     }
 
-    // êîîðäèíàòû ãåêñà, äî êîòîðîãî äîëæåí äîéòè Âåéñòèí ïåðåä òåëåïîðòîì
+    // ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ñ‹ Ð³ÐµÐºÑÐ°, Ð´Ð¾ ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð³Ð¾ Ð´Ð¾Ð»Ð¶ÐµÐ½ Ð´Ð¾Ð¹Ñ‚Ð¸ Ð’ÐµÐ¹ÑÑ‚Ð¸Ð½ Ð¿ÐµÑ€ÐµÐ´ Ñ‚ÐµÐ»ÐµÐ¿Ð¾Ñ€Ñ‚Ð¾Ð¼
     uint16 hx = westin.HexX;
     uint16 hy = westin.HexY;
     if( !GetNearEntire( westin.GetMap(), ENT_HEX_ID_RANCH_TRANSIT, hx, hy ) )
@@ -152,7 +152,7 @@ uint e_EveryMorning( uint[] @ values )
     return time;
 }
 
-// òåëåïîðòàöèÿ íà êàðòó ñ ïðîòîòèïîì, ñîõðàíåííûì â MapPidTo
+// Ñ‚ÐµÐ»ÐµÐ¿Ð¾Ñ€Ñ‚Ð°Ñ†Ð¸Ñ Ð½Ð° ÐºÐ°Ñ€Ñ‚Ñƒ Ñ Ð¿Ñ€Ð¾Ñ‚Ð¾Ñ‚Ð¸Ð¿Ð¾Ð¼, ÑÐ¾Ñ…Ñ€Ð°Ð½ÐµÐ½Ð½Ñ‹Ð¼ Ð² MapPidTo
 void plane_Transit( Critter& westin )
 {
     // Log(" try transit");
@@ -175,8 +175,8 @@ void plane_Transit( Critter& westin )
     {
         return;
     }
-    // ïðîâåðÿåì, ÷òî íà êàðòå íàçíà÷åíèÿ íåò óæå òàêîãî íïö
-    // åñëè åñòü, óäàëÿåì ýòîãî.
+    // Ð¿Ñ€Ð¾Ð²ÐµÑ€ÑÐµÐ¼, Ñ‡Ñ‚Ð¾ Ð½Ð° ÐºÐ°Ñ€Ñ‚Ðµ Ð½Ð°Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ñ Ð½ÐµÑ‚ ÑƒÐ¶Ðµ Ñ‚Ð°ÐºÐ¾Ð³Ð¾ Ð½Ð¿Ñ†
+    // ÐµÑÐ»Ð¸ ÐµÑÑ‚ÑŒ, ÑƒÐ´Ð°Ð»ÑÐµÐ¼ ÑÑ‚Ð¾Ð³Ð¾.
     uint westins = mapTo.GetNpcCount( NPC_ROLE_WESTIN, FIND_ALL );
     if( westins > 0 )
     {

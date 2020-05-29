@@ -23,7 +23,7 @@ _AddGuardInfo( CARAVAN_WADE_REDD_VC,  NPC_PID_Redd_Vc_black_guard, DIALOG_crvg_c
 _AddGuardInfo( CARAVAN_WADE_REDD_VC, NPC_PID_VaultCityPatrolFemale, DIALOG_crvg_common_female, "caravan@_DefaultGuardInit", AIPACKET_BOUNTY_HUNTER, BAG_SF_Caravan_VaultCityPatrolFemale, TEAM_QuestNpc, 10, 0, 0, 40, true );
 _AddGuardInfo( CARAVAN_WADE_REDD_VC, NPC_PID_Redd_Vc_female_guard, DIALOG_crvg_common_male, "caravan@_DefaultGuardInit", AIPACKET_BOUNTY_HUNTER, BAG_VaultCity_Military, TEAM_QuestNpc, 10, 0, 0, 75, false );
 _SetupCaravanCabs( CARAVAN_WADE_REDD_VC, Random( 2, 3 ) );
-// основной маршрут
+// РѕСЃРЅРѕРІРЅРѕР№ РјР°СЂС€СЂСѓС‚
 _AddLootToCaravanCabs( CARAVAN_WADE_REDD_VC, -1, PID_BOTTLE_CAPS, 200, 1000, 100, false );
 _AddLootToCaravanCabs( CARAVAN_WADE_REDD_VC, -1, PID_BOTTLE_CAPS, 100, 200, 35, false );
 _AddLootToCaravanCabs( CARAVAN_WADE_REDD_VC, -1, PID_BOTTLE_CAPS, 1000, 2000, 10, false );
@@ -35,7 +35,7 @@ _AddLootToCaravanCabs( CARAVAN_WADE_REDD_VC, 2, PID_FLARE, 1, 3, 100, false );
 _AddLootToCaravanCabs( CARAVAN_WADE_REDD_VC, 1, PID_FLARE, 1, 3, 100, false );
 _AddLootToCaravanCabs( CARAVAN_WADE_REDD_VC, -1, PID_MORNING_STAR_MINE, 10, 30, 50, false );
 _AddLootToCaravanCabs( CARAVAN_WADE_REDD_VC, -1, PID_KOKOWEEF_MINE_SCRIP, 1, 20, 50, false );
-// обратный маршрут
+// РѕР±СЂР°С‚РЅС‹Р№ РјР°СЂС€СЂСѓС‚
 _AddLootToCaravanCabs( CARAVAN_WADE_REDD_VC, -1, PID_BOTTLE_CAPS, 200, 400, 100, true );
 _AddLootToCaravanCabs( CARAVAN_WADE_REDD_VC, -1, PID_STIMPAK, 2, 5, 100, true );
 _AddLootToCaravanCabs( CARAVAN_WADE_REDD_VC, -1, PID_FIRST_AID_BOOK, 1, 2, 30, true );
@@ -63,17 +63,17 @@ _AddGuardInfo( CARAVAN_SAVINEL_REDD_NR, NPC_PID_MaleGunThug, DIALOG_crvg_common_
 _AddGuardInfo( CARAVAN_SAVINEL_REDD_NR, NPC_PID_MaleGunThug, DIALOG_crvg_common_male, "caravan@_DefaultGuardInit", AIPACKET_BOUNTY_HUNTER, BAG_Navarro_EnclavePatrol_Male2, TEAM_QuestNpc, 10, 0, 0, 80, false );
 _AddGuardInfo( CARAVAN_SAVINEL_REDD_NR, NPC_PID_FemaleGunThug, DIALOG_crvg_common_female, "caravan@_DefaultGuardInit", AIPACKET_BOUNTY_HUNTER, BAG_RDRC_BHCaravan_BigGunGuardFemale, TEAM_QuestNpc, 10, 0, 0, 65, false );
 _AddGuardInfo( CARAVAN_SAVINEL_REDD_NR, NPC_PID_AgileFemaleThug, DIALOG_crvg_common_female, "caravan@_DefaultGuardInit", AIPACKET_BOUNTY_HUNTER, BAG_SF_Band1_MercenearyFemale2, TEAM_QuestNpc, 10, 0, 0, 35, false );
-// Бомбермен
+// Р‘РѕРјР±РµСЂРјРµРЅ
 _AddGuardInfo( CARAVAN_SAVINEL_REDD_NR,  NPC_PID_ToughMaleThug, DIALOG_crvg_bomberman, "caravan@_BomberInit", AIPACKET_SPORE_PLANT, BAG_Empty, TEAM_QuestNpc, 12, 1, 3, 5, true );
-// Анаферон
+// РђРЅР°С„РµСЂРѕРЅ
 _AddGuardInfo( CARAVAN_SAVINEL_REDD_NR,  NPC_PID_FemaleHunter, DIALOG_crvg_anaferon, "caravan@_AnaferonInit", AIPACKET_PARTY_VIC_DEFENSIVE, BAG_Empty, TEAM_QuestNpc, 8, 2, 0, 5, true );
-// Находчивый Василий
+// РќР°С…РѕРґС‡РёРІС‹Р№ Р’Р°СЃРёР»РёР№
 _AddGuardInfo( CARAVAN_SAVINEL_REDD_NR,  NPC_PID_ToughMaleThug, DIALOG_crvg_vasiliy, "caravan@_VasyaInit", AIPACKET_BOUNTY_HUNTER, BAG_Empty, TEAM_QuestNpc, 8, 3, 1, 5, true );
-// Киллелпролол
+// РљРёР»Р»РµР»РїСЂРѕР»РѕР»
 _AddGuardInfo( CARAVAN_SAVINEL_REDD_NR,  NPC_PID_NCRRangerMale, DIALOG_crvg_killerlolpro, "caravan@_KillerInit", AIPACKET_BOUNTY_HUNTER, BAG_Empty, TEAM_QuestNpc, 30, 1, 2, 5, true );
 
 _SetupCaravanCabs( CARAVAN_SAVINEL_REDD_NR, Random( 1, 2 ) );
-// основной маршрут
+// РѕСЃРЅРѕРІРЅРѕР№ РјР°СЂС€СЂСѓС‚
 _AddLootToCaravanCabs( CARAVAN_SAVINEL_REDD_NR, -1, PID_BOTTLE_CAPS, 200, 1000, 100, false );
 _AddLootToCaravanCabs( CARAVAN_SAVINEL_REDD_NR, -1, PID_BOTTLE_CAPS, 100, 200, 35, false );
 _AddLootToCaravanCabs( CARAVAN_SAVINEL_REDD_NR, -1, PID_BOTTLE_CAPS, 1000, 2000, 10, false );
@@ -83,7 +83,7 @@ _AddLootToCaravanCabs( CARAVAN_SAVINEL_REDD_NR, -1, PID_GOLD_NUGGET, 4, 7, 50, f
 _AddLootToCaravanCabs( CARAVAN_SAVINEL_REDD_NR, 0, PID_FLARE, 5, 7, 100, false );
 _AddLootToCaravanCabs( CARAVAN_SAVINEL_REDD_NR, -1, PID_MORNING_STAR_MINE, 10, 30, 50, false );
 _AddLootToCaravanCabs( CARAVAN_SAVINEL_REDD_NR, -1, PID_KOKOWEEF_MINE_SCRIP, 1, 20, 50, false );
-// обратный маршрут
+// РѕР±СЂР°С‚РЅС‹Р№ РјР°СЂС€СЂСѓС‚
 _AddLootToCaravanCabs( CARAVAN_SAVINEL_REDD_NR, -1, PID_BOTTLE_CAPS, 200, 1000, 100, true );
 _AddLootToCaravanCabs( CARAVAN_SAVINEL_REDD_NR, -1, PID_MENTATS, 1, 3, 35, true );
 _AddLootToCaravanCabs( CARAVAN_SAVINEL_REDD_NR, -1, PID_PSYCHO, 3, 4, 35, true );
@@ -113,7 +113,7 @@ _AddGuardInfo( CARAVAN_STANWELL_REDD_NCR, NPC_PID_VaultCityPatrolFemale, DIALOG_
 _AddGuardInfo( CARAVAN_STANWELL_REDD_NCR,  NPC_PID_VaultCityPatrolMale, DIALOG_crvg_common_male, "caravan@_DefaultGuardInitUnlimAmmo", AIPACKET_BOUNTY_HUNTER, BAG_RDRC_BHCaravan_BigGunGuardMale, TEAM_QuestNpc, 18, 0, 0, 25, false );
 
 _SetupCaravanCabs( CARAVAN_STANWELL_REDD_NCR, Random( 1, 2 ) );
-// основной маршрут
+// РѕСЃРЅРѕРІРЅРѕР№ РјР°СЂС€СЂСѓС‚
 _AddLootToCaravanCabs( CARAVAN_STANWELL_REDD_NCR, -1, PID_BOTTLE_CAPS, 200, 1000, 100, false );
 _AddLootToCaravanCabs( CARAVAN_STANWELL_REDD_NCR, -1, PID_BOTTLE_CAPS, 100, 200, 35, false );
 _AddLootToCaravanCabs( CARAVAN_STANWELL_REDD_NCR, -1, PID_BOTTLE_CAPS, 1000, 2000, 10, false );
@@ -123,7 +123,7 @@ _AddLootToCaravanCabs( CARAVAN_STANWELL_REDD_NCR, -1, PID_GOLD_NUGGET, 4, 7, 50,
 _AddLootToCaravanCabs( CARAVAN_STANWELL_REDD_NCR, 0, PID_FLARE, 5, 7, 100, false );
 _AddLootToCaravanCabs( CARAVAN_STANWELL_REDD_NCR, -1, PID_MORNING_STAR_MINE, 10, 30, 50, false );
 _AddLootToCaravanCabs( CARAVAN_STANWELL_REDD_NCR, -1, PID_KOKOWEEF_MINE_SCRIP, 1, 20, 50, false );
-// обратный маршрут
+// РѕР±СЂР°С‚РЅС‹Р№ РјР°СЂС€СЂСѓС‚
 _AddLootToCaravanCabs( CARAVAN_STANWELL_REDD_NCR, -1, PID_BOTTLE_CAPS, 2200, 3000, 100, true );
 _AddLootToCaravanCabs( CARAVAN_STANWELL_REDD_NCR, -1, PID_BRAHMIN_SKIN, 10, 15, 100, true );
 _AddLootToCaravanCabs( CARAVAN_STANWELL_REDD_NCR, -1, PID_BRAHMIN_SKIN, 5, 7, 80, true );
@@ -154,27 +154,27 @@ _AddRoutePoint( CARAVAN_HAL_NCR_REDD, 675, 525 );      // redding
 _AddGuardInfo( CARAVAN_HAL_NCR_REDD,  NPC_PID_VaultCityPatrolMale, DIALOG_crvg_common_male, "caravan@_DefaultGuardInitUnlimAmmo", AIPACKET_BOUNTY_HUNTER, BAG_SF_Caravan_VaultCityPatrolMale, TEAM_QuestNpc, 10, 0, 0, 100, false );
 _AddGuardInfo( CARAVAN_HAL_NCR_REDD, NPC_PID_VaultCityPatrolFemale, DIALOG_crvg_common_female, "caravan@_DefaultGuardInit", AIPACKET_BOUNTY_HUNTER, BAG_SF_Caravan_VaultCityPatrolFemale, TEAM_QuestNpc, 10, 0, 0, 80, false );
 _AddGuardInfo( CARAVAN_HAL_NCR_REDD,  NPC_PID_VaultCityPatrolMale, DIALOG_crvg_common_male, "caravan@_DefaultGuardInit", AIPACKET_BOUNTY_HUNTER, BAG_RDRC_BHCaravan_BigGunGuardMale, TEAM_QuestNpc, 10, 0, 0, 80, false );
-// брамины/ 15 штук
+// Р±СЂР°РјРёРЅС‹/ 15 С€С‚СѓРє
 for( uint i = 0; i < 15; i++ )
 {
     _AddFollowerInfo( CARAVAN_HAL_NCR_REDD, NPC_PID_Brahmin3, 0, TEAM_QuestNpc, BAG_Empty );
 }
-// специальные охранники, можно копировать в любой караван, только поставить правильный код. У таких охранников обязательно указывать isUnique = true
-// Отец Петреску
+// СЃРїРµС†РёР°Р»СЊРЅС‹Рµ РѕС…СЂР°РЅРЅРёРєРё, РјРѕР¶РЅРѕ РєРѕРїРёСЂРѕРІР°С‚СЊ РІ Р»СЋР±РѕР№ РєР°СЂР°РІР°РЅ, С‚РѕР»СЊРєРѕ РїРѕСЃС‚Р°РІРёС‚СЊ РїСЂР°РІРёР»СЊРЅС‹Р№ РєРѕРґ. РЈ С‚Р°РєРёС… РѕС…СЂР°РЅРЅРёРєРѕРІ РѕР±СЏР·Р°С‚РµР»СЊРЅРѕ СѓРєР°Р·С‹РІР°С‚СЊ isUnique = true
+// РћС‚РµС† РџРµС‚СЂРµСЃРєСѓ
 _AddGuardInfo( CARAVAN_HAL_NCR_REDD,  NPC_PID_ElronologistMale, DIALOG_crvg_petresku, "caravan@_PetreskuInit", AIPACKET_PARTY_SULIK_BERSERK, BAG_Empty, TEAM_QuestNpc, 20, 2, 0, 25, true );
 // Mazzy
 _AddGuardInfo( CARAVAN_HAL_NCR_REDD,  NPC_PID_Nightkin, DIALOG_crvg_mazzy, "caravan@_MazzyInit", AIPACKET_PARTY_LENNY_BERSERK, BAG_Empty, TEAM_QuestNpc, 9, 3, 0, 15, true );
-// Бомбермен
+// Р‘РѕРјР±РµСЂРјРµРЅ
 _AddGuardInfo( CARAVAN_HAL_NCR_REDD,  NPC_PID_ToughMaleThug, DIALOG_crvg_bomberman, "caravan@_BomberInit", AIPACKET_SPORE_PLANT, BAG_Empty, TEAM_QuestNpc, 12, 1, 3, 15, true );
-// Анаферон
+// РђРЅР°С„РµСЂРѕРЅ
 _AddGuardInfo( CARAVAN_HAL_NCR_REDD,  NPC_PID_FemaleHunter, DIALOG_crvg_anaferon, "caravan@_AnaferonInit", AIPACKET_PARTY_VIC_DEFENSIVE, BAG_Empty, TEAM_QuestNpc, 8, 2, 0, 15, true );
-// Находчивый Василий
+// РќР°С…РѕРґС‡РёРІС‹Р№ Р’Р°СЃРёР»РёР№
 _AddGuardInfo( CARAVAN_HAL_NCR_REDD,  NPC_PID_ToughMaleThug, DIALOG_crvg_vasiliy, "caravan@_VasyaInit", AIPACKET_BOUNTY_HUNTER, BAG_Empty, TEAM_QuestNpc, 8, 3, 1, 15, true );
-// Киллелпролол
+// РљРёР»Р»РµР»РїСЂРѕР»РѕР»
 _AddGuardInfo( CARAVAN_HAL_NCR_REDD,  NPC_PID_NCRRangerMale, DIALOG_crvg_killerlolpro, "caravan@_KillerInit", AIPACKET_BOUNTY_HUNTER, BAG_Empty, TEAM_QuestNpc, 30, 1, 2, 15, true );
-// Зомби
+// Р—РѕРјР±Рё
 _AddGuardInfo( CARAVAN_HAL_NCR_REDD,  NPC_PID_ToughGhoul, DIALOG_crvg_zombie, "caravan@_ZombieInit", AIPACKET_PARTY_SULIK_CUSTOM, BAG_Empty, TEAM_QuestNpc, 15, 4, 0, 15, true );
-// Рэт
+// Р СЌС‚
 _AddGuardInfo( CARAVAN_HAL_NCR_REDD,  NPC_PID_ToughFemaleThug, DIALOG_crvg_rat, "caravan@_RatInit", AIPACKET_PARTY_MACRAE_AGGRESSIVE, BAG_Empty, TEAM_QuestNpc, 12, 1, 0, 22, true );
 _SheduleCaravan( CARAVAN_HAL_NCR_REDD, 0, 10, 0, 14 );
 

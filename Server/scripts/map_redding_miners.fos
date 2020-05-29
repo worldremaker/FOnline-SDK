@@ -2,14 +2,14 @@
 #include "_teams.fos"
 
 import void _SetupCaravanLeader( uint idCaravan, Critter& leader ) from "caravan";
-/************************************** Проводник караванов Савинелли ****************************************************/
+/************************************** РџСЂРѕРІРѕРґРЅРёРє РєР°СЂР°РІР°РЅРѕРІ РЎР°РІРёРЅРµР»Р»Рё ****************************************************/
 void _SavinelInit( Critter& cr, bool firstTime )
 {
     cr.StatBase[ ST_VAR0 ] = 2;
     _SetupCaravanLeader( 2, cr );
 }
 
-/************************************** Проводник караванов Стенвелл *****************************************************/
+/************************************** РџСЂРѕРІРѕРґРЅРёРє РєР°СЂР°РІР°РЅРѕРІ РЎС‚РµРЅРІРµР»Р» *****************************************************/
 void _StanwellInit( Critter& cr, bool firstTime )
 {
     cr.StatBase[ ST_VAR0 ] = 3;
@@ -17,14 +17,14 @@ void _StanwellInit( Critter& cr, bool firstTime )
     _SetupCaravanLeader( 3, cr );
 }
 
-/*************************************** Проводник караванов Бен Вейд ****************************************************/
+/*************************************** РџСЂРѕРІРѕРґРЅРёРє РєР°СЂР°РІР°РЅРѕРІ Р‘РµРЅ Р’РµР№Рґ ****************************************************/
 void _WadeInit( Critter& cr, bool firstTime )
 {
     cr.StatBase[ ST_VAR0 ] = 1;
     _SetupCaravanLeader( 1, cr );
 }
 
-/**************************** Экстренное возвращение каравана Стенвелла **************************************************/
+/**************************** Р­РєСЃС‚СЂРµРЅРЅРѕРµ РІРѕР·РІСЂР°С‰РµРЅРёРµ РєР°СЂР°РІР°РЅР° РЎС‚РµРЅРІРµР»Р»Р° **************************************************/
 import bool d_IsCaravanStatus( Critter& player, Critter@ npc, int status ) from "caravan";
 import void PrepareCaravan( uint CaravanId ) from "caravan";
 import void StartCaravan( uint CaravanId ) from "caravan";
@@ -54,7 +54,7 @@ void DL( string s )
     // Log(s);
 }
 
-#define SCRIPTNAME                     "map_redding_miners"      // имя скрипта для patrol_h
+#define SCRIPTNAME                     "map_redding_miners"      // РёРјСЏ СЃРєСЂРёРїС‚Р° РґР»СЏ patrol_h
 
 #include "patrol_h.fos"
 #include "_ai.fos"

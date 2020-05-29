@@ -1,18 +1,18 @@
-// Author: Тринитротолуол
+// Author: РўСЂРёРЅРёС‚СЂРѕС‚РѕР»СѓРѕР»
 
-// Пасти браминов.
-// Циклический, одиночный.
-// Примитивный квест. Стоять на пастбище указанное кол-во времени. С некоей долей вероятности на
-// браминов будут нападать волки, кротокрыссы и прочая живность. Необходимо защитить браминов.
-// Выдает Торр.
+// РџР°СЃС‚Рё Р±СЂР°РјРёРЅРѕРІ.
+// Р¦РёРєР»РёС‡РµСЃРєРёР№, РѕРґРёРЅРѕС‡РЅС‹Р№.
+// РџСЂРёРјРёС‚РёРІРЅС‹Р№ РєРІРµСЃС‚. РЎС‚РѕСЏС‚СЊ РЅР° РїР°СЃС‚Р±РёС‰Рµ СѓРєР°Р·Р°РЅРЅРѕРµ РєРѕР»-РІРѕ РІСЂРµРјРµРЅРё. РЎ РЅРµРєРѕРµР№ РґРѕР»РµР№ РІРµСЂРѕСЏС‚РЅРѕСЃС‚Рё РЅР°
+// Р±СЂР°РјРёРЅРѕРІ Р±СѓРґСѓС‚ РЅР°РїР°РґР°С‚СЊ РІРѕР»РєРё, РєСЂРѕС‚РѕРєСЂС‹СЃСЃС‹ Рё РїСЂРѕС‡Р°СЏ Р¶РёРІРЅРѕСЃС‚СЊ. РќРµРѕР±С…РѕРґРёРјРѕ Р·Р°С‰РёС‚РёС‚СЊ Р±СЂР°РјРёРЅРѕРІ.
+// Р’С‹РґР°РµС‚ РўРѕСЂСЂ.
 
-// Количество и уровень мобов зависит от уровня игрока.
-// Если квест взят, то атака на браминов начинается во время, которое задано в скрипте.
-// И будет происходить вне зависимости от того пришел игрок на зашиту или нет.
-// Квест выдается в заданный интервал времени.
-// Мобы создаются не все сразу, а порциями, с интервалом в 1 минуту. Количество за один раз зависит от
-// кол-ва ентаеров. После окончания квеста мобы убегают с карты.
-// Скрипт полностью адаптирован к рестартам.
+// РљРѕР»РёС‡РµСЃС‚РІРѕ Рё СѓСЂРѕРІРµРЅСЊ РјРѕР±РѕРІ Р·Р°РІРёСЃРёС‚ РѕС‚ СѓСЂРѕРІРЅСЏ РёРіСЂРѕРєР°.
+// Р•СЃР»Рё РєРІРµСЃС‚ РІР·СЏС‚, С‚Рѕ Р°С‚Р°РєР° РЅР° Р±СЂР°РјРёРЅРѕРІ РЅР°С‡РёРЅР°РµС‚СЃСЏ РІРѕ РІСЂРµРјСЏ, РєРѕС‚РѕСЂРѕРµ Р·Р°РґР°РЅРѕ РІ СЃРєСЂРёРїС‚Рµ.
+// Р Р±СѓРґРµС‚ РїСЂРѕРёСЃС…РѕРґРёС‚СЊ РІРЅРµ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ С‚РѕРіРѕ РїСЂРёС€РµР» РёРіСЂРѕРє РЅР° Р·Р°С€РёС‚Сѓ РёР»Рё РЅРµС‚.
+// РљРІРµСЃС‚ РІС‹РґР°РµС‚СЃСЏ РІ Р·Р°РґР°РЅРЅС‹Р№ РёРЅС‚РµСЂРІР°Р» РІСЂРµРјРµРЅРё.
+// РњРѕР±С‹ СЃРѕР·РґР°СЋС‚СЃСЏ РЅРµ РІСЃРµ СЃСЂР°Р·Сѓ, Р° РїРѕСЂС†РёСЏРјРё, СЃ РёРЅС‚РµСЂРІР°Р»РѕРј РІ 1 РјРёРЅСѓС‚Сѓ. РљРѕР»РёС‡РµСЃС‚РІРѕ Р·Р° РѕРґРёРЅ СЂР°Р· Р·Р°РІРёСЃРёС‚ РѕС‚
+// РєРѕР»-РІР° РµРЅС‚Р°РµСЂРѕРІ. РџРѕСЃР»Рµ РѕРєРѕРЅС‡Р°РЅРёСЏ РєРІРµСЃС‚Р° РјРѕР±С‹ СѓР±РµРіР°СЋС‚ СЃ РєР°СЂС‚С‹.
+// РЎРєСЂРёРїС‚ РїРѕР»РЅРѕСЃС‚СЊСЋ Р°РґР°РїС‚РёСЂРѕРІР°РЅ Рє СЂРµСЃС‚Р°СЂС‚Р°Рј.
 
 import bool AddAttackPlane( Critter& npc, uint priority, Critter& target ) from "npc_planes";
 import bool AddWalkPlane( Critter& npc, uint priority, uint16 hexX, uint16 hexY, uint8 dir, bool run, uint cut ) from "npc_planes";
@@ -26,11 +26,11 @@ import uint GetNearFullSecond( uint16 year, uint16 month, uint16 day, uint16 hou
 
 #include "map_klamath_h.fos"
 
-// Время (в часах) начала/конца атак. Нумерация часов от 1 до 24 (24 часа == 0 часов).
+// Р’СЂРµРјСЏ (РІ С‡Р°СЃР°С…) РЅР°С‡Р°Р»Р°/РєРѕРЅС†Р° Р°С‚Р°Рє. РќСѓРјРµСЂР°С†РёСЏ С‡Р°СЃРѕРІ РѕС‚ 1 РґРѕ 24 (24 С‡Р°СЃР° == 0 С‡Р°СЃРѕРІ).
 #define QUEST_TIME_START            ( 24 )
 #define QUEST_TIME_END              ( 5 )
 
-// Время выдачи квеста. Нумерация часов от 1 до 24 (24 часа == 0 часов).
+// Р’СЂРµРјСЏ РІС‹РґР°С‡Рё РєРІРµСЃС‚Р°. РќСѓРјРµСЂР°С†РёСЏ С‡Р°СЃРѕРІ РѕС‚ 1 РґРѕ 24 (24 С‡Р°СЃР° == 0 С‡Р°СЃРѕРІ).
 #define ISSUANCE_TIME_START         ( 8 )
 #define ISSUANCE_TIME_END           ( 22 )
 
@@ -38,27 +38,27 @@ import uint GetNearFullSecond( uint16 year, uint16 month, uint16 day, uint16 hou
 
 #define ENTIRE_GROUPS               { 10, 11, 12, 13 }
 
-#define COW_COUNT                   ( 6 )  // количество браминов
-#define MAX_MOBS_COUNT              ( 64 ) // максимум живых мобов на карте
+#define COW_COUNT                   ( 6 )  // РєРѕР»РёС‡РµСЃС‚РІРѕ Р±СЂР°РјРёРЅРѕРІ
+#define MAX_MOBS_COUNT              ( 64 ) // РјР°РєСЃРёРјСѓРј Р¶РёРІС‹С… РјРѕР±РѕРІ РЅР° РєР°СЂС‚Рµ
 
 #define FINISH_SUCCESS_TIME_OUT     ( 0 )
 #define FINISH_FAIL_ALL_COW_DEAD    ( 1 )
 
 #define ANY_DATA_NAME               ( "KlamCowboy" )
 
-#define DEF_PLAYER_LEVEL            ( 5 )      // уровень по умолчанию
+#define DEF_PLAYER_LEVEL            ( 5 )      // СѓСЂРѕРІРµРЅСЊ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 
 #define MSG_DOGS                    { 2500, 2501, 2502, 2503, 2504, 2505, 2506, 2507 }
 
-// Для удобства ребалансировки
-uint GetTimeSpawn() { return Random( 30, 40 ) * 60; }                  // Время между атаками (это время и еще +10)
+// Р”Р»СЏ СѓРґРѕР±СЃС‚РІР° СЂРµР±Р°Р»Р°РЅСЃРёСЂРѕРІРєРё
+uint GetTimeSpawn() { return Random( 30, 40 ) * 60; }                  // Р’СЂРµРјСЏ РјРµР¶РґСѓ Р°С‚Р°РєР°РјРё (СЌС‚Рѕ РІСЂРµРјСЏ Рё РµС‰Рµ +10)
 uint GetMobLevel( uint playerLevel )
 {
     playerLevel *= 0.5;
     return CLAMP( playerLevel, 2, 30 );
-}                                                                    // Уровень мобов
-uint GetMobCount( uint playerLevel ) { return playerLevel / 3 + 3; } // Количество мобов за одну атаку
-uint GetExp( uint cowDead )                                          // Опыта за выполнение
+}                                                                    // РЈСЂРѕРІРµРЅСЊ РјРѕР±РѕРІ
+uint GetMobCount( uint playerLevel ) { return playerLevel / 3 + 3; } // РљРѕР»РёС‡РµСЃС‚РІРѕ РјРѕР±РѕРІ Р·Р° РѕРґРЅСѓ Р°С‚Р°РєСѓ
+uint GetExp( uint cowDead )                                          // РћРїС‹С‚Р° Р·Р° РІС‹РїРѕР»РЅРµРЅРёРµ
 {
     uint bonus = 0;
     if( cowDead == 0 )
@@ -66,14 +66,14 @@ uint GetExp( uint cowDead )                                          // Опыта за
     return uint( 500 * ( 1 - double(cowDead) / double(COW_COUNT) ) ) + bonus;
 }
 
-// В случае рестарта значения восcтанавливаются
-uint  MobsCount;     // Общее количество живых мобов на карте
-uint8 CowsDeadCount; // Количество умерших браминов
+// Р’ СЃР»СѓС‡Р°Рµ СЂРµСЃС‚Р°СЂС‚Р° Р·РЅР°С‡РµРЅРёСЏ РІРѕСЃcС‚Р°РЅР°РІР»РёРІР°СЋС‚СЃСЏ
+uint  MobsCount;     // РћР±С‰РµРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р¶РёРІС‹С… РјРѕР±РѕРІ РЅР° РєР°СЂС‚Рµ
+uint8 CowsDeadCount; // РљРѕР»РёС‡РµСЃС‚РІРѕ СѓРјРµСЂС€РёС… Р±СЂР°РјРёРЅРѕРІ
 
-// Номер события, которое завершает квест. Потеря значения в случае рестарта не критично.
+// РќРѕРјРµСЂ СЃРѕР±С‹С‚РёСЏ, РєРѕС‚РѕСЂРѕРµ Р·Р°РІРµСЂС€Р°РµС‚ РєРІРµСЃС‚. РџРѕС‚РµСЂСЏ Р·РЅР°С‡РµРЅРёСЏ РІ СЃР»СѓС‡Р°Рµ СЂРµСЃС‚Р°СЂС‚Р° РЅРµ РєСЂРёС‚РёС‡РЅРѕ.
 uint FinishEventNum;
 
-// ------------------------- Скриптовые функции --------------------------------
+// ------------------------- РЎРєСЂРёРїС‚РѕРІС‹Рµ С„СѓРЅРєС†РёРё --------------------------------
 void InitCowboy( Map& map, bool firstTime )
 {
     CreateTimeEvent( GetNearFullSecond( 0, 0, 0, QUEST_TIME_START, 0, 0 ), "e_StartAtack", map.Id, false );
@@ -106,9 +106,9 @@ void InitCowboy( Map& map, bool firstTime )
     MobsCount = Mobs.length();
 }
 
-// ------------------ Обработчики игровых событий -------------------------------
-// Каждые 24 часа запускает процесс атаки на браминов. Если квест никем не взят, то атаки не будет.
-// После рестарта восстанавливается в initCowboy.
+// ------------------ РћР±СЂР°Р±РѕС‚С‡РёРєРё РёРіСЂРѕРІС‹С… СЃРѕР±С‹С‚РёР№ -------------------------------
+// РљР°Р¶РґС‹Рµ 24 С‡Р°СЃР° Р·Р°РїСѓСЃРєР°РµС‚ РїСЂРѕС†РµСЃСЃ Р°С‚Р°РєРё РЅР° Р±СЂР°РјРёРЅРѕРІ. Р•СЃР»Рё РєРІРµСЃС‚ РЅРёРєРµРј РЅРµ РІР·СЏС‚, С‚Рѕ Р°С‚Р°РєРё РЅРµ Р±СѓРґРµС‚.
+// РџРѕСЃР»Рµ СЂРµСЃС‚Р°СЂС‚Р° РІРѕСЃСЃС‚Р°РЅР°РІР»РёРІР°РµС‚СЃСЏ РІ initCowboy.
 uint e_StartAtack( uint[] @ values )
 {
     if( GetQuestGlobalState() <= 0 )
@@ -121,7 +121,7 @@ uint e_StartAtack( uint[] @ values )
         return 0;
     }
 
-    // К началу квеста воскрешаем мертвых браминов.
+    // Рљ РЅР°С‡Р°Р»Сѓ РєРІРµСЃС‚Р° РІРѕСЃРєСЂРµС€Р°РµРј РјРµСЂС‚РІС‹С… Р±СЂР°РјРёРЅРѕРІ.
     CowsDeadCount = 0;
     Critter@[] Cows;
     GetNpc( map, Cows, ROLE_COWS, FIND_DEAD );
@@ -140,8 +140,8 @@ uint e_StartAtack( uint[] @ values )
     return GetNearFullSecond( 0, 0, 0, QUEST_TIME_START, 0, 0 ) - __FullSecond;
 }
 
-// Отвечает за начало спавна мобов
-// Сохраняется в базе. Рестарт не страшен.
+// РћС‚РІРµС‡Р°РµС‚ Р·Р° РЅР°С‡Р°Р»Рѕ СЃРїР°РІРЅР° РјРѕР±РѕРІ
+// РЎРѕС…СЂР°РЅСЏРµС‚СЃСЏ РІ Р±Р°Р·Рµ. Р РµСЃС‚Р°СЂС‚ РЅРµ СЃС‚СЂР°С€РµРЅ.
 uint e_SpawnMobsLoop( uint[] @ values )
 {
     if( GetQuestGlobalState() <= 0 )
@@ -154,7 +154,7 @@ uint e_SpawnMobsLoop( uint[] @ values )
         return 0;
     }
 
-    // Собаки предупреждают о начале атаки
+    // РЎРѕР±Р°РєРё РїСЂРµРґСѓРїСЂРµР¶РґР°СЋС‚ Рѕ РЅР°С‡Р°Р»Рµ Р°С‚Р°РєРё
     Critter@[] Dogs;
     GetNpc( map, Dogs, ROLE_DOGS, FIND_LIFE_AND_KO );
     for( uint i = 0; i < Dogs.length(); i++ )
@@ -165,7 +165,7 @@ uint e_SpawnMobsLoop( uint[] @ values )
 
     uint16 playerLevel = GetPlayerLevel();
 
-    // Случайно выбираем тип мобов и стартовые точки, и запускаем процесс спавна
+    // РЎР»СѓС‡Р°Р№РЅРѕ РІС‹Р±РёСЂР°РµРј С‚РёРї РјРѕР±РѕРІ Рё СЃС‚Р°СЂС‚РѕРІС‹Рµ С‚РѕС‡РєРё, Рё Р·Р°РїСѓСЃРєР°РµРј РїСЂРѕС†РµСЃСЃ СЃРїР°РІРЅР°
     uint[] params = { values[ 0 ] };
     params = SelectEntsAndMobs( params );
     params.resize( params.length() + 4 );
@@ -178,10 +178,10 @@ uint e_SpawnMobsLoop( uint[] @ values )
     return GetTimeSpawn();
 }
 
-// Событие - создает мобов на каждом енте заданой группы, событие откладывается на 2 минуты
-// покаместь не будет достаточное количество мобов. Если их хватает событие рандомно переносится.
-// Сохраняется в базе. Впринципе этого можно и не делать. Шанс что рестарт оборвет событие мал,
-// да и если оборвет ничего критического не случится.
+// РЎРѕР±С‹С‚РёРµ - СЃРѕР·РґР°РµС‚ РјРѕР±РѕРІ РЅР° РєР°Р¶РґРѕРј РµРЅС‚Рµ Р·Р°РґР°РЅРѕР№ РіСЂСѓРїРїС‹, СЃРѕР±С‹С‚РёРµ РѕС‚РєР»Р°РґС‹РІР°РµС‚СЃСЏ РЅР° 2 РјРёРЅСѓС‚С‹
+// РїРѕРєР°РјРµСЃС‚СЊ РЅРµ Р±СѓРґРµС‚ РґРѕСЃС‚Р°С‚РѕС‡РЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РјРѕР±РѕРІ. Р•СЃР»Рё РёС… С…РІР°С‚Р°РµС‚ СЃРѕР±С‹С‚РёРµ СЂР°РЅРґРѕРјРЅРѕ РїРµСЂРµРЅРѕСЃРёС‚СЃСЏ.
+// РЎРѕС…СЂР°РЅСЏРµС‚СЃСЏ РІ Р±Р°Р·Рµ. Р’РїСЂРёРЅС†РёРїРµ СЌС‚РѕРіРѕ РјРѕР¶РЅРѕ Рё РЅРµ РґРµР»Р°С‚СЊ. РЁР°РЅСЃ С‡С‚Рѕ СЂРµСЃС‚Р°СЂС‚ РѕР±РѕСЂРІРµС‚ СЃРѕР±С‹С‚РёРµ РјР°Р»,
+// РґР° Рё РµСЃР»Рё РѕР±РѕСЂРІРµС‚ РЅРёС‡РµРіРѕ РєСЂРёС‚РёС‡РµСЃРєРѕРіРѕ РЅРµ СЃР»СѓС‡РёС‚СЃСЏ.
 uint e_SpawnMobs( uint[] @ values )
 {
     if( GetQuestGlobalState() <= 0 )
@@ -199,8 +199,8 @@ uint e_SpawnMobs( uint[] @ values )
     uint dialogId = values[ 3 ];
     uint mobLevel = values[ 4 ];
     uint maxCount = values[ 5 ];
-    uint mobsSpawnCount = values[ 6 ]; // мобов созданно
-    uint limit = values[ 7 ];          // всего попыток создания мобов (что-бы не зациклилось)
+    uint mobsSpawnCount = values[ 6 ]; // РјРѕР±РѕРІ СЃРѕР·РґР°РЅРЅРѕ
+    uint limit = values[ 7 ];          // РІСЃРµРіРѕ РїРѕРїС‹С‚РѕРє СЃРѕР·РґР°РЅРёСЏ РјРѕР±РѕРІ (С‡С‚Рѕ-Р±С‹ РЅРµ Р·Р°С†РёРєР»РёР»РѕСЃСЊ)
 
     uint entCount = map.CountEntire( entGroup );
     for( uint i = 0; i < entCount; i++ )
@@ -217,7 +217,7 @@ uint e_SpawnMobs( uint[] @ values )
 
         mobsSpawnCount++;
         if( mobsSpawnCount >= maxCount )
-            return 0;                                    // Создание мобов указанного типа окончено
+            return 0;                                    // РЎРѕР·РґР°РЅРёРµ РјРѕР±РѕРІ СѓРєР°Р·Р°РЅРЅРѕРіРѕ С‚РёРїР° РѕРєРѕРЅС‡РµРЅРѕ
     }
 
     values[ 6 ] = mobsSpawnCount;
@@ -227,8 +227,8 @@ uint e_SpawnMobs( uint[] @ values )
     return 0;
 }
 
-// Собаки начинают гавкать
-// Рестарт обрывает это событие.
+// РЎРѕР±Р°РєРё РЅР°С‡РёРЅР°СЋС‚ РіР°РІРєР°С‚СЊ
+// Р РµСЃС‚Р°СЂС‚ РѕР±СЂС‹РІР°РµС‚ СЌС‚Рѕ СЃРѕР±С‹С‚РёРµ.
 uint e_DogAlert( uint[] @ values )
 {
     Critter@ dog = GetCritter( values[ 0 ] );
@@ -251,16 +251,16 @@ uint e_DogAlert( uint[] @ values )
     return Random( 1, 3 ) * 60;
 }
 
-// Завершает квест.
-// Сохраняется в базе. Рестарт не страшен.
+// Р—Р°РІРµСЂС€Р°РµС‚ РєРІРµСЃС‚.
+// РЎРѕС…СЂР°РЅСЏРµС‚СЃСЏ РІ Р±Р°Р·Рµ. Р РµСЃС‚Р°СЂС‚ РЅРµ СЃС‚СЂР°С€РµРЅ.
 uint e_FinishQuest( uint[] @ values )
 {
     FinishQuest( FINISH_SUCCESS_TIME_OUT );
     return 0;
 }
 
-// Мертвого моба нужно удалить, но не сразу же после смерти
-// Сохраняется в базе. Рестарт не страшен.
+// РњРµСЂС‚РІРѕРіРѕ РјРѕР±Р° РЅСѓР¶РЅРѕ СѓРґР°Р»РёС‚СЊ, РЅРѕ РЅРµ СЃСЂР°Р·Сѓ Р¶Рµ РїРѕСЃР»Рµ СЃРјРµСЂС‚Рё
+// РЎРѕС…СЂР°РЅСЏРµС‚СЃСЏ РІ Р±Р°Р·Рµ. Р РµСЃС‚Р°СЂС‚ РЅРµ СЃС‚СЂР°С€РµРЅ.
 uint e_DeleteMobs( uint[] @ values )
 {
     Critter@ mob = GetCritter( values[ 0 ] );
@@ -271,15 +271,15 @@ uint e_DeleteMobs( uint[] @ values )
     }
 
     if( mob.Stat[ ST_NPC_ROLE ] != ROLE_MOBS )
-        return 0;                                        // на всякий случай
+        return 0;                                        // РЅР° РІСЃСЏРєРёР№ СЃР»СѓС‡Р°Р№
     DeleteNpc( mob );
     return 0;
 }
 
-// Воскрешает браминов. Событие нужно, потому-что есть вероятность что брамин не воскреснит.
-// Всего 10 попыток воскресить брамина. Если все 10 провалились, то брамин остается мертвым и
-// счетчик мертвых браминов увеличивается на 1.
-// Сохраняется в базе. Рестарт не страшен.
+// Р’РѕСЃРєСЂРµС€Р°РµС‚ Р±СЂР°РјРёРЅРѕРІ. РЎРѕР±С‹С‚РёРµ РЅСѓР¶РЅРѕ, РїРѕС‚РѕРјСѓ-С‡С‚Рѕ РµСЃС‚СЊ РІРµСЂРѕСЏС‚РЅРѕСЃС‚СЊ С‡С‚Рѕ Р±СЂР°РјРёРЅ РЅРµ РІРѕСЃРєСЂРµСЃРЅРёС‚.
+// Р’СЃРµРіРѕ 10 РїРѕРїС‹С‚РѕРє РІРѕСЃРєСЂРµСЃРёС‚СЊ Р±СЂР°РјРёРЅР°. Р•СЃР»Рё РІСЃРµ 10 РїСЂРѕРІР°Р»РёР»РёСЃСЊ, С‚Рѕ Р±СЂР°РјРёРЅ РѕСЃС‚Р°РµС‚СЃСЏ РјРµСЂС‚РІС‹Рј Рё
+// СЃС‡РµС‚С‡РёРє РјРµСЂС‚РІС‹С… Р±СЂР°РјРёРЅРѕРІ СѓРІРµР»РёС‡РёРІР°РµС‚СЃСЏ РЅР° 1.
+// РЎРѕС…СЂР°РЅСЏРµС‚СЃСЏ РІ Р±Р°Р·Рµ. Р РµСЃС‚Р°СЂС‚ РЅРµ СЃС‚СЂР°С€РµРЅ.
 uint e_CowToLife( uint[] @ values )
 {
     Critter@ cow = GetCritter( values[ 0 ] );
@@ -303,7 +303,7 @@ uint e_CowToLife( uint[] @ values )
 
     values[ 1 ]++;
 
-    // если неудалось воскресить
+    // РµСЃР»Рё РЅРµСѓРґР°Р»РѕСЃСЊ РІРѕСЃРєСЂРµСЃРёС‚СЊ
     if( values[ 1 ] >= 10 )
     {
         CowsDeadCount = map.GetNpcCount( ROLE_COWS, FIND_DEAD );
@@ -314,14 +314,14 @@ uint e_CowToLife( uint[] @ values )
     return 0;
 }
 
-// ------------------------ Обработчики событий -------------------------------
+// ------------------------ РћР±СЂР°Р±РѕС‚С‡РёРєРё СЃРѕР±С‹С‚РёР№ -------------------------------
 void _MobDead( Critter& mob, Critter@ killer )
 {
     CreateTimeEvent( __FullSecond + GetTimeSpawn(), "e_DeleteMobs", mob.Id, true );
     MobsCount--;
 }
 
-// Если моб свободен и квест завершен, отправляем его обратно в пустошь
+// Р•СЃР»Рё РјРѕР± СЃРІРѕР±РѕРґРµРЅ Рё РєРІРµСЃС‚ Р·Р°РІРµСЂС€РµРЅ, РѕС‚РїСЂР°РІР»СЏРµРј РµРіРѕ РѕР±СЂР°С‚РЅРѕ РІ РїСѓСЃС‚РѕС€СЊ
 void _MobIdle( Critter& mob )
 {
     if( GetQuestGlobalState() <= 0 )
@@ -368,9 +368,9 @@ void _DogSeeMob( Critter& dog, Critter& mob )
 
     dog.AddEnemyInStack( mob.Id );
 }
-// ------------------------- Диалоговые функции -------------------------------
-// Квест доступен или нет
-// master - игрок
+// ------------------------- Р”РёР°Р»РѕРіРѕРІС‹Рµ С„СѓРЅРєС†РёРё -------------------------------
+// РљРІРµСЃС‚ РґРѕСЃС‚СѓРїРµРЅ РёР»Рё РЅРµС‚
+// master - РёРіСЂРѕРє
 bool d_VerifyTime( Critter& master, Critter@ slave, int val )
 {
     bool result = VerifyTime( ISSUANCE_TIME_START, ISSUANCE_TIME_END );
@@ -380,8 +380,8 @@ bool d_VerifyTime( Critter& master, Critter@ slave, int val )
         return result;
 }
 
-// Дает квест
-// master - игрок
+// Р”Р°РµС‚ РєРІРµСЃС‚
+// master - РёРіСЂРѕРє
 void r_StartQuest( Critter& master, Critter@ slave, int val )
 {
     if( not valid( slave ) )
@@ -404,7 +404,7 @@ void r_AddExperience( Critter& master, Critter@ slave )
     GameVar@ var = GetLocalVar( LVAR_q_klam_torr_cowboy, master.Id );
     if( not valid( var ) )
     {
-        Log( "ERROR: not valid GameVar №" + LVAR_q_klam_torr_cowboy );
+        Log( "ERROR: not valid GameVar в„–" + LVAR_q_klam_torr_cowboy );
         return;
     }
     int16 cowDeadCount = var.GetValue() - 4;
@@ -426,8 +426,8 @@ void plane_GoodByeMob( Critter& mob )
     DeleteNpc( mob );
 }
 
-// --------------------------- Инструментарий ---------------------------------
-// Добавляет и посылает на убой указанного моба.
+// --------------------------- РРЅСЃС‚СЂСѓРјРµРЅС‚Р°СЂРёР№ ---------------------------------
+// Р”РѕР±Р°РІР»СЏРµС‚ Рё РїРѕСЃС‹Р»Р°РµС‚ РЅР° СѓР±РѕР№ СѓРєР°Р·Р°РЅРЅРѕРіРѕ РјРѕР±Р°.
 Critter@ SpawnMob( Map& map, uint8 entGroup, uint8 entNum, uint16 npcPid, uint8 dir, uint dialog, uint level )
 {
     uint16 x = 0, y = 0;
@@ -458,7 +458,7 @@ Critter@ SpawnMob( Map& map, uint8 entGroup, uint8 entNum, uint16 npcPid, uint8 
     return mob;
 }
 
-// Агрит моба
+// РђРіСЂРёС‚ РјРѕР±Р°
 void MobSetAtackPlane( Map& map, Critter& mob )
 {
     uint count = map.GetNpcCount( ROLE_COWS, FIND_LIFE_AND_KO );
@@ -477,7 +477,7 @@ void MobSetAtackPlane( Map& map, Critter& mob )
     AddAttackPlane( mob, AI_PLANE_ATTACK_PRIORITY, cow );
 }
 
-// Выбор мобов и точек респа
+// Р’С‹Р±РѕСЂ РјРѕР±РѕРІ Рё С‚РѕС‡РµРє СЂРµСЃРїР°
 uint[] SelectEntsAndMobs( uint[] arr )
 {
     arr.resize( arr.length() + 3 );
@@ -491,7 +491,7 @@ uint[] SelectEntsAndMobs( uint[] arr )
     return arr;
 }
 
-// Дописывает массив указаными криттерами
+// Р”РѕРїРёСЃС‹РІР°РµС‚ РјР°СЃСЃРёРІ СѓРєР°Р·Р°РЅС‹РјРё РєСЂРёС‚С‚РµСЂР°РјРё
 uint GetNpc( Map@ map, Critter@[] @ arr, int npcRole, int findType )
 {
     uint findCount = 0;
@@ -511,7 +511,7 @@ uint GetNpc( Map@ map, Critter@[] @ arr, int npcRole, int findType )
     return findCount;
 }
 
-// Проверяет текущий час, он между заданым временем или нет
+// РџСЂРѕРІРµСЂСЏРµС‚ С‚РµРєСѓС‰РёР№ С‡Р°СЃ, РѕРЅ РјРµР¶РґСѓ Р·Р°РґР°РЅС‹Рј РІСЂРµРјРµРЅРµРј РёР»Рё РЅРµС‚
 bool VerifyTime( uint8 timeStart, uint8 timeFinish )
 {
     if( timeStart == timeFinish )
@@ -534,7 +534,7 @@ bool VerifyTime( uint8 timeStart, uint8 timeFinish )
     return false;
 }
 
-// Вызывается при окончании квеста.
+// Р’С‹Р·С‹РІР°РµС‚СЃСЏ РїСЂРё РѕРєРѕРЅС‡Р°РЅРёРё РєРІРµСЃС‚Р°.
 void FinishQuest( uint8 state )
 {
     if( GetQuestGlobalState() <= 0 )
@@ -561,7 +561,7 @@ void SetQuestGlobalState( int status )
     GameVar@ quest = GetGlobalVar( GVAR_klam_cowboy );
     if( not valid( quest ) )
     {
-        Log( "ERROR: not valid GameVar №" + GVAR_klam_cowboy );
+        Log( "ERROR: not valid GameVar в„–" + GVAR_klam_cowboy );
         return;
     }
     quest = status;
@@ -572,7 +572,7 @@ int GetQuestGlobalState()
     GameVar@ quest = GetGlobalVar( GVAR_klam_cowboy );
     if( not valid( quest ) )
     {
-        Log( "ERROR: not valid GameVar №" + GVAR_klam_cowboy );
+        Log( "ERROR: not valid GameVar в„–" + GVAR_klam_cowboy );
         return -1;
     }
     return quest.GetValue();
@@ -586,7 +586,7 @@ void SetQuestState( uint state )
     GameVar@ var = GetLocalVar( LVAR_q_klam_torr_cowboy, playerId );
     if( not valid( var ) )
     {
-        Log( "ERROR: not valid GameVar №" + LVAR_q_klam_torr_cowboy );
+        Log( "ERROR: not valid GameVar в„–" + LVAR_q_klam_torr_cowboy );
         return;
     }
 

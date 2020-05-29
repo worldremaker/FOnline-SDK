@@ -1,7 +1,7 @@
 #include "pattern_common.fos"
 
 /*
-   Рукопашник/боец с холоднмы оружием
+   Р СѓРєРѕРїР°С€РЅРёРє/Р±РѕРµС† СЃ С…РѕР»РѕРґРЅРјС‹ РѕСЂСѓР¶РёРµРј
 
    PE_BETTER_CRITICALS
    PE_SILENT_DEATH
@@ -9,10 +9,10 @@
    PE_SLAYER
 
    ---------------------------|-------------|-------------|-------------|-------------|
-   Уровень         0          |  1          |  2          |  3          |  4          |
+   РЈСЂРѕРІРµРЅСЊ         0          |  1          |  2          |  3          |  4          |
    ---------------------------|-------------|-------------|-------------|-------------|
-   ХО/РБ           120..150   |  150..180   |  160..200   |  200..250   |  240..300   |
-   Скрытность      150..200   |  200..240   |  220..260   |  220..290   |  250..300   |
+   РҐРћ/Р Р‘           120..150   |  150..180   |  160..200   |  200..250   |  240..300   |
+   РЎРєСЂС‹С‚РЅРѕСЃС‚СЊ      150..200   |  200..240   |  220..260   |  220..290   |  250..300   |
    MeleeDmg        8          |  12         |  16         |  22         |  25         |
    HP              120        |  150        |  190        |  220        |  260        |
    Resist          30..50     |  40..55     |  40..60     |  50..60     |  50..80     |
@@ -30,7 +30,7 @@ const int[] slayerStats_ =
     240,         300,        250,     300,     25,     360,   45,       80,     18
 };
 #define LvlCount              ( 5 )
-#define ColumnsCount( 9 )    // Индекс первой колонки=0
+#define ColumnsCount( 9 )    // РРЅРґРµРєСЃ РїРµСЂРІРѕР№ РєРѕР»РѕРЅРєРё=0
 #define _SlayerCell           # ( lvl, column )( slayerStats_[ ( lvl < LvlCount ? lvl : 0 ) * ColumnsCount + ( column < ColumnsCount ? column : 0 ) ] )
 #define _SlayerMeleeSkill     # (lvl) ( Random( _SlayerCell( lvl, 0 ), _SlayerCell( lvl, 1 ) ) )
 #define _SlayerSneakSkill     # (lvl) ( Random( _SlayerCell( lvl, 2 ), _SlayerCell( lvl, 3 ) ) )
@@ -42,8 +42,8 @@ const int[] slayerStats_ =
 
 class SlayerPattern : CommonPattern
 {
-    // При начале любого плана нпц уходит в бег, если нет таймаута битвы
-    // Также включает сник, если позволяет таймаут сника
+    // РџСЂРё РЅР°С‡Р°Р»Рµ Р»СЋР±РѕРіРѕ РїР»Р°РЅР° РЅРїС† СѓС…РѕРґРёС‚ РІ Р±РµРі, РµСЃР»Рё РЅРµС‚ С‚Р°Р№РјР°СѓС‚Р° Р±РёС‚РІС‹
+    // РўР°РєР¶Рµ РІРєР»СЋС‡Р°РµС‚ СЃРЅРёРє, РµСЃР»Рё РїРѕР·РІРѕР»СЏРµС‚ С‚Р°Р№РјР°СѓС‚ СЃРЅРёРєР°
     int _PlaneBegin( Critter& cr, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem )
     {
         this._SetRun( plane, cr );
@@ -71,7 +71,7 @@ class SlayerPattern : CommonPattern
             plane.Run = __RunOnCombat;
     }
 
-    // Если позволяет таймаут, при выполнении любого плана слеер стремится уйти в сник
+    // Р•СЃР»Рё РїРѕР·РІРѕР»СЏРµС‚ С‚Р°Р№РјР°СѓС‚, РїСЂРё РІС‹РїРѕР»РЅРµРЅРёРё Р»СЋР±РѕРіРѕ РїР»Р°РЅР° СЃР»РµРµСЂ СЃС‚СЂРµРјРёС‚СЃСЏ СѓР№С‚Рё РІ СЃРЅРёРє
     int _PlaneRun( Critter& cr, NpcPlane& plane, int reason, uint& result0, uint& result1, uint& result2 )
     {
         _SetRun( plane, cr );
@@ -125,7 +125,7 @@ class SlayerPattern : CommonPattern
 
         ProtoItem @ ammo = GetProtoItem( weap.AmmoPid );
 
-        // Скопировано из основного обработчика
+        // РЎРєРѕРїРёСЂРѕРІР°РЅРѕ РёР· РѕСЃРЅРѕРІРЅРѕРіРѕ РѕР±СЂР°Р±РѕС‚С‡РёРєР°
         cr.TimeoutBase[ TO_AGGRESSOR ] = __FullSecond + REAL_MINUTE( 1 );
         CombatAttack( cr, target, weapon, _WeaponModeMake( 0, HIT_LOCATION_EYES ), ammo );
 
@@ -144,7 +144,7 @@ class SlayerPattern : CommonPattern
 }
 
 #ifndef _NoBaseInstance
-SlayerPattern pattern; // Для наследников нужно определить _NoBaseInstance
+SlayerPattern pattern; // Р”Р»СЏ РЅР°СЃР»РµРґРЅРёРєРѕРІ РЅСѓР¶РЅРѕ РѕРїСЂРµРґРµР»РёС‚СЊ _NoBaseInstance
 #endif
 
 void _SlayerDead( Critter& cr, Critter@ killer )
@@ -188,14 +188,14 @@ void SetSlayerStats( Critter& cr, uint8 lvl )
     cr.SkillBase[ SK_SNEAK ] = _SlayerSneakSkill( lvl );
 }
 
-// При начале любого плана нпц уходит в бег, если нет таймаута битвы
-// Также включает сник, если позволяет таймаут сника
+// РџСЂРё РЅР°С‡Р°Р»Рµ Р»СЋР±РѕРіРѕ РїР»Р°РЅР° РЅРїС† СѓС…РѕРґРёС‚ РІ Р±РµРі, РµСЃР»Рё РЅРµС‚ С‚Р°Р№РјР°СѓС‚Р° Р±РёС‚РІС‹
+// РўР°РєР¶Рµ РІРєР»СЋС‡Р°РµС‚ СЃРЅРёРє, РµСЃР»Рё РїРѕР·РІРѕР»СЏРµС‚ С‚Р°Р№РјР°СѓС‚ СЃРЅРёРєР°
 int _SlayerPlaneBegin( Critter& cr, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem )
 {
     return pattern._PlaneBegin( cr, plane, reason, someCr, someItem );
 }
 
-// регулярные попытки уйти в сник
+// СЂРµРіСѓР»СЏСЂРЅС‹Рµ РїРѕРїС‹С‚РєРё СѓР№С‚Рё РІ СЃРЅРёРє
 uint e_SneakWhileAttack( uint[] @ values )
 {
     Critter @ cr = GetCritter( values[ 0 ] );
@@ -212,13 +212,13 @@ uint e_SneakWhileAttack( uint[] @ values )
     }
 }
 
-// Если позволяет таймаут, при выполнении любого плана слеер стремится уйти в сник
+// Р•СЃР»Рё РїРѕР·РІРѕР»СЏРµС‚ С‚Р°Р№РјР°СѓС‚, РїСЂРё РІС‹РїРѕР»РЅРµРЅРёРё Р»СЋР±РѕРіРѕ РїР»Р°РЅР° СЃР»РµРµСЂ СЃС‚СЂРµРјРёС‚СЃСЏ СѓР№С‚Рё РІ СЃРЅРёРє
 int _SlayerPlaneRun( Critter& cr, NpcPlane& plane, int reason, uint& result0, uint& result1, uint& result2 )
 {
     return pattern._PlaneRun( cr, plane, reason, result0, result1, result2 );
 }
 
-// Снайпер атакован
+// РЎРЅР°Р№РїРµСЂ Р°С‚Р°РєРѕРІР°РЅ
 bool _SlayerAttacked( Critter& sniper, Critter& attacker )
 {
     return pattern._Attacked( sniper, attacker );

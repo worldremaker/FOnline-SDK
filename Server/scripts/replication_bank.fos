@@ -12,25 +12,25 @@ import bool AddWalkPlane( Critter& npc, uint priority, uint16 hexX, uint16 hexY,
 import bool AddPickPlane( Critter& npc, uint priority, Item@ item, uint useItemId, bool toOpen ) from "npc_planes";
 
 #define ENTER_MONEY_NEED                 ( 100 )
-#define MAX_TIME_FOR_ENTER               ( REAL_MINUTE( 2 ) ) // Время отпущенное игроку на манипуляции с контейнером.
+#define MAX_TIME_FOR_ENTER               ( REAL_MINUTE( 2 ) ) // Р’СЂРµРјСЏ РѕС‚РїСѓС‰РµРЅРЅРѕРµ РёРіСЂРѕРєСѓ РЅР° РјР°РЅРёРїСѓР»СЏС†РёРё СЃ РєРѕРЅС‚РµР№РЅРµСЂРѕРј.
 
-#define MESSAGE_TRY_PASS_PLAYER          ( 0 )                // Спросить у охраны можно ли запустить нового игрока, см. Var2.
-#define MESSAGE_BEGIN_PASS_PLAYER        ( 1 )                // Уведомить охрану что бы пропустили игрока.
-#define MESSAGE_END_PASS_PLAYER          ( 2 )                // Сообщить охране выкинуть зазевавшегося игрока.
-#define MESSAGE_THROW_OUT_PLAYER         ( 3 )                // Сообщить охране выкинуть зазевавшегося игрока.
-#define MESSAGE_PLAYER_ON_WARNING_HEX    ( 4 )                // Игрок наступил на предупредительный хекс.
-#define MESSAGE_PLAYER_ON_ATTACK_HEX     ( 5 )                // Игрок наступил на атакующий хекс.
+#define MESSAGE_TRY_PASS_PLAYER          ( 0 )                // РЎРїСЂРѕСЃРёС‚СЊ Сѓ РѕС…СЂР°РЅС‹ РјРѕР¶РЅРѕ Р»Рё Р·Р°РїСѓСЃС‚РёС‚СЊ РЅРѕРІРѕРіРѕ РёРіСЂРѕРєР°, СЃРј. Var2.
+#define MESSAGE_BEGIN_PASS_PLAYER        ( 1 )                // РЈРІРµРґРѕРјРёС‚СЊ РѕС…СЂР°РЅСѓ С‡С‚Рѕ Р±С‹ РїСЂРѕРїСѓСЃС‚РёР»Рё РёРіСЂРѕРєР°.
+#define MESSAGE_END_PASS_PLAYER          ( 2 )                // РЎРѕРѕР±С‰РёС‚СЊ РѕС…СЂР°РЅРµ РІС‹РєРёРЅСѓС‚СЊ Р·Р°Р·РµРІР°РІС€РµРіРѕСЃСЏ РёРіСЂРѕРєР°.
+#define MESSAGE_THROW_OUT_PLAYER         ( 3 )                // РЎРѕРѕР±С‰РёС‚СЊ РѕС…СЂР°РЅРµ РІС‹РєРёРЅСѓС‚СЊ Р·Р°Р·РµРІР°РІС€РµРіРѕСЃСЏ РёРіСЂРѕРєР°.
+#define MESSAGE_PLAYER_ON_WARNING_HEX    ( 4 )                // РРіСЂРѕРє РЅР°СЃС‚СѓРїРёР» РЅР° РїСЂРµРґСѓРїСЂРµРґРёС‚РµР»СЊРЅС‹Р№ С…РµРєСЃ.
+#define MESSAGE_PLAYER_ON_ATTACK_HEX     ( 5 )                // РРіСЂРѕРє РЅР°СЃС‚СѓРїРёР» РЅР° Р°С‚Р°РєСѓСЋС‰РёР№ С…РµРєСЃ.
 
-#define ROLE_BANKER                      ( 1 )                // Банкир.
-#define ROLE_GUARD                       ( 2 )                // Охранник.
-#define ROLE_KEEPER                      ( 3 )                // Кладовщик.
+#define ROLE_BANKER                      ( 1 )                // Р‘Р°РЅРєРёСЂ.
+#define ROLE_GUARD                       ( 2 )                // РћС…СЂР°РЅРЅРёРє.
+#define ROLE_KEEPER                      ( 3 )                // РљР»Р°РґРѕРІС‰РёРє.
 
-#define ENT_HIDE_CONT                    ( 100 )              // Хекс со скрытым контейнером.
-#define ENT_SHOW_CONT                    ( 101 )              // Хекс с видимым контейнером.
-#define ENT_DOOR_GUARD                   ( 110 )              // Хекс охранника около двери.
-#define ENT_DOOR_HEX                     ( 120 )              // Хекс где расположена дверь.
+#define ENT_HIDE_CONT                    ( 100 )              // РҐРµРєСЃ СЃРѕ СЃРєСЂС‹С‚С‹Рј РєРѕРЅС‚РµР№РЅРµСЂРѕРј.
+#define ENT_SHOW_CONT                    ( 101 )              // РҐРµРєСЃ СЃ РІРёРґРёРјС‹Рј РєРѕРЅС‚РµР№РЅРµСЂРѕРј.
+#define ENT_DOOR_GUARD                   ( 110 )              // РҐРµРєСЃ РѕС…СЂР°РЅРЅРёРєР° РѕРєРѕР»Рѕ РґРІРµСЂРё.
+#define ENT_DOOR_HEX                     ( 120 )              // РҐРµРєСЃ РіРґРµ СЂР°СЃРїРѕР»РѕР¶РµРЅР° РґРІРµСЂСЊ.
 
-// Пиды контейнеров.
+// РџРёРґС‹ РєРѕРЅС‚РµР№РЅРµСЂРѕРІ.
 #define HIDE_CONTAINER_PID               ( PID_FOOTLOCKER_CLEAN_LEFT )
 #define SHOW_CONTAINER_PID               ( PID_FOOTLOCKER_CLEAN_LEFT )
 
@@ -44,8 +44,8 @@ import bool AddPickPlane( Critter& npc, uint priority, Item@ item, uint useItemI
 #define STR_TIME_END                     ( 1003 )
 #define STR_THIEF                        ( 1004 )
 
-// Борьба с затыканием проходов в банках.
-// id игрока сохраняется в Var9
+// Р‘РѕСЂСЊР±Р° СЃ Р·Р°С‚С‹РєР°РЅРёРµРј РїСЂРѕС…РѕРґРѕРІ РІ Р±Р°РЅРєР°С….
+// id РёРіСЂРѕРєР° СЃРѕС…СЂР°РЅСЏРµС‚СЃСЏ РІ Var9
 #define FORCE_DIALOG_PLAYER_NOTFOUND     ( 5 )
 #define FORCE_DIALOG_PLAYER_FOUND        ( 4 )
 #define WARN_TIME                        ( REAL_SECOND( 60 ) )
@@ -58,17 +58,17 @@ import bool AddPickPlane( Critter& npc, uint priority, Item@ item, uint useItemI
 //
 class CBank
 {
-    Entire[] HideContPos;       // Координаты скрытого контейнера.
-    Entire[] ShowContPos;       // Координаты видимых контейнеров.
-    Entire[] DoorHexPos;        // Координаты хекса двери.
-    Entire[] DoorGuardPos;      // Координаты хекса, где стоят охранники у двери.
-    uint   PassedTime;          // Время пропуска.
-    bool   PlayerNotify;        // Предупрежден ли игрок о том, что задерживается.
-    bool   PlayerEntered;       // Вошел ли игрок в помещение.
-    uint   PassedPlayerId;      // Id пропущенного к контейнерам игрока.
-    uint   ThrowOutPlayerId;    // Id игрока, которого банкир просил выкинуть.
-    bool   DoorGuardSayWarning; // Указывает предупредил ли кто-нибудь из охранников игрока.
-    bool   PlayerPassed;        // Id пропущенного к контейнерам игрока.
+    Entire[] HideContPos;       // РљРѕРѕСЂРґРёРЅР°С‚С‹ СЃРєСЂС‹С‚РѕРіРѕ РєРѕРЅС‚РµР№РЅРµСЂР°.
+    Entire[] ShowContPos;       // РљРѕРѕСЂРґРёРЅР°С‚С‹ РІРёРґРёРјС‹С… РєРѕРЅС‚РµР№РЅРµСЂРѕРІ.
+    Entire[] DoorHexPos;        // РљРѕРѕСЂРґРёРЅР°С‚С‹ С…РµРєСЃР° РґРІРµСЂРё.
+    Entire[] DoorGuardPos;      // РљРѕРѕСЂРґРёРЅР°С‚С‹ С…РµРєСЃР°, РіРґРµ СЃС‚РѕСЏС‚ РѕС…СЂР°РЅРЅРёРєРё Сѓ РґРІРµСЂРё.
+    uint   PassedTime;          // Р’СЂРµРјСЏ РїСЂРѕРїСѓСЃРєР°.
+    bool   PlayerNotify;        // РџСЂРµРґСѓРїСЂРµР¶РґРµРЅ Р»Рё РёРіСЂРѕРє Рѕ С‚РѕРј, С‡С‚Рѕ Р·Р°РґРµСЂР¶РёРІР°РµС‚СЃСЏ.
+    bool   PlayerEntered;       // Р’РѕС€РµР» Р»Рё РёРіСЂРѕРє РІ РїРѕРјРµС‰РµРЅРёРµ.
+    uint   PassedPlayerId;      // Id РїСЂРѕРїСѓС‰РµРЅРЅРѕРіРѕ Рє РєРѕРЅС‚РµР№РЅРµСЂР°Рј РёРіСЂРѕРєР°.
+    uint   ThrowOutPlayerId;    // Id РёРіСЂРѕРєР°, РєРѕС‚РѕСЂРѕРіРѕ Р±Р°РЅРєРёСЂ РїСЂРѕСЃРёР» РІС‹РєРёРЅСѓС‚СЊ.
+    bool   DoorGuardSayWarning; // РЈРєР°Р·С‹РІР°РµС‚ РїСЂРµРґСѓРїСЂРµРґРёР» Р»Рё РєС‚Рѕ-РЅРёР±СѓРґСЊ РёР· РѕС…СЂР°РЅРЅРёРєРѕРІ РёРіСЂРѕРєР°.
+    bool   PlayerPassed;        // Id РїСЂРѕРїСѓС‰РµРЅРЅРѕРіРѕ Рє РєРѕРЅС‚РµР№РЅРµСЂР°Рј РёРіСЂРѕРєР°.
     uint16 DoorPid;
 
     void Init( Map@ map )
@@ -137,31 +137,31 @@ void _BankerIdle( Critter& banker )
     if( not valid( bank ) )
         return;
 
-    // Никого нет.
+    // РќРёРєРѕРіРѕ РЅРµС‚.
     if( bank.PassedPlayerId == 0 )
         return;
 
-    // Проверим вошел ли игрок.
+    // РџСЂРѕРІРµСЂРёРј РІРѕС€РµР» Р»Рё РёРіСЂРѕРє.
     if( not bank.PlayerEntered && __FullSecond > bank.PassedTime + REAL_SECOND( 15 ) )
     {
         banker.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_TEXT, STR_NEXT );
         EndEnter( banker, bank.PassedPlayerId );
     }
-    // Время игрока подходит к концу.
+    // Р’СЂРµРјСЏ РёРіСЂРѕРєР° РїРѕРґС…РѕРґРёС‚ Рє РєРѕРЅС†Сѓ.
     else if( bank.PlayerEntered && not bank.PlayerNotify && __FullSecond > bank.PassedTime + MAX_TIME_FOR_ENTER - REAL_SECOND( 20 ) )
     {
         banker.SayMsg( SAY_NORM, TEXTMSG_TEXT, STR_TIME_LEFT );
         bank.PlayerNotify = true;
         banker.Wait( 5000 );
     }
-    // Игрок задержался больше положенного.
+    // РРіСЂРѕРє Р·Р°РґРµСЂР¶Р°Р»СЃСЏ Р±РѕР»СЊС€Рµ РїРѕР»РѕР¶РµРЅРЅРѕРіРѕ.
     else if( __FullSecond > bank.PassedTime + MAX_TIME_FOR_ENTER )
     {
         banker.SendMessage( MESSAGE_THROW_OUT_PLAYER, bank.PassedPlayerId, MESSAGE_TO_ALL_ON_MAP );
         banker.SayMsg( SAY_SHOUT_ON_HEAD, TEXTMSG_TEXT, STR_TIME_END );
         EndEnter( banker, bank.PassedPlayerId );
     }
-    // Ждем дальше
+    // Р–РґРµРј РґР°Р»СЊС€Рµ
     else
     {
         banker.Wait( 5000 );
@@ -170,8 +170,8 @@ void _BankerIdle( Critter& banker )
 
 void _BankerOnMessage( Critter& banker, Critter& player, int num, int val )
 {
-    // Обработка сообщений игрока.
-    // Убедимся пропущенный игрок ли это послал сообщение и банкир ли принял.
+    // РћР±СЂР°Р±РѕС‚РєР° СЃРѕРѕР±С‰РµРЅРёР№ РёРіСЂРѕРєР°.
+    // РЈР±РµРґРёРјСЃСЏ РїСЂРѕРїСѓС‰РµРЅРЅС‹Р№ РёРіСЂРѕРє Р»Рё СЌС‚Рѕ РїРѕСЃР»Р°Р» СЃРѕРѕР±С‰РµРЅРёРµ Рё Р±Р°РЅРєРёСЂ Р»Рё РїСЂРёРЅСЏР».
     if( banker.StatBase[ ST_NPC_ROLE ] != ROLE_BANKER )
         return;
 
@@ -182,7 +182,7 @@ void _BankerOnMessage( Critter& banker, Critter& player, int num, int val )
     if( player.Id != bank.PassedPlayerId )
         return;
 
-    // С помощью этих сообщений вычисляем зашел ли игрок или вышел.
+    // РЎ РїРѕРјРѕС‰СЊСЋ СЌС‚РёС… СЃРѕРѕР±С‰РµРЅРёР№ РІС‹С‡РёСЃР»СЏРµРј Р·Р°С€РµР» Р»Рё РёРіСЂРѕРє РёР»Рё РІС‹С€РµР».
     if( num == MESSAGE_PLAYER_ON_WARNING_HEX )
     {
         if( not bank.PlayerEntered )
@@ -196,37 +196,37 @@ void _BankerOnMessage( Critter& banker, Critter& player, int num, int val )
     }
 }
 
-// Начало работы с контейнерами.
+// РќР°С‡Р°Р»Рѕ СЂР°Р±РѕС‚С‹ СЃ РєРѕРЅС‚РµР№РЅРµСЂР°РјРё.
 bool IsCanEnter( Critter& player, Critter& banker )
 {
     CBank@ bank = GetBank( banker );
     if( not valid( bank ) )
         return false;
-    // Зашел ли другой игрок.
+    // Р—Р°С€РµР» Р»Рё РґСЂСѓРіРѕР№ РёРіСЂРѕРє.
     if( bank.PassedPlayerId != 0 )
         return false;
-    // Если нет, то спросим охрану, все ли в порядке.
+    // Р•СЃР»Рё РЅРµС‚, С‚Рѕ СЃРїСЂРѕСЃРёРј РѕС…СЂР°РЅСѓ, РІСЃРµ Р»Рё РІ РїРѕСЂСЏРґРєРµ.
     banker.StatBase[ ST_VAR0 ] = 1;
     banker.SendMessage( MESSAGE_TRY_PASS_PLAYER, int(player.Id), MESSAGE_TO_ALL_ON_MAP );
-    // Охрана одобрила.
+    // РћС…СЂР°РЅР° РѕРґРѕР±СЂРёР»Р°.
     return banker.StatBase[ ST_VAR0 ] != 0 ? true : false;
 }
 
 uint r_TryEnter( Critter& player, Critter@ banker )
 {
-    // Прверим можно ли войти в комнату.
+    // РџСЂРІРµСЂРёРј РјРѕР¶РЅРѕ Р»Рё РІРѕР№С‚Рё РІ РєРѕРјРЅР°С‚Сѓ.
     if( IsCanEnter( banker, player ) == false )
     {
         return FORCE_DIALOG_ROOM_BUSY;
     }
 
-    // Достаточно ли у игрока денег.
+    // Р”РѕСЃС‚Р°С‚РѕС‡РЅРѕ Р»Рё Сѓ РёРіСЂРѕРєР° РґРµРЅРµРі.
     if( _CritCountItem( player, PID_BOTTLE_CAPS ) < ENTER_MONEY_NEED )
     {
         return FORCE_DIALOG_NO_MONEY;
     }
 
-    // Перемещаем итемы игрока в видимый контейнер.
+    // РџРµСЂРµРјРµС‰Р°РµРј РёС‚РµРјС‹ РёРіСЂРѕРєР° РІ РІРёРґРёРјС‹Р№ РєРѕРЅС‚РµР№РЅРµСЂ.
     if( TransferItems( banker, player.Id, false ) == false )
     {
         return FORCE_DIALOG_MOVE_ITEMS_ERROR;
@@ -238,7 +238,7 @@ uint r_TryEnter( Critter& player, Critter@ banker )
         return FORCE_DIALOG_MOVE_ITEMS_ERROR;
     }
 
-    // Пропускаем игрока.
+    // РџСЂРѕРїСѓСЃРєР°РµРј РёРіСЂРѕРєР°.
     player.DeleteItem( PID_BOTTLE_CAPS, ENTER_MONEY_NEED );
     bank.PassedPlayerId = player.Id;
     bank.PassedTime = __FullSecond;
@@ -249,7 +249,7 @@ uint r_TryEnter( Critter& player, Critter@ banker )
     return 0;
 }
 
-// Условие и результат на завершение работы с контейнерами.
+// РЈСЃР»РѕРІРёРµ Рё СЂРµР·СѓР»СЊС‚Р°С‚ РЅР° Р·Р°РІРµСЂС€РµРЅРёРµ СЂР°Р±РѕС‚С‹ СЃ РєРѕРЅС‚РµР№РЅРµСЂР°РјРё.
 bool d_IsNotEntered( Critter& player, Critter@ banker )
 {
     CBank@ bank = GetBank( banker );
@@ -263,7 +263,7 @@ bool d_IsEntered( Critter& player, Critter@ banker )
     CBank@ bank = GetBank( banker );
     if( not valid( bank ) )
         return false;
-    // Проверяем тот ли игрок работал с контейнером.
+    // РџСЂРѕРІРµСЂСЏРµРј С‚РѕС‚ Р»Рё РёРіСЂРѕРє СЂР°Р±РѕС‚Р°Р» СЃ РєРѕРЅС‚РµР№РЅРµСЂРѕРј.
     return bank.PassedPlayerId == player.Id;
 }
 
@@ -272,26 +272,26 @@ void r_EndEnter( Critter& player, Critter@ banker )
     EndEnter( banker, player.Id );
 }
 
-// Завершаем сеанс.
+// Р—Р°РІРµСЂС€Р°РµРј СЃРµР°РЅСЃ.
 void EndEnter( Critter& banker, uint playerId )
 {
     CBank@ bank = GetBank( banker );
     if( not valid( bank ) )
         return;
-    // Завершаем работу с игроком.
+    // Р—Р°РІРµСЂС€Р°РµРј СЂР°Р±РѕС‚Сѓ СЃ РёРіСЂРѕРєРѕРј.
     bank.PassedPlayerId = 0;
-    // Перемещаем итемы игрока в невидимый контейнер.
+    // РџРµСЂРµРјРµС‰Р°РµРј РёС‚РµРјС‹ РёРіСЂРѕРєР° РІ РЅРµРІРёРґРёРјС‹Р№ РєРѕРЅС‚РµР№РЅРµСЂ.
     TransferItems( banker, playerId, true );
     banker.SendMessage( MESSAGE_END_PASS_PLAYER, playerId, MESSAGE_TO_ALL_ON_MAP );
 }
 
-// Перемещение итемов между видимым и невидимым контейнером.
+// РџРµСЂРµРјРµС‰РµРЅРёРµ РёС‚РµРјРѕРІ РјРµР¶РґСѓ РІРёРґРёРјС‹Рј Рё РЅРµРІРёРґРёРјС‹Рј РєРѕРЅС‚РµР№РЅРµСЂРѕРј.
 bool TransferItems( Critter& banker, uint playerId, bool hide )
 {
     CBank@ bank = GetBank( banker );
     if( not valid( bank ) )
         return false;
-    // Находим контейнеры.
+    // РќР°С…РѕРґРёРј РєРѕРЅС‚РµР№РЅРµСЂС‹.
     uint num = playerId % 10;
     if( num >= bank.ShowContPos.length() )
         num = 0;
@@ -308,17 +308,17 @@ bool TransferItems( Critter& banker, uint playerId, bool hide )
         return false;
 
     // +heX
-    // Fix: запираем ящики - чтобы игроки не тупили.
+    // Fix: Р·Р°РїРёСЂР°РµРј СЏС‰РёРєРё - С‡С‚РѕР±С‹ РёРіСЂРѕРєРё РЅРµ С‚СѓРїРёР»Рё.
     for( int i = 0; i < 10; i++ )
     {
         Item@ contTmp = map.GetItem( bank.ShowContPos[ i ].HexX, bank.ShowContPos[ i ].HexY, SHOW_CONTAINER_PID );
         if( valid( contTmp ) )
             contTmp.LockerId = 1;
     }
-    // Cнимаем запор на ящике игрока
+    // CРЅРёРјР°РµРј Р·Р°РїРѕСЂ РЅР° СЏС‰РёРєРµ РёРіСЂРѕРєР°
     contShow.LockerId = 0;
 
-    // Перемещаем итемы.
+    // РџРµСЂРµРјРµС‰Р°РµРј РёС‚РµРјС‹.
     Item@[] items;
     if( hide )
     {
@@ -340,18 +340,18 @@ void _GuardInit( Critter& guard, bool firstTime )
 {
     guard.SetEvent( CRITTER_EVENT_IDLE, "_GuardIdle" );
     guard.SetEvent( CRITTER_EVENT_MESSAGE, "_GuardOnMessage" );
-    guard.SetEvent( CRITTER_EVENT_SMTH_ATTACK, "_GuardSmthAttack" );      // Добавил Дагнир, 11.02.2010.
-    guard.SetEvent( CRITTER_EVENT_SMTH_STEALING, "_GuardSmthStealing" );  // Добавил rifleman17, 22.02.2010.
+    guard.SetEvent( CRITTER_EVENT_SMTH_ATTACK, "_GuardSmthAttack" );      // Р”РѕР±Р°РІРёР» Р”Р°РіРЅРёСЂ, 11.02.2010.
+    guard.SetEvent( CRITTER_EVENT_SMTH_STEALING, "_GuardSmthStealing" );  // Р”РѕР±Р°РІРёР» rifleman17, 22.02.2010.
     guard.SetEvent( CRITTER_EVENT_SMTH_USE_ITEM, "_GuardSmthUseItem" );   // r17 23.03.10
     guard.SetEvent( CRITTER_EVENT_SMTH_DROP_ITEM, "_GuardSmthDropItem" ); // r17 23.03.10
     ParseBank( guard );
     guard.StatBase[ ST_NPC_ROLE ] = ROLE_GUARD;
     guard.StatBase[ ST_EXPLODE_ABSORB ] = 30;
-    guard.StatBase[ ST_EXPLODE_RESIST ] = 60;  // Дагнир, 22.02.2010 - полумера от подрывов с глобала.
+    guard.StatBase[ ST_EXPLODE_RESIST ] = 60;  // Р”Р°РіРЅРёСЂ, 22.02.2010 - РїРѕР»СѓРјРµСЂР° РѕС‚ РїРѕРґСЂС‹РІРѕРІ СЃ РіР»РѕР±Р°Р»Р°.
     guard.ModeBase[ MODE_NO_ENEMY_STACK ] = 1;
-    guard.ModeBase[ MODE_UNLIMITED_AMMO ] = 1; // в противном случае у них воруют оружие
+    guard.ModeBase[ MODE_UNLIMITED_AMMO ] = 1; // РІ РїСЂРѕС‚РёРІРЅРѕРј СЃР»СѓС‡Р°Рµ Сѓ РЅРёС… РІРѕСЂСѓСЋС‚ РѕСЂСѓР¶РёРµ
     guard.StatBase[ ST_ACTION_POINTS ] = 12;
-    guard.StatBase[ ST_BONUS_LOOK ] = 300;     // Чтобы реагировали на атаки других игроков сникерами.
+    guard.StatBase[ ST_BONUS_LOOK ] = 300;     // Р§С‚РѕР±С‹ СЂРµР°РіРёСЂРѕРІР°Р»Рё РЅР° Р°С‚Р°РєРё РґСЂСѓРіРёС… РёРіСЂРѕРєРѕРІ СЃРЅРёРєРµСЂР°РјРё.
 }
 
 void _GuardIdle( Critter& guard )
@@ -362,10 +362,10 @@ void _GuardIdle( Critter& guard )
     bank.ThrowOutPlayerId = 0;
 }
 
-// Сообщения от банкира или игрока.
+// РЎРѕРѕР±С‰РµРЅРёСЏ РѕС‚ Р±Р°РЅРєРёСЂР° РёР»Рё РёРіСЂРѕРєР°.
 void _GuardOnMessage( Critter& guard, Critter& crit, int num, int val )
 {
-    // Проверяем, охрана ли приняла.
+    // РџСЂРѕРІРµСЂСЏРµРј, РѕС…СЂР°РЅР° Р»Рё РїСЂРёРЅСЏР»Р°.
     if( guard.StatBase[ ST_NPC_ROLE ] != ROLE_GUARD )
         return;
     // if(guard.Cond==COND_DEAD) return;
@@ -374,18 +374,18 @@ void _GuardOnMessage( Critter& guard, Critter& crit, int num, int val )
     if( not valid( bank ) )
         return;
 
-    // Обработка сообщений игрока.
-    // Убедимся игрок ли это послал сообщение.
+    // РћР±СЂР°Р±РѕС‚РєР° СЃРѕРѕР±С‰РµРЅРёР№ РёРіСЂРѕРєР°.
+    // РЈР±РµРґРёРјСЃСЏ РёРіСЂРѕРє Р»Рё СЌС‚Рѕ РїРѕСЃР»Р°Р» СЃРѕРѕР±С‰РµРЅРёРµ.
     if( crit.IsPlayer() )
     {
         if( num == MESSAGE_PLAYER_ON_WARNING_HEX )
         {
-            // Предупреждаем игрока, если прошел без предупреждения.
+            // РџСЂРµРґСѓРїСЂРµР¶РґР°РµРј РёРіСЂРѕРєР°, РµСЃР»Рё РїСЂРѕС€РµР» Р±РµР· РїСЂРµРґСѓРїСЂРµР¶РґРµРЅРёСЏ.
             if( bank.PassedPlayerId == crit.Id || bank.ThrowOutPlayerId == crit.Id )
                 return;
             if( bank.DoorGuardSayWarning )
                 return;
-            // Ищем охранника около двери.
+            // РС‰РµРј РѕС…СЂР°РЅРЅРёРєР° РѕРєРѕР»Рѕ РґРІРµСЂРё.
             for( uint i = 0; i < bank.DoorGuardPos.length(); i++ )
             {
                 if( guard.HexX != bank.DoorGuardPos[ i ].HexX || guard.HexY != bank.DoorGuardPos[ i ].HexY )
@@ -397,7 +397,7 @@ void _GuardOnMessage( Critter& guard, Critter& crit, int num, int val )
         }
         else if( num == MESSAGE_PLAYER_ON_ATTACK_HEX )
         {
-            // Атакуем наглеца, если он прошел без рзрешения.
+            // РђС‚Р°РєСѓРµРј РЅР°РіР»РµС†Р°, РµСЃР»Рё РѕРЅ РїСЂРѕС€РµР» Р±РµР· СЂР·СЂРµС€РµРЅРёСЏ.
             if( bank.PassedPlayerId == crit.Id || bank.ThrowOutPlayerId == crit.Id )
                 return;
             AddAttackPlane( guard, 0, crit );
@@ -405,26 +405,26 @@ void _GuardOnMessage( Critter& guard, Critter& crit, int num, int val )
         return;
     }
 
-    // Обработка сообщений банкира.
-    // Убедимся банкир ли это послал сообщение.
+    // РћР±СЂР°Р±РѕС‚РєР° СЃРѕРѕР±С‰РµРЅРёР№ Р±Р°РЅРєРёСЂР°.
+    // РЈР±РµРґРёРјСЃСЏ Р±Р°РЅРєРёСЂ Р»Рё СЌС‚Рѕ РїРѕСЃР»Р°Р» СЃРѕРѕР±С‰РµРЅРёРµ.
     if( crit.StatBase[ ST_NPC_ROLE ] != ROLE_BANKER )
         return;
 
-    // Спрашивает возможно ли пустить игрока.
+    // РЎРїСЂР°С€РёРІР°РµС‚ РІРѕР·РјРѕР¶РЅРѕ Р»Рё РїСѓСЃС‚РёС‚СЊ РёРіСЂРѕРєР°.
     if( num == MESSAGE_TRY_PASS_PLAYER )
     {
         if( !guard.IsNoPlanes() )
-            crit.StatBase[ ST_VAR0 ] = 0;                         // См. den_sh_banker IsCanEnter
+            crit.StatBase[ ST_VAR0 ] = 0;                         // РЎРј. den_sh_banker IsCanEnter
         else if( guard.Cond != COND_LIFE )
-            crit.StatBase[ ST_VAR0 ] = 0;                         // См. den_sh_banker IsCanEnter
+            crit.StatBase[ ST_VAR0 ] = 0;                         // РЎРј. den_sh_banker IsCanEnter
     }
-    // Сообщает что игрок начал манипуляции с контейнерами.
+    // РЎРѕРѕР±С‰Р°РµС‚ С‡С‚Рѕ РёРіСЂРѕРє РЅР°С‡Р°Р» РјР°РЅРёРїСѓР»СЏС†РёРё СЃ РєРѕРЅС‚РµР№РЅРµСЂР°РјРё.
     else if( num == MESSAGE_BEGIN_PASS_PLAYER )
     {}
-    // Сообщает что игрок звершил манипуляции с контейнерами.
+    // РЎРѕРѕР±С‰Р°РµС‚ С‡С‚Рѕ РёРіСЂРѕРє Р·РІРµСЂС€РёР» РјР°РЅРёРїСѓР»СЏС†РёРё СЃ РєРѕРЅС‚РµР№РЅРµСЂР°РјРё.
     else if( num == MESSAGE_END_PASS_PLAYER )
     {}
-    // Просит выкинуть зеваку.
+    // РџСЂРѕСЃРёС‚ РІС‹РєРёРЅСѓС‚СЊ Р·РµРІР°РєСѓ.
     else if( num == MESSAGE_THROW_OUT_PLAYER )
     {
         Map@ map = guard.GetMap();
@@ -477,12 +477,12 @@ void _GuardSmthUseItem( Critter& npc, Critter& fromCr, Item& item, Critter@ onCr
         }
     }
 }
-// Триггеры около двери.
+// РўСЂРёРіРіРµСЂС‹ РѕРєРѕР»Рѕ РґРІРµСЂРё.
 void t_DangerHex( Critter& player, Scenery& trigger, bool entered, uint8 dir )
 {
     if( not entered )
         return;
-    // Проверяем игрок ли это и тот кторого пустил банкир.
+    // РџСЂРѕРІРµСЂСЏРµРј РёРіСЂРѕРє Р»Рё СЌС‚Рѕ Рё С‚РѕС‚ РєС‚РѕСЂРѕРіРѕ РїСѓСЃС‚РёР» Р±Р°РЅРєРёСЂ.
     if( !player.IsPlayer() )
         return;
 
@@ -490,7 +490,7 @@ void t_DangerHex( Critter& player, Scenery& trigger, bool entered, uint8 dir )
     if( not valid( bank ) )
         return;
 
-    // Посылаем сообщение о том, что наступили на этот хекс.
+    // РџРѕСЃС‹Р»Р°РµРј СЃРѕРѕР±С‰РµРЅРёРµ Рѕ С‚РѕРј, С‡С‚Рѕ РЅР°СЃС‚СѓРїРёР»Рё РЅР° СЌС‚РѕС‚ С…РµРєСЃ.
     bank.DoorGuardSayWarning = false;
     player.SendMessage( MESSAGE_PLAYER_ON_WARNING_HEX, 0, MESSAGE_TO_ALL_ON_MAP );
 }
@@ -499,20 +499,20 @@ void t_AttackHex( Critter& player, Scenery& trigger, bool entered, uint8 dir )
 {
     if( not entered )
         return;
-    // Проверяем игрок ли это и тот которого пустил банкир.
+    // РџСЂРѕРІРµСЂСЏРµРј РёРіСЂРѕРє Р»Рё СЌС‚Рѕ Рё С‚РѕС‚ РєРѕС‚РѕСЂРѕРіРѕ РїСѓСЃС‚РёР» Р±Р°РЅРєРёСЂ.
     if( !player.IsPlayer() )
         return;
 
-    // Посылаем сообщение о том, что наступили на этот хекс.
+    // РџРѕСЃС‹Р»Р°РµРј СЃРѕРѕР±С‰РµРЅРёРµ Рѕ С‚РѕРј, С‡С‚Рѕ РЅР°СЃС‚СѓРїРёР»Рё РЅР° СЌС‚РѕС‚ С…РµРєСЃ.
     player.SendMessage( MESSAGE_PLAYER_ON_ATTACK_HEX, 0, MESSAGE_TO_ALL_ON_MAP );
 }
 
 //
 // Keeper
 //
-uint16[] ShowContPos;        // Координаты видимых контейнеров.
-uint16[] DoorHexPos;         // Координаты хекса двери.
-bool   PlayerPassed = false; // Id пропущенного к контейнерам игрока.
+uint16[] ShowContPos;        // РљРѕРѕСЂРґРёРЅР°С‚С‹ РІРёРґРёРјС‹С… РєРѕРЅС‚РµР№РЅРµСЂРѕРІ.
+uint16[] DoorHexPos;         // РљРѕРѕСЂРґРёРЅР°С‚С‹ С…РµРєСЃР° РґРІРµСЂРё.
+bool   PlayerPassed = false; // Id РїСЂРѕРїСѓС‰РµРЅРЅРѕРіРѕ Рє РєРѕРЅС‚РµР№РЅРµСЂР°Рј РёРіСЂРѕРєР°.
 uint16 DoorPid = 0;
 
 void _KeeperInit( Critter& keeper, bool firstTime )
@@ -535,7 +535,7 @@ void _KeeperIdle( Critter& keeper )
 
 void _KeeperOnMessage( Critter& keeper, Critter& banker, int num, int val )
 {
-    // Проверяем, что передал банкир кладовщику.
+    // РџСЂРѕРІРµСЂСЏРµРј, С‡С‚Рѕ РїРµСЂРµРґР°Р» Р±Р°РЅРєРёСЂ РєР»Р°РґРѕРІС‰РёРєСѓ.
     if( keeper.StatBase[ ST_NPC_ROLE ] != ROLE_KEEPER || banker.StatBase[ ST_NPC_ROLE ] != ROLE_BANKER )
         return;
 
@@ -543,7 +543,7 @@ void _KeeperOnMessage( Critter& keeper, Critter& banker, int num, int val )
     if( not valid( bank ) )
         return;
 
-    // Сообщает что игрок начал манипуляции с контейнерами.
+    // РЎРѕРѕР±С‰Р°РµС‚ С‡С‚Рѕ РёРіСЂРѕРє РЅР°С‡Р°Р» РјР°РЅРёРїСѓР»СЏС†РёРё СЃ РєРѕРЅС‚РµР№РЅРµСЂР°РјРё.
     if( num == MESSAGE_BEGIN_PASS_PLAYER )
     {
         uint contNum = uint( val ) % 10;
@@ -555,7 +555,7 @@ void _KeeperOnMessage( Critter& keeper, Critter& banker, int num, int val )
         AddWalkPlane( keeper, 0, bank.ShowContPos[ contNum ].HexX, bank.ShowContPos[ contNum ].HexY, 0xFF, false, 1 );
         // AddPickPlane(keeper,0,ShowContPos[contNum*2],ShowContPos[contNum*2+1],SHOW_CONTAINER_PID);
     }
-    // Сообщает что игрок завершил манипуляции с контейнерами или просит выкинуть зеваку.
+    // РЎРѕРѕР±С‰Р°РµС‚ С‡С‚Рѕ РёРіСЂРѕРє Р·Р°РІРµСЂС€РёР» РјР°РЅРёРїСѓР»СЏС†РёРё СЃ РєРѕРЅС‚РµР№РЅРµСЂР°РјРё РёР»Рё РїСЂРѕСЃРёС‚ РІС‹РєРёРЅСѓС‚СЊ Р·РµРІР°РєСѓ.
     else if( num == MESSAGE_END_PASS_PLAYER || num == MESSAGE_THROW_OUT_PLAYER )
     {
         bank.PlayerPassed = false;
@@ -564,7 +564,7 @@ void _KeeperOnMessage( Critter& keeper, Critter& banker, int num, int val )
         if( not valid( map ) )
             return;
 
-        // Закрываем дверь.
+        // Р—Р°РєСЂС‹РІР°РµРј РґРІРµСЂСЊ.
         if( bank.DoorHexPos.length() > 0 )
         {
             Item@ door = map.GetDoor( bank.DoorHexPos[ 0 ].HexX, bank.DoorHexPos[ 0 ].HexY );
@@ -572,7 +572,7 @@ void _KeeperOnMessage( Critter& keeper, Critter& banker, int num, int val )
                 AddPickPlane( keeper, 0, door, 0, false );
         }
 
-        // Закрываем открытые контейнеры.
+        // Р—Р°РєСЂС‹РІР°РµРј РѕС‚РєСЂС‹С‚С‹Рµ РєРѕРЅС‚РµР№РЅРµСЂС‹.
         for( uint i = 0; i < bank.ShowContPos.length(); i++ )
         {
             Item@ cont = map.GetItem( bank.ShowContPos[ i ].HexX, bank.ShowContPos[ i ].HexY, SHOW_CONTAINER_PID );
@@ -599,7 +599,7 @@ uint dlg_TalkAboutGagPlayer( Critter& player, Critter@ npc, string@ playerName )
         if( !cr.IsDead() )
         {
 
-            // не следит ни за кем
+            // РЅРµ СЃР»РµРґРёС‚ РЅРё Р·Р° РєРµРј
             if( npc.IsSee( cr ) && npc.StatBase[ ST_VAR9 ] == 0 && cr.Id != player.Id )
             {
                 if( AddCheckPlayerPosition( npc, cr ) )

@@ -1,12 +1,12 @@
 // Author: rifleman17
-// Метательные крысы
+// РњРµС‚Р°С‚РµР»СЊРЅС‹Рµ РєСЂС‹СЃС‹
 #include "_macros.fos"
 #include "_npc_pids.fos"
 #include "_teams.fos"
 
-#define STR_AWAKE_GLOBAL    ( 30 ) // Одна из ваших оглушенных крыс пришла в себя и удрала из рюкзака! Черт. Чем это так пахнет, и что это за жидкость?
-#define STR_AWAKE_MAP       ( 31 ) // Одна оглушенная крыса, по всей видимости очнулась, и выскочила из рюкзака. Прикончите эту тварь немедленно.
-#define STR_VENOMED         ( 32 ) // Вы вкололи супертоксин оглушенной крысе. Теперь с каждым укусом она может отравить жертву.
+#define STR_AWAKE_GLOBAL    ( 30 ) // РћРґРЅР° РёР· РІР°С€РёС… РѕРіР»СѓС€РµРЅРЅС‹С… РєСЂС‹СЃ РїСЂРёС€Р»Р° РІ СЃРµР±СЏ Рё СѓРґСЂР°Р»Р° РёР· СЂСЋРєР·Р°РєР°! Р§РµСЂС‚. Р§РµРј СЌС‚Рѕ С‚Р°Рє РїР°С…РЅРµС‚, Рё С‡С‚Рѕ СЌС‚Рѕ Р·Р° Р¶РёРґРєРѕСЃС‚СЊ?
+#define STR_AWAKE_MAP       ( 31 ) // РћРґРЅР° РѕРіР»СѓС€РµРЅРЅР°СЏ РєСЂС‹СЃР°, РїРѕ РІСЃРµР№ РІРёРґРёРјРѕСЃС‚Рё РѕС‡РЅСѓР»Р°СЃСЊ, Рё РІС‹СЃРєРѕС‡РёР»Р° РёР· СЂСЋРєР·Р°РєР°. РџСЂРёРєРѕРЅС‡РёС‚Рµ СЌС‚Сѓ С‚РІР°СЂСЊ РЅРµРјРµРґР»РµРЅРЅРѕ.
+#define STR_VENOMED         ( 32 ) // Р’С‹ РІРєРѕР»РѕР»Рё СЃСѓРїРµСЂС‚РѕРєСЃРёРЅ РѕРіР»СѓС€РµРЅРЅРѕР№ РєСЂС‹СЃРµ. РўРµРїРµСЂСЊ СЃ РєР°Р¶РґС‹Рј СѓРєСѓСЃРѕРј РѕРЅР° РјРѕР¶РµС‚ РѕС‚СЂР°РІРёС‚СЊ Р¶РµСЂС‚РІСѓ.
 // #define DL                     # (s) ( Log( "RATS: " + s ) )
 #define DL                  # ( s )
 
@@ -20,7 +20,7 @@ void _RatGrenadeInit( Item& item, bool firstTime )
     DL( "item init" );
     if( firstTime )
     {
-        // Есть шанс, что крыса очнется через пять реальных минут
+        // Р•СЃС‚СЊ С€Р°РЅСЃ, С‡С‚Рѕ РєСЂС‹СЃР° РѕС‡РЅРµС‚СЃСЏ С‡РµСЂРµР· РїСЏС‚СЊ СЂРµР°Р»СЊРЅС‹С… РјРёРЅСѓС‚
         if( Random( 1, 4 ) < 2 )
         {
             DL( "Awaking rat after 5 real minutes" );
@@ -31,7 +31,7 @@ void _RatGrenadeInit( Item& item, bool firstTime )
     }
     item.SetEvent( ITEM_EVENT_ATTACK, "_RatGrenadeAttack" );
     item.SetEvent( ITEM_EVENT_FINISH, "_RatGrenadeFinish" );
-    // item.SetEvent( ITEM_EVENT_USE_ON_ME, "_RatGrenadeUseOnMe"); //Не работает использование предмета на предмет
+    // item.SetEvent( ITEM_EVENT_USE_ON_ME, "_RatGrenadeUseOnMe"); //РќРµ СЂР°Р±РѕС‚Р°РµС‚ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РїСЂРµРґРјРµС‚Р° РЅР° РїСЂРµРґРјРµС‚
 }
 
 bool _RatGrenadeUseOnMe( Item& item, Critter& cr, Item@ usedItem )
@@ -39,7 +39,7 @@ bool _RatGrenadeUseOnMe( Item& item, Critter& cr, Item@ usedItem )
     int pid = item.GetProtoId();
     if( valid( usedItem ) && pid == PID_RAT_GRENADE && usedItem.GetProtoId() == PID_SUPERTOXINE )
     {
-        // Только при использовании в инвентаре, не на земле
+        // РўРѕР»СЊРєРѕ РїСЂРё РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРё РІ РёРЅРІРµРЅС‚Р°СЂРµ, РЅРµ РЅР° Р·РµРјР»Рµ
         Item@[] items;
         Item@ foundedItem;
         if( cr.GetItems( -1, items ) > 0 )
@@ -173,7 +173,7 @@ void _RatGrenadeFinish( Item& item, bool deleted )
 }
 
 
-// Скрипт крысы, вылезающей из гранаты, если она проснулась
+// РЎРєСЂРёРїС‚ РєСЂС‹СЃС‹, РІС‹Р»РµР·Р°СЋС‰РµР№ РёР· РіСЂР°РЅР°С‚С‹, РµСЃР»Рё РѕРЅР° РїСЂРѕСЃРЅСѓР»Р°СЃСЊ
 void _RatInit( Critter& cr, bool firstTime )
 {
     _MobInit( cr, firstTime );

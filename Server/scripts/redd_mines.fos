@@ -1,9 +1,9 @@
 // Author: rifleman17
-// Работы на шахтах Реддинга
+// Р Р°Р±РѕС‚С‹ РЅР° С€Р°С…С‚Р°С… Р РµРґРґРёРЅРіР°
 
 #include "_macros.fos"
 
-// Скрытый контейнер для хранения предметов, принадлежащих игроку
+// РЎРєСЂС‹С‚С‹Р№ РєРѕРЅС‚РµР№РЅРµСЂ РґР»СЏ С…СЂР°РЅРµРЅРёСЏ РїСЂРµРґРјРµС‚РѕРІ, РїСЂРёРЅР°РґР»РµР¶Р°С‰РёС… РёРіСЂРѕРєСѓ
 
 #define PID_MINER            ( 169 )
 #define NUGGET_COST          ( 10 )
@@ -89,11 +89,11 @@ void r_PayPlayer( Critter& player, Critter @ npc )
     }
 
 }
-// Добыча золота
-// есть таймаут на вход - 3 игровых суток
-// выход разрешают, если игрок собрал минимум 15 самородков
-// за каждый самородок игрок получает x марок шахты
-// марки можно менять на деньги у мужика в казино
+// Р”РѕР±С‹С‡Р° Р·РѕР»РѕС‚Р°
+// РµСЃС‚СЊ С‚Р°Р№РјР°СѓС‚ РЅР° РІС…РѕРґ - 3 РёРіСЂРѕРІС‹С… СЃСѓС‚РѕРє
+// РІС‹С…РѕРґ СЂР°Р·СЂРµС€Р°СЋС‚, РµСЃР»Рё РёРіСЂРѕРє СЃРѕР±СЂР°Р» РјРёРЅРёРјСѓРј 15 СЃР°РјРѕСЂРѕРґРєРѕРІ
+// Р·Р° РєР°Р¶РґС‹Р№ СЃР°РјРѕСЂРѕРґРѕРє РёРіСЂРѕРє РїРѕР»СѓС‡Р°РµС‚ x РјР°СЂРѕРє С€Р°С…С‚С‹
+// РјР°СЂРєРё РјРѕР¶РЅРѕ РјРµРЅСЏС‚СЊ РЅР° РґРµРЅСЊРіРё Сѓ РјСѓР¶РёРєР° РІ РєР°Р·РёРЅРѕ
 bool s_CountNuggets( Critter& player, Scenery& sc, int skill, Item@ item )
 {
     if( valid( item ) )
@@ -107,7 +107,7 @@ bool s_CountNuggets( Critter& player, Scenery& sc, int skill, Item@ item )
                 if( counter.GetValue() < counter.GetMax() )
                 {
                     counter = counter.GetValue() + 1;
-                    player.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, STR_REMOVE_NUGGET, "$num " + counter.GetValue() );                // Вы бережно опускаете один из золотых самородков в вагонетку. Всего добыто золота: @lex num@.
+                    player.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, STR_REMOVE_NUGGET, "$num " + counter.GetValue() );                // Р’С‹ Р±РµСЂРµР¶РЅРѕ РѕРїСѓСЃРєР°РµС‚Рµ РѕРґРёРЅ РёР· Р·РѕР»РѕС‚С‹С… СЃР°РјРѕСЂРѕРґРєРѕРІ РІ РІР°РіРѕРЅРµС‚РєСѓ. Р’СЃРµРіРѕ РґРѕР±С‹С‚Рѕ Р·РѕР»РѕС‚Р°: @lex num@.
                 }
             }
         }
@@ -119,7 +119,7 @@ bool s_CountNuggets( Critter& player, Scenery& sc, int skill, Item@ item )
     return true;
 }
 
-// Счетчик оставшихся
+// РЎС‡РµС‚С‡РёРє РѕСЃС‚Р°РІС€РёС…СЃСЏ
 void dlg_CountNuggets( Critter& player, Critter@ barman, string@ lexems )
 {
     if( !IS_DIALOG_GENERATED( lexems ) )

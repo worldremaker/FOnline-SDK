@@ -16,7 +16,7 @@ void _ScanerInit( Item& item, bool firstTime )
     item.Update();
     if( firstTime )
     {
-        // Создаем событие удаления предмета через 1 игровой месяц
+        // РЎРѕР·РґР°РµРј СЃРѕР±С‹С‚РёРµ СѓРґР°Р»РµРЅРёСЏ РїСЂРµРґРјРµС‚Р° С‡РµСЂРµР· 1 РёРіСЂРѕРІРѕР№ РјРµСЃСЏС†
         CreateTimeEvent( __FullSecond + 60 * 60 * 24 * 30, "e_DeleteScaner", item.Id, true );
     }
 }
@@ -46,7 +46,7 @@ bool _ScanerUse( Item& item, Critter& cr, Critter@ onCritter, Item@ onItem, Scen
             cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, STR_EMPTY );
             return true;
         }
-        // Каждого робота можно сканировать только раз в два реальных часа
+        // РљР°Р¶РґРѕРіРѕ СЂРѕР±РѕС‚Р° РјРѕР¶РЅРѕ СЃРєР°РЅРёСЂРѕРІР°С‚СЊ С‚РѕР»СЊРєРѕ СЂР°Р· РІ РґРІР° СЂРµР°Р»СЊРЅС‹С… С‡Р°СЃР°
         onCritter.StatBase[ ST_VAR1 ] = __FullSecond + __TimeMultiplier * 2 * 60 * 60;
         uint value = 1;
         if( cr.Skill[ SK_SCIENCE ] > 50 )
@@ -92,7 +92,7 @@ void r_AddScaner( Critter& player, Critter@ npc )
     }
 }
 
-// Чип для подчинения робота
+// Р§РёРї РґР»СЏ РїРѕРґС‡РёРЅРµРЅРёСЏ СЂРѕР±РѕС‚Р°
 #define STR_CHIP_SET_UP          ( 5153 )
 #define STR_CHIP_SET_FAIL        ( 5154 )
 #define STR_ROBOT_CANT_REPAIR    ( 5155 )
@@ -134,7 +134,7 @@ bool _ChipUse( Item& item, Critter& cr, Critter@ onCritter, Item@ onItem, Scener
             cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, STR_CHIP_SET_UP );
             DeleteItem( item );
             onCritter.SetEvent( CRITTER_EVENT_SMTH_USE_SKILL, "_RobotSmthUseSkill" );
-            onCritter.StatBase[ ST_VAR1 ] = cr.Id;           // Запоминаем, кто установил чип
+            onCritter.StatBase[ ST_VAR1 ] = cr.Id;           // Р—Р°РїРѕРјРёРЅР°РµРј, РєС‚Рѕ СѓСЃС‚Р°РЅРѕРІРёР» С‡РёРї
         }
         return true;
     }
@@ -157,7 +157,7 @@ void _RobotSmthUseSkill( Critter& cr, Critter& fromCr, int skill, Critter@ onCri
             cr.StatBase[ ST_CURRENT_HP ] = cr.Stat[ ST_MAX_LIFE ];
             cr.MercBase[ MERC_MASTER_DIST ] = 6;
             cr.StatBase[ ST_BAG_ID ] = 144;         // Sentry robot bag
-            Merc2Player( fromCr, cr, 4 );           // Охранник по умолчанию. Защищает хозяина
+            Merc2Player( fromCr, cr, 4 );           // РћС…СЂР°РЅРЅРёРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ. Р—Р°С‰РёС‰Р°РµС‚ С…РѕР·СЏРёРЅР°
         }
     }
 }

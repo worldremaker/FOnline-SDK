@@ -1,19 +1,19 @@
-// Author: cvet, heX, Тринитротолуол, Tab10id
+// Author: cvet, heX, РўСЂРёРЅРёС‚СЂРѕС‚РѕР»СѓРѕР», Tab10id
 #include "_macros.fos"
 #include "stdlib_h.fos"
 
-// Возвращает размер группы (живых ее участников)
-// размер береться вне зависимости от того лидер это или просто партиец
+// Р’РѕР·РІСЂР°С‰Р°РµС‚ СЂР°Р·РјРµСЂ РіСЂСѓРїРїС‹ (Р¶РёРІС‹С… РµРµ СѓС‡Р°СЃС‚РЅРёРєРѕРІ)
+// СЂР°Р·РјРµСЂ Р±РµСЂРµС‚СЊСЃСЏ РІРЅРµ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ С‚РѕРіРѕ Р»РёРґРµСЂ СЌС‚Рѕ РёР»Рё РїСЂРѕСЃС‚Рѕ РїР°СЂС‚РёРµС†
 
 import void FlushScreen( Critter& cr, bool fadeOut, uint timeMs ) from "effects";
 
 int DFGroupCount( Critter& player, Critter@ npc )
 {
     Critter @ leader;
-    if( not valid( player.GetFollowLeader() ) ) // если у игрока нет лидера
-        @leader = player;                       // тогда считаем что он и есть лидер
+    if( not valid( player.GetFollowLeader() ) ) // РµСЃР»Рё Сѓ РёРіСЂРѕРєР° РЅРµС‚ Р»РёРґРµСЂР°
+        @leader = player;                       // С‚РѕРіРґР° СЃС‡РёС‚Р°РµРј С‡С‚Рѕ РѕРЅ Рё РµСЃС‚СЊ Р»РёРґРµСЂ
     else
-        @leader = player.GetFollowLeader();     // иначе берем лидера
+        @leader = player.GetFollowLeader();     // РёРЅР°С‡Рµ Р±РµСЂРµРј Р»РёРґРµСЂР°
 
     Critter@[] groups;
     groups.insertLast( @leader );
@@ -21,7 +21,7 @@ int DFGroupCount( Critter& player, Critter@ npc )
     return groups.length();
 }
 
-// !/ Размер группы больше >=VAL
+// !/ Р Р°Р·РјРµСЂ РіСЂСѓРїРїС‹ Р±РѕР»СЊС€Рµ >=VAL
 bool d_GroupCountMore( Critter& player, Critter@ npc, int val )
 {
     return DFGroupCount( player, npc ) >= val;
@@ -32,15 +32,15 @@ bool d_GroupCountLess( Critter& player, Critter@ npc, int val )
     return DFGroupCount( player, npc ) < val;
 }
 
-// !/ У всех уровень больше >=VAL
-// Проверка что все игроки в группе больше или равны указанному уровню.
+// !/ РЈ РІСЃРµС… СѓСЂРѕРІРµРЅСЊ Р±РѕР»СЊС€Рµ >=VAL
+// РџСЂРѕРІРµСЂРєР° С‡С‚Рѕ РІСЃРµ РёРіСЂРѕРєРё РІ РіСЂСѓРїРїРµ Р±РѕР»СЊС€Рµ РёР»Рё СЂР°РІРЅС‹ СѓРєР°Р·Р°РЅРЅРѕРјСѓ СѓСЂРѕРІРЅСЋ.
 bool d_GroupLevelMore( Critter& player, Critter@ npc, int val )
 {
     Critter@[] groups;
     groups.insertLast( @player );
     player.GetFollowGroup( FIND_LIFE, groups );
     for( uint i = 0; i < groups.length(); i++ )
-        if( groups[ i ].Stat[ ST_LEVEL ] < val ) // если хотябы один из них меньше требуемого уровня
+        if( groups[ i ].Stat[ ST_LEVEL ] < val ) // РµСЃР»Рё С…РѕС‚СЏР±С‹ РѕРґРёРЅ РёР· РЅРёС… РјРµРЅСЊС€Рµ С‚СЂРµР±СѓРµРјРѕРіРѕ СѓСЂРѕРІРЅСЏ
             return false;
     return true;
 }
@@ -51,30 +51,30 @@ bool d_GroupLevelLess( Critter& player, Critter@ npc, int val )
     groups.insertLast( @player );
     player.GetFollowGroup( FIND_LIFE, groups );
     for( uint i = 0; i < groups.length(); i++ )
-        if( groups[ i ].Stat[ ST_LEVEL ] > val ) // если хотябы один из них меньше требуемого уровня
+        if( groups[ i ].Stat[ ST_LEVEL ] > val ) // РµСЃР»Рё С…РѕС‚СЏР±С‹ РѕРґРёРЅ РёР· РЅРёС… РјРµРЅСЊС€Рµ С‚СЂРµР±СѓРµРјРѕРіРѕ СѓСЂРѕРІРЅСЏ
             return false;
     return true;
 }
 
-// Игрок нуждаеться в лечении?
+// РРіСЂРѕРє РЅСѓР¶РґР°РµС‚СЊСЃСЏ РІ Р»РµС‡РµРЅРёРё?
 bool d_IsToHeal( Critter& player, Critter@ npc )
 {
     return player.Stat[ ST_CURRENT_HP ] < player.Stat[ ST_MAX_LIFE ];
 }
 
-// Игроку известна эта локация?
+// РРіСЂРѕРєСѓ РёР·РІРµСЃС‚РЅР° СЌС‚Р° Р»РѕРєР°С†РёСЏ?
 bool d_IsLocationVisible( Critter& player, Critter@ npc, int LocNum )
 {
     return player.IsKnownLoc( false, uint16( LocNum ) );
 }
 
-// Игроку НЕ известна эта локация?
+// РРіСЂРѕРєСѓ РќР• РёР·РІРµСЃС‚РЅР° СЌС‚Р° Р»РѕРєР°С†РёСЏ?
 bool d_IsLocationNotVisible( Critter& player, Critter@ npc, int LocNum )
 {
     return not player.IsKnownLoc( false, uint16( LocNum ) );
 }
 
-// Есть зависимости от наркотиков?
+// Р•СЃС‚СЊ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РЅР°СЂРєРѕС‚РёРєРѕРІ?
 bool d_IsAddict( Critter& player, Critter@ npc )
 {
     for( uint i = ADDICTION_BEGIN; i <= ADDICTION_END; i++ )
@@ -83,43 +83,43 @@ bool d_IsAddict( Critter& player, Critter@ npc )
     return false;
 }
 
-// У игрока нет зависимостей от наркотиков?
+// РЈ РёРіСЂРѕРєР° РЅРµС‚ Р·Р°РІРёСЃРёРјРѕСЃС‚РµР№ РѕС‚ РЅР°СЂРєРѕС‚РёРєРѕРІ?
 bool d_IsNotAddict( Critter& player, Critter@ npc )
 {
     return not d_IsAddict( player, npc );
 }
 
-// Игрок в группе? (лидер тоже считаеться)
+// РРіСЂРѕРє РІ РіСЂСѓРїРїРµ? (Р»РёРґРµСЂ С‚РѕР¶Рµ СЃС‡РёС‚Р°РµС‚СЊСЃСЏ)
 bool d_GroupPresent( Critter& player, Critter@ npc )
 {
     return DFGroupCount( player, npc ) > 1;
 }
 
-// Игрок НЕ в группе? (лидер тоже считаеться)
+// РРіСЂРѕРє РќР• РІ РіСЂСѓРїРїРµ? (Р»РёРґРµСЂ С‚РѕР¶Рµ СЃС‡РёС‚Р°РµС‚СЊСЃСЏ)
 bool d_NotGroupPresent( Critter& player, Critter@ npc )
 {
     return not d_GroupPresent( player, npc );
 }
 
-/** проверка на таймаут
-   используйте функцию r_TimeoutSet для инициализации
-   если таймаут кончился (или еще и не начинался)
-   то функция вернет истинну (разрешит ответ)
-   иначе вернет ложь (ответ будет скрыт)
+/** РїСЂРѕРІРµСЂРєР° РЅР° С‚Р°Р№РјР°СѓС‚
+   РёСЃРїРѕР»СЊР·СѓР№С‚Рµ С„СѓРЅРєС†РёСЋ r_TimeoutSet РґР»СЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё
+   РµСЃР»Рё С‚Р°Р№РјР°СѓС‚ РєРѕРЅС‡РёР»СЃСЏ (РёР»Рё РµС‰Рµ Рё РЅРµ РЅР°С‡РёРЅР°Р»СЃСЏ)
+   С‚Рѕ С„СѓРЅРєС†РёСЏ РІРµСЂРЅРµС‚ РёСЃС‚РёРЅРЅСѓ (СЂР°Р·СЂРµС€РёС‚ РѕС‚РІРµС‚)
+   РёРЅР°С‡Рµ РІРµСЂРЅРµС‚ Р»РѕР¶СЊ (РѕС‚РІРµС‚ Р±СѓРґРµС‚ СЃРєСЂС‹С‚)
  */
 bool d_TimeoutCheck( Critter& player, Critter@ npc )
 {
     GameVar @ t = GetLocalVar( LVAR_timeout, npc.Id );
     if( not valid( t ) )
-        return true;         // таймаут еще и не начался
+        return true;         // С‚Р°Р№РјР°СѓС‚ РµС‰Рµ Рё РЅРµ РЅР°С‡Р°Р»СЃСЏ
     if( __FullSecond >= uint( t.GetValue() ) )
-        return true;         // таймаут истек
+        return true;         // С‚Р°Р№РјР°СѓС‚ РёСЃС‚РµРє
     else
-        return false;        // таймаут еще жив
+        return false;        // С‚Р°Р№РјР°СѓС‚ РµС‰Рµ Р¶РёРІ
 }
 
 /**
-        инверсия d_TimeoutCheck
+        РёРЅРІРµСЂСЃРёСЏ d_TimeoutCheck
  */
 bool d_NotTimeoutCheck( Critter& player, Critter@ npc )
 {
@@ -127,8 +127,8 @@ bool d_NotTimeoutCheck( Critter& player, Critter@ npc )
 }
 
 
-// Проверка уникальной переменной - таймаута игрок-нпц
-// Время прошло, или таймаут не назначался
+// РџСЂРѕРІРµСЂРєР° СѓРЅРёРєР°Р»СЊРЅРѕР№ РїРµСЂРµРјРµРЅРЅРѕР№ - С‚Р°Р№РјР°СѓС‚Р° РёРіСЂРѕРє-РЅРїС†
+// Р’СЂРµРјСЏ РїСЂРѕС€Р»Рѕ, РёР»Рё С‚Р°Р№РјР°СѓС‚ РЅРµ РЅР°Р·РЅР°С‡Р°Р»СЃСЏ
 bool d_TimeoutOk( Critter& player, Critter @ npc )
 {
     if( !valid( npc ) )
@@ -142,7 +142,7 @@ bool d_TimeoutOk( Critter& player, Critter @ npc )
     return ( time < __FullSecond );
 }
 
-// Таймаут не закончился
+// РўР°Р№РјР°СѓС‚ РЅРµ Р·Р°РєРѕРЅС‡РёР»СЃСЏ
 bool d_NotTimeoutOk( Critter& player, Critter @ npc )
 {
     return !d_TimeoutOk( player, npc );
@@ -153,9 +153,9 @@ bool d_CheckMonth( Critter& playe, Critter @npc, int monthFrom, int monthTo )
     return ( __Month <= monthTo && __Month >= monthFrom );
 }
 
-// НПЦ жив?
-// в v0 указываем NpcRole НПЦ (на карте должен быть в 1 экземпляре)
-// в v1 указываем PID карты (карта должна быть в игре в одном экземпляре)
+// РќРџР¦ Р¶РёРІ?
+// РІ v0 СѓРєР°Р·С‹РІР°РµРј NpcRole РќРџР¦ (РЅР° РєР°СЂС‚Рµ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РІ 1 СЌРєР·РµРјРїР»СЏСЂРµ)
+// РІ v1 СѓРєР°Р·С‹РІР°РµРј PID РєР°СЂС‚С‹ (РєР°СЂС‚Р° РґРѕР»Р¶РЅР° Р±С‹С‚СЊ РІ РёРіСЂРµ РІ РѕРґРЅРѕРј СЌРєР·РµРјРїР»СЏСЂРµ)
 bool d_IsLife( Critter& player, Critter@ npc, int v0, int v1 )
 {
     Map @ map = GetMapByPid( v1, 0 );
@@ -176,13 +176,13 @@ bool d_IsLife( Critter& player, Critter@ npc, int v0, int v1 )
         return false;
 }
 
-// НПЦ мертв?
+// РќРџР¦ РјРµСЂС‚РІ?
 bool d_IsDead( Critter& player, Critter@ npc, int v0, int v1 )
 {
     return not d_IsLife( player, npc, v0, v1 );
 }
 
-// Шпионаж
+// РЁРїРёРѕРЅР°Р¶
 void dlg_TrySpy( Critter& player, Critter@ banker, string@ playerName )
 {
     if( !valid( banker ) )
@@ -209,7 +209,7 @@ void dlg_TrySpy( Critter& player, Critter@ banker, string@ playerName )
         return;
     }
 
-    // Пол.
+    // РџРѕР».
     if( cr.Stat[ ST_GENDER ] == GENDER_MALE )
     {
         lexems += "$Gender @msg dlg " + DLGSTR( BankerDialog, DlgStr + 10 ) + "@";
@@ -223,7 +223,7 @@ void dlg_TrySpy( Critter& player, Critter@ banker, string@ playerName )
         lexems += "$Gender @msg dlg " + DLGSTR( BankerDialog, DlgStr + 12 ) + "@";
     }
 
-    // Репликации.
+    // Р РµРїР»РёРєР°С†РёРё.
     if( cr.Stat[ ST_REPLICATION_COUNT ] / cr.Stat[ ST_LEVEL ] <= 2 )
     {
         lexems += "$ReplCount @msg dlg " + DLGSTR( BankerDialog, DlgStr + 13 ) + "@";
@@ -237,7 +237,7 @@ void dlg_TrySpy( Critter& player, Critter@ banker, string@ playerName )
         lexems += "$ReplCount @msg dlg " + DLGSTR( BankerDialog, DlgStr + 15 ) + "@";
     }
 
-    // Год рождения.
+    // Р“РѕРґ СЂРѕР¶РґРµРЅРёСЏ.
     lexems += "$Born " + ( __Year - cr.Stat[ ST_AGE ] );
 
     if( player.Skill[ SK_SPEECH ] >= 40 - ( player.Stat[ ST_CHARISMA ] + player.Stat[ ST_LUCK ] ) / 2 )
@@ -245,7 +245,7 @@ void dlg_TrySpy( Critter& player, Critter@ banker, string@ playerName )
         player.SayMsg( SAY_DIALOG, TEXTMSG_DLG, DLGSTR( BankerDialog, DlgStr + 1 ), lexems );
     }
 
-    // Уровень.
+    // РЈСЂРѕРІРµРЅСЊ.
     if( player.Skill[ SK_SPEECH ] >= 50 - ( player.Stat[ ST_CHARISMA ] + player.Stat[ ST_LUCK ] ) / 2 )
     {
         lexems = "";
@@ -253,7 +253,7 @@ void dlg_TrySpy( Critter& player, Critter@ banker, string@ playerName )
         player.SayMsg( SAY_APPEND, TEXTMSG_DLG, DLGSTR( BankerDialog, DlgStr + 2 ), lexems );
     }
 
-    // Карма.
+    // РљР°СЂРјР°.
     if( player.Skill[ SK_SPEECH ] >= 60 - ( player.Stat[ ST_CHARISMA ] + player.Stat[ ST_LUCK ] ) / 2 )
     {
         int[] Values = { -2147483647, -1000, -750, -500, -250, 250,     500,    750,    1000 };
@@ -273,11 +273,11 @@ void dlg_TrySpy( Critter& player, Critter@ banker, string@ playerName )
         player.SayMsg( SAY_APPEND, TEXTMSG_GAME, CurKarma );
     }
 
-    // Статы.
+    // РЎС‚Р°С‚С‹.
     if( player.Skill[ SK_SPEECH ] >= 70 - ( player.Stat[ ST_CHARISMA ] + player.Stat[ ST_LUCK ] ) / 2 )
     {
         lexems = "";
-        // Сила.
+        // РЎРёР»Р°.
         if( cr.StatBase[ ST_STRENGTH ] < 4 )
         {
             lexems += "$Strength @msg dlg " + DLGSTR( BankerDialog, DlgStr + 16 ) + "@";
@@ -294,7 +294,7 @@ void dlg_TrySpy( Critter& player, Critter@ banker, string@ playerName )
         {
             lexems += "$Strength @msg dlg " + DLGSTR( BankerDialog, DlgStr + 18 ) + "@";
         }
-        // Восприятие.
+        // Р’РѕСЃРїСЂРёСЏС‚РёРµ.
         if( cr.StatBase[ ST_PERCEPTION ] < 4 )
         {
             lexems += "$Perception @msg dlg " + DLGSTR( BankerDialog, DlgStr + 19 ) + "@";
@@ -311,7 +311,7 @@ void dlg_TrySpy( Critter& player, Critter@ banker, string@ playerName )
         {
             lexems += "$Perception @msg dlg " + DLGSTR( BankerDialog, DlgStr + 21 ) + "@";
         }
-        // Выносливость.
+        // Р’С‹РЅРѕСЃР»РёРІРѕСЃС‚СЊ.
         if( cr.StatBase[ ST_ENDURANCE ] < 4 )
         {
             lexems += "$Endurance @msg dlg " + DLGSTR( BankerDialog, DlgStr + 22 ) + "@";
@@ -328,7 +328,7 @@ void dlg_TrySpy( Critter& player, Critter@ banker, string@ playerName )
         {
             lexems += "$Endurance @msg dlg " + DLGSTR( BankerDialog, DlgStr + 24 ) + "@";
         }
-        // Обаяние.
+        // РћР±Р°СЏРЅРёРµ.
         if( cr.StatBase[ ST_CHARISMA ] < 4 )
         {
             lexems += "$Charisma @msg dlg " + DLGSTR( BankerDialog, DlgStr + 25 ) + "@";
@@ -345,7 +345,7 @@ void dlg_TrySpy( Critter& player, Critter@ banker, string@ playerName )
         {
             lexems += "$Charisma @msg dlg " + DLGSTR( BankerDialog, DlgStr + 27 ) + "@";
         }
-        // Интеллект.
+        // РРЅС‚РµР»Р»РµРєС‚.
         if( cr.StatBase[ ST_INTELLECT ] < 4 )
         {
             lexems += "$Intellect @msg dlg " + DLGSTR( BankerDialog, DlgStr + 28 ) + "@";
@@ -362,7 +362,7 @@ void dlg_TrySpy( Critter& player, Critter@ banker, string@ playerName )
         {
             lexems += "$Intellect @msg dlg " + DLGSTR( BankerDialog, DlgStr + 30 ) + "@";
         }
-        // Ловкость.
+        // Р›РѕРІРєРѕСЃС‚СЊ.
         if( cr.StatBase[ ST_AGILITY ] < 4 )
         {
             lexems += "$Agility @msg dlg " + DLGSTR( BankerDialog, DlgStr + 31 ) + "@";
@@ -379,7 +379,7 @@ void dlg_TrySpy( Critter& player, Critter@ banker, string@ playerName )
         {
             lexems += "$Agility @msg dlg " + DLGSTR( BankerDialog, DlgStr + 33 ) + "@";
         }
-        // Удача.
+        // РЈРґР°С‡Р°.
         if( cr.StatBase[ ST_LUCK ] < 4 )
         {
             lexems += "$Luck @msg dlg " + DLGSTR( BankerDialog, DlgStr + 34 ) + "@";
@@ -399,7 +399,7 @@ void dlg_TrySpy( Critter& player, Critter@ banker, string@ playerName )
         player.SayMsg( SAY_APPEND, TEXTMSG_DLG, DLGSTR( BankerDialog, DlgStr + 3 ), lexems );
     }
 
-    // Тагнутые боевые навыки.
+    // РўР°РіРЅСѓС‚С‹Рµ Р±РѕРµРІС‹Рµ РЅР°РІС‹РєРё.
     if( player.Skill[ SK_SPEECH ] >= 80 - ( player.Stat[ ST_CHARISMA ] + player.Stat[ ST_LUCK ] ) / 2 )
     {
 
@@ -446,7 +446,7 @@ void dlg_TrySpy( Critter& player, Critter@ banker, string@ playerName )
 
     }
 
-    // Тагнутые небоевые навыки.
+    // РўР°РіРЅСѓС‚С‹Рµ РЅРµР±РѕРµРІС‹Рµ РЅР°РІС‹РєРё.
     if( player.Skill[ SK_SPEECH ] >= 85 - ( player.Stat[ ST_CHARISMA ] + player.Stat[ ST_LUCK ] ) / 2 )
     {
         uint[] Skills = { SK_FIRST_AID, SK_DOCTOR, SK_SNEAK, SK_LOCKPICK, SK_STEAL, SK_TRAPS, SK_SCIENCE, SK_REPAIR, SK_SPEECH, SK_BARTER, SK_GAMBLING, SK_OUTDOORSMAN };
@@ -509,7 +509,7 @@ void dlg_TrySpy( Critter& player, Critter@ banker, string@ playerName )
 
     }
 
-    // Прокачаный боевой навык.
+    // РџСЂРѕРєР°С‡Р°РЅС‹Р№ Р±РѕРµРІРѕР№ РЅР°РІС‹Рє.
     if( player.Skill[ SK_SPEECH ] >= 90 - ( player.Stat[ ST_CHARISMA ] + player.Stat[ ST_LUCK ] ) / 2 )
     {
 
@@ -567,7 +567,7 @@ void dlg_TrySpy( Critter& player, Critter@ banker, string@ playerName )
 
     }
 
-    // Прокачаный небоевой навык.
+    // РџСЂРѕРєР°С‡Р°РЅС‹Р№ РЅРµР±РѕРµРІРѕР№ РЅР°РІС‹Рє.
     if( player.Skill[ SK_SPEECH ] >= 100 - ( player.Stat[ ST_CHARISMA ] + player.Stat[ ST_LUCK ] ) / 2 )
     {
 
@@ -636,7 +636,7 @@ void dlg_TrySpy( Critter& player, Critter@ banker, string@ playerName )
 
     }
 
-    // Количество денег на счету.
+    // РљРѕР»РёС‡РµСЃС‚РІРѕ РґРµРЅРµРі РЅР° СЃС‡РµС‚Сѓ.
     if( player.Skill[ SK_SPEECH ] >= 110 - ( player.Stat[ ST_CHARISMA ] + player.Stat[ ST_LUCK ] ) / 2 )
     {
         lexems = "";
@@ -655,9 +655,9 @@ void dlg_ForSearching( Critter& player, Critter@ barman, string@ playerName )
         return;
     uint   BankerDialog = barman.Stat[ ST_DIALOG_ID ];
     uint   DlgStr = 200;
-    // Имя запрашиваемого криттера и инициализация переменной с лексемами.
+    // РРјСЏ Р·Р°РїСЂР°С€РёРІР°РµРјРѕРіРѕ РєСЂРёС‚С‚РµСЂР° Рё РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РїРµСЂРµРјРµРЅРЅРѕР№ СЃ Р»РµРєСЃРµРјР°РјРё.
     string lexems = "$Victim " + playerName;
-    // Пол бармена.
+    // РџРѕР» Р±Р°СЂРјРµРЅР°.
     if( barman.Stat[ ST_GENDER ] == GENDER_FEMALE )
     {
         lexems += "$BarmanGen @msg dlg " + DLGSTR( BankerDialog, DlgStr + 10 ) + "@";
@@ -666,14 +666,14 @@ void dlg_ForSearching( Critter& player, Critter@ barman, string@ playerName )
     {
         lexems += "$BarmanGen @msg dlg " + DLGSTR( BankerDialog, DlgStr + 9 ) + "@";
     }
-    // Игрок не найден.
+    // РРіСЂРѕРє РЅРµ РЅР°Р№РґРµРЅ.
     Critter@ cr = GetPlayer( playerName );
     if( !valid( cr ) )
     {
         player.SayMsg( SAY_DIALOG, TEXTMSG_DLG, DLGSTR( BankerDialog, DlgStr + 0 ), lexems );
         return;
     }
-    // Пол запрашиваемого криттера.
+    // РџРѕР» Р·Р°РїСЂР°С€РёРІР°РµРјРѕРіРѕ РєСЂРёС‚С‚РµСЂР°.
     if( cr.Stat[ ST_GENDER ] == GENDER_FEMALE )
     {
         lexems += "$Gender @msg dlg " + DLGSTR( BankerDialog, DlgStr + 8 ) + "@";
@@ -689,7 +689,7 @@ void dlg_ForSearching( Critter& player, Critter@ barman, string@ playerName )
 void dlg_TrySearching( Critter& player, Critter@ barman, string@ playerName )
 {
 
-    #define LOC_NAME    # (mapId)                       ( ( mapId + 100 ) * 1000 ) // поиск названия локации в файле FOGM.msg
+    #define LOC_NAME    # (mapId)                       ( ( mapId + 100 ) * 1000 ) // РїРѕРёСЃРє РЅР°Р·РІР°РЅРёСЏ Р»РѕРєР°С†РёРё РІ С„Р°Р№Р»Рµ FOGM.msg
     if( !valid( barman ) )
         return;
     if( !IS_DIALOG_SAY_MODE( playerName ) || IS_DIALOG_END( playerName ) )
@@ -698,9 +698,9 @@ void dlg_TrySearching( Critter& player, Critter@ barman, string@ playerName )
         return;
     uint   BankerDialog = barman.Stat[ ST_DIALOG_ID ];
     uint   DlgStr = 200;
-    // Имя запрашиваемого криттера и инициализация переменной с лексемами.
+    // РРјСЏ Р·Р°РїСЂР°С€РёРІР°РµРјРѕРіРѕ РєСЂРёС‚С‚РµСЂР° Рё РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РїРµСЂРµРјРµРЅРЅРѕР№ СЃ Р»РµРєСЃРµРјР°РјРё.
     string lexems = "$Victim " + playerName;
-    // Пол бармена.
+    // РџРѕР» Р±Р°СЂРјРµРЅР°.
     if( barman.Stat[ ST_GENDER ] == GENDER_FEMALE )
     {
         lexems += "$BarmanGen @msg dlg " + DLGSTR( BankerDialog, DlgStr + 10 ) + "@";
@@ -709,14 +709,14 @@ void dlg_TrySearching( Critter& player, Critter@ barman, string@ playerName )
     {
         lexems += "$BarmanGen @msg dlg " + DLGSTR( BankerDialog, DlgStr + 9 ) + "@";
     }
-    // Игрок не найден.
+    // РРіСЂРѕРє РЅРµ РЅР°Р№РґРµРЅ.
     Critter@ cr = GetPlayer( playerName );
     if( !valid( cr ) )
     {
         player.SayMsg( SAY_DIALOG, TEXTMSG_DLG, DLGSTR( BankerDialog, DlgStr + 0 ), lexems );
         return;
     }
-    // Пол запрашиваемого криттера.
+    // РџРѕР» Р·Р°РїСЂР°С€РёРІР°РµРјРѕРіРѕ РєСЂРёС‚С‚РµСЂР°.
     if( cr.Stat[ ST_GENDER ] == GENDER_FEMALE )
     {
         lexems += "$Gender @msg dlg " + DLGSTR( BankerDialog, DlgStr + 8 ) + "@";
@@ -725,30 +725,30 @@ void dlg_TrySearching( Critter& player, Critter@ barman, string@ playerName )
     {
         lexems += "$Gender @msg dlg " + DLGSTR( BankerDialog, DlgStr + 7 ) + "@";
     }
-    // Игрок спрашивает о самом себе.
+    // РРіСЂРѕРє СЃРїСЂР°С€РёРІР°РµС‚ Рѕ СЃР°РјРѕРј СЃРµР±Рµ.
     if( player.Id == cr.Id )
     {
         player.SayMsg( SAY_DIALOG, TEXTMSG_DLG, DLGSTR( BankerDialog, DlgStr + 1 ) );
         return;
     }
-    // Криттер на глобале.
+    // РљСЂРёС‚С‚РµСЂ РЅР° РіР»РѕР±Р°Р»Рµ.
     Map@ map = cr.GetMap();
     if( !valid( map ) )
     {
         player.SayMsg( SAY_DIALOG, TEXTMSG_DLG, DLGSTR( BankerDialog, DlgStr + 2 ), lexems );
         return;
     }
-    // Локация, где находится криттер. Диапазоны PID: до 150 и 210-235. Города и репликации.
+    // Р›РѕРєР°С†РёСЏ, РіРґРµ РЅР°С…РѕРґРёС‚СЃСЏ РєСЂРёС‚С‚РµСЂ. Р”РёР°РїР°Р·РѕРЅС‹ PID: РґРѕ 150 Рё 210-235. Р“РѕСЂРѕРґР° Рё СЂРµРїР»РёРєР°С†РёРё.
     if( cr.GetMap().GetLocation().GetProtoId() < 50 || cr.GetMap().GetLocation().GetProtoId() >= 200 )
     {
         lexems += "$Place @msg GM " + LOC_NAME( cr.GetMap().GetLocation().GetProtoId() ) + "@";
-        // Криттер находится в той же локации, что и игрок.
+        // РљСЂРёС‚С‚РµСЂ РЅР°С…РѕРґРёС‚СЃСЏ РІ С‚РѕР№ Р¶Рµ Р»РѕРєР°С†РёРё, С‡С‚Рѕ Рё РёРіСЂРѕРє.
         if( barman.GetMap().GetLocation().Id == cr.GetMap().GetLocation().Id )
         {
             player.SayMsg( SAY_DIALOG, TEXTMSG_DLG, DLGSTR( BankerDialog, DlgStr + 3 ), lexems );
             return;
         }
-        // Криттер найден, лексемы сформированы - даем информацию.
+        // РљСЂРёС‚С‚РµСЂ РЅР°Р№РґРµРЅ, Р»РµРєСЃРµРјС‹ СЃС„РѕСЂРјРёСЂРѕРІР°РЅС‹ - РґР°РµРј РёРЅС„РѕСЂРјР°С†РёСЋ.
         player.SayMsg( SAY_DIALOG, TEXTMSG_DLG, DLGSTR( BankerDialog, DlgStr + 4 + Random( 0, 2 ) ), lexems );
     }
     else
@@ -805,14 +805,14 @@ void r_InfoMessage( Critter& player, Critter@ npc, int strNum )
     InfoMessage( player, npc, strNum );
 }
 
-// Установка таймаута в часах на отдельного нпц (общий для всех игроков).
+// РЈСЃС‚Р°РЅРѕРІРєР° С‚Р°Р№РјР°СѓС‚Р° РІ С‡Р°СЃР°С… РЅР° РѕС‚РґРµР»СЊРЅРѕРіРѕ РЅРїС† (РѕР±С‰РёР№ РґР»СЏ РІСЃРµС… РёРіСЂРѕРєРѕРІ).
 void r_TimeoutSet( Critter& player, Critter@ npc, int gameHours )
 {
     if( valid( npc ) )
         TimeoutSet( npc, gameHours );
 }
 
-// Установка таймаута в минутах для связки игрок/нпц.
+// РЈСЃС‚Р°РЅРѕРІРєР° С‚Р°Р№РјР°СѓС‚Р° РІ РјРёРЅСѓС‚Р°С… РґР»СЏ СЃРІСЏР·РєРё РёРіСЂРѕРє/РЅРїС†.
 void r_SetUniqTO( Critter& player, Critter @ npc, int value )
 {
     if( !valid( npc ) )
@@ -833,7 +833,7 @@ void r_DoorClose( Critter& player, Critter@ npc, int entireNum )
     DoorControl( player, entireNum, false );
 }
 
-// Даем игроку голодиск
+// Р”Р°РµРј РёРіСЂРѕРєСѓ РіРѕР»РѕРґРёСЃРє
 void r_GiveHolodisk( Critter& player, Critter@ npc, int holodiskNum )
 {
     Item@ holo = player.AddItem( PID_HOLODISK, 1 );
@@ -861,7 +861,7 @@ void r_Damage( Critter& player, Critter@ npc, int dmg, int type, int dir )
     Damage( player, dmg, type, dir );
 }
 
-// Атака игрока всеми НПЦ на карте, у которых команда совпадает с командой говорящего НПЦ
+// РђС‚Р°РєР° РёРіСЂРѕРєР° РІСЃРµРјРё РќРџР¦ РЅР° РєР°СЂС‚Рµ, Сѓ РєРѕС‚РѕСЂС‹С… РєРѕРјР°РЅРґР° СЃРѕРІРїР°РґР°РµС‚ СЃ РєРѕРјР°РЅРґРѕР№ РіРѕРІРѕСЂСЏС‰РµРіРѕ РќРџР¦
 void r_TeamAttack( Critter& player, Critter@ npc )
 {
     if( !valid( npc ) )
@@ -880,7 +880,7 @@ void r_TeamAttack( Critter& player, Critter@ npc )
     }
 }
 
-// Отложенная всплывающая строка над нпц
+// РћС‚Р»РѕР¶РµРЅРЅР°СЏ РІСЃРїР»С‹РІР°СЋС‰Р°СЏ СЃС‚СЂРѕРєР° РЅР°Рґ РЅРїС†
 void r_SayMessageDelayed( Critter& player, Critter @ npc, int strNum, int delaySeconds, int sayType )
 {
     if( !valid( npc ) )
@@ -958,7 +958,7 @@ bool d_NotLocationKnown( Critter& player, Critter@ npc, int locPid )
 }
 void r_CreateLocation( Critter& player, Critter@ npc, int locPid, int worldX, int worldY, int dayDelete, int varNum )
 {
-    // Создает локацию в радиусе двух зон от заданных координат
+    // РЎРѕР·РґР°РµС‚ Р»РѕРєР°С†РёСЋ РІ СЂР°РґРёСѓСЃРµ РґРІСѓС… Р·РѕРЅ РѕС‚ Р·Р°РґР°РЅРЅС‹С… РєРѕРѕСЂРґРёРЅР°С‚
     int       delta = __GlobalMapZoneLength * 2;
     Location@ loc = CreateLocationForCritter( player, locPid, worldX, worldY, delta, varNum );
     if( valid( loc ) )

@@ -220,9 +220,9 @@
 #define SLOT_PERK_STEALTH_BOY                    ( 0x08 ) // +20 sneak
 
 // In SendMessage
-#define MESSAGE_TO_WHO_SEES_ME                   ( 0 )    // Отослать сообщения всем кто видет криттера.
-#define MESSAGE_TO_I_SEE                         ( 1 )    // Отослать сообщения всем кого видит криттер.
-#define MESSAGE_TO_ALL_ON_MAP                    ( 2 )    // Отослать всем на карте.
+#define MESSAGE_TO_WHO_SEES_ME                   ( 0 )    // РћС‚РѕСЃР»Р°С‚СЊ СЃРѕРѕР±С‰РµРЅРёСЏ РІСЃРµРј РєС‚Рѕ РІРёРґРµС‚ РєСЂРёС‚С‚РµСЂР°.
+#define MESSAGE_TO_I_SEE                         ( 1 )    // РћС‚РѕСЃР»Р°С‚СЊ СЃРѕРѕР±С‰РµРЅРёСЏ РІСЃРµРј РєРѕРіРѕ РІРёРґРёС‚ РєСЂРёС‚С‚РµСЂ.
+#define MESSAGE_TO_ALL_ON_MAP                    ( 2 )    // РћС‚РѕСЃР»Р°С‚СЊ РІСЃРµРј РЅР° РєР°СЂС‚Рµ.
 
 // Critter actions
 // Flags for chosen:
@@ -646,32 +646,32 @@
 #define MODE_BEGIN                               ( 510 )
 #define MODE_END                                 ( 549 )
 #define MODE_COUNT                               ( MODE_END - MODE_BEGIN + 1 )
-#define MODE_HIDE                                ( 510 ) // Состояние скрытности                                   Hardcoded
-#define MODE_NO_STEAL                            ( 511 ) // Нельзя обворовать                                      Hardcoded
-#define MODE_NO_BARTER                           ( 512 ) // Нельзя тоговать                                        Hardcoded
-#define MODE_NO_ENEMY_STACK                      ( 513 ) // Нпц не запоминает врагов                               Hardcoded
-#define MODE_NO_PVP                              ( 514 ) // Запрещает ПвП для игрока                               Hardcoded
-#define MODE_END_COMBAT                          ( 515 ) // Согласен ли игрок закончить пошаговый бой              Hardcoded
-#define MODE_DEFAULT_COMBAT                      ( 516 ) // Режим боя по-умолчанию                                 Hardcoded
-#define MODE_NO_HOME                             ( 517 ) // Нпц не возвращается в домашнюю позицию автоматически   Hardcoded
-#define MODE_GECK                                ( 518 ) // Локация не удаляется при наличии такого нпц            Hardcoded
-#define MODE_NO_FAVORITE_ITEM                    ( 519 ) // Режим установки итемов по-умолчанию                    Hardcoded
-#define MODE_NO_ITEM_GARBAGER                    ( 520 ) // Итемы не удаляются движком                             Hardcoded
-#define MODE_DLG_SCRIPT_BARTER                   ( 521 ) // Возможно торговать при активном скрипте на диалоге     Hardcoded
-#define MODE_UNLIMITED_AMMO                      ( 522 ) // Бесконечные патроны                                    Hardcoded
-#define MODE_NO_DROP                             ( 523 ) // Нельзя сбрасывать предметы
-#define MODE_NO_LOOSE_LIMBS                      ( 524 ) // Не может терять конечности
-#define MODE_DEAD_AGES                           ( 525 ) // Мёртвое тело не исчезает
-#define MODE_NO_HEAL                             ( 526 ) // Повреждения не излечиваются с течением времени
-#define MODE_INVULNERABLE                        ( 527 ) // Неуязвимый                                             Hardcoded
-#define MODE_NO_FLATTEN                          ( 528 ) // Не помещать труп на задний план после смерти           Hardcoded
-#define MODE_SPECIAL_DEAD                        ( 529 ) // Есть особый вид смерти
-#define MODE_RANGE_HTH                           ( 530 ) // Возможна рукопашная атака на расстоянии                Hardcoded
-#define MODE_NO_KNOCK                            ( 531 ) // Не может быть сбит с ног
-#define MODE_NO_LOOT                             ( 532 ) // Нельзя лутать                                          Hardcoded
-#define MODE_NO_SUPPLY                           ( 533 ) // Не приходят охотники за головами при смерти нпц
-#define MODE_NO_KARMA_ON_KILL                    ( 534 ) // При смерти не производится перерасчета кармы игрока-убийцы
-#define MODE_BARTER_ONLY_CASH                    ( 535 ) // При бартере нпц принимает оплату только наличными
+#define MODE_HIDE                                ( 510 ) // РЎРѕСЃС‚РѕСЏРЅРёРµ СЃРєСЂС‹С‚РЅРѕСЃС‚Рё                                   Hardcoded
+#define MODE_NO_STEAL                            ( 511 ) // РќРµР»СЊР·СЏ РѕР±РІРѕСЂРѕРІР°С‚СЊ                                      Hardcoded
+#define MODE_NO_BARTER                           ( 512 ) // РќРµР»СЊР·СЏ С‚РѕРіРѕРІР°С‚СЊ                                        Hardcoded
+#define MODE_NO_ENEMY_STACK                      ( 513 ) // РќРїС† РЅРµ Р·Р°РїРѕРјРёРЅР°РµС‚ РІСЂР°РіРѕРІ                               Hardcoded
+#define MODE_NO_PVP                              ( 514 ) // Р—Р°РїСЂРµС‰Р°РµС‚ РџРІРџ РґР»СЏ РёРіСЂРѕРєР°                               Hardcoded
+#define MODE_END_COMBAT                          ( 515 ) // РЎРѕРіР»Р°СЃРµРЅ Р»Рё РёРіСЂРѕРє Р·Р°РєРѕРЅС‡РёС‚СЊ РїРѕС€Р°РіРѕРІС‹Р№ Р±РѕР№              Hardcoded
+#define MODE_DEFAULT_COMBAT                      ( 516 ) // Р РµР¶РёРј Р±РѕСЏ РїРѕ-СѓРјРѕР»С‡Р°РЅРёСЋ                                 Hardcoded
+#define MODE_NO_HOME                             ( 517 ) // РќРїС† РЅРµ РІРѕР·РІСЂР°С‰Р°РµС‚СЃСЏ РІ РґРѕРјР°С€РЅСЋСЋ РїРѕР·РёС†РёСЋ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё   Hardcoded
+#define MODE_GECK                                ( 518 ) // Р›РѕРєР°С†РёСЏ РЅРµ СѓРґР°Р»СЏРµС‚СЃСЏ РїСЂРё РЅР°Р»РёС‡РёРё С‚Р°РєРѕРіРѕ РЅРїС†            Hardcoded
+#define MODE_NO_FAVORITE_ITEM                    ( 519 ) // Р РµР¶РёРј СѓСЃС‚Р°РЅРѕРІРєРё РёС‚РµРјРѕРІ РїРѕ-СѓРјРѕР»С‡Р°РЅРёСЋ                    Hardcoded
+#define MODE_NO_ITEM_GARBAGER                    ( 520 ) // РС‚РµРјС‹ РЅРµ СѓРґР°Р»СЏСЋС‚СЃСЏ РґРІРёР¶РєРѕРј                             Hardcoded
+#define MODE_DLG_SCRIPT_BARTER                   ( 521 ) // Р’РѕР·РјРѕР¶РЅРѕ С‚РѕСЂРіРѕРІР°С‚СЊ РїСЂРё Р°РєС‚РёРІРЅРѕРј СЃРєСЂРёРїС‚Рµ РЅР° РґРёР°Р»РѕРіРµ     Hardcoded
+#define MODE_UNLIMITED_AMMO                      ( 522 ) // Р‘РµСЃРєРѕРЅРµС‡РЅС‹Рµ РїР°С‚СЂРѕРЅС‹                                    Hardcoded
+#define MODE_NO_DROP                             ( 523 ) // РќРµР»СЊР·СЏ СЃР±СЂР°СЃС‹РІР°С‚СЊ РїСЂРµРґРјРµС‚С‹
+#define MODE_NO_LOOSE_LIMBS                      ( 524 ) // РќРµ РјРѕР¶РµС‚ С‚РµСЂСЏС‚СЊ РєРѕРЅРµС‡РЅРѕСЃС‚Рё
+#define MODE_DEAD_AGES                           ( 525 ) // РњС‘СЂС‚РІРѕРµ С‚РµР»Рѕ РЅРµ РёСЃС‡РµР·Р°РµС‚
+#define MODE_NO_HEAL                             ( 526 ) // РџРѕРІСЂРµР¶РґРµРЅРёСЏ РЅРµ РёР·Р»РµС‡РёРІР°СЋС‚СЃСЏ СЃ С‚РµС‡РµРЅРёРµРј РІСЂРµРјРµРЅРё
+#define MODE_INVULNERABLE                        ( 527 ) // РќРµСѓСЏР·РІРёРјС‹Р№                                             Hardcoded
+#define MODE_NO_FLATTEN                          ( 528 ) // РќРµ РїРѕРјРµС‰Р°С‚СЊ С‚СЂСѓРї РЅР° Р·Р°РґРЅРёР№ РїР»Р°РЅ РїРѕСЃР»Рµ СЃРјРµСЂС‚Рё           Hardcoded
+#define MODE_SPECIAL_DEAD                        ( 529 ) // Р•СЃС‚СЊ РѕСЃРѕР±С‹Р№ РІРёРґ СЃРјРµСЂС‚Рё
+#define MODE_RANGE_HTH                           ( 530 ) // Р’РѕР·РјРѕР¶РЅР° СЂСѓРєРѕРїР°С€РЅР°СЏ Р°С‚Р°РєР° РЅР° СЂР°СЃСЃС‚РѕСЏРЅРёРё                Hardcoded
+#define MODE_NO_KNOCK                            ( 531 ) // РќРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ СЃР±РёС‚ СЃ РЅРѕРі
+#define MODE_NO_LOOT                             ( 532 ) // РќРµР»СЊР·СЏ Р»СѓС‚Р°С‚СЊ                                          Hardcoded
+#define MODE_NO_SUPPLY                           ( 533 ) // РќРµ РїСЂРёС…РѕРґСЏС‚ РѕС…РѕС‚РЅРёРєРё Р·Р° РіРѕР»РѕРІР°РјРё РїСЂРё СЃРјРµСЂС‚Рё РЅРїС†
+#define MODE_NO_KARMA_ON_KILL                    ( 534 ) // РџСЂРё СЃРјРµСЂС‚Рё РЅРµ РїСЂРѕРёР·РІРѕРґРёС‚СЃСЏ РїРµСЂРµСЂР°СЃС‡РµС‚Р° РєР°СЂРјС‹ РёРіСЂРѕРєР°-СѓР±РёР№С†С‹
+#define MODE_BARTER_ONLY_CASH                    ( 535 ) // РџСЂРё Р±Р°СЂС‚РµСЂРµ РЅРїС† РїСЂРёРЅРёРјР°РµС‚ РѕРїР»Р°С‚Сѓ С‚РѕР»СЊРєРѕ РЅР°Р»РёС‡РЅС‹РјРё
 #define MODE_NO_PUSH                             ( 536 ) // Can't be pushed                                        Hardcoded
 #define MODE_NO_UNARMED                          ( 537 ) // Not have unarmed attacks                               Hardcoded
 #define MODE_NO_AIM                              ( 538 ) // Critter can't do aim attacks                           Hardcoded
@@ -739,17 +739,17 @@
 #define MERC_BEGIN                               ( 800 )
 #define MERC_END                                 ( 810 )
 #define MERC_COUNT                               ( MERC_END - MERC_BEGIN + 1 )
-#define MERC_MASTER_ID                           ( 800 ) // Id хозяина мерка
-#define MERC_ALWAYS_RUN                          ( 801 ) // Признак, мерк перемещаетя бегом при следовании за хозяином
-#define MERC_CANCEL_ON_ATTACK                    ( 802 ) // Признак, отменяет ли мерк службу, если хозяин атакует самого мерка.
-#define MERC_LOSE_DIST                           ( 803 ) // Дистанция, при превышении которой мерк "отстает" от хозяина и отменяет режиме мерка.
-#define MERC_MASTER_DIST                         ( 804 ) // Дистанция, которой придерживается мерк в режиме следования за хозяином
-#define MERC_TYPE                                ( 805 ) // Тип мерка. См. merc_h
-#define MERC_DEFEND_MASTER                       ( 806 ) // Признак: мерк защищает хозяина, если тот атакован
-#define MERC_ASSIST_MASTER                       ( 807 ) // Признак: если хозяин атакует цель, мерк присоединяется к атаке
-#define MERC_CANCEL_TIME                         ( 808 ) // Время завершения службы
-#define MERC_CANCEL_ON_GLOBAL                    ( 809 ) // Признак: мерк отменяет службу, если хозяин вышел на глобальную карту.
-#define MERC_WAIT_FOR_MASTER                     ( 810 ) // Признак: мерк ожидает хозяина на конкретном месте
+#define MERC_MASTER_ID                           ( 800 ) // Id С…РѕР·СЏРёРЅР° РјРµСЂРєР°
+#define MERC_ALWAYS_RUN                          ( 801 ) // РџСЂРёР·РЅР°Рє, РјРµСЂРє РїРµСЂРµРјРµС‰Р°РµС‚СЏ Р±РµРіРѕРј РїСЂРё СЃР»РµРґРѕРІР°РЅРёРё Р·Р° С…РѕР·СЏРёРЅРѕРј
+#define MERC_CANCEL_ON_ATTACK                    ( 802 ) // РџСЂРёР·РЅР°Рє, РѕС‚РјРµРЅСЏРµС‚ Р»Рё РјРµСЂРє СЃР»СѓР¶Р±Сѓ, РµСЃР»Рё С…РѕР·СЏРёРЅ Р°С‚Р°РєСѓРµС‚ СЃР°РјРѕРіРѕ РјРµСЂРєР°.
+#define MERC_LOSE_DIST                           ( 803 ) // Р”РёСЃС‚Р°РЅС†РёСЏ, РїСЂРё РїСЂРµРІС‹С€РµРЅРёРё РєРѕС‚РѕСЂРѕР№ РјРµСЂРє "РѕС‚СЃС‚Р°РµС‚" РѕС‚ С…РѕР·СЏРёРЅР° Рё РѕС‚РјРµРЅСЏРµС‚ СЂРµР¶РёРјРµ РјРµСЂРєР°.
+#define MERC_MASTER_DIST                         ( 804 ) // Р”РёСЃС‚Р°РЅС†РёСЏ, РєРѕС‚РѕСЂРѕР№ РїСЂРёРґРµСЂР¶РёРІР°РµС‚СЃСЏ РјРµСЂРє РІ СЂРµР¶РёРјРµ СЃР»РµРґРѕРІР°РЅРёСЏ Р·Р° С…РѕР·СЏРёРЅРѕРј
+#define MERC_TYPE                                ( 805 ) // РўРёРї РјРµСЂРєР°. РЎРј. merc_h
+#define MERC_DEFEND_MASTER                       ( 806 ) // РџСЂРёР·РЅР°Рє: РјРµСЂРє Р·Р°С‰РёС‰Р°РµС‚ С…РѕР·СЏРёРЅР°, РµСЃР»Рё С‚РѕС‚ Р°С‚Р°РєРѕРІР°РЅ
+#define MERC_ASSIST_MASTER                       ( 807 ) // РџСЂРёР·РЅР°Рє: РµСЃР»Рё С…РѕР·СЏРёРЅ Р°С‚Р°РєСѓРµС‚ С†РµР»СЊ, РјРµСЂРє РїСЂРёСЃРѕРµРґРёРЅСЏРµС‚СЃСЏ Рє Р°С‚Р°РєРµ
+#define MERC_CANCEL_TIME                         ( 808 ) // Р’СЂРµРјСЏ Р·Р°РІРµСЂС€РµРЅРёСЏ СЃР»СѓР¶Р±С‹
+#define MERC_CANCEL_ON_GLOBAL                    ( 809 ) // РџСЂРёР·РЅР°Рє: РјРµСЂРє РѕС‚РјРµРЅСЏРµС‚ СЃР»СѓР¶Р±Сѓ, РµСЃР»Рё С…РѕР·СЏРёРЅ РІС‹С€РµР» РЅР° РіР»РѕР±Р°Р»СЊРЅСѓСЋ РєР°СЂС‚Сѓ.
+#define MERC_WAIT_FOR_MASTER                     ( 810 ) // РџСЂРёР·РЅР°Рє: РјРµСЂРє РѕР¶РёРґР°РµС‚ С…РѕР·СЏРёРЅР° РЅР° РєРѕРЅРєСЂРµС‚РЅРѕРј РјРµСЃС‚Рµ
 
 //
 // 830..999
@@ -962,11 +962,11 @@
 #define FOG_NONE                                 ( 3 )
 
 // Critter extra flags, only for read
-#define CRITTER_PLAYER                           ( 0x00010000 ) // Игрок.
-#define CRITTER_NPC                              ( 0x00020000 ) // Нпц.
-#define CRITTER_DISCONNECT                       ( 0x00080000 ) // В оффлайне.
-#define CRITTER_CHOSEN                           ( 0x00100000 ) // Криттер игрока. Используется только при отправке сообщения клиенту для идентификации его персонажа.
-#define CRITTER_RULEGROUP                        ( 0x00200000 ) // Рулевой в группе на глобале.
+#define CRITTER_PLAYER                           ( 0x00010000 ) // РРіСЂРѕРє.
+#define CRITTER_NPC                              ( 0x00020000 ) // РќРїС†.
+#define CRITTER_DISCONNECT                       ( 0x00080000 ) // Р’ РѕС„С„Р»Р°Р№РЅРµ.
+#define CRITTER_CHOSEN                           ( 0x00100000 ) // РљСЂРёС‚С‚РµСЂ РёРіСЂРѕРєР°. РСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ С‚РѕР»СЊРєРѕ РїСЂРё РѕС‚РїСЂР°РІРєРµ СЃРѕРѕР±С‰РµРЅРёСЏ РєР»РёРµРЅС‚Сѓ РґР»СЏ РёРґРµРЅС‚РёС„РёРєР°С†РёРё РµРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р°.
+#define CRITTER_RULEGROUP                        ( 0x00200000 ) // Р СѓР»РµРІРѕР№ РІ РіСЂСѓРїРїРµ РЅР° РіР»РѕР±Р°Р»Рµ.
 
 // Hit locations
 #define HIT_LOCATION_NONE                        ( 0 )
@@ -1334,9 +1334,16 @@
 # pragma globalvar "uint __HitAimTorso =  0"
 # pragma globalvar "uint __HitAimArms  = 30"
 # pragma globalvar "uint __HitAimLegs  = 20"
-# pragma globalvar "bool __NoPvpMaps = false"       // Отключение нопвп режима активно
-# pragma globalvar "uint __MaxLifeLevelSoftCap = 0" // Максимальный уровень персонажа, на котором происходит увеличение хп. 0  = не используется
-# pragma globalvar "uint __EncounterTime = 0"       // Как часто пробовать создать энкаунтер, в миллисекундах
+# pragma globalvar "bool __NoPvpMaps = false"       // РћС‚РєР»СЋС‡РµРЅРёРµ РЅРѕРїРІРї СЂРµР¶РёРјР° Р°РєС‚РёРІРЅРѕ
+# pragma globalvar "uint __MaxLifeLevelSoftCap = 0" // РњР°РєСЃРёРјР°Р»СЊРЅС‹Р№ СѓСЂРѕРІРµРЅСЊ РїРµСЂСЃРѕРЅР°Р¶Р°, РЅР° РєРѕС‚РѕСЂРѕРј РїСЂРѕРёСЃС…РѕРґРёС‚ СѓРІРµР»РёС‡РµРЅРёРµ С…Рї. 0  = РЅРµ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ
+# pragma globalvar "uint __EncounterTime = 0"       // РљР°Рє С‡Р°СЃС‚Рѕ РїСЂРѕР±РѕРІР°С‚СЊ СЃРѕР·РґР°С‚СЊ СЌРЅРєР°СѓРЅС‚РµСЂ, РІ РјРёР»Р»РёСЃРµРєСѓРЅРґР°С…
+
+// Р”РѕРїСѓСЃС‚РёРјС‹Рµ СЃРёРјРІРѕР»С‹ РґР»СЏ РёРјРµРЅРё РїРµСЂСЃРѕРЅР°Р¶Р°, СѓРєР°Р·С‹РІР°СЋС‚СЃСЏ РІ config.fos
+// РЇР·С‹РєРѕРІС‹Рµ РєСѓР»СЊС‚СѓСЂС‹ РЅСѓР¶РЅС‹ РґР»СЏ С‚РѕРіРѕ, С‡С‚Рѕ Р±С‹ РЅРµ СЃРјРµС€РёРІР°Р»Рё СЃРёРјРІРѕР»С‹ СЃ СЂР°Р·Р»РёС‡РЅС‹С… СЏР·С‹РєРѕРІС‹С… СЂР°СЃРєР»Р°РґРѕРє РєР»Р°РІРёР°С‚СѓСЂС‹
+// РђР»РіРѕСЂРёС‚РјС‹ РїСЂРѕРІРµСЂРєРё РЅР°С…РѕРґСЏС‚СЃСЏ РІ CheckPlayerName parameters.fos
+# pragma globalvar "string __ValidNameLettersCommon"   // РћР±С‰РёРµ СЃРёРјРІРѕР»С‹
+# pragma globalvar "string __ValidNameLettersCulture1" // РџРµСЂРІР°СЏ СЏР·С‹РєРѕРІР°СЏ РєСѓР»СЊС‚СѓСЂР°
+# pragma globalvar "string __ValidNameLettersCulture2" // Р’С‚РѕСЂР°СЏ СЏР·С‹РєРѕРІР°СЏ РєСѓР»СЊС‚СѓСЂР°
 
 // /
 // / Critter data parameters

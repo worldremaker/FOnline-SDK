@@ -33,11 +33,11 @@
 #define CTE_COMMENT                        ( 224 )
 #define CTE_OPENNING                       ( 225 )
 
-#define EVENT_RACING_PREPARE               ( 1 ) // Предварительные рассказы о гонке
-#define EVENT_RACING_BEGIN                 ( 2 ) // Начало гонок - сбор НПЦ и администрации на старте, прием заявок на участие
-#define EVENT_RACING_RUN                   ( 3 ) // Начало гонок
-#define EVENT_RACING_STOP                  ( 4 ) // Конец гонок, найден победитель
-#define EVENT_RACING_CLEAR                 ( 5 ) // Удаление нпц и энкаунтеров
+#define EVENT_RACING_PREPARE               ( 1 ) // РџСЂРµРґРІР°СЂРёС‚РµР»СЊРЅС‹Рµ СЂР°СЃСЃРєР°Р·С‹ Рѕ РіРѕРЅРєРµ
+#define EVENT_RACING_BEGIN                 ( 2 ) // РќР°С‡Р°Р»Рѕ РіРѕРЅРѕРє - СЃР±РѕСЂ РќРџР¦ Рё Р°РґРјРёРЅРёСЃС‚СЂР°С†РёРё РЅР° СЃС‚Р°СЂС‚Рµ, РїСЂРёРµРј Р·Р°СЏРІРѕРє РЅР° СѓС‡Р°СЃС‚РёРµ
+#define EVENT_RACING_RUN                   ( 3 ) // РќР°С‡Р°Р»Рѕ РіРѕРЅРѕРє
+#define EVENT_RACING_STOP                  ( 4 ) // РљРѕРЅРµС† РіРѕРЅРѕРє, РЅР°Р№РґРµРЅ РїРѕР±РµРґРёС‚РµР»СЊ
+#define EVENT_RACING_CLEAR                 ( 5 ) // РЈРґР°Р»РµРЅРёРµ РЅРїС† Рё СЌРЅРєР°СѓРЅС‚РµСЂРѕРІ
 
 #define STATUS_NEVER_OCCURED               ( 0 )
 #define STATUS_RUNNING                     ( 1 )
@@ -63,7 +63,7 @@ import bool   AddAttackPlane( Critter& npc, uint priority, Critter& target ) fro
 import bool   GetFreeHex( Map& map, uint radius, uint16& hx, uint16& hy ) from "caravan";
 
 
-// ******************* Предварительный этап. Билл и телохранители рассказывают о гонках ********************
+// ******************* РџСЂРµРґРІР°СЂРёС‚РµР»СЊРЅС‹Р№ СЌС‚Р°Рї. Р‘РёР»Р» Рё С‚РµР»РѕС…СЂР°РЅРёС‚РµР»Рё СЂР°СЃСЃРєР°Р·С‹РІР°СЋС‚ Рѕ РіРѕРЅРєР°С… ********************
 
 uint e_RunPreparePhase( uint[] @ values )
 {
@@ -129,7 +129,7 @@ uint e_AnnounceRadio( uint[] @ values )
     return 0;
 }
 
-// ******************* Начальный этап. Билл и телохранители идут к месту начала гонок, окружающие нпц собираются ********************
+// ******************* РќР°С‡Р°Р»СЊРЅС‹Р№ СЌС‚Р°Рї. Р‘РёР»Р» Рё С‚РµР»РѕС…СЂР°РЅРёС‚РµР»Рё РёРґСѓС‚ Рє РјРµСЃС‚Сѓ РЅР°С‡Р°Р»Р° РіРѕРЅРѕРє, РѕРєСЂСѓР¶Р°СЋС‰РёРµ РЅРїС† СЃРѕР±РёСЂР°СЋС‚СЃСЏ ********************
 uint e_RunBeginPhase( uint[] @ values )
 {
     DL( "SECOND" );
@@ -141,7 +141,7 @@ void dlg_RacingWhen( Critter& player, Critter@ npc, string@ lexems )
 {
     if( !IS_DIALOG_GENERATED( lexems ) )
         return;
-    lexems = "$whenНикогда";
+    lexems = "$whenРќРёРєРѕРіРґР°";
     uint time = GetEventOccurenceTime( EVENT_RACING_BEGIN );
     if( time == 0 )
         time = GetEventOccurenceTime( EVENT_RACING_RUN );
@@ -348,7 +348,7 @@ uint cte_Talk( Critter& cr, int identifier, uint& rate )
     return 0;
 }
 
-// ******************* Начало гонок. Билл произносит приветственную речь и открываются энкаунтеры для участников ********************
+// ******************* РќР°С‡Р°Р»Рѕ РіРѕРЅРѕРє. Р‘РёР»Р» РїСЂРѕРёР·РЅРѕСЃРёС‚ РїСЂРёРІРµС‚СЃС‚РІРµРЅРЅСѓСЋ СЂРµС‡СЊ Рё РѕС‚РєСЂС‹РІР°СЋС‚СЃСЏ СЌРЅРєР°СѓРЅС‚РµСЂС‹ РґР»СЏ СѓС‡Р°СЃС‚РЅРёРєРѕРІ ********************
 
 
 uint e_RunRacingPhase( uint[] @ values )
@@ -482,7 +482,7 @@ void Start()
     }
 }
 
-// Генерит новый чекпоинт и удаляет старый для игрока
+// Р“РµРЅРµСЂРёС‚ РЅРѕРІС‹Р№ С‡РµРєРїРѕРёРЅС‚ Рё СѓРґР°Р»СЏРµС‚ СЃС‚Р°СЂС‹Р№ РґР»СЏ РёРіСЂРѕРєР°
 uint CreateCheckPoint( Critter& player )
 {
     GameVar@ racing_event = GetGlobalVar( GVAR_racing_event );
@@ -518,8 +518,8 @@ uint CreateCheckPoint( Critter& player )
                 Location@ prev = GetLocation( idPrev.GetValue() );
                 if( valid( prev ) )
                 {
-                    // на квестовой локации могут постаивть машину и использовать локацию как склад
-                    // поэтому локацию надо делать видимой и автоудаляемой
+                    // РЅР° РєРІРµСЃС‚РѕРІРѕР№ Р»РѕРєР°С†РёРё РјРѕРіСѓС‚ РїРѕСЃС‚Р°РёРІС‚СЊ РјР°С€РёРЅСѓ Рё РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ Р»РѕРєР°С†РёСЋ РєР°Рє СЃРєР»Р°Рґ
+                    // РїРѕСЌС‚РѕРјСѓ Р»РѕРєР°С†РёСЋ РЅР°РґРѕ РґРµР»Р°С‚СЊ РІРёРґРёРјРѕР№ Рё Р°РІС‚РѕСѓРґР°Р»СЏРµРјРѕР№
                     prev.Visible = true;
                     prev.AutoGarbage = true;
                 }
@@ -546,15 +546,15 @@ void r_NextCheckPoint( Critter& player, Critter@ npc )
 }
 
 
-// Наступил на контрольный триггер
+// РќР°СЃС‚СѓРїРёР» РЅР° РєРѕРЅС‚СЂРѕР»СЊРЅС‹Р№ С‚СЂРёРіРіРµСЂ
 void t_Win( Critter& player, Scenery& trigger, bool entered, uint8 dir )
 {
     GameVar@ racing_event = GetGlobalVar( GVAR_racing_event );
     if( !player.IsPlayer() || !valid( racing_event ) || racing_event == 0 )
         return;
-    // 1. Подходит ли игрок под требования к победителю
-    GameVar@ qStatus = GetLocalVar( LVAR_q_den_bill_racing_win, player.Id ); // = 2? выполняет квест
-    GameVar@ winners = GetGlobalVar( GVAR_racing_winners_found );            // найдены победители
+    // 1. РџРѕРґС…РѕРґРёС‚ Р»Рё РёРіСЂРѕРє РїРѕРґ С‚СЂРµР±РѕРІР°РЅРёСЏ Рє РїРѕР±РµРґРёС‚РµР»СЋ
+    GameVar@ qStatus = GetLocalVar( LVAR_q_den_bill_racing_win, player.Id ); // = 2? РІС‹РїРѕР»РЅСЏРµС‚ РєРІРµСЃС‚
+    GameVar@ winners = GetGlobalVar( GVAR_racing_winners_found );            // РЅР°Р№РґРµРЅС‹ РїРѕР±РµРґРёС‚РµР»Рё
     GameVar@ winnerId = GetGlobalVar( GVAR_racing_winner );
     GameVar@ counter = GetLocalVar( LVAR_racing_check_points, player.Id );
     if( !valid( qStatus ) || qStatus != 2 || !valid( winners ) || !valid( winnerId ) || !valid( counter ) || counter <  14 )
@@ -563,7 +563,7 @@ void t_Win( Critter& player, Scenery& trigger, bool entered, uint8 dir )
     counter = 0;
     if( racing_event == 1 && winners == 0 )
     {
-        // Победитель
+        // РџРѕР±РµРґРёС‚РµР»СЊ
         winners = 1;
         qStatus = 5;
         winnerId = player.Id;
@@ -580,7 +580,7 @@ void t_Win( Critter& player, Scenery& trigger, bool entered, uint8 dir )
     }
     if( racing_event == 1 && winners == 1 )
     {
-        // Второе место
+        // Р’С‚РѕСЂРѕРµ РјРµСЃС‚Рѕ
         winners = 2;
         racing_event = 2;
         qStatus = 4;
@@ -686,11 +686,11 @@ int16[][] Coords =
 int16[][][] OpeningPhrases =
 {
     {
-        { 3809 },    // Фраза билли
-        { 30 },      // Время до следующей фразы в 10 долях реальных секунд
-        { 0 },       // Комментарии зрителей
-        { 0 },       // комментарии женщин-зрителей
-        { 0 },       // комментарии телохранителей
+        { 3809 },    // Р¤СЂР°Р·Р° Р±РёР»Р»Рё
+        { 30 },      // Р’СЂРµРјСЏ РґРѕ СЃР»РµРґСѓСЋС‰РµР№ С„СЂР°Р·С‹ РІ 10 РґРѕР»СЏС… СЂРµР°Р»СЊРЅС‹С… СЃРµРєСѓРЅРґ
+        { 0 },       // РљРѕРјРјРµРЅС‚Р°СЂРёРё Р·СЂРёС‚РµР»РµР№
+        { 0 },       // РєРѕРјРјРµРЅС‚Р°СЂРёРё Р¶РµРЅС‰РёРЅ-Р·СЂРёС‚РµР»РµР№
+        { 0 },       // РєРѕРјРјРµРЅС‚Р°СЂРёРё С‚РµР»РѕС…СЂР°РЅРёС‚РµР»РµР№
     },
     {
         { 3810 },
@@ -794,11 +794,11 @@ int16[][][] OpeningPhrases =
 int16[][][] FirstWinnerPhrases =
 {
     {
-        { 3883 },                                                 // Фраза билли
-        { 110 },                                                  // Время до следующей фразы в 10 долях реальных секунд
-        { 3887, 3887, 3888, 3889, 3890, 3891, 3892, 3893, 3894 }, // Комментарии зрителей
-        { 0 },                                                    // комментарии женщин-зрителей
-        { 0 },                                                    // комментарии телохранителей
+        { 3883 },                                                 // Р¤СЂР°Р·Р° Р±РёР»Р»Рё
+        { 110 },                                                  // Р’СЂРµРјСЏ РґРѕ СЃР»РµРґСѓСЋС‰РµР№ С„СЂР°Р·С‹ РІ 10 РґРѕР»СЏС… СЂРµР°Р»СЊРЅС‹С… СЃРµРєСѓРЅРґ
+        { 3887, 3887, 3888, 3889, 3890, 3891, 3892, 3893, 3894 }, // РљРѕРјРјРµРЅС‚Р°СЂРёРё Р·СЂРёС‚РµР»РµР№
+        { 0 },                                                    // РєРѕРјРјРµРЅС‚Р°СЂРёРё Р¶РµРЅС‰РёРЅ-Р·СЂРёС‚РµР»РµР№
+        { 0 },                                                    // РєРѕРјРјРµРЅС‚Р°СЂРёРё С‚РµР»РѕС…СЂР°РЅРёС‚РµР»РµР№
     },
     {
         { 3884 },
@@ -900,7 +900,7 @@ void dlg_Winner( Critter& player, Critter@ npc, string@ lexems )
 {
     if( !IS_DIALOG_GENERATED( lexems ) )
         return;
-    lexems = "$winnerИзбранный";
+    lexems = "$winnerРР·Р±СЂР°РЅРЅС‹Р№";
     GameVar@ winnerId = GetGlobalVar( GVAR_racing_winner );
     if( valid( winnerId ) && winnerId > 0 )
     {

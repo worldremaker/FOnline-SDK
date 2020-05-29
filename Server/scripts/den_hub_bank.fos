@@ -57,7 +57,7 @@ void _BankerStealing( Critter& banker, Critter& thief, bool success, Item& item,
 {
     if( success == false )
     {
-        banker.SendMessage( 124, thief.Id, MESSAGE_TO_ALL_ON_MAP );     // и сообщает об этом охране
+        banker.SendMessage( 124, thief.Id, MESSAGE_TO_ALL_ON_MAP );     // Рё СЃРѕРѕР±С‰Р°РµС‚ РѕР± СЌС‚РѕРј РѕС…СЂР°РЅРµ
         AttackId = thief.Id;
         banker.SayMsg( SAY_SHOUT_ON_HEAD, TEXTMSG_TEXT, STR_ALARM );
         _NpcEraseAllPlanesAttack( banker );

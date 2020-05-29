@@ -1,5 +1,5 @@
 [comment]
-Ваши комментарии / Your comments.
+Р’Р°С€Рё РєРѕРјРјРµРЅС‚Р°СЂРёРё / Your comments.
 
 [data]
 lang=russ engl
@@ -12,13 +12,13 @@ lang=russ engl
 3 3000 NOT_ANSWER_CLOSE_DIALOG 0&
 
 [russ]
-{100}{}{Мертвяк}
-{200}{}{Вы видите кого-то с сильно обожженной кожей.}
-{210}{}{Вы видите мертвяка, жителя Гекко, проводящего время в местной пивной.}
-{1000}{}{Преддиалоговые установки}
-{1010}{}{Ответ}
-{2000}{}{Купи нам выпить, гладкокожий.@@Боже, как я хочу пить.@@Слишком крутой, чтобы пить с нами?@@Мне встряхнуть, но не перемешивать.@@Попросите Вуза рассказать вам историю.@@Давайте споем.@@...А затем головы сделали что? Я просто не могу понять Вуза.@@Что такое яблоко?}
-{3000}{}{Вы довольно неплохой парень для гладкокожего.@@Купи нам еще по стаканчику, гладенький.@@"Как я хочу выпить, Как я хочу выпить..."@@Вы у меня на хорошем счету.@@Эй, остерегайся крыс.@@Интересно, почему Скитер никогда с нами не ходит?@@Мы пытаемся вывести новую породу браминов, у которых будет только одна голова.@@Кто-то должен изготавливать здесь больше одежды.@@Ах, пиво - это хорошо.@@Это отличное пиво. Это вода и еще много чего.@@Вы самый лучший гладкокожий, которого я когда либо знал.@@Еще сияющего сока! Еще сияющего сока!@@Угостишь нас еще, а гладенький?}
+{100}{}{РњРµСЂС‚РІСЏРє}
+{200}{}{Р’С‹ РІРёРґРёС‚Рµ РєРѕРіРѕ-С‚Рѕ СЃ СЃРёР»СЊРЅРѕ РѕР±РѕР¶Р¶РµРЅРЅРѕР№ РєРѕР¶РµР№.}
+{210}{}{Р’С‹ РІРёРґРёС‚Рµ РјРµСЂС‚РІСЏРєР°, Р¶РёС‚РµР»СЏ Р“РµРєРєРѕ, РїСЂРѕРІРѕРґСЏС‰РµРіРѕ РІСЂРµРјСЏ РІ РјРµСЃС‚РЅРѕР№ РїРёРІРЅРѕР№.}
+{1000}{}{РџСЂРµРґРґРёР°Р»РѕРіРѕРІС‹Рµ СѓСЃС‚Р°РЅРѕРІРєРё}
+{1010}{}{РћС‚РІРµС‚}
+{2000}{}{РљСѓРїРё РЅР°Рј РІС‹РїРёС‚СЊ, РіР»Р°РґРєРѕРєРѕР¶РёР№.@@Р‘РѕР¶Рµ, РєР°Рє СЏ С…РѕС‡Сѓ РїРёС‚СЊ.@@РЎР»РёС€РєРѕРј РєСЂСѓС‚РѕР№, С‡С‚РѕР±С‹ РїРёС‚СЊ СЃ РЅР°РјРё?@@РњРЅРµ РІСЃС‚СЂСЏС…РЅСѓС‚СЊ, РЅРѕ РЅРµ РїРµСЂРµРјРµС€РёРІР°С‚СЊ.@@РџРѕРїСЂРѕСЃРёС‚Рµ Р’СѓР·Р° СЂР°СЃСЃРєР°Р·Р°С‚СЊ РІР°Рј РёСЃС‚РѕСЂРёСЋ.@@Р”Р°РІР°Р№С‚Рµ СЃРїРѕРµРј.@@...Рђ Р·Р°С‚РµРј РіРѕР»РѕРІС‹ СЃРґРµР»Р°Р»Рё С‡С‚Рѕ? РЇ РїСЂРѕСЃС‚Рѕ РЅРµ РјРѕРіСѓ РїРѕРЅСЏС‚СЊ Р’СѓР·Р°.@@Р§С‚Рѕ С‚Р°РєРѕРµ СЏР±Р»РѕРєРѕ?}
+{3000}{}{Р’С‹ РґРѕРІРѕР»СЊРЅРѕ РЅРµРїР»РѕС…РѕР№ РїР°СЂРµРЅСЊ РґР»СЏ РіР»Р°РґРєРѕРєРѕР¶РµРіРѕ.@@РљСѓРїРё РЅР°Рј РµС‰Рµ РїРѕ СЃС‚Р°РєР°РЅС‡РёРєСѓ, РіР»Р°РґРµРЅСЊРєРёР№.@@"РљР°Рє СЏ С…РѕС‡Сѓ РІС‹РїРёС‚СЊ, РљР°Рє СЏ С…РѕС‡Сѓ РІС‹РїРёС‚СЊ..."@@Р’С‹ Сѓ РјРµРЅСЏ РЅР° С…РѕСЂРѕС€РµРј СЃС‡РµС‚Сѓ.@@Р­Р№, РѕСЃС‚РµСЂРµРіР°Р№СЃСЏ РєСЂС‹СЃ.@@РРЅС‚РµСЂРµСЃРЅРѕ, РїРѕС‡РµРјСѓ РЎРєРёС‚РµСЂ РЅРёРєРѕРіРґР° СЃ РЅР°РјРё РЅРµ С…РѕРґРёС‚?@@РњС‹ РїС‹С‚Р°РµРјСЃСЏ РІС‹РІРµСЃС‚Рё РЅРѕРІСѓСЋ РїРѕСЂРѕРґСѓ Р±СЂР°РјРёРЅРѕРІ, Сѓ РєРѕС‚РѕСЂС‹С… Р±СѓРґРµС‚ С‚РѕР»СЊРєРѕ РѕРґРЅР° РіРѕР»РѕРІР°.@@РљС‚Рѕ-С‚Рѕ РґРѕР»Р¶РµРЅ РёР·РіРѕС‚Р°РІР»РёРІР°С‚СЊ Р·РґРµСЃСЊ Р±РѕР»СЊС€Рµ РѕРґРµР¶РґС‹.@@РђС…, РїРёРІРѕ - СЌС‚Рѕ С…РѕСЂРѕС€Рѕ.@@Р­С‚Рѕ РѕС‚Р»РёС‡РЅРѕРµ РїРёРІРѕ. Р­С‚Рѕ РІРѕРґР° Рё РµС‰Рµ РјРЅРѕРіРѕ С‡РµРіРѕ.@@Р’С‹ СЃР°РјС‹Р№ Р»СѓС‡С€РёР№ РіР»Р°РґРєРѕРєРѕР¶РёР№, РєРѕС‚РѕСЂРѕРіРѕ СЏ РєРѕРіРґР° Р»РёР±Рѕ Р·РЅР°Р».@@Р•С‰Рµ СЃРёСЏСЋС‰РµРіРѕ СЃРѕРєР°! Р•С‰Рµ СЃРёСЏСЋС‰РµРіРѕ СЃРѕРєР°!@@РЈРіРѕСЃС‚РёС€СЊ РЅР°СЃ РµС‰Рµ, Р° РіР»Р°РґРµРЅСЊРєРёР№?}
 
 [engl]
 {100}{}{Ghoul}
@@ -26,6 +26,6 @@ lang=russ engl
 {210}{}{You see a ghoul citizen of Gecko spending his time in the local bar.}
 {1000}{}{Initial preferences}
 {1010}{}{Reply}
-{2000}{}{Buy us a drink, smoothskin.@@Boy, am I thirsty.@@Too good to drink with us?@@Where are my pals, Johnny Stroller and Jim Bean?@@I’ll have mine shaken, not stirred.@@Ask Wooz to tell you a story.@@Let’s sing a song.@@...And then the heads do what? I just don’t understand Wooz.@@What’s an apple?}
-{3000}{}{You’re pretty nice for a smoothskin.@@Buy us another round, smoothy.@@How dry I am, How dry I am...@@You’re okay in my book.@@Hey, watch out for the rat.@@I wonder why Skeeter never joins us?@@We’re trying to breed a new type of brahmin - with only one head.@@Somebody ought to start making more clothes here.@@Ahh, beer is good.@@This beer is great. It’s the water -- and a lot more.@@You’re the best smoothskin I’ve ever known.@@More glow-juice! More glow-juice!@@Gives us another, eh smoothy?}
+{2000}{}{Buy us a drink, smoothskin.@@Boy, am I thirsty.@@Too good to drink with us?@@Where are my pals, Johnny Stroller and Jim Bean?@@IвЂ™ll have mine shaken, not stirred.@@Ask Wooz to tell you a story.@@LetвЂ™s sing a song.@@...And then the heads do what? I just donвЂ™t understand Wooz.@@WhatвЂ™s an apple?}
+{3000}{}{YouвЂ™re pretty nice for a smoothskin.@@Buy us another round, smoothy.@@How dry I am, How dry I am...@@YouвЂ™re okay in my book.@@Hey, watch out for the rat.@@I wonder why Skeeter never joins us?@@WeвЂ™re trying to breed a new type of brahmin - with only one head.@@Somebody ought to start making more clothes here.@@Ahh, beer is good.@@This beer is great. ItвЂ™s the water -- and a lot more.@@YouвЂ™re the best smoothskin IвЂ™ve ever known.@@More glow-juice! More glow-juice!@@Gives us another, eh smoothy?}
 

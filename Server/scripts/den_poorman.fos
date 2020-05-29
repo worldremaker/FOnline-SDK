@@ -15,25 +15,25 @@ void _PoormanInit( Critter& poorman, bool firstTime )
 {
     poorman.SetEvent( CRITTER_EVENT_SHOW_ITEM_ON_MAP, "_PoormanShowItemOnMap" );
     poorman.SetEvent( CRITTER_EVENT_HIDE_ITEM_ON_MAP, "_PoormanHideItemOnMap" );
-    poorman.StatBase[ ST_VAR0 ] = 0; // Тут будет хранится Id итема, который мы хотим съесть.
+    poorman.StatBase[ ST_VAR0 ] = 0; // РўСѓС‚ Р±СѓРґРµС‚ С…СЂР°РЅРёС‚СЃСЏ Id РёС‚РµРјР°, РєРѕС‚РѕСЂС‹Р№ РјС‹ С…РѕС‚РёРј СЃСЉРµСЃС‚СЊ.
 }
 
 
 void _PoormanShowItemOnMap( Critter& poorman, Item& item, bool added, Critter@ dropper )
 {
-    // Можем ли мы сейчас подойти.
+    // РњРѕР¶РµРј Р»Рё РјС‹ СЃРµР№С‡Р°СЃ РїРѕРґРѕР№С‚Рё.
     if( poorman.StatBase[ ST_VAR0 ] != 0 )
         return;
     if( not poorman.IsNoPlanes() )
         return;
 
-    // Смотрим, съедобен ли итем.
+    // РЎРјРѕС‚СЂРёРј, СЃСЉРµРґРѕР±РµРЅ Р»Рё РёС‚РµРј.
     for( uint i = 0; i < EatPidCount; i++ )
     {
         if( item.GetProtoId() != EatPid[ i ] )
             continue;
 
-        poorman.Say( SAY_NORM_ON_HEAD, "Ням-ням, вкусняшка." );
+        poorman.Say( SAY_NORM_ON_HEAD, "РќСЏРј-РЅСЏРј, РІРєСѓСЃРЅСЏС€РєР°." );
         AddPickPlane( poorman, 0, item, 0, true );
         poorman.StatBase[ ST_VAR0 ] = int(item.Id);
     }
@@ -42,25 +42,25 @@ void _PoormanShowItemOnMap( Critter& poorman, Item& item, bool added, Critter@ d
 
 void _PoormanHideItemOnMap( Critter& poorman, Item& item, bool deleted, Critter@ picker )
 {
-    // Проверим, может кто-то поднял нашу еду.
+    // РџСЂРѕРІРµСЂРёРј, РјРѕР¶РµС‚ РєС‚Рѕ-С‚Рѕ РїРѕРґРЅСЏР» РЅР°С€Сѓ РµРґСѓ.
     if( uint( poorman.StatBase[ ST_VAR0 ] ) != item.Id )
         return;
     poorman.StatBase[ ST_VAR0 ] = 0;
     if( not valid( picker ) )
         return;
 
-    // Ругаем поднявшего.
+    // Р СѓРіР°РµРј РїРѕРґРЅСЏРІС€РµРіРѕ.
     if( picker.Id != poorman.Id )
     {
         _NpcEraseAllPlanesPick( poorman );
         poorman.Wait( 3000 );
-        poorman.Say( SAY_NORM_ON_HEAD, "Подлец." );
+        poorman.Say( SAY_NORM_ON_HEAD, "РџРѕРґР»РµС†." );
     }
-    // Это мы сами подняли, едим.
+    // Р­С‚Рѕ РјС‹ СЃР°РјРё РїРѕРґРЅСЏР»Рё, РµРґРёРј.
     else
     {
         poorman.DeleteItem( item.GetProtoId(), item.GetCount() );
-        poorman.Say( SAY_NORM_ON_HEAD, "Ммм, вкусно!" );
+        poorman.Say( SAY_NORM_ON_HEAD, "РњРјРј, РІРєСѓСЃРЅРѕ!" );
         poorman.Wait( 3000 );
     }
 }

@@ -19,8 +19,8 @@ bool entrance_Modoc( Location& modoc, Critter@[]& critters, uint8 entrance )
     return true;
 }
 
-// Квест "Вредители на ферме"
-// Мэр Модока просит игрока убить одну гигантскую осу, поселившуюся на одной из ферм Модока
+// РљРІРµСЃС‚ "Р’СЂРµРґРёС‚РµР»Рё РЅР° С„РµСЂРјРµ"
+// РњСЌСЂ РњРѕРґРѕРєР° РїСЂРѕСЃРёС‚ РёРіСЂРѕРєР° СѓР±РёС‚СЊ РѕРґРЅСѓ РіРёРіР°РЅС‚СЃРєСѓСЋ РѕСЃСѓ, РїРѕСЃРµР»РёРІС€СѓСЋСЃСЏ РЅР° РѕРґРЅРѕР№ РёР· С„РµСЂРј РњРѕРґРѕРєР°
 void _FarmInit( Map& map, bool firstTime )
 {
     if( firstTime )
@@ -106,7 +106,7 @@ uint e_ResetWaspLoc( uint[] @ values )
 }
 
 
-// Квест "Морозко"
+// РљРІРµСЃС‚ "РњРѕСЂРѕР·РєРѕ"
 void dlg_CountBottles( Critter& player, Critter@ npc, string@ lexems )
 {
     if( IS_DIALOG_END( lexems ) or IS_DIALOG_SAY_MODE( lexems ) )

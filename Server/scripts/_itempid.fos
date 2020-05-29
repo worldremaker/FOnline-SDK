@@ -478,24 +478,24 @@
 #define PID_HYPODERMIC_NEEDLE                ( 318 )
 #define PID_EMPTY_JET                        ( 416 )
 #define PID_BOTTLE_GLASS                     ( 542 ) // Empty glass bottle
-#define PID_BOTTLE_EMPTY                     ( 532 ) // Пустая бутылка
-#define PID_PART_OF_ROPE                     ( 534 ) // Кусок веревки
-#define PID_METAL_TRASH                      ( 475 ) // Металлический мусор
-#define PID_GUNPOWDER                        ( 535 ) // Коробка пороха
-#define PID_METAL_ORE                        ( 536 ) // Железная руда
-#define PID_MINERAL                          ( 537 ) // Минерал
-#define PID_TUBE                             ( 538 ) // Металлическая труба
-#define PID_STEEL                            ( 50 )  // Сталь
-#define PID_BRAHMIN_SKIN                     ( 449 ) // Шкура брамина
-#define PID_MEAT                             ( 539 ) // Мясо
-#define PID_CIGARETTES                       ( 541 ) // Сигареты
-#define PID_RAGS                             ( 572 ) // Кусок материи
-#define PID_NITROGLYCERIN                    ( 573 ) // Нитроглицерин
-#define PID_CHEMICALS                        ( 574 ) // Химикаты
-#define PID_TNT                              ( 575 ) // Тротил
-#define PID_HEXOGEN                          ( 576 ) // Гексоген
-#define PID_PLASTIC_EXPLOSIVES_DULL          ( 577 ) // Пластит без детонатора
-#define PID_INSULATE_TAPE                    ( 649 ) // Изолента
+#define PID_BOTTLE_EMPTY                     ( 532 ) // РџСѓСЃС‚Р°СЏ Р±СѓС‚С‹Р»РєР°
+#define PID_PART_OF_ROPE                     ( 534 ) // РљСѓСЃРѕРє РІРµСЂРµРІРєРё
+#define PID_METAL_TRASH                      ( 475 ) // РњРµС‚Р°Р»Р»РёС‡РµСЃРєРёР№ РјСѓСЃРѕСЂ
+#define PID_GUNPOWDER                        ( 535 ) // РљРѕСЂРѕР±РєР° РїРѕСЂРѕС…Р°
+#define PID_METAL_ORE                        ( 536 ) // Р–РµР»РµР·РЅР°СЏ СЂСѓРґР°
+#define PID_MINERAL                          ( 537 ) // РњРёРЅРµСЂР°Р»
+#define PID_TUBE                             ( 538 ) // РњРµС‚Р°Р»Р»РёС‡РµСЃРєР°СЏ С‚СЂСѓР±Р°
+#define PID_STEEL                            ( 50 )  // РЎС‚Р°Р»СЊ
+#define PID_BRAHMIN_SKIN                     ( 449 ) // РЁРєСѓСЂР° Р±СЂР°РјРёРЅР°
+#define PID_MEAT                             ( 539 ) // РњСЏСЃРѕ
+#define PID_CIGARETTES                       ( 541 ) // РЎРёРіР°СЂРµС‚С‹
+#define PID_RAGS                             ( 572 ) // РљСѓСЃРѕРє РјР°С‚РµСЂРёРё
+#define PID_NITROGLYCERIN                    ( 573 ) // РќРёС‚СЂРѕРіР»РёС†РµСЂРёРЅ
+#define PID_CHEMICALS                        ( 574 ) // РҐРёРјРёРєР°С‚С‹
+#define PID_TNT                              ( 575 ) // РўСЂРѕС‚РёР»
+#define PID_HEXOGEN                          ( 576 ) // Р“РµРєСЃРѕРіРµРЅ
+#define PID_PLASTIC_EXPLOSIVES_DULL          ( 577 ) // РџР»Р°СЃС‚РёС‚ Р±РµР· РґРµС‚РѕРЅР°С‚РѕСЂР°
+#define PID_INSULATE_TAPE                    ( 649 ) // РР·РѕР»РµРЅС‚Р°
 
 // Self-special parts
 #define PID_MOTOR                            ( 89 )
@@ -562,9 +562,9 @@
 #define PID_BIO_GEL                          ( 440 )
 #define PID_VACCINE                          ( 593 )
 // Other
-#define PID_SHOVEL                           ( 289 ) // Лопата
-#define PID_PLANK                            ( 297 ) // Лом
-#define PID_AXE                              ( 543 ) // Топор
+#define PID_SHOVEL                           ( 289 ) // Р›РѕРїР°С‚Р°
+#define PID_PLANK                            ( 297 ) // Р›РѕРј
+#define PID_AXE                              ( 543 ) // РўРѕРїРѕСЂ
 #define PID_WELDING                          ( 565 )
 #define PID_WELDING_USED                     ( 566 )
 // Special
@@ -613,17 +613,17 @@
 
 // Special
 #define PID_BRIEFCASE                        ( 72 )
-#define PID_MUTAGENIC_SYRUM                  ( 329 ) // Иньекция от мутации
-#define PID_HEART_PILLS                      ( 333 ) // Таблетки от серца
+#define PID_MUTAGENIC_SYRUM                  ( 329 ) // РРЅСЊРµРєС†РёСЏ РѕС‚ РјСѓС‚Р°С†РёРё
+#define PID_HEART_PILLS                      ( 333 ) // РўР°Р±Р»РµС‚РєРё РѕС‚ СЃРµСЂС†Р°
 #define PID_SPECTACLES                       ( 415 ) // Eye glasses
 #define PID_OXYGEN_TANK                      ( 417 )
 #define PID_POISON_TANK                      ( 418 )
 #define PID_HOWITZER_SHELL                   ( 430 ) // Ammo of turret in SAD
 #define PID_MIRROR_SHADES                    ( 433 ) // Eye glasses
 #define PID_POCKET_LINT                      ( 439 ) // Trash
-#define PID_BALL_GAG                         ( 470 ) // Кляп
-#define PID_DAISIES                          ( 474 ) // Горшок с цветами
-#define PID_BOTTLE_FULL                      ( 533 ) // Полная бутылка
+#define PID_BALL_GAG                         ( 470 ) // РљР»СЏРї
+#define PID_DAISIES                          ( 474 ) // Р“РѕСЂС€РѕРє СЃ С†РІРµС‚Р°РјРё
+#define PID_BOTTLE_FULL                      ( 533 ) // РџРѕР»РЅР°СЏ Р±СѓС‚С‹Р»РєР°
 
 #define PID_DOG_TAGS                         ( 56 )
 #define PID_ELECTRONIC_BUG                   ( 57 )
@@ -631,7 +631,7 @@
 #define PID_GOLD_LOCKET                      ( 99 )
 #define PID_TAPE_RECORDER                    ( 104 )
 #define PID_URN                              ( 112 )
-#define PID_NECKLACE                         ( 119 ) // Ожерелье
+#define PID_NECKLACE                         ( 119 ) // РћР¶РµСЂРµР»СЊРµ
 #define PID_PSYCHIC_NULLIFIER                ( 123 )
 #define PID_BLACK_COC_BADGE                  ( 141 ) // Habbology
 #define PID_RED_COC_BADGE                    ( 142 ) // Habbology
@@ -657,25 +657,25 @@
 #define PID_RANGER_PIN                       ( 342 ) // Ncr
 #define PID_RANGER_MAP                       ( 343 )
 #define PID_GECK                             ( 366 )
-#define PID_STABLES_ID_BADGE                 ( 413 ) // Пропуск в канюшни
+#define PID_STABLES_ID_BADGE                 ( 413 ) // РџСЂРѕРїСѓСЃРє РІ РєР°РЅСЋС€РЅРё
 #define PID_RAMIREZ_BOX_CLOSED               ( 431 )
 #define PID_RAMIREZ_BOX_OPEN                 ( 432 )
-#define PID_BLONDIE_DOG_TAG                  ( 441 ) // Бирка
-#define PID_ANGEL_EYES_DOG_TAG               ( 442 ) // Бирка
-#define PID_TUCO_DOG_TAG                     ( 443 ) // Бирка
-#define PID_REBEL_TAG                        ( 579 ) // Бирка рейнджеров
+#define PID_BLONDIE_DOG_TAG                  ( 441 ) // Р‘РёСЂРєР°
+#define PID_ANGEL_EYES_DOG_TAG               ( 442 ) // Р‘РёСЂРєР°
+#define PID_TUCO_DOG_TAG                     ( 443 ) // Р‘РёСЂРєР°
+#define PID_REBEL_TAG                        ( 579 ) // Р‘РёСЂРєР° СЂРµР№РЅРґР¶РµСЂРѕРІ
 #define PID_RAIDERS_MAP                      ( 444 )
-#define PID_SHERIFF_BADGE                    ( 445 ) // Значек шерифа
-#define PID_ACCOUNT_BOOK                     ( 448 ) // Книга по разборкам в Нью-Рено
+#define PID_SHERIFF_BADGE                    ( 445 ) // Р—РЅР°С‡РµРє С€РµСЂРёС„Р°
+#define PID_ACCOUNT_BOOK                     ( 448 ) // РљРЅРёРіР° РїРѕ СЂР°Р·Р±РѕСЂРєР°Рј РІ РќСЊСЋ-Р РµРЅРѕ
 #define PID_TORN_PAPER_1                     ( 450 ) // Part1 password
 #define PID_TORN_PAPER_2                     ( 451 ) // Part2 password
 #define PID_TORN_PAPER_3                     ( 452 ) // Part3 password
 #define PID_PASSWORD_PAPER                   ( 453 ) // All password
-#define PID_ELRON_FIELD_REP                  ( 457 ) // Отчет Хаббологов
-#define PID_SMITTY_MEAL                      ( 468 ) // Еда Смитти
-#define PID_ENLIGHTENED_ONE_LETTER           ( 476 ) // Доклад
+#define PID_ELRON_FIELD_REP                  ( 457 ) // РћС‚С‡РµС‚ РҐР°Р±Р±РѕР»РѕРіРѕРІ
+#define PID_SMITTY_MEAL                      ( 468 ) // Р•РґР° РЎРјРёС‚С‚Рё
+#define PID_ENLIGHTENED_ONE_LETTER           ( 476 ) // Р”РѕРєР»Р°Рґ
 #define PID_FALLOUT_2_HINTBOOK               ( 483 )
-#define PID_MOUSE_SKIN                       ( 540 ) // Шкура мыши
+#define PID_MOUSE_SKIN                       ( 540 ) // РЁРєСѓСЂР° РјС‹С€Рё
 #define PID_CHOSEN_HOLO                      ( 549 )
 #define PID_CHOSEN_HOLO_DECODED              ( 550 )
 #define PID_LETTER_TO_LIN                    ( 551 )
@@ -766,7 +766,7 @@
 // Posters
 #define PID_POSTER_1                         ( 615 ) // 623 last
 #define PID_POSTER_9                         ( 623 ) //
-#define PID_POSTER_BUNDLE                    ( 624 ) // Свернутый постер
+#define PID_POSTER_BUNDLE                    ( 624 ) // РЎРІРµСЂРЅСѓС‚С‹Р№ РїРѕСЃС‚РµСЂ
 
 // Pet containers
 #define PID_PETBOX_MANTISS                   ( 700 )

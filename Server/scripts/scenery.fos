@@ -4,7 +4,7 @@
 
 bool s_Dialog( Critter& player, Scenery& scenery, int skill, Item@ item, int dialogId )
 {
-    // Запускаем диалог, если игрок не применял к сценери скилл или итем
+    // Р—Р°РїСѓСЃРєР°РµРј РґРёР°Р»РѕРі, РµСЃР»Рё РёРіСЂРѕРє РЅРµ РїСЂРёРјРµРЅСЏР» Рє СЃС†РµРЅРµСЂРё СЃРєРёР»Р» РёР»Рё РёС‚РµРј
     if( skill == -1 && not valid( item ) )
     {
         return RunDialog( player, dialogId, scenery.HexX, scenery.HexY, false );

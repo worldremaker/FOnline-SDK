@@ -6,16 +6,16 @@
 
 uint NumOfNpc = 0;
 
-uint64[] Koloda;     // Колода, биты в числе указывают на наличие карты в калоде, всего используется 52 бита
-uint8[][] GameCards; // Карты непосредственно учавствующие в игре: 0-4 - карты игрока, 5-19 - карты противников
-uint8[][] ReplCards; // Карты для замены (5 бит указывают, заменять карту или нет), нулевой элемент в массиве - игрок
-uint8[] Stroy;       // Порядок игроков во время ставок меняется от 0 до PLAYERS_COUNT-1
-uint8[] BetEnd;      // Определяет окончание круга ставок.
-uint[] Bank;         // Величина банка
-uint[] Bet;          // Величина текущей ставки
-uint8[] GameStage;   // Часть игры (раздача карт, ставки, обмен карт, второй круг ставок, вскрытие карт)
-bool[] FirstGame;    // определяет первая ли игра идет
-uint8[] MHod;        // Определяет очереднойсь ходов игроков (если MHod==0, значит очередь игрока.)
+uint64[] Koloda;     // РљРѕР»РѕРґР°, Р±РёС‚С‹ РІ С‡РёСЃР»Рµ СѓРєР°Р·С‹РІР°СЋС‚ РЅР° РЅР°Р»РёС‡РёРµ РєР°СЂС‚С‹ РІ РєР°Р»РѕРґРµ, РІСЃРµРіРѕ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ 52 Р±РёС‚Р°
+uint8[][] GameCards; // РљР°СЂС‚С‹ РЅРµРїРѕСЃСЂРµРґСЃС‚РІРµРЅРЅРѕ СѓС‡Р°РІСЃС‚РІСѓСЋС‰РёРµ РІ РёРіСЂРµ: 0-4 - РєР°СЂС‚С‹ РёРіСЂРѕРєР°, 5-19 - РєР°СЂС‚С‹ РїСЂРѕС‚РёРІРЅРёРєРѕРІ
+uint8[][] ReplCards; // РљР°СЂС‚С‹ РґР»СЏ Р·Р°РјРµРЅС‹ (5 Р±РёС‚ СѓРєР°Р·С‹РІР°СЋС‚, Р·Р°РјРµРЅСЏС‚СЊ РєР°СЂС‚Сѓ РёР»Рё РЅРµС‚), РЅСѓР»РµРІРѕР№ СЌР»РµРјРµРЅС‚ РІ РјР°СЃСЃРёРІРµ - РёРіСЂРѕРє
+uint8[] Stroy;       // РџРѕСЂСЏРґРѕРє РёРіСЂРѕРєРѕРІ РІРѕ РІСЂРµРјСЏ СЃС‚Р°РІРѕРє РјРµРЅСЏРµС‚СЃСЏ РѕС‚ 0 РґРѕ PLAYERS_COUNT-1
+uint8[] BetEnd;      // РћРїСЂРµРґРµР»СЏРµС‚ РѕРєРѕРЅС‡Р°РЅРёРµ РєСЂСѓРіР° СЃС‚Р°РІРѕРє.
+uint[] Bank;         // Р’РµР»РёС‡РёРЅР° Р±Р°РЅРєР°
+uint[] Bet;          // Р’РµР»РёС‡РёРЅР° С‚РµРєСѓС‰РµР№ СЃС‚Р°РІРєРё
+uint8[] GameStage;   // Р§Р°СЃС‚СЊ РёРіСЂС‹ (СЂР°Р·РґР°С‡Р° РєР°СЂС‚, СЃС‚Р°РІРєРё, РѕР±РјРµРЅ РєР°СЂС‚, РІС‚РѕСЂРѕР№ РєСЂСѓРі СЃС‚Р°РІРѕРє, РІСЃРєСЂС‹С‚РёРµ РєР°СЂС‚)
+bool[] FirstGame;    // РѕРїСЂРµРґРµР»СЏРµС‚ РїРµСЂРІР°СЏ Р»Рё РёРіСЂР° РёРґРµС‚
+uint8[] MHod;        // РћРїСЂРµРґРµР»СЏРµС‚ РѕС‡РµСЂРµРґРЅРѕР№СЃСЊ С…РѕРґРѕРІ РёРіСЂРѕРєРѕРІ (РµСЃР»Рё MHod==0, Р·РЅР°С‡РёС‚ РѕС‡РµСЂРµРґСЊ РёРіСЂРѕРєР°.)
 uint8[][] PlState;
 uint[][] PlBet;
 bool[] InGame;
@@ -49,18 +49,18 @@ uint16[] WaitForGame;
 
 bool[] App;
 
-string DialStrCards = "@msg dlg " + DLGSTR( DID, STR_CARDS ) + "@\n";    // Ваши карты:
-string DialStrCardsNet = "@msg dlg " + DLGSTR( DID, STR_CARDS ) + "@\n"; // Ваши карты:
-string DialStrCombo = "@msg dlg " + DLGSTR( DID, STR_COMBO ) + "@ ";     // у вас
-string DialStrBank = "@msg dlg " + DLGSTR( DID, STR_BANK ) + "@ ";       // В банке:
-string DialStrBet = "@msg dlg " + DLGSTR( DID, STR_BET ) + "@ ";         // Текущая ставка:
-string DialStrMineBet = "@msg dlg " + DLGSTR( DID, STR_MBET ) + "@ ";    // Ваша последняя ставка:
-string DialStrFold = "@msg dlg " + DLGSTR( DID, STR_FOLD ) + "@";        // спасовал
-string DialStrRaise = "@msg dlg " + DLGSTR( DID, STR_RAISE ) + "@";      // поднял ставку
-string DialStrWait = "@msg dlg " + DLGSTR( DID, STR_WAIT ) + "@";        // еще не делал ставку
-string DialStrCall = "@msg dlg " + DLGSTR( DID, STR_CALL ) + "@";        // ответил на ставку
-string DialStrAccept = "@msg dlg " + DLGSTR( DID, STR_ACCEPT ) + "@";    // принял ставку
-string DialStrPl = "@msg dlg " + DLGSTR( DID, STR_PL ) + "@ ";           // Игрок
+string DialStrCards = "@msg dlg " + DLGSTR( DID, STR_CARDS ) + "@\n";    // Р’Р°С€Рё РєР°СЂС‚С‹:
+string DialStrCardsNet = "@msg dlg " + DLGSTR( DID, STR_CARDS ) + "@\n"; // Р’Р°С€Рё РєР°СЂС‚С‹:
+string DialStrCombo = "@msg dlg " + DLGSTR( DID, STR_COMBO ) + "@ ";     // Сѓ РІР°СЃ
+string DialStrBank = "@msg dlg " + DLGSTR( DID, STR_BANK ) + "@ ";       // Р’ Р±Р°РЅРєРµ:
+string DialStrBet = "@msg dlg " + DLGSTR( DID, STR_BET ) + "@ ";         // РўРµРєСѓС‰Р°СЏ СЃС‚Р°РІРєР°:
+string DialStrMineBet = "@msg dlg " + DLGSTR( DID, STR_MBET ) + "@ ";    // Р’Р°С€Р° РїРѕСЃР»РµРґРЅСЏСЏ СЃС‚Р°РІРєР°:
+string DialStrFold = "@msg dlg " + DLGSTR( DID, STR_FOLD ) + "@";        // СЃРїР°СЃРѕРІР°Р»
+string DialStrRaise = "@msg dlg " + DLGSTR( DID, STR_RAISE ) + "@";      // РїРѕРґРЅСЏР» СЃС‚Р°РІРєСѓ
+string DialStrWait = "@msg dlg " + DLGSTR( DID, STR_WAIT ) + "@";        // РµС‰Рµ РЅРµ РґРµР»Р°Р» СЃС‚Р°РІРєСѓ
+string DialStrCall = "@msg dlg " + DLGSTR( DID, STR_CALL ) + "@";        // РѕС‚РІРµС‚РёР» РЅР° СЃС‚Р°РІРєСѓ
+string DialStrAccept = "@msg dlg " + DLGSTR( DID, STR_ACCEPT ) + "@";    // РїСЂРёРЅСЏР» СЃС‚Р°РІРєСѓ
+string DialStrPl = "@msg dlg " + DLGSTR( DID, STR_PL ) + "@ ";           // РРіСЂРѕРє
 
 void _PokermanInit( Critter& pokerMan, bool firstTime )
 {
@@ -134,7 +134,7 @@ void _PokermanInit( Critter& pokerMan, bool firstTime )
     #endif
 }
 
-void InitGame( Critter& pokerMan, Critter& master ) // запуск игры
+void InitGame( Critter& pokerMan, Critter& master ) // Р·Р°РїСѓСЃРє РёРіСЂС‹
 {
     GameVar@ gameTime = GetUnicumVar( UVAR_poker_manywins, pokerMan.Id, master.Id );
     if( !valid( gameTime ) )
@@ -150,7 +150,7 @@ void InitGame( Critter& pokerMan, Critter& master ) // запуск игры
     {
         GameCards[ pokerMan.StatBase[ ST_VAR9 ] ][ i ] = 0;
     }
-    Bank[ pokerMan.StatBase[ ST_VAR9 ] ] = PLAYERS_COUNT * MinBet[ pokerMan.StatBase[ ST_VAR9 ] ]; // Кладем в банк минимальную ставку
+    Bank[ pokerMan.StatBase[ ST_VAR9 ] ] = PLAYERS_COUNT * MinBet[ pokerMan.StatBase[ ST_VAR9 ] ]; // РљР»Р°РґРµРј РІ Р±Р°РЅРє РјРёРЅРёРјР°Р»СЊРЅСѓСЋ СЃС‚Р°РІРєСѓ
     Bet[ pokerMan.StatBase[ ST_VAR9 ] ] = MinBet[ pokerMan.StatBase[ ST_VAR9 ] ];
     for( uint8 l = 0; l < PLAYERS_COUNT; l++ )
     {
@@ -159,9 +159,9 @@ void InitGame( Critter& pokerMan, Critter& master ) // запуск игры
         PlState[ pokerMan.StatBase[ ST_VAR9 ] ][ l ] = PLST_WAIT;
     }
     GameStage[ pokerMan.StatBase[ ST_VAR9 ] ] = GAME_E_BETROUND1;
-    Koloda[ pokerMan.StatBase[ ST_VAR9 ] ] = uint64( -1 );      // Все биты = 1
+    Koloda[ pokerMan.StatBase[ ST_VAR9 ] ] = uint64( -1 );      // Р’СЃРµ Р±РёС‚С‹ = 1
     uint8 m;
-    for( uint8 i = 0; i < ( PLAYERS_COUNT * CARD_COUNT ); i++ ) // Раздача карт
+    for( uint8 i = 0; i < ( PLAYERS_COUNT * CARD_COUNT ); i++ ) // Р Р°Р·РґР°С‡Р° РєР°СЂС‚
     {
         do
         {
@@ -174,12 +174,12 @@ void InitGame( Critter& pokerMan, Critter& master ) // запуск игры
     #ifdef __DEBUG__
     Log( "\n<Poker>\nPlayer Cards:I " + GameCards[ pokerMan.StatBase[ ST_VAR9 ] ][ 0 ] + ";" + GameCards[ pokerMan.StatBase[ ST_VAR9 ] ][ 1 ] + ";" + GameCards[ pokerMan.StatBase[ ST_VAR9 ] ][ 2 ] + ";" + GameCards[ pokerMan.StatBase[ ST_VAR9 ] ][ 3 ] + ";" + GameCards[ pokerMan.StatBase[ ST_VAR9 ] ][ 4 ] + "\n" + GetStrCombo( GetCombo( 0, GameCards[ pokerMan.StatBase[ ST_VAR9 ] ] ) ) + "\n1:I " + GameCards[ pokerMan.StatBase[ ST_VAR9 ] ][ 5 ] + ";" + GameCards[ pokerMan.StatBase[ ST_VAR9 ] ][ 6 ] + ";" + GameCards[ pokerMan.StatBase[ ST_VAR9 ] ][ 7 ] + ";" + GameCards[ pokerMan.StatBase[ ST_VAR9 ] ][ 8 ] + ";" + GameCards[ pokerMan.StatBase[ ST_VAR9 ] ][ 9 ] + "\n" + GetStrCombo( GetCombo( 1, GameCards[ pokerMan.StatBase[ ST_VAR9 ] ] ) ) + "\n2:I " + GameCards[ pokerMan.StatBase[ ST_VAR9 ] ][ 10 ] + ";" + GameCards[ pokerMan.StatBase[ ST_VAR9 ] ][ 11 ] + ";" + GameCards[ pokerMan.StatBase[ ST_VAR9 ] ][ 12 ] + ";" + GameCards[ pokerMan.StatBase[ ST_VAR9 ] ][ 13 ] + ";" + GameCards[ pokerMan.StatBase[ ST_VAR9 ] ][ 14 ] + "\n" + GetStrCombo( GetCombo( 2, GameCards[ pokerMan.StatBase[ ST_VAR9 ] ] ) ) + "\n3:I " + GameCards[ pokerMan.StatBase[ ST_VAR9 ] ][ 15 ] + ";" + GameCards[ pokerMan.StatBase[ ST_VAR9 ] ][ 16 ] + ";" + GameCards[ pokerMan.StatBase[ ST_VAR9 ] ][ 17 ] + ";" + GameCards[ pokerMan.StatBase[ ST_VAR9 ] ][ 18 ] + ";" + GameCards[ pokerMan.StatBase[ ST_VAR9 ] ][ 19 ] + "\n" + GetStrCombo( GetCombo( 3, GameCards[ pokerMan.StatBase[ ST_VAR9 ] ] ) ) );
     #endif
-    if( !FirstGame[ pokerMan.StatBase[ ST_VAR9 ] ] )                                                               // Порядок игроков (определяет порядок ставок)
+    if( !FirstGame[ pokerMan.StatBase[ ST_VAR9 ] ] )                                                               // РџРѕСЂСЏРґРѕРє РёРіСЂРѕРєРѕРІ (РѕРїСЂРµРґРµР»СЏРµС‚ РїРѕСЂСЏРґРѕРє СЃС‚Р°РІРѕРє)
     {
-        Stroy[ pokerMan.StatBase[ ST_VAR9 ] ] = ( Stroy[ pokerMan.StatBase[ ST_VAR9 ] ] + 1 ) % ( PLAYERS_COUNT ); // Если игра не первая, то порядок смещается на 1
+        Stroy[ pokerMan.StatBase[ ST_VAR9 ] ] = ( Stroy[ pokerMan.StatBase[ ST_VAR9 ] ] + 1 ) % ( PLAYERS_COUNT ); // Р•СЃР»Рё РёРіСЂР° РЅРµ РїРµСЂРІР°СЏ, С‚Рѕ РїРѕСЂСЏРґРѕРє СЃРјРµС‰Р°РµС‚СЃСЏ РЅР° 1
         GameNum[ pokerMan.StatBase[ ST_VAR9 ] ]++;
     }
-    else                                                                                                           // если игра первая, то первый игрок выбирается случайно
+    else                                                                                                           // РµСЃР»Рё РёРіСЂР° РїРµСЂРІР°СЏ, С‚Рѕ РїРµСЂРІС‹Р№ РёРіСЂРѕРє РІС‹Р±РёСЂР°РµС‚СЃСЏ СЃР»СѓС‡Р°Р№РЅРѕ
     {
         Stroy[ pokerMan.StatBase[ ST_VAR9 ] ] = Random( 0, ( PLAYERS_COUNT - 1 ) );
         FirstGame[ pokerMan.StatBase[ ST_VAR9 ] ] = false;
@@ -209,9 +209,9 @@ void _SaveAD( Critter& pokerMan, bool deleted )
 void SaveData( Critter& pokerMan )
 {
     uint k = 0;
-    // Разделяем переменную uint64 на две переменные uint32 чтобы сохранить их в базе
-    GameAnyData[ pokerMan.StatBase[ ST_VAR9 ] ][ k++ ] = Koloda[ pokerMan.StatBase[ ST_VAR9 ] ] >> 32;           // Первые 20 карт колоды
-    GameAnyData[ pokerMan.StatBase[ ST_VAR9 ] ][ k++ ] = ( Koloda[ pokerMan.StatBase[ ST_VAR9 ] ] << 32 ) >> 32; // Последние 32 карты колоды
+    // Р Р°Р·РґРµР»СЏРµРј РїРµСЂРµРјРµРЅРЅСѓСЋ uint64 РЅР° РґРІРµ РїРµСЂРµРјРµРЅРЅС‹Рµ uint32 С‡С‚РѕР±С‹ СЃРѕС…СЂР°РЅРёС‚СЊ РёС… РІ Р±Р°Р·Рµ
+    GameAnyData[ pokerMan.StatBase[ ST_VAR9 ] ][ k++ ] = Koloda[ pokerMan.StatBase[ ST_VAR9 ] ] >> 32;           // РџРµСЂРІС‹Рµ 20 РєР°СЂС‚ РєРѕР»РѕРґС‹
+    GameAnyData[ pokerMan.StatBase[ ST_VAR9 ] ][ k++ ] = ( Koloda[ pokerMan.StatBase[ ST_VAR9 ] ] << 32 ) >> 32; // РџРѕСЃР»РµРґРЅРёРµ 32 РєР°СЂС‚С‹ РєРѕР»РѕРґС‹
     for( uint8 i = 0; i < PLAYERS_COUNT * CARD_COUNT; i++ )
     {
         GameAnyData[ pokerMan.StatBase[ ST_VAR9 ] ][ k++ ] = GameCards[ pokerMan.StatBase[ ST_VAR9 ] ][ i ];
@@ -248,10 +248,10 @@ void GetAData( Critter& pokerMan )
 {
     uint   k = 0;
     uint64 temp;
-    // "Склеиваем" 2 uint32 в один uint64
-    Koloda[ pokerMan.StatBase[ ST_VAR9 ] ] = GameAnyData[ pokerMan.StatBase[ ST_VAR9 ] ][ k++ ]; // Последние 32 карты колоды
-    temp = GameAnyData[ pokerMan.StatBase[ ST_VAR9 ] ][ k++ ];                                   // чтобы не потерять информацию при сдвиге
-    Koloda[ pokerMan.StatBase[ ST_VAR9 ] ] += temp << 32;                                        // первые 20 карт колоды
+    // "РЎРєР»РµРёРІР°РµРј" 2 uint32 РІ РѕРґРёРЅ uint64
+    Koloda[ pokerMan.StatBase[ ST_VAR9 ] ] = GameAnyData[ pokerMan.StatBase[ ST_VAR9 ] ][ k++ ]; // РџРѕСЃР»РµРґРЅРёРµ 32 РєР°СЂС‚С‹ РєРѕР»РѕРґС‹
+    temp = GameAnyData[ pokerMan.StatBase[ ST_VAR9 ] ][ k++ ];                                   // С‡С‚РѕР±С‹ РЅРµ РїРѕС‚РµСЂСЏС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ РїСЂРё СЃРґРІРёРіРµ
+    Koloda[ pokerMan.StatBase[ ST_VAR9 ] ] += temp << 32;                                        // РїРµСЂРІС‹Рµ 20 РєР°СЂС‚ РєРѕР»РѕРґС‹
     for( uint8 i = 0; i < PLAYERS_COUNT * CARD_COUNT; i++ )
     {
         GameCards[ pokerMan.StatBase[ ST_VAR9 ] ][ i ] = GameAnyData[ pokerMan.StatBase[ ST_VAR9 ] ][ k++ ];
@@ -292,9 +292,9 @@ void EraseData( Critter& npc )
 
 void NpcAction( uint8 m, Critter& master, Critter& pokerMan )
 {
-    // Базовый шанс на ответ или повышение ставки 100-(Bet[pokerMan.StatBase[ST_VAR9]]*koef/10-5) {при Bet[pokerMan.StatBase[ST_VAR9]]*koef>100, в остальных случаях, шанс 95%}
+    // Р‘Р°Р·РѕРІС‹Р№ С€Р°РЅСЃ РЅР° РѕС‚РІРµС‚ РёР»Рё РїРѕРІС‹С€РµРЅРёРµ СЃС‚Р°РІРєРё 100-(Bet[pokerMan.StatBase[ST_VAR9]]*koef/10-5) {РїСЂРё Bet[pokerMan.StatBase[ST_VAR9]]*koef>100, РІ РѕСЃС‚Р°Р»СЊРЅС‹С… СЃР»СѓС‡Р°СЏС…, С€Р°РЅСЃ 95%}
     // koef = 1000/MaxBet[pokerMan.StatBase[ST_VAR9]]
-    // к базовому шансу прибавляется модификатор, зависящий от комбинации карт.
+    // Рє Р±Р°Р·РѕРІРѕРјСѓ С€Р°РЅСЃСѓ РїСЂРёР±Р°РІР»СЏРµС‚СЃСЏ РјРѕРґРёС„РёРєР°С‚РѕСЂ, Р·Р°РІРёСЃСЏС‰РёР№ РѕС‚ РєРѕРјР±РёРЅР°С†РёРё РєР°СЂС‚.
 
     if( ChWinFold( pokerMan ) )
     {
@@ -346,7 +346,7 @@ void NpcAction( uint8 m, Critter& master, Critter& pokerMan )
         doBet = true;
     }
 
-    DlgTxt[ pokerMan.StatBase[ ST_VAR9 ] ] = DialStrPl + " №" + m + " ";
+    DlgTxt[ pokerMan.StatBase[ ST_VAR9 ] ] = DialStrPl + " в„–" + m + " ";
     PlayerCardsInDial[ pokerMan.StatBase[ ST_VAR9 ] ] = false;
     if( doBet )
     {
@@ -481,7 +481,7 @@ void GetNpcBet( Critter& master, Critter& pokerMan )
     }
 }
 
-void EndGame( Critter& master, Critter& pokerMan ) // Определение победителя, вывод результата на экран, распределение банка
+void EndGame( Critter& master, Critter& pokerMan ) // РћРїСЂРµРґРµР»РµРЅРёРµ РїРѕР±РµРґРёС‚РµР»СЏ, РІС‹РІРѕРґ СЂРµР·СѓР»СЊС‚Р°С‚Р° РЅР° СЌРєСЂР°РЅ, СЂР°СЃРїСЂРµРґРµР»РµРЅРёРµ Р±Р°РЅРєР°
 {
     uint8    max = 0;
     uint8    maxHC = 0;
@@ -614,14 +614,14 @@ void EndGame( Critter& master, Critter& pokerMan ) // Определение победителя, вы
 
 // /////////////////////////////////////////////////////////////////////
 //                                                                   //
-//                          Диалоги                                  //
+//                          Р”РёР°Р»РѕРіРё                                  //
 //                                                                   //
 // /////////////////////////////////////////////////////////////////////
 
 
 
 
-// ///////////////////Формирование диалога/////////////////////////////
+// ///////////////////Р¤РѕСЂРјРёСЂРѕРІР°РЅРёРµ РґРёР°Р»РѕРіР°/////////////////////////////
 void dlg_GameText( Critter& player, Critter@ pokerMan, string@ lexems )
 {
     if( not IS_DIALOG_GENERATED( lexems ) )
@@ -827,8 +827,8 @@ void dlg_ManyWins( Critter& player, Critter@ pokerMan, string@ lexems )
     }
 }
 
-// ///////////////////Результаты реплик////////////////////////////////
-void r_Replace( Critter& master, Critter@ pokerMan ) // замена карт
+// ///////////////////Р РµР·СѓР»СЊС‚Р°С‚С‹ СЂРµРїР»РёРє////////////////////////////////
+void r_Replace( Critter& master, Critter@ pokerMan ) // Р·Р°РјРµРЅР° РєР°СЂС‚
 {
     uint8 m;
     uint8[] cardsInPack;
@@ -874,15 +874,15 @@ void r_ReplSet( Critter& master, Critter@ pokerMan, int val )
 {
     if( GetBit( ReplCards[ pokerMan.StatBase[ ST_VAR9 ] ][ 0 ], val ) == 1 )
     {
-        ReplCards[ pokerMan.StatBase[ ST_VAR9 ] ][ 0 ] = SetBit5( ReplCards[ pokerMan.StatBase[ ST_VAR9 ] ][ 0 ], val, false ); // отменить выбор карты для замены
+        ReplCards[ pokerMan.StatBase[ ST_VAR9 ] ][ 0 ] = SetBit5( ReplCards[ pokerMan.StatBase[ ST_VAR9 ] ][ 0 ], val, false ); // РѕС‚РјРµРЅРёС‚СЊ РІС‹Р±РѕСЂ РєР°СЂС‚С‹ РґР»СЏ Р·Р°РјРµРЅС‹
     }
     else
     {
-        ReplCards[ pokerMan.StatBase[ ST_VAR9 ] ][ 0 ] = SetBit5( ReplCards[ pokerMan.StatBase[ ST_VAR9 ] ][ 0 ], val, true ); // выбор карты для замены
+        ReplCards[ pokerMan.StatBase[ ST_VAR9 ] ][ 0 ] = SetBit5( ReplCards[ pokerMan.StatBase[ ST_VAR9 ] ][ 0 ], val, true ); // РІС‹Р±РѕСЂ РєР°СЂС‚С‹ РґР»СЏ Р·Р°РјРµРЅС‹
     }
 }
 
-void r_BetRaise( Critter& master, Critter@ pokerMan, int val ) // Повышение ставки
+void r_BetRaise( Critter& master, Critter@ pokerMan, int val ) // РџРѕРІС‹С€РµРЅРёРµ СЃС‚Р°РІРєРё
 {
     switch( val )
     {
@@ -957,7 +957,7 @@ void r_BetRaise( Critter& master, Critter@ pokerMan, int val ) // Повышение став
     PrintCards( master, pokerMan, 0 );
 }
 
-void r_BetCall( Critter& master, Critter@ pokerMan, int val ) // Ответ на ставку
+void r_BetCall( Critter& master, Critter@ pokerMan, int val ) // РћС‚РІРµС‚ РЅР° СЃС‚Р°РІРєСѓ
 {
     if( val == D_VA_BANK )
     {
@@ -998,13 +998,13 @@ void r_BetCall( Critter& master, Critter@ pokerMan, int val ) // Ответ на ставку
     PrintCards( master, pokerMan, 0 );
 }
 
-void r_BetPass( Critter& master, Critter@ pokerMan ) // Игрок спасовал
+void r_BetPass( Critter& master, Critter@ pokerMan ) // РРіСЂРѕРє СЃРїР°СЃРѕРІР°Р»
 {
     PlState[ pokerMan.StatBase[ ST_VAR9 ] ][ 0 ] = PLST_PASS;
     EndGame( master, pokerMan );
 }
 
-uint r_StartNewGame( Critter& master, Critter@ pokerMan ) // Начало новой игры
+uint r_StartNewGame( Critter& master, Critter@ pokerMan ) // РќР°С‡Р°Р»Рѕ РЅРѕРІРѕР№ РёРіСЂС‹
 {
     GameVar@ winCash = GetUnicumVar( UVAR_poker_wincash, pokerMan.Id, master.Id );
     if( !valid( winCash ) )
@@ -1036,7 +1036,7 @@ void r_TermGame( Critter& master, Critter@ pokerMan )
     InGame[ pokerMan.StatBase[ ST_VAR9 ] ] = false;
 }
 
-void r_GetCards( Critter& master, Critter@ pokerMan ) // Начало игры
+void r_GetCards( Critter& master, Critter@ pokerMan ) // РќР°С‡Р°Р»Рѕ РёРіСЂС‹
 {
     FirstGame[ pokerMan.StatBase[ ST_VAR9 ] ] = true;
     InitGame( pokerMan, master );
@@ -1206,7 +1206,7 @@ void r_ManyWinsCheck( Critter& master, Critter@ pokerMan )
     }
 }
 
-// /////////////////////Условия для появления реплик/////////////////////////////////
+// /////////////////////РЈСЃР»РѕРІРёСЏ РґР»СЏ РїРѕСЏРІР»РµРЅРёСЏ СЂРµРїР»РёРє/////////////////////////////////
 bool d_GameOver( Critter& master, Critter@ pokerMan )
 {
     if( GameStage[ pokerMan.StatBase[ ST_VAR9 ] ] == GAME_E_END )
@@ -1232,7 +1232,7 @@ bool d_TermGame( Critter& master, Critter@ pokerMan )
     }
 }
 
-bool d_Replaced( Critter& master, Critter@ pokerMan ) // для отображения реплик игрока в диалоге
+bool d_Replaced( Critter& master, Critter@ pokerMan ) // РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ СЂРµРїР»РёРє РёРіСЂРѕРєР° РІ РґРёР°Р»РѕРіРµ
 {
     if( GameStage[ pokerMan.StatBase[ ST_VAR9 ] ] != GAME_E_REPLACECARD )
     {
@@ -1245,7 +1245,7 @@ bool d_Replaced( Critter& master, Critter@ pokerMan ) // для отображения реплик 
     return true;
 }
 
-bool d_Replace( Critter& master, Critter@ pokerMan ) // для вывода строки "заменить карты"
+bool d_Replace( Critter& master, Critter@ pokerMan ) // РґР»СЏ РІС‹РІРѕРґР° СЃС‚СЂРѕРєРё "Р·Р°РјРµРЅРёС‚СЊ РєР°СЂС‚С‹"
 {
     if( FraudMode[ pokerMan.StatBase[ ST_VAR9 ] ] != 0 )
     {
@@ -1284,7 +1284,7 @@ bool d_InGame( Critter& master, Critter@ pokerMan, int val )
     }
 }
 
-bool d_BetCall( Critter& master, Critter@ pokerMan, int val ) // Вывод строки "Ответить на ставку"
+bool d_BetCall( Critter& master, Critter@ pokerMan, int val ) // Р’С‹РІРѕРґ СЃС‚СЂРѕРєРё "РћС‚РІРµС‚РёС‚СЊ РЅР° СЃС‚Р°РІРєСѓ"
 {
     if( FraudMode[ pokerMan.StatBase[ ST_VAR9 ] ] != 0 )
     {
@@ -1353,7 +1353,7 @@ bool d_BetCall( Critter& master, Critter@ pokerMan, int val ) // Вывод строки "О
     return false;
 }
 
-bool d_BetRaise( Critter& master, Critter@ pokerMan, int val ) // Вывод строк на повышение ставки
+bool d_BetRaise( Critter& master, Critter@ pokerMan, int val ) // Р’С‹РІРѕРґ СЃС‚СЂРѕРє РЅР° РїРѕРІС‹С€РµРЅРёРµ СЃС‚Р°РІРєРё
 {
     uint betMoney;
     uint min, max;

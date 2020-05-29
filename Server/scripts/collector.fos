@@ -1,9 +1,9 @@
 // Author: rifleman17
-// Собиратель мусора
-// каждые NEXT_SEARCH_TIME собирает предметы на карте  в радиусе 5*PE от домашней позиции
-// если на карте есть контейнер, расположенный на EntireHex'e с номером ENTIRE_CONTAINER, после того, как соберет все предметы, идет их складывать в этот контейнер
-// Внимание! используется ST_VAR0 для определения времени следующего поиска
-// заняты события: CRITTER_EVENT_IDLE, CRITTER_EVENT_PLANE_END
+// РЎРѕР±РёСЂР°С‚РµР»СЊ РјСѓСЃРѕСЂР°
+// РєР°Р¶РґС‹Рµ NEXT_SEARCH_TIME СЃРѕР±РёСЂР°РµС‚ РїСЂРµРґРјРµС‚С‹ РЅР° РєР°СЂС‚Рµ  РІ СЂР°РґРёСѓСЃРµ 5*PE РѕС‚ РґРѕРјР°С€РЅРµР№ РїРѕР·РёС†РёРё
+// РµСЃР»Рё РЅР° РєР°СЂС‚Рµ РµСЃС‚СЊ РєРѕРЅС‚РµР№РЅРµСЂ, СЂР°СЃРїРѕР»РѕР¶РµРЅРЅС‹Р№ РЅР° EntireHex'e СЃ РЅРѕРјРµСЂРѕРј ENTIRE_CONTAINER, РїРѕСЃР»Рµ С‚РѕРіРѕ, РєР°Рє СЃРѕР±РµСЂРµС‚ РІСЃРµ РїСЂРµРґРјРµС‚С‹, РёРґРµС‚ РёС… СЃРєР»Р°РґС‹РІР°С‚СЊ РІ СЌС‚РѕС‚ РєРѕРЅС‚РµР№РЅРµСЂ
+// Р’РЅРёРјР°РЅРёРµ! РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ ST_VAR0 РґР»СЏ РѕРїСЂРµРґРµР»РµРЅРёСЏ РІСЂРµРјРµРЅРё СЃР»РµРґСѓСЋС‰РµРіРѕ РїРѕРёСЃРєР°
+// Р·Р°РЅСЏС‚С‹ СЃРѕР±С‹С‚РёСЏ: CRITTER_EVENT_IDLE, CRITTER_EVENT_PLANE_END
 
 #include "_macros.fos"
 
@@ -25,7 +25,7 @@ void _CollectorIdle( Critter& cr )
     if( uint( cr.Stat[ ST_VAR0 ] ) < __FullSecond )
     {
         SearchForItems( cr );
-        cr.StatBase[ ST_VAR0 ] = __FullSecond + NEXT_SEARCH_TIME;       // Следующий поиск
+        cr.StatBase[ ST_VAR0 ] = __FullSecond + NEXT_SEARCH_TIME;       // РЎР»РµРґСѓСЋС‰РёР№ РїРѕРёСЃРє
     }
     else
     {
@@ -34,7 +34,7 @@ void _CollectorIdle( Critter& cr )
 }
 
 
-void MoveItemsToContainer( Critter& cr ) // Складывает все предметы из инвентаря в контейнер
+void MoveItemsToContainer( Critter& cr ) // РЎРєР»Р°РґС‹РІР°РµС‚ РІСЃРµ РїСЂРµРґРјРµС‚С‹ РёР· РёРЅРІРµРЅС‚Р°СЂСЏ РІ РєРѕРЅС‚РµР№РЅРµСЂ
 {
     Item@[] items;
     Item@[] containers;
@@ -63,7 +63,7 @@ void MoveItemsToContainer( Critter& cr ) // Складывает все предметы из инвентаря
 
             }
         }
-        // если нет спецконтейнера, кладем в ближайший
+        // РµСЃР»Рё РЅРµС‚ СЃРїРµС†РєРѕРЅС‚РµР№РЅРµСЂР°, РєР»Р°РґРµРј РІ Р±Р»РёР¶Р°Р№С€РёР№
         map.GetItemsByType( ITEM_TYPE_CONTAINER, containers );
         uint distMin = map.GetWidth();
         uint distCur = 0;
@@ -85,9 +85,9 @@ void MoveItemsToContainer( Critter& cr ) // Складывает все предметы из инвентаря
 
 }
 
-void SearchForItems( Critter& cr ) // Поиск предметов, валяющихся на карте
+void SearchForItems( Critter& cr ) // РџРѕРёСЃРє РїСЂРµРґРјРµС‚РѕРІ, РІР°Р»СЏСЋС‰РёС…СЃСЏ РЅР° РєР°СЂС‚Рµ
 {
-    Map@ map = cr.GetMap();        // Карта с криттером, на которой будем искать вещи
+    Map@ map = cr.GetMap();        // РљР°СЂС‚Р° СЃ РєСЂРёС‚С‚РµСЂРѕРј, РЅР° РєРѕС‚РѕСЂРѕР№ Р±СѓРґРµРј РёСЃРєР°С‚СЊ РІРµС‰Рё
     if( !valid( map ) )
         return;
     Item@[] items;

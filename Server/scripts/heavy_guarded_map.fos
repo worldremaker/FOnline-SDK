@@ -16,11 +16,11 @@ void _GuardedMapInit( Map& map, bool firstTime )
 void _CritterInit( Critter& cr, bool firstTime )
 {
     FighterPattern @ fp = FighterPattern();
-    fp.ForceArmourLvl = 6;  // возможный максимум на текущий момент
-    fp.MustHealLvl = 60;    // процент здоровья, при котором нпц начнет лечиться
+    fp.ForceArmourLvl = 6;  // РІРѕР·РјРѕР¶РЅС‹Р№ РјР°РєСЃРёРјСѓРј РЅР° С‚РµРєСѓС‰РёР№ РјРѕРјРµРЅС‚
+    fp.MustHealLvl = 60;    // РїСЂРѕС†РµРЅС‚ Р·РґРѕСЂРѕРІСЊСЏ, РїСЂРё РєРѕС‚РѕСЂРѕРј РЅРїС† РЅР°С‡РЅРµС‚ Р»РµС‡РёС‚СЊСЃСЏ
     fp.ForceCritterArmour( cr );
     cr.ModeBase[ MODE_NO_ENEMY_STACK ] = 1;
     // cr.ModeBase[MODE_NO_LOOT] = 1;
     fp._SetOnAttackedEvents( cr );
-    cr._CanGenStim = 1000;     // число стимпаков
+    cr._CanGenStim = 1000;     // С‡РёСЃР»Рѕ СЃС‚РёРјРїР°РєРѕРІ
 }

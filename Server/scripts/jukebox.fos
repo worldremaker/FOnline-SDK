@@ -1,5 +1,5 @@
 // Author: rifleman17
-// Музыкальный автомат. В предмет бросается монетка, он проигрывает одну случайную мелодию
+// РњСѓР·С‹РєР°Р»СЊРЅС‹Р№ Р°РІС‚РѕРјР°С‚. Р’ РїСЂРµРґРјРµС‚ Р±СЂРѕСЃР°РµС‚СЃСЏ РјРѕРЅРµС‚РєР°, РѕРЅ РїСЂРѕРёРіСЂС‹РІР°РµС‚ РѕРґРЅСѓ СЃР»СѓС‡Р°Р№РЅСѓСЋ РјРµР»РѕРґРёСЋ
 
 #include "_macros.fos"
 
@@ -27,7 +27,7 @@ bool _UseOnJukeBox( Item& item, Critter& cr, Item@ usedItem )
     {
         if( usedItem.GetCount() < PRICE )
         {
-            // Не хватает денег
+            // РќРµ С…РІР°С‚Р°РµС‚ РґРµРЅРµРі
             cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, STR_LOWMONEY, "$price" + PRICE );
             return true;
         }
@@ -36,7 +36,7 @@ bool _UseOnJukeBox( Item& item, Critter& cr, Item@ usedItem )
             GameVar@ lastTimeUsed = GetLocalVar( LIVAR_last_used, item.Id );
             if( valid( lastTimeUsed ) && lastTimeUsed > 0 && uint( lastTimeUsed.GetValue() ) + SILENCE_TIME > __FullSecond )
             {
-                // Недавно использовался
+                // РќРµРґР°РІРЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°Р»СЃСЏ
                 cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, STR_OUTOFORDER );
                 return true;
             }
@@ -79,7 +79,7 @@ uint e_OffJukeBox( uint[] @ values )
     return 0;
 }
 
-// Покупка автоматов в Нью-Рено
+// РџРѕРєСѓРїРєР° Р°РІС‚РѕРјР°С‚РѕРІ РІ РќСЊСЋ-Р РµРЅРѕ
 import uint GetLocId( Critter& player ) from "quest_warehouse";
 
 #define ENTIRE_JB         ( 142 )

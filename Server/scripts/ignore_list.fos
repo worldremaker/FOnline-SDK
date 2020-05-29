@@ -23,7 +23,7 @@ void InitIgnoreList()
 
 bool IgnorePlayer( string& message )
 {
-    int pad = 8;     // ~ignore_ 8 cимволов
+    int pad = 8;     // ~ignore_ 8 cРёРјРІРѕР»РѕРІ
     if( int( message.length() ) <= pad )
         return false;
     string pName = substring( message, pad, message.length() - pad );

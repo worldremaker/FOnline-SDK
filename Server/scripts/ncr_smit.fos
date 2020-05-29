@@ -1,23 +1,23 @@
 // Author: rifleman17
 #include "_macros.fos"
 
-// положение Смита
-#define S_POS_BAZAAR_HOME       ( 0 )               // в исходной точке на Базаре
-#define S_POS_BAZAAR_M2GATES    ( 1 )               // в движении от Базара до ворот во внутренний город
-#define S_POS_BAZAAR_GATES      ( 2 )               // стоит у ворот в город
-#define S_POS_BAZAAR_M2HOME     ( 3 )               // в движении к домашней позиции на Базаре
+// РїРѕР»РѕР¶РµРЅРёРµ РЎРјРёС‚Р°
+#define S_POS_BAZAAR_HOME       ( 0 )               // РІ РёСЃС…РѕРґРЅРѕР№ С‚РѕС‡РєРµ РЅР° Р‘Р°Р·Р°СЂРµ
+#define S_POS_BAZAAR_M2GATES    ( 1 )               // РІ РґРІРёР¶РµРЅРёРё РѕС‚ Р‘Р°Р·Р°СЂР° РґРѕ РІРѕСЂРѕС‚ РІРѕ РІРЅСѓС‚СЂРµРЅРЅРёР№ РіРѕСЂРѕРґ
+#define S_POS_BAZAAR_GATES      ( 2 )               // СЃС‚РѕРёС‚ Сѓ РІРѕСЂРѕС‚ РІ РіРѕСЂРѕРґ
+#define S_POS_BAZAAR_M2HOME     ( 3 )               // РІ РґРІРёР¶РµРЅРёРё Рє РґРѕРјР°С€РЅРµР№ РїРѕР·РёС†РёРё РЅР° Р‘Р°Р·Р°СЂРµ
 
-#define S_POS_DWNTN_HOME        ( 4 )               // в баре Дасти
-#define S_POS_DWNTN_M2POLICE    ( 5 )               // в движении к полицейскому около ранчо вейстина
-#define S_POS_DWNTN_POLICE      ( 6 )               // стоит перед полицейским около ранчо вейстина
+#define S_POS_DWNTN_HOME        ( 4 )               // РІ Р±Р°СЂРµ Р”Р°СЃС‚Рё
+#define S_POS_DWNTN_M2POLICE    ( 5 )               // РІ РґРІРёР¶РµРЅРёРё Рє РїРѕР»РёС†РµР№СЃРєРѕРјСѓ РѕРєРѕР»Рѕ СЂР°РЅС‡Рѕ РІРµР№СЃС‚РёРЅР°
+#define S_POS_DWNTN_POLICE      ( 6 )               // СЃС‚РѕРёС‚ РїРµСЂРµРґ РїРѕР»РёС†РµР№СЃРєРёРј РѕРєРѕР»Рѕ СЂР°РЅС‡Рѕ РІРµР№СЃС‚РёРЅР°
 
-#define S_POS_RANCH_M2WESTIN    ( 7 )               // идет по ранчо к Вейстину
-#define S_POS_RANCH_WESTIN      ( 8 )               // стоит перед Вейстином
-#define S_POS_RANCH_M2DWNTN     ( 9 )               // двигается к сетке выхода для перехода в центр города
+#define S_POS_RANCH_M2WESTIN    ( 7 )               // РёРґРµС‚ РїРѕ СЂР°РЅС‡Рѕ Рє Р’РµР№СЃС‚РёРЅСѓ
+#define S_POS_RANCH_WESTIN      ( 8 )               // СЃС‚РѕРёС‚ РїРµСЂРµРґ Р’РµР№СЃС‚РёРЅРѕРј
+#define S_POS_RANCH_M2DWNTN     ( 9 )               // РґРІРёРіР°РµС‚СЃСЏ Рє СЃРµС‚РєРµ РІС‹С…РѕРґР° РґР»СЏ РїРµСЂРµС…РѕРґР° РІ С†РµРЅС‚СЂ РіРѕСЂРѕРґР°
 
-#define S_POS_DWNTN_M2RADIO     ( 10 )              // двигается к месту выхода на связь
-#define S_POS_DWNTN_RADIO       ( 11 )              // выходит на связь с Бишопом
-#define S_POS_DWTN_M2HOME       ( 12 )              // ывозвращается обратно на домашнюю позицию
+#define S_POS_DWNTN_M2RADIO     ( 10 )              // РґРІРёРіР°РµС‚СЃСЏ Рє РјРµСЃС‚Сѓ РІС‹С…РѕРґР° РЅР° СЃРІСЏР·СЊ
+#define S_POS_DWNTN_RADIO       ( 11 )              // РІС‹С…РѕРґРёС‚ РЅР° СЃРІСЏР·СЊ СЃ Р‘РёС€РѕРїРѕРј
+#define S_POS_DWTN_M2HOME       ( 12 )              // С‹РІРѕР·РІСЂР°С‰Р°РµС‚СЃСЏ РѕР±СЂР°С‚РЅРѕ РЅР° РґРѕРјР°С€РЅСЋСЋ РїРѕР·РёС†РёСЋ
 
 #define HEX_NUM_BAZAAR_HOME     ( 44 )
 #define HEX_NUM_BAZAAR_GATES    ( 45 )
@@ -30,16 +30,16 @@
 
 
 
-// таблица положений Смита
+// С‚Р°Р±Р»РёС†Р° РїРѕР»РѕР¶РµРЅРёР№ РЎРјРёС‚Р°
 /*
-   PosNum		= порядковый номер положения
-   GVarValue    = значение переменной GVAR_ncr_smit_position
-   MapPid               = карта на которой стоит СМИТ
-   RHexNum      = номер ближайшего EntireHex
-   ResetPosNum	= следующее состояние, если нужен сброс
-   Moving		= признак, перемещается по карте, находится в движении
-   IsHomePos    = признак, является домашней позицией
-   MoveTo      = номер гекса, к которому идет вейстин
+   PosNum		= РїРѕСЂСЏРґРєРѕРІС‹Р№ РЅРѕРјРµСЂ РїРѕР»РѕР¶РµРЅРёСЏ
+   GVarValue    = Р·РЅР°С‡РµРЅРёРµ РїРµСЂРµРјРµРЅРЅРѕР№ GVAR_ncr_smit_position
+   MapPid               = РєР°СЂС‚Р° РЅР° РєРѕС‚РѕСЂРѕР№ СЃС‚РѕРёС‚ РЎРњРРў
+   RHexNum      = РЅРѕРјРµСЂ Р±Р»РёР¶Р°Р№С€РµРіРѕ EntireHex
+   ResetPosNum	= СЃР»РµРґСѓСЋС‰РµРµ СЃРѕСЃС‚РѕСЏРЅРёРµ, РµСЃР»Рё РЅСѓР¶РµРЅ СЃР±СЂРѕСЃ
+   Moving		= РїСЂРёР·РЅР°Рє, РїРµСЂРµРјРµС‰Р°РµС‚СЃСЏ РїРѕ РєР°СЂС‚Рµ, РЅР°С…РѕРґРёС‚СЃСЏ РІ РґРІРёР¶РµРЅРёРё
+   IsHomePos    = РїСЂРёР·РЅР°Рє, СЏРІР»СЏРµС‚СЃСЏ РґРѕРјР°С€РЅРµР№ РїРѕР·РёС†РёРµР№
+   MoveTo      = РЅРѕРјРµСЂ РіРµРєСЃР°, Рє РєРѕС‚РѕСЂРѕРјСѓ РёРґРµС‚ РІРµР№СЃС‚РёРЅ
  */
 const int[] SmitData_ =
 {
@@ -71,7 +71,7 @@ const int[] SmitData_ =
 #define S_POS_HEX_MOVETO        # (posNum)      ( SmitData_[ ( ( ( posNum ) < SPOS_COUNT ? ( posNum ) : 0 ) * 7 + 6 ) ] )
 
 #define NPC_ROLE_SMIT           ( 54 )
-#define MAX_HOME_DISTANCE       ( 3 )               // максимальная дистанция до домашней позиции, после которой уже нужно телепортировать домой смита
+#define MAX_HOME_DISTANCE       ( 3 )               // РјР°РєСЃРёРјР°Р»СЊРЅР°СЏ РґРёСЃС‚Р°РЅС†РёСЏ РґРѕ РґРѕРјР°С€РЅРµР№ РїРѕР·РёС†РёРё, РїРѕСЃР»Рµ РєРѕС‚РѕСЂРѕР№ СѓР¶Рµ РЅСѓР¶РЅРѕ С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ РґРѕРјРѕР№ СЃРјРёС‚Р°
 
 import bool GetNearEntire( Map& map, int number, uint16& hx, uint16& hy ) from "entire";
 import bool AddWalkPlane( Critter& npc, uint priority, int identifier, uint identifierExt, uint16 hexX, uint16 hexY, uint8 dir, bool run, uint cut ) from "npc_planes";
@@ -79,7 +79,7 @@ import bool AddMiscPlane( Critter& npc, uint priority, uint waitSecond, string@ 
 import uint GetNearFullSecond( uint16 year, uint16 month, uint16 day, uint16 hour, uint16 minute, uint16 second ) from "time";
 import bool BeginSpyControl( Critter& catcher, uint catchRadius, uint minSneak, uint checkTime, uint varStatNum, uint varQuest, uint strAlarm ) from "q_spy_mission";
 import bool AddAttackPlane( Critter& npc, uint priority, Critter& target ) from "npc_planes";
-/* ************************** Основной скрипт Смита ****************************************** */
+/* ************************** РћСЃРЅРѕРІРЅРѕР№ СЃРєСЂРёРїС‚ РЎРјРёС‚Р° ****************************************** */
 
 void _SmitInit( Critter& smit, bool firstTime )
 {
@@ -93,14 +93,14 @@ void _SmitInit( Critter& smit, bool firstTime )
     {
         SetupRadioComm( smit );
     }
-    // на всякий случай проверяем, что на своем месте смит
+    // РЅР° РІСЃСЏРєРёР№ СЃР»СѓС‡Р°Р№ РїСЂРѕРІРµСЂСЏРµРј, С‡С‚Рѕ РЅР° СЃРІРѕРµРј РјРµСЃС‚Рµ СЃРјРёС‚
     SetSmitPos( S_POS_RES_POS( GetSmitPos() ) );
     _SmitRespawn( smit );
 }
 
-/* ************************** Управление позицией Смита на картах **************************** */
+/* ************************** РЈРїСЂР°РІР»РµРЅРёРµ РїРѕР·РёС†РёРµР№ РЎРјРёС‚Р° РЅР° РєР°СЂС‚Р°С… **************************** */
 
-// текущее сохраненное значение
+// С‚РµРєСѓС‰РµРµ СЃРѕС…СЂР°РЅРµРЅРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ
 uint8 GetSmitPos()
 {
     GameVar @ v = GetGlobalVar( GVAR_ncr_smit_position );
@@ -124,20 +124,20 @@ void SetSmitPos( int val )
 }
 
 
-// проверка, нету других смитов на указанной позиции
+// РїСЂРѕРІРµСЂРєР°, РЅРµС‚Сѓ РґСЂСѓРіРёС… СЃРјРёС‚РѕРІ РЅР° СѓРєР°Р·Р°РЅРЅРѕР№ РїРѕР·РёС†РёРё
 Critter @ GetFakeSmit( uint pos, Critter & realSmit )
 {
     Map @posmap = GetMapByPid( S_POS_MAP_PID( pos ), 0 );
     if( !valid( posmap ) )
     {
-        Log( "Map position № " + pos + " not found " );
+        Log( "Map position в„– " + pos + " not found " );
         return null;
     }
 
     Critter @ fakeSmit = posmap.GetNpc( NPC_ROLE_SMIT, FIND_ALL | FIND_ONLY_NPC, 0 );
     if( valid( fakeSmit ) )
     {
-        if( fakeSmit.StatBase[ ST_DIALOG_ID ] == realSmit.StatBase[ ST_DIALOG_ID ] && fakeSmit.Id != realSmit.Id ) // диалог тот же, а Id отличается, значит - другой смит
+        if( fakeSmit.StatBase[ ST_DIALOG_ID ] == realSmit.StatBase[ ST_DIALOG_ID ] && fakeSmit.Id != realSmit.Id ) // РґРёР°Р»РѕРі С‚РѕС‚ Р¶Рµ, Р° Id РѕС‚Р»РёС‡Р°РµС‚СЃСЏ, Р·РЅР°С‡РёС‚ - РґСЂСѓРіРѕР№ СЃРјРёС‚
         {
             DL( "real id" + realSmit.Id + "fakeId = " + fakeSmit.Id );
             return fakeSmit;
@@ -154,7 +154,7 @@ Critter @ GetFakeSmit( uint pos, Critter & realSmit )
 }
 
 
-// проверяем, что смит на нужной карте, рядом с нужным гексом
+// РїСЂРѕРІРµСЂСЏРµРј, С‡С‚Рѕ СЃРјРёС‚ РЅР° РЅСѓР¶РЅРѕР№ РєР°СЂС‚Рµ, СЂСЏРґРѕРј СЃ РЅСѓР¶РЅС‹Рј РіРµРєСЃРѕРј
 bool IsSmitRightPosition( Critter& smit, uint pos )
 {
     Map @map = smit.GetMap();
@@ -171,7 +171,7 @@ bool IsSmitRightPosition( Critter& smit, uint pos )
 
     return GetDistantion( hx, hy, smit.HexX, smit.HexY ) <= MAX_HOME_DISTANCE;
 }
-// при респавне смита нужно его телепортировать домой, если он очутился не в том месте
+// РїСЂРё СЂРµСЃРїР°РІРЅРµ СЃРјРёС‚Р° РЅСѓР¶РЅРѕ РµРіРѕ С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ РґРѕРјРѕР№, РµСЃР»Рё РѕРЅ РѕС‡СѓС‚РёР»СЃСЏ РЅРµ РІ С‚РѕРј РјРµСЃС‚Рµ
 void _SmitRespawn( Critter& smit )
 {
     uint pos = GetSmitPos();
@@ -192,7 +192,7 @@ void _SmitRespawn( Critter& smit )
 void _SmitDead( Critter& smit, Critter@ killer )
 {
 
-    // умер, значит что-то пошло не так, делаем резет позиции
+    // СѓРјРµСЂ, Р·РЅР°С‡РёС‚ С‡С‚Рѕ-С‚Рѕ РїРѕС€Р»Рѕ РЅРµ С‚Р°Рє, РґРµР»Р°РµРј СЂРµР·РµС‚ РїРѕР·РёС†РёРё
     SetSmitPos( S_POS_RES_POS( GetSmitPos() ) );
 }
 
@@ -201,7 +201,7 @@ void TransitToPos( Critter& smit, uint pos )
     Map @map = GetMapByPid( S_POS_MAP_PID( pos ), 0 );
     if( !valid( map ) )
     {
-        Log( "Map position № " + pos + " not found " );
+        Log( "Map position в„– " + pos + " not found " );
         return;
     }
     uint16 hx = smit.HexX;
@@ -274,7 +274,7 @@ void _SmitIdle( Critter& smit )
 }
 
 
-/* ********************** Завершение выполнения Смитом некоего плана ************************* */
+/* ********************** Р—Р°РІРµСЂС€РµРЅРёРµ РІС‹РїРѕР»РЅРµРЅРёСЏ РЎРјРёС‚РѕРј РЅРµРєРѕРµРіРѕ РїР»Р°РЅР° ************************* */
 // CRITTER_EVENT_PLANE_END
 int _SmitPlaneEnd( Critter& smit, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem )
 {
@@ -324,19 +324,19 @@ int _SmitPlaneEnd( Critter& smit, NpcPlane& plane, int reason, Critter@ someCr, 
     }
     return PLANE_RUN_GLOBAL;
 }
-/* ********************** Диалог Смита и охранника на воротах города ************************* */
-#define STR_FIRST_GATESGUARD      ( 3400 )                     // первая строка обмена репликами между смитом и охранником
-#define STR_LAST_GATESGUARD       ( 3407 )                     // последняя строка обмена репликами
-#define STR_NO_GUARDS             ( 3408 )                     // строка, если нет охранника на воротах
-#define NPC_ROLE_GATESGUARD       ( 317 )                      // роль охранника на воротах
-#define NPC_ROLE_GATESMAIN        ( 318 )                      // роль охранника на воротах
+/* ********************** Р”РёР°Р»РѕРі РЎРјРёС‚Р° Рё РѕС…СЂР°РЅРЅРёРєР° РЅР° РІРѕСЂРѕС‚Р°С… РіРѕСЂРѕРґР° ************************* */
+#define STR_FIRST_GATESGUARD      ( 3400 )                     // РїРµСЂРІР°СЏ СЃС‚СЂРѕРєР° РѕР±РјРµРЅР° СЂРµРїР»РёРєР°РјРё РјРµР¶РґСѓ СЃРјРёС‚РѕРј Рё РѕС…СЂР°РЅРЅРёРєРѕРј
+#define STR_LAST_GATESGUARD       ( 3407 )                     // РїРѕСЃР»РµРґРЅСЏСЏ СЃС‚СЂРѕРєР° РѕР±РјРµРЅР° СЂРµРїР»РёРєР°РјРё
+#define STR_NO_GUARDS             ( 3408 )                     // СЃС‚СЂРѕРєР°, РµСЃР»Рё РЅРµС‚ РѕС…СЂР°РЅРЅРёРєР° РЅР° РІРѕСЂРѕС‚Р°С…
+#define NPC_ROLE_GATESGUARD       ( 317 )                      // СЂРѕР»СЊ РѕС…СЂР°РЅРЅРёРєР° РЅР° РІРѕСЂРѕС‚Р°С…
+#define NPC_ROLE_GATESMAIN        ( 318 )                      // СЂРѕР»СЊ РѕС…СЂР°РЅРЅРёРєР° РЅР° РІРѕСЂРѕС‚Р°С…
 
 void OnGatesPlaneEnd( Critter& smit )
 {
     SetSmitPos( S_POS_BAZAAR_GATES );
     uint8 pos = GetSmitPos();
 
-    DL( "Закончен план перемещения к воротам" );
+    DL( "Р—Р°РєРѕРЅС‡РµРЅ РїР»Р°РЅ РїРµСЂРµРјРµС‰РµРЅРёСЏ Рє РІРѕСЂРѕС‚Р°Рј" );
 
     if( !valid( GetGatesGuard( smit ) ) )
     {
@@ -380,11 +380,11 @@ void plane_SayNextPhrase( Critter& smit )
         }
         else
         {
-            // говорит охранник
+            // РіРѕРІРѕСЂРёС‚ РѕС…СЂР°РЅРЅРёРє
             Critter @guard = GetGatesGuard( smit );
             if( !valid( guard ) || guard.IsDead() )
             {
-                // исчез, убит?
+                // РёСЃС‡РµР·, СѓР±РёС‚?
                 smit.StatBase[ ST_VAR4 ] = 0;
                 return;
             }
@@ -416,11 +416,11 @@ Critter @ GetGatesGuard( Critter & smit )
 
 }
 
-/* ********************** Смит выходит на связь с Бишопом по рации *************************** */
-#define STR_FIRST_SMIT_RADIO      ( 3420 )                  // первая строка радиопереговоров
-#define STR_LAST_SMIT_RADIO       ( 3451 )                  // последняя строка радиопереговоров
-#define STR_PLAYER_SEEN_ALARM     ( 1 )                     // строка в диалоге смита, которую он произносит, если заметит, что за ним следят во время переговоров
-#define RADIO_CHANNEL_SMIT        ( 17 )                    // номер канала, по которому смит выходит на связь
+/* ********************** РЎРјРёС‚ РІС‹С…РѕРґРёС‚ РЅР° СЃРІСЏР·СЊ СЃ Р‘РёС€РѕРїРѕРј РїРѕ СЂР°С†РёРё *************************** */
+#define STR_FIRST_SMIT_RADIO      ( 3420 )                  // РїРµСЂРІР°СЏ СЃС‚СЂРѕРєР° СЂР°РґРёРѕРїРµСЂРµРіРѕРІРѕСЂРѕРІ
+#define STR_LAST_SMIT_RADIO       ( 3451 )                  // РїРѕСЃР»РµРґРЅСЏСЏ СЃС‚СЂРѕРєР° СЂР°РґРёРѕРїРµСЂРµРіРѕРІРѕСЂРѕРІ
+#define STR_PLAYER_SEEN_ALARM     ( 1 )                     // СЃС‚СЂРѕРєР° РІ РґРёР°Р»РѕРіРµ СЃРјРёС‚Р°, РєРѕС‚РѕСЂСѓСЋ РѕРЅ РїСЂРѕРёР·РЅРѕСЃРёС‚, РµСЃР»Рё Р·Р°РјРµС‚РёС‚, С‡С‚Рѕ Р·Р° РЅРёРј СЃР»РµРґСЏС‚ РІРѕ РІСЂРµРјСЏ РїРµСЂРµРіРѕРІРѕСЂРѕРІ
+#define RADIO_CHANNEL_SMIT        ( 17 )                    // РЅРѕРјРµСЂ РєР°РЅР°Р»Р°, РїРѕ РєРѕС‚РѕСЂРѕРјСѓ СЃРјРёС‚ РІС‹С…РѕРґРёС‚ РЅР° СЃРІСЏР·СЊ
 
 void SetupRadioComm( Critter& smit )
 {
@@ -434,7 +434,7 @@ uint e_BeginRadioComm( uint[] @ values )
     if( valid( smit ) )
     {
         _BeginRadioCom( smit );
-        // следующее событие
+        // СЃР»РµРґСѓСЋС‰РµРµ СЃРѕР±С‹С‚РёРµ
         SetupRadioComm( smit );
     }
 
@@ -505,22 +505,22 @@ void OnMove2RadioPlaneEnd( Critter& smit )
     AddMiscPlane( smit, 0, __FullSecond + 2 * 60, "ncr_smit@plane_SayNextRadio" );
 
 }
-/* ******************* Перемещение Смита к полицейскому перед входом на Ранчо **************** */
-#define WAIT_FORPLAYER_MINUTES    ( 60 )                     // число реальных игровых минут, которое Смит будет ждать игрока перед входом на Ранчо.
-#define STR_NO_GUARD_AT_RANCH     ( 3455 )                   // строка, которую говорит вейстин, если на воротах ранчо нет охранника
-#define STR_FIRST_GRANT           ( 3456 )                   // первая строка в диалоге смит/грант
-#define STR_LAST_GRANT            ( 3459 )                   // последняя
+/* ******************* РџРµСЂРµРјРµС‰РµРЅРёРµ РЎРјРёС‚Р° Рє РїРѕР»РёС†РµР№СЃРєРѕРјСѓ РїРµСЂРµРґ РІС…РѕРґРѕРј РЅР° Р Р°РЅС‡Рѕ **************** */
+#define WAIT_FORPLAYER_MINUTES    ( 60 )                     // С‡РёСЃР»Рѕ СЂРµР°Р»СЊРЅС‹С… РёРіСЂРѕРІС‹С… РјРёРЅСѓС‚, РєРѕС‚РѕСЂРѕРµ РЎРјРёС‚ Р±СѓРґРµС‚ Р¶РґР°С‚СЊ РёРіСЂРѕРєР° РїРµСЂРµРґ РІС…РѕРґРѕРј РЅР° Р Р°РЅС‡Рѕ.
+#define STR_NO_GUARD_AT_RANCH     ( 3455 )                   // СЃС‚СЂРѕРєР°, РєРѕС‚РѕСЂСѓСЋ РіРѕРІРѕСЂРёС‚ РІРµР№СЃС‚РёРЅ, РµСЃР»Рё РЅР° РІРѕСЂРѕС‚Р°С… СЂР°РЅС‡Рѕ РЅРµС‚ РѕС…СЂР°РЅРЅРёРєР°
+#define STR_FIRST_GRANT           ( 3456 )                   // РїРµСЂРІР°СЏ СЃС‚СЂРѕРєР° РІ РґРёР°Р»РѕРіРµ СЃРјРёС‚/РіСЂР°РЅС‚
+#define STR_LAST_GRANT            ( 3459 )                   // РїРѕСЃР»РµРґРЅСЏСЏ
 void OnMove2PolicePlaneEnd( Critter& smit )
 {
     SetSmitPos( S_POS_DWNTN_POLICE );
     // AddMiscPlane(smit, 0, __FullSecond+WAIT_FORPLAYER_MINUTES*60, "ncr_smit@plane_ComeBackNoPlayer");
-    // он сам через 10 идлов вернется на домашнюю позицию
+    // РѕРЅ СЃР°Рј С‡РµСЂРµР· 10 РёРґР»РѕРІ РІРµСЂРЅРµС‚СЃСЏ РЅР° РґРѕРјР°С€РЅСЋСЋ РїРѕР·РёС†РёСЋ
 
 }
 
 void plane_ComeBackNoPlayer( Critter& smit )
 {
-    // игрок не успел поговорить в отведенное время, Смит возвращается обратно
+    // РёРіСЂРѕРє РЅРµ СѓСЃРїРµР» РїРѕРіРѕРІРѕСЂРёС‚СЊ РІ РѕС‚РІРµРґРµРЅРЅРѕРµ РІСЂРµРјСЏ, РЎРјРёС‚ РІРѕР·РІСЂР°С‰Р°РµС‚СЃСЏ РѕР±СЂР°С‚РЅРѕ
     WalkToPos( smit, S_POS_DWTN_M2HOME );
 }
 
@@ -546,7 +546,7 @@ void OnExitDwnTnPlaneEnd( Critter& smit )
             {
                 GameVar @ qVar = GetLocalVar( LVAR_ncr_smit_vs_vestin_status, smit.StatBase[ ST_VAR7 ] );
                 if( valid( qVar ) && qVar.GetValue() == 2 )
-                    qVar = 6;                                                  // провал
+                    qVar = 6;                                                  // РїСЂРѕРІР°Р»
                 smit.StatBase[ ST_VAR7 ] = critters[ i ].Id;
                 smit.StatBase[ ST_VAR2 ] = STR_FIRST_GRANT;
                 plane_SayNexPolicePhrase( smit );
@@ -596,11 +596,11 @@ void Smit2Ranch( Critter& smit )
     TransitToPos( smit, S_POS_RANCH_M2WESTIN );
     WalkToPos( smit, S_POS_RANCH_WESTIN );
 }
-/* ***************************** И, наконец, убийство Вейстина ******************************* */
-#define STR_FIRST_WESTINSMIT      ( 3460 )                    // первая строка в диалоге смит/грант
-#define STR_LAST_WESTINSMIT       ( 3465 )                    // последняя
-#define STR_NO_WESTININHOME       ( 3466 )                    // вейстина нет на месте или он мертв
-#define WESTIN_FIND_RADIUS        ( 5 )                       // радиус, в котором ищем живых вейстинов вокруг смита
+/* ***************************** Р, РЅР°РєРѕРЅРµС†, СѓР±РёР№СЃС‚РІРѕ Р’РµР№СЃС‚РёРЅР° ******************************* */
+#define STR_FIRST_WESTINSMIT      ( 3460 )                    // РїРµСЂРІР°СЏ СЃС‚СЂРѕРєР° РІ РґРёР°Р»РѕРіРµ СЃРјРёС‚/РіСЂР°РЅС‚
+#define STR_LAST_WESTINSMIT       ( 3465 )                    // РїРѕСЃР»РµРґРЅСЏСЏ
+#define STR_NO_WESTININHOME       ( 3466 )                    // РІРµР№СЃС‚РёРЅР° РЅРµС‚ РЅР° РјРµСЃС‚Рµ РёР»Рё РѕРЅ РјРµСЂС‚РІ
+#define WESTIN_FIND_RADIUS        ( 5 )                       // СЂР°РґРёСѓСЃ, РІ РєРѕС‚РѕСЂРѕРј РёС‰РµРј Р¶РёРІС‹С… РІРµР№СЃС‚РёРЅРѕРІ РІРѕРєСЂСѓРі СЃРјРёС‚Р°
 void OnWestinMovePlaneEnd( Critter& smit )
 {
     smit.StatBase[ ST_VAR2 ] = STR_FIRST_WESTINSMIT;
@@ -679,7 +679,7 @@ Critter @ GetWestin( Critter & smit )
     return null;
 }
 
-/* ************************** Функции для использования в диалогах *************************** */
+/* ************************** Р¤СѓРЅРєС†РёРё РґР»СЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РІ РґРёР°Р»РѕРіР°С… *************************** */
 void r_SmitGoToGates( Critter& player, Critter @ smit )
 {
     if( !valid( smit ) )
@@ -721,7 +721,7 @@ void r_SmitGoToRanch( Critter& player, Critter @ smit )
 
     smit.ModeBase[ MODE_HIDE ] = 1;
     smit.SkillBase[ SK_SNEAK ] = 300;
-    // запоминаем игрока
+    // Р·Р°РїРѕРјРёРЅР°РµРј РёРіСЂРѕРєР°
     smit.StatBase[ ST_VAR7 ] = player.Id;
 }
 
@@ -736,5 +736,5 @@ void DL( string s )
 // ~setvar 4220 0 1 0 1
 // ~additemself 100 1
 // ~settime 20 2246 10 31 06 00
-// ~run test t2m 45 44 0 //  ксмиту домой на базар
-// ~run test t2m 42 46 0 //  ксмиту в бар
+// ~run test t2m 45 44 0 //  РєСЃРјРёС‚Сѓ РґРѕРјРѕР№ РЅР° Р±Р°Р·Р°СЂ
+// ~run test t2m 42 46 0 //  РєСЃРјРёС‚Сѓ РІ Р±Р°СЂ

@@ -9,7 +9,7 @@ class TestScreenButtonShow : IGUIElementCallbackMouseClick
     void OnMouseClick( int click )
     {
         Message( "GUITestScreenButtonShow::OnMouseClick " + click );
-        ::ShowScreen( CLIENT_SCREEN_TEST, 3, 3, 3 );
+        ShowScreen( CLIENT_SCREEN_TEST, 3, 3, 3 );
     }
 }
 
@@ -17,7 +17,7 @@ class TestScreenButton : IGUIElementCallbackMouseClick
 {
     void OnMouseClick( int click )
     {
-        ::HideScreen( 0, 2, 2, 2 );
+        HideScreen( 0, 2, 2, 2 );
     }
 }
 
@@ -25,7 +25,7 @@ class TestScreenButton2 : IGUIElementCallbackMouseClick
 {
     void OnMouseClick( int click )
     {
-        ::ShowScreen( CLIENT_SCREEN_TEST, 1, 1, 1 );
+        ShowScreen( CLIENT_SCREEN_TEST, 1, 1, 1 );
     }
 }
 
@@ -33,19 +33,19 @@ class TestScreen : IGUIScreenCallbackShow, IGUIScreenCallbackHide, IGUIScreenCal
 {
     void OnShow( int p0, int p1, int p2 )
     {
-        ::Message( "OnShow " + p0 + " " + p1 + " " + p2 + "." );
+        Message( "OnShow " + p0 + " " + p1 + " " + p2 + "." );
         @ScreenOpt = GUI_GetScreenOptions();
     }
 
     void OnHide( int p0, int p1, int p2 )
     {
-        ::Message( "OnHide " + p0 + " " + p1 + " " + p2 + "." );
+        Message( "OnHide " + p0 + " " + p1 + " " + p2 + "." );
     }
 
     void OnMove( int posX, int posY )
     {
-        ::Message( "OnMove posX " + posX + " posY " + posY );
-        ::Message( "equal posX " + ScreenOpt.GetPosX() + " posY " + ScreenOpt.GetPosY() );
+        Message( "OnMove posX " + posX + " posY " + posY );
+        Message( "equal posX " + ScreenOpt.GetPosX() + " posY " + ScreenOpt.GetPosY() );
     }
 
     void OnInit()
@@ -53,11 +53,9 @@ class TestScreen : IGUIScreenCallbackShow, IGUIScreenCallbackHide, IGUIScreenCal
         @InputBoxOpt = GUI_GetElementOptions();
     }
 
-    void OnKeyPress( uint8 key, uint8 letter )
+    void OnKeyPress( uint8 key, string& keyText )
     {
-        string letter_ = " ";
-        letter_[ 0 ] = ( letter != 0 ? letter : '?' );
-        ::Message( "OnKeyPress key code " + key + " letter " + letter_ + "." );
+        Message( "OnKeyPress key code " + key + " text " + keyText + "." );
     }
 
     IGUIScreenOpt@  ScreenOpt;

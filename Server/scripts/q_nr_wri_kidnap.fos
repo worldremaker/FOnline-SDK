@@ -1,5 +1,5 @@
 // Author: rifleman17
-// Квест "Проблемы мистера Райта: Заложник."
+// РљРІРµСЃС‚ "РџСЂРѕР±Р»РµРјС‹ РјРёСЃС‚РµСЂР° Р Р°Р№С‚Р°: Р—Р°Р»РѕР¶РЅРёРє."
 #include "_macros.fos"
 #define NEXT_KIDNAP_TIME          ( 60 * 60 * 24 * 30 * Random( 1, 3 ) )
 #define KIDNAP_LOC_PROTO          ( LOCATION_WrightKidnap )
@@ -7,33 +7,33 @@
 #define KINDAP_GLOBAL_Y           ( Random( 847, 942 ) )
 
 #define GVAR_KIDNAP_ACCESS        ( 11111 )
-#define LLVAR_HOSTILE             ( LLVAR_loc_defenders_hostile )    // Признак: нпц враждебны
-#define QUEST_VAR                 ( LVAR_q_nr_wri_kidnap )           // Номер квестовой переменной
-#define LVAR_LAST_NOTIFY          ( LVAR_nr_wri_kidnap_notify_time ) // Номер переменной, в которой сохраняется последнее время предупреждения игрока
-#define LLVAR_GUARD_DEAD          ( LLVAR_nr_wri_guard_dead )        // Признак: охранник Райта мертв
+#define LLVAR_HOSTILE             ( LLVAR_loc_defenders_hostile )    // РџСЂРёР·РЅР°Рє: РЅРїС† РІСЂР°Р¶РґРµР±РЅС‹
+#define QUEST_VAR                 ( LVAR_q_nr_wri_kidnap )           // РќРѕРјРµСЂ РєРІРµСЃС‚РѕРІРѕР№ РїРµСЂРµРјРµРЅРЅРѕР№
+#define LVAR_LAST_NOTIFY          ( LVAR_nr_wri_kidnap_notify_time ) // РќРѕРјРµСЂ РїРµСЂРµРјРµРЅРЅРѕР№, РІ РєРѕС‚РѕСЂРѕР№ СЃРѕС…СЂР°РЅСЏРµС‚СЃСЏ РїРѕСЃР»РµРґРЅРµРµ РІСЂРµРјСЏ РїСЂРµРґСѓРїСЂРµР¶РґРµРЅРёСЏ РёРіСЂРѕРєР°
+#define LLVAR_GUARD_DEAD          ( LLVAR_nr_wri_guard_dead )        // РџСЂРёР·РЅР°Рє: РѕС…СЂР°РЅРЅРёРє Р Р°Р№С‚Р° РјРµСЂС‚РІ
 
-// Статусы квеста
-#define Q_QUEST_TAKEN             ( 1 )                              // Взят квест
-#define Q_PAY_RAMIREZ             ( 2 )                              // Игрок заплатил за освобождение Райта
+// РЎС‚Р°С‚СѓСЃС‹ РєРІРµСЃС‚Р°
+#define Q_QUEST_TAKEN             ( 1 )                              // Р’Р·СЏС‚ РєРІРµСЃС‚
+#define Q_PAY_RAMIREZ             ( 2 )                              // РРіСЂРѕРє Р·Р°РїР»Р°С‚РёР» Р·Р° РѕСЃРІРѕР±РѕР¶РґРµРЅРёРµ Р Р°Р№С‚Р°
 
 
-#define ENT_DEADZONE_1            ( 100 )                            // Начало мертвой зоны
-#define ENT_DEADZONE_2            ( 112 )                            // конец мертвой зоны
+#define ENT_DEADZONE_1            ( 100 )                            // РќР°С‡Р°Р»Рѕ РјРµСЂС‚РІРѕР№ Р·РѕРЅС‹
+#define ENT_DEADZONE_2            ( 112 )                            // РєРѕРЅРµС† РјРµСЂС‚РІРѕР№ Р·РѕРЅС‹
 
-#define NPC_ROLE_MARODEUR         ( 1 )                              // Роль НПЦ - рядовой бандит
-#define NPC_ROLE_GUARD            ( 2 )                              // Охранник пленного Райта
+#define NPC_ROLE_MARODEUR         ( 1 )                              // Р РѕР»СЊ РќРџР¦ - СЂСЏРґРѕРІРѕР№ Р±Р°РЅРґРёС‚
+#define NPC_ROLE_GUARD            ( 2 )                              // РћС…СЂР°РЅРЅРёРє РїР»РµРЅРЅРѕРіРѕ Р Р°Р№С‚Р°
 #define NPC_ROLE_WRIGHT           ( 3 )
 
 #define CTE_ATTACK                ( 17 )
 
-#define RADIUS_SEARCH_MARODEUR    ( 15 )   // Радиус в гексах, в котором нужно искать мародера, который начнет диалог с игроком
+#define RADIUS_SEARCH_MARODEUR    ( 15 )   // Р Р°РґРёСѓСЃ РІ РіРµРєСЃР°С…, РІ РєРѕС‚РѕСЂРѕРј РЅСѓР¶РЅРѕ РёСЃРєР°С‚СЊ РјР°СЂРѕРґРµСЂР°, РєРѕС‚РѕСЂС‹Р№ РЅР°С‡РЅРµС‚ РґРёР°Р»РѕРі СЃ РёРіСЂРѕРєРѕРј
 
 
-#define STR_MAP_IN_HOSTILE        ( 3350 ) // Вы на месте. Бандиты настороже и с оружием в руках. Мирным путем договориться не получится.
-#define STR_MAP_IN_SNEAK_OK       ( 3351 ) // Вы на месте. Бандиты выглядят достаточно беспечно. Палатку с сыном Райта охраняет один часовой. Если убрать часового без лишнего шума, вы получите шанс решить все проблемы по-тихому.
-#define STR_MAP_IN_LOWSNEAK       ( 3352 ) // Вы на месте. Бандиты выглядят достаточно беспечно. Главарь банды - в центре лагеря. Возможно, у вас получится заплатить выкуп и обойтись без кровопролития.
-#define STR_MARODEUR_ATTACK       ( 1 )    // Строка из диалога мародера, которую он произносит при атаке в специальных случаях.
-#define STR_GUARD_SHOUT           ( 3353 ) // На помощь!@@Все сюда, Райт может сбежать!@@Подкрепление! Подкрепление!
+#define STR_MAP_IN_HOSTILE        ( 3350 ) // Р’С‹ РЅР° РјРµСЃС‚Рµ. Р‘Р°РЅРґРёС‚С‹ РЅР°СЃС‚РѕСЂРѕР¶Рµ Рё СЃ РѕСЂСѓР¶РёРµРј РІ СЂСѓРєР°С…. РњРёСЂРЅС‹Рј РїСѓС‚РµРј РґРѕРіРѕРІРѕСЂРёС‚СЊСЃСЏ РЅРµ РїРѕР»СѓС‡РёС‚СЃСЏ.
+#define STR_MAP_IN_SNEAK_OK       ( 3351 ) // Р’С‹ РЅР° РјРµСЃС‚Рµ. Р‘Р°РЅРґРёС‚С‹ РІС‹РіР»СЏРґСЏС‚ РґРѕСЃС‚Р°С‚РѕС‡РЅРѕ Р±РµСЃРїРµС‡РЅРѕ. РџР°Р»Р°С‚РєСѓ СЃ СЃС‹РЅРѕРј Р Р°Р№С‚Р° РѕС…СЂР°РЅСЏРµС‚ РѕРґРёРЅ С‡Р°СЃРѕРІРѕР№. Р•СЃР»Рё СѓР±СЂР°С‚СЊ С‡Р°СЃРѕРІРѕРіРѕ Р±РµР· Р»РёС€РЅРµРіРѕ С€СѓРјР°, РІС‹ РїРѕР»СѓС‡РёС‚Рµ С€Р°РЅСЃ СЂРµС€РёС‚СЊ РІСЃРµ РїСЂРѕР±Р»РµРјС‹ РїРѕ-С‚РёС…РѕРјСѓ.
+#define STR_MAP_IN_LOWSNEAK       ( 3352 ) // Р’С‹ РЅР° РјРµСЃС‚Рµ. Р‘Р°РЅРґРёС‚С‹ РІС‹РіР»СЏРґСЏС‚ РґРѕСЃС‚Р°С‚РѕС‡РЅРѕ Р±РµСЃРїРµС‡РЅРѕ. Р“Р»Р°РІР°СЂСЊ Р±Р°РЅРґС‹ - РІ С†РµРЅС‚СЂРµ Р»Р°РіРµСЂСЏ. Р’РѕР·РјРѕР¶РЅРѕ, Сѓ РІР°СЃ РїРѕР»СѓС‡РёС‚СЃСЏ Р·Р°РїР»Р°С‚РёС‚СЊ РІС‹РєСѓРї Рё РѕР±РѕР№С‚РёСЃСЊ Р±РµР· РєСЂРѕРІРѕРїСЂРѕР»РёС‚РёСЏ.
+#define STR_MARODEUR_ATTACK       ( 1 )    // РЎС‚СЂРѕРєР° РёР· РґРёР°Р»РѕРіР° РјР°СЂРѕРґРµСЂР°, РєРѕС‚РѕСЂСѓСЋ РѕРЅ РїСЂРѕРёР·РЅРѕСЃРёС‚ РїСЂРё Р°С‚Р°РєРµ РІ СЃРїРµС†РёР°Р»СЊРЅС‹С… СЃР»СѓС‡Р°СЏС….
+#define STR_GUARD_SHOUT           ( 3353 ) // РќР° РїРѕРјРѕС‰СЊ!@@Р’СЃРµ СЃСЋРґР°, Р Р°Р№С‚ РјРѕР¶РµС‚ СЃР±РµР¶Р°С‚СЊ!@@РџРѕРґРєСЂРµРїР»РµРЅРёРµ! РџРѕРґРєСЂРµРїР»РµРЅРёРµ!
 
 // #define DL #(s) (Log("kidnap: " + s))
 #define DL                        # ( s )
@@ -43,7 +43,7 @@ import bool AddAttackPlane( Critter& npc, uint priority, Critter& target ) from 
 import bool Merc2Player( Critter& player, Critter& merc ) from "merc";
 import void _MercInit( Critter& merc, bool firstTime ) from "merc";
 
-// ************************ Выдача квеста. *****************************************************************
+// ************************ Р’С‹РґР°С‡Р° РєРІРµСЃС‚Р°. *****************************************************************
 
 uint KidnapLocationId = 0;
 
@@ -100,7 +100,7 @@ void r_ShowLocation( Critter& player, Critter@ npc )
     }
 }
 
-// ************************ Скрипт карты. ******************************************************************
+// ************************ РЎРєСЂРёРїС‚ РєР°СЂС‚С‹. ******************************************************************
 void _MapInit( Map& map, bool firstTime )
 {
     DL( "Map init" );
@@ -160,7 +160,7 @@ void ResetHostileIfNoPlayers( Location& loc )
     if( players.length() == 0 )
     {
         status = 0;
-        // Если убит охранник, возрождаем его
+        // Р•СЃР»Рё СѓР±РёС‚ РѕС…СЂР°РЅРЅРёРє, РІРѕР·СЂРѕР¶РґР°РµРј РµРіРѕ
         GameVar@ guardId = GetLocalVar( LLVAR_GUARD_DEAD, loc.Id );
         if( valid( guardId ) && guardId > 0 )
         {
@@ -173,7 +173,7 @@ void ResetHostileIfNoPlayers( Location& loc )
         }
     }
 }
-// ************************ На карте кто-то убит. **********************************************************
+// ************************ РќР° РєР°СЂС‚Рµ РєС‚Рѕ-С‚Рѕ СѓР±РёС‚. **********************************************************
 void _MapCritterDead( Map& map, Critter& cr, Critter@ killer )
 {
     Location@ loc = map.GetLocation();
@@ -181,8 +181,8 @@ void _MapCritterDead( Map& map, Critter& cr, Critter@ killer )
         ResetHostileIfNoPlayers( loc );
     UpdateQuestStatus( map, null );
 }
-// ************************ Атака рейдеров. ****************************************************************
-// Признак: нпц на карте враждебны
+// ************************ РђС‚Р°РєР° СЂРµР№РґРµСЂРѕРІ. ****************************************************************
+// РџСЂРёР·РЅР°Рє: РЅРїС† РЅР° РєР°СЂС‚Рµ РІСЂР°Р¶РґРµР±РЅС‹
 bool IsHostile( Map& map )
 {
     Location@ loc = map.GetLocation();
@@ -248,8 +248,8 @@ void dlg_Attack( Critter& cr, Critter@ npc, string@ lexems )
     AcceptAttack( cr.GetMap() );
 }
 
-// ************************ Игрок в мертвой зоне. **********************************************************
-// Мертвая зона. Если игрок в мертвой зоне, рейдеры будут обращаться к нему с вопросами "кто такой", с возможностью атаки
+// ************************ РРіСЂРѕРє РІ РјРµСЂС‚РІРѕР№ Р·РѕРЅРµ. **********************************************************
+// РњРµСЂС‚РІР°СЏ Р·РѕРЅР°. Р•СЃР»Рё РёРіСЂРѕРє РІ РјРµСЂС‚РІРѕР№ Р·РѕРЅРµ, СЂРµР№РґРµСЂС‹ Р±СѓРґСѓС‚ РѕР±СЂР°С‰Р°С‚СЊСЃСЏ Рє РЅРµРјСѓ СЃ РІРѕРїСЂРѕСЃР°РјРё "РєС‚Рѕ С‚Р°РєРѕР№", СЃ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊСЋ Р°С‚Р°РєРё
 void _MapLoop0( Map& map )
 {
     if( IsHostile( map ) )
@@ -281,14 +281,14 @@ void _MapLoop0( Map& map )
 void TryMarodeurDialog( Critter& player, Critter& marodeur, Map& map )
 {
     if( marodeur.GetTalkedPlayers( null ) > 0 )
-        return;                                                                             // НПЦ уже говорит с кем-то
+        return;                                                                             // РќРџР¦ СѓР¶Рµ РіРѕРІРѕСЂРёС‚ СЃ РєРµРј-С‚Рѕ
     GameVar@ warned = GetLocalVar( LVAR_LAST_NOTIFY, player.Id );
-    if( !valid( warned ) || warned.GetValue() + __TimeMultiplier * 20 > int(__FullSecond) ) // запросы к игрокам не реже раз в 20 сек
+    if( !valid( warned ) || warned.GetValue() + __TimeMultiplier * 20 > int(__FullSecond) ) // Р·Р°РїСЂРѕСЃС‹ Рє РёРіСЂРѕРєР°Рј РЅРµ СЂРµР¶Рµ СЂР°Р· РІ 20 СЃРµРє
         return;
     player.Wait( 0 );
     Critter@ cr;
     Critter@[] players;
-    // проверка, что с игроком еще никто не разговаривает
+    // РїСЂРѕРІРµСЂРєР°, С‡С‚Рѕ СЃ РёРіСЂРѕРєРѕРј РµС‰Рµ РЅРёРєС‚Рѕ РЅРµ СЂР°Р·РіРѕРІР°СЂРёРІР°РµС‚
     uint npcCount = map.GetNpcCount( NPC_ROLE_MARODEUR, FIND_LIFE | FIND_ONLY_NPC );
     if( npcCount > 0 )
     {
@@ -296,21 +296,21 @@ void TryMarodeurDialog( Critter& player, Critter& marodeur, Map& map )
         {
             @cr  = map.GetNpc( NPC_ROLE_MARODEUR, FIND_LIFE | FIND_ONLY_NPC, i );
             if( valid( cr ) )
-                cr.GetTalkedPlayers( players );               // собираем всех говорящих игроков с нпц
+                cr.GetTalkedPlayers( players );               // СЃРѕР±РёСЂР°РµРј РІСЃРµС… РіРѕРІРѕСЂСЏС‰РёС… РёРіСЂРѕРєРѕРІ СЃ РЅРїС†
         }
     }
     for( uint i = 0, l = players.length(); i < l; i++ )
     {
         @cr = players[ i ];
-        if( valid( cr ) && cr.Id == player.Id )     // С этим игроком кто-то уже заговорил
+        if( valid( cr ) && cr.Id == player.Id )     // РЎ СЌС‚РёРј РёРіСЂРѕРєРѕРј РєС‚Рѕ-С‚Рѕ СѓР¶Рµ Р·Р°РіРѕРІРѕСЂРёР»
             return;
     }
-    // Все проверки пройдены, с игроком никто не говорит, время разрешения находиться на локации прошло. Запускаем еще один диалог
+    // Р’СЃРµ РїСЂРѕРІРµСЂРєРё РїСЂРѕР№РґРµРЅС‹, СЃ РёРіСЂРѕРєРѕРј РЅРёРєС‚Рѕ РЅРµ РіРѕРІРѕСЂРёС‚, РІСЂРµРјСЏ СЂР°Р·СЂРµС€РµРЅРёСЏ РЅР°С…РѕРґРёС‚СЊСЃСЏ РЅР° Р»РѕРєР°С†РёРё РїСЂРѕС€Р»Рѕ. Р—Р°РїСѓСЃРєР°РµРј РµС‰Рµ РѕРґРёРЅ РґРёР°Р»РѕРі
     warned = __FullSecond;
     RunDialog( player, marodeur, true );
 }
 
-// ************************ Мародеры. **********************************************************************
+// ************************ РњР°СЂРѕРґРµСЂС‹. **********************************************************************
 void _HostileInit( Critter& cr, bool firstTime )
 {
     cr.SetEvent( CRITTER_EVENT_ATTACK, "_HostileAttack" );
@@ -345,7 +345,7 @@ void _HostileDead( Critter& cr, Critter@ killer )
             counter = counter.GetValue() + 1;
     }
 }
-// ************************ Охранник пленного Райта. *******************************************************
+// ************************ РћС…СЂР°РЅРЅРёРє РїР»РµРЅРЅРѕРіРѕ Р Р°Р№С‚Р°. *******************************************************
 void _GuardInit( Critter& cr, bool firstTime )
 {
     cr.SetEvent( CRITTER_EVENT_DEAD, "_GuardDead" );
@@ -382,7 +382,7 @@ bool _GuardAttacked( Critter& cr, Critter& attacker )
     Item@ wpn = _CritGetItemHand( attacker );
     if( valid( wpn ) && wpn.GetType() == ITEM_TYPE_WEAPON && wpn.Proto.Weapon_Skill_1 != SK_UNARMED && wpn.Proto.Weapon_Skill_1 != SK_MELEE_WEAPONS )
     {
-        // Атака не холодным оружием, остальные должны прибежать
+        // РђС‚Р°РєР° РЅРµ С…РѕР»РѕРґРЅС‹Рј РѕСЂСѓР¶РёРµРј, РѕСЃС‚Р°Р»СЊРЅС‹Рµ РґРѕР»Р¶РЅС‹ РїСЂРёР±РµР¶Р°С‚СЊ
         if( !IsHostile( cr.GetMap() ) )
         {
             SetHostile( cr.GetMap().GetLocation(), true );
@@ -414,7 +414,7 @@ void t_Alarm( Critter& player, Scenery& trigger, bool entered, uint8 dir )
         }
     }
 }
-// Триггер, наступая на который игрок должен быть в снике и подходить ровно со спины
+// РўСЂРёРіРіРµСЂ, РЅР°СЃС‚СѓРїР°СЏ РЅР° РєРѕС‚РѕСЂС‹Р№ РёРіСЂРѕРє РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РІ СЃРЅРёРєРµ Рё РїРѕРґС…РѕРґРёС‚СЊ СЂРѕРІРЅРѕ СЃРѕ СЃРїРёРЅС‹
 void t_CheckSneak( Critter& player, Scenery& trigger, bool entered, uint8 dir )
 {
     Map@     map = player.GetMap();
@@ -454,7 +454,7 @@ void t_CheckSneak( Critter& player, Scenery& trigger, bool entered, uint8 dir )
     }
 }
 
-// Сын райта
+// РЎС‹РЅ СЂР°Р№С‚Р°
 void _WrightInit( Critter& cr, bool firstTime )
 {
     cr.SetEvent( CRITTER_EVENT_DEAD, "_WrightDead" );
@@ -463,7 +463,7 @@ void _WrightInit( Critter& cr, bool firstTime )
 
 void _WrightDead( Critter& cr, Critter@ killer )
 {
-    // Удаляем локацию, переключаем доступность переменной
+    // РЈРґР°Р»СЏРµРј Р»РѕРєР°С†РёСЋ, РїРµСЂРµРєР»СЋС‡Р°РµРј РґРѕСЃС‚СѓРїРЅРѕСЃС‚СЊ РїРµСЂРµРјРµРЅРЅРѕР№
     UpdateQuestStatus( cr.GetMap(), null );
     if( valid( killer ) )
     {
@@ -473,7 +473,7 @@ void _WrightDead( Critter& cr, Critter@ killer )
     }
 }
 
-// Диалог с сыном райта
+// Р”РёР°Р»РѕРі СЃ СЃС‹РЅРѕРј СЂР°Р№С‚Р°
 bool d_WeaponHand( Critter& player, Critter@ npc )
 {
     Item@ item = _CritGetItemHand( player );
@@ -500,7 +500,7 @@ void r_GiveWeaponHand( Critter& player, Critter@ npc )
     }
 }
 
-// Озверевший Райт
+// РћР·РІРµСЂРµРІС€РёР№ Р Р°Р№С‚
 void r_Fight( Critter& player, Critter@ npc )
 {
     if( valid( npc ) )

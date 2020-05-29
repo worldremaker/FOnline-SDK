@@ -261,18 +261,18 @@ void ExplodeEx( Map& map, uint16 hexX, uint16 hexY, uint16 effectPid, uint effec
 }
 
 /*
-        Самовостанавливающаяся мина, которую можно положить через маппер
-        восстанавливается через некоторое время в тех же координатах
-        после того, как взорвется
-        время восстановления, в игровых минутах, указывается в Val1
-        поскольку Val1 - используется только для динамита пока
-        !работает только для предмета Активированная мина
-        все параметры:
-        Val1 - время респавна мины после активации, в игровых минутах
-        Val2 - Id сапера, поставившего мину
-        TrapValue- сложность мины
-        Val3 - дополнительный урон
-        Val4 - дополнительный радиус(базовый радиус = 3)
+        РЎР°РјРѕРІРѕСЃС‚Р°РЅР°РІР»РёРІР°СЋС‰Р°СЏСЃСЏ РјРёРЅР°, РєРѕС‚РѕСЂСѓСЋ РјРѕР¶РЅРѕ РїРѕР»РѕР¶РёС‚СЊ С‡РµСЂРµР· РјР°РїРїРµСЂ
+        РІРѕСЃСЃС‚Р°РЅР°РІР»РёРІР°РµС‚СЃСЏ С‡РµСЂРµР· РЅРµРєРѕС‚РѕСЂРѕРµ РІСЂРµРјСЏ РІ С‚РµС… Р¶Рµ РєРѕРѕСЂРґРёРЅР°С‚Р°С…
+        РїРѕСЃР»Рµ С‚РѕРіРѕ, РєР°Рє РІР·РѕСЂРІРµС‚СЃСЏ
+        РІСЂРµРјСЏ РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёСЏ, РІ РёРіСЂРѕРІС‹С… РјРёРЅСѓС‚Р°С…, СѓРєР°Р·С‹РІР°РµС‚СЃСЏ РІ Val1
+        РїРѕСЃРєРѕР»СЊРєСѓ Val1 - РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ С‚РѕР»СЊРєРѕ РґР»СЏ РґРёРЅР°РјРёС‚Р° РїРѕРєР°
+        !СЂР°Р±РѕС‚Р°РµС‚ С‚РѕР»СЊРєРѕ РґР»СЏ РїСЂРµРґРјРµС‚Р° РђРєС‚РёРІРёСЂРѕРІР°РЅРЅР°СЏ РјРёРЅР°
+        РІСЃРµ РїР°СЂР°РјРµС‚СЂС‹:
+        Val1 - РІСЂРµРјСЏ СЂРµСЃРїР°РІРЅР° РјРёРЅС‹ РїРѕСЃР»Рµ Р°РєС‚РёРІР°С†РёРё, РІ РёРіСЂРѕРІС‹С… РјРёРЅСѓС‚Р°С…
+        Val2 - Id СЃР°РїРµСЂР°, РїРѕСЃС‚Р°РІРёРІС€РµРіРѕ РјРёРЅСѓ
+        TrapValue- СЃР»РѕР¶РЅРѕСЃС‚СЊ РјРёРЅС‹
+        Val3 - РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Р№ СѓСЂРѕРЅ
+        Val4 - РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Р№ СЂР°РґРёСѓСЃ(Р±Р°Р·РѕРІС‹Р№ СЂР°РґРёСѓСЃ = 3)
  */
 void _TimerMineInit( Item& mine, bool firstTime )
 {
@@ -288,7 +288,7 @@ void _TimerMineInit( Item& mine, bool firstTime )
 
 void _TimerMineWalk( Item& mine, Critter& cr, bool entered, uint8 dir )
 {
-    // Cкопировано из _MineWalk
+    // CРєРѕРїРёСЂРѕРІР°РЅРѕ РёР· _MineWalk
     if( entered && cr.Stat[ ST_LOCOMOTION_TYPE ] != LOCOMOTION_FLY && ( cr.Perk[ PE_LIGHT_STEP ] == 0 || Random( 0, 1 ) == 0 ) )
     {
         CreateTimeEvent( __FullSecond, "e_Explode", mine.Id, false );
@@ -296,7 +296,7 @@ void _TimerMineWalk( Item& mine, Critter& cr, bool entered, uint8 dir )
         // Respawn
         if( mine.Val1 > 0 )
         {
-            uint[] values = { mine.MapId, mine.HexX, mine.HexY, mine.GetProtoId(), mine.Val1, mine.Val2, mine.TrapValue, mine.Val3, mine.Val4 }; // 9 элементов массива
+            uint[] values = { mine.MapId, mine.HexX, mine.HexY, mine.GetProtoId(), mine.Val1, mine.Val2, mine.TrapValue, mine.Val3, mine.Val4 }; // 9 СЌР»РµРјРµРЅС‚РѕРІ РјР°СЃСЃРёРІР°
             CreateTimeEvent( __FullSecond + mine.Val1 * 60, "e_RespawnTimerMine", values, true );
         }
     }
@@ -354,7 +354,7 @@ bool _OnSkillTimerMine( Item& mine, Critter& cr, int skill )
 
     if( mine.Val1 > 0 )
     {
-        uint[] values = { mine.MapId, mine.HexX, mine.HexY, mine.GetProtoId(), mine.Val1, mine.Val2, mine.TrapValue, mine.Val3, mine.Val4 }; // 9 элементов массива
+        uint[] values = { mine.MapId, mine.HexX, mine.HexY, mine.GetProtoId(), mine.Val1, mine.Val2, mine.TrapValue, mine.Val3, mine.Val4 }; // 9 СЌР»РµРјРµРЅС‚РѕРІ РјР°СЃСЃРёРІР°
         CreateTimeEvent( __FullSecond + mine.Val1 * 60 + Random( 120, 240 ) * 60, "e_RespawnTimerMine", values, true );
     }
 

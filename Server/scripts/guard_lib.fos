@@ -1,24 +1,24 @@
 // Author: heX
-// Прототип скриптов охраны
+// РџСЂРѕС‚РѕС‚РёРї СЃРєСЂРёРїС‚РѕРІ РѕС…СЂР°РЅС‹
 // ver 0.5
 
 /*
         Todo:
-        event_on_use_item - поставить проверку на кого использовали
-        вынести весь функционал в отдельный файл (пусть даже пока без класса).
-        поправить: наркотики и алкоголь не вызывают атаку.
-        пропускать без обыска если это гражданин.
-        пропускать не гражданина только если есть дневной пропуск.
-        сделать таймауты на несмертельное 'наказание' игрока (а то охранник может долго бегать за игроком).
-        сделать чтобы предупреждения дольше висели в памяти.
-        сделать бан-лист - список провинившихся игроков которых небудут пропускать в город.
-        конфискацию - при использовании наркотиков и алкоголя охрана принудительно обыскивает тебя и отнимает все это.
-        изгнание - после 12 ночи всех не граждан выгоняют, ворота закрывают.
-        пожалуй для рукопашного оружия предупреждения нужно более медленно наращивать
+        event_on_use_item - РїРѕСЃС‚Р°РІРёС‚СЊ РїСЂРѕРІРµСЂРєСѓ РЅР° РєРѕРіРѕ РёСЃРїРѕР»СЊР·РѕРІР°Р»Рё
+        РІС‹РЅРµСЃС‚Рё РІРµСЃСЊ С„СѓРЅРєС†РёРѕРЅР°Р» РІ РѕС‚РґРµР»СЊРЅС‹Р№ С„Р°Р№Р» (РїСѓСЃС‚СЊ РґР°Р¶Рµ РїРѕРєР° Р±РµР· РєР»Р°СЃСЃР°).
+        РїРѕРїСЂР°РІРёС‚СЊ: РЅР°СЂРєРѕС‚РёРєРё Рё Р°Р»РєРѕРіРѕР»СЊ РЅРµ РІС‹Р·С‹РІР°СЋС‚ Р°С‚Р°РєСѓ.
+        РїСЂРѕРїСѓСЃРєР°С‚СЊ Р±РµР· РѕР±С‹СЃРєР° РµСЃР»Рё СЌС‚Рѕ РіСЂР°Р¶РґР°РЅРёРЅ.
+        РїСЂРѕРїСѓСЃРєР°С‚СЊ РЅРµ РіСЂР°Р¶РґР°РЅРёРЅР° С‚РѕР»СЊРєРѕ РµСЃР»Рё РµСЃС‚СЊ РґРЅРµРІРЅРѕР№ РїСЂРѕРїСѓСЃРє.
+        СЃРґРµР»Р°С‚СЊ С‚Р°Р№РјР°СѓС‚С‹ РЅР° РЅРµСЃРјРµСЂС‚РµР»СЊРЅРѕРµ 'РЅР°РєР°Р·Р°РЅРёРµ' РёРіСЂРѕРєР° (Р° С‚Рѕ РѕС…СЂР°РЅРЅРёРє РјРѕР¶РµС‚ РґРѕР»РіРѕ Р±РµРіР°С‚СЊ Р·Р° РёРіСЂРѕРєРѕРј).
+        СЃРґРµР»Р°С‚СЊ С‡С‚РѕР±С‹ РїСЂРµРґСѓРїСЂРµР¶РґРµРЅРёСЏ РґРѕР»СЊС€Рµ РІРёСЃРµР»Рё РІ РїР°РјСЏС‚Рё.
+        СЃРґРµР»Р°С‚СЊ Р±Р°РЅ-Р»РёСЃС‚ - СЃРїРёСЃРѕРє РїСЂРѕРІРёРЅРёРІС€РёС…СЃСЏ РёРіСЂРѕРєРѕРІ РєРѕС‚РѕСЂС‹С… РЅРµР±СѓРґСѓС‚ РїСЂРѕРїСѓСЃРєР°С‚СЊ РІ РіРѕСЂРѕРґ.
+        РєРѕРЅС„РёСЃРєР°С†РёСЋ - РїСЂРё РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРё РЅР°СЂРєРѕС‚РёРєРѕРІ Рё Р°Р»РєРѕРіРѕР»СЏ РѕС…СЂР°РЅР° РїСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РѕР±С‹СЃРєРёРІР°РµС‚ С‚РµР±СЏ Рё РѕС‚РЅРёРјР°РµС‚ РІСЃРµ СЌС‚Рѕ.
+        РёР·РіРЅР°РЅРёРµ - РїРѕСЃР»Рµ 12 РЅРѕС‡Рё РІСЃРµС… РЅРµ РіСЂР°Р¶РґР°РЅ РІС‹РіРѕРЅСЏСЋС‚, РІРѕСЂРѕС‚Р° Р·Р°РєСЂС‹РІР°СЋС‚.
+        РїРѕР¶Р°Р»СѓР№ РґР»СЏ СЂСѓРєРѕРїР°С€РЅРѕРіРѕ РѕСЂСѓР¶РёСЏ РїСЂРµРґСѓРїСЂРµР¶РґРµРЅРёСЏ РЅСѓР¶РЅРѕ Р±РѕР»РµРµ РјРµРґР»РµРЅРЅРѕ РЅР°СЂР°С‰РёРІР°С‚СЊ
 
 
-        PID_DAY_PASS - Дневной пропуск
-        PID_FAKE_CITIZENSHIP - Фальшивое удостоверение Гражданина
+        PID_DAY_PASS - Р”РЅРµРІРЅРѕР№ РїСЂРѕРїСѓСЃРє
+        PID_FAKE_CITIZENSHIP - Р¤Р°Р»СЊС€РёРІРѕРµ СѓРґРѕСЃС‚РѕРІРµСЂРµРЅРёРµ Р“СЂР°Р¶РґР°РЅРёРЅР°
  */
 
 #include "_macros.fos"
@@ -29,25 +29,25 @@ import bool AddAttackPlane( Critter& npc, uint priory, Critter& target ) from "n
 import bool AddAttackPlane( Critter& npc, uint priory, Critter& target, int minHp ) from "npc_planes";
 import bool AddWalkPlane( Critter& npc, uint priory, uint16 hexX, uint16 hexY, uint8 dir, bool run, uint cut ) from "npc_planes";
 
-// for guard searching script / для обыска
-// зона предупреждение игрока
+// for guard searching script / РґР»СЏ РѕР±С‹СЃРєР°
+// Р·РѕРЅР° РїСЂРµРґСѓРїСЂРµР¶РґРµРЅРёРµ РёРіСЂРѕРєР°
 #define MESSAGE_PLAYER_ON_WARNING_HEX        ( 1 )
-// зона обыскивание игрока
+// Р·РѕРЅР° РѕР±С‹СЃРєРёРІР°РЅРёРµ РёРіСЂРѕРєР°
 #define MESSAGE_PLAYER_ON_SEARCH_HEX         ( 2 )
-// зона атаки
+// Р·РѕРЅР° Р°С‚Р°РєРё
 #define MESSAGE_PLAYER_ON_ATACK_HEX          ( 3 )
-// зона первые ворота города (охрана дает последнее предупреждение)
+// Р·РѕРЅР° РїРµСЂРІС‹Рµ РІРѕСЂРѕС‚Р° РіРѕСЂРѕРґР° (РѕС…СЂР°РЅР° РґР°РµС‚ РїРѕСЃР»РµРґРЅРµРµ РїСЂРµРґСѓРїСЂРµР¶РґРµРЅРёРµ)
 #define MESSAGE_PLAYER_ON_PRE_ENTER          ( 4 )
 
-// игрок 'просит' чтобы его пристрелили
+// РёРіСЂРѕРє 'РїСЂРѕСЃРёС‚' С‡С‚РѕР±С‹ РµРіРѕ РїСЂРёСЃС‚СЂРµР»РёР»Рё
 #define MESSAGE_PLEASE_KILL_ME_I_AM_IDIOT    ( 13 )
-// посылают ее охране города чтобы они атаковали нарушителя границы
+// РїРѕСЃС‹Р»Р°СЋС‚ РµРµ РѕС…СЂР°РЅРµ РіРѕСЂРѕРґР° С‡С‚РѕР±С‹ РѕРЅРё Р°С‚Р°РєРѕРІР°Р»Рё РЅР°СЂСѓС€РёС‚РµР»СЏ РіСЂР°РЅРёС†С‹
 #define MESSAGE_TO_GUARD_FOR_ATACK_PLAYER    ( 14 )
 
-// НЕ РЕАЛИЗОВАННО
-// типы нарушений
-// поддерживаються константы класса SK_* (Skills)
-// но многие SK_* еще не работают - смотри исходник.
+// РќР• Р Р•РђР›РР—РћР’РђРќРќРћ
+// С‚РёРїС‹ РЅР°СЂСѓС€РµРЅРёР№
+// РїРѕРґРґРµСЂР¶РёРІР°СЋС‚СЊСЃСЏ РєРѕРЅСЃС‚Р°РЅС‚С‹ РєР»Р°СЃСЃР° SK_* (Skills)
+// РЅРѕ РјРЅРѕРіРёРµ SK_* РµС‰Рµ РЅРµ СЂР°Р±РѕС‚Р°СЋС‚ - СЃРјРѕС‚СЂРё РёСЃС…РѕРґРЅРёРє.
 // ? #define ALERT_TYPE_PICK_ANY_ITEM (18)
 // ? #define ALERT_TYPE_DROP_ANY_ITEM (19)
 #define ALERT_TYPE_UNKNOWN                   ( 20 )
@@ -61,22 +61,22 @@ import bool AddWalkPlane( Critter& npc, uint priory, uint16 hexX, uint16 hexY, u
 #define ALERT_TYPE_KILL                      ( 28 )
 #define ALERT_TYPE_MAX                       ( 30 )
 
-// задания охранны
-#define JOB_MISC                             ( 0 )  // -хз
-#define JOB_ATTACK                           ( 1 )  // -атака (общая атака)
-#define JOB_WALK                             ( 2 )  // -идити
-#define JOB_PICK                             ( 3 )  // поднять вещь
-#define JOB_PATROL                           ( 4 )  // патрулирование
-#define JOB_COURIER                          ( 5 )  // -курьер
-#define JOB_FORFEITURE                       ( 6 )  // конфискация запрещенных вещей
-#define JOB_PUNISH                           ( 7 )  // наказать на нарушение
-#define JOB_KILL                             ( 8 )  // убить
-#define JOB_SUPPORT                          ( 9 )  // поддержка (бежать к зоне конфликта)
-#define JOB_HOLD                             ( 10 ) // удерживать позицию
+// Р·Р°РґР°РЅРёСЏ РѕС…СЂР°РЅРЅС‹
+#define JOB_MISC                             ( 0 )  // -С…Р·
+#define JOB_ATTACK                           ( 1 )  // -Р°С‚Р°РєР° (РѕР±С‰Р°СЏ Р°С‚Р°РєР°)
+#define JOB_WALK                             ( 2 )  // -РёРґРёС‚Рё
+#define JOB_PICK                             ( 3 )  // РїРѕРґРЅСЏС‚СЊ РІРµС‰СЊ
+#define JOB_PATROL                           ( 4 )  // РїР°С‚СЂСѓР»РёСЂРѕРІР°РЅРёРµ
+#define JOB_COURIER                          ( 5 )  // -РєСѓСЂСЊРµСЂ
+#define JOB_FORFEITURE                       ( 6 )  // РєРѕРЅС„РёСЃРєР°С†РёСЏ Р·Р°РїСЂРµС‰РµРЅРЅС‹С… РІРµС‰РµР№
+#define JOB_PUNISH                           ( 7 )  // РЅР°РєР°Р·Р°С‚СЊ РЅР° РЅР°СЂСѓС€РµРЅРёРµ
+#define JOB_KILL                             ( 8 )  // СѓР±РёС‚СЊ
+#define JOB_SUPPORT                          ( 9 )  // РїРѕРґРґРµСЂР¶РєР° (Р±РµР¶Р°С‚СЊ Рє Р·РѕРЅРµ РєРѕРЅС„Р»РёРєС‚Р°)
+#define JOB_HOLD                             ( 10 ) // СѓРґРµСЂР¶РёРІР°С‚СЊ РїРѕР·РёС†РёСЋ
 
 
-// скорость проверки на наличие оружия
-// не рекомендуеться сильно изменять
+// СЃРєРѕСЂРѕСЃС‚СЊ РїСЂРѕРІРµСЂРєРё РЅР° РЅР°Р»РёС‡РёРµ РѕСЂСѓР¶РёСЏ
+// РЅРµ СЂРµРєРѕРјРµРЅРґСѓРµС‚СЊСЃСЏ СЃРёР»СЊРЅРѕ РёР·РјРµРЅСЏС‚СЊ
 #define OBSERV_PERIOD                        ( REAL_SECOND( Random( 1, 6 ) ) )
 #define PERCEPTION_ADD                       ( 7 )
 #define MAX_ALERT                            ( 10 )
@@ -84,66 +84,66 @@ import bool AddWalkPlane( Critter& npc, uint priory, uint16 hexX, uint16 hexY, u
 
 // //////////////////////////////////////////////////////////////////
 
-// НЕ РЕАЛИЗОВАННО
+// РќР• Р Р•РђР›РР—РћР’РђРќРќРћ
 class TPlayerCard {
-    // карточка игрока за которым следит охрана
-    uint Id;         // id игрока
-    int8 AlertCount; // счетчик предупреждений
-    int8 AlertType;  // тип предупреждения (покачто не используеться)
-    int8 Time;       // тайм аут - чтобы убирать из списка устаревшие записи (покачто не используеться)
+    // РєР°СЂС‚РѕС‡РєР° РёРіСЂРѕРєР° Р·Р° РєРѕС‚РѕСЂС‹Рј СЃР»РµРґРёС‚ РѕС…СЂР°РЅР°
+    uint Id;         // id РёРіСЂРѕРєР°
+    int8 AlertCount; // СЃС‡РµС‚С‡РёРє РїСЂРµРґСѓРїСЂРµР¶РґРµРЅРёР№
+    int8 AlertType;  // С‚РёРї РїСЂРµРґСѓРїСЂРµР¶РґРµРЅРёСЏ (РїРѕРєР°С‡С‚Рѕ РЅРµ РёСЃРїРѕР»СЊР·СѓРµС‚СЊСЃСЏ)
+    int8 Time;       // С‚Р°Р№Рј Р°СѓС‚ - С‡С‚РѕР±С‹ СѓР±РёСЂР°С‚СЊ РёР· СЃРїРёСЃРєР° СѓСЃС‚Р°СЂРµРІС€РёРµ Р·Р°РїРёСЃРё (РїРѕРєР°С‡С‚Рѕ РЅРµ РёСЃРїРѕР»СЊР·СѓРµС‚СЊСЃСЏ)
 };
 
-// НЕ РЕАЛИЗОВАННО
+// РќР• Р Р•РђР›РР—РћР’РђРќРќРћ
 class TGuardCard {
-    // карточка охранника
-    uint Id;     // id охранника
-    uint Targer; // цель
-    uint Job;    // задание
-    int8 Time;   // тайм аут - охраннику надоедает выполять задание (покачто не используеться)
+    // РєР°СЂС‚РѕС‡РєР° РѕС…СЂР°РЅРЅРёРєР°
+    uint Id;     // id РѕС…СЂР°РЅРЅРёРєР°
+    uint Targer; // С†РµР»СЊ
+    uint Job;    // Р·Р°РґР°РЅРёРµ
+    int8 Time;   // С‚Р°Р№Рј Р°СѓС‚ - РѕС…СЂР°РЅРЅРёРєСѓ РЅР°РґРѕРµРґР°РµС‚ РІС‹РїРѕР»СЏС‚СЊ Р·Р°РґР°РЅРёРµ (РїРѕРєР°С‡С‚Рѕ РЅРµ РёСЃРїРѕР»СЊР·СѓРµС‚СЊСЃСЏ)
 };
 
-// прототип системы охраны
+// РїСЂРѕС‚РѕС‚РёРї СЃРёСЃС‚РµРјС‹ РѕС…СЂР°РЅС‹
 class CGuardsManager
 {
-    // НЕ РЕАЛИЗОВАННО
-    TGuardCard[] Guards;     // охранники
-    TPlayerCard[] Players;   // игроки
+    // РќР• Р Р•РђР›РР—РћР’РђРќРќРћ
+    TGuardCard[] Guards;     // РѕС…СЂР°РЅРЅРёРєРё
+    TPlayerCard[] Players;   // РёРіСЂРѕРєРё
 
-    // системные массивы
-    // нужно переделать в class
-    uint[] Observing;   // Массив с id игроков за которыми следит охрана
-    int8[] AlertCount;  // счетчик предупреждений
-    int8[] AlertType;   // тип предупреждения (покачто не используеться)
-    int8[] TimeOut;     // тайм аут (покачто не используеться)
+    // СЃРёСЃС‚РµРјРЅС‹Рµ РјР°СЃСЃРёРІС‹
+    // РЅСѓР¶РЅРѕ РїРµСЂРµРґРµР»Р°С‚СЊ РІ class
+    uint[] Observing;   // РњР°СЃСЃРёРІ СЃ id РёРіСЂРѕРєРѕРІ Р·Р° РєРѕС‚РѕСЂС‹РјРё СЃР»РµРґРёС‚ РѕС…СЂР°РЅР°
+    int8[] AlertCount;  // СЃС‡РµС‚С‡РёРє РїСЂРµРґСѓРїСЂРµР¶РґРµРЅРёР№
+    int8[] AlertType;   // С‚РёРї РїСЂРµРґСѓРїСЂРµР¶РґРµРЅРёСЏ (РїРѕРєР°С‡С‚Рѕ РЅРµ РёСЃРїРѕР»СЊР·СѓРµС‚СЊСЃСЏ)
+    int8[] TimeOut;     // С‚Р°Р№Рј Р°СѓС‚ (РїРѕРєР°С‡С‚Рѕ РЅРµ РёСЃРїРѕР»СЊР·СѓРµС‚СЊСЃСЏ)
 
-    // настройки системы
+    // РЅР°СЃС‚СЂРѕР№РєРё СЃРёСЃС‚РµРјС‹
 
-    // фдаг таймера создался-ли таймер (CreateTimeEvent)
-    // НЕ РЕАЛИЗОВАННО
+    // С„РґР°Рі С‚Р°Р№РјРµСЂР° СЃРѕР·РґР°Р»СЃСЏ-Р»Рё С‚Р°Р№РјРµСЂ (CreateTimeEvent)
+    // РќР• Р Р•РђР›РР—РћР’РђРќРќРћ
     int TimerFlag;
 
-    // номер диалога откуда беруться сообщения
+    // РЅРѕРјРµСЂ РґРёР°Р»РѕРіР° РѕС‚РєСѓРґР° Р±РµСЂСѓС‚СЊСЃСЏ СЃРѕРѕР±С‰РµРЅРёСЏ
     int Dialog;
 
-    // прибавка к зрению
-    // дистанция_обзора = npc.perception + PerceptionAdd
+    // РїСЂРёР±Р°РІРєР° Рє Р·СЂРµРЅРёСЋ
+    // РґРёСЃС‚Р°РЅС†РёСЏ_РѕР±Р·РѕСЂР° = npc.perception + PerceptionAdd
     int PerceptionAdd;
 
-    // максимум предупреждений
+    // РјР°РєСЃРёРјСѓРј РїСЂРµРґСѓРїСЂРµР¶РґРµРЅРёР№
     int MaxAlert;
 
-    // если нпс снял столько жизней жизней (или больше) у нарушителя
-    // то нпс прекращяет атаку (если игрок убрал оружие)
+    // РµСЃР»Рё РЅРїСЃ СЃРЅСЏР» СЃС‚РѕР»СЊРєРѕ Р¶РёР·РЅРµР№ Р¶РёР·РЅРµР№ (РёР»Рё Р±РѕР»СЊС€Рµ) Сѓ РЅР°СЂСѓС€РёС‚РµР»СЏ
+    // С‚Рѕ РЅРїСЃ РїСЂРµРєСЂР°С‰СЏРµС‚ Р°С‚Р°РєСѓ (РµСЃР»Рё РёРіСЂРѕРє СѓР±СЂР°Р» РѕСЂСѓР¶РёРµ)
     int AtackMinusHp;
 
-    // время тайм-аута после которого охраннику надоедает гоняться за нарушителем
-    // НЕ РЕАЛИЗОВАННО
+    // РІСЂРµРјСЏ С‚Р°Р№Рј-Р°СѓС‚Р° РїРѕСЃР»Рµ РєРѕС‚РѕСЂРѕРіРѕ РѕС…СЂР°РЅРЅРёРєСѓ РЅР°РґРѕРµРґР°РµС‚ РіРѕРЅСЏС‚СЊСЃСЏ Р·Р° РЅР°СЂСѓС€РёС‚РµР»РµРј
+    // РќР• Р Р•РђР›РР—РћР’РђРќРќРћ
     int AtackTimeout;
 
-    // таблица приоритетов предупреждений. если 0 то игнор этого типа.
+    // С‚Р°Р±Р»РёС†Р° РїСЂРёРѕСЂРёС‚РµС‚РѕРІ РїСЂРµРґСѓРїСЂРµР¶РґРµРЅРёР№. РµСЃР»Рё 0 С‚Рѕ РёРіРЅРѕСЂ СЌС‚РѕРіРѕ С‚РёРїР°.
     int[] AlertPriority;
 
-    // инициализация
+    // РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ
     CGuardsManager()
     {
         Dialog = 0;
@@ -156,7 +156,7 @@ class CGuardsManager
         AtackTimeout = 0;
     }
 
-    // начинаем наблюдение за игроком
+    // РЅР°С‡РёРЅР°РµРј РЅР°Р±Р»СЋРґРµРЅРёРµ Р·Р° РёРіСЂРѕРєРѕРј
     int AddObserving( Critter@ player )
     {
         int i = FindInArray( Observing, player.Id );
@@ -173,7 +173,7 @@ class CGuardsManager
             return i;
     }
 
-    // удаляем игрока из Observing
+    // СѓРґР°Р»СЏРµРј РёРіСЂРѕРєР° РёР· Observing
     void DelObserving( uint index )
     {
         Observing.removeAt( index );
@@ -182,7 +182,7 @@ class CGuardsManager
         TimeOut.removeAt( index );
     }
 
-    // удаляем игрока из Observing
+    // СѓРґР°Р»СЏРµРј РёРіСЂРѕРєР° РёР· Observing
     void DelObserving( Critter@ player )
     {
         int i = FindInArray( Observing, player.Id );
@@ -190,15 +190,15 @@ class CGuardsManager
             DelObserving( i );
     }
 
-    // охранник делает предупреждение
-    // или даже бьет
+    // РѕС…СЂР°РЅРЅРёРє РґРµР»Р°РµС‚ РїСЂРµРґСѓРїСЂРµР¶РґРµРЅРёРµ
+    // РёР»Рё РґР°Р¶Рµ Р±СЊРµС‚
     void GuardWarn( Critter@ npc, Critter@ bastard, int alertLevel )
     {
         if( alertLevel == 0 )
             return;
 
         string tmp = MaxAlert;
-        // нужна проверка на AlertType
+        // РЅСѓР¶РЅР° РїСЂРѕРІРµСЂРєР° РЅР° AlertType
         if( alertLevel > MaxAlert )
         {
             npc.SayMsg( SAY_SHOUT_ON_HEAD, TEXTMSG_DLG, DLGSTR( Dialog, 3 ) );
@@ -221,42 +221,42 @@ class CGuardsManager
         }
     }
 
-    // переодическое наблюдение
+    // РїРµСЂРµРѕРґРёС‡РµСЃРєРѕРµ РЅР°Р±Р»СЋРґРµРЅРёРµ
     void GuardObserving( Critter@ npc, bool modifyAlertCount )
     {
         uint myMap = npc.GetMapId();
         for( uint i = 0; i < Observing.length(); i++ )
         {
-            // проходимся по listObserving в поисках плохих мальчиков
+            // РїСЂРѕС…РѕРґРёРјСЃСЏ РїРѕ listObserving РІ РїРѕРёСЃРєР°С… РїР»РѕС…РёС… РјР°Р»СЊС‡РёРєРѕРІ
             Critter@ player = GetCritter( Observing[ i ] );
             if( valid( player ) )
             {
                 if( ( myMap != player.GetMapId() ) || ( player.Stat[ ST_CURRENT_HP ] <= 0 ) )
                 {
-                    // после смерти не вызываеться on_remove_critter поэтому игрок может 'телепортироваться'
+                    // РїРѕСЃР»Рµ СЃРјРµСЂС‚Рё РЅРµ РІС‹Р·С‹РІР°РµС‚СЊСЃСЏ on_remove_critter РїРѕСЌС‚РѕРјСѓ РёРіСЂРѕРє РјРѕР¶РµС‚ 'С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°С‚СЊСЃСЏ'
                     DelObserving( player );
                     continue;
                 }
-                if( GetCrittersDistantion( npc, player ) < uint( npc.Stat[ ST_PERCEPTION ] + PerceptionAdd ) )         // кто подошел близко
+                if( GetCrittersDistantion( npc, player ) < uint( npc.Stat[ ST_PERCEPTION ] + PerceptionAdd ) )         // РєС‚Рѕ РїРѕРґРѕС€РµР» Р±Р»РёР·РєРѕ
                     if( GuardItemTest( _CritGetItemHand( player ) ) )
                     {
-                        // и все еще держит пушку в руках
+                        // Рё РІСЃРµ РµС‰Рµ РґРµСЂР¶РёС‚ РїСѓС€РєСѓ РІ СЂСѓРєР°С…
                         if( modifyAlertCount && ( AlertCount[ i ] < MaxAlert * 2 ) )
                             AlertCount[ i ]++;
                         GuardWarn( npc, player, AlertCount[ i ] );
                     }
-                    else               // если он убрал пушку то успокаиваемся
+                    else               // РµСЃР»Рё РѕРЅ СѓР±СЂР°Р» РїСѓС€РєСѓ С‚Рѕ СѓСЃРїРѕРєР°РёРІР°РµРјСЃСЏ
                     {
                         if( AlertCount[ i ] <= -MaxAlert )
                             DelObserving( player );
-                        // отключил это поведение
+                        // РѕС‚РєР»СЋС‡РёР» СЌС‚Рѕ РїРѕРІРµРґРµРЅРёРµ
                         // if (modifyAlertCount)
                         //	AlertCount[i]--;
                     }
 
 
             }
-            else                 // иначе удаляем запись
+            else                 // РёРЅР°С‡Рµ СѓРґР°Р»СЏРµРј Р·Р°РїРёСЃСЊ
             {
                 DelObserving( i );
                 continue;
@@ -264,14 +264,14 @@ class CGuardsManager
         }
     }
 
-    // тестируем предмет на разрешонность
+    // С‚РµСЃС‚РёСЂСѓРµРј РїСЂРµРґРјРµС‚ РЅР° СЂР°Р·СЂРµС€РѕРЅРЅРѕСЃС‚СЊ
     bool GuardItemTest( Item@ item )
     {
         if( valid( item ) )
-            if( item.GetType() == ITEM_TYPE_WEAPON )      // если у игрока в руке оружие
+            if( item.GetType() == ITEM_TYPE_WEAPON )      // РµСЃР»Рё Сѓ РёРіСЂРѕРєР° РІ СЂСѓРєРµ РѕСЂСѓР¶РёРµ
             {
                 if( item.GetProtoId() == PID_SHIV )
-                    return false;                         // незамечаем заточку
+                    return false;                         // РЅРµР·Р°РјРµС‡Р°РµРј Р·Р°С‚РѕС‡РєСѓ
                 return true;
             }
 
@@ -282,7 +282,7 @@ class CGuardsManager
     // EVENT section
     // //////////////
 
-    // Вызывается, когда в поле зрения NPC появляется криттер.
+    // Р’С‹Р·С‹РІР°РµС‚СЃСЏ, РєРѕРіРґР° РІ РїРѕР»Рµ Р·СЂРµРЅРёСЏ NPC РїРѕСЏРІР»СЏРµС‚СЃСЏ РєСЂРёС‚С‚РµСЂ.
     void EventOnAddCritter( Critter& guard, Critter& player )
     {
         if( guard.Stat[ ST_CURRENT_HP ] <= 0 )
@@ -290,17 +290,17 @@ class CGuardsManager
         if( ( not player.IsPlayer() ) || ( player.Stat[ ST_CURRENT_HP ] <= 0 ) )
             return;
 
-        if( GuardItemTest( _CritGetItemHand( player ) ) ) // если достал пушку
+        if( GuardItemTest( _CritGetItemHand( player ) ) ) // РµСЃР»Рё РґРѕСЃС‚Р°Р» РїСѓС€РєСѓ
         {
-            int i = AddObserving( player );               // то начинаем наблюдать...
-            AlertType[ i ] = ALERT_TYPE_SHOWGUN;          // запоминаем тип нарушения
-            // если стоит близко то выдаем предупреждение
+            int i = AddObserving( player );               // С‚Рѕ РЅР°С‡РёРЅР°РµРј РЅР°Р±Р»СЋРґР°С‚СЊ...
+            AlertType[ i ] = ALERT_TYPE_SHOWGUN;          // Р·Р°РїРѕРјРёРЅР°РµРј С‚РёРї РЅР°СЂСѓС€РµРЅРёСЏ
+            // РµСЃР»Рё СЃС‚РѕРёС‚ Р±Р»РёР·РєРѕ С‚Рѕ РІС‹РґР°РµРј РїСЂРµРґСѓРїСЂРµР¶РґРµРЅРёРµ
             if( GetCrittersDistantion( guard, player ) < uint( guard.Stat[ ST_PERCEPTION ] + PerceptionAdd ) )
                 GuardWarn( guard, player, i );
         }
     }
 
-    // Вызывается, когда из поля зрения NPC исчезает криттер.
+    // Р’С‹Р·С‹РІР°РµС‚СЃСЏ, РєРѕРіРґР° РёР· РїРѕР»СЏ Р·СЂРµРЅРёСЏ NPC РёСЃС‡РµР·Р°РµС‚ РєСЂРёС‚С‚РµСЂ.
     void EventOnRemoveCritter( Critter& guard, Critter& player )
     {
         if( guard.Stat[ ST_CURRENT_HP ] <= 0 )
@@ -309,26 +309,26 @@ class CGuardsManager
             return;
 
         int idx = -1;
-        if( FindInArray( Observing, player.Id, idx ) ) // если нашли
-            if( AlertCount[ idx ] <= 0 )               // если нет притензий
+        if( FindInArray( Observing, player.Id, idx ) ) // РµСЃР»Рё РЅР°С€Р»Рё
+            if( AlertCount[ idx ] <= 0 )               // РµСЃР»Рё РЅРµС‚ РїСЂРёС‚РµРЅР·РёР№
                 DelObserving( idx );
-        // забываем про него
+        // Р·Р°Р±С‹РІР°РµРј РїСЂРѕ РЅРµРіРѕ
     }
 
-    // Вызывается если криттер освободился от задания
+    // Р’С‹Р·С‹РІР°РµС‚СЃСЏ РµСЃР»Рё РєСЂРёС‚С‚РµСЂ РѕСЃРІРѕР±РѕРґРёР»СЃСЏ РѕС‚ Р·Р°РґР°РЅРёСЏ
     void EventEndPlane( Critter& guard )
     {
         // if reason!!!
         if( not guard.IsLife() )
             return;
         if( guard.GetPlanes( null ) > 1 )
-            return;                                  // else // если guard занят
-        // guard.Wait(1000); // иначе подождем чютьчють - отключенно потомучто плохо работает
+            return;                                  // else // РµСЃР»Рё guard Р·Р°РЅСЏС‚
+        // guard.Wait(1000); // РёРЅР°С‡Рµ РїРѕРґРѕР¶РґРµРј С‡СЋС‚СЊС‡СЋС‚СЊ - РѕС‚РєР»СЋС‡РµРЅРЅРѕ РїРѕС‚РѕРјСѓС‡С‚Рѕ РїР»РѕС…Рѕ СЂР°Р±РѕС‚Р°РµС‚
         GuardObserving( guard, false );
     }
 
 
-    // Вызывается, когда в поле зрения NPC кто-либо перемещает итем из одного слота в другой.
+    // Р’С‹Р·С‹РІР°РµС‚СЃСЏ, РєРѕРіРґР° РІ РїРѕР»Рµ Р·СЂРµРЅРёСЏ NPC РєС‚Рѕ-Р»РёР±Рѕ РїРµСЂРµРјРµС‰Р°РµС‚ РёС‚РµРј РёР· РѕРґРЅРѕРіРѕ СЃР»РѕС‚Р° РІ РґСЂСѓРіРѕР№.
     void EventOnMoveItem( Critter& guard, Critter& player, Item& item, uint8 fromSlot )
     {
         if( guard.Stat[ ST_CURRENT_HP ] <= 0 )
@@ -337,37 +337,37 @@ class CGuardsManager
             return;
 
         Item@ whatInHand = _CritGetItemHand( player );
-        if( GuardItemTest( whatInHand ) )        // если достал пушку
+        if( GuardItemTest( whatInHand ) )        // РµСЃР»Рё РґРѕСЃС‚Р°Р» РїСѓС€РєСѓ
 
         {
-            // замечаем пукалку  =)
+            // Р·Р°РјРµС‡Р°РµРј РїСѓРєР°Р»РєСѓ  =)
             if( GetCrittersDistantion( guard, player ) < ( __LookMinimum * 2 ) )
                 if( whatInHand.GetProtoId() == PID_RED_RYDER_BB_GUN || whatInHand.GetProtoId() == PID_ZIP_GUN )
                 {
-                    // на близком растоянии охранник замечает стремное оружие
+                    // РЅР° Р±Р»РёР·РєРѕРј СЂР°СЃС‚РѕСЏРЅРёРё РѕС…СЂР°РЅРЅРёРє Р·Р°РјРµС‡Р°РµС‚ СЃС‚СЂРµРјРЅРѕРµ РѕСЂСѓР¶РёРµ
                     guard.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR( Dialog, 7 ) );
                     return;
                 }
 
-            int index = AddObserving( player );         // то начинаем наблюдать...
-            AlertType[ index ] = ALERT_TYPE_SHOWGUN;    // запоминаем тип нарушения
+            int index = AddObserving( player );         // С‚Рѕ РЅР°С‡РёРЅР°РµРј РЅР°Р±Р»СЋРґР°С‚СЊ...
+            AlertType[ index ] = ALERT_TYPE_SHOWGUN;    // Р·Р°РїРѕРјРёРЅР°РµРј С‚РёРї РЅР°СЂСѓС€РµРЅРёСЏ
             if( GetCrittersDistantion( guard, player ) < uint( guard.Stat[ ST_PERCEPTION ] + PerceptionAdd ) )
             {
                 AlertCount[ index ]++;
-                GuardWarn( guard, player, AlertCount[ index ] );             // выдаем предупреждение
+                GuardWarn( guard, player, AlertCount[ index ] );             // РІС‹РґР°РµРј РїСЂРµРґСѓРїСЂРµР¶РґРµРЅРёРµ
             }
         }
         else
         {
             if( item.GetType() == ITEM_TYPE_WEAPON && fromSlot == SLOT_HAND1 )
                 if( GetCrittersDistantion( guard, player ) < uint( guard.Stat[ ST_PERCEPTION ] + PerceptionAdd ) )
-                // если игрок убрал оружие
+                // РµСЃР»Рё РёРіСЂРѕРє СѓР±СЂР°Р» РѕСЂСѓР¶РёРµ
                 {
                     int i = FindInArray( Observing, player.Id );
                     if( i != -1 )
                         if( ( AlertCount[ i ] > MaxAlert ) && ( AlertType[ i ] == ALERT_TYPE_SHOWGUN ) )
                         {
-                            // AlertCount[i]=MaxAlert; // перестаем атаковать игрока
+                            // AlertCount[i]=MaxAlert; // РїРµСЂРµСЃС‚Р°РµРј Р°С‚Р°РєРѕРІР°С‚СЊ РёРіСЂРѕРєР°
                             AlertCount[ i ]--;
                             guard.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR( Dialog, 4 ) );
                         }
@@ -375,7 +375,7 @@ class CGuardsManager
         }
     }
 
-    // Сообщения от других охранников
+    // РЎРѕРѕР±С‰РµРЅРёСЏ РѕС‚ РґСЂСѓРіРёС… РѕС…СЂР°РЅРЅРёРєРѕРІ
     void EventOnMessage( Critter& guard, Critter& player, int num, int val )
     {
         if( num == MESSAGE_PLEASE_KILL_ME_I_AM_IDIOT )
@@ -384,13 +384,13 @@ class CGuardsManager
             AlertCount[ index ] = AlertCount[ index ] + MaxAlert;
             AlertType[ index ] = ALERT_TYPE_ENTER_ON_DENY;
             // GuardWarn (...)
-            AddAttackPlane( guard, 0, player, __DeadHitPoints );          // Мочим!
+            AddAttackPlane( guard, 0, player, __DeadHitPoints );          // РњРѕС‡РёРј!
         }
     }
 
-    // Вызывается, когда криттер использует итем.
-    // используеться для запрета распития алкоголя
-    // и принятия наркотиков в общественных местах.
+    // Р’С‹Р·С‹РІР°РµС‚СЃСЏ, РєРѕРіРґР° РєСЂРёС‚С‚РµСЂ РёСЃРїРѕР»СЊР·СѓРµС‚ РёС‚РµРј.
+    // РёСЃРїРѕР»СЊР·СѓРµС‚СЊСЃСЏ РґР»СЏ Р·Р°РїСЂРµС‚Р° СЂР°СЃРїРёС‚РёСЏ Р°Р»РєРѕРіРѕР»СЏ
+    // Рё РїСЂРёРЅСЏС‚РёСЏ РЅР°СЂРєРѕС‚РёРєРѕРІ РІ РѕР±С‰РµСЃС‚РІРµРЅРЅС‹С… РјРµСЃС‚Р°С….
     void EventOnUseItem( Critter& guard, Critter& player, Item& item, Critter@ onCritter, Item@ onItem, Scenery@ onScenery )
     {
         if( ( not player.IsPlayer() ) || ( player.Stat[ ST_CURRENT_HP ] <= 0 ) )
@@ -398,8 +398,8 @@ class CGuardsManager
         if( guard.Stat[ ST_CURRENT_HP ] <= 0 )
             return;
 
-        // игрок чтото использовал
-        // и не факт что на себя, но покачто тут старый код
+        // РёРіСЂРѕРє С‡С‚РѕС‚Рѕ РёСЃРїРѕР»СЊР·РѕРІР°Р»
+        // Рё РЅРµ С„Р°РєС‚ С‡С‚Рѕ РЅР° СЃРµР±СЏ, РЅРѕ РїРѕРєР°С‡С‚Рѕ С‚СѓС‚ СЃС‚Р°СЂС‹Р№ РєРѕРґ
 
         if( GetCrittersDistantion( guard, player ) < uint( guard.Stat[ ST_PERCEPTION ] + PerceptionAdd ) )
         {
@@ -410,7 +410,7 @@ class CGuardsManager
                 if( Present( item.GetProtoId(), Pids_DrugsAlcohol ) )
                 {
                     guard.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR( Dialog, 5 ) );
-                    // guard.Say(SAY_NORM_ON_HEAD, "Эх счаз бы тоже пивка наебнуть");
+                    // guard.Say(SAY_NORM_ON_HEAD, "Р­С… СЃС‡Р°Р· Р±С‹ С‚РѕР¶Рµ РїРёРІРєР° РЅР°РµР±РЅСѓС‚СЊ");
                     int index = AddObserving( player );
                     AlertCount[ index ]++;
                     AlertType[ index ] = ALERT_TYPE_ALCO;
@@ -420,7 +420,7 @@ class CGuardsManager
                 if( Present( item.GetProtoId(), Pids_Drugs ) )
                 {
                     guard.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR( Dialog, 6 ) );
-                    // guard.Say(SAY_NORM_ON_HEAD, "Ну как? Нормально торкнуло?");
+                    // guard.Say(SAY_NORM_ON_HEAD, "РќСѓ РєР°Рє? РќРѕСЂРјР°Р»СЊРЅРѕ С‚РѕСЂРєРЅСѓР»Рѕ?");
                     int index = AddObserving( player );
                     AlertCount[ index ] = AlertCount[ index ] + MaxAlert;
                     AlertType[ index ] = ALERT_TYPE_DRUG;
@@ -436,7 +436,7 @@ class CGuardsManager
         }
     }
 
-    // при выбрасывании предметов игроком
+    // РїСЂРё РІС‹Р±СЂР°СЃС‹РІР°РЅРёРё РїСЂРµРґРјРµС‚РѕРІ РёРіСЂРѕРєРѕРј
     void EventOnDropItem( Critter& guard, Critter& player, Item& item )  // r17
     {
         if( !player.IsPlayer() || !player.IsLife() )
@@ -447,8 +447,8 @@ class CGuardsManager
         }
     }
 
-    // Когда криттер в области видимости подвергается атаке.
-    // используеться для контролем за перестрелками между игроками.
+    // РљРѕРіРґР° РєСЂРёС‚С‚РµСЂ РІ РѕР±Р»Р°СЃС‚Рё РІРёРґРёРјРѕСЃС‚Рё РїРѕРґРІРµСЂРіР°РµС‚СЃСЏ Р°С‚Р°РєРµ.
+    // РёСЃРїРѕР»СЊР·СѓРµС‚СЊСЃСЏ РґР»СЏ РєРѕРЅС‚СЂРѕР»РµРј Р·Р° РїРµСЂРµСЃС‚СЂРµР»РєР°РјРё РјРµР¶РґСѓ РёРіСЂРѕРєР°РјРё.
     void EventOnSmthAttack( Critter& guard, Critter& player, Critter& target )
     {
         if( not player.IsPlayer() )
@@ -459,16 +459,16 @@ class CGuardsManager
         if( not valid( weapon ) )
             return;
 
-        bool isDead =         // если убили человека
+        bool isDead =         // РµСЃР»Рё СѓР±РёР»Рё С‡РµР»РѕРІРµРєР°
                       ( target.Stat[ ST_CURRENT_HP ] < __DeadHitPoints ) and
                       ( ( target.Stat[ ST_BODY_TYPE ] == BT_MEN ) || ( target.Stat[ ST_BODY_TYPE ] == BT_WOMEN ) || ( target.Stat[ ST_BODY_TYPE ] == BT_CHILDREN ) );
 
-        // звук выстрела хорошо слышно - множим дистанцию на 4
-        // может исключать из множителя WeaponLaser? - лазер по идее не слышно
+        // Р·РІСѓРє РІС‹СЃС‚СЂРµР»Р° С…РѕСЂРѕС€Рѕ СЃР»С‹С€РЅРѕ - РјРЅРѕР¶РёРј РґРёСЃС‚Р°РЅС†РёСЋ РЅР° 4
+        // РјРѕР¶РµС‚ РёСЃРєР»СЋС‡Р°С‚СЊ РёР· РјРЅРѕР¶РёС‚РµР»СЏ WeaponLaser? - Р»Р°Р·РµСЂ РїРѕ РёРґРµРµ РЅРµ СЃР»С‹С€РЅРѕ
         if( GetCrittersDistantion( guard, player ) <
             ( uint( guard.Stat[ ST_PERCEPTION ] + PerceptionAdd ) * 4 ) )
             if(
-                ( weapon.GetProtoId() != PID_RED_RYDER_BB_GUN )                     // игнорим эту фигню  =)
+                ( weapon.GetProtoId() != PID_RED_RYDER_BB_GUN )                     // РёРіРЅРѕСЂРёРј СЌС‚Сѓ С„РёРіРЅСЋ  =)
                 and (
                     Present( weapon.GetProtoId(), Pids_WeaponSmallGuns ) or
                     Present( weapon.GetProtoId(), Pids_WeaponBigGuns ) or
@@ -477,7 +477,7 @@ class CGuardsManager
             {
                 int index = AddObserving( player );
                 AlertType[ index ] = ALERT_TYPE_SHOT;
-                if( ( AlertCount[ index ] == 0 ) && ( not isDead ) )        // если это превое нарушение и объект не умер
+                if( ( AlertCount[ index ] == 0 ) && ( not isDead ) )        // РµСЃР»Рё СЌС‚Рѕ РїСЂРµРІРѕРµ РЅР°СЂСѓС€РµРЅРёРµ Рё РѕР±СЉРµРєС‚ РЅРµ СѓРјРµСЂ
                 {
                     guard.SetDir( GetDirection( guard.HexX, guard.HexY, player.HexX, player.HexY ) );
                     guard.SayMsg( SAY_SHOUT_ON_HEAD, TEXTMSG_DLG, DLGSTR( Dialog, 8 ) );
@@ -486,18 +486,18 @@ class CGuardsManager
                 else
                 {
                     AlertCount[ index ] = AlertCount[ index ] + MaxAlert + 1;
-                    if( isDead )                                          // если обьект умер
-                        AddAttackPlane( guard, 0, player );               // тогда наказываем нарушителя
+                    if( isDead )                                          // РµСЃР»Рё РѕР±СЊРµРєС‚ СѓРјРµСЂ
+                        AddAttackPlane( guard, 0, player );               // С‚РѕРіРґР° РЅР°РєР°Р·С‹РІР°РµРј РЅР°СЂСѓС€РёС‚РµР»СЏ
                     else
-                        GuardWarn( guard, player, AlertCount[ index ] );  // иначе плановое постреливание
+                        GuardWarn( guard, player, AlertCount[ index ] );  // РёРЅР°С‡Рµ РїР»Р°РЅРѕРІРѕРµ РїРѕСЃС‚СЂРµР»РёРІР°РЅРёРµ
                 }
             }
     }
 
-    // Когда криттер в области видимости подвергается краже.
+    // РљРѕРіРґР° РєСЂРёС‚С‚РµСЂ РІ РѕР±Р»Р°СЃС‚Рё РІРёРґРёРјРѕСЃС‚Рё РїРѕРґРІРµСЂРіР°РµС‚СЃСЏ РєСЂР°Р¶Рµ.
     void EventStealing( Critter& guard, Critter& fromCrit, Critter& thief, bool success, Item& item, uint count )
     {
-        // воришку надо бить (даже если это не игрок)
+        // РІРѕСЂРёС€РєСѓ РЅР°РґРѕ Р±РёС‚СЊ (РґР°Р¶Рµ РµСЃР»Рё СЌС‚Рѕ РЅРµ РёРіСЂРѕРє)
         /*
            if success and random thief.luck ...
          */
@@ -509,7 +509,7 @@ class CGuardsManager
          */
     }
 
-    // наблюдение за подозрительными личностями.
+    // РЅР°Р±Р»СЋРґРµРЅРёРµ Р·Р° РїРѕРґРѕР·СЂРёС‚РµР»СЊРЅС‹РјРё Р»РёС‡РЅРѕСЃС‚СЏРјРё.
     uint EventObserving( Critter@ guard )
     {
         if( Observing.length() == 0 )
@@ -528,22 +528,22 @@ class CGuardsManager
         return OBSERV_PERIOD;
     }
 
-    // глобальное наблюдение за подозрительными личностями
-    // НЕ РЕАЛИЗОВАННО
+    // РіР»РѕР±Р°Р»СЊРЅРѕРµ РЅР°Р±Р»СЋРґРµРЅРёРµ Р·Р° РїРѕРґРѕР·СЂРёС‚РµР»СЊРЅС‹РјРё Р»РёС‡РЅРѕСЃС‚СЏРјРё
+    // РќР• Р Р•РђР›РР—РћР’РђРќРќРћ
     void EventTimerObserving()
     {}
 
-    // снимает уровни с подозреваемых при хорошем поведении
-    // НЕ РЕАЛИЗОВАННО
+    // СЃРЅРёРјР°РµС‚ СѓСЂРѕРІРЅРё СЃ РїРѕРґРѕР·СЂРµРІР°РµРјС‹С… РїСЂРё С…РѕСЂРѕС€РµРј РїРѕРІРµРґРµРЅРёРё
+    // РќР• Р Р•РђР›РР—РћР’РђРќРќРћ
     void EventTimerAlertLevelDown()
     {
         // ...
     }
 
-    // Когда криттер в области видимости выкидывает итем.
+    // РљРѕРіРґР° РєСЂРёС‚С‚РµСЂ РІ РѕР±Р»Р°СЃС‚Рё РІРёРґРёРјРѕСЃС‚Рё РІС‹РєРёРґС‹РІР°РµС‚ РёС‚РµРј.
     void EventDropItem( Critter& guard, Critter& fromCrit, Item& item )
     {
-        // запрещенные предметы нужно отнимать/собирать
+        // Р·Р°РїСЂРµС‰РµРЅРЅС‹Рµ РїСЂРµРґРјРµС‚С‹ РЅСѓР¶РЅРѕ РѕС‚РЅРёРјР°С‚СЊ/СЃРѕР±РёСЂР°С‚СЊ
     }
 
 
@@ -552,7 +552,7 @@ class CGuardsManager
 // //////////////
 
 
-// обыск
+// РѕР±С‹СЃРє
 class CGuardSearching
 {} // CGuardsSearching
 // //////////////

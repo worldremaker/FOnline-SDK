@@ -4,7 +4,7 @@
 
 #define KOTW_HOLODISK    ( 63 )
 #define BEER_BOTTLES     ( 20 )
-#define BEER_WEIGHT      ( 20000 )         // 20 Í„
+#define BEER_WEIGHT      ( 20000 )         // 20 –∫–≥
 
 void _DeadInit( Critter& cr, bool firstTime )
 {

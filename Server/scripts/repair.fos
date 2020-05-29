@@ -48,13 +48,13 @@ bool TryRepairItem( Critter& cr, Item& item ) // Export
     if( FLAG( item.BrokenFlags, BI_BROKEN ) )
     {
         if( FLAG( item.BrokenFlags, BI_HIGHBROKEN ) )
-            repair -= 100;                               // áûëî 150
+            repair -= 100;                               // Ğ±Ñ‹Ğ»Ğ¾ 150
         else if( FLAG( item.BrokenFlags, BI_NORMBROKEN ) )
-            repair -= 75;                                // áûëî 100
+            repair -= 75;                                // Ğ±Ñ‹Ğ»Ğ¾ 100
         else if( FLAG( item.BrokenFlags, BI_LOWBROKEN ) )
-            repair -= 25;                                // áûëî 50
+            repair -= 25;                                // Ğ±Ñ‹Ğ»Ğ¾ 50
 
-        repair -= item.BrokenCount * 50 / MAX_BROKENS;   // áûëî 100
+        repair -= item.BrokenCount * 50 / MAX_BROKENS;   // Ğ±Ñ‹Ğ»Ğ¾ 100
         repair = CLAMP( repair, 6, 95 );
 
         if( repair >= Random( 1, 100 ) )

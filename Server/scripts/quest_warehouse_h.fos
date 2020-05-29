@@ -5,65 +5,65 @@
 // Using in quest_warehouse
 //
 
-// Функции
-// idle функция для человека рекламирующего бар:
+// Р¤СѓРЅРєС†РёРё
+// idle С„СѓРЅРєС†РёСЏ РґР»СЏ С‡РµР»РѕРІРµРєР° СЂРµРєР»Р°РјРёСЂСѓСЋС‰РµРіРѕ Р±Р°СЂ:
 // void AdvertismanIdle(Critter@ advertisman)
 
-// Формат AnyData:
-// 0 - Id локации.
-// 1 - Зарезервировано.
-// 2 и далее - Id криттеров участников.
+// Р¤РѕСЂРјР°С‚ AnyData:
+// 0 - Id Р»РѕРєР°С†РёРё.
+// 1 - Р—Р°СЂРµР·РµСЂРІРёСЂРѕРІР°РЅРѕ.
+// 2 Рё РґР°Р»РµРµ - Id РєСЂРёС‚С‚РµСЂРѕРІ СѓС‡Р°СЃС‚РЅРёРєРѕРІ.
 
 #define MIN_PLAYERS                      ( 5 )
 #define MAX_PLAYERS                      ( 7 )
 #define MIN_EVERY_LEVEL                  ( 6 )
 #define MIN_APROX_LEVEL                  ( 10 )
 
-// Значения квестов.
-// Основной.
+// Р—РЅР°С‡РµРЅРёСЏ РєРІРµСЃС‚РѕРІ.
+// РћСЃРЅРѕРІРЅРѕР№.
 #define MAINQUEST_NOT_GIVED              ( 0 )
 #define MAINQUEST_GIVED                  ( 1 )
 #define MAINQUEST_DONE                   ( 2 )
 #define MAINQUEST_MARK_DONE              ( 3 )
 #define MAINQUEST_MARK_FAIL              ( 4 )
-// Субквест 1, Поиск карты.
+// РЎСѓР±РєРІРµСЃС‚ 1, РџРѕРёСЃРє РєР°СЂС‚С‹.
 #define SUBQUEST1_NOT_GIVED              ( 0 )
 #define SUBQUEST1_FIND_DAUGHTER          ( 1 )
 #define SUBQUEST1_DAUGHTER_MADMAX        ( 2 )
 #define SUBQUEST1_DELIVER_INFORMATION    ( 3 )
 #define SUBQUEST1_DONE                   ( 4 )
-// Субквест 2, Поиск ключа.
+// РЎСѓР±РєРІРµСЃС‚ 2, РџРѕРёСЃРє РєР»СЋС‡Р°.
 #define SUBQUEST2_NOT_GIVED              ( 0 )
 #define SUBQUEST2_GOLDEN_GLOBES          ( 1 )
 #define SUBQUEST2_PORN_ACTRES            ( 2 )
 #define SUBQUEST2_GAMBLER                ( 3 )
 #define SUBQUEST2_DONE                   ( 4 )
-// Дополнительные флаги для квестов, комбинируются.
+// Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ С„Р»Р°РіРё РґР»СЏ РєРІРµСЃС‚РѕРІ, РєРѕРјР±РёРЅРёСЂСѓСЋС‚СЃСЏ.
 #define OTHER_PORN_ACTRES_PAY            ( 1 )
 #define OTHER_REC_PORN                   ( 2 )
 #define OTHER_MAX                        (OTHER_REC_PORN)
 
-// Экспириенс за выполнение квестов.
+// Р­РєСЃРїРёСЂРёРµРЅСЃ Р·Р° РІС‹РїРѕР»РЅРµРЅРёРµ РєРІРµСЃС‚РѕРІ.
 uint[] MainQuestExperience = { 0, 0, 5000, 10000, 0 };
 uint[] SubQuest1Experience = { 0, 0, 1000, 3000, 5000 };
 uint[] SubQuest2Experience = { 0, 0, 1000, 3000, 5000 };
 
-// Номер ключа от двери склада.
+// РќРѕРјРµСЂ РєР»СЋС‡Р° РѕС‚ РґРІРµСЂРё СЃРєР»Р°РґР°.
 #define GENERATE_WAREHOUSE_KEY_ID        ( Random( 1000000, 10000000 ) )
 
-// Entire - Входная дверь в локации.
+// Entire - Р’С…РѕРґРЅР°СЏ РґРІРµСЂСЊ РІ Р»РѕРєР°С†РёРё.
 #define ENTIRE_LOC_DOOR                  ( 100 )
 
-// Координаты генерируемой локациию
+// РљРѕРѕСЂРґРёРЅР°С‚С‹ РіРµРЅРµСЂРёСЂСѓРµРјРѕР№ Р»РѕРєР°С†РёРёСЋ
 // //
 
-// Переходы диалогов.
+// РџРµСЂРµС…РѕРґС‹ РґРёР°Р»РѕРіРѕРІ.
 #define FD_GENERIC_ERROR                 ( 100 )
 #define FD_LOW_PLAYERS                   ( 101 )
 #define FD_MANY_PLAYERS                  ( 102 )
 #define FD_LOW_LEVEL                     ( 103 )
 
-// Разное.
+// Р Р°Р·РЅРѕРµ.
 #define ADVERTISMAN_WAIT                 ( Random( 10000, 15000 ) )
 
 // Texts.

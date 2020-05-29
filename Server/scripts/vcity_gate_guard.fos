@@ -1,12 +1,12 @@
 // Author: heX
-// Охранники на входе во внутренний город.
-// обыскивают, и запрещают проносить наркотики, алкоголь, взрывчатку
-// и заходить в ПА/АПА броне.  ;-)
+// РћС…СЂР°РЅРЅРёРєРё РЅР° РІС…РѕРґРµ РІРѕ РІРЅСѓС‚СЂРµРЅРЅРёР№ РіРѕСЂРѕРґ.
+// РѕР±С‹СЃРєРёРІР°СЋС‚, Рё Р·Р°РїСЂРµС‰Р°СЋС‚ РїСЂРѕРЅРѕСЃРёС‚СЊ РЅР°СЂРєРѕС‚РёРєРё, Р°Р»РєРѕРіРѕР»СЊ, РІР·СЂС‹РІС‡Р°С‚РєСѓ
+// Рё Р·Р°С…РѕРґРёС‚СЊ РІ РџРђ/РђРџРђ Р±СЂРѕРЅРµ.  ;-)
 // ver 0.4
 
 /*
    ToDo:
-   сделать закрытие-открытие ворот
+   СЃРґРµР»Р°С‚СЊ Р·Р°РєСЂС‹С‚РёРµ-РѕС‚РєСЂС‹С‚РёРµ РІРѕСЂРѕС‚
  */
 
 #include "utils_for_array.fos"
@@ -14,9 +14,9 @@
 #include "_animation.fos"
 #include "guard_lib.fos"
 
-uint[] player_ok = {};     // Массив с id игроков которых обыскали и им можно проходить
-uint[] player_warned = {}; // Массив с id игроков которых предупредили - дважды предупреждать не будут
-// uint[] player_bad={}; //Массив с id игроков которые прошли без обыска
+uint[] player_ok = {};     // РњР°СЃСЃРёРІ СЃ id РёРіСЂРѕРєРѕРІ РєРѕС‚РѕСЂС‹С… РѕР±С‹СЃРєР°Р»Рё Рё РёРј РјРѕР¶РЅРѕ РїСЂРѕС…РѕРґРёС‚СЊ
+uint[] player_warned = {}; // РњР°СЃСЃРёРІ СЃ id РёРіСЂРѕРєРѕРІ РєРѕС‚РѕСЂС‹С… РїСЂРµРґСѓРїСЂРµРґРёР»Рё - РґРІР°Р¶РґС‹ РїСЂРµРґСѓРїСЂРµР¶РґР°С‚СЊ РЅРµ Р±СѓРґСѓС‚
+// uint[] player_bad={}; //РњР°СЃСЃРёРІ СЃ id РёРіСЂРѕРєРѕРІ РєРѕС‚РѕСЂС‹Рµ РїСЂРѕС€Р»Рё Р±РµР· РѕР±С‹СЃРєР°
 
 import bool  GuardItemTest( Item@ item ) from "vcity_guard";
 import uint8 GetRank( Critter& cr ) from "vc_guardsman";
@@ -42,7 +42,7 @@ void Guard_on_add_critter( Critter& npc, Critter& player )
         player_warned.removeAt( i );
 }
 
-// Вызывается, когда из поля зрения NPC исчезает криттер.
+// Р’С‹Р·С‹РІР°РµС‚СЃСЏ, РєРѕРіРґР° РёР· РїРѕР»СЏ Р·СЂРµРЅРёСЏ NPC РёСЃС‡РµР·Р°РµС‚ РєСЂРёС‚С‚РµСЂ.
 void Guard_on_remove_critter( Critter& npc, Critter& player )
 {
     if( not player.IsPlayer() )
@@ -55,7 +55,7 @@ void Guard_on_remove_critter( Critter& npc, Critter& player )
         player_warned.removeAt( i );
 }
 
-// тестирование предмета на разрешонность
+// С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ РїСЂРµРґРјРµС‚Р° РЅР° СЂР°Р·СЂРµС€РѕРЅРЅРѕСЃС‚СЊ
 bool ItemTest( uint16 protoId )
 {
     if(
@@ -69,14 +69,14 @@ bool ItemTest( uint16 protoId )
         return true;
 }
 
-// алгоритм обыска
-// возращает коды недопуска
-// 0 - все хорошо
-// 1 - плохой предмет
-// 2 - алкоголь
-// 3 - наркотики
-// 4 - взрывчатка
-// 5 - нету пропуска
+// Р°Р»РіРѕСЂРёС‚Рј РѕР±С‹СЃРєР°
+// РІРѕР·СЂР°С‰Р°РµС‚ РєРѕРґС‹ РЅРµРґРѕРїСѓСЃРєР°
+// 0 - РІСЃРµ С…РѕСЂРѕС€Рѕ
+// 1 - РїР»РѕС…РѕР№ РїСЂРµРґРјРµС‚
+// 2 - Р°Р»РєРѕРіРѕР»СЊ
+// 3 - РЅР°СЂРєРѕС‚РёРєРё
+// 4 - РІР·СЂС‹РІС‡Р°С‚РєР°
+// 5 - РЅРµС‚Сѓ РїСЂРѕРїСѓСЃРєР°
 int Searching( Critter& npc, Critter& player )
 {
     int result = 5;
@@ -96,7 +96,7 @@ int Searching( Critter& npc, Critter& player )
     return result;
 }
 
-// Сообщения от тригеров
+// РЎРѕРѕР±С‰РµРЅРёСЏ РѕС‚ С‚СЂРёРіРµСЂРѕРІ
 void Guard_OnMessage( Critter& guard, Critter& player, int num, int val )
 {
 // Log("OnMessage ok");
@@ -109,13 +109,13 @@ void Guard_OnMessage( Critter& guard, Critter& player, int num, int val )
     if( player.Stat[ ST_CURRENT_HP ] < 0 )
         return;
     if( GetRank( player ) > 0 )
-        return;                       // Гвардейцам разрешено проходить без пропуска
+        return;                       // Р“РІР°СЂРґРµР№С†Р°Рј СЂР°Р·СЂРµС€РµРЅРѕ РїСЂРѕС…РѕРґРёС‚СЊ Р±РµР· РїСЂРѕРїСѓСЃРєР°
 
     if( num == MESSAGE_PLAYER_ON_WARNING_HEX )
     {
-        // Предупреждаем игрока
+        // РџСЂРµРґСѓРїСЂРµР¶РґР°РµРј РёРіСЂРѕРєР°
         if( Present( player.Id, player_warned ) )
-            return;             // значит мы его уже предупредили - дважды повторять не будем
+            return;             // Р·РЅР°С‡РёС‚ РјС‹ РµРіРѕ СѓР¶Рµ РїСЂРµРґСѓРїСЂРµРґРёР»Рё - РґРІР°Р¶РґС‹ РїРѕРІС‚РѕСЂСЏС‚СЊ РЅРµ Р±СѓРґРµРј
         player_warned.insertLast( player.Id );
         Item@ itm = _CritGetItemArmor( player );
         if( valid( itm ) )
@@ -132,11 +132,11 @@ void Guard_OnMessage( Critter& guard, Critter& player, int num, int val )
         if( GetCrittersDistantion( guard, player ) == 1 )
         {
             if( Present( player.Id, player_ok ) )
-                return;                 // мы его уже обыскивали - больше покачто небудем.
+                return;                 // РјС‹ РµРіРѕ СѓР¶Рµ РѕР±С‹СЃРєРёРІР°Р»Рё - Р±РѕР»СЊС€Рµ РїРѕРєР°С‡С‚Рѕ РЅРµР±СѓРґРµРј.
             guard.SetDir( GetDirection( guard.HexX, guard.HexY, player.HexX, player.HexY ) );
             if( GuardItemTest( _CritGetItemHand( player ) ) )
             {
-                // оружие в руках
+                // РѕСЂСѓР¶РёРµ РІ СЂСѓРєР°С…
                 guard.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR( DIALOG_vc_gate_guard, 6 ) );
                 return;
             }
@@ -144,7 +144,7 @@ void Guard_OnMessage( Critter& guard, Critter& player, int num, int val )
             if( valid( itm ) )
                 if( Present( itm.GetProtoId(), Pids_ArmorHeavy ) )
                 {
-                    // плохая броня
+                    // РїР»РѕС…Р°СЏ Р±СЂРѕРЅСЏ
                     guard.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR( DIALOG_vc_gate_guard, 5 ) );
                     return;
                 }
@@ -152,19 +152,19 @@ void Guard_OnMessage( Critter& guard, Critter& player, int num, int val )
             int searchResult = 0;
             if( ( searchResult = Searching( guard, player ) ) == 0 )
             {
-                // все окей
-                // guard.Say(SAY_NORM_ON_HEAD, "Даже отобрать нечего, топай дальше");
+                // РІСЃРµ РѕРєРµР№
+                // guard.Say(SAY_NORM_ON_HEAD, "Р”Р°Р¶Рµ РѕС‚РѕР±СЂР°С‚СЊ РЅРµС‡РµРіРѕ, С‚РѕРїР°Р№ РґР°Р»СЊС€Рµ");
                 guard.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR( DIALOG_vc_gate_guard, 2 ) );
                 player_ok.insertLast( player.Id );
             }
             else
             {
-                if( searchResult == 5 )              // нету пропуска
+                if( searchResult == 5 )              // РЅРµС‚Сѓ РїСЂРѕРїСѓСЃРєР°
                     guard.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR( DIALOG_vc_gate_guard, 7 ) );
                 else
                 {
-                    // плохие предметы
-                    // guard.Say(SAY_NORM_ON_HEAD, "О! да у тебя тут Алкоголь и Наркотики. Не уходи от нас братец!");
+                    // РїР»РѕС…РёРµ РїСЂРµРґРјРµС‚С‹
+                    // guard.Say(SAY_NORM_ON_HEAD, "Рћ! РґР° Сѓ С‚РµР±СЏ С‚СѓС‚ РђР»РєРѕРіРѕР»СЊ Рё РќР°СЂРєРѕС‚РёРєРё. РќРµ СѓС…РѕРґРё РѕС‚ РЅР°СЃ Р±СЂР°С‚РµС†!");
                     guard.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_DLG, DLGSTR( DIALOG_vc_gate_guard, 3 ) );
                     player_ok.removeAt( uint( FindInArray( player_ok, player.Id ) ) );
                 }
@@ -179,25 +179,25 @@ void Guard_OnMessage( Critter& guard, Critter& player, int num, int val )
     if( num == MESSAGE_PLAYER_ON_ATACK_HEX )
         if( not Present( player.Id, player_ok ) )
         {
-            // игрок ушел в город и его надо вернуть назад
+            // РёРіСЂРѕРє СѓС€РµР» РІ РіРѕСЂРѕРґ Рё РµРіРѕ РЅР°РґРѕ РІРµСЂРЅСѓС‚СЊ РЅР°Р·Р°Рґ
             // ALERT!
             guard.SayMsg( SAY_SHOUT_ON_HEAD, TEXTMSG_DLG, DLGSTR( DIALOG_vc_gate_guard, 4 ) );
-            // guard.Say(SAY_SHOUT_ON_HEAD,"Стой! Стрелять буду!");
+            // guard.Say(SAY_SHOUT_ON_HEAD,"РЎС‚РѕР№! РЎС‚СЂРµР»СЏС‚СЊ Р±СѓРґСѓ!");
 
-            // игрок 'просит' чтобы его пристрелили
+            // РёРіСЂРѕРє 'РїСЂРѕСЃРёС‚' С‡С‚РѕР±С‹ РµРіРѕ РїСЂРёСЃС‚СЂРµР»РёР»Рё
             player.SendMessage( MESSAGE_PLEASE_KILL_ME_I_AM_IDIOT, 0, MESSAGE_TO_WHO_SEES_ME );
 
             // Alert(player, MAX_ALERT, ALERT_TYPE_ENTER_ON_DENY);
         }
         else
         {
-            // игрок ушел в город
+            // РёРіСЂРѕРє СѓС€РµР» РІ РіРѕСЂРѕРґ
 
         }
 
     if( num == MESSAGE_PLAYER_ON_PRE_ENTER )
     {
-        // это не честный обыск, но зато надежный.
+        // СЌС‚Рѕ РЅРµ С‡РµСЃС‚РЅС‹Р№ РѕР±С‹СЃРє, РЅРѕ Р·Р°С‚Рѕ РЅР°РґРµР¶РЅС‹Р№.
         if( Searching( guard, player ) != 0 )
         {
             uint idx = uint( FindInArray( player_ok, player.Id ) );
@@ -212,81 +212,81 @@ void Guard_OnMessage( Critter& guard, Critter& player, int num, int val )
 
 }
 
-// зона в которой солдаты предупреждают о необходимости обыскивания
+// Р·РѕРЅР° РІ РєРѕС‚РѕСЂРѕР№ СЃРѕР»РґР°С‚С‹ РїСЂРµРґСѓРїСЂРµР¶РґР°СЋС‚ Рѕ РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё РѕР±С‹СЃРєРёРІР°РЅРёСЏ
 void t_incoming( Critter& player, Scenery& trigger, bool entered, uint8 dir )
 {
     if( not entered )
         return;
 
-    // Проверяем игрок ли это
+    // РџСЂРѕРІРµСЂСЏРµРј РёРіСЂРѕРє Р»Рё СЌС‚Рѕ
     if( not player.IsPlayer() )
         return;
 
-    // он вышел или вошел?
+    // РѕРЅ РІС‹С€РµР» РёР»Рё РІРѕС€РµР»?
     if( dir == 1 || dir == 2 || dir == 3 )
     {
-        // вышел из города дальше зоны предупреждения
-        // удаляем из листов
+        // РІС‹С€РµР» РёР· РіРѕСЂРѕРґР° РґР°Р»СЊС€Рµ Р·РѕРЅС‹ РїСЂРµРґСѓРїСЂРµР¶РґРµРЅРёСЏ
+        // СѓРґР°Р»СЏРµРј РёР· Р»РёСЃС‚РѕРІ
         // grd.DelObserving(player);//!!!
         // player_ok.removeAt(uint(FindInArray(player_ok, player.Id)));
         return;
     }
 
-    // Посылаем сообщение о том, что наступили на этот хекс.
+    // РџРѕСЃС‹Р»Р°РµРј СЃРѕРѕР±С‰РµРЅРёРµ Рѕ С‚РѕРј, С‡С‚Рѕ РЅР°СЃС‚СѓРїРёР»Рё РЅР° СЌС‚РѕС‚ С…РµРєСЃ.
     player.SendMessage( MESSAGE_PLAYER_ON_WARNING_HEX, 0, MESSAGE_TO_WHO_SEES_ME );
 }
 
-// обыскивают
+// РѕР±С‹СЃРєРёРІР°СЋС‚
 // rename t_income -> t_searching
 void t_income( Critter& player, Scenery& trigger, bool entered, uint8 dir )
 {
     if( not entered )
         return;
-    // Проверяем игрок ли это
+    // РџСЂРѕРІРµСЂСЏРµРј РёРіСЂРѕРє Р»Рё СЌС‚Рѕ
     if( not player.IsPlayer() )
         return;
 
-    // Посылаем сообщение о том, что наступили на этот хекс.
+    // РџРѕСЃС‹Р»Р°РµРј СЃРѕРѕР±С‰РµРЅРёРµ Рѕ С‚РѕРј, С‡С‚Рѕ РЅР°СЃС‚СѓРїРёР»Рё РЅР° СЌС‚РѕС‚ С…РµРєСЃ.
     player.SendMessage( MESSAGE_PLAYER_ON_SEARCH_HEX, 0, MESSAGE_TO_WHO_SEES_ME );
 }
 
-// игрок проходит первые ворота города
+// РёРіСЂРѕРє РїСЂРѕС…РѕРґРёС‚ РїРµСЂРІС‹Рµ РІРѕСЂРѕС‚Р° РіРѕСЂРѕРґР°
 void t_pre_enter( Critter& player, Scenery& trigger, bool entered, uint8 dir )
 {
     if( not entered )
         return;
 
-    // Проверяем игрок ли это
+    // РџСЂРѕРІРµСЂСЏРµРј РёРіСЂРѕРє Р»Рё СЌС‚Рѕ
     if( not player.IsPlayer() )
         return;
 
     if( dir == 1 || dir == 2 || dir == 3 )
         return;
 
-    // Посылаем сообщение о том, что наступили на этот хекс.
+    // РџРѕСЃС‹Р»Р°РµРј СЃРѕРѕР±С‰РµРЅРёРµ Рѕ С‚РѕРј, С‡С‚Рѕ РЅР°СЃС‚СѓРїРёР»Рё РЅР° СЌС‚РѕС‚ С…РµРєСЃ.
     player.SendMessage( MESSAGE_PLAYER_ON_PRE_ENTER, 0, MESSAGE_TO_WHO_SEES_ME );
 }
 
-// игрок вошел в город
+// РёРіСЂРѕРє РІРѕС€РµР» РІ РіРѕСЂРѕРґ
 void t_enter( Critter& player, Scenery& trigger, bool entered, uint8 dir )
 {
     if( not entered )
         return;
 
-    // Проверяем игрок ли это
+    // РџСЂРѕРІРµСЂСЏРµРј РёРіСЂРѕРє Р»Рё СЌС‚Рѕ
     if( not player.IsPlayer() )
         return;
 
     if( dir == 1 || dir == 2 || dir == 3 )
     {
-        // вышел из города
-        // удаляем из листов
-        // убираем из листа наблюдения - больше он охрану не интересует
+        // РІС‹С€РµР» РёР· РіРѕСЂРѕРґР°
+        // СѓРґР°Р»СЏРµРј РёР· Р»РёСЃС‚РѕРІ
+        // СѓР±РёСЂР°РµРј РёР· Р»РёСЃС‚Р° РЅР°Р±Р»СЋРґРµРЅРёСЏ - Р±РѕР»СЊС€Рµ РѕРЅ РѕС…СЂР°РЅСѓ РЅРµ РёРЅС‚РµСЂРµСЃСѓРµС‚
         // grd.DelObserving(player);//!!!
         return;
     }
 
-    // Посылаем сообщение о том, что наступили на этот хекс.
+    // РџРѕСЃС‹Р»Р°РµРј СЃРѕРѕР±С‰РµРЅРёРµ Рѕ С‚РѕРј, С‡С‚Рѕ РЅР°СЃС‚СѓРїРёР»Рё РЅР° СЌС‚РѕС‚ С…РµРєСЃ.
     player.SendMessage( MESSAGE_PLAYER_ON_ATACK_HEX, 0, MESSAGE_TO_WHO_SEES_ME );
 }
 
@@ -319,12 +319,12 @@ uint r_searching( Critter& player, Critter@ guard, int val )
 {
     if( Searching( guard, player ) == 0 )
     {
-        // окей
+        // РѕРєРµР№
         if( not Present( player.Id, player_ok ) )
             player_ok.insertLast( player.Id );
         return 9;
     }
-    // не пускаем
+    // РЅРµ РїСѓСЃРєР°РµРј
     return 10;
 }
 

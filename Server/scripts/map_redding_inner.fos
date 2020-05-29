@@ -1,5 +1,5 @@
 // Author: rifleman17
-#define SCRIPTNAME                     "map_redding_inner"      // имя скрипта для patrol_h
+#define SCRIPTNAME                     "map_redding_inner"      // РёРјСЏ СЃРєСЂРёРїС‚Р° РґР»СЏ patrol_h
 
 #include "patrol_h.fos"
 #include "_ai.fos"

@@ -4,8 +4,8 @@
 #include "_dialogs.fos"
 #include "utils_for_array.fos"
 
-#define MSG_IM_HAVE_ILLEGAL_ITEMS    ( 129 )  // Номер сообщения, отсылаемого игроком, если у него в инвентаре есть запрещенные предметы
-#define STR_NO_ILLEGAL_ITEMS         ( 5200 ) // Номер строки "ты зачем принес сюда это!"
+#define MSG_IM_HAVE_ILLEGAL_ITEMS    ( 129 )  // РќРѕРјРµСЂ СЃРѕРѕР±С‰РµРЅРёСЏ, РѕС‚СЃС‹Р»Р°РµРјРѕРіРѕ РёРіСЂРѕРєРѕРј, РµСЃР»Рё Сѓ РЅРµРіРѕ РІ РёРЅРІРµРЅС‚Р°СЂРµ РµСЃС‚СЊ Р·Р°РїСЂРµС‰РµРЅРЅС‹Рµ РїСЂРµРґРјРµС‚С‹
+#define STR_NO_ILLEGAL_ITEMS         ( 5200 ) // РќРѕРјРµСЂ СЃС‚СЂРѕРєРё "С‚С‹ Р·Р°С‡РµРј РїСЂРёРЅРµСЃ СЃСЋРґР° СЌС‚Рѕ!"
 
 import bool AddPickPlane( Critter& npc, uint priority, Item@ item, uint useItemId, bool toOpen ) from "npc_planes";
 import bool AddAttackPlane( Critter& npc, uint priority, uint critId ) from "npc_planes";
@@ -19,7 +19,7 @@ class CGuardsManagerForHell : CGuardsManager
     }
 }
 
-// класс с алгоритмом
+// РєР»Р°СЃСЃ СЃ Р°Р»РіРѕСЂРёС‚РјРѕРј
 CGuardsManagerForHell Grd;
 
 bool GuardItemTest( Item@ item ) // export
@@ -28,10 +28,10 @@ bool GuardItemTest( Item@ item ) // export
 }
 
 // /////////
-// Функция для универсальных охранников:
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ СѓРЅРёРІРµСЂСЃР°Р»СЊРЅС‹С… РѕС…СЂР°РЅРЅРёРєРѕРІ:
 // /////////
 
-void _GuardInit1( Critter& cr, bool firstTime ) // Охрана поверхности Ада. "1" потому, что просто Init уже есть в GuardLib.
+void _GuardInit1( Critter& cr, bool firstTime ) // РћС…СЂР°РЅР° РїРѕРІРµСЂС…РЅРѕСЃС‚Рё РђРґР°. "1" РїРѕС‚РѕРјСѓ, С‡С‚Рѕ РїСЂРѕСЃС‚Рѕ Init СѓР¶Рµ РµСЃС‚СЊ РІ GuardLib.
 {
     cr.StatBase[ ST_BONUS_LOOK ] = 30;
     cr.StatBase[ ST_CRITICAL_CHANCE ] = 30;
@@ -41,17 +41,17 @@ void _GuardInit1( Critter& cr, bool firstTime ) // Охрана поверхности Ада. "1" п
     cr.ModeBase[ MODE_NO_ENEMY_STACK ] = 1;
     cr.ModeBase[ MODE_NO_PUSH ] = 1;
     cr.ModeBase[ MODE_NO_SUPPLY ] = 1;
-    cr.PerkBase[ PE_TERMINATOR ] = 1; // Так надо.
+    cr.PerkBase[ PE_TERMINATOR ] = 1; // РўР°Рє РЅР°РґРѕ.
 
     FighterPattern @ fp = FighterPattern();
-    fp.ForceArmourLvl = 6;            // возможный максимум на текущий момент
-    fp.MustHealLvl = 60;              // процент здоровья, при котором нпц начнет лечиться
+    fp.ForceArmourLvl = 6;            // РІРѕР·РјРѕР¶РЅС‹Р№ РјР°РєСЃРёРјСѓРј РЅР° С‚РµРєСѓС‰РёР№ РјРѕРјРµРЅС‚
+    fp.MustHealLvl = 60;              // РїСЂРѕС†РµРЅС‚ Р·РґРѕСЂРѕРІСЊСЏ, РїСЂРё РєРѕС‚РѕСЂРѕРј РЅРїС† РЅР°С‡РЅРµС‚ Р»РµС‡РёС‚СЊСЃСЏ
     fp.ForceCritterArmour( cr );
     fp._SetOnAttackedEvents( cr );
-    cr._CanGenStim = 1000;            // число стимпаков
+    cr._CanGenStim = 1000;            // С‡РёСЃР»Рѕ СЃС‚РёРјРїР°РєРѕРІ
 
-    // Выше - всё из fighter pattern.
-    // Ниже - из библиотеки охраны, только npc заменён на cr.
+    // Р’С‹С€Рµ - РІСЃС‘ РёР· fighter pattern.
+    // РќРёР¶Рµ - РёР· Р±РёР±Р»РёРѕС‚РµРєРё РѕС…СЂР°РЅС‹, С‚РѕР»СЊРєРѕ npc Р·Р°РјРµРЅС‘РЅ РЅР° cr.
 
     cr.SetEvent( CRITTER_EVENT_SHOW_CRITTER, "_GuardOnAddCritter" );
     cr.SetEvent( CRITTER_EVENT_HIDE_CRITTER, "_GuardOnRemoveCritter" );
@@ -64,14 +64,14 @@ void _GuardInit1( Critter& cr, bool firstTime ) // Охрана поверхности Ада. "1" п
     cr.SetEvent( CRITTER_EVENT_SMTH_USE_ITEM, "_GuardSmthUseItem" );
     cr.SetEvent( CRITTER_EVENT_SMTH_DROP_ITEM, "_GuardSmthDropItem" );
 
-    // Костыль для неработающей TeamId=16.
+    // РљРѕСЃС‚С‹Р»СЊ РґР»СЏ РЅРµСЂР°Р±РѕС‚Р°СЋС‰РµР№ TeamId=16.
     cr.SetEvent( CRITTER_EVENT_SMTH_ATTACK, "_TurretSmthAttack" );
 
     if( not firstTime && cr.GetTimeEvents( CTE_OBSERVING, null, null, null ) == 0 )
         cr.AddTimeEvent( "cte_Observing", OBSERV_PERIOD, CTE_OBSERVING );
 }
 
-void _GuardInit2( Critter& cr, bool firstTime ) // Охрана репликационных центров.
+void _GuardInit2( Critter& cr, bool firstTime ) // РћС…СЂР°РЅР° СЂРµРїР»РёРєР°С†РёРѕРЅРЅС‹С… С†РµРЅС‚СЂРѕРІ.
 {
     cr.StatBase[ ST_BONUS_LOOK ] = 50;
     cr.StatBase[ ST_CRITICAL_CHANCE ] = 95;
@@ -187,7 +187,7 @@ bool CheckItemIsIllegal( Item @ item )
     return Present( item.GetProtoId(), Pids_IllegalItems );
 }
 
-// Аналогичное для турелей, но они не кричат:
+// РђРЅР°Р»РѕРіРёС‡РЅРѕРµ РґР»СЏ С‚СѓСЂРµР»РµР№, РЅРѕ РѕРЅРё РЅРµ РєСЂРёС‡Р°С‚:
 
 void _TurretInit( Critter& cr, bool firstTime )
 {
@@ -198,12 +198,12 @@ void _TurretInit( Critter& cr, bool firstTime )
     cr.ModeBase[ MODE_NO_SUPPLY ] = 1;
 
     FighterPattern @ fp = FighterPattern();
-    fp.ForceArmourLvl = 6;  // возможный максимум на текущий момент
-    fp.MustHealLvl = 60;    // процент здоровья, при котором нпц начнет лечиться
+    fp.ForceArmourLvl = 6;  // РІРѕР·РјРѕР¶РЅС‹Р№ РјР°РєСЃРёРјСѓРј РЅР° С‚РµРєСѓС‰РёР№ РјРѕРјРµРЅС‚
+    fp.MustHealLvl = 60;    // РїСЂРѕС†РµРЅС‚ Р·РґРѕСЂРѕРІСЊСЏ, РїСЂРё РєРѕС‚РѕСЂРѕРј РЅРїС† РЅР°С‡РЅРµС‚ Р»РµС‡РёС‚СЊСЃСЏ
     fp.ForceCritterArmour( cr );
     fp._SetOnAttackedEvents( cr );
-    // Выше - всё из fighter pattern.
-    // Ниже - из библиотеки охраны, только npc заменён на cr.
+    // Р’С‹С€Рµ - РІСЃС‘ РёР· fighter pattern.
+    // РќРёР¶Рµ - РёР· Р±РёР±Р»РёРѕС‚РµРєРё РѕС…СЂР°РЅС‹, С‚РѕР»СЊРєРѕ npc Р·Р°РјРµРЅС‘РЅ РЅР° cr.
 
     cr.SetEvent( CRITTER_EVENT_SHOW_CRITTER, "_GuardOnAddCritter" );
     cr.SetEvent( CRITTER_EVENT_HIDE_CRITTER, "_GuardOnRemoveCritter" );
@@ -222,7 +222,7 @@ void _TurretSmthAttack( Critter& turret, Critter& attacker, Critter& target )
         AddAttackPlane( turret, 0, attacker );
 }
 
-// Усиление для гражданских
+// РЈСЃРёР»РµРЅРёРµ РґР»СЏ РіСЂР°Р¶РґР°РЅСЃРєРёС…
 
 void _PowerInit( Critter& cr, bool firstTime )
 {
@@ -235,9 +235,9 @@ void _PowerInit( Critter& cr, bool firstTime )
     cr.StatBase[ ST_TALK_DISTANCE ] = 5;
     cr.ModeBase[ MODE_NO_SUPPLY ] = 1;
     FighterPattern @ fp = FighterPattern();
-    fp.ForceArmourLvl = 6;  // возможный максимум на текущий момент
-    fp.MustHealLvl = 60;    // процент здоровья, при котором нпц начнет лечиться
+    fp.ForceArmourLvl = 6;  // РІРѕР·РјРѕР¶РЅС‹Р№ РјР°РєСЃРёРјСѓРј РЅР° С‚РµРєСѓС‰РёР№ РјРѕРјРµРЅС‚
+    fp.MustHealLvl = 60;    // РїСЂРѕС†РµРЅС‚ Р·РґРѕСЂРѕРІСЊСЏ, РїСЂРё РєРѕС‚РѕСЂРѕРј РЅРїС† РЅР°С‡РЅРµС‚ Р»РµС‡РёС‚СЊСЃСЏ
     fp.ForceCritterArmour( cr );
     fp._SetOnAttackedEvents( cr );
-    cr._CanGenStim = 1000;  // число стимпаков
+    cr._CanGenStim = 1000;  // С‡РёСЃР»Рѕ СЃС‚РёРјРїР°РєРѕРІ
 }

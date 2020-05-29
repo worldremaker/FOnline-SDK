@@ -9,7 +9,7 @@
 // Defines
 
 
-// Инициализация ошейника.
+// РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РѕС€РµР№РЅРёРєР°.
 void _InitDclaw( Critter& merc, bool firstTime )
 {
 
@@ -22,54 +22,54 @@ void _InitDclaw( Critter& merc, bool firstTime )
 }
 
 
-// Смерть смертокогта.
+// РЎРјРµСЂС‚СЊ СЃРјРµСЂС‚РѕРєРѕРіС‚Р°.
 void e_DclawDead( Critter& dclaw, Critter@ killer )
 {
 
-    // Закладываем в труп ошейник.
+    // Р—Р°РєР»Р°РґС‹РІР°РµРј РІ С‚СЂСѓРї РѕС€РµР№РЅРёРє.
     Item@ Collar = dclaw.AddItem( PID_PSYCHIC_NULLIFIER, 1 );
     if( Collar.IsNotValid )
         return;
     Collar.SetScript( "q_item_v13_collar@_CollarInit" );
     Collar.Update();
-    // Меняем стадию квеста у игроков в группе с "квест взят или самка поймана" на "ошейник потерян".
+    // РњРµРЅСЏРµРј СЃС‚Р°РґРёСЋ РєРІРµСЃС‚Р° Сѓ РёРіСЂРѕРєРѕРІ РІ РіСЂСѓРїРїРµ СЃ "РєРІРµСЃС‚ РІР·СЏС‚ РёР»Рё СЃР°РјРєР° РїРѕР№РјР°РЅР°" РЅР° "РѕС€РµР№РЅРёРє РїРѕС‚РµСЂСЏРЅ".
     Critter@ master = GetMaster( dclaw );
     int[] ChangeStages = { 1, 2 };
     if( valid( master ) )
     {
         SetGroupQuestStage( master, ChangeStages, 3 );
     }
-    // Разрешаем лутать труп.
+    // Р Р°Р·СЂРµС€Р°РµРј Р»СѓС‚Р°С‚СЊ С‚СЂСѓРї.
     dclaw.ModeBase[ MODE_NO_STEAL ] = 0;
     dclaw.ModeBase[ MODE_NO_LOOT ] = 0;
-    // Запускаем событие мерка merc.fos.
+    // Р—Р°РїСѓСЃРєР°РµРј СЃРѕР±С‹С‚РёРµ РјРµСЂРєР° merc.fos.
     e_MercDead( dclaw, killer );
 
 }
 
 
-// Деструктор смертокогта.
+// Р”РµСЃС‚СЂСѓРєС‚РѕСЂ СЃРјРµСЂС‚РѕРєРѕРіС‚Р°.
 void e_DclawFinish( Critter& dclaw, bool deleted )
 {
 
-    // Меняем стадию квеста у игроков в группе с "квест взят или самка поймана" на "ошейник потерян".
+    // РњРµРЅСЏРµРј СЃС‚Р°РґРёСЋ РєРІРµСЃС‚Р° Сѓ РёРіСЂРѕРєРѕРІ РІ РіСЂСѓРїРїРµ СЃ "РєРІРµСЃС‚ РІР·СЏС‚ РёР»Рё СЃР°РјРєР° РїРѕР№РјР°РЅР°" РЅР° "РѕС€РµР№РЅРёРє РїРѕС‚РµСЂСЏРЅ".
     Critter@ master = GetMaster( dclaw );
     int[] ChangeStages = { 1, 2 };
     if( valid( master ) )
     {
         SetGroupQuestStage( master, ChangeStages, 3 );
     }
-    // Запускаем деструктор мерка из merc.fos.
+    // Р—Р°РїСѓСЃРєР°РµРј РґРµСЃС‚СЂСѓРєС‚РѕСЂ РјРµСЂРєР° РёР· merc.fos.
     // e_MercFinish( dclaw, deleted );
 
 }
 
 
-// Смерть хозяина.
+// РЎРјРµСЂС‚СЊ С…РѕР·СЏРёРЅР°.
 void e_DclawMasterDead( Critter& dclaw, Critter& deadCr, Critter@ killer )
 {
 
-    // Если хозяин был убит, меняем стадию квеста у игроков в группе с "квест взят или самка поймана" на "ошейник потерян".
+    // Р•СЃР»Рё С…РѕР·СЏРёРЅ Р±С‹Р» СѓР±РёС‚, РјРµРЅСЏРµРј СЃС‚Р°РґРёСЋ РєРІРµСЃС‚Р° Сѓ РёРіСЂРѕРєРѕРІ РІ РіСЂСѓРїРїРµ СЃ "РєРІРµСЃС‚ РІР·СЏС‚ РёР»Рё СЃР°РјРєР° РїРѕР№РјР°РЅР°" РЅР° "РѕС€РµР№РЅРёРє РїРѕС‚РµСЂСЏРЅ".
     Critter@ master = GetMaster( dclaw );
     int[] ChangeStages = { 1, 2 };
     if( valid( master ) )
@@ -89,13 +89,13 @@ void e_DclawMasterDead( Critter& dclaw, Critter& deadCr, Critter@ killer )
         }
 
     }
-    // Запускаем событие смерти криттера из merc.fos.
+    // Р—Р°РїСѓСЃРєР°РµРј СЃРѕР±С‹С‚РёРµ СЃРјРµСЂС‚Рё РєСЂРёС‚С‚РµСЂР° РёР· merc.fos.
     e_MercSmthDead( dclaw, deadCr, killer );
 
 }
 
 
-// Удаляем смертокогта.
+// РЈРґР°Р»СЏРµРј СЃРјРµСЂС‚РѕРєРѕРіС‚Р°.
 void DclawFinish( Critter& dclaw )
 {
 

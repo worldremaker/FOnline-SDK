@@ -1,5 +1,5 @@
 // Author: rifleman17
-// Квест "Ночь нежна" - выяснить, почему ослабли коровы на одной из ферм модока.
+// РљРІРµСЃС‚ "РќРѕС‡СЊ РЅРµР¶РЅР°" - РІС‹СЏСЃРЅРёС‚СЊ, РїРѕС‡РµРјСѓ РѕСЃР»Р°Р±Р»Рё РєРѕСЂРѕРІС‹ РЅР° РѕРґРЅРѕР№ РёР· С„РµСЂРј РјРѕРґРѕРєР°.
 
 #include "_macros.fos"
 #include "_npc_pids.fos"
@@ -9,20 +9,20 @@
 
 #define FARM_X                 ( 940 )
 #define FARM_Y                 ( 213 )
-#define QVAMP_FARM_KNOWN       ( 2 )    // статус квеста: Известны координаты локации с фермой
-#define QVAMP_VAMP_MISSED      ( 3 )    // статус квеста: Низкое восприятие. Вампира не заметил.
-#define QVAMP_VAMP_ESCAPED     ( 4 )    // статус квеста: Вампира заметил, он удрал в неизвестном направлении.
-#define QVAMP_VAMP_TARGETED    ( 5 )    // статус квеста: Вампира заметил, может найти
-#define QVAMP_VAMP_FOUNDED     ( 6 )    // статус квеста: Пещера найдена.
-#define QVAMP_VAMP_KILLED      ( 8 )    // статус квеста: Игрок убил вампира.
-#define ENTIRE_SPAWN_BAT       ( 33 )   // Номер гекса, на котором появится летучая мышь. (ферма)
-#define ENTIRE_MOVETO_BAT      ( 34 )   // Номер гекса, к которому отправится летучая мышь.
+#define QVAMP_FARM_KNOWN       ( 2 )    // СЃС‚Р°С‚СѓСЃ РєРІРµСЃС‚Р°: РР·РІРµСЃС‚РЅС‹ РєРѕРѕСЂРґРёРЅР°С‚С‹ Р»РѕРєР°С†РёРё СЃ С„РµСЂРјРѕР№
+#define QVAMP_VAMP_MISSED      ( 3 )    // СЃС‚Р°С‚СѓСЃ РєРІРµСЃС‚Р°: РќРёР·РєРѕРµ РІРѕСЃРїСЂРёСЏС‚РёРµ. Р’Р°РјРїРёСЂР° РЅРµ Р·Р°РјРµС‚РёР».
+#define QVAMP_VAMP_ESCAPED     ( 4 )    // СЃС‚Р°С‚СѓСЃ РєРІРµСЃС‚Р°: Р’Р°РјРїРёСЂР° Р·Р°РјРµС‚РёР», РѕРЅ СѓРґСЂР°Р» РІ РЅРµРёР·РІРµСЃС‚РЅРѕРј РЅР°РїСЂР°РІР»РµРЅРёРё.
+#define QVAMP_VAMP_TARGETED    ( 5 )    // СЃС‚Р°С‚СѓСЃ РєРІРµСЃС‚Р°: Р’Р°РјРїРёСЂР° Р·Р°РјРµС‚РёР», РјРѕР¶РµС‚ РЅР°Р№С‚Рё
+#define QVAMP_VAMP_FOUNDED     ( 6 )    // СЃС‚Р°С‚СѓСЃ РєРІРµСЃС‚Р°: РџРµС‰РµСЂР° РЅР°Р№РґРµРЅР°.
+#define QVAMP_VAMP_KILLED      ( 8 )    // СЃС‚Р°С‚СѓСЃ РєРІРµСЃС‚Р°: РРіСЂРѕРє СѓР±РёР» РІР°РјРїРёСЂР°.
+#define ENTIRE_SPAWN_BAT       ( 33 )   // РќРѕРјРµСЂ РіРµРєСЃР°, РЅР° РєРѕС‚РѕСЂРѕРј РїРѕСЏРІРёС‚СЃСЏ Р»РµС‚СѓС‡Р°СЏ РјС‹С€СЊ. (С„РµСЂРјР°)
+#define ENTIRE_MOVETO_BAT      ( 34 )   // РќРѕРјРµСЂ РіРµРєСЃР°, Рє РєРѕС‚РѕСЂРѕРјСѓ РѕС‚РїСЂР°РІРёС‚СЃСЏ Р»РµС‚СѓС‡Р°СЏ РјС‹С€СЊ.
 #define NPC_PID_BAT            ( NPC_PID_VBBat )
-#define STR_SEENPLAYER         ( 5970 ) // Номер строки из файла FOTEXT, которую произносит мышь.
-#define STR_NOT_NIGHT          ( 5971 ) // Отличное место для наблюдений. Осталось дождаться ночи и выяснить, что происходит с браминами.
-#define STR_DONT_SHOOT         ( 5972 ) // Не стреляй, давай поговорим!
-#define FD_CURE_SUCCESS        ( 16 )   // Успех при попытке исцелить вампира
-#define FD_CURE_FAIL           ( 17 )   // Провала при попытке исцелить вампира
+#define STR_SEENPLAYER         ( 5970 ) // РќРѕРјРµСЂ СЃС‚СЂРѕРєРё РёР· С„Р°Р№Р»Р° FOTEXT, РєРѕС‚РѕСЂСѓСЋ РїСЂРѕРёР·РЅРѕСЃРёС‚ РјС‹С€СЊ.
+#define STR_NOT_NIGHT          ( 5971 ) // РћС‚Р»РёС‡РЅРѕРµ РјРµСЃС‚Рѕ РґР»СЏ РЅР°Р±Р»СЋРґРµРЅРёР№. РћСЃС‚Р°Р»РѕСЃСЊ РґРѕР¶РґР°С‚СЊСЃСЏ РЅРѕС‡Рё Рё РІС‹СЏСЃРЅРёС‚СЊ, С‡С‚Рѕ РїСЂРѕРёСЃС…РѕРґРёС‚ СЃ Р±СЂР°РјРёРЅР°РјРё.
+#define STR_DONT_SHOOT         ( 5972 ) // РќРµ СЃС‚СЂРµР»СЏР№, РґР°РІР°Р№ РїРѕРіРѕРІРѕСЂРёРј!
+#define FD_CURE_SUCCESS        ( 16 )   // РЈСЃРїРµС… РїСЂРё РїРѕРїС‹С‚РєРµ РёСЃС†РµР»РёС‚СЊ РІР°РјРїРёСЂР°
+#define FD_CURE_FAIL           ( 17 )   // РџСЂРѕРІР°Р»Р° РїСЂРё РїРѕРїС‹С‚РєРµ РёСЃС†РµР»РёС‚СЊ РІР°РјРїРёСЂР°
 
 import Location@ CreateLocationForCritter( Critter& player, int locPid, int worldX, int worldY, int delta, int varNum ) from "location";
 import void      SetLocationDeleteTime( Location& loc, uint time ) from "location";
@@ -30,7 +30,7 @@ import void      _DeletableMapInit( Map& map, bool firstTime ) from "location";
 import bool      GetNearEntire( Map& map, int number, uint16& hx, uint16& hy ) from "entire";
 import bool      AddWalkPlane( Critter& npc, uint priority, uint16 hexX, uint16 hexY, uint8 dir, bool run, uint cut ) from "npc_planes";
 
-// Отображение локации "Ферма с вампиром" для игрока.
+// РћС‚РѕР±СЂР°Р¶РµРЅРёРµ Р»РѕРєР°С†РёРё "Р¤РµСЂРјР° СЃ РІР°РјРїРёСЂРѕРј" РґР»СЏ РёРіСЂРѕРєР°.
 void r_ShowVampireFarm( Critter& player, Critter@ npc )
 {
     Location@ loc = CreateLocationForCritter( player, LOCATION_Quest_ModocVampireFarm, FARM_X, FARM_Y, __GlobalMapZoneLength, LVAR_mod_vampire_farm_location );
@@ -43,7 +43,7 @@ void r_ShowVampireFarm( Critter& player, Critter@ npc )
     }
 }
 
-// Скрипт для карты ферма с вампиром
+// РЎРєСЂРёРїС‚ РґР»СЏ РєР°СЂС‚С‹ С„РµСЂРјР° СЃ РІР°РјРїРёСЂРѕРј
 void _VampireFarmInit( Map& map, bool firstTime )
 {
     map.SetLoopTime( 1, 65000 );
@@ -58,7 +58,7 @@ void _VampireFarmFinish( Map& map, bool deleted )
         Location@ loc = map.GetLocation();
         if( !valid( loc ) )
             return;
-        // Игрок не посетил ферму, либо не дошел до нужной точки статус квеста должен быть сброшен в ноль
+        // РРіСЂРѕРє РЅРµ РїРѕСЃРµС‚РёР» С„РµСЂРјСѓ, Р»РёР±Рѕ РЅРµ РґРѕС€РµР» РґРѕ РЅСѓР¶РЅРѕР№ С‚РѕС‡РєРё СЃС‚Р°С‚СѓСЃ РєРІРµСЃС‚Р° РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ СЃР±СЂРѕС€РµРЅ РІ РЅРѕР»СЊ
         GameVar@ questerId = GetLocalVar( LLVAR_loc_mod_vampire_farm_quester_id, loc.Id );
         if( !valid( questerId ) || questerId == 0 )
             return;
@@ -70,17 +70,17 @@ void _VampireFarmFinish( Map& map, bool deleted )
     }
 }
 
-// Брамины
+// Р‘СЂР°РјРёРЅС‹
 void _BrahminInit( Critter& cr, bool firstTime )
 {
     cr.StatBase[ ST_DIALOG_ID ] = DIALOG_mob_ill_brahmin;
     cr.ToKnockout( KNOCKOUT_ANIM2_DEFAULT( true ), 1000, cr.HexX, cr.HexY );
 }
 
-// Триггер, переключающий статус квеста. Должны быть расположены на карте в линию
+// РўСЂРёРіРіРµСЂ, РїРµСЂРµРєР»СЋС‡Р°СЋС‰РёР№ СЃС‚Р°С‚СѓСЃ РєРІРµСЃС‚Р°. Р”РѕР»Р¶РЅС‹ Р±С‹С‚СЊ СЂР°СЃРїРѕР»РѕР¶РµРЅС‹ РЅР° РєР°СЂС‚Рµ РІ Р»РёРЅРёСЋ
 void t_ChangeStatus( Critter& player, Scenery& trigger, bool entered, uint8 dir )
 {
-    if( __Hour < 23 && __Hour > 4 )   // В дневное время ничего не происходит
+    if( __Hour < 23 && __Hour > 4 )   // Р’ РґРЅРµРІРЅРѕРµ РІСЂРµРјСЏ РЅРёС‡РµРіРѕ РЅРµ РїСЂРѕРёСЃС…РѕРґРёС‚
     {
         if( entered )
             player.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, STR_NOT_NIGHT );
@@ -95,7 +95,7 @@ void t_ChangeStatus( Critter& player, Scenery& trigger, bool entered, uint8 dir 
     GameVar@ quester = GetLocalVar( LLVAR_loc_mod_vampire_farm_quester_id, loc.Id );
     if( !valid( quester ) || quester != player.Id )
         return;
-    // Игрок - нужный
+    // РРіСЂРѕРє - РЅСѓР¶РЅС‹Р№
     GameVar@ qVar = GetLocalVar( LVAR_q_mod_joe_vampire, player.Id );
     if( valid( qVar ) )
     {
@@ -117,7 +117,7 @@ void t_ChangeStatus( Critter& player, Scenery& trigger, bool entered, uint8 dir 
 
 }
 
-// Пролетающая говорящая мышь
+// РџСЂРѕР»РµС‚Р°СЋС‰Р°СЏ РіРѕРІРѕСЂСЏС‰Р°СЏ РјС‹С€СЊ
 void ShowVamp( Map& map )
 {
     uint16 hx = 0;
@@ -139,7 +139,7 @@ void ShowVamp( Map& map )
 
 void _BatInit( Critter& cr, bool firstTime )
 {
-    cr.SetEvent( CRITTER_EVENT_IDLE, "_BatIdle" );   // Удаление вампира сразу, как дойдет до нужной точки
+    cr.SetEvent( CRITTER_EVENT_IDLE, "_BatIdle" );   // РЈРґР°Р»РµРЅРёРµ РІР°РјРїРёСЂР° СЃСЂР°Р·Сѓ, РєР°Рє РґРѕР№РґРµС‚ РґРѕ РЅСѓР¶РЅРѕР№ С‚РѕС‡РєРё
 }
 
 void _BatIdle( Critter& cr )
@@ -147,7 +147,7 @@ void _BatIdle( Critter& cr )
     DeleteNpc( cr );
 }
 
-// Пещера с вампиром
+// РџРµС‰РµСЂР° СЃ РІР°РјРїРёСЂРѕРј
 void _VampireCaveInit( Map& map, bool firstTime )
 {
     if( firstTime )
@@ -178,7 +178,7 @@ void _VampireCaveInCritter( Map& map, Critter& cr )
         }
     }
 }
-// Скрипт вампира
+// РЎРєСЂРёРїС‚ РІР°РјРїРёСЂР°
 void _VampireInit( Critter& cr, bool firstTime )
 {
     cr.SetEvent( CRITTER_EVENT_DEAD, "_VampireDead" );
@@ -186,7 +186,7 @@ void _VampireInit( Critter& cr, bool firstTime )
     cr.ShowCritterDist1 = 10;
 }
 
-// Кто-то убил вампира
+// РљС‚Рѕ-С‚Рѕ СѓР±РёР» РІР°РјРїРёСЂР°
 void _VampireDead( Critter& cr, Critter@ killer )
 {
     Map@ map = cr.GetMap();
@@ -206,14 +206,14 @@ void _VampireDead( Critter& cr, Critter@ killer )
     }
 }
 
-// Вампир видит игрока на расстоянии 10 гексов
+// Р’Р°РјРїРёСЂ РІРёРґРёС‚ РёРіСЂРѕРєР° РЅР° СЂР°СЃСЃС‚РѕСЏРЅРёРё 10 РіРµРєСЃРѕРІ
 void _VampireShowCritter1( Critter& cr, Critter& showCrit )
 {
     cr.SayMsg( SAY_SHOUT, TEXTMSG_TEXT, STR_DONT_SHOOT );
 }
 
 
-// Попытка излечения вампира
+// РџРѕРїС‹С‚РєР° РёР·Р»РµС‡РµРЅРёСЏ РІР°РјРїРёСЂР°
 uint r_TryCureVampire( Critter& cr, Critter@ npc, int val )
 {
     uint   forceDialog = FD_CURE_FAIL;

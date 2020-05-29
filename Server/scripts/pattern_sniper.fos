@@ -1,28 +1,28 @@
 #include "pattern_common.fos"
 
-/* Снайпер-сникер.
+/* РЎРЅР°Р№РїРµСЂ-СЃРЅРёРєРµСЂ.
    ----------------------
-   -  Стреляет всегда в глаза, если цель игрок и не в нокауте.
-   -  После выстрела шкерится на большое расстояние и прячется в сник.
-   -  Если здоровье ниже 50% и есть стимпаки - лечится перед уходом в сник.
-   -  В режиме ожидания сидит в снике.
-   -  Начинает огонь при попадании цели в эффективный радиус стрельбы.
+   -  РЎС‚СЂРµР»СЏРµС‚ РІСЃРµРіРґР° РІ РіР»Р°Р·Р°, РµСЃР»Рё С†РµР»СЊ РёРіСЂРѕРє Рё РЅРµ РІ РЅРѕРєР°СѓС‚Рµ.
+   -  РџРѕСЃР»Рµ РІС‹СЃС‚СЂРµР»Р° С€РєРµСЂРёС‚СЃСЏ РЅР° Р±РѕР»СЊС€РѕРµ СЂР°СЃСЃС‚РѕСЏРЅРёРµ Рё РїСЂСЏС‡РµС‚СЃСЏ РІ СЃРЅРёРє.
+   -  Р•СЃР»Рё Р·РґРѕСЂРѕРІСЊРµ РЅРёР¶Рµ 50% Рё РµСЃС‚СЊ СЃС‚РёРјРїР°РєРё - Р»РµС‡РёС‚СЃСЏ РїРµСЂРµРґ СѓС…РѕРґРѕРј РІ СЃРЅРёРє.
+   -  Р’ СЂРµР¶РёРјРµ РѕР¶РёРґР°РЅРёСЏ СЃРёРґРёС‚ РІ СЃРЅРёРєРµ.
+   -  РќР°С‡РёРЅР°РµС‚ РѕРіРѕРЅСЊ РїСЂРё РїРѕРїР°РґР°РЅРёРё С†РµР»Рё РІ СЌС„С„РµРєС‚РёРІРЅС‹Р№ СЂР°РґРёСѓСЃ СЃС‚СЂРµР»СЊР±С‹.
    ----------------------
-   Особенности, общие для снайперов всех уровней:
-   -  Бесшумный бег
-   -  Снайпер                   PE_SNIPER
+   РћСЃРѕР±РµРЅРЅРѕСЃС‚Рё, РѕР±С‰РёРµ РґР»СЏ СЃРЅР°Р№РїРµСЂРѕРІ РІСЃРµС… СѓСЂРѕРІРЅРµР№:
+   -  Р‘РµСЃС€СѓРјРЅС‹Р№ Р±РµРі
+   -  РЎРЅР°Р№РїРµСЂ                   PE_SNIPER
    -                             PE_BETTER_CRITICALS
-   -  Удача 10
+   -  РЈРґР°С‡Р° 10
                                                          PE_BONUS_RANGED_DAMAGE
-   -- Обращение с оружием	     PE_WEAPON_HANDLING
+   -- РћР±СЂР°С‰РµРЅРёРµ СЃ РѕСЂСѓР¶РёРµРј	     PE_WEAPON_HANDLING
    --                                                    PE_LIVING_ANATOMY
    ----------------------
-   Параметры для ур 1.
-   -  Легкое оружие 50..75
-   -  Сник          50..75
-   -  Восприятие    7
-   -  Резисты       35..50
-   -  АР            10
+   РџР°СЂР°РјРµС‚СЂС‹ РґР»СЏ СѓСЂ 1.
+   -  Р›РµРіРєРѕРµ РѕСЂСѓР¶РёРµ 50..75
+   -  РЎРЅРёРє          50..75
+   -  Р’РѕСЃРїСЂРёСЏС‚РёРµ    7
+   -  Р РµР·РёСЃС‚С‹       35..50
+   -  РђР             10
    -  HP            100
    ----------------------
  */
@@ -53,7 +53,7 @@ const int[] sniperStats_ =
 
 class SniperPattern : CommonPattern
 {
-    // получение сообщений
+    // РїРѕР»СѓС‡РµРЅРёРµ СЃРѕРѕР±С‰РµРЅРёР№
     void _Message( Critter& sniper, Critter& fromCr, int message, int value )
     {
         if( message == MSG_ATTACK_TARGET )
@@ -83,7 +83,7 @@ class SniperPattern : CommonPattern
         }
     }
 
-    // Атака снайпера
+    // РђС‚Р°РєР° СЃРЅР°Р№РїРµСЂР°
     bool _Attack( Critter& cr, Critter& target )
     {
         if( target.IsNpc() )
@@ -92,7 +92,7 @@ class SniperPattern : CommonPattern
             return false;
         cr.SendMessage( MSG_ATTACK_TARGET, target.Id, MESSAGE_TO_I_SEE );
 
-        // В активном слоте - оружие?
+        // Р’ Р°РєС‚РёРІРЅРѕРј СЃР»РѕС‚Рµ - РѕСЂСѓР¶РёРµ?
         uint8 mode = 0;
         ProtoItem @ weapon = cr.GetSlotProto( SLOT_HAND1, mode );
         if( !valid( weapon ) )
@@ -109,14 +109,14 @@ class SniperPattern : CommonPattern
             return false;
 
 
-        // Скопировано из основного обработчика
+        // РЎРєРѕРїРёСЂРѕРІР°РЅРѕ РёР· РѕСЃРЅРѕРІРЅРѕРіРѕ РѕР±СЂР°Р±РѕС‚С‡РёРєР°
         cr.TimeoutBase[ TO_AGGRESSOR ] = __FullSecond + REAL_MINUTE( 1 );
         CombatAttack( cr, target, weapon, _WeaponModeMake( 0, HIT_LOCATION_EYES ), ammo );
         this._SetOnAfterAttackEvent( cr, target );
         return true;
     }
 
-    // Снайпер убегает, если осталось мало АП
+    // РЎРЅР°Р№РїРµСЂ СѓР±РµРіР°РµС‚, РµСЃР»Рё РѕСЃС‚Р°Р»РѕСЃСЊ РјР°Р»Рѕ РђРџ
     void _SetOnAfterAttackEvent( Critter& sniper, Critter& target )
     {
         if( !target.IsPlayer() )
@@ -126,7 +126,7 @@ class SniperPattern : CommonPattern
 
     }
 
-    // Выбор плана отступления
+    // Р’С‹Р±РѕСЂ РїР»Р°РЅР° РѕС‚СЃС‚СѓРїР»РµРЅРёСЏ
     void TryRunAway( Critter& sniper )
     {
         uint16 x = sniper.HexX;
@@ -137,7 +137,7 @@ class SniperPattern : CommonPattern
         AddWalkPlane( sniper, RUNAWAY_PRIORITY, PLANE_ID_RUNAWAY, 0, x, y, dir, true, 0 );
     }
 
-    // Простой снайпера
+    // РџСЂРѕСЃС‚РѕР№ СЃРЅР°Р№РїРµСЂР°
     void _Idle( Critter& sniper )
     {
         // DL("snmiper isle/Sneak lvk="+sniper.Skill[SK_SNEAK]);
@@ -167,7 +167,7 @@ class SniperPattern : CommonPattern
 
     }
 
-    // Завершение выполнения плана
+    // Р—Р°РІРµСЂС€РµРЅРёРµ РІС‹РїРѕР»РЅРµРЅРёСЏ РїР»Р°РЅР°
     int _PlaneEnd( Critter& sniper, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem )
     {
         if( plane.Identifier == PLANE_ID_RUNAWAY )
@@ -175,7 +175,7 @@ class SniperPattern : CommonPattern
             if( reason == REASON_SUCCESS )
             {
                 this.HideSniper( sniper );
-                sniper.StatBase[ ST_VAR7 ] = 0;             // Счетчик попыток добежать
+                sniper.StatBase[ ST_VAR7 ] = 0;             // РЎС‡РµС‚С‡РёРє РїРѕРїС‹С‚РѕРє РґРѕР±РµР¶Р°С‚СЊ
             }
             else
             {
@@ -185,7 +185,7 @@ class SniperPattern : CommonPattern
                 {
                     TryRunAway( sniper );
                 }
-                if( sniper.StatBase[ ST_VAR7 ] < 7 )          // Не получилось добежать, пытаемся куданибудь рzдом
+                if( sniper.StatBase[ ST_VAR7 ] < 7 )          // РќРµ РїРѕР»СѓС‡РёР»РѕСЃСЊ РґРѕР±РµР¶Р°С‚СЊ, РїС‹С‚Р°РµРјСЃСЏ РєСѓРґР°РЅРёР±СѓРґСЊ СЂzРґРѕРј
                 {
                     Map @ map = sniper.GetMap();
                     if( valid( map ) )
@@ -202,7 +202,7 @@ class SniperPattern : CommonPattern
         return PLANE_RUN_GLOBAL;
     }
 
-    // Вспомогательная функция - стелс для снайпера
+    // Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅР°СЏ С„СѓРЅРєС†РёСЏ - СЃС‚РµР»СЃ РґР»СЏ СЃРЅР°Р№РїРµСЂР°
     void HideSniper( Critter& sniper )
     {
         sniper.ModeBase[ MODE_HIDE ] = 1;
@@ -224,7 +224,7 @@ class SniperPattern : CommonPattern
     bool _HaveToRun( Critter& sniper, Critter& player )
     {
 
-        // Игрок жив, ранен, осталось мало здоровья или хватает АП на выстрел
+        // РРіСЂРѕРє Р¶РёРІ, СЂР°РЅРµРЅ, РѕСЃС‚Р°Р»РѕСЃСЊ РјР°Р»Рѕ Р·РґРѕСЂРѕРІСЊСЏ РёР»Рё С…РІР°С‚Р°РµС‚ РђРџ РЅР° РІС‹СЃС‚СЂРµР»
         if( player.IsLife() && !player.IsKnockout() )
         {
             uint8 mode = 8;
@@ -244,11 +244,11 @@ class SniperPattern : CommonPattern
                         if( sniper.Stat[ ST_CURRENT_HP ] > 30 &&
                             sniper.Stat[ ST_MAX_LIFE ] > sniper.Stat[ ST_CURRENT_HP ] )
                         {
-                            return true;                                     // У самого нпц со здоровьем плохо
+                            return true;                                     // РЈ СЃР°РјРѕРіРѕ РЅРїС† СЃРѕ Р·РґРѕСЂРѕРІСЊРµРј РїР»РѕС…Рѕ
                         }
                         else
                         {
-                            return false;                                    // Надо добивать
+                            return false;                                    // РќР°РґРѕ РґРѕР±РёРІР°С‚СЊ
                         }
 
                     }
@@ -256,10 +256,10 @@ class SniperPattern : CommonPattern
             }
 
         }
-        // Видит ли снайпер игроков
+        // Р’РёРґРёС‚ Р»Рё СЃРЅР°Р№РїРµСЂ РёРіСЂРѕРєРѕРІ
         if( sniper.GetCritters( false, FIND_LIFE | FIND_ONLY_PLAYERS, null ) > 0 )
             return true;
-        // Всть игроки в радиусе поиска
+        // Р’СЃС‚СЊ РёРіСЂРѕРєРё РІ СЂР°РґРёСѓСЃРµ РїРѕРёСЃРєР°
         Map @map = sniper.GetMap();
         if( !valid( map ) )
             return false;
@@ -270,11 +270,11 @@ class SniperPattern : CommonPattern
 }
 
 #ifndef _NoBaseInstance
-SniperPattern pattern; // Для наследников нужно определить _NoBaseInstance
+SniperPattern pattern; // Р”Р»СЏ РЅР°СЃР»РµРґРЅРёРєРѕРІ РЅСѓР¶РЅРѕ РѕРїСЂРµРґРµР»РёС‚СЊ _NoBaseInstance
 #endif
 
-// Установка параметров криттера
-// lvl - уровень крутости от 0 до 4
+// РЈСЃС‚Р°РЅРѕРІРєР° РїР°СЂР°РјРµС‚СЂРѕРІ РєСЂРёС‚С‚РµСЂР°
+// lvl - СѓСЂРѕРІРµРЅСЊ РєСЂСѓС‚РѕСЃС‚Рё РѕС‚ 0 РґРѕ 4
 void SetSniperStats( Critter& cr, uint8 lvl )
 {
     lvl = CLAMP( lvl, 0, S_COUNT - 1 );
@@ -325,43 +325,43 @@ void _SniperShowCritter( Critter& cr, Critter& showCrit )
     pattern._ShowCritter( cr, showCrit );
 }
 
-// Cнайпер начал некий план
+// CРЅР°Р№РїРµСЂ РЅР°С‡Р°Р» РЅРµРєРёР№ РїР»Р°РЅ
 int _SniperPlaneBegin( Critter& cr, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem )
 {
     return pattern._PlaneBegin( cr, plane, reason, someCr, someItem );
 }
 
-// Снайпер получил сообщение
+// РЎРЅР°Р№РїРµСЂ РїРѕР»СѓС‡РёР» СЃРѕРѕР±С‰РµРЅРёРµ
 void _SniperMessage( Critter& sniper, Critter& fromCr, int message, int value )
 {
     pattern._Message( sniper, fromCr, message, value );
 }
 
-// Снайпер атакован
+// РЎРЅР°Р№РїРµСЂ Р°С‚Р°РєРѕРІР°РЅ
 bool _SniperAttacked( Critter& sniper, Critter& attacker )
 {
     return pattern._Attacked( sniper, attacker );
 }
 
-// Атака снайпера
+// РђС‚Р°РєР° СЃРЅР°Р№РїРµСЂР°
 bool _SniperAttack( Critter& cr, Critter& target )
 {
     return pattern._Attack( cr, target );
 }
 
-// Простой снайпера
+// РџСЂРѕСЃС‚РѕР№ СЃРЅР°Р№РїРµСЂР°
 void _SniperIdle( Critter& sniper )
 {
     pattern._Idle( sniper );
 }
 
-// Завершение выполнения плана
+// Р—Р°РІРµСЂС€РµРЅРёРµ РІС‹РїРѕР»РЅРµРЅРёСЏ РїР»Р°РЅР°
 int _SniperPlaneEnd( Critter& sniper, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem )
 {
     return pattern._PlaneEnd( sniper, plane, reason, someCr, someItem );
 }
 
-// Через 1 игровую минуту после выстрела Снайпер будет пытаться уйти из зоны видимости
+// Р§РµСЂРµР· 1 РёРіСЂРѕРІСѓСЋ РјРёРЅСѓС‚Сѓ РїРѕСЃР»Рµ РІС‹СЃС‚СЂРµР»Р° РЎРЅР°Р№РїРµСЂ Р±СѓРґРµС‚ РїС‹С‚Р°С‚СЊСЃСЏ СѓР№С‚Рё РёР· Р·РѕРЅС‹ РІРёРґРёРјРѕСЃС‚Рё
 uint e_OnAfterAttack( uint[] @ values )
 {
     // DL("On after attack");
@@ -388,7 +388,7 @@ uint e_OnAfterAttack( uint[] @ values )
 
 bool _GetRunAwayPoint( Critter& sniper, uint16& x, uint16& y, uint8& dir )
 {
-    // 1. поиск игроков во всех направлениях
+    // 1. РїРѕРёСЃРє РёРіСЂРѕРєРѕРІ РІРѕ РІСЃРµС… РЅР°РїСЂР°РІР»РµРЅРёСЏС…
     Map @map = sniper.GetMap();
     if( !valid( map ) )
         return false;
@@ -406,8 +406,8 @@ bool _GetRunAwayPoint( Critter& sniper, uint16& x, uint16& y, uint8& dir )
     uint max = 0;
     if( !_GetLimits( enemies, min, max ) )
         return false;
-    // Проверяем, что не вылезем за границы карты
-    // копируем направления с минимальным числом врагов в новый массив
+    // РџСЂРѕРІРµСЂСЏРµРј, С‡С‚Рѕ РЅРµ РІС‹Р»РµР·РµРј Р·Р° РіСЂР°РЅРёС†С‹ РєР°СЂС‚С‹
+    // РєРѕРїРёСЂСѓРµРј РЅР°РїСЂР°РІР»РµРЅРёСЏ СЃ РјРёРЅРёРјР°Р»СЊРЅС‹Рј С‡РёСЃР»РѕРј РІСЂР°РіРѕРІ РІ РЅРѕРІС‹Р№ РјР°СЃСЃРёРІ
     uint[] safeDirs;
     for( uint dir = 0; dir < enemies.length() && dir < 6; dir++ )
     {

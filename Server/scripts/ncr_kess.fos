@@ -4,20 +4,20 @@
 
 #define CRTYPE_RANGER        ( 10 )                                                // 20010}{}{hmcmbt from FOGAME.MSG
 #define CRTYPE_POLICE        ( 87 )                                                // 20087}{}{nmcopp   from FOGAME.MSG
-#define STR_NUM_IM_RANGER    ( 1 )                                                 // номер строки "я рейнджер" в диалоге кесса
+#define STR_NUM_IM_RANGER    ( 1 )                                                 // РЅРѕРјРµСЂ СЃС‚СЂРѕРєРё "СЏ СЂРµР№РЅРґР¶РµСЂ" РІ РґРёР°Р»РѕРіРµ РєРµСЃСЃР°
 
 void r_SetKessArmourChange( Critter& player, Critter@ npc, int val )
 {
-    // в течение ближайших игровых суток Кесс не дает квест на прохождение медкомиссии
-    // по истечению игровых суток Кесс меняет модельку брони
+    // РІ С‚РµС‡РµРЅРёРµ Р±Р»РёР¶Р°Р№С€РёС… РёРіСЂРѕРІС‹С… СЃСѓС‚РѕРє РљРµСЃСЃ РЅРµ РґР°РµС‚ РєРІРµСЃС‚ РЅР° РїСЂРѕС…РѕР¶РґРµРЅРёРµ РјРµРґРєРѕРјРёСЃСЃРёРё
+    // РїРѕ РёСЃС‚РµС‡РµРЅРёСЋ РёРіСЂРѕРІС‹С… СЃСѓС‚РѕРє РљРµСЃСЃ РјРµРЅСЏРµС‚ РјРѕРґРµР»СЊРєСѓ Р±СЂРѕРЅРё
 
     GameVar@ kess_status = GetGlobalVar( GVAR_ncr_kess_stage_global );
     if( kess_status > 0 )
     {
-        // Кесс уже готовится к приему в рейнджеры
+        // РљРµСЃСЃ СѓР¶Рµ РіРѕС‚РѕРІРёС‚СЃСЏ Рє РїСЂРёРµРјСѓ РІ СЂРµР№РЅРґР¶РµСЂС‹
         return;
     }
-    // создаем событие "кесса в рейнджеры!"
+    // СЃРѕР·РґР°РµРј СЃРѕР±С‹С‚РёРµ "РєРµСЃСЃР° РІ СЂРµР№РЅРґР¶РµСЂС‹!"
     if( CreateTimeEvent( __FullSecond + 60 * 60 * 3, "e_KessRanger", npc.Id, false ) == 0 )
     {
         Log( "Time event e_EveryEvening create fail, " + GetLastError() );
@@ -33,11 +33,11 @@ uint e_KessRanger( uint[] @ values )
     GameVar@ kess_status = GetGlobalVar( GVAR_ncr_kess_stage_global );
     if( kess_status == 2 )
     {
-        // Кесс уже рейнджер
+        // РљРµСЃСЃ СѓР¶Рµ СЂРµР№РЅРґР¶РµСЂ
         return 0;
     }
-    // создаем событие "кесса обратно в полицейского"
-    // произойдет оно через 5 игровых часов
+    // СЃРѕР·РґР°РµРј СЃРѕР±С‹С‚РёРµ "РєРµСЃСЃР° РѕР±СЂР°С‚РЅРѕ РІ РїРѕР»РёС†РµР№СЃРєРѕРіРѕ"
+    // РїСЂРѕРёР·РѕР№РґРµС‚ РѕРЅРѕ С‡РµСЂРµР· 5 РёРіСЂРѕРІС‹С… С‡Р°СЃРѕРІ
     if( CreateTimeEvent( __FullSecond + 60 * 60 * 5, "e_KessPoliceman", kess.Id, false ) == 0 )
     {
         Log( "Time event e_EveryEvening create fail, " + GetLastError() );
@@ -48,7 +48,7 @@ uint e_KessRanger( uint[] @ values )
     kess.StatBase[ ST_BASE_CRTYPE ] = CRTYPE_RANGER;
     // kess.SetStat(ST_BASE_CRTYPE,CRTYPE_RANGER); ovsolete
     kess.SayMsg( SAY_SHOUT_ON_HEAD, TEXTMSG_TEXT, STR_NUM_IM_RANGER );
-    // kess.Say(SAY_SHOUT_ON_HEAD,"Ха! Я рейнджер!");
+    // kess.Say(SAY_SHOUT_ON_HEAD,"РҐР°! РЇ СЂРµР№РЅРґР¶РµСЂ!");
     kess_status = 2;
     return 0;
 }
@@ -60,7 +60,7 @@ uint e_KessPoliceman( uint[] @ values )
     GameVar@ kess_status = GetGlobalVar( GVAR_ncr_kess_stage_global );
     if( kess_status == 0 )
     {
-        // Кесс уже полицейский
+        // РљРµСЃСЃ СѓР¶Рµ РїРѕР»РёС†РµР№СЃРєРёР№
         return 0;
     }
 

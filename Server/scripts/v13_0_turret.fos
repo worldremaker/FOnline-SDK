@@ -52,7 +52,7 @@ void _TurretGetMessage( Critter& turret, Critter& fromCr, int message, int value
 }
 
 
-// Если NPC атакован одним из "своих" - не атакуем его.
+// Р•СЃР»Рё NPC Р°С‚Р°РєРѕРІР°РЅ РѕРґРЅРёРј РёР· "СЃРІРѕРёС…" - РЅРµ Р°С‚Р°РєСѓРµРј РµРіРѕ.
 bool _FriendlyFire( Critter& guardian, Critter& attacker )
 {
 

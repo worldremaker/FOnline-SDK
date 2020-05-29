@@ -3,47 +3,47 @@
 
 import uint GetNearFullSecond( uint16 year, uint16 month, uint16 day, uint16 hour, uint16 minute, uint16 second ) from "time";
 
-// Ñòðîêè
+// Ð¡Ñ‚Ñ€Ð¾ÐºÐ¸
 #define STR_STEAL_FAIL    ( 1100 )
 #define STR_RADIO         ( 1101 )
 #define STR_MORNING       ( 1102 )
 
-// Èíèöèàëèçàöèÿ íïö, ïðîèñõîäèò ïðè ââîäå íïö â èãðó
+// Ð˜Ð½Ð¸Ñ†Ð¸Ð°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ñ Ð½Ð¿Ñ†, Ð¿Ñ€Ð¾Ð¸ÑÑ…Ð¾Ð´Ð¸Ñ‚ Ð¿Ñ€Ð¸ Ð²Ð²Ð¾Ð´Ðµ Ð½Ð¿Ñ† Ð² Ð¸Ð³Ñ€Ñƒ
 void _BoyInit( Critter& boy, bool firstTime )
 {
     boy.SetEvent( CRITTER_EVENT_STEALING, "_BoyStealing" );
     boy.SetEvent( CRITTER_EVENT_RESPAWN, "_BoyRespawn" );
-    // Ñîçäàåì ñîáûòèå, ãäå ìàëü÷èê çàçûâàåò ïîêóïàòü ó íåãî ðàöèè
+    // Ð¡Ð¾Ð·Ð´Ð°ÐµÐ¼ ÑÐ¾Ð±Ñ‹Ñ‚Ð¸Ðµ, Ð³Ð´Ðµ Ð¼Ð°Ð»ÑŒÑ‡Ð¸Ðº Ð·Ð°Ð·Ñ‹Ð²Ð°ÐµÑ‚ Ð¿Ð¾ÐºÑƒÐ¿Ð°Ñ‚ÑŒ Ñƒ Ð½ÐµÐ³Ð¾ Ñ€Ð°Ñ†Ð¸Ð¸
     if( CreateTimeEvent( __FullSecond + Random( 10, 50 ) * 60, "e_Announcement", boy.Id, false ) == 0 )
         Log( "Time event Announcement create fail, " + GetLastError() );
-    // Ñîçäàåì ñîáûòèå, ãäå ìàëü÷èê ïðèâåòñâóåò ñ äîáðûì óòðîì
+    // Ð¡Ð¾Ð·Ð´Ð°ÐµÐ¼ ÑÐ¾Ð±Ñ‹Ñ‚Ð¸Ðµ, Ð³Ð´Ðµ Ð¼Ð°Ð»ÑŒÑ‡Ð¸Ðº Ð¿Ñ€Ð¸Ð²ÐµÑ‚ÑÐ²ÑƒÐµÑ‚ Ñ Ð´Ð¾Ð±Ñ€Ñ‹Ð¼ ÑƒÑ‚Ñ€Ð¾Ð¼
     if( CreateTimeEvent( GetNearFullSecond( 0, 0, 0, 8, 0, 0 ), "e_AnnouncementMorning", boy.Id, false ) == 0 )
         Log( "Time event AnnouncementMorning create fail, " + GetLastError() );
 }
 
-// Ïðåäîïðåäåëåííàÿ ôóíêöèÿ, ñðàáàòûâàåò, êîãäà ó íïö âîðóþò
+// ÐŸÑ€ÐµÐ´Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð½Ð°Ñ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ñ, ÑÑ€Ð°Ð±Ð°Ñ‚Ñ‹Ð²Ð°ÐµÑ‚, ÐºÐ¾Ð³Ð´Ð° Ñƒ Ð½Ð¿Ñ† Ð²Ð¾Ñ€ÑƒÑŽÑ‚
 void _BoyStealing( Critter& boy, Critter& thief, bool success, Item& item, uint count )
 {
-    // Èíîãäà ïðè óäà÷íîì âîðîâñòâå ìàëü÷èê ãîâîðèò Õìì
+    // Ð˜Ð½Ð¾Ð³Ð´Ð° Ð¿Ñ€Ð¸ ÑƒÐ´Ð°Ñ‡Ð½Ð¾Ð¼ Ð²Ð¾Ñ€Ð¾Ð²ÑÑ‚Ð²Ðµ Ð¼Ð°Ð»ÑŒÑ‡Ð¸Ðº Ð³Ð¾Ð²Ð¾Ñ€Ð¸Ñ‚ Ð¥Ð¼Ð¼
     if( success == true && Random( 0, 5 ) == 0 )
         boy.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_TEXT, STR_STEAL_FAIL );
 }
 
-// Ñîáûòèå 1
+// Ð¡Ð¾Ð±Ñ‹Ñ‚Ð¸Ðµ 1
 uint e_Announcement( uint[] @ values )
 {
-    // Íî÷üþ íå ãîâîðèì, æäåì äî óòðà.
+    // ÐÐ¾Ñ‡ÑŒÑŽ Ð½Ðµ Ð³Ð¾Ð²Ð¾Ñ€Ð¸Ð¼, Ð¶Ð´ÐµÐ¼ Ð´Ð¾ ÑƒÑ‚Ñ€Ð°.
     if( __Hour > 20 || __Hour < 8 )
         return GetNearFullSecond( 0, 0, 0, 8, Random( 20, 40 ), 0 ) - __FullSecond;
 
-    // Çàçûâàåì.
+    // Ð—Ð°Ð·Ñ‹Ð²Ð°ÐµÐ¼.
     Critter@ boy = GetCritter( values[ 0 ] );
     if( valid( boy ) )
         boy.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_TEXT, STR_RADIO );
     return Random( 50, 70 ) * 60;
 }
 
-// Ñîáûòèå 2
+// Ð¡Ð¾Ð±Ñ‹Ñ‚Ð¸Ðµ 2
 uint e_AnnouncementMorning( uint[] @ values )
 {
     Critter@ boy = GetCritter( values[ 0 ] );
@@ -52,15 +52,15 @@ uint e_AnnouncementMorning( uint[] @ values )
     return 24 * 60 * 60;
 }
 
-// Ñîçäàíèå Õàììåðà. Êëþ÷ âðó÷àåì èãðîêó.
-// Âûçûâàåòñÿ èç äèàëîãà, â Ðåçóëüòàòå.
-// Ïðè îøèáêå ñîçäàíèÿ Õàììåðà äèàëîãîâàÿ âåòêà îòâîäèòñÿ íà ¹9.
-// master - èãðîê
-// slave - íïö
-// Îáîéäåìñÿ îäíèì èãðîêîì.
+// Ð¡Ð¾Ð·Ð´Ð°Ð½Ð¸Ðµ Ð¥Ð°Ð¼Ð¼ÐµÑ€Ð°. ÐšÐ»ÑŽÑ‡ Ð²Ñ€ÑƒÑ‡Ð°ÐµÐ¼ Ð¸Ð³Ñ€Ð¾ÐºÑƒ.
+// Ð’Ñ‹Ð·Ñ‹Ð²Ð°ÐµÑ‚ÑÑ Ð¸Ð· Ð´Ð¸Ð°Ð»Ð¾Ð³Ð°, Ð² Ð ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ðµ.
+// ÐŸÑ€Ð¸ Ð¾ÑˆÐ¸Ð±ÐºÐµ ÑÐ¾Ð·Ð´Ð°Ð½Ð¸Ñ Ð¥Ð°Ð¼Ð¼ÐµÑ€Ð° Ð´Ð¸Ð°Ð»Ð¾Ð³Ð¾Ð²Ð°Ñ Ð²ÐµÑ‚ÐºÐ° Ð¾Ñ‚Ð²Ð¾Ð´Ð¸Ñ‚ÑÑ Ð½Ð° â„–9.
+// master - Ð¸Ð³Ñ€Ð¾Ðº
+// slave - Ð½Ð¿Ñ†
+// ÐžÐ±Ð¾Ð¹Ð´ÐµÐ¼ÑÑ Ð¾Ð´Ð½Ð¸Ð¼ Ð¸Ð³Ñ€Ð¾ÐºÐ¾Ð¼.
 uint r_CreateHummer( Critter& player, Critter@ boy )
 {
-    // Áåðåì êàðòó íà êîòîðîé íàõîäèòñÿ èãðîê ñ íïö
+    // Ð‘ÐµÑ€ÐµÐ¼ ÐºÐ°Ñ€Ñ‚Ñƒ Ð½Ð° ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð¹ Ð½Ð°Ñ…Ð¾Ð´Ð¸Ñ‚ÑÑ Ð¸Ð³Ñ€Ð¾Ðº Ñ Ð½Ð¿Ñ†
     Map@ map = player.GetMap();
     if( not valid( map ) )
     {
@@ -72,30 +72,30 @@ uint r_CreateHummer( Critter& player, Critter@ boy )
     int[] x = { 252, 250, 251, 250, 255 };
     int[] y = { 182, 186, 192, 195, 192 };
 
-    uint keyId = Random( 10000, 50000 ); // Ãåíåðàöèÿ íîìåðà êëþ÷à
+    uint keyId = Random( 10000, 50000 ); // Ð“ÐµÐ½ÐµÑ€Ð°Ñ†Ð¸Ñ Ð½Ð¾Ð¼ÐµÑ€Ð° ÐºÐ»ÑŽÑ‡Ð°
 
-    // Õàììåð, êîìïëåêñíîå ñîçäàíèå âñåñòå ñ áàãàæíèêîì
+    // Ð¥Ð°Ð¼Ð¼ÐµÑ€, ÐºÐ¾Ð¼Ð¿Ð»ÐµÐºÑÐ½Ð¾Ðµ ÑÐ¾Ð·Ð´Ð°Ð½Ð¸Ðµ Ð²ÑÐµÑÑ‚Ðµ Ñ Ð±Ð°Ð³Ð°Ð¶Ð½Ð¸ÐºÐ¾Ð¼
     Item@ car = map.AddItem( x[ pos ], y[ pos ], PID_HUMMER, 1 );
     if( not valid( car ) )
         return 9;
 
     car.LockerId = keyId;
 
-    // Óñòàíàâëèâàåì íà áàãàæíèê íîìåð çàìêà
+    // Ð£ÑÑ‚Ð°Ð½Ð°Ð²Ð»Ð¸Ð²Ð°ÐµÐ¼ Ð½Ð° Ð±Ð°Ð³Ð°Ð¶Ð½Ð¸Ðº Ð½Ð¾Ð¼ÐµÑ€ Ð·Ð°Ð¼ÐºÐ°
     Item@ bag = car.GetChild( 0 );
     if( valid( bag ) )
         bag.LockerId = keyId;
     else
         Log( "Bag not created." );
 
-    // Êëþ÷
+    // ÐšÐ»ÑŽÑ‡
     Item@ key = player.AddItem( PID_KEY, 1 );
     if( valid( key ) )
         key.LockerId = keyId;
     else
         Log( "Create key fail." );
 
-    // Óäàëÿåì 10000 ìîíåò
+    // Ð£Ð´Ð°Ð»ÑÐµÐ¼ 10000 Ð¼Ð¾Ð½ÐµÑ‚
     player.DeleteItem( PID_BOTTLE_CAPS, 10000 );
     return 0;
 }

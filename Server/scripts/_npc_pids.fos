@@ -161,20 +161,20 @@
 #define NPC_PID_MaleGunThug              ( 36 )
 #define NPC_PID_FemaleGunThug            ( 37 )
 
-#define NPC_PID_GiantWasp                ( 487 )  // Гигантская оса
-#define NPC_PID_GiantBeetle              ( 488 )  // Гигантский жук(PE_SLAYER, PE_BETTER_CRITICALS)
+#define NPC_PID_GiantWasp                ( 487 )  // Р“РёРіР°РЅС‚СЃРєР°СЏ РѕСЃР°
+#define NPC_PID_GiantBeetle              ( 488 )  // Р“РёРіР°РЅС‚СЃРєРёР№ Р¶СѓРє(PE_SLAYER, PE_BETTER_CRITICALS)
 
-#define NPC_PID_BlackArmoredRebel        ( 489 )  // Мятежник, прочный
+#define NPC_PID_BlackArmoredRebel        ( 489 )  // РњСЏС‚РµР¶РЅРёРє, РїСЂРѕС‡РЅС‹Р№
 #define NPC_PID_GiantBeetle_2            ( 490 )
-#define NPC_PID_CaveRobber_male_1        ( 499 )  // Рандомные бандиты в пещерах
+#define NPC_PID_CaveRobber_male_1        ( 499 )  // Р Р°РЅРґРѕРјРЅС‹Рµ Р±Р°РЅРґРёС‚С‹ РІ РїРµС‰РµСЂР°С…
 #define NPC_PID_CaveRobber_female_1      ( 500 )
 #define NPC_PID_CaveRobber_male_2        ( 501 )
 #define NPC_PID_CaveRobber_female_2      ( 502 )
 #define NPC_PID_CaveRobber_male_3        ( 503 )
 #define NPC_PID_CaveRobber_female_3      ( 504 )
-#define NPC_PID_VCGuardsman              ( 506 )  // Гвардеец ГУ, черная ББ
-#define NPC_PID_VBBat                    ( 507 )  // Летучая мышь из Ван-Буррена
-#define NPC_PID_Eli                      ( 516 )  // Странник Илай
+#define NPC_PID_VCGuardsman              ( 506 )  // Р“РІР°СЂРґРµРµС† Р“РЈ, С‡РµСЂРЅР°СЏ Р‘Р‘
+#define NPC_PID_VBBat                    ( 507 )  // Р›РµС‚СѓС‡Р°СЏ РјС‹С€СЊ РёР· Р’Р°РЅ-Р‘СѓСЂСЂРµРЅР°
+#define NPC_PID_Eli                      ( 516 )  // РЎС‚СЂР°РЅРЅРёРє РР»Р°Р№
 #define NPC_PID_JACKAL_SNIPER            ( 526 )
 #define NPC_PID_JACKAL_TERMINATOR        ( 527 )
 #define NPC_PID_Behemoth                 ( 528 )

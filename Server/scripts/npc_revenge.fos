@@ -1,25 +1,25 @@
 // Author: rifleman17
-// Скрипт для НПЦ-жителей города, не защищенных баунтихантерами
-// Периодически, после того, как местные слишком часто умирали, НПЦ будут собираться вместе и принимать решение атаковать всех посетителей города.
-// у НПЦ занимается Var9 под хранение числа простоев.
+// РЎРєСЂРёРїС‚ РґР»СЏ РќРџР¦-Р¶РёС‚РµР»РµР№ РіРѕСЂРѕРґР°, РЅРµ Р·Р°С‰РёС‰РµРЅРЅС‹С… Р±Р°СѓРЅС‚РёС…Р°РЅС‚РµСЂР°РјРё
+// РџРµСЂРёРѕРґРёС‡РµСЃРєРё, РїРѕСЃР»Рµ С‚РѕРіРѕ, РєР°Рє РјРµСЃС‚РЅС‹Рµ СЃР»РёС€РєРѕРј С‡Р°СЃС‚Рѕ СѓРјРёСЂР°Р»Рё, РќРџР¦ Р±СѓРґСѓС‚ СЃРѕР±РёСЂР°С‚СЊСЃСЏ РІРјРµСЃС‚Рµ Рё РїСЂРёРЅРёРјР°С‚СЊ СЂРµС€РµРЅРёРµ Р°С‚Р°РєРѕРІР°С‚СЊ РІСЃРµС… РїРѕСЃРµС‚РёС‚РµР»РµР№ РіРѕСЂРѕРґР°.
+// Сѓ РќРџР¦ Р·Р°РЅРёРјР°РµС‚СЃСЏ Var9 РїРѕРґ С…СЂР°РЅРµРЅРёРµ С‡РёСЃР»Р° РїСЂРѕСЃС‚РѕРµРІ.
 
 #include "_macros.fos"
 #include "serializator.fos"
 
-#define MODE_NORMAL          ( 0 ) // Обычный режим
-#define MODE_LEADER_CALLS    ( 1 ) // Лидер призывает игроков
-#define MODE_MEETING         ( 2 ) // Идет митинг
-#define MODE_HOSTILE         ( 3 ) // Враждебный режим, все нпц атакуют любых игроков
+#define MODE_NORMAL          ( 0 ) // РћР±С‹С‡РЅС‹Р№ СЂРµР¶РёРј
+#define MODE_LEADER_CALLS    ( 1 ) // Р›РёРґРµСЂ РїСЂРёР·С‹РІР°РµС‚ РёРіСЂРѕРєРѕРІ
+#define MODE_MEETING         ( 2 ) // РРґРµС‚ РјРёС‚РёРЅРі
+#define MODE_HOSTILE         ( 3 ) // Р’СЂР°Р¶РґРµР±РЅС‹Р№ СЂРµР¶РёРј, РІСЃРµ РЅРїС† Р°С‚Р°РєСѓСЋС‚ Р»СЋР±С‹С… РёРіСЂРѕРєРѕРІ
 
 #define _AnyDataKey          # (mapId) ( "RevengeMapInfo_" + mapId )
 
-#define MAX_LEADER_CALLS     ( 4 )  // Максимальное число призывов лидера
-#define MAX_DEADS_BASE       ( 1 )  // Максимальное число убитых нпц по умолчанию
-#define LEADER_RADIUS        ( 10 ) // Радиус области возле лидера. куда пойдут нпц
+#define MAX_LEADER_CALLS     ( 4 )  // РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ С‡РёСЃР»Рѕ РїСЂРёР·С‹РІРѕРІ Р»РёРґРµСЂР°
+#define MAX_DEADS_BASE       ( 1 )  // РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ С‡РёСЃР»Рѕ СѓР±РёС‚С‹С… РЅРїС† РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+#define LEADER_RADIUS        ( 10 ) // Р Р°РґРёСѓСЃ РѕР±Р»Р°СЃС‚Рё РІРѕР·Р»Рµ Р»РёРґРµСЂР°. РєСѓРґР° РїРѕР№РґСѓС‚ РЅРїС†
 
-#define PLANE_MOVE2LEADER    ( 24 ) // План на перемещение к лидеру в момент MODE_LEADER_CALLS
-#define PLANE_WAITMEETING    ( 25 ) // План на ожидание завершения лекции
-#define CTE_CHECK_GAG        ( 26 ) // Идентификатор события поиска преград при движении.
+#define PLANE_MOVE2LEADER    ( 24 ) // РџР»Р°РЅ РЅР° РїРµСЂРµРјРµС‰РµРЅРёРµ Рє Р»РёРґРµСЂСѓ РІ РјРѕРјРµРЅС‚ MODE_LEADER_CALLS
+#define PLANE_WAITMEETING    ( 25 ) // РџР»Р°РЅ РЅР° РѕР¶РёРґР°РЅРёРµ Р·Р°РІРµСЂС€РµРЅРёСЏ Р»РµРєС†РёРё
+#define CTE_CHECK_GAG        ( 26 ) // РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ СЃРѕР±С‹С‚РёСЏ РїРѕРёСЃРєР° РїСЂРµРіСЂР°Рґ РїСЂРё РґРІРёР¶РµРЅРёРё.
 #define DL                   # (s) ( Log( "npc_revenge: " + s ) )
 // #define DL #(s)
 
@@ -62,25 +62,25 @@ int GetRevengeMode( Map& map )
 
 class RevengeMapInfo
 {
-    uint MapId;                // Карта, на которой происходят все события
-    uint DeadNpcToRevenge;     // Максимальное число убитых на карте НПЦ, после которого местные становястя агрессивны по отношению к игроку.
-    uint DeadsCounter;         // Текущее число убитых на карте НПЦ.
-    uint MapMode;              // Режимы карты: обычный, идет сбор нпц вокруг лидера, идет митинг, враждебный
-    uint LeaderRole;           // Номер роли нпц-лидера, который призывает всех местных жителей.
-    // Текстовые реплики
-    uint TextMsg;              // Номер текстового файла, в котором лежат реплики лидера.
-    uint StrCall;              // Номер строки, в которой лидер призывает местных.
-    uint StrCallAnswer;        // Ответы НПЦ на призывы лидера.
-    uint LeaderCalls;          // Счетчик призывов лидера.
-    uint LastActionTime;       // Время последнего действия, совершенного лидером, например, произнесенной фразы
+    uint MapId;                // РљР°СЂС‚Р°, РЅР° РєРѕС‚РѕСЂРѕР№ РїСЂРѕРёСЃС…РѕРґСЏС‚ РІСЃРµ СЃРѕР±С‹С‚РёСЏ
+    uint DeadNpcToRevenge;     // РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ С‡РёСЃР»Рѕ СѓР±РёС‚С‹С… РЅР° РєР°СЂС‚Рµ РќРџР¦, РїРѕСЃР»Рµ РєРѕС‚РѕСЂРѕРіРѕ РјРµСЃС‚РЅС‹Рµ СЃС‚Р°РЅРѕРІСЏСЃС‚СЏ Р°РіСЂРµСЃСЃРёРІРЅС‹ РїРѕ РѕС‚РЅРѕС€РµРЅРёСЋ Рє РёРіСЂРѕРєСѓ.
+    uint DeadsCounter;         // РўРµРєСѓС‰РµРµ С‡РёСЃР»Рѕ СѓР±РёС‚С‹С… РЅР° РєР°СЂС‚Рµ РќРџР¦.
+    uint MapMode;              // Р РµР¶РёРјС‹ РєР°СЂС‚С‹: РѕР±С‹С‡РЅС‹Р№, РёРґРµС‚ СЃР±РѕСЂ РЅРїС† РІРѕРєСЂСѓРі Р»РёРґРµСЂР°, РёРґРµС‚ РјРёС‚РёРЅРі, РІСЂР°Р¶РґРµР±РЅС‹Р№
+    uint LeaderRole;           // РќРѕРјРµСЂ СЂРѕР»Рё РЅРїС†-Р»РёРґРµСЂР°, РєРѕС‚РѕСЂС‹Р№ РїСЂРёР·С‹РІР°РµС‚ РІСЃРµС… РјРµСЃС‚РЅС‹С… Р¶РёС‚РµР»РµР№.
+    // РўРµРєСЃС‚РѕРІС‹Рµ СЂРµРїР»РёРєРё
+    uint TextMsg;              // РќРѕРјРµСЂ С‚РµРєСЃС‚РѕРІРѕРіРѕ С„Р°Р№Р»Р°, РІ РєРѕС‚РѕСЂРѕРј Р»РµР¶Р°С‚ СЂРµРїР»РёРєРё Р»РёРґРµСЂР°.
+    uint StrCall;              // РќРѕРјРµСЂ СЃС‚СЂРѕРєРё, РІ РєРѕС‚РѕСЂРѕР№ Р»РёРґРµСЂ РїСЂРёР·С‹РІР°РµС‚ РјРµСЃС‚РЅС‹С….
+    uint StrCallAnswer;        // РћС‚РІРµС‚С‹ РќРџР¦ РЅР° РїСЂРёР·С‹РІС‹ Р»РёРґРµСЂР°.
+    uint LeaderCalls;          // РЎС‡РµС‚С‡РёРє РїСЂРёР·С‹РІРѕРІ Р»РёРґРµСЂР°.
+    uint LastActionTime;       // Р’СЂРµРјСЏ РїРѕСЃР»РµРґРЅРµРіРѕ РґРµР№СЃС‚РІРёСЏ, СЃРѕРІРµСЂС€РµРЅРЅРѕРіРѕ Р»РёРґРµСЂРѕРј, РЅР°РїСЂРёРјРµСЂ, РїСЂРѕРёР·РЅРµСЃРµРЅРЅРѕР№ С„СЂР°Р·С‹
 
-    uint StrMeetingFirst;      // Первая фраза из монолога лидера во время митинга
-    uint StrMeetingLast;       // Последняя фраза из монолога лидера во время митинга
-    uint StrMeetingCur;        // Текущая активная фраза из монолога лидера
-    uint StrMeetingAnswer;     // Строка ответа НПЦ на реплики лидера во время митинга
+    uint StrMeetingFirst;      // РџРµСЂРІР°СЏ С„СЂР°Р·Р° РёР· РјРѕРЅРѕР»РѕРіР° Р»РёРґРµСЂР° РІРѕ РІСЂРµРјСЏ РјРёС‚РёРЅРіР°
+    uint StrMeetingLast;       // РџРѕСЃР»РµРґРЅСЏСЏ С„СЂР°Р·Р° РёР· РјРѕРЅРѕР»РѕРіР° Р»РёРґРµСЂР° РІРѕ РІСЂРµРјСЏ РјРёС‚РёРЅРіР°
+    uint StrMeetingCur;        // РўРµРєСѓС‰Р°СЏ Р°РєС‚РёРІРЅР°СЏ С„СЂР°Р·Р° РёР· РјРѕРЅРѕР»РѕРіР° Р»РёРґРµСЂР°
+    uint StrMeetingAnswer;     // РЎС‚СЂРѕРєР° РѕС‚РІРµС‚Р° РќРџР¦ РЅР° СЂРµРїР»РёРєРё Р»РёРґРµСЂР° РІРѕ РІСЂРµРјСЏ РјРёС‚РёРЅРіР°
 
-    uint StrHostileKill;       // Строка, которую произносит НПЦ, убивший игрока во враждебном режиме.
-    uint StrHostileEnter;      // Строка, которую произносят НПЦ при входе игрока в локацию
+    uint StrHostileKill;       // РЎС‚СЂРѕРєР°, РєРѕС‚РѕСЂСѓСЋ РїСЂРѕРёР·РЅРѕСЃРёС‚ РќРџР¦, СѓР±РёРІС€РёР№ РёРіСЂРѕРєР° РІРѕ РІСЂР°Р¶РґРµР±РЅРѕРј СЂРµР¶РёРјРµ.
+    uint StrHostileEnter;      // РЎС‚СЂРѕРєР°, РєРѕС‚РѕСЂСѓСЋ РїСЂРѕРёР·РЅРѕСЃСЏС‚ РќРџР¦ РїСЂРё РІС…РѕРґРµ РёРіСЂРѕРєР° РІ Р»РѕРєР°С†РёСЋ
 
     RevengeMapInfo( Map & map )
     {
@@ -124,7 +124,7 @@ class RevengeMapInfo
             this.StrMeetingCur = 0;
             break;
         case MODE_HOSTILE:
-            this.LastActionTime = __FullSecond;                     // Используем для последующих проверок, все ли НПЦ добрались домой
+            this.LastActionTime = __FullSecond;                     // РСЃРїРѕР»СЊР·СѓРµРј РґР»СЏ РїРѕСЃР»РµРґСѓСЋС‰РёС… РїСЂРѕРІРµСЂРѕРє, РІСЃРµ Р»Рё РќРџР¦ РґРѕР±СЂР°Р»РёСЃСЊ РґРѕРјРѕР№
             break;
         default:
             break;
@@ -147,16 +147,16 @@ class RevengeMapInfo
             break;
         case MODE_LEADER_CALLS:
             map.SetEvent( MAP_EVENT_LOOP_0, "_MapLoop0_LeaderCalls" );
-            map.SetLoopTime( 0, 15000 );                    // Раз в 15 секунд
+            map.SetLoopTime( 0, 15000 );                    // Р Р°Р· РІ 15 СЃРµРєСѓРЅРґ
             break;
         case MODE_MEETING:
             map.SetEvent( MAP_EVENT_LOOP_0, "_MapLoop0_Meeting" );
-            map.SetLoopTime( 0, 10000 );                   // Раз в 10 секунд
+            map.SetLoopTime( 0, 10000 );                   // Р Р°Р· РІ 10 СЃРµРєСѓРЅРґ
             break;
         case MODE_HOSTILE:
             CancelPlanes( map );
             map.SetEvent( MAP_EVENT_LOOP_0, "_MapLoop0_CheckGag" );
-            map.SetLoopTime( 0, 60000 );                   // Раз в 60 секунд
+            map.SetLoopTime( 0, 60000 );                   // Р Р°Р· РІ 60 СЃРµРєСѓРЅРґ
             map.SetEvent( MAP_EVENT_IN_CRITTER, "_MapInCritter" );
             break;
         default:
@@ -253,7 +253,7 @@ class RevengeMapInfo
         map.SetScript( "" );
     }
 }
-// События различных стадий
+// РЎРѕР±С‹С‚РёСЏ СЂР°Р·Р»РёС‡РЅС‹С… СЃС‚Р°РґРёР№
 void _MapInCritter( Map& map, Critter& cr )
 {
     if( cr.IsPlayer() )
@@ -294,12 +294,12 @@ void _MapInCritter( Map& map, Critter& cr )
     }
 }
 
-// Если нпц загородили друг другу проход
+// Р•СЃР»Рё РЅРїС† Р·Р°РіРѕСЂРѕРґРёР»Рё РґСЂСѓРі РґСЂСѓРіСѓ РїСЂРѕС…РѕРґ
 void _MapLoop0_CheckGag( Map& map )
 {
     DL( "Checking gag" );
     RevengeMapInfo@ rm = RevengeFromMap( map );
-    if( ( rm.LastActionTime + __TimeMultiplier * 60 * 3 ) < __FullSecond ) // 3 минуты. Проверок будет 4 шт
+    if( ( rm.LastActionTime + __TimeMultiplier * 60 * 3 ) < __FullSecond ) // 3 РјРёРЅСѓС‚С‹. РџСЂРѕРІРµСЂРѕРє Р±СѓРґРµС‚ 4 С€С‚
         map.SetEvent( MAP_EVENT_LOOP_0, "" );
     Critter@[] critters;
     Critter@ cr;
@@ -313,10 +313,10 @@ void _MapLoop0_CheckGag( Map& map )
             if( CritterGagHome( cr, map ) && cr.GetTimeEvents( CTE_CHECK_GAG, null, null, null ) == 0 )
             {
                 DL( "Found gagging npc. Id: " + cr.Id );
-                // Нпц имеет только один план, идти на домашнюю позицию
-                // проход не найден
-                // еще не задано событие проверки нужно ли смещение
-                // сохраняем текущие координаты в Var9
+                // РќРїС† РёРјРµРµС‚ С‚РѕР»СЊРєРѕ РѕРґРёРЅ РїР»Р°РЅ, РёРґС‚Рё РЅР° РґРѕРјР°С€РЅСЋСЋ РїРѕР·РёС†РёСЋ
+                // РїСЂРѕС…РѕРґ РЅРµ РЅР°Р№РґРµРЅ
+                // РµС‰Рµ РЅРµ Р·Р°РґР°РЅРѕ СЃРѕР±С‹С‚РёРµ РїСЂРѕРІРµСЂРєРё РЅСѓР¶РЅРѕ Р»Рё СЃРјРµС‰РµРЅРёРµ
+                // СЃРѕС…СЂР°РЅСЏРµРј С‚РµРєСѓС‰РёРµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РІ Var9
                 cr.StatBase[ ST_VAR9 ] == int(cr.HexX * cr.HexY);
                 cr.AddTimeEvent( "cte_CheckGag", 15 * __TimeMultiplier, CTE_CHECK_GAG );
             }
@@ -340,7 +340,7 @@ uint cte_CheckGag( Critter& cr, int identifier, uint& stage )
     return 0;
 }
 
-// Предположение: криттер застрял на дороге домой
+// РџСЂРµРґРїРѕР»РѕР¶РµРЅРёРµ: РєСЂРёС‚С‚РµСЂ Р·Р°СЃС‚СЂСЏР» РЅР° РґРѕСЂРѕРіРµ РґРѕРјРѕР№
 bool CritterGagHome( Critter& cr, Map& map )
 {
     uint16 hx = 0;
@@ -363,7 +363,7 @@ void _MapLoop0_Meeting( Map& map )
 {
     RevengeMapInfo@ rm = RevengeFromMap( map );
     if( rm.LastActionTime > 0 && __FullSecond < ( rm.LastActionTime + 10 * __TimeMultiplier ) )
-        return;         // Иногда MAP_LOOP происходит чаще, чем указано в SetLoopTime. Эта проверка, чтобы НПЦ не частил.
+        return;         // РРЅРѕРіРґР° MAP_LOOP РїСЂРѕРёСЃС…РѕРґРёС‚ С‡Р°С‰Рµ, С‡РµРј СѓРєР°Р·Р°РЅРѕ РІ SetLoopTime. Р­С‚Р° РїСЂРѕРІРµСЂРєР°, С‡С‚РѕР±С‹ РќРџР¦ РЅРµ С‡Р°СЃС‚РёР».
     if( !valid( rm ) )
         return;
     if( map.GetNpcCount( rm.LeaderRole, FIND_LIFE | FIND_ONLY_NPC ) > 0 && ( rm.StrMeetingFirst + rm.StrMeetingCur ) < rm.StrMeetingLast )
@@ -379,8 +379,8 @@ void _MapLoop0_Meeting( Map& map )
             return;
         }
     }
-    // Лидер не найден, сразу переходим к стадии атаки
-    map.SetEvent( MAP_EVENT_LOOP_0, "" );    // Сначала сброс, затем новое присвоение уже в rm.SetMode
+    // Р›РёРґРµСЂ РЅРµ РЅР°Р№РґРµРЅ, СЃСЂР°Р·Сѓ РїРµСЂРµС…РѕРґРёРј Рє СЃС‚Р°РґРёРё Р°С‚Р°РєРё
+    map.SetEvent( MAP_EVENT_LOOP_0, "" );    // РЎРЅР°С‡Р°Р»Р° СЃР±СЂРѕСЃ, Р·Р°С‚РµРј РЅРѕРІРѕРµ РїСЂРёСЃРІРѕРµРЅРёРµ СѓР¶Рµ РІ rm.SetMode
     rm.SetMode( MODE_HOSTILE );
 }
 
@@ -407,7 +407,7 @@ void _MapLoop0_LeaderCalls( Map& map )
     if( !valid( rm ) )
         return;
     if( rm.LastActionTime > 0 && __FullSecond < ( rm.LastActionTime + 15 * __TimeMultiplier ) )
-        return;         // Иногда MAP_LOOP происходит чаще, чем указано в SetLoopTime. Эта проверка, чтобы НПЦ не частил.
+        return;         // РРЅРѕРіРґР° MAP_LOOP РїСЂРѕРёСЃС…РѕРґРёС‚ С‡Р°С‰Рµ, С‡РµРј СѓРєР°Р·Р°РЅРѕ РІ SetLoopTime. Р­С‚Р° РїСЂРѕРІРµСЂРєР°, С‡С‚РѕР±С‹ РќРџР¦ РЅРµ С‡Р°СЃС‚РёР».
     rm.LastActionTime = __FullSecond;
     if( map.GetNpcCount( rm.LeaderRole, FIND_LIFE | FIND_ONLY_NPC ) > 0 )
     {
@@ -416,7 +416,7 @@ void _MapLoop0_LeaderCalls( Map& map )
         {
             rm.LeaderCalls++;
             rm.Save();
-            leader.SayMsg( SAY_SHOUT, rm.TextMsg, rm.StrCall );           // Лидер кричит созывающую фразу
+            leader.SayMsg( SAY_SHOUT, rm.TextMsg, rm.StrCall );           // Р›РёРґРµСЂ РєСЂРёС‡РёС‚ СЃРѕР·С‹РІР°СЋС‰СѓСЋ С„СЂР°Р·Сѓ
             Critter@[] npc;
             Critter@ cr;
             uint     l = map.GetCritters( 0, FIND_LIFE | FIND_ONLY_NPC, npc );
@@ -425,8 +425,8 @@ void _MapLoop0_LeaderCalls( Map& map )
                 @cr = npc[ i ];
                 if( valid( cr ) && IsLocalNpc( cr, map ) && cr.IsNoPlanes() && uint( cr.Stat[ ST_NPC_ROLE ] ) != rm.LeaderRole )
                 {
-                    if( cr.Stat[ BT_BRAHMIN ] != BT_RAT && cr.Stat[ BT_BRAHMIN ] != BT_DOG && cr.Stat[ BT_BRAHMIN ] != BT_CHILDREN && cr.Stat[ ST_BODY_TYPE ] != BT_CHILDREN && Random( 0, 5 ) == 0 ) // Детей из реплик исключаем
-                        cr.SayMsg( SAY_NORM, rm.TextMsg, rm.StrCallAnswer );                                                                                                                          // Относительная частота произнесения
+                    if( cr.Stat[ BT_BRAHMIN ] != BT_RAT && cr.Stat[ BT_BRAHMIN ] != BT_DOG && cr.Stat[ BT_BRAHMIN ] != BT_CHILDREN && cr.Stat[ ST_BODY_TYPE ] != BT_CHILDREN && Random( 0, 5 ) == 0 ) // Р”РµС‚РµР№ РёР· СЂРµРїР»РёРє РёСЃРєР»СЋС‡Р°РµРј
+                        cr.SayMsg( SAY_NORM, rm.TextMsg, rm.StrCallAnswer );                                                                                                                          // РћС‚РЅРѕСЃРёС‚РµР»СЊРЅР°СЏ С‡Р°СЃС‚РѕС‚Р° РїСЂРѕРёР·РЅРµСЃРµРЅРёСЏ
                     uint16 hx = leader.HexX;
                     uint16 hy = leader.HexY;
                     if( GetFreeHex( map, LEADER_RADIUS, hx, hy ) )
@@ -443,20 +443,20 @@ void _MapLoop0_LeaderCalls( Map& map )
         }
         else
         {
-            map.SetEvent( MAP_EVENT_LOOP_0, "" );            // Сначала сброс, затем новое присвоение уже в rm.SetMode
+            map.SetEvent( MAP_EVENT_LOOP_0, "" );            // РЎРЅР°С‡Р°Р»Р° СЃР±СЂРѕСЃ, Р·Р°С‚РµРј РЅРѕРІРѕРµ РїСЂРёСЃРІРѕРµРЅРёРµ СѓР¶Рµ РІ rm.SetMode
             rm.SetMode( MODE_MEETING );
             return;
         }
     }
-    // Лидер не найден, сразу переходим к стадии атаки
-    map.SetEvent( MAP_EVENT_LOOP_0, "" );    // Сначала сброс, затем новое присвоение уже в rm.SetMode
+    // Р›РёРґРµСЂ РЅРµ РЅР°Р№РґРµРЅ, СЃСЂР°Р·Сѓ РїРµСЂРµС…РѕРґРёРј Рє СЃС‚Р°РґРёРё Р°С‚Р°РєРё
+    map.SetEvent( MAP_EVENT_LOOP_0, "" );    // РЎРЅР°С‡Р°Р»Р° СЃР±СЂРѕСЃ, Р·Р°С‚РµРј РЅРѕРІРѕРµ РїСЂРёСЃРІРѕРµРЅРёРµ СѓР¶Рµ РІ rm.SetMode
     rm.SetMode( MODE_HOSTILE );
 }
 
 void plane_WaitMeeting( Critter& cr )
 {
     if( cr.Stat[ ST_VAR9 ] > 100 )
-        return;         // Слишком долго ждали, значит, что-то пошло не так
+        return;         // РЎР»РёС€РєРѕРј РґРѕР»РіРѕ Р¶РґР°Р»Рё, Р·РЅР°С‡РёС‚, С‡С‚Рѕ-С‚Рѕ РїРѕС€Р»Рѕ РЅРµ С‚Р°Рє
     cr.StatBase[ ST_VAR9 ]++;
     Map@ map = cr.GetMap();
     if( !valid( map ) )
@@ -464,7 +464,7 @@ void plane_WaitMeeting( Critter& cr )
     RevengeMapInfo@ rm = RevengeFromMap( map );
     if( !valid( rm ) )
         return;
-    if( rm.MapMode == MODE_LEADER_CALLS || rm.MapMode == MODE_MEETING )   // Продолжаются призывы к сбору от лидера, либо идет митинг
+    if( rm.MapMode == MODE_LEADER_CALLS || rm.MapMode == MODE_MEETING )   // РџСЂРѕРґРѕР»Р¶Р°СЋС‚СЃСЏ РїСЂРёР·С‹РІС‹ Рє СЃР±РѕСЂСѓ РѕС‚ Р»РёРґРµСЂР°, Р»РёР±Рѕ РёРґРµС‚ РјРёС‚РёРЅРі
         AddMiscPlane( cr, 0, __FullSecond + __TimeMultiplier * 10, "npc_revenge@plane_WaitMeeting" );
 }
 
@@ -478,7 +478,7 @@ void _RevengeMapInit( Map& map, bool firstTime )
 
 
 
-// Признак, это местный НПЦ
+// РџСЂРёР·РЅР°Рє, СЌС‚Рѕ РјРµСЃС‚РЅС‹Р№ РќРџР¦
 bool IsLocalNpc( Critter@ cr, Map@ map )
 {
     if( !valid( cr ) || cr.IsPlayer() || !valid( map ) )
@@ -490,7 +490,7 @@ bool IsLocalNpc( Critter@ cr, Map@ map )
     return ( mapId == map.Id );
 }
 
-// Признак, все нпц на карте враждебны
+// РџСЂРёР·РЅР°Рє, РІСЃРµ РЅРїС† РЅР° РєР°СЂС‚Рµ РІСЂР°Р¶РґРµР±РЅС‹
 bool IsHostileMap( Map@ map )
 {
     if( !valid( map ) )

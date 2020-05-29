@@ -11,7 +11,7 @@ import uint EraseAttackPlane( Critter& npc, uint critId ) from "npc_planes";
 // Defines
 
 
-// Èíèöèàëèçàöèÿ îøåéíèêà.
+// Ð˜Ð½Ð¸Ñ†Ð¸Ð°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ñ Ð¾ÑˆÐµÐ¹Ð½Ð¸ÐºÐ°.
 void _CollarInit( Item& collar, bool firstTime )
 {
 
@@ -26,7 +26,7 @@ void _CollarInit( Item& collar, bool firstTime )
 }
 
 
-// Äåéñòâèÿ ïðè èñïîëüçîâàíèè îøåéíèêà.
+// Ð”ÐµÐ¹ÑÑ‚Ð²Ð¸Ñ Ð¿Ñ€Ð¸ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð½Ð¸Ð¸ Ð¾ÑˆÐµÐ¹Ð½Ð¸ÐºÐ°.
 bool e_CollarUse( Item& item, Critter& player, Critter@ target, Item@ onItem, Scenery@ onScenery )
 {
 
@@ -37,7 +37,7 @@ bool e_CollarUse( Item& item, Critter& player, Critter@ target, Item@ onItem, Sc
 
     if( target.StatBase[ ST_BODY_TYPE ] == BT_DEADCLAW && target.StatBase[ ST_BASE_CRTYPE ] == 51 )
     {
-        // Íàäåòü îøéíèê ìîæíî òîëüêî åñëè æèâîòíîå â îòêëþ÷êå. Åñëè, êîíå÷íî, ó èãðîêà íåò ïåðêà - äðóã æèâîòíûõ...
+        // ÐÐ°Ð´ÐµÑ‚ÑŒ Ð¾ÑˆÐ¹Ð½Ð¸Ðº Ð¼Ð¾Ð¶Ð½Ð¾ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ ÐµÑÐ»Ð¸ Ð¶Ð¸Ð²Ð¾Ñ‚Ð½Ð¾Ðµ Ð² Ð¾Ñ‚ÐºÐ»ÑŽÑ‡ÐºÐµ. Ð•ÑÐ»Ð¸, ÐºÐ¾Ð½ÐµÑ‡Ð½Ð¾, Ñƒ Ð¸Ð³Ñ€Ð¾ÐºÐ° Ð½ÐµÑ‚ Ð¿ÐµÑ€ÐºÐ° - Ð´Ñ€ÑƒÐ³ Ð¶Ð¸Ð²Ð¾Ñ‚Ð½Ñ‹Ñ…...
         if( player.Perk[ PE_ANIMAL_FRIEND ] > 0 || target.IsKnockout() )
         {
             if( target.CheckEnemyInStack( player.Id ) )

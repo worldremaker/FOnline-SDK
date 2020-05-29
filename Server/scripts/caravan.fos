@@ -7,17 +7,17 @@
 #include "_ai.fos"
 #include "_teams.fos"
 
-/* **************************************** Массив описаний ***************************************** */
+/* **************************************** РњР°СЃСЃРёРІ РѕРїРёСЃР°РЅРёР№ ***************************************** */
 CaravanInfo@[] Caravans;
-/* ************************************ Инициализация караванов ************************************* */
+/* ************************************ РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РєР°СЂР°РІР°РЅРѕРІ ************************************* */
 void CaravansInit()
 {
     #include "caravans_init.fos"
 
 }
 
-/* **************************************** Основные методы ***************************************** */
-// караван по идентификатору
+/* **************************************** РћСЃРЅРѕРІРЅС‹Рµ РјРµС‚РѕРґС‹ ***************************************** */
+// РєР°СЂР°РІР°РЅ РїРѕ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂСѓ
 CaravanInfo @ _GetCaravan( uint idCaravan )
 {
     if( !valid( Caravans ) )
@@ -35,16 +35,16 @@ CaravanInfo @ _GetCaravan( uint idCaravan )
     return null;
 }
 
-// добавление нового описания караванов
-// idCaravan - код каравана
-// crvType = тип каравана
-// speed = множитель скорости движения по глобальной карте
-// qVar = номер квестовой переменная для данного каравана
-// maxGrp = максимальный размер группы каравана включая игроков и караванщика
+// РґРѕР±Р°РІР»РµРЅРёРµ РЅРѕРІРѕРіРѕ РѕРїРёСЃР°РЅРёСЏ РєР°СЂР°РІР°РЅРѕРІ
+// idCaravan - РєРѕРґ РєР°СЂР°РІР°РЅР°
+// crvType = С‚РёРї РєР°СЂР°РІР°РЅР°
+// speed = РјРЅРѕР¶РёС‚РµР»СЊ СЃРєРѕСЂРѕСЃС‚Рё РґРІРёР¶РµРЅРёСЏ РїРѕ РіР»РѕР±Р°Р»СЊРЅРѕР№ РєР°СЂС‚Рµ
+// qVar = РЅРѕРјРµСЂ РєРІРµСЃС‚РѕРІРѕР№ РїРµСЂРµРјРµРЅРЅР°СЏ РґР»СЏ РґР°РЅРЅРѕРіРѕ РєР°СЂР°РІР°РЅР°
+// maxGrp = РјР°РєСЃРёРјР°Р»СЊРЅС‹Р№ СЂР°Р·РјРµСЂ РіСЂСѓРїРїС‹ РєР°СЂР°РІР°РЅР° РІРєР»СЋС‡Р°СЏ РёРіСЂРѕРєРѕРІ Рё РєР°СЂР°РІР°РЅС‰РёРєР°
 void _SetupCaravan( uint idCaravan, uint8 crvType, uint8 speed, uint16 qVar, uint8 maxGrp )
 {
 
-    // проверяем, что каравана с таким ид нет в массиве
+    // РїСЂРѕРІРµСЂСЏРµРј, С‡С‚Рѕ РєР°СЂР°РІР°РЅР° СЃ С‚Р°РєРёРј РёРґ РЅРµС‚ РІ РјР°СЃСЃРёРІРµ
     CaravanInfo @ ci = _GetCaravan( idCaravan );
     if( valid( ci ) )
     {
@@ -62,19 +62,19 @@ void _SetupCaravan( uint idCaravan, uint8 crvType, uint8 speed, uint16 qVar, uin
     ci.MaxGroup = maxGrp;
 }
 
-// настройка лидера каравана
-// idCaravan - код каравана.
-// dialog - номер диалога нпц
-// pid = прототип криттера
-// bag = номер сумки
-// team = номер команды
+// РЅР°СЃС‚СЂРѕР№РєР° Р»РёРґРµСЂР° РєР°СЂР°РІР°РЅР°
+// idCaravan - РєРѕРґ РєР°СЂР°РІР°РЅР°.
+// dialog - РЅРѕРјРµСЂ РґРёР°Р»РѕРіР° РЅРїС†
+// pid = РїСЂРѕС‚РѕС‚РёРї РєСЂРёС‚С‚РµСЂР°
+// bag = РЅРѕРјРµСЂ СЃСѓРјРєРё
+// team = РЅРѕРјРµСЂ РєРѕРјР°РЅРґС‹
 void _SetupCaravanLeader( uint idCaravan, uint dialog, uint pid, uint bag, uint team, uint ai, uint level )
 {
     CaravanInfo @ ci = _GetCaravan( idCaravan );
     if( !valid( ci ) )
         return;
-    // внимание! если нпц - караван лидер уже был ранее добавлен, об удалении криттера при необходимости, нужно позаботиться дополнительно
-    // проверка ci.Leader.Id!=0
+    // РІРЅРёРјР°РЅРёРµ! РµСЃР»Рё РЅРїС† - РєР°СЂР°РІР°РЅ Р»РёРґРµСЂ СѓР¶Рµ Р±С‹Р» СЂР°РЅРµРµ РґРѕР±Р°РІР»РµРЅ, РѕР± СѓРґР°Р»РµРЅРёРё РєСЂРёС‚С‚РµСЂР° РїСЂРё РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё, РЅСѓР¶РЅРѕ РїРѕР·Р°Р±РѕС‚РёС‚СЊСЃСЏ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕ
+    // РїСЂРѕРІРµСЂРєР° ci.Leader.Id!=0
     @ ci.Leader = CaravanLeaderInfo();
     DL2( "_SetupCaravanLeader 1. IdCaravan" + ci.CaravanId + "; Level" + ci.Leader.Level );
     ci.Leader.DialogId = dialog;
@@ -88,9 +88,9 @@ void _SetupCaravanLeader( uint idCaravan, uint dialog, uint pid, uint bag, uint 
     ci.Leader.CaravanId = idCaravan;
 }
 
-// настройка лидера каравана по существующему НПЦ
-// idCaravan - код каравана
-// leader - нпц проводник. Он должен уже существовать.
+// РЅР°СЃС‚СЂРѕР№РєР° Р»РёРґРµСЂР° РєР°СЂР°РІР°РЅР° РїРѕ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРјСѓ РќРџР¦
+// idCaravan - РєРѕРґ РєР°СЂР°РІР°РЅР°
+// leader - РЅРїС† РїСЂРѕРІРѕРґРЅРёРє. РћРЅ РґРѕР»Р¶РµРЅ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІРѕРІР°С‚СЊ.
 void _SetupCaravanLeader( uint idCaravan, Critter& leader )
 {
     CaravanInfo @ ci = _GetCaravan( idCaravan );
@@ -109,12 +109,12 @@ void _SetupCaravanLeader( uint idCaravan, Critter& leader )
     leader.CrvId = idCaravan;
 }
 
-// настройка положения лидера караванов в исходной и конечной точках
-// idCaravan - код каравана.
-// locPid - код прототипа локации
-// mapPid - код прототипа карты
-// x, y - координаты гекса на котором появится нпц
-// isStartPos - признак, стартовая или конечная позиция. Если true - устанавливаем StartPos, иначе EndPos
+// РЅР°СЃС‚СЂРѕР№РєР° РїРѕР»РѕР¶РµРЅРёСЏ Р»РёРґРµСЂР° РєР°СЂР°РІР°РЅРѕРІ РІ РёСЃС…РѕРґРЅРѕР№ Рё РєРѕРЅРµС‡РЅРѕР№ С‚РѕС‡РєР°С…
+// idCaravan - РєРѕРґ РєР°СЂР°РІР°РЅР°.
+// locPid - РєРѕРґ РїСЂРѕС‚РѕС‚РёРїР° Р»РѕРєР°С†РёРё
+// mapPid - РєРѕРґ РїСЂРѕС‚РѕС‚РёРїР° РєР°СЂС‚С‹
+// x, y - РєРѕРѕСЂРґРёРЅР°С‚С‹ РіРµРєСЃР° РЅР° РєРѕС‚РѕСЂРѕРј РїРѕСЏРІРёС‚СЃСЏ РЅРїС†
+// isStartPos - РїСЂРёР·РЅР°Рє, СЃС‚Р°СЂС‚РѕРІР°СЏ РёР»Рё РєРѕРЅРµС‡РЅР°СЏ РїРѕР·РёС†РёСЏ. Р•СЃР»Рё true - СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј StartPos, РёРЅР°С‡Рµ EndPos
 void _SetupCaravanLiderPosition( uint idCaravan, uint16 locPid, uint16 mapPid, uint16 x, uint16 y, bool isStartPos )
 {
     CaravanInfo @ ci = _GetCaravan( idCaravan );
@@ -134,9 +134,9 @@ void _SetupCaravanLiderPosition( uint idCaravan, uint16 locPid, uint16 mapPid, u
     }
 }
 
-// настройка караванных повозок, появляющихся на локации
-// idCaravan - код каравана.
-// numCabs - число повозок, которые нужно добавить
+// РЅР°СЃС‚СЂРѕР№РєР° РєР°СЂР°РІР°РЅРЅС‹С… РїРѕРІРѕР·РѕРє, РїРѕСЏРІР»СЏСЋС‰РёС…СЃСЏ РЅР° Р»РѕРєР°С†РёРё
+// idCaravan - РєРѕРґ РєР°СЂР°РІР°РЅР°.
+// numCabs - С‡РёСЃР»Рѕ РїРѕРІРѕР·РѕРє, РєРѕС‚РѕСЂС‹Рµ РЅСѓР¶РЅРѕ РґРѕР±Р°РІРёС‚СЊ
 void _SetupCaravanCabs( uint idCaravan, uint8 numCabs )
 {
     CaravanInfo @ ci = _GetCaravan( idCaravan );
@@ -151,13 +151,13 @@ void _SetupCaravanCabs( uint idCaravan, uint8 numCabs )
     }
 }
 
-// добавление описания лута в одну из повозок
-// idCaravan - код каравана.
-// cabNum - порядковый номер повозки, если <0 лут будет добавлен в рандомную повозку
-// itemPid - прототип итема
-// minNum - минимальное число
-// maxNum - максимальеное число
-// chanceAppear - шанс в процентах на появление
+// РґРѕР±Р°РІР»РµРЅРёРµ РѕРїРёСЃР°РЅРёСЏ Р»СѓС‚Р° РІ РѕРґРЅСѓ РёР· РїРѕРІРѕР·РѕРє
+// idCaravan - РєРѕРґ РєР°СЂР°РІР°РЅР°.
+// cabNum - РїРѕСЂСЏРґРєРѕРІС‹Р№ РЅРѕРјРµСЂ РїРѕРІРѕР·РєРё, РµСЃР»Рё <0 Р»СѓС‚ Р±СѓРґРµС‚ РґРѕР±Р°РІР»РµРЅ РІ СЂР°РЅРґРѕРјРЅСѓСЋ РїРѕРІРѕР·РєСѓ
+// itemPid - РїСЂРѕС‚РѕС‚РёРї РёС‚РµРјР°
+// minNum - РјРёРЅРёРјР°Р»СЊРЅРѕРµ С‡РёСЃР»Рѕ
+// maxNum - РјР°РєСЃРёРјР°Р»СЊРµРЅРѕРµ С‡РёСЃР»Рѕ
+// chanceAppear - С€Р°РЅСЃ РІ РїСЂРѕС†РµРЅС‚Р°С… РЅР° РїРѕСЏРІР»РµРЅРёРµ
 void _AddLootToCaravanCabs( uint idCaravan, int8 cabNum, uint itemPid, uint minNum, uint maxNum, uint8 chanceAppear, bool isReverseRouteLoot )
 {
     CaravanInfo @ ci = _GetCaravan( idCaravan );
@@ -171,10 +171,10 @@ void _AddLootToCaravanCabs( uint idCaravan, int8 cabNum, uint itemPid, uint minN
     cab.AddLoot( itemPid, minNum, maxNum, chanceAppear, isReverseRouteLoot );
 }
 
-// добавление точки маршрута движения по глобалу
-// idCaravan - код каравана.
-// x - координаты на глобальной карте по оси Х
-// у - координаты на глобальной карте по оси У
+// РґРѕР±Р°РІР»РµРЅРёРµ С‚РѕС‡РєРё РјР°СЂС€СЂСѓС‚Р° РґРІРёР¶РµРЅРёСЏ РїРѕ РіР»РѕР±Р°Р»Сѓ
+// idCaravan - РєРѕРґ РєР°СЂР°РІР°РЅР°.
+// x - РєРѕРѕСЂРґРёРЅР°С‚С‹ РЅР° РіР»РѕР±Р°Р»СЊРЅРѕР№ РєР°СЂС‚Рµ РїРѕ РѕСЃРё РҐ
+// Сѓ - РєРѕРѕСЂРґРёРЅР°С‚С‹ РЅР° РіР»РѕР±Р°Р»СЊРЅРѕР№ РєР°СЂС‚Рµ РїРѕ РѕСЃРё РЈ
 void _AddRoutePoint( uint idCaravan, uint x, uint y )
 {
     CaravanInfo @ ci = _GetCaravan( idCaravan );
@@ -183,17 +183,17 @@ void _AddRoutePoint( uint idCaravan, uint x, uint y )
     ci.AddRoutePoint( x, y );
 }
 
-// добавление описания охранника
-// idCaravan - код каравана.
-// pid - прототип криттера
-// dialogId - диалог
-// scriptId - имя скрипта
-// aiPack - пакет АИ
-// bagId - сумка
-// teamId - команда
-// level - уровень
-// reaction - скорость реакции на события
-// isNervous - уровень "нервозности"
+// РґРѕР±Р°РІР»РµРЅРёРµ РѕРїРёСЃР°РЅРёСЏ РѕС…СЂР°РЅРЅРёРєР°
+// idCaravan - РєРѕРґ РєР°СЂР°РІР°РЅР°.
+// pid - РїСЂРѕС‚РѕС‚РёРї РєСЂРёС‚С‚РµСЂР°
+// dialogId - РґРёР°Р»РѕРі
+// scriptId - РёРјСЏ СЃРєСЂРёРїС‚Р°
+// aiPack - РїР°РєРµС‚ РђР
+// bagId - СЃСѓРјРєР°
+// teamId - РєРѕРјР°РЅРґР°
+// level - СѓСЂРѕРІРµРЅСЊ
+// reaction - СЃРєРѕСЂРѕСЃС‚СЊ СЂРµР°РєС†РёРё РЅР° СЃРѕР±С‹С‚РёСЏ
+// isNervous - СѓСЂРѕРІРµРЅСЊ "РЅРµСЂРІРѕР·РЅРѕСЃС‚Рё"
 // chanceJoin
 // isUnique
 void _AddGuardInfo( uint idCaravan, uint16 pid, uint dialogId, string scriptId, uint aiPack, uint bagId, uint teamId, uint level, uint reaction, uint isNervous, uint8 chanceJoin, bool isUnique )
@@ -206,12 +206,12 @@ void _AddGuardInfo( uint idCaravan, uint16 pid, uint dialogId, string scriptId, 
 
 }
 
-// добавление спутников-нпц, не участвующих в заварушке
-// idCaravan - код каравана.
-// pid - прототип криттера
-// dialog - диалог
-// team - команда
-// bag - инвентарь
+// РґРѕР±Р°РІР»РµРЅРёРµ СЃРїСѓС‚РЅРёРєРѕРІ-РЅРїС†, РЅРµ СѓС‡Р°СЃС‚РІСѓСЋС‰РёС… РІ Р·Р°РІР°СЂСѓС€РєРµ
+// idCaravan - РєРѕРґ РєР°СЂР°РІР°РЅР°.
+// pid - РїСЂРѕС‚РѕС‚РёРї РєСЂРёС‚С‚РµСЂР°
+// dialog - РґРёР°Р»РѕРі
+// team - РєРѕРјР°РЅРґР°
+// bag - РёРЅРІРµРЅС‚Р°СЂСЊ
 void _AddFollowerInfo( uint idCaravan, uint16 pid, uint dialog, uint team, uint bag )
 {
     CaravanInfo @ ci = _GetCaravan( idCaravan );
@@ -232,14 +232,14 @@ void _AddFollowerInfo( uint idCaravan, uint16 pid, uint dialog, uint team, uint 
 
 }
 
-/* ************************ Расписание движения караванов. Подготовка и начало. ********************* */
-// в базе события не сохраняются, поскольку при рестарте сервера караван ломается
-// каждый караван отправляется один раз в месяц
-// idCaravan - код уже существующего описания каравана
-// prepareDay - день, в который проводник начинает принимать заявки на участие
-// prepareHour - час в который проводник начинает принимать заявки на участие
-// startDay - день отправления караванов
-// startHour - час отправления караванов
+/* ************************ Р Р°СЃРїРёСЃР°РЅРёРµ РґРІРёР¶РµРЅРёСЏ РєР°СЂР°РІР°РЅРѕРІ. РџРѕРґРіРѕС‚РѕРІРєР° Рё РЅР°С‡Р°Р»Рѕ. ********************* */
+// РІ Р±Р°Р·Рµ СЃРѕР±С‹С‚РёСЏ РЅРµ СЃРѕС…СЂР°РЅСЏСЋС‚СЃСЏ, РїРѕСЃРєРѕР»СЊРєСѓ РїСЂРё СЂРµСЃС‚Р°СЂС‚Рµ СЃРµСЂРІРµСЂР° РєР°СЂР°РІР°РЅ Р»РѕРјР°РµС‚СЃСЏ
+// РєР°Р¶РґС‹Р№ РєР°СЂР°РІР°РЅ РѕС‚РїСЂР°РІР»СЏРµС‚СЃСЏ РѕРґРёРЅ СЂР°Р· РІ РјРµСЃСЏС†
+// idCaravan - РєРѕРґ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРіРѕ РѕРїРёСЃР°РЅРёСЏ РєР°СЂР°РІР°РЅР°
+// prepareDay - РґРµРЅСЊ, РІ РєРѕС‚РѕСЂС‹Р№ РїСЂРѕРІРѕРґРЅРёРє РЅР°С‡РёРЅР°РµС‚ РїСЂРёРЅРёРјР°С‚СЊ Р·Р°СЏРІРєРё РЅР° СѓС‡Р°СЃС‚РёРµ
+// prepareHour - С‡Р°СЃ РІ РєРѕС‚РѕСЂС‹Р№ РїСЂРѕРІРѕРґРЅРёРє РЅР°С‡РёРЅР°РµС‚ РїСЂРёРЅРёРјР°С‚СЊ Р·Р°СЏРІРєРё РЅР° СѓС‡Р°СЃС‚РёРµ
+// startDay - РґРµРЅСЊ РѕС‚РїСЂР°РІР»РµРЅРёСЏ РєР°СЂР°РІР°РЅРѕРІ
+// startHour - С‡Р°СЃ РѕС‚РїСЂР°РІР»РµРЅРёСЏ РєР°СЂР°РІР°РЅРѕРІ
 bool _SheduleCaravan( uint idCaravan, uint prepareDay, uint prepareHour, uint startDay, uint startHour )
 {
     uint[] values;
@@ -335,7 +335,7 @@ uint e_BeginCaravan( uint[] @ values )
     return 0;
 }
 
-/* **************************** Проводник караванов. Скрипт и обработчики *************************** */
+/* **************************** РџСЂРѕРІРѕРґРЅРёРє РєР°СЂР°РІР°РЅРѕРІ. РЎРєСЂРёРїС‚ Рё РѕР±СЂР°Р±РѕС‚С‡РёРєРё *************************** */
 void _CaravanLeaderInit( Critter& leader, bool firstTime )
 {
 
@@ -378,7 +378,7 @@ int _CaravanLeaderOnPlaneEnd( Critter& cr, NpcPlane& plane, int reason, Critter@
     return PLANE_RUN_GLOBAL;
 }
 
-// снятие обработчиков, если не известен караван
+// СЃРЅСЏС‚РёРµ РѕР±СЂР°Р±РѕС‚С‡РёРєРѕРІ, РµСЃР»Рё РЅРµ РёР·РІРµСЃС‚РµРЅ РєР°СЂР°РІР°РЅ
 void _CancelEvents( Critter& leader )
 {
     leader.SetEvent( CRITTER_EVENT_FINISH, "" );
@@ -390,7 +390,7 @@ void _CancelEvents( Critter& leader )
     leader.SetEvent( CRITTER_EVENT_SMTH_USE_SKILL, "" );
 }
 
-// при воровстве у караванщиков игрок становится врагом каравана
+// РїСЂРё РІРѕСЂРѕРІСЃС‚РІРµ Сѓ РєР°СЂР°РІР°РЅС‰РёРєРѕРІ РёРіСЂРѕРє СЃС‚Р°РЅРѕРІРёС‚СЃСЏ РІСЂР°РіРѕРј РєР°СЂР°РІР°РЅР°
 void _CaravanLeaderOnSmthUseSkill( Critter& leader, Critter& fromCr, int skill, Critter@ onCritter, Item@ onItem, Scenery@ onScenery )
 {
     CaravanInfo@ ci = _GetCaravan( leader.CrvId );
@@ -408,41 +408,41 @@ void _CaravanLeaderOnSmthUseSkill( Critter& leader, Critter& fromCr, int skill, 
 
 }
 
-const uint[] entires = { 243, 244, 0 }; // гексы на которых можно поставить, в первую очередь пробуем поставить на точках входа нпц, чтобы игроки были на некотором расстоянии от повозок
+const uint[] entires = { 243, 244, 0 }; // РіРµРєСЃС‹ РЅР° РєРѕС‚РѕСЂС‹С… РјРѕР¶РЅРѕ РїРѕСЃС‚Р°РІРёС‚СЊ, РІ РїРµСЂРІСѓСЋ РѕС‡РµСЂРµРґСЊ РїСЂРѕР±СѓРµРј РїРѕСЃС‚Р°РІРёС‚СЊ РЅР° С‚РѕС‡РєР°С… РІС…РѕРґР° РЅРїС†, С‡С‚РѕР±С‹ РёРіСЂРѕРєРё Р±С‹Р»Рё РЅР° РЅРµРєРѕС‚РѕСЂРѕРј СЂР°СЃСЃС‚РѕСЏРЅРёРё РѕС‚ РїРѕРІРѕР·РѕРє
 void FindCabPlace( Map& map, uint[]& x, uint[]& y, uint maxCabs )
 {
 
     uint16 hX = 0;
     uint16 hY = 0;
-    uint16 oX1 = 0;     // координаты объекта, повозка№1
+    uint16 oX1 = 0;     // РєРѕРѕСЂРґРёРЅР°С‚С‹ РѕР±СЉРµРєС‚Р°, РїРѕРІРѕР·РєР°в„–1
     uint16 oY1 = 0;
-    uint16 oX2 = 0;     // координаты объекта повозка№2
+    uint16 oX2 = 0;     // РєРѕРѕСЂРґРёРЅР°С‚С‹ РѕР±СЉРµРєС‚Р° РїРѕРІРѕР·РєР°в„–2
     uint16 oY2 = 0;
 
-    // i - индекс номер гекса в массиве entires
-    // j = индекс гекса среди найденных на карте
-    // l - число гексов данного номера
-    // ents - число номеров гекса в массиве entires
-    // tries - число попыток найти место для кабов
+    // i - РёРЅРґРµРєСЃ РЅРѕРјРµСЂ РіРµРєСЃР° РІ РјР°СЃСЃРёРІРµ entires
+    // j = РёРЅРґРµРєСЃ РіРµРєСЃР° СЃСЂРµРґРё РЅР°Р№РґРµРЅРЅС‹С… РЅР° РєР°СЂС‚Рµ
+    // l - С‡РёСЃР»Рѕ РіРµРєСЃРѕРІ РґР°РЅРЅРѕРіРѕ РЅРѕРјРµСЂР°
+    // ents - С‡РёСЃР»Рѕ РЅРѕРјРµСЂРѕРІ РіРµРєСЃР° РІ РјР°СЃСЃРёРІРµ entires
+    // tries - С‡РёСЃР»Рѕ РїРѕРїС‹С‚РѕРє РЅР°Р№С‚Рё РјРµСЃС‚Рѕ РґР»СЏ РєР°Р±РѕРІ
     for( uint i = 0, j = 0, tries = 0, l = map.CountEntire( entires[ j ] ), ents = entires.length(); i < l && j < ents && tries < 30; i++ )
     {
         tries++;
         if( map.GetEntireCoords( entires[ j ], i, hX, hY ) )
         {
-            // координаты гекса нашли
-            // находим позицию в половинном расстоянии
-            oX1 = uint( hX - ( MIN_DIST_CABS_DIST / 2 ) );                              // смещение по оси х на запад
-            oY1 = uint( hY + ( MIN_DIST_CABS_DIST / 2 ) * ( 1 - Random( 0, 1 ) * 2 ) ); // смещение по оси y на юг или на север
+            // РєРѕРѕСЂРґРёРЅР°С‚С‹ РіРµРєСЃР° РЅР°С€Р»Рё
+            // РЅР°С…РѕРґРёРј РїРѕР·РёС†РёСЋ РІ РїРѕР»РѕРІРёРЅРЅРѕРј СЂР°СЃСЃС‚РѕСЏРЅРёРё
+            oX1 = uint( hX - ( MIN_DIST_CABS_DIST / 2 ) );                              // СЃРјРµС‰РµРЅРёРµ РїРѕ РѕСЃРё С… РЅР° Р·Р°РїР°Рґ
+            oY1 = uint( hY + ( MIN_DIST_CABS_DIST / 2 ) * ( 1 - Random( 0, 1 ) * 2 ) ); // СЃРјРµС‰РµРЅРёРµ РїРѕ РѕСЃРё y РЅР° СЋРі РёР»Рё РЅР° СЃРµРІРµСЂ
             if( GetFreeHex( map, 1, oX1, oY1 ) )
             {
-                // считаем, что первая точка найдена
-                oX2 = uint( hX + ( MIN_DIST_CABS_DIST / 2 ) );                              // смещение по оси х на запад
-                oY2 = uint( hY + ( MIN_DIST_CABS_DIST / 2 ) * ( 1 - Random( 0, 1 ) * 2 ) ); // смещение по оси y на юг или на север
+                // СЃС‡РёС‚Р°РµРј, С‡С‚Рѕ РїРµСЂРІР°СЏ С‚РѕС‡РєР° РЅР°Р№РґРµРЅР°
+                oX2 = uint( hX + ( MIN_DIST_CABS_DIST / 2 ) );                              // СЃРјРµС‰РµРЅРёРµ РїРѕ РѕСЃРё С… РЅР° Р·Р°РїР°Рґ
+                oY2 = uint( hY + ( MIN_DIST_CABS_DIST / 2 ) * ( 1 - Random( 0, 1 ) * 2 ) ); // СЃРјРµС‰РµРЅРёРµ РїРѕ РѕСЃРё y РЅР° СЋРі РёР»Рё РЅР° СЃРµРІРµСЂ
 
                 if( GetFreeHex( map, 1, oX2, oY2 ) )
                 {
-                    // вторая точка тоже найдена
-                    // помещаем координаты в массивы
+                    // РІС‚РѕСЂР°СЏ С‚РѕС‡РєР° С‚РѕР¶Рµ РЅР°Р№РґРµРЅР°
+                    // РїРѕРјРµС‰Р°РµРј РєРѕРѕСЂРґРёРЅР°С‚С‹ РІ РјР°СЃСЃРёРІС‹
                     x.insertLast( oX1 );
                     y.insertLast( oY1 );
                     x.insertLast( oX2 );
@@ -453,7 +453,7 @@ void FindCabPlace( Map& map, uint[]& x, uint[]& y, uint maxCabs )
             }
 
         }
-        // к следующему номеру гексов, если на предыдушем не нашли ничего
+        // Рє СЃР»РµРґСѓСЋС‰РµРјСѓ РЅРѕРјРµСЂСѓ РіРµРєСЃРѕРІ, РµСЃР»Рё РЅР° РїСЂРµРґС‹РґСѓС€РµРј РЅРµ РЅР°С€Р»Рё РЅРёС‡РµРіРѕ
         if( i + 1 == l && j + 1 < ents )
         {
             j++;
@@ -463,7 +463,7 @@ void FindCabPlace( Map& map, uint[]& x, uint[]& y, uint maxCabs )
     }
 }
 
-// сообщение от нпц
+// СЃРѕРѕР±С‰РµРЅРёРµ РѕС‚ РЅРїС†
 void _CaravanLeaderOnMessage( Critter& leader, Critter& fromCr, int message, int value )
 {
     if( message == MSG_WHERE_IS_DA_LEADER )
@@ -472,7 +472,7 @@ void _CaravanLeaderOnMessage( Critter& leader, Critter& fromCr, int message, int
     }
 }
 
-// вход на энкаунтер
+// РІС…РѕРґ РЅР° СЌРЅРєР°СѓРЅС‚РµСЂ
 bool _CaravanLeaderOnInvite( Critter& leader, Item@ car, uint encounterDescriptor, int combatMode, uint& mapId, uint16& hexX, uint16& hexY, uint8& dir )
 {
     Critter@[] @ group = leader.GetGlobalGroup();
@@ -487,7 +487,7 @@ bool _CaravanLeaderOnInvite( Critter& leader, Item@ car, uint encounterDescripto
         {
             ci.CaravanStatus == CRV_STATUS_END;
             CreateTimeEvent( __FullSecond + TIME_TO_DELETE_LEADER, "e_DeleteLeader", leader.Id, true );
-            // Обязательно сохраняем эвент. Иначе можно оказаться с двумя начлаьниками караванов.
+            // РћР±СЏР·Р°С‚РµР»СЊРЅРѕ СЃРѕС…СЂР°РЅСЏРµРј СЌРІРµРЅС‚. РРЅР°С‡Рµ РјРѕР¶РЅРѕ РѕРєР°Р·Р°С‚СЊСЃСЏ СЃ РґРІСѓРјСЏ РЅР°С‡Р»Р°СЊРЅРёРєР°РјРё РєР°СЂР°РІР°РЅРѕРІ.
         }
         ci.TerminateCaravan();
         return true;
@@ -502,13 +502,13 @@ bool _CaravanLeaderOnInvite( Critter& leader, Item@ car, uint encounterDescripto
 
     ci.CaravanStatus = CRV_STATUS_ON_ENCOUNTER;
 
-    // ищем место для нескольких повозок
-    // кладем по две повозки
-    // находим место, где можно поставить 2 повозки
-    // между повозками расстояние должно быть 7..8 гексов
+    // РёС‰РµРј РјРµСЃС‚Рѕ РґР»СЏ РЅРµСЃРєРѕР»СЊРєРёС… РїРѕРІРѕР·РѕРє
+    // РєР»Р°РґРµРј РїРѕ РґРІРµ РїРѕРІРѕР·РєРё
+    // РЅР°С…РѕРґРёРј РјРµСЃС‚Рѕ, РіРґРµ РјРѕР¶РЅРѕ РїРѕСЃС‚Р°РІРёС‚СЊ 2 РїРѕРІРѕР·РєРё
+    // РјРµР¶РґСѓ РїРѕРІРѕР·РєР°РјРё СЂР°СЃСЃС‚РѕСЏРЅРёРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ 7..8 РіРµРєСЃРѕРІ
     uint[] x;
     uint[] y;
-    FindCabPlace( map, x, y, 100 );  // TODO: поставить нормальное ограничение, сейчас использую для проверки, сколько точек будет найдено
+    FindCabPlace( map, x, y, 100 );  // TODO: РїРѕСЃС‚Р°РІРёС‚СЊ РЅРѕСЂРјР°Р»СЊРЅРѕРµ РѕРіСЂР°РЅРёС‡РµРЅРёРµ, СЃРµР№С‡Р°СЃ РёСЃРїРѕР»СЊР·СѓСЋ РґР»СЏ РїСЂРѕРІРµСЂРєРё, СЃРєРѕР»СЊРєРѕ С‚РѕС‡РµРє Р±СѓРґРµС‚ РЅР°Р№РґРµРЅРѕ
 
     Item @[] cabItems;
     for( uint i = 0, lx = x.length(), ly = y.length(), lc = ci.Cabs.length(); i < lx && i < ly && i < lc; i++ )
@@ -524,14 +524,14 @@ bool _CaravanLeaderOnInvite( Critter& leader, Item@ car, uint encounterDescripto
         }
 
     }
-    // располагаем небоевых нпц в составе каравана
+    // СЂР°СЃРїРѕР»Р°РіР°РµРј РЅРµР±РѕРµРІС‹С… РЅРїС† РІ СЃРѕСЃС‚Р°РІРµ РєР°СЂР°РІР°РЅР°
     if( cabItems.length() > 0 )
     {
         for( uint j = 0; j < ci.Followers.length(); j++ )
         {
             ci.Followers[ j ]._AddNpcNearItem( map, cabItems[ Random( 0, ( cabItems.length() - 1 ) ) ], 8 );
         }
-        // если есть повозки, проводник ходит от одной к другой
+        // РµСЃР»Рё РµСЃС‚СЊ РїРѕРІРѕР·РєРё, РїСЂРѕРІРѕРґРЅРёРє С…РѕРґРёС‚ РѕС‚ РѕРґРЅРѕР№ Рє РґСЂСѓРіРѕР№
         leader.SetEvent( CRITTER_EVENT_IDLE, "_CaravanLeaderIdleOnEncounter" );
         leader.IdleCount = 9;
 
@@ -563,7 +563,7 @@ bool _CaravanLeaderOnInvite( Critter& leader, Item@ car, uint encounterDescripto
 
 bool _OnTryOpenCabs( Item& item, Critter& cr, int skill )
 {
-    // залезть в контейнер можно только, если проводник мертв
+    // Р·Р°Р»РµР·С‚СЊ РІ РєРѕРЅС‚РµР№РЅРµСЂ РјРѕР¶РЅРѕ С‚РѕР»СЊРєРѕ, РµСЃР»Рё РїСЂРѕРІРѕРґРЅРёРє РјРµСЂС‚РІ
     Critter @leader = GetCritter( item.Val5 );
     if( valid( leader ) )
     {
@@ -582,7 +582,7 @@ bool _OnTryOpenCabs( Item& item, Critter& cr, int skill )
     }
 }
 
-// при долгом простое, проводник перемещается к одной из повозок
+// РїСЂРё РґРѕР»РіРѕРј РїСЂРѕСЃС‚РѕРµ, РїСЂРѕРІРѕРґРЅРёРє РїРµСЂРµРјРµС‰Р°РµС‚СЃСЏ Рє РѕРґРЅРѕР№ РёР· РїРѕРІРѕР·РѕРє
 void _CaravanLeaderIdleOnEncounter( Critter& leader )
 {
     DL( "leader enc iddle fired/ Geck" + leader.ModeBase[ MODE_GECK ] );
@@ -613,27 +613,27 @@ void _CaravanLeaderIdleOnEncounter( Critter& leader )
     }
 }
 
-// смерть игрока = провал квеста для этого игрока
+// СЃРјРµСЂС‚СЊ РёРіСЂРѕРєР° = РїСЂРѕРІР°Р» РєРІРµСЃС‚Р° РґР»СЏ СЌС‚РѕРіРѕ РёРіСЂРѕРєР°
 void _CaravanLeaderOnSeeSmthDead( Critter& leader, Critter& fromCrit, Critter@ killer )
 {
     DL( "_CaravanLeaderOnSeeSmthDead" );
     CaravanInfo@ ci = _GetCaravan( leader.CrvId );
     if( !valid( ci ) )
     {
-        // перестраховка
+        // РїРµСЂРµСЃС‚СЂР°С…РѕРІРєР°
         _CancelEvents( leader );
         Log( "Caravan error; CaravanInfo not found" );
         return;
     }
     if( !ci.PlayerIsGuard( fromCrit.Id ) )
         return;
-    // убит игрок-охранник
+    // СѓР±РёС‚ РёРіСЂРѕРє-РѕС…СЂР°РЅРЅРёРє
     if( fromCrit.IsPlayer() )
     {
         _SetPlayerDead( fromCrit, ci );
         return;
     }
-    // игрок охранник убил нпц-охранника
+    // РёРіСЂРѕРє РѕС…СЂР°РЅРЅРёРє СѓР±РёР» РЅРїС†-РѕС…СЂР°РЅРЅРёРєР°
     if( !valid( killer ) )
         return;
 
@@ -644,13 +644,13 @@ void _CaravanLeaderOnSeeSmthDead( Critter& leader, Critter& fromCrit, Critter@ k
     }
 }
 
-// смерть проводника = провал квеста всем игрокам
+// СЃРјРµСЂС‚СЊ РїСЂРѕРІРѕРґРЅРёРєР° = РїСЂРѕРІР°Р» РєРІРµСЃС‚Р° РІСЃРµРј РёРіСЂРѕРєР°Рј
 void _CaravanLeaderOnDead( Critter& leader, Critter@ killer )
 {
     CaravanInfo@ ci = _GetCaravan( leader.CrvId );
     if( !valid( ci ) )
     {
-        // перестраховка
+        // РїРµСЂРµСЃС‚СЂР°С…РѕРІРєР°
         _CancelEvents( leader );
         Log( "Caravan error; CaravanInfo not found" );
         return;
@@ -669,32 +669,32 @@ void _CaravanLeaderOnDead( Critter& leader, Critter@ killer )
         }
 
     }
-    // удаляем проводника досрочно
+    // СѓРґР°Р»СЏРµРј РїСЂРѕРІРѕРґРЅРёРєР° РґРѕСЃСЂРѕС‡РЅРѕ
     if( ci.Type == CRV_TYPE_ONEWAY_DELETELEADER || ci.Type == CRV_TYPE_ONEWAY_DELETELEADER_BOTH )
     {
         CreateTimeEvent( __FullSecond + TIME_TO_DELETE_LEADER, "e_DeleteLeader", leader.Id, true );
-        // Обязательно сохраняем эвент. Иначе можно оказаться с двумя начлаьниками караванов.
+        // РћР±СЏР·Р°С‚РµР»СЊРЅРѕ СЃРѕС…СЂР°РЅСЏРµРј СЌРІРµРЅС‚. РРЅР°С‡Рµ РјРѕР¶РЅРѕ РѕРєР°Р·Р°С‚СЊСЃСЏ СЃ РґРІСѓРјСЏ РЅР°С‡Р»Р°СЊРЅРёРєР°РјРё РєР°СЂР°РІР°РЅРѕРІ.
     }
 }
 
-// глобальная карта
+// РіР»РѕР±Р°Р»СЊРЅР°СЏ РєР°СЂС‚Р°
 bool _CaravanLeaderOnGlobal( Critter& leader, int type, Item@ car, float& x, float& y, float& toX, float& toY, float& speed, uint& encounterDescriptor, bool& waitForAnswer )
 {
     Critter@[] @ group = leader.GetGlobalGroup();
     CaravanInfo@ ci = _GetCaravan( leader.CrvId );
     if( !valid( ci ) )
     {
-        // перестраховка
+        // РїРµСЂРµСЃС‚СЂР°С…РѕРІРєР°
         _CancelEvents( leader );
         Log( "Caravan error; CaravanInfo not found" );
         return false;
     }
     if( type == GLOBAL_PROCESS_MOVE || type == GLOBAL_PROCESS_STOPPED )
     {
-        // во всех остальных случаях необходимо проверить, что в группе есть хотя бы один игрок
+        // РІРѕ РІСЃРµС… РѕСЃС‚Р°Р»СЊРЅС‹С… СЃР»СѓС‡Р°СЏС… РЅРµРѕР±С…РѕРґРёРјРѕ РїСЂРѕРІРµСЂРёС‚СЊ, С‡С‚Рѕ РІ РіСЂСѓРїРїРµ РµСЃС‚СЊ С…РѕС‚СЏ Р±С‹ РѕРґРёРЅ РёРіСЂРѕРє
         if( !_CheckHasPlayerInGroup( group ) )
         {
-            // Удаляем караван и лидера
+            // РЈРґР°Р»СЏРµРј РєР°СЂР°РІР°РЅ Рё Р»РёРґРµСЂР°
             ci.TerminateCaravan();
             return true;
         }
@@ -709,15 +709,15 @@ bool _CaravanLeaderOnGlobal( Critter& leader, int type, Item@ car, float& x, flo
     }
     if( encounterDescriptor != 0 )
     {
-        return false;         // Энкаунтер
+        return false;         // Р­РЅРєР°СѓРЅС‚РµСЂ
     }
 
     ci.CaravanRoute.SetRouteDir( x, y, toX, toY );
-    // установка направления движения
+    // СѓСЃС‚Р°РЅРѕРІРєР° РЅР°РїСЂР°РІР»РµРЅРёСЏ РґРІРёР¶РµРЅРёСЏ
 
     if( type != GLOBAL_PROCESS_MOVE )
     {
-        // все точки маршрута пройдены или не назначены
+        // РІСЃРµ С‚РѕС‡РєРё РјР°СЂС€СЂСѓС‚Р° РїСЂРѕР№РґРµРЅС‹ РёР»Рё РЅРµ РЅР°Р·РЅР°С‡РµРЅС‹
         if( ci.CaravanRoute.RouteEnded() )
         {
             Location@ loc = GetLocationByPid( ci.Leader.EndPos.LocPid, 0 );
@@ -727,14 +727,14 @@ bool _CaravanLeaderOnGlobal( Critter& leader, int type, Item@ car, float& x, flo
 
             if( ( endX == uint( x ) ) and ( endY == uint( y ) ) )
             {
-                // маршрут закончен
+                // РјР°СЂС€СЂСѓС‚ Р·Р°РєРѕРЅС‡РµРЅ
                 if( _EndCaravan( leader ) )
                 {
                     return true;
                 }
                 else
                 {
-                    // проблемы с завершением каравана
+                    // РїСЂРѕР±Р»РµРјС‹ СЃ Р·Р°РІРµСЂС€РµРЅРёРµРј РєР°СЂР°РІР°РЅР°
                     FindEncounter( group, null, x, y, encounterDescriptor, waitForAnswer, true );
                     Log( "Can not end caravan" );
                     return true;
@@ -759,7 +759,7 @@ bool _CaravanLeaderOnGlobal( Critter& leader, int type, Item@ car, float& x, flo
 
 
 
-/* ********************************* Этап№1 сбор заявок от игроков ********************************** */
+/* ********************************* Р­С‚Р°Рїв„–1 СЃР±РѕСЂ Р·Р°СЏРІРѕРє РѕС‚ РёРіСЂРѕРєРѕРІ ********************************** */
 void PrepareCaravan( uint CaravanId )
 {
     CaravanInfo@ ci = _GetCaravan( CaravanId );
@@ -806,7 +806,7 @@ void PrepareCaravan( uint CaravanId )
 
 }
 
-/* ********************************** Этап№2 отправление каравана *********************************** */
+/* ********************************** Р­С‚Р°Рїв„–2 РѕС‚РїСЂР°РІР»РµРЅРёРµ РєР°СЂР°РІР°РЅР° *********************************** */
 void StartCaravan( uint CaravanId )
 {
     CaravanInfo@ ci = _GetCaravan( CaravanId );
@@ -821,17 +821,17 @@ void StartCaravan( uint CaravanId )
     if( !valid( map ) )
         return;
 
-    // проверка, хватает ли игроков
+    // РїСЂРѕРІРµСЂРєР°, С…РІР°С‚Р°РµС‚ Р»Рё РёРіСЂРѕРєРѕРІ
     if( ci.PlayersRequested.length() == 0 )
     {
         ci.CaravanStatus = CRV_STATUS_BEFORE_START;
         return;
     }
     uint curPlayersInGrp = 0;
-    // группа караванщиков
+    // РіСЂСѓРїРїР° РєР°СЂР°РІР°РЅС‰РёРєРѕРІ
     Critter @[] caravanGroup;
     caravanGroup.insertLast( @leader );
-    // всех игроков в группу, сколько разрешено
+    // РІСЃРµС… РёРіСЂРѕРєРѕРІ РІ РіСЂСѓРїРїСѓ, СЃРєРѕР»СЊРєРѕ СЂР°Р·СЂРµС€РµРЅРѕ
     for( uint i = 0; i < ci.PlayersRequested.length(); i++ )
     {
         Critter @ player = GetCritter( ci.PlayersRequested[ i ] );
@@ -856,17 +856,17 @@ void StartCaravan( uint CaravanId )
     {
         return;
     }
-    // число попыток, чтобы не завис цикл
+    // С‡РёСЃР»Рѕ РїРѕРїС‹С‚РѕРє, С‡С‚РѕР±С‹ РЅРµ Р·Р°РІРёСЃ С†РёРєР»
     uint numTry = 0;
-    // индекс из списка определений охранников
+    // РёРЅРґРµРєСЃ РёР· СЃРїРёСЃРєР° РѕРїСЂРµРґРµР»РµРЅРёР№ РѕС…СЂР°РЅРЅРёРєРѕРІ
     uint idx = 0;
-    // добавление НПЦ-охранников в группу ci.CaravanGuards
+    // РґРѕР±Р°РІР»РµРЅРёРµ РќРџР¦-РѕС…СЂР°РЅРЅРёРєРѕРІ РІ РіСЂСѓРїРїСѓ ci.CaravanGuards
     while( caravanGroup.length() < ci.MaxGroup && ci.CaravanGuards.length() > 0 )
     {
         DL( "adding guards" );
         numTry++;
         if( numTry >= 20 )
-            break;                    // 20 попыток должно хватить
+            break;                    // 20 РїРѕРїС‹С‚РѕРє РґРѕР»Р¶РЅРѕ С…РІР°С‚РёС‚СЊ
         Critter @ guard = ci.CaravanGuards[ idx ].GetCritterGuard( map, leader );
         idx = ( idx + 1 < ci.CaravanGuards.length() ? idx + 1 : 0 );
         if( valid( guard ) )
@@ -876,14 +876,14 @@ void StartCaravan( uint CaravanId )
         }
     }
 
-    // основной скрипт проводника
+    // РѕСЃРЅРѕРІРЅРѕР№ СЃРєСЂРёРїС‚ РїСЂРѕРІРѕРґРЅРёРєР°
     leader.SetScript( "_CaravanLeaderInit" );
     ci.CaravanStatus = CRV_STATUS_START_MOVE;
-    // начало движения по глобальной карте
+    // РЅР°С‡Р°Р»Рѕ РґРІРёР¶РµРЅРёСЏ РїРѕ РіР»РѕР±Р°Р»СЊРЅРѕР№ РєР°СЂС‚Рµ
     leader.TransitToGlobal( caravanGroup );
 }
 
-/* **************************** Этап№3. Выход со случайного энкаунтера ****************************** */
+/* **************************** Р­С‚Р°Рїв„–3. Р’С‹С…РѕРґ СЃРѕ СЃР»СѓС‡Р°Р№РЅРѕРіРѕ СЌРЅРєР°СѓРЅС‚РµСЂР° ****************************** */
 void _ContinueCaravan( Critter& leader )
 {
     DL( "continue caravan started" );
@@ -907,22 +907,22 @@ void _ContinueCaravan( Critter& leader )
         Critter @ guard = GetCritter( ci.Caravaneers[ i ] );
         if( !valid( guard ) )
         {
-            deadGuardIds.insertLast( ci.Caravaneers[ i ] );         // охранника нужно убрать из списка
-            // TODO: добавить установку значения переменной для инвалидных охранников
+            deadGuardIds.insertLast( ci.Caravaneers[ i ] );         // РѕС…СЂР°РЅРЅРёРєР° РЅСѓР¶РЅРѕ СѓР±СЂР°С‚СЊ РёР· СЃРїРёСЃРєР°
+            // TODO: РґРѕР±Р°РІРёС‚СЊ СѓСЃС‚Р°РЅРѕРІРєСѓ Р·РЅР°С‡РµРЅРёСЏ РїРµСЂРµРјРµРЅРЅРѕР№ РґР»СЏ РёРЅРІР°Р»РёРґРЅС‹С… РѕС…СЂР°РЅРЅРёРєРѕРІ
             continue;
         }
-        // охранник найден
+        // РѕС…СЂР°РЅРЅРёРє РЅР°Р№РґРµРЅ
         Map @ map = guard.GetMap();
         if( !valid( map ) )
         {
-            deadGuardIds.insertLast( ci.Caravaneers[ i ] );         // охранника нужно убрать из списка
+            deadGuardIds.insertLast( ci.Caravaneers[ i ] );         // РѕС…СЂР°РЅРЅРёРєР° РЅСѓР¶РЅРѕ СѓР±СЂР°С‚СЊ РёР· СЃРїРёСЃРєР°
             if( guard.IsPlayer() )
                 _SetPlayerAbandoned( guard, ci );
             continue;
         }
         if( guard.IsDead() || map.Id != map_leader.Id )
         {
-            deadGuardIds.insertLast( ci.Caravaneers[ i ] );         // охранника нужно убрать из списка
+            deadGuardIds.insertLast( ci.Caravaneers[ i ] );         // РѕС…СЂР°РЅРЅРёРєР° РЅСѓР¶РЅРѕ СѓР±СЂР°С‚СЊ РёР· СЃРїРёСЃРєР°
             if( guard.IsPlayer() )
                 _SetPlayerAbandoned( guard, ci );
             continue;
@@ -940,8 +940,8 @@ void _ContinueCaravan( Critter& leader )
         leader.TransitToGlobal( caravanGroup );
 }
 
-/* ***************************** Этап 4. Завершение движения каравана ******************************* */
-// завершение каравана. Караван пришел в пункт назначения.
+/* ***************************** Р­С‚Р°Рї 4. Р—Р°РІРµСЂС€РµРЅРёРµ РґРІРёР¶РµРЅРёСЏ РєР°СЂР°РІР°РЅР° ******************************* */
+// Р·Р°РІРµСЂС€РµРЅРёРµ РєР°СЂР°РІР°РЅР°. РљР°СЂР°РІР°РЅ РїСЂРёС€РµР» РІ РїСѓРЅРєС‚ РЅР°Р·РЅР°С‡РµРЅРёСЏ.
 bool _EndCaravan( Critter& leader )
 {
     CaravanInfo@ ci = _GetCaravan( leader.CrvId );
@@ -951,7 +951,7 @@ bool _EndCaravan( Critter& leader )
         Log( "Error: CaravanInfo not found. Id = " + leader.CrvId );
         return false;
     }
-    // переключаем статус квеста игрокам
+    // РїРµСЂРµРєР»СЋС‡Р°РµРј СЃС‚Р°С‚СѓСЃ РєРІРµСЃС‚Р° РёРіСЂРѕРєР°Рј
     for( uint i = 0; i < ci.Caravaneers.length(); i++ )
     {
         Critter @player = GetCritter( ci.Caravaneers[ i ] );
@@ -981,7 +981,7 @@ bool _EndCaravan( Critter& leader )
     leader.SetHomePos( hx, hy, leader.Dir );
     ci.CaravanStatus = CRV_STATUS_END;
 
-    // удаляем нпц-охранников
+    // СѓРґР°Р»СЏРµРј РЅРїС†-РѕС…СЂР°РЅРЅРёРєРѕРІ
     for( uint j = 0; j < ci.Caravaneers.length(); j++ )
     {
         Critter @guard = GetCritter( ci.Caravaneers[ j ] );
@@ -1008,7 +1008,7 @@ bool _EndCaravan( Critter& leader )
     {
         ci.CaravanStatus == CRV_STATUS_END;
         CreateTimeEvent( __FullSecond + TIME_TO_DELETE_LEADER + TIME_TO_WAIT_AT_ENDPOINT, "e_DeleteLeader", leader.Id, true );
-        // Обязательно сохраняем эвент. Иначе можно оказаться с двумя начлаьниками караванов.
+        // РћР±СЏР·Р°С‚РµР»СЊРЅРѕ СЃРѕС…СЂР°РЅСЏРµРј СЌРІРµРЅС‚. РРЅР°С‡Рµ РјРѕР¶РЅРѕ РѕРєР°Р·Р°С‚СЊСЃСЏ СЃ РґРІСѓРјСЏ РЅР°С‡Р»Р°СЊРЅРёРєР°РјРё РєР°СЂР°РІР°РЅРѕРІ.
     }
     DL( "End Caravan success" );
     return true;
@@ -1056,8 +1056,8 @@ uint e_TransitToStartPos( uint[] @ values )
     return 0;
 }
 
-/* ********************************************* ОБЩЕЕ ********************************************** */
-// проверка, в массиве есть хотя бы один игрок
+/* ********************************************* РћР‘Р©Р•Р• ********************************************** */
+// РїСЂРѕРІРµСЂРєР°, РІ РјР°СЃСЃРёРІРµ РµСЃС‚СЊ С…РѕС‚СЏ Р±С‹ РѕРґРёРЅ РёРіСЂРѕРє
 bool _CheckHasPlayerInGroup( Critter@[]& group )
 {
     for( uint i = 0; i < group.length(); i++ )
@@ -1070,7 +1070,7 @@ bool _CheckHasPlayerInGroup( Critter@[]& group )
     return false;
 }
 
-// Инструкция атаковать игрока всем караванщикам
+// РРЅСЃС‚СЂСѓРєС†РёСЏ Р°С‚Р°РєРѕРІР°С‚СЊ РёРіСЂРѕРєР° РІСЃРµРј РєР°СЂР°РІР°РЅС‰РёРєР°Рј
 void _PlayerToCaravanEnemy( Critter& player, CaravanInfo& ci )
 {
     DL( "_PlayerToCaravanEnemy start" );
@@ -1087,8 +1087,8 @@ void _PlayerToCaravanEnemy( Critter& player, CaravanInfo& ci )
     }
 }
 
-// установка статуса всем караванщикам, независимо от того, онлайн игрок или нет
-// у переменной должен быть статус >0
+// СѓСЃС‚Р°РЅРѕРІРєР° СЃС‚Р°С‚СѓСЃР° РІСЃРµРј РєР°СЂР°РІР°РЅС‰РёРєР°Рј, РЅРµР·Р°РІРёСЃРёРјРѕ РѕС‚ С‚РѕРіРѕ, РѕРЅР»Р°Р№РЅ РёРіСЂРѕРє РёР»Рё РЅРµС‚
+// Сѓ РїРµСЂРµРјРµРЅРЅРѕР№ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ СЃС‚Р°С‚СѓСЃ >0
 void _SetQuestState( CaravanInfo& ci, int state )
 {
     DL( "_SetQuestState start" );
@@ -1108,9 +1108,9 @@ void _SetQuestState( CaravanInfo& ci, int state )
     }
 }
 
-// установка статуса переменной для конкретного криттера
-// статус у переменной должен быть>0
-// не проверяется валидность криттера и признак криттер = игрок или нет
+// СѓСЃС‚Р°РЅРѕРІРєР° СЃС‚Р°С‚СѓСЃР° РїРµСЂРµРјРµРЅРЅРѕР№ РґР»СЏ РєРѕРЅРєСЂРµС‚РЅРѕРіРѕ РєСЂРёС‚С‚РµСЂР°
+// СЃС‚Р°С‚СѓСЃ Сѓ РїРµСЂРµРјРµРЅРЅРѕР№ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ>0
+// РЅРµ РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ РІР°Р»РёРґРЅРѕСЃС‚СЊ РєСЂРёС‚С‚РµСЂР° Рё РїСЂРёР·РЅР°Рє РєСЂРёС‚С‚РµСЂ = РёРіСЂРѕРє РёР»Рё РЅРµС‚
 void _SetQuestState( uint varNum, int state, uint crId )
 {
     GameVar @qVar = GetLocalVar( varNum, crId );
@@ -1122,11 +1122,11 @@ void _SetQuestState( uint varNum, int state, uint crId )
     qVar = state;
 }
 
-/* ******************************************** ДИАЛОГИ ********************************************* */
-// функция для использования в диалогах: признак = группа полная (максимум 5 игроков)
+/* ******************************************** Р”РРђР›РћР“Р ********************************************* */
+// С„СѓРЅРєС†РёСЏ РґР»СЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РІ РґРёР°Р»РѕРіР°С…: РїСЂРёР·РЅР°Рє = РіСЂСѓРїРїР° РїРѕР»РЅР°СЏ (РјР°РєСЃРёРјСѓРј 5 РёРіСЂРѕРєРѕРІ)
 bool d_IsFullParty( Critter& player, Critter@ caravaneer )
 {
-    // получаем описание каравана
+    // РїРѕР»СѓС‡Р°РµРј РѕРїРёСЃР°РЅРёРµ РєР°СЂР°РІР°РЅР°
     CaravanInfo@ ci = _GetCaravan( caravaneer.CrvId );
     if( !valid( ci ) )
     {
@@ -1138,13 +1138,13 @@ bool d_IsFullParty( Critter& player, Critter@ caravaneer )
 
 }
 
-// функция для использования в диалогах: признак = еще не набрано 5 игроков
+// С„СѓРЅРєС†РёСЏ РґР»СЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РІ РґРёР°Р»РѕРіР°С…: РїСЂРёР·РЅР°Рє = РµС‰Рµ РЅРµ РЅР°Р±СЂР°РЅРѕ 5 РёРіСЂРѕРєРѕРІ
 bool d_NotIsFullParty( Critter& player, Critter@ caravaneer )
 {
     return not d_IsFullParty( player, caravaneer );
 }
 
-// функция для использования в диалогах: признак = заявка игрока уже принята
+// С„СѓРЅРєС†РёСЏ РґР»СЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РІ РґРёР°Р»РѕРіР°С…: РїСЂРёР·РЅР°Рє = Р·Р°СЏРІРєР° РёРіСЂРѕРєР° СѓР¶Рµ РїСЂРёРЅСЏС‚Р°
 bool d_HasPlayerRequest( Critter& player, Critter@ caravaneer )
 {
     CaravanInfo@ crv = _GetCaravan( caravaneer.CrvId );
@@ -1163,13 +1163,13 @@ bool d_HasPlayerRequest( Critter& player, Critter@ caravaneer )
     return false;
 }
 
-// функция для использования в диалогах: признак = заявка игрока еще не принята
+// С„СѓРЅРєС†РёСЏ РґР»СЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РІ РґРёР°Р»РѕРіР°С…: РїСЂРёР·РЅР°Рє = Р·Р°СЏРІРєР° РёРіСЂРѕРєР° РµС‰Рµ РЅРµ РїСЂРёРЅСЏС‚Р°
 bool d_NotHasPlayerRequest( Critter& player, Critter@ caravaneer )
 {
     return not d_HasPlayerRequest( player, caravaneer );
 }
 
-// признак - может идти в сопровождение
+// РїСЂРёР·РЅР°Рє - РјРѕР¶РµС‚ РёРґС‚Рё РІ СЃРѕРїСЂРѕРІРѕР¶РґРµРЅРёРµ
 bool d_CanJoin( Critter& player, Critter@ caravaneer )
 {
     CaravanInfo@ crv = _GetCaravan( caravaneer.CrvId );
@@ -1181,7 +1181,7 @@ bool d_CanJoin( Critter& player, Critter@ caravaneer )
     return _CanPlayerJoinCaravan( player, crv );
 }
 
-// записывает игрока в список желающих
+// Р·Р°РїРёСЃС‹РІР°РµС‚ РёРіСЂРѕРєР° РІ СЃРїРёСЃРѕРє Р¶РµР»Р°СЋС‰РёС…
 void r_PutPlayerRequest2Info( Critter& player, Critter@ caravaneer )
 {
     CaravanInfo@ crv = _GetCaravan( caravaneer.CrvId );
@@ -1196,7 +1196,7 @@ void r_PutPlayerRequest2Info( Critter& player, Critter@ caravaneer )
     }
 }
 
-// продолжение движения каравана
+// РїСЂРѕРґРѕР»Р¶РµРЅРёРµ РґРІРёР¶РµРЅРёСЏ РєР°СЂР°РІР°РЅР°
 void r_ContinueCaravan( Critter& player, Critter@ npc )
 {
     if( !valid( npc ) )
@@ -1215,7 +1215,7 @@ void r_ContinueCaravan( Critter& player, Critter@ npc )
     }
 }
 
-// Мгновенно запускает караван, вне расписания
+// РњРіРЅРѕРІРµРЅРЅРѕ Р·Р°РїСѓСЃРєР°РµС‚ РєР°СЂР°РІР°РЅ, РІРЅРµ СЂР°СЃРїРёСЃР°РЅРёСЏ
 void r_StartCaravan( Critter& player, Critter@ npc )
 {
     CaravanInfo@ ci = _GetCaravan( npc.CrvId );
@@ -1227,7 +1227,7 @@ void r_StartCaravan( Critter& player, Critter@ npc )
     }
 }
 
-// проверка, в каком состоянии караван для нпц
+// РїСЂРѕРІРµСЂРєР°, РІ РєР°РєРѕРј СЃРѕСЃС‚РѕСЏРЅРёРё РєР°СЂР°РІР°РЅ РґР»СЏ РЅРїС†
 bool d_IsCaravanStatus( Critter& player, Critter@ npc, int status )
 {
     CaravanInfo@ ci = _GetCaravan( npc.CrvId );
@@ -1248,7 +1248,7 @@ bool d_NotIsCaravanStatus( Critter& player, Critter@ npc, int status )
     return !d_IsCaravanStatus( player, npc, status );
 }
 
-// признак, караван не начинался или закончен
+// РїСЂРёР·РЅР°Рє, РєР°СЂР°РІР°РЅ РЅРµ РЅР°С‡РёРЅР°Р»СЃСЏ РёР»Рё Р·Р°РєРѕРЅС‡РµРЅ
 bool d_CaravanEndedOrNotStarted( Critter& player, Critter@ npc )
 {
     CaravanInfo@ ci = _GetCaravan( npc.CrvId );
@@ -1261,7 +1261,7 @@ bool d_CaravanEndedOrNotStarted( Critter& player, Critter@ npc )
     return ( ci.CaravanStatus == CRV_STATUS_BEFORE_START || ci.CaravanStatus == CRV_STATUS_END );
 }
 
-// проверка, игрок ни разу не заваливал квест на сопровождение данного каравана
+// РїСЂРѕРІРµСЂРєР°, РёРіСЂРѕРє РЅРё СЂР°Р·Сѓ РЅРµ Р·Р°РІР°Р»РёРІР°Р» РєРІРµСЃС‚ РЅР° СЃРѕРїСЂРѕРІРѕР¶РґРµРЅРёРµ РґР°РЅРЅРѕРіРѕ РєР°СЂР°РІР°РЅР°
 bool d_PlayerHasNoCaravanFailures( Critter& player, Critter@ npc )
 {
     CaravanInfo@ ci = _GetCaravan( npc.CrvId );
@@ -1273,7 +1273,7 @@ bool d_PlayerHasNoCaravanFailures( Critter& player, Critter@ npc )
     return !_GetPlayerQuestFailed( player, ci );
 }
 
-// проверка караван пойдет обратно или в начальном направлении
+// РїСЂРѕРІРµСЂРєР° РєР°СЂР°РІР°РЅ РїРѕР№РґРµС‚ РѕР±СЂР°С‚РЅРѕ РёР»Рё РІ РЅР°С‡Р°Р»СЊРЅРѕРј РЅР°РїСЂР°РІР»РµРЅРёРё
 bool d_IsCaravanReversed( Critter& player, Critter@ npc )
 {
     CaravanInfo@ ci = _GetCaravan( npc.CrvId );
@@ -1291,7 +1291,7 @@ bool d_NotIsCaravanReversed( Critter& player, Critter@ npc )
 }
 
 
-// Обновленные функции
+// РћР±РЅРѕРІР»РµРЅРЅС‹Рµ С„СѓРЅРєС†РёРё
 bool d_PlayerHired( Critter& player, Critter@ npc )
 {
     CaravanInfo@ ci = _GetCaravan( npc.CrvId );
@@ -1357,7 +1357,7 @@ void dlg_WhereIsCaravaner( Critter& player, Critter@ npc, string@ lexems )
 {
     if( !IS_DIALOG_GENERATED( lexems ) )
         return;
-    lexems = "$nameэтот караванщик$whereчерт его знает куда. Не могу понять";
+    lexems = "$nameСЌС‚РѕС‚ РєР°СЂР°РІР°РЅС‰РёРє$whereС‡РµСЂС‚ РµРіРѕ Р·РЅР°РµС‚ РєСѓРґР°. РќРµ РјРѕРіСѓ РїРѕРЅСЏС‚СЊ";
     GameVar@ crvId = GetUnicumVar( UVAR_last_selected_caravan, player.Id, npc.Id );
     if( valid( crvId ) )
     {
@@ -1382,7 +1382,7 @@ void dlg_WhereIsCaravaner( Critter& player, Critter@ npc, string@ lexems )
                             return;
                         }
                     }
-                    lexems += "$where Пустошь, их координаты: " + worldX + ":" + worldY;
+                    lexems += "$where РџСѓСЃС‚РѕС€СЊ, РёС… РєРѕРѕСЂРґРёРЅР°С‚С‹: " + worldX + ":" + worldY;
                 }
             }
         }

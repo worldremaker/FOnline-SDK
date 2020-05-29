@@ -8,7 +8,7 @@
 
 // Defines
 
-// Проверка, на попытку установки взрывчатки или мины.
+// РџСЂРѕРІРµСЂРєР°, РЅР° РїРѕРїС‹С‚РєСѓ СѓСЃС‚Р°РЅРѕРІРєРё РІР·СЂС‹РІС‡Р°С‚РєРё РёР»Рё РјРёРЅС‹.
 bool IsMined( Critter& sapper, Item& item, Critter& miner, int minerMinSkill, uint16[] BadPid )
 {
 
@@ -16,10 +16,10 @@ bool IsMined( Critter& sapper, Item& item, Critter& miner, int minerMinSkill, ui
         return false;
     if( !valid( sapper ) )
         return false;
-    // Проверяем - видим ли мы минёра.
+    // РџСЂРѕРІРµСЂСЏРµРј - РІРёРґРёРј Р»Рё РјС‹ РјРёРЅС‘СЂР°.
     if( !miner.IsSeenBy( sapper ) )
         return false;
-    // Заминировать нас не так-то просто, нужно быть действительно мастером и удачливым ловкачем. Ну и конечно рандом.
+    // Р—Р°РјРёРЅРёСЂРѕРІР°С‚СЊ РЅР°СЃ РЅРµ С‚Р°Рє-С‚Рѕ РїСЂРѕСЃС‚Рѕ, РЅСѓР¶РЅРѕ Р±С‹С‚СЊ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ РјР°СЃС‚РµСЂРѕРј Рё СѓРґР°С‡Р»РёРІС‹Рј Р»РѕРІРєР°С‡РµРј. РќСѓ Рё РєРѕРЅРµС‡РЅРѕ СЂР°РЅРґРѕРј.
     if( ( miner.StatBase[ ST_AGILITY ] + miner.StatBase[ ST_LUCK ] + Random( 1, 10 ) ) / 3 < 7 || miner.Skill[ SK_TRAPS ] < minerMinSkill )
     {
         for( uint i = 0; i < BadPid.length(); i++ )
@@ -35,7 +35,7 @@ bool IsMined( Critter& sapper, Item& item, Critter& miner, int minerMinSkill, ui
 }
 
 
-// Проверка, на попытку установки взрывчатки или мины.
+// РџСЂРѕРІРµСЂРєР°, РЅР° РїРѕРїС‹С‚РєСѓ СѓСЃС‚Р°РЅРѕРІРєРё РІР·СЂС‹РІС‡Р°С‚РєРё РёР»Рё РјРёРЅС‹.
 /*bool IsMined( Critter& sapper, Item& item, Critter& miner, int minerMinSkill, uint16[] BadPid )
    {
         //uint[] BadPids = BadPid;
@@ -44,13 +44,13 @@ bool IsMined( Critter& sapper, Item& item, Critter& miner, int minerMinSkill, ui
    }*/
 
 
-// Проверяем игрока на наличие оружия в руках. Можно указать допустимое оружие, например заточку.
+// РџСЂРѕРІРµСЂСЏРµРј РёРіСЂРѕРєР° РЅР° РЅР°Р»РёС‡РёРµ РѕСЂСѓР¶РёСЏ РІ СЂСѓРєР°С…. РњРѕР¶РЅРѕ СѓРєР°Р·Р°С‚СЊ РґРѕРїСѓСЃС‚РёРјРѕРµ РѕСЂСѓР¶РёРµ, РЅР°РїСЂРёРјРµСЂ Р·Р°С‚РѕС‡РєСѓ.
 bool SearchWeapon( Item@ item, uint[] @ itemsAllowed  )
 {
 
     if( valid( item ) )
     {
-        if( ( item.GetType() == ITEM_TYPE_WEAPON ) && ( itemsAllowed.length() > 0 ) )        // если у игрока в руке оружие
+        if( ( item.GetType() == ITEM_TYPE_WEAPON ) && ( itemsAllowed.length() > 0 ) )        // РµСЃР»Рё Сѓ РёРіСЂРѕРєР° РІ СЂСѓРєРµ РѕСЂСѓР¶РёРµ
         {
             for( uint i = 0; i < itemsAllowed.length(); i++ )
             {
@@ -72,7 +72,7 @@ bool SearchWeapon( Item@ item, uint[] @ itemsAllowed  )
 }
 
 
-// Проверяем игрока на наличие оружия в руках.
+// РџСЂРѕРІРµСЂСЏРµРј РёРіСЂРѕРєР° РЅР° РЅР°Р»РёС‡РёРµ РѕСЂСѓР¶РёСЏ РІ СЂСѓРєР°С….
 bool SearchWeapon( Item@ item  )
 {
 
@@ -82,7 +82,7 @@ bool SearchWeapon( Item@ item  )
 }
 
 
-// Проверяем игрока на наличие в инвентаре запретных предметов
+// РџСЂРѕРІРµСЂСЏРµРј РёРіСЂРѕРєР° РЅР° РЅР°Р»РёС‡РёРµ РІ РёРЅРІРµРЅС‚Р°СЂРµ Р·Р°РїСЂРµС‚РЅС‹С… РїСЂРµРґРјРµС‚РѕРІ
 bool EquipmentInspection( Critter& player, uint[]& itemsForbidden )
 {
 
@@ -98,7 +98,7 @@ bool EquipmentInspection( Critter& player, uint[]& itemsForbidden )
 }
 
 
-// Проверяем игрока на наличие в инвентаре запретных предметов
+// РџСЂРѕРІРµСЂСЏРµРј РёРіСЂРѕРєР° РЅР° РЅР°Р»РёС‡РёРµ РІ РёРЅРІРµРЅС‚Р°СЂРµ Р·Р°РїСЂРµС‚РЅС‹С… РїСЂРµРґРјРµС‚РѕРІ
 bool EquipmentInspection( Critter& player, uint16[]& itemsForbidden )
 {
 
@@ -107,11 +107,11 @@ bool EquipmentInspection( Critter& player, uint16[]& itemsForbidden )
 }
 
 
-// Ищем Id запретных предметов в масииве.
+// РС‰РµРј Id Р·Р°РїСЂРµС‚РЅС‹С… РїСЂРµРґРјРµС‚РѕРІ РІ РјР°СЃРёРёРІРµ.
 bool SearchedForbidden( Item@[] items, uint[] @ itemsForbidden )
 {
 
-    // Перебираем проверяемый массив предметов и сравниваем их ID с ID запрещённых предметов.
+    // РџРµСЂРµР±РёСЂР°РµРј РїСЂРѕРІРµСЂСЏРµРјС‹Р№ РјР°СЃСЃРёРІ РїСЂРµРґРјРµС‚РѕРІ Рё СЃСЂР°РІРЅРёРІР°РµРј РёС… ID СЃ ID Р·Р°РїСЂРµС‰С‘РЅРЅС‹С… РїСЂРµРґРјРµС‚РѕРІ.
     for( uint it = 0; it < items.length(); it++ )
     {
         for( uint itf = 0; itf < itemsForbidden.length(); itf++ )

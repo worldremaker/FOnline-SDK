@@ -1,10 +1,10 @@
-// Author: Тринитротолуол
+// Author: РўСЂРёРЅРёС‚СЂРѕС‚РѕР»СѓРѕР»
 
-// Для квеста "Сгубить браминов".
-// Выдает Дантон.
-// Увести за собой и убить двоих браминов (с пастбища Эйдена). При этом есть шанс, равный 100%-(удача*10),
-// что игрока поймает на горячем Эйден. Дальше – несколько вариантов: либо сдать Дантона, либо убежать, либо бой,
-// либо убедить Эйдена отпустить игрока.
+// Р”Р»СЏ РєРІРµСЃС‚Р° "РЎРіСѓР±РёС‚СЊ Р±СЂР°РјРёРЅРѕРІ".
+// Р’С‹РґР°РµС‚ Р”Р°РЅС‚РѕРЅ.
+// РЈРІРµСЃС‚Рё Р·Р° СЃРѕР±РѕР№ Рё СѓР±РёС‚СЊ РґРІРѕРёС… Р±СЂР°РјРёРЅРѕРІ (СЃ РїР°СЃС‚Р±РёС‰Р° Р­Р№РґРµРЅР°). РџСЂРё СЌС‚РѕРј РµСЃС‚СЊ С€Р°РЅСЃ, СЂР°РІРЅС‹Р№ 100%-(СѓРґР°С‡Р°*10),
+// С‡С‚Рѕ РёРіСЂРѕРєР° РїРѕР№РјР°РµС‚ РЅР° РіРѕСЂСЏС‡РµРј Р­Р№РґРµРЅ. Р”Р°Р»СЊС€Рµ вЂ“ РЅРµСЃРєРѕР»СЊРєРѕ РІР°СЂРёР°РЅС‚РѕРІ: Р»РёР±Рѕ СЃРґР°С‚СЊ Р”Р°РЅС‚РѕРЅР°, Р»РёР±Рѕ СѓР±РµР¶Р°С‚СЊ, Р»РёР±Рѕ Р±РѕР№,
+// Р»РёР±Рѕ СѓР±РµРґРёС‚СЊ Р­Р№РґРµРЅР° РѕС‚РїСѓСЃС‚РёС‚СЊ РёРіСЂРѕРєР°.
 
 import bool AddWalkPlane( Critter& npc, uint priority, uint16 hexX, uint16 hexY, uint8 dir, bool run, uint cut ) from "npc_planes";
 
@@ -15,8 +15,8 @@ import bool AddWalkPlane( Critter& npc, uint priority, uint16 hexX, uint16 hexY,
 void InitBrahmin( Map& map, bool firstTime )
 {}
 
-// ------------------------- Игровые события ----------------------------------
-uint e_Follow( uint[] @ values ) // следовать за игроком
+// ------------------------- РРіСЂРѕРІС‹Рµ СЃРѕР±С‹С‚РёСЏ ----------------------------------
+uint e_Follow( uint[] @ values ) // СЃР»РµРґРѕРІР°С‚СЊ Р·Р° РёРіСЂРѕРєРѕРј
 {
     Critter@ cow = GetCritter( values[ 0 ] );
     if( not valid( cow ) )
@@ -39,7 +39,7 @@ uint e_Follow( uint[] @ values ) // следовать за игроком
     return 0;
 }
 
-// ------------------------ Диалоговые функции ---------------------------------
+// ------------------------ Р”РёР°Р»РѕРіРѕРІС‹Рµ С„СѓРЅРєС†РёРё ---------------------------------
 void r_FollowForPlayer( Critter& player, Critter@ cow )
 {
     if( not valid( cow ) )
@@ -63,7 +63,7 @@ void r_ChangeDir( Critter& player, Critter@ cow )
     cow.SetHomePos( cow.HexX, cow.HexY, player.Dir );
 }
 
-// ------------------------------ Триггеры --------------------------------------
+// ------------------------------ РўСЂРёРіРіРµСЂС‹ --------------------------------------
 void t_StopTrigger( Critter& cow, Scenery& trigger, bool entered, uint8 dir )
 {
     if( cow.Stat[ ST_NPC_ROLE ] != ROLE_COWS )
@@ -75,7 +75,7 @@ void t_StopTrigger( Critter& cow, Scenery& trigger, bool entered, uint8 dir )
     cow.ErasePlane( -1, true );
 }
 
-// --------------------------- Инструментарий------------------------------------
+// --------------------------- РРЅСЃС‚СЂСѓРјРµРЅС‚Р°СЂРёР№------------------------------------
 void EndFollow( uint playerId, Critter@ cow )
 {
     uint state = GetQuestState( playerId );
@@ -97,14 +97,14 @@ bool ProccesingValues( uint playerId, uint time, Critter@ cow, uint16& resultX, 
 
     Critter@ player = GetCritter( playerId );
     if( not valid( player ) )
-        return false;                               // игрок ушел в оффлайн
+        return false;                               // РёРіСЂРѕРє СѓС€РµР» РІ РѕС„С„Р»Р°Р№РЅ
     Map@ mapPlayer = player.GetMap();
     if( not valid( mapPlayer ) )
-        return false;                               // игрок ушел на глобал
+        return false;                               // РёРіСЂРѕРє СѓС€РµР» РЅР° РіР»РѕР±Р°Р»
     if( mapCow.Id != mapPlayer.Id )
-        return false;                               // игрок ушел на другую карту
+        return false;                               // РёРіСЂРѕРє СѓС€РµР» РЅР° РґСЂСѓРіСѓСЋ РєР°СЂС‚Сѓ
     if( time >= 60 )
-        return false;                               // ограничение, по времени, на следование брамина за игроком
+        return false;                               // РѕРіСЂР°РЅРёС‡РµРЅРёРµ, РїРѕ РІСЂРµРјРµРЅРё, РЅР° СЃР»РµРґРѕРІР°РЅРёРµ Р±СЂР°РјРёРЅР° Р·Р° РёРіСЂРѕРєРѕРј
     resultX = player.HexX;
     resultY = player.HexY;
     return true;
@@ -115,7 +115,7 @@ void SetQuestState( uint playerId, uint state )
     GameVar@ var = GetLocalVar( LVAR_q_klam_danton_bramin, playerId );
     if( not valid( var ) )
     {
-        Log( "ERROR: not valid GameVar №" + LVAR_q_klam_danton_bramin );
+        Log( "ERROR: not valid GameVar в„–" + LVAR_q_klam_danton_bramin );
         return;
     }
 
@@ -127,7 +127,7 @@ uint GetQuestState( uint playerId )
     GameVar@ var = GetLocalVar( LVAR_q_klam_danton_bramin, playerId );
     if( not valid( var ) )
     {
-        Log( "ERROR: not valid GameVar №" + LVAR_q_klam_danton_bramin );
+        Log( "ERROR: not valid GameVar в„–" + LVAR_q_klam_danton_bramin );
         return 0;
     }
     return var.GetValue();

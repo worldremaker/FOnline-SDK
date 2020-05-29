@@ -252,7 +252,7 @@ void DropDrugEffects( Critter& cr ) // Export
     // uint[] rates;
     // uint count=cr.GetTimeEvents(DrugsIdentifiers,identifiers,null,null,rates);
     // for(uint i=0;i<count;i++) DropDrug(cr,identifiers[i],rates[i]);
-    // Áðîíÿ óáèðàåòñÿ â èíâåíòàðü, ÷òîáû èçáåæàòü ýôôåêòà ñíÿòèÿ áîíóñîâ îò armor perk
+    // Ð‘Ñ€Ð¾Ð½Ñ ÑƒÐ±Ð¸Ñ€Ð°ÐµÑ‚ÑÑ Ð² Ð¸Ð½Ð²ÐµÐ½Ñ‚Ð°Ñ€ÑŒ, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¸Ð·Ð±ÐµÐ¶Ð°Ñ‚ÑŒ ÑÑ„Ñ„ÐµÐºÑ‚Ð° ÑÐ½ÑÑ‚Ð¸Ñ Ð±Ð¾Ð½ÑƒÑÐ¾Ð² Ð¾Ñ‚ armor perk
     Item@[] items;
     cr.GetItems( SLOT_ARMOR, items );
     cr.GetItems( SLOT_HAND1, items );
@@ -267,14 +267,14 @@ void DropDrugEffects( Critter& cr ) // Export
     // Unset addictions perks
     for( uint i = ADDICTION_BEGIN; i <= ADDICTION_END; i++ )
         cr.AddictionBase[ i ] = 0;
-    // Îáðàòíî âîçâðàùàåì áðîíþ
+    // ÐžÐ±Ñ€Ð°Ñ‚Ð½Ð¾ Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÐ¼ Ð±Ñ€Ð¾Ð½ÑŽ
     for( uint i = 0, l = items.length(); i < l; i++ )
     {
         Item@ item = items[ i ];
         if( valid( item ) && item.GetType() == ITEM_TYPE_ARMOR )
         {
             _CritMoveItem( cr, item, SLOT_ARMOR );
-            break;             // ìîæåò áûòü áîëåå 1 áðîíè â ðóêàõ
+            break;             // Ð¼Ð¾Ð¶ÐµÑ‚ Ð±Ñ‹Ñ‚ÑŒ Ð±Ð¾Ð»ÐµÐµ 1 Ð±Ñ€Ð¾Ð½Ð¸ Ð² Ñ€ÑƒÐºÐ°Ñ…
         }
     }
 }
@@ -292,7 +292,7 @@ void SetDrug( Critter& cr, uint16 drugPid )
                 counter = counter.GetValue() + 1;
             else if( counter.GetValue() == max - 1 )
             {
-                cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 70061 );             // Âû ñúåëè ñòîëüêî ïîí÷èêîâ, ÷òî ïî÷óñòâîâàëè ñåáÿ íåìíîãî ñèëüíåå. Ïåðåíîñèìûé âåñ óâåëè÷åí íà +1 ïóíêò.}
+                cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 70061 );             // Ð’Ñ‹ ÑÑŠÐµÐ»Ð¸ ÑÑ‚Ð¾Ð»ÑŒÐºÐ¾ Ð¿Ð¾Ð½Ñ‡Ð¸ÐºÐ¾Ð², Ñ‡Ñ‚Ð¾ Ð¿Ð¾Ñ‡ÑƒÑÑ‚Ð²Ð¾Ð²Ð°Ð»Ð¸ ÑÐµÐ±Ñ Ð½ÐµÐ¼Ð½Ð¾Ð³Ð¾ ÑÐ¸Ð»ÑŒÐ½ÐµÐµ. ÐŸÐµÑ€ÐµÐ½Ð¾ÑÐ¸Ð¼Ñ‹Ð¹ Ð²ÐµÑ ÑƒÐ²ÐµÐ»Ð¸Ñ‡ÐµÐ½ Ð½Ð° +1 Ð¿ÑƒÐ½ÐºÑ‚.}
                 counter = max;
                 cr.StatBase[ ST_CARRY_WEIGHT ] += LBS_TO_GRAMM( 1 );
             }

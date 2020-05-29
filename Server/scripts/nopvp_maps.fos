@@ -3,8 +3,8 @@
 #include "utils_for_array.fos"
 
 // Author: rifleman17
-// NoPvp ðåæèì äëÿ íåêîòîðûõ êàðò íà ñåðâåðå
-// Åñëè âêëþ÷åí ïðè ïåðâîì çàïóñêå, íåæåëàòåëüíî îòêëþ÷àòü áåç âàéïà, èíà÷å ñìåøàþòñÿ ïâï è íîïâï ïåðñîíàæè
+// NoPvp Ñ€ÐµÐ¶Ð¸Ð¼ Ð´Ð»Ñ Ð½ÐµÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ñ… ÐºÐ°Ñ€Ñ‚ Ð½Ð° ÑÐµÑ€Ð²ÐµÑ€Ðµ
+// Ð•ÑÐ»Ð¸ Ð²ÐºÐ»ÑŽÑ‡ÐµÐ½ Ð¿Ñ€Ð¸ Ð¿ÐµÑ€Ð²Ð¾Ð¼ Ð·Ð°Ð¿ÑƒÑÐºÐµ, Ð½ÐµÐ¶ÐµÐ»Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾ Ð¾Ñ‚ÐºÐ»ÑŽÑ‡Ð°Ñ‚ÑŒ Ð±ÐµÐ· Ð²Ð°Ð¹Ð¿Ð°, Ð¸Ð½Ð°Ñ‡Ðµ ÑÐ¼ÐµÑˆÐ°ÑŽÑ‚ÑÑ Ð¿Ð²Ð¿ Ð¸ Ð½Ð¾Ð¿Ð²Ð¿ Ð¿ÐµÑ€ÑÐ¾Ð½Ð°Ð¶Ð¸
 
 const uint[] noPvpMaps =
 {
@@ -32,14 +32,14 @@ const int[] excludeDialogs =
 };
 const int[] btInvul = { BT_MEN, BT_WOMEN, BT_CHILDREN, BT_SUPER_MUTANT, BT_GHOUL };
 
-#define NOPVP_VAR        ( LMVAR_is_nopvp_map ) // Íîìåð ïåðåìåííîé, â êîòîðîé
-#define CTE_NOPVP_OFF    ( 42 )                 // Èäåíòèôèêàòîð ñîáûòèÿ "î÷èñòèòü íîïâï ðåæèì"
-#define TIME_CHECK       ( REAL_MINUTE( 1 ) )   // Âðåìÿ ïðîâåðêè, íå âûøåë ëè èãðîê ñ íîïâï çîíû
+#define NOPVP_VAR        ( LMVAR_is_nopvp_map ) // ÐÐ¾Ð¼ÐµÑ€ Ð¿ÐµÑ€ÐµÐ¼ÐµÐ½Ð½Ð¾Ð¹, Ð² ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð¹
+#define CTE_NOPVP_OFF    ( 42 )                 // Ð˜Ð´ÐµÐ½Ñ‚Ð¸Ñ„Ð¸ÐºÐ°Ñ‚Ð¾Ñ€ ÑÐ¾Ð±Ñ‹Ñ‚Ð¸Ñ "Ð¾Ñ‡Ð¸ÑÑ‚Ð¸Ñ‚ÑŒ Ð½Ð¾Ð¿Ð²Ð¿ Ñ€ÐµÐ¶Ð¸Ð¼"
+#define TIME_CHECK       ( REAL_MINUTE( 1 ) )   // Ð’Ñ€ÐµÐ¼Ñ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸, Ð½Ðµ Ð²Ñ‹ÑˆÐµÐ» Ð»Ð¸ Ð¸Ð³Ñ€Ð¾Ðº Ñ Ð½Ð¾Ð¿Ð²Ð¿ Ð·Ð¾Ð½Ñ‹
 
 
 void OnCitterMapIn( Critter& cr, Map& map )
 {
-    cr.ModeBase[ MODE_NO_PVP ] = 0;   // ïåðåñòðàõîâêà, ïî èäåå ýòî ïðèñâàèâàíèå íå íóæíî, íî íà âñÿêèé ñëó÷àé...
+    cr.ModeBase[ MODE_NO_PVP ] = 0;   // Ð¿ÐµÑ€ÐµÑÑ‚Ñ€Ð°Ñ…Ð¾Ð²ÐºÐ°, Ð¿Ð¾ Ð¸Ð´ÐµÐµ ÑÑ‚Ð¾ Ð¿Ñ€Ð¸ÑÐ²Ð°Ð¸Ð²Ð°Ð½Ð¸Ðµ Ð½Ðµ Ð½ÑƒÐ¶Ð½Ð¾, Ð½Ð¾ Ð½Ð° Ð²ÑÑÐºÐ¸Ð¹ ÑÐ»ÑƒÑ‡Ð°Ð¹...
     if( cr.IsPlayer() && IsNoPvpMap( map ) )
     {
         cr.ModeBase[ MODE_NO_PVP ] = 1;
@@ -56,7 +56,7 @@ uint cte_NoPvpOff( Critter& cr, int identifier, uint& rate )
     if( cr.Mode[ MODE_NO_PVP ] == 0 )
         return 0;
     Map@map = cr.GetMap();
-    if( valid( map ) && IsNoPvpMap( map ) ) // åñëè êàðòà ñ âêëþ÷åííûì ÍîÏâï, îòêëàäûâàåì ñíÿòèå ðåæèìà
+    if( valid( map ) && IsNoPvpMap( map ) ) // ÐµÑÐ»Ð¸ ÐºÐ°Ñ€Ñ‚Ð° Ñ Ð²ÐºÐ»ÑŽÑ‡ÐµÐ½Ð½Ñ‹Ð¼ ÐÐ¾ÐŸÐ²Ð¿, Ð¾Ñ‚ÐºÐ»Ð°Ð´Ñ‹Ð²Ð°ÐµÐ¼ ÑÐ½ÑÑ‚Ð¸Ðµ Ñ€ÐµÐ¶Ð¸Ð¼Ð°
         return TIME_CHECK;
     cr.ModeBase[ MODE_NO_PVP ] = 0;
     return 0;
@@ -67,7 +67,7 @@ void OnCritterMapOut( Critter& cr, Map& map )
     Map@ mapCr = cr.GetMap();
     if( valid( mapCr ) && IsNoPvpMap( mapCr ) )
         return;
-    if( __NoPvpMaps && cr.IsPlayer() && cr.Mode[ MODE_NO_PVP ] > 0 ) // åñëè íî ïâï êàðòû íå âêëþ÷åíû, ïåðñîíàæ ïîëó÷èë íîïâï ðåæèì äðóãèì ñïîñîáîì, íå îòìåíÿåì
+    if( __NoPvpMaps && cr.IsPlayer() && cr.Mode[ MODE_NO_PVP ] > 0 ) // ÐµÑÐ»Ð¸ Ð½Ð¾ Ð¿Ð²Ð¿ ÐºÐ°Ñ€Ñ‚Ñ‹ Ð½Ðµ Ð²ÐºÐ»ÑŽÑ‡ÐµÐ½Ñ‹, Ð¿ÐµÑ€ÑÐ¾Ð½Ð°Ð¶ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ð» Ð½Ð¾Ð¿Ð²Ð¿ Ñ€ÐµÐ¶Ð¸Ð¼ Ð´Ñ€ÑƒÐ³Ð¸Ð¼ ÑÐ¿Ð¾ÑÐ¾Ð±Ð¾Ð¼, Ð½Ðµ Ð¾Ñ‚Ð¼ÐµÐ½ÑÐµÐ¼
     {
         cr.ModeBase[ MODE_NO_PVP ] = 0;
         cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 2 );
@@ -95,8 +95,8 @@ void SetNoPvp()
     }
 }
 
-// Óñòàíîâêà NoPvp ðåæèìà íà êàðòå, äåéñòâóåò òîëüêî ïðè ïåðâîé çàãðóçêå êàðòû
-// Ïðèñâàèâàåòñÿ ïåðåìåííàÿ, à òàêæå âñå ÍÏÖ íà êàðòå ïîëó÷àþò ðåæèì MODE_INVULNERABLE
+// Ð£ÑÑ‚Ð°Ð½Ð¾Ð²ÐºÐ° NoPvp Ñ€ÐµÐ¶Ð¸Ð¼Ð° Ð½Ð° ÐºÐ°Ñ€Ñ‚Ðµ, Ð´ÐµÐ¹ÑÑ‚Ð²ÑƒÐµÑ‚ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð¿Ñ€Ð¸ Ð¿ÐµÑ€Ð²Ð¾Ð¹ Ð·Ð°Ð³Ñ€ÑƒÐ·ÐºÐµ ÐºÐ°Ñ€Ñ‚Ñ‹
+// ÐŸÑ€Ð¸ÑÐ²Ð°Ð¸Ð²Ð°ÐµÑ‚ÑÑ Ð¿ÐµÑ€ÐµÐ¼ÐµÐ½Ð½Ð°Ñ, Ð° Ñ‚Ð°ÐºÐ¶Ðµ Ð²ÑÐµ ÐÐŸÐ¦ Ð½Ð° ÐºÐ°Ñ€Ñ‚Ðµ Ð¿Ð¾Ð»ÑƒÑ‡Ð°ÑŽÑ‚ Ñ€ÐµÐ¶Ð¸Ð¼ MODE_INVULNERABLE
 void SetNoPvp( Map& map, bool firstTime )
 {
     if( firstTime )
@@ -132,10 +132,10 @@ void SetNoPvp( Map& map, bool firstTime )
     }
 }
 
-// èãðîê ñ âêëþ÷åííûì NoPvp ðåæèìîì ìîæåò òåëåïîðòèðîâàòüñÿ íà ãëîáàë
+// Ð¸Ð³Ñ€Ð¾Ðº Ñ Ð²ÐºÐ»ÑŽÑ‡ÐµÐ½Ð½Ñ‹Ð¼ NoPvp Ñ€ÐµÐ¶Ð¸Ð¼Ð¾Ð¼ Ð¼Ð¾Ð¶ÐµÑ‚ Ñ‚ÐµÐ»ÐµÐ¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒÑÑ Ð½Ð° Ð³Ð»Ð¾Ð±Ð°Ð»
 void unsafe_CritterToGlobal( Critter& player, int, int, int, string@, int[] @ )
 {
-    player.Wait( 1000 );   // Àíòèñïàì
+    player.Wait( 1000 );   // ÐÐ½Ñ‚Ð¸ÑÐ¿Ð°Ð¼
     if( player.Timeout[ TO_BATTLE ] > 0 )
     {
         player.SayMsg( SAY_NETMSG, TEXTMSG_GAME, STR_TIMEOUT_BATTLE_WAIT );

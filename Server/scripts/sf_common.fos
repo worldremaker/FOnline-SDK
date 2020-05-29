@@ -6,7 +6,7 @@
 
 void _BosEvaInit( Critter& eva, bool firstTime )
 {
-    // Сброс глобального статуса для квеста "Чокнутый компьютер"
+    // РЎР±СЂРѕСЃ РіР»РѕР±Р°Р»СЊРЅРѕРіРѕ СЃС‚Р°С‚СѓСЃР° РґР»СЏ РєРІРµСЃС‚Р° "Р§РѕРєРЅСѓС‚С‹Р№ РєРѕРјРїСЊСЋС‚РµСЂ"
     eva.SetEvent( CRITTER_EVENT_FINISH, "_EvaFinish" );
     if( firstTime )
     {
@@ -31,13 +31,13 @@ uint e_OneWeek( uint[] @ values )
     return 7 * 24 * 60 * 60; // One week
 }
 
-// * Квест "Сбор дани для Ло Пэна                         *//
+// * РљРІРµСЃС‚ "РЎР±РѕСЂ РґР°РЅРё РґР»СЏ Р›Рѕ РџСЌРЅР°                         *//
 
-#define DEAD_SHOE_CAPS    ( 200 )                                // Сумма денег, добавляемой нпц, если его убил человек, выполняющий квест Сбор дани для Ло Пэна
-#define STR_KILL_SHOE     ( 4 )                                  // Строка диалога, которую игрок прочитает в чате после убийства горожанина.
-#define STR_GET_MONEY     ( 5 )                                  // Строка из диалога крестьянина, которая пишется игроку в чат, когда он получает очередную сумму
+#define DEAD_SHOE_CAPS    ( 200 )                                // РЎСѓРјРјР° РґРµРЅРµРі, РґРѕР±Р°РІР»СЏРµРјРѕР№ РЅРїС†, РµСЃР»Рё РµРіРѕ СѓР±РёР» С‡РµР»РѕРІРµРє, РІС‹РїРѕР»РЅСЏСЋС‰РёР№ РєРІРµСЃС‚ РЎР±РѕСЂ РґР°РЅРё РґР»СЏ Р›Рѕ РџСЌРЅР°
+#define STR_KILL_SHOE     ( 4 )                                  // РЎС‚СЂРѕРєР° РґРёР°Р»РѕРіР°, РєРѕС‚РѕСЂСѓСЋ РёРіСЂРѕРє РїСЂРѕС‡РёС‚Р°РµС‚ РІ С‡Р°С‚Рµ РїРѕСЃР»Рµ СѓР±РёР№СЃС‚РІР° РіРѕСЂРѕР¶Р°РЅРёРЅР°.
+#define STR_GET_MONEY     ( 5 )                                  // РЎС‚СЂРѕРєР° РёР· РґРёР°Р»РѕРіР° РєСЂРµСЃС‚СЊСЏРЅРёРЅР°, РєРѕС‚РѕСЂР°СЏ РїРёС€РµС‚СЃСЏ РёРіСЂРѕРєСѓ РІ С‡Р°С‚, РєРѕРіРґР° РѕРЅ РїРѕР»СѓС‡Р°РµС‚ РѕС‡РµСЂРµРґРЅСѓСЋ СЃСѓРјРјСѓ
 
-// Функция пишет в чат игроку сумму, набранную для Ло Пэна
+// Р¤СѓРЅРєС†РёСЏ РїРёС€РµС‚ РІ С‡Р°С‚ РёРіСЂРѕРєСѓ СЃСѓРјРјСѓ, РЅР°Р±СЂР°РЅРЅСѓСЋ РґР»СЏ Р›Рѕ РџСЌРЅР°
 void r_ShowBlackmailSum( Critter& player, Critter @ npc )
 {
     if( !valid( npc ) )
@@ -49,8 +49,8 @@ void r_ShowBlackmailSum( Critter& player, Critter @ npc )
     player.SayMsg( SAY_NETMSG, TEXTMSG_DLG, DLGSTR( npc.Stat[ ST_DIALOG_ID ], STR_GET_MONEY ), lexems );
 }
 
-// Функция вызывается из диалога, если крестьянин вступил в бой с игроком. При смерти крестьянина, если его убил тот самый игрок
-// у него в инвентаре генерится 200 монет, и у игрока переключается счетчик собранной дани
+// Р¤СѓРЅРєС†РёСЏ РІС‹Р·С‹РІР°РµС‚СЃСЏ РёР· РґРёР°Р»РѕРіР°, РµСЃР»Рё РєСЂРµСЃС‚СЊСЏРЅРёРЅ РІСЃС‚СѓРїРёР» РІ Р±РѕР№ СЃ РёРіСЂРѕРєРѕРј. РџСЂРё СЃРјРµСЂС‚Рё РєСЂРµСЃС‚СЊСЏРЅРёРЅР°, РµСЃР»Рё РµРіРѕ СѓР±РёР» С‚РѕС‚ СЃР°РјС‹Р№ РёРіСЂРѕРє
+// Сѓ РЅРµРіРѕ РІ РёРЅРІРµРЅС‚Р°СЂРµ РіРµРЅРµСЂРёС‚СЃСЏ 200 РјРѕРЅРµС‚, Рё Сѓ РёРіСЂРѕРєР° РїРµСЂРµРєР»СЋС‡Р°РµС‚СЃСЏ СЃС‡РµС‚С‡РёРє СЃРѕР±СЂР°РЅРЅРѕР№ РґР°РЅРё
 void r_BeginFight( Critter& player, Critter @ npc )
 {
     if( !valid( npc ) )
@@ -63,31 +63,31 @@ void _citizenDead( Critter& npc, Critter@ killer )
 {
     if( valid( killer ) )
     {
-        // Убить должен тот, кто пришел от Ло Пэна
+        // РЈР±РёС‚СЊ РґРѕР»Р¶РµРЅ С‚РѕС‚, РєС‚Рѕ РїСЂРёС€РµР» РѕС‚ Р›Рѕ РџСЌРЅР°
         if( killer.IsPlayer() && uint( npc.Stat[ ST_VAR0 ] ) == killer.Id )
         {
             _CritAddItem( npc, PID_BOTTLE_CAPS, DEAD_SHOE_CAPS );
-            // Для упрощения задачи, деньги начисляем сразу, несмотря на то, что игрок может их и не подобрать
+            // Р”Р»СЏ СѓРїСЂРѕС‰РµРЅРёСЏ Р·Р°РґР°С‡Рё, РґРµРЅСЊРіРё РЅР°С‡РёСЃР»СЏРµРј СЃСЂР°Р·Сѓ, РЅРµСЃРјРѕС‚СЂСЏ РЅР° С‚Рѕ, С‡С‚Рѕ РёРіСЂРѕРє РјРѕР¶РµС‚ РёС… Рё РЅРµ РїРѕРґРѕР±СЂР°С‚СЊ
             killer.SayMsg( SAY_NETMSG, TEXTMSG_DLG, DLGSTR( npc.Stat[ ST_DIALOG_ID ], STR_KILL_SHOE ) );
             GameVar @ sum = GetLocalVar( LVAR_sf_lo_pan_blackmail_sum, killer.Id );
             if( valid( sum ) )
             {
                 sum = sum.GetValue() + DEAD_SHOE_CAPS;
             }
-            // Сообщение новой суммы игроку
+            // РЎРѕРѕР±С‰РµРЅРёРµ РЅРѕРІРѕР№ СЃСѓРјРјС‹ РёРіСЂРѕРєСѓ
             r_ShowBlackmailSum( killer, npc );
         }
     }
-    // Сброс запоминания игрока
+    // РЎР±СЂРѕСЃ Р·Р°РїРѕРјРёРЅР°РЅРёСЏ РёРіСЂРѕРєР°
     npc.StatBase[ ST_VAR0 ] = 0;
     npc.SetEvent( CRITTER_EVENT_DEAD, "" );
 }
 
-// * Телохранители Ло Пэна
+// * РўРµР»РѕС…СЂР°РЅРёС‚РµР»Рё Р›Рѕ РџСЌРЅР°
 
 #include "merc_h.fos"
 
-#define CONTRACT_TIME     ( 6 * 30 * 24 * 60 * 60 )           // полгода
+#define CONTRACT_TIME     ( 6 * 30 * 24 * 60 * 60 )           // РїРѕР»РіРѕРґР°
 
 import void _MercInit( Critter& merc, bool firstTime ) from "merc";
 import void e_MercDead( Critter& merc, Critter@ killer ) from "merc";
@@ -106,11 +106,11 @@ void _SFMercDead( Critter& merc, Critter@ killer )
 {
     e_MercDead( merc, killer );
     merc.StatBase[ ST_REPLICATION_TIME ] = 0;
-    merc.ModeBase[ MODE_GECK ] = 1; // Чтобы мерк не пропал на энкаунтере
+    merc.ModeBase[ MODE_GECK ] = 1; // Р§С‚РѕР±С‹ РјРµСЂРє РЅРµ РїСЂРѕРїР°Р» РЅР° СЌРЅРєР°СѓРЅС‚РµСЂРµ
     CancelContract( merc );
 }
 
-// Отправление мерка домой.
+// РћС‚РїСЂР°РІР»РµРЅРёРµ РјРµСЂРєР° РґРѕРјРѕР№.
 void SFMercToHome( Critter& merc )
 {
     uint16 hX = 0;
@@ -144,7 +144,7 @@ void r_SFMerc2Player( Critter& player, Critter @ npc )
         return;
     uint mId = player.Id;
     uint[] values = { npc.Id, mId };
-    CreateTimeEvent( __FullSecond + CONTRACT_TIME, "e_CancelContract", values, true ); // Окончание контракта через полгода
+    CreateTimeEvent( __FullSecond + CONTRACT_TIME, "e_CancelContract", values, true ); // РћРєРѕРЅС‡Р°РЅРёРµ РєРѕРЅС‚СЂР°РєС‚Р° С‡РµСЂРµР· РїРѕР»РіРѕРґР°
 
     Merc2Player( player, npc, true, false, 0, MMDistMedium, MERC_GUARD_DEFAULT, true, false, CONTRACT_TIME );
     npc.SetScript( "sf_common@_SFMercInit" );
@@ -165,7 +165,7 @@ uint e_CancelContract( uint[] @ values )
         }
         else
         {
-            if( masterId == uint( merc.MasterId ) )         // Хозяин уже мог смениться
+            if( masterId == uint( merc.MasterId ) )         // РҐРѕР·СЏРёРЅ СѓР¶Рµ РјРѕРі СЃРјРµРЅРёС‚СЊСЃСЏ
                 CancelContract( merc );
         }
 
@@ -190,7 +190,7 @@ void CancelContract( Critter& merc )
     masterId = 0;
 }
 
-// Использование науки на Императоре Ши
+// РСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РЅР°СѓРєРё РЅР° РРјРїРµСЂР°С‚РѕСЂРµ РЁРё
 bool s_UseImperor( Critter& player, Scenery& scenery, int skill, Item@ item )
 {
     if( skill == SK_SCIENCE )
@@ -201,24 +201,24 @@ bool s_UseImperor( Critter& player, Scenery& scenery, int skill, Item@ item )
 }
 
 
-// Квест "Нэнси и Сид"
+// РљРІРµСЃС‚ "РќСЌРЅСЃРё Рё РЎРёРґ"
 #define RADIO_CHANNEL_FIRST     ( 15 )
 #define RADIO_CHANNEL_LAST      ( 20 )
 #define GET_CHANNEL             ( Random( RADIO_CHANNEL_FIRST, RADIO_CHANNEL_LAST ) )
-#define NEXT_MESSAGE_SECONDS    ( 5 * 60 )    // время следующего сообщения
+#define NEXT_MESSAGE_SECONDS    ( 5 * 60 )    // РІСЂРµРјСЏ СЃР»РµРґСѓСЋС‰РµРіРѕ СЃРѕРѕР±С‰РµРЅРёСЏ
 #define STR_SOS                 ( 5110 )      // S.O.S.
-#define STR_NAME_NANCY          ( 5111 )      // Это Нэнси... Сид, он...
-#define STR_WHERE_IS_NANCY      ( 5112 )      // Помогите кто-нибудь, я в палатке наркодилеров на побережье... Ранена... Умираю... Сид ушел...
-#define MAX_SESSION_MESSAGES    ( 60 )        // максимальное число сообщений от ненси за один сеанс связи
-#define PID_KEY_BEARER          ( 34 )        // Код нпц с ключом
+#define STR_NAME_NANCY          ( 5111 )      // Р­С‚Рѕ РќСЌРЅСЃРё... РЎРёРґ, РѕРЅ...
+#define STR_WHERE_IS_NANCY      ( 5112 )      // РџРѕРјРѕРіРёС‚Рµ РєС‚Рѕ-РЅРёР±СѓРґСЊ, СЏ РІ РїР°Р»Р°С‚РєРµ РЅР°СЂРєРѕРґРёР»РµСЂРѕРІ РЅР° РїРѕР±РµСЂРµР¶СЊРµ... Р Р°РЅРµРЅР°... РЈРјРёСЂР°СЋ... РЎРёРґ СѓС€РµР»...
+#define MAX_SESSION_MESSAGES    ( 60 )        // РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ С‡РёСЃР»Рѕ СЃРѕРѕР±С‰РµРЅРёР№ РѕС‚ РЅРµРЅСЃРё Р·Р° РѕРґРёРЅ СЃРµР°РЅСЃ СЃРІСЏР·Рё
+#define PID_KEY_BEARER          ( 34 )        // РљРѕРґ РЅРїС† СЃ РєР»СЋС‡РѕРј
 
-const string[] WhoAreYouKeywords = { "кто ты?", "ты кто?", "who are you?", "кто вы?", "вы кто?", "это кто" };
-const string[] WhereAreYouKeywords = { "где Сид", "где ты?", "где вы?", "вы где?", "ты где?", "where are you?", "Нэнси, где ты?", "Нэнси, где вы?", "Нэнси, вы где?", "Нэнси, ты где?" };
+const string[] WhoAreYouKeywords = { "РєС‚Рѕ С‚С‹?", "С‚С‹ РєС‚Рѕ?", "who are you?", "РєС‚Рѕ РІС‹?", "РІС‹ РєС‚Рѕ?", "СЌС‚Рѕ РєС‚Рѕ" };
+const string[] WhereAreYouKeywords = { "РіРґРµ РЎРёРґ", "РіРґРµ С‚С‹?", "РіРґРµ РІС‹?", "РІС‹ РіРґРµ?", "С‚С‹ РіРґРµ?", "where are you?", "РќСЌРЅСЃРё, РіРґРµ С‚С‹?", "РќСЌРЅСЃРё, РіРґРµ РІС‹?", "РќСЌРЅСЃРё, РІС‹ РіРґРµ?", "РќСЌРЅСЃРё, С‚С‹ РіРґРµ?" };
 uint  radio_channel;
-uint  message_counter; // текущее число сообщений
+uint  message_counter; // С‚РµРєСѓС‰РµРµ С‡РёСЃР»Рѕ СЃРѕРѕР±С‰РµРЅРёР№
 bool  name_asked;
 bool  where_asked;
-uint  who_asked_id;    // Id игрока, спросившего "кто ты"
+uint  who_asked_id;    // Id РёРіСЂРѕРєР°, СЃРїСЂРѕСЃРёРІС€РµРіРѕ "РєС‚Рѕ С‚С‹"
 import bool AddAttackPlane( Critter& npc, uint priority, Critter& target ) from "npc_planes";
 import bool AddWalkPlane( Critter& npc, uint priority, uint16 hexX, uint16 hexY, uint8 dir, bool run, uint cut ) from "npc_planes";
 import void SheduleSFInvasion() from "sf_invasion";
@@ -233,7 +233,7 @@ void _TankerMapInit( Map& map, bool firstTime )
     }
 }
 
-// Функция для проверки в диалогах, что текущий меньше указанного
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ РїСЂРѕРІРµСЂРєРё РІ РґРёР°Р»РѕРіР°С…, С‡С‚Рѕ С‚РµРєСѓС‰РёР№ РјРµРЅСЊС€Рµ СѓРєР°Р·Р°РЅРЅРѕРіРѕ
 bool d_CheckNowHourLess( Critter& player, Critter @ npc, int hour )
 {
     return __Hour < hour;
@@ -245,7 +245,7 @@ bool d_CheckNowHourMore( Critter& player, Critter @ npc, int hour )
 }
 
 
-// Выход Нэнси на радиосвязь
+// Р’С‹С…РѕРґ РќСЌРЅСЃРё РЅР° СЂР°РґРёРѕСЃРІСЏР·СЊ
 uint e_BeginNancyBroadcast( uint[] @ values )
 {
     radio_channel = GET_CHANNEL;
@@ -253,9 +253,9 @@ uint e_BeginNancyBroadcast( uint[] @ values )
     name_asked = false;
     where_asked = false;
     who_asked_id = 0;
-    // Первая реплика в рамках выхода на связь
+    // РџРµСЂРІР°СЏ СЂРµРїР»РёРєР° РІ СЂР°РјРєР°С… РІС‹С…РѕРґР° РЅР° СЃРІСЏР·СЊ
     CreateTimeEvent( __FullSecond + NEXT_MESSAGE_SECONDS, "e_TimeToBroadcast", false );
-    // для всех ключевых слов добавляются прослушки
+    // РґР»СЏ РІСЃРµС… РєР»СЋС‡РµРІС‹С… СЃР»РѕРІ РґРѕР±Р°РІР»СЏСЋС‚СЃСЏ РїСЂРѕСЃР»СѓС€РєРё
     for( uint i = 0; i < WhoAreYouKeywords.length(); i++ )
     {
         AddTextListener( SAY_RADIO, WhoAreYouKeywords[ i ], radio_channel, "sf_common@listen_BroadcastWho" );
@@ -264,11 +264,11 @@ uint e_BeginNancyBroadcast( uint[] @ values )
     {
         AddTextListener( SAY_RADIO, WhereAreYouKeywords[ i ], radio_channel, "sf_common@listen_BroadcastWhere" );
     }
-    return 24 * 60 * 60; // Через сутки
+    return 24 * 60 * 60; // Р§РµСЂРµР· СЃСѓС‚РєРё
 }
 
-// Регулярное радио-сообщение.
-// Повторяется раз в игровые сутки на одном из каналов, выбранном случайно
+// Р РµРіСѓР»СЏСЂРЅРѕРµ СЂР°РґРёРѕ-СЃРѕРѕР±С‰РµРЅРёРµ.
+// РџРѕРІС‚РѕСЂСЏРµС‚СЃСЏ СЂР°Р· РІ РёРіСЂРѕРІС‹Рµ СЃСѓС‚РєРё РЅР° РѕРґРЅРѕРј РёР· РєР°РЅР°Р»РѕРІ, РІС‹Р±СЂР°РЅРЅРѕРј СЃР»СѓС‡Р°Р№РЅРѕ
 uint e_TimeToBroadcast( uint[] @ values )
 {
     if( where_asked )
@@ -283,7 +283,7 @@ uint e_TimeToBroadcast( uint[] @ values )
                 if( qVar.GetValue() == 1 )
                 {
                     qVar = 2;
-                    message_counter = MAX_SESSION_MESSAGES;                   // Только один игрок в сутки
+                    message_counter = MAX_SESSION_MESSAGES;                   // РўРѕР»СЊРєРѕ РѕРґРёРЅ РёРіСЂРѕРє РІ СЃСѓС‚РєРё
                 }
             }
         }
@@ -316,32 +316,32 @@ uint e_TimeToBroadcast( uint[] @ values )
     return NEXT_MESSAGE_SECONDS;
 }
 
-// Прослушка радиоканала, ловим вопрос "ты кто"?
+// РџСЂРѕСЃР»СѓС€РєР° СЂР°РґРёРѕРєР°РЅР°Р»Р°, Р»РѕРІРёРј РІРѕРїСЂРѕСЃ "С‚С‹ РєС‚Рѕ"?
 void listen_BroadcastWho( Critter& player, string& text )
 {
-    if( !name_asked )   // Имя еще не спрашивали
+    if( !name_asked )   // РРјСЏ РµС‰Рµ РЅРµ СЃРїСЂР°С€РёРІР°Р»Рё
     {
         who_asked_id = player.Id;
         name_asked = true;
     }
 }
-// Прослушка радиоканала, ловим вопрос "ты где"?
+// РџСЂРѕСЃР»СѓС€РєР° СЂР°РґРёРѕРєР°РЅР°Р»Р°, Р»РѕРІРёРј РІРѕРїСЂРѕСЃ "С‚С‹ РіРґРµ"?
 void listen_BroadcastWhere( Critter& player, string& text )
 {
-    if( !where_asked && who_asked_id == player.Id ) // Где находится Нэнси, еще не спрашивали
+    if( !where_asked && who_asked_id == player.Id ) // Р“РґРµ РЅР°С…РѕРґРёС‚СЃСЏ РќСЌРЅСЃРё, РµС‰Рµ РЅРµ СЃРїСЂР°С€РёРІР°Р»Рё
     {
         where_asked = true;
     }
 }
 
-// дебаг, консоль
+// РґРµР±Р°Рі, РєРѕРЅСЃРѕР»СЊ
 void BeginRadio( Critter& cr, int, int, int )
 {
     uint[] values;
     e_BeginNancyBroadcast( values );
 }
 
-// Срипт  на начало атаки при обыске тела Нэнси на энкаунтере
+// РЎСЂРёРїС‚  РЅР° РЅР°С‡Р°Р»Рѕ Р°С‚Р°РєРё РїСЂРё РѕР±С‹СЃРєРµ С‚РµР»Р° РќСЌРЅСЃРё РЅР° СЌРЅРєР°СѓРЅС‚РµСЂРµ
 void _NancyInit( Critter& nancy, bool firstTime )
 {
     nancy.SetEvent( CRITTER_EVENT_SMTH_USE_SKILL, "_NancySkill" );
@@ -395,7 +395,7 @@ void _NancyMapInit( Map& mapNancy, bool firstTime )
     }
 }
 
-// Случайные замки для сундуков. Иначе брали ключ и мультами фармили
+// РЎР»СѓС‡Р°Р№РЅС‹Рµ Р·Р°РјРєРё РґР»СЏ СЃСѓРЅРґСѓРєРѕРІ. РРЅР°С‡Рµ Р±СЂР°Р»Рё РєР»СЋС‡ Рё РјСѓР»СЊС‚Р°РјРё С„Р°СЂРјРёР»Рё
 void _LockerInit( Item& locker, bool firstTime )
 {
     if( !firstTime )
@@ -422,7 +422,7 @@ void _LockerInit( Item& locker, bool firstTime )
     locker.Update();
 }
 
-// Лодка
+// Р›РѕРґРєР°
 void _BoatInit( Item& boat, bool firstTime )
 {
     if( !firstTime )
@@ -459,19 +459,19 @@ void _BoatInit( Item& boat, bool firstTime )
     boat.Update();
 }
 
-// Странствующий тоговец взрывчаткой Дэвин
+// РЎС‚СЂР°РЅСЃС‚РІСѓСЋС‰РёР№ С‚РѕРіРѕРІРµС† РІР·СЂС‹РІС‡Р°С‚РєРѕР№ Р”СЌРІРёРЅ
 
 #define GAME_DAY          # (day)  ( 24 * 60 * 60 * day )
 #define GAME_HOUR         # (hour) ( 60 * 60 * hour )
 #define CTE_NEW_TRAVEL    ( 12 )
 #define ENTIRE_DEVIN      ( 23 )
-// Присваевает скрипт для НПЦ и запускает его выполнение
-// crId - Id нпц
-// isTransit - признак, нпц перемещается телепортом
-// entireNum - номер гекса, на который будет перемещаться нпц при заходе в локацию
-// timeWaitLoc - время ожидания на локации до следующего путешествия
-// timeWaitEnc - время ожидания на энкаунтере после завершения боя до продолжения путешествия
-// locPids - массив кодов протоипов локаций, на которые может зайти НПЦ
+// РџСЂРёСЃРІР°РµРІР°РµС‚ СЃРєСЂРёРїС‚ РґР»СЏ РќРџР¦ Рё Р·Р°РїСѓСЃРєР°РµС‚ РµРіРѕ РІС‹РїРѕР»РЅРµРЅРёРµ
+// crId - Id РЅРїС†
+// isTransit - РїСЂРёР·РЅР°Рє, РЅРїС† РїРµСЂРµРјРµС‰Р°РµС‚СЃСЏ С‚РµР»РµРїРѕСЂС‚РѕРј
+// entireNum - РЅРѕРјРµСЂ РіРµРєСЃР°, РЅР° РєРѕС‚РѕСЂС‹Р№ Р±СѓРґРµС‚ РїРµСЂРµРјРµС‰Р°С‚СЊСЃСЏ РЅРїС† РїСЂРё Р·Р°С…РѕРґРµ РІ Р»РѕРєР°С†РёСЋ
+// timeWaitLoc - РІСЂРµРјСЏ РѕР¶РёРґР°РЅРёСЏ РЅР° Р»РѕРєР°С†РёРё РґРѕ СЃР»РµРґСѓСЋС‰РµРіРѕ РїСѓС‚РµС€РµСЃС‚РІРёСЏ
+// timeWaitEnc - РІСЂРµРјСЏ РѕР¶РёРґР°РЅРёСЏ РЅР° СЌРЅРєР°СѓРЅС‚РµСЂРµ РїРѕСЃР»Рµ Р·Р°РІРµСЂС€РµРЅРёСЏ Р±РѕСЏ РґРѕ РїСЂРѕРґРѕР»Р¶РµРЅРёСЏ РїСѓС‚РµС€РµСЃС‚РІРёСЏ
+// locPids - РјР°СЃСЃРёРІ РєРѕРґРѕРІ РїСЂРѕС‚РѕРёРїРѕРІ Р»РѕРєР°С†РёР№, РЅР° РєРѕС‚РѕСЂС‹Рµ РјРѕР¶РµС‚ Р·Р°Р№С‚Рё РќРџР¦
 import void SetTraveller( uint crId, bool isTransit, uint entireNum, uint timeWaitLoc, uint timeWaitEnc, uint16[] locPids, bool visibleEncounters ) from "traveller";
 import void CancelTraveller( uint crId ) from "traveller";
 import void _TraderInit( Critter& trader, bool firstTime ) from "trader";
@@ -529,9 +529,9 @@ void r_HireDevin( Critter& player, Critter@ npc )
     npc.SetScript( "trader@_TraderInit" );
 }
 
-// Установка признака - может ли данный игрок нанять нпц
-// click_counter == 1? можно нанять
-// click_counter != 1 нельзя
+// РЈСЃС‚Р°РЅРѕРІРєР° РїСЂРёР·РЅР°РєР° - РјРѕР¶РµС‚ Р»Рё РґР°РЅРЅС‹Р№ РёРіСЂРѕРє РЅР°РЅСЏС‚СЊ РЅРїС†
+// click_counter == 1? РјРѕР¶РЅРѕ РЅР°РЅСЏС‚СЊ
+// click_counter != 1 РЅРµР»СЊР·СЏ
 void r_SetCanHire( Critter& player, Critter@ npc )
 {
     if( !valid( npc ) )
@@ -546,7 +546,7 @@ void r_SetCanHire( Critter& player, Critter@ npc )
         status = 1;
 }
 
-// Квест "Правосудие Хаба"
+// РљРІРµСЃС‚ "РџСЂР°РІРѕСЃСѓРґРёРµ РҐР°Р±Р°"
 #define ROLE_FAMILY       ( 17 )
 #define STR_DONTKILL      ( 3510 )
 #define VICTIMS_X         ( 640 )
@@ -555,7 +555,7 @@ import bool GetFreeHex( Map& map, uint radius, uint16& hx, uint16& hy ) from "ca
 
 #include "location.fos"
 
-// Проверка, что карта не удалена
+// РџСЂРѕРІРµСЂРєР°, С‡С‚Рѕ РєР°СЂС‚Р° РЅРµ СѓРґР°Р»РµРЅР°
 bool d_VictimsExists( Critter& player, Critter@ npc )
 {
     GameVar@ locId = GetLocalVar( LVAR_sf_hub_judgement_loc_id, player.Id );
@@ -567,22 +567,22 @@ bool d_VictimsNotExists( Critter& player, Critter@ npc )
     return !d_VictimsExists( player, npc );
 }
 
-// добавляет локацию с жертвами, видимую игроку
+// РґРѕР±Р°РІР»СЏРµС‚ Р»РѕРєР°С†РёСЋ СЃ Р¶РµСЂС‚РІР°РјРё, РІРёРґРёРјСѓСЋ РёРіСЂРѕРєСѓ
 void r_AddVictimsLocation( Critter& player, Critter@ npc )
 {
     Location@ loc = CreateLocationForCritter( player, LOCATION_Quest_HubJudgementFarm, VICTIMS_X, VICTIMS_Y, __GlobalMapZoneLength * 2, LVAR_sf_hub_judgement_loc_id );
     if( valid( loc ) )
     {
-        SetLocationDeleteTime( loc, 60 * 60 * 24 * 4 ); // 4 дня
+        SetLocationDeleteTime( loc, 60 * 60 * 24 * 4 ); // 4 РґРЅСЏ
         Map@ map = loc.GetMapByIndex( 0 );
         if( valid( map ) )
         {
-            map.SetScript( "_DeletableMapInit" );          // чтобы не использовали локацию для склада, нужно ее удалять
+            map.SetScript( "_DeletableMapInit" );          // С‡С‚РѕР±С‹ РЅРµ РёСЃРїРѕР»СЊР·РѕРІР°Р»Рё Р»РѕРєР°С†РёСЋ РґР»СЏ СЃРєР»Р°РґР°, РЅСѓР¶РЅРѕ РµРµ СѓРґР°Р»СЏС‚СЊ
         }
     }
 }
 
-// Скрипт жертв
+// РЎРєСЂРёРїС‚ Р¶РµСЂС‚РІ
 void _HubVictimInit( Critter& cr, bool firstTime )
 {
     cr.SetEvent( CRITTER_EVENT_ATTACKED, "_HubVictimAttacked" );
@@ -655,7 +655,7 @@ void r_ChangeStatus( Critter& player, Critter@ npc )
         map.SetEvent( MAP_EVENT_OUT_CRITTER, "_VictimsOutCritter" );
 }
 
-// при выходе игрока с карты, если все живы нпй, то игрок переключает статус квеста
+// РїСЂРё РІС‹С…РѕРґРµ РёРіСЂРѕРєР° СЃ РєР°СЂС‚С‹, РµСЃР»Рё РІСЃРµ Р¶РёРІС‹ РЅРїР№, С‚Рѕ РёРіСЂРѕРє РїРµСЂРµРєР»СЋС‡Р°РµС‚ СЃС‚Р°С‚СѓСЃ РєРІРµСЃС‚Р°
 void _VictimsOutCritter( Map& map, Critter& cr )
 {
     GameVar@ qVar = GetLocalVar( LVAR_q_sf_ahs7_hub_judgement, cr.Id );
@@ -663,9 +663,9 @@ void _VictimsOutCritter( Map& map, Critter& cr )
         qVar = 3;
 }
 
-// Рецепт на изготовление хитиновой брони
-#define STR_CANT_LEARN    ( 3515 ) // Вы не сумели запомнить содержимое рецепта. Вот если бы вы были немного опытнее...
-#define STR_LEARNED       ( 3516 ) // Вы выучили рецепт усовершенствования кожаной брони с помощью хитиновых панцирей гигантских жуков.
+// Р РµС†РµРїС‚ РЅР° РёР·РіРѕС‚РѕРІР»РµРЅРёРµ С…РёС‚РёРЅРѕРІРѕР№ Р±СЂРѕРЅРё
+#define STR_CANT_LEARN    ( 3515 ) // Р’С‹ РЅРµ СЃСѓРјРµР»Рё Р·Р°РїРѕРјРЅРёС‚СЊ СЃРѕРґРµСЂР¶РёРјРѕРµ СЂРµС†РµРїС‚Р°. Р’РѕС‚ РµСЃР»Рё Р±С‹ РІС‹ Р±С‹Р»Рё РЅРµРјРЅРѕРіРѕ РѕРїС‹С‚РЅРµРµ...
+#define STR_LEARNED       ( 3516 ) // Р’С‹ РІС‹СѓС‡РёР»Рё СЂРµС†РµРїС‚ СѓСЃРѕРІРµСЂС€РµРЅСЃС‚РІРѕРІР°РЅРёСЏ РєРѕР¶Р°РЅРѕР№ Р±СЂРѕРЅРё СЃ РїРѕРјРѕС‰СЊСЋ С…РёС‚РёРЅРѕРІС‹С… РїР°РЅС†РёСЂРµР№ РіРёРіР°РЅС‚СЃРєРёС… Р¶СѓРєРѕРІ.
 void r_GetChitinArmor( Critter& player, Critter@ npc )
 {
     Item@ item = player.AddItem( PID_CHITIN_ARMOR_RECIPE, 1 );

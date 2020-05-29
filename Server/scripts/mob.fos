@@ -2,38 +2,38 @@
 
 /*
         Generic mob ai
-        Только для мобов животных.
-        Var6..Var9 заняты.
-        рекомендуеться выставлять TeamId в диапазоне: 24..33
-        33 - не групируется, это значит что мобы не будут помогать друг другу.
-        также учтите что группа 0 тоже не группируется.
+        РўРѕР»СЊРєРѕ РґР»СЏ РјРѕР±РѕРІ Р¶РёРІРѕС‚РЅС‹С….
+        Var6..Var9 Р·Р°РЅСЏС‚С‹.
+        СЂРµРєРѕРјРµРЅРґСѓРµС‚СЊСЃСЏ РІС‹СЃС‚Р°РІР»СЏС‚СЊ TeamId РІ РґРёР°РїР°Р·РѕРЅРµ: 24..33
+        33 - РЅРµ РіСЂСѓРїРёСЂСѓРµС‚СЃСЏ, СЌС‚Рѕ Р·РЅР°С‡РёС‚ С‡С‚Рѕ РјРѕР±С‹ РЅРµ Р±СѓРґСѓС‚ РїРѕРјРѕРіР°С‚СЊ РґСЂСѓРі РґСЂСѓРіСѓ.
+        С‚Р°РєР¶Рµ СѓС‡С‚РёС‚Рµ С‡С‚Рѕ РіСЂСѓРїРїР° 0 С‚РѕР¶Рµ РЅРµ РіСЂСѓРїРїРёСЂСѓРµС‚СЃСЏ.
 
         TODO:
-        сделать чтобы VarFear както уменьшался
-        включать обработчик idle только если рядом есть игрок.
-        таблица типа поведения монстров.
-        трусость мобов - сначало нужно отбегать от атакующего, затем старатся приблизится к дому на расстоянии от атакующего.
+        СЃРґРµР»Р°С‚СЊ С‡С‚РѕР±С‹ VarFear РєР°РєС‚Рѕ СѓРјРµРЅСЊС€Р°Р»СЃСЏ
+        РІРєР»СЋС‡Р°С‚СЊ РѕР±СЂР°Р±РѕС‚С‡РёРє idle С‚РѕР»СЊРєРѕ РµСЃР»Рё СЂСЏРґРѕРј РµСЃС‚СЊ РёРіСЂРѕРє.
+        С‚Р°Р±Р»РёС†Р° С‚РёРїР° РїРѕРІРµРґРµРЅРёСЏ РјРѕРЅСЃС‚СЂРѕРІ.
+        С‚СЂСѓСЃРѕСЃС‚СЊ РјРѕР±РѕРІ - СЃРЅР°С‡Р°Р»Рѕ РЅСѓР¶РЅРѕ РѕС‚Р±РµРіР°С‚СЊ РѕС‚ Р°С‚Р°РєСѓСЋС‰РµРіРѕ, Р·Р°С‚РµРј СЃС‚Р°СЂР°С‚СЃСЏ РїСЂРёР±Р»РёР·РёС‚СЃСЏ Рє РґРѕРјСѓ РЅР° СЂР°СЃСЃС‚РѕСЏРЅРёРё РѕС‚ Р°С‚Р°РєСѓСЋС‰РµРіРѕ.
         {
-                атака тех кто атакует (нужно для блокировки чита 'бегун')
-                при условии что злость(Fury) меньше X (нужно для блокировки 'pin-pong' чита)
-                и текущий враг не на расстоянии поражения
-                и новый враг на не слишком большой дистанции
+                Р°С‚Р°РєР° С‚РµС… РєС‚Рѕ Р°С‚Р°РєСѓРµС‚ (РЅСѓР¶РЅРѕ РґР»СЏ Р±Р»РѕРєРёСЂРѕРІРєРё С‡РёС‚Р° 'Р±РµРіСѓРЅ')
+                РїСЂРё СѓСЃР»РѕРІРёРё С‡С‚Рѕ Р·Р»РѕСЃС‚СЊ(Fury) РјРµРЅСЊС€Рµ X (РЅСѓР¶РЅРѕ РґР»СЏ Р±Р»РѕРєРёСЂРѕРІРєРё 'pin-pong' С‡РёС‚Р°)
+                Рё С‚РµРєСѓС‰РёР№ РІСЂР°Рі РЅРµ РЅР° СЂР°СЃСЃС‚РѕСЏРЅРёРё РїРѕСЂР°Р¶РµРЅРёСЏ
+                Рё РЅРѕРІС‹Р№ РІСЂР°Рі РЅР° РЅРµ СЃР»РёС€РєРѕРј Р±РѕР»СЊС€РѕР№ РґРёСЃС‚Р°РЅС†РёРё
         }
-        отступление если игрок атакует из недостижимой точки (чит 'безопастной атаки').
-        ? блокировка возвращения домой если мы уже стоим впритык к противнику и успешно атакуем его.
-        ? отступать домой только если вся группа так решила.
+        РѕС‚СЃС‚СѓРїР»РµРЅРёРµ РµСЃР»Рё РёРіСЂРѕРє Р°С‚Р°РєСѓРµС‚ РёР· РЅРµРґРѕСЃС‚РёР¶РёРјРѕР№ С‚РѕС‡РєРё (С‡РёС‚ 'Р±РµР·РѕРїР°СЃС‚РЅРѕР№ Р°С‚Р°РєРё').
+        ? Р±Р»РѕРєРёСЂРѕРІРєР° РІРѕР·РІСЂР°С‰РµРЅРёСЏ РґРѕРјРѕР№ РµСЃР»Рё РјС‹ СѓР¶Рµ СЃС‚РѕРёРј РІРїСЂРёС‚С‹Рє Рє РїСЂРѕС‚РёРІРЅРёРєСѓ Рё СѓСЃРїРµС€РЅРѕ Р°С‚Р°РєСѓРµРј РµРіРѕ.
+        ? РѕС‚СЃС‚СѓРїР°С‚СЊ РґРѕРјРѕР№ С‚РѕР»СЊРєРѕ РµСЃР»Рё РІСЃСЏ РіСЂСѓРїРїР° С‚Р°Рє СЂРµС€РёР»Р°.
 
-        тест:
-        DONE запрет атаковать всех из своей группы (ситуация вознимает если они блокируют проход)
-        DONE трусость мобов - если то он не должен идти в атаку при атаке
+        С‚РµСЃС‚:
+        DONE Р·Р°РїСЂРµС‚ Р°С‚Р°РєРѕРІР°С‚СЊ РІСЃРµС… РёР· СЃРІРѕРµР№ РіСЂСѓРїРїС‹ (СЃРёС‚СѓР°С†РёСЏ РІРѕР·РЅРёРјР°РµС‚ РµСЃР»Рё РѕРЅРё Р±Р»РѕРєРёСЂСѓСЋС‚ РїСЂРѕС…РѕРґ)
+        DONE С‚СЂСѓСЃРѕСЃС‚СЊ РјРѕР±РѕРІ - РµСЃР»Рё С‚Рѕ РѕРЅ РЅРµ РґРѕР»Р¶РµРЅ РёРґС‚Рё РІ Р°С‚Р°РєСѓ РїСЂРё Р°С‚Р°РєРµ
 
         ok:
-        DONE трусость мобов - отступление если мало жизней
-        DONE скан при возвращении домой (Watch)
-        DONE сброс VarX при респавне
-        DONE трусость мобов - добавить отступление при больших потерях
-        DONE блокировка GoHo если они уже дома
-        DONE остановка преследования при большой дистанции - отладить (несрабатывает)
+        DONE С‚СЂСѓСЃРѕСЃС‚СЊ РјРѕР±РѕРІ - РѕС‚СЃС‚СѓРїР»РµРЅРёРµ РµСЃР»Рё РјР°Р»Рѕ Р¶РёР·РЅРµР№
+        DONE СЃРєР°РЅ РїСЂРё РІРѕР·РІСЂР°С‰РµРЅРёРё РґРѕРјРѕР№ (Watch)
+        DONE СЃР±СЂРѕСЃ VarX РїСЂРё СЂРµСЃРїР°РІРЅРµ
+        DONE С‚СЂСѓСЃРѕСЃС‚СЊ РјРѕР±РѕРІ - РґРѕР±Р°РІРёС‚СЊ РѕС‚СЃС‚СѓРїР»РµРЅРёРµ РїСЂРё Р±РѕР»СЊС€РёС… РїРѕС‚РµСЂСЏС…
+        DONE Р±Р»РѕРєРёСЂРѕРІРєР° GoHo РµСЃР»Рё РѕРЅРё СѓР¶Рµ РґРѕРјР°
+        DONE РѕСЃС‚Р°РЅРѕРІРєР° РїСЂРµСЃР»РµРґРѕРІР°РЅРёСЏ РїСЂРё Р±РѕР»СЊС€РѕР№ РґРёСЃС‚Р°РЅС†РёРё - РѕС‚Р»Р°РґРёС‚СЊ (РЅРµСЃСЂР°Р±Р°С‚С‹РІР°РµС‚)
  */
 
 #include "_macros.fos"
@@ -44,18 +44,18 @@ import bool AddWalkPlane( Critter& npc, uint priority, uint16 hexX, uint16 hexY,
 import uint EraseAttackPlane( Critter& npc, Critter& target ) from "npc_planes";
 
 // OPTIONS:
-#define DISTANCE_ATTACK          ( 10 ) // расстояние начала атаки
-#define DISTANCE_GROUP_RADIUS    ( 20 ) // расстояние на котором группа видит друг друга (и помогает атаковать противника)
-#define DISTANCE_GO_HOME         ( 30 ) // расстояние от дома при котором моб идет домой
-#define MAX_FURY                 ( 3 )  // сколько раз нужно разозлить НПС чтобы он стал игнорить границы обитания
-#define DISTANCE_HELP            ( 15 ) // расстояние помощи
-#define TIME_TEST_GO_HOME        ( 10 ) // переодичность тестирования на возврат домой и отмену атаки
+#define DISTANCE_ATTACK          ( 10 ) // СЂР°СЃСЃС‚РѕСЏРЅРёРµ РЅР°С‡Р°Р»Р° Р°С‚Р°РєРё
+#define DISTANCE_GROUP_RADIUS    ( 20 ) // СЂР°СЃСЃС‚РѕСЏРЅРёРµ РЅР° РєРѕС‚РѕСЂРѕРј РіСЂСѓРїРїР° РІРёРґРёС‚ РґСЂСѓРі РґСЂСѓРіР° (Рё РїРѕРјРѕРіР°РµС‚ Р°С‚Р°РєРѕРІР°С‚СЊ РїСЂРѕС‚РёРІРЅРёРєР°)
+#define DISTANCE_GO_HOME         ( 30 ) // СЂР°СЃСЃС‚РѕСЏРЅРёРµ РѕС‚ РґРѕРјР° РїСЂРё РєРѕС‚РѕСЂРѕРј РјРѕР± РёРґРµС‚ РґРѕРјРѕР№
+#define MAX_FURY                 ( 3 )  // СЃРєРѕР»СЊРєРѕ СЂР°Р· РЅСѓР¶РЅРѕ СЂР°Р·РѕР·Р»РёС‚СЊ РќРџРЎ С‡С‚РѕР±С‹ РѕРЅ СЃС‚Р°Р» РёРіРЅРѕСЂРёС‚СЊ РіСЂР°РЅРёС†С‹ РѕР±РёС‚Р°РЅРёСЏ
+#define DISTANCE_HELP            ( 15 ) // СЂР°СЃСЃС‚РѕСЏРЅРёРµ РїРѕРјРѕС‰Рё
+#define TIME_TEST_GO_HOME        ( 10 ) // РїРµСЂРµРѕРґРёС‡РЅРѕСЃС‚СЊ С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ РЅР° РІРѕР·РІСЂР°С‚ РґРѕРјРѕР№ Рё РѕС‚РјРµРЅСѓ Р°С‚Р°РєРё
 
-// номера сообщений
+// РЅРѕРјРµСЂР° СЃРѕРѕР±С‰РµРЅРёР№
 #define MSG_GROUP_ATTACK         ( 16001 )
 #define MSG_GROUP_FURY           ( 16002 )
 
-// переименования VarX (для удобства и абстрактности)
+// РїРµСЂРµРёРјРµРЅРѕРІР°РЅРёСЏ VarX (РґР»СЏ СѓРґРѕР±СЃС‚РІР° Рё Р°Р±СЃС‚СЂР°РєС‚РЅРѕСЃС‚Рё)
 #define VarAttacked              StatBase[ ST_VAR6 ]
 #define VarFury                  StatBase[ ST_VAR7 ]
 #define VarFear                  StatBase[ ST_VAR8 ]
@@ -73,7 +73,7 @@ const uint16[] Pids_BestialMobs =
     NPC_PID_RegularRat, NPC_PID_RegularPigRat, NPC_PID_ToughPigRat,
     NPC_PID_Molerat, NPC_PID_GreaterMolerat, NPC_PID_MutatedMolerat,
     NPC_PID_Ant,
-    // NPC_PID_SporePlant, // - Отключил. У них нет ножек, нужен другой 'алгоритм'.
+    // NPC_PID_SporePlant, // - РћС‚РєР»СЋС‡РёР». РЈ РЅРёС… РЅРµС‚ РЅРѕР¶РµРє, РЅСѓР¶РµРЅ РґСЂСѓРіРѕР№ 'Р°Р»РіРѕСЂРёС‚Рј'.
     NPC_PID_WildBrahmin,
     NPC_PID_Mantis, NPC_PID_MediumMantis,
     NPC_PID_WildDog,
@@ -100,9 +100,9 @@ void _MobInit( Critter& npc, bool firstTime )
 
     npc.ShowCritterDist1 = DISTANCE_ATTACK;
     npc.SetEvent( CRITTER_EVENT_SHOW_CRITTER_1, "_ShowPlayer" );
-    npc.SetEvent( CRITTER_EVENT_HIDE_CRITTER, "_HidePlayer" );    // отсутствие "_1" это не ошибка, так надо.
+    npc.SetEvent( CRITTER_EVENT_HIDE_CRITTER, "_HidePlayer" );    // РѕС‚СЃСѓС‚СЃС‚РІРёРµ "_1" СЌС‚Рѕ РЅРµ РѕС€РёР±РєР°, С‚Р°Рє РЅР°РґРѕ.
 
-    // дистанция мнгновенной атаки
+    // РґРёСЃС‚Р°РЅС†РёСЏ РјРЅРіРЅРѕРІРµРЅРЅРѕР№ Р°С‚Р°РєРё
 //	npc.ShowCritterDist2=1;
 //	npc.SetEvent(CRITTER_EVENT_SHOW_CRITTER_2, "_ShowPlayerFastAttack");
 //	npc.SetEvent(CRITTER_EVENT_HIDE_CRITTER_2, "_HidePlayerFastAttack");
@@ -158,16 +158,16 @@ void TryGoHome( Critter& npc )
     }
 }
 
-// убегаем от когото
+// СѓР±РµРіР°РµРј РѕС‚ РєРѕРіРѕС‚Рѕ
 void AddPlaneEscape( Critter& npc, Critter& fromRunning )
 {
     // TMP:
     TryGoHome( npc );
-    // нужно взять угол от атакующего и бежать в противоположном направлении
-    // причем нужно еще делать проверку на дистанцию
+    // РЅСѓР¶РЅРѕ РІР·СЏС‚СЊ СѓРіРѕР» РѕС‚ Р°С‚Р°РєСѓСЋС‰РµРіРѕ Рё Р±РµР¶Р°С‚СЊ РІ РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅРѕРј РЅР°РїСЂР°РІР»РµРЅРёРё
+    // РїСЂРёС‡РµРј РЅСѓР¶РЅРѕ РµС‰Рµ РґРµР»Р°С‚СЊ РїСЂРѕРІРµСЂРєСѓ РЅР° РґРёСЃС‚Р°РЅС†РёСЋ
 }
 
-// собрать нпц по номеру группы
+// СЃРѕР±СЂР°С‚СЊ РЅРїС† РїРѕ РЅРѕРјРµСЂСѓ РіСЂСѓРїРїС‹
 uint GetCrittersByTeam( Map& map, uint x, uint y, uint radius, int team )
 {
     uint count = 0;
@@ -184,7 +184,7 @@ uint GetMyTeamCount( Critter& npc )
 }
 
 // CRITTER_EVENT_SMTH_DEAD
-// Когда криттер в области видимости умирает. См. CRITTER_EVENT_DEAD.
+// РљРѕРіРґР° РєСЂРёС‚С‚РµСЂ РІ РѕР±Р»Р°СЃС‚Рё РІРёРґРёРјРѕСЃС‚Рё СѓРјРёСЂР°РµС‚. РЎРј. CRITTER_EVENT_DEAD.
 void _Death( Critter& npc, Critter& fromCrit, Critter@ killer )
 {
     if( not valid( killer ) )
@@ -194,11 +194,11 @@ void _Death( Critter& npc, Critter& fromCrit, Critter@ killer )
 
     if( npc.Stat[ ST_TEAM_ID ] == fromCrit.Stat[ ST_TEAM_ID ] )
     {
-        // если убили когото из своей команды то пугаемся
+        // РµСЃР»Рё СѓР±РёР»Рё РєРѕРіРѕС‚Рѕ РёР· СЃРІРѕРµР№ РєРѕРјР°РЅРґС‹ С‚Рѕ РїСѓРіР°РµРјСЃСЏ
         npc.VarFear++;
         if( npc.VarFear > npc.VarMaxFear )
         {
-            // если слишком страшно то убегаем
+            // РµСЃР»Рё СЃР»РёС€РєРѕРј СЃС‚СЂР°С€РЅРѕ С‚Рѕ СѓР±РµРіР°РµРј
             npc.DropPlanes();
             npc.EraseEnemyFromStack( killer.Id );
             AddPlaneEscape( npc, killer );
@@ -206,7 +206,7 @@ void _Death( Critter& npc, Critter& fromCrit, Critter@ killer )
     }
     else if( npc.Stat[ ST_TEAM_ID ] == killer.Stat[ ST_TEAM_ID ] )
     {
-        // если ктото из своей команды убивает то поднимаем боевой дух (уменьшаем страх)
+        // РµСЃР»Рё РєС‚РѕС‚Рѕ РёР· СЃРІРѕРµР№ РєРѕРјР°РЅРґС‹ СѓР±РёРІР°РµС‚ С‚Рѕ РїРѕРґРЅРёРјР°РµРј Р±РѕРµРІРѕР№ РґСѓС… (СѓРјРµРЅСЊС€Р°РµРј СЃС‚СЂР°С…)
         npc.VarFear -= 2;
     }
 }
@@ -214,7 +214,7 @@ void _Death( Critter& npc, Critter& fromCrit, Critter@ killer )
 // CRITTER_EVENT_DEAD
 void _MyDeath( Critter& npc, Critter@ killer )
 {
-    npc.ClearEnemyStack();     // моб забывает своих обидчиков
+    npc.ClearEnemyStack();     // РјРѕР± Р·Р°Р±С‹РІР°РµС‚ СЃРІРѕРёС… РѕР±РёРґС‡РёРєРѕРІ
 }
 
 // CRITTER_EVENT_RESPAWN
@@ -224,14 +224,14 @@ void _Respawn( Critter& npc )
 }
 
 // CRITTER_EVENT_SHOW_CRITTER
-// Появился новый криттер в поле зрения.
+// РџРѕСЏРІРёР»СЃСЏ РЅРѕРІС‹Р№ РєСЂРёС‚С‚РµСЂ РІ РїРѕР»Рµ Р·СЂРµРЅРёСЏ.
 void _ShowPlayer( Critter& npc, Critter& player )
 {
     if( not player.IsPlayer() )
         return;
     if( npc.VarFear > npc.VarMaxFear )
     {
-        // если испуганы то игнорим и убегаем
+        // РµСЃР»Рё РёСЃРїСѓРіР°РЅС‹ С‚Рѕ РёРіРЅРѕСЂРёРј Рё СѓР±РµРіР°РµРј
         if( npc.IsNoPlanes() )
             AddPlaneEscape( npc, player );
     }
@@ -242,7 +242,7 @@ void _ShowPlayer( Critter& npc, Critter& player )
 }
 
 // CRITTER_EVENT_HIDE_CRITTER
-// Пропал криттер с поля зрения.
+// РџСЂРѕРїР°Р» РєСЂРёС‚С‚РµСЂ СЃ РїРѕР»СЏ Р·СЂРµРЅРёСЏ.
 void _HidePlayer( Critter& npc, Critter& player )
 {
     if( not player.IsPlayer() )
@@ -255,7 +255,7 @@ void _HidePlayer( Critter& npc, Critter& player )
 }
 
 // CRITTER_EVENT_SHOW_CRITTER
-// Появился новый криттер в поле зрения.
+// РџРѕСЏРІРёР»СЃСЏ РЅРѕРІС‹Р№ РєСЂРёС‚С‚РµСЂ РІ РїРѕР»Рµ Р·СЂРµРЅРёСЏ.
 void _ShowPlayerFastAttack( Critter& npc, Critter& player )
 {
     if( not player.IsPlayer() )
@@ -264,7 +264,7 @@ void _ShowPlayerFastAttack( Critter& npc, Critter& player )
 }
 
 // CRITTER_EVENT_HIDE_CRITTER
-// Пропал криттер с поля зрения.
+// РџСЂРѕРїР°Р» РєСЂРёС‚С‚РµСЂ СЃ РїРѕР»СЏ Р·СЂРµРЅРёСЏ.
 void _HidePlayerFastAttack( Critter& npc, Critter& player )
 {
     if( not player.IsPlayer() )
@@ -273,7 +273,7 @@ void _HidePlayerFastAttack( Critter& npc, Critter& player )
 }
 
 // CRITTER_EVENT_MESSAGE
-// Пришло сообщение отправленное с помощью Critter::SendMessage.
+// РџСЂРёС€Р»Рѕ СЃРѕРѕР±С‰РµРЅРёРµ РѕС‚РїСЂР°РІР»РµРЅРЅРѕРµ СЃ РїРѕРјРѕС‰СЊСЋ Critter::SendMessage.
 void _OnMessage( Critter& npc, Critter& fromCrit, int message, int value )
 {
     if( npc.IsPlayer() )
@@ -281,11 +281,11 @@ void _OnMessage( Critter& npc, Critter& fromCrit, int message, int value )
     if( not npc.IsLife() )
         return;
     if( npc.Stat[ ST_TEAM_ID ] == 0 )
-        return;                               // 0 группа не групируеться
+        return;                               // 0 РіСЂСѓРїРїР° РЅРµ РіСЂСѓРїРёСЂСѓРµС‚СЊСЃСЏ
     if( npc.Stat[ ST_TEAM_ID ] == 33 )
-        return;                               // 33 группа не групируеться
+        return;                               // 33 РіСЂСѓРїРїР° РЅРµ РіСЂСѓРїРёСЂСѓРµС‚СЊСЃСЏ
     if( npc.Stat[ ST_TEAM_ID ] != fromCrit.Stat[ ST_TEAM_ID ] )
-        return;                               // ктото не из нашей группы
+        return;                               // РєС‚РѕС‚Рѕ РЅРµ РёР· РЅР°С€РµР№ РіСЂСѓРїРїС‹
 
     if( message == MSG_GROUP_ATTACK )
     {
@@ -303,7 +303,7 @@ void _OnMessage( Critter& npc, Critter& fromCrit, int message, int value )
 }
 
 // CRITTER_EVENT_IDLE
-// Простой, вызывается каждые __CritterIdleTick секунд, для изменения времени вызывайте Critter::Wait в функции.
+// РџСЂРѕСЃС‚РѕР№, РІС‹Р·С‹РІР°РµС‚СЃСЏ РєР°Р¶РґС‹Рµ __CritterIdleTick СЃРµРєСѓРЅРґ, РґР»СЏ РёР·РјРµРЅРµРЅРёСЏ РІСЂРµРјРµРЅРё РІС‹Р·С‹РІР°Р№С‚Рµ Critter::Wait РІ С„СѓРЅРєС†РёРё.
 void _Idle( Critter& npc )
 {
     int rnd = Random( 1, 10 );
@@ -314,8 +314,8 @@ void _Idle( Critter& npc )
 }
 
 // CRITTER_EVENT_PLANE_BEGIN
-// Когда движок создает план для Нпц. Вызывается и для потомков основного плана в том числе.
-// int reason указывает причину начала плана (см. Plane begin/wait/end reasons в _defines.fos).
+// РљРѕРіРґР° РґРІРёР¶РѕРє СЃРѕР·РґР°РµС‚ РїР»Р°РЅ РґР»СЏ РќРїС†. Р’С‹Р·С‹РІР°РµС‚СЃСЏ Рё РґР»СЏ РїРѕС‚РѕРјРєРѕРІ РѕСЃРЅРѕРІРЅРѕРіРѕ РїР»Р°РЅР° РІ С‚РѕРј С‡РёСЃР»Рµ.
+// int reason СѓРєР°Р·С‹РІР°РµС‚ РїСЂРёС‡РёРЅСѓ РЅР°С‡Р°Р»Р° РїР»Р°РЅР° (СЃРј. Plane begin/wait/end reasons РІ _defines.fos).
 int _PlaneBegin( Critter& npc, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem )
 {
     if( plane.Type == AI_PLANE_ATTACK )
@@ -325,29 +325,29 @@ int _PlaneBegin( Critter& npc, NpcPlane& plane, int reason, Critter@ someCr, Ite
             return PLANE_RUN_GLOBAL;
 
         if( target.Stat[ ST_TEAM_ID ] == npc.Stat[ ST_TEAM_ID ] )
-            return PLANE_DISCARD;                                                         // не атакуем всех из своей команды
+            return PLANE_DISCARD;                                                         // РЅРµ Р°С‚Р°РєСѓРµРј РІСЃРµС… РёР· СЃРІРѕРµР№ РєРѕРјР°РЅРґС‹
 
         if( reason == REASON_FOUND_IN_ENEMY_STACK )
         {
             uint distantion = ::GetCrittersDistantion( npc, target );
             if( distantion <= DISTANCE_ATTACK )
             {
-                // если противник подошел достаточно близко, то разрешаем атаку
-                // анализ на дальность
+                // РµСЃР»Рё РїСЂРѕС‚РёРІРЅРёРє РїРѕРґРѕС€РµР» РґРѕСЃС‚Р°С‚РѕС‡РЅРѕ Р±Р»РёР·РєРѕ, С‚Рѕ СЂР°Р·СЂРµС€Р°РµРј Р°С‚Р°РєСѓ
+                // Р°РЅР°Р»РёР· РЅР° РґР°Р»СЊРЅРѕСЃС‚СЊ
                 uint pathLength = npc.GetMap().GetPathLength( npc, target.HexX, target.HexY, 1 );
-                // если пройти нельзя, то не идем
+                // РµСЃР»Рё РїСЂРѕР№С‚Рё РЅРµР»СЊР·СЏ, С‚Рѕ РЅРµ РёРґРµРј
                 if( pathLength == 0 )
                     return PLANE_DISCARD;
-                // если слишком далеко, то не идем
+                // РµСЃР»Рё СЃР»РёС€РєРѕРј РґР°Р»РµРєРѕ, С‚Рѕ РЅРµ РёРґРµРј
                 if( pathLength > distantion * 3 )
                     return PLANE_DISCARD;
-                // зовем друзей
+                // Р·РѕРІРµРј РґСЂСѓР·РµР№
                 npc.SendMessage( MSG_GROUP_ATTACK, target.Id, MESSAGE_TO_WHO_SEES_ME );
                 return PLANE_KEEP;
             }
             else
             {
-                // иначе запрещаем атаку
+                // РёРЅР°С‡Рµ Р·Р°РїСЂРµС‰Р°РµРј Р°С‚Р°РєСѓ
                 return PLANE_DISCARD;
             }
         }
@@ -359,10 +359,10 @@ int _PlaneBegin( Critter& npc, NpcPlane& plane, int reason, Critter@ someCr, Ite
 bool _Attacked( Critter& npc, Critter& attacker )
 {
     npc.VarAttacked = attacker.Id;
-    npc.VarFury++;     // злимся
-    // друзья тоже зляться!
+    npc.VarFury++;     // Р·Р»РёРјСЃСЏ
+    // РґСЂСѓР·СЊСЏ С‚РѕР¶Рµ Р·Р»СЏС‚СЊСЃСЏ!
     npc.SendMessage( MSG_GROUP_FURY, attacker.Id, MESSAGE_TO_WHO_SEES_ME );
-    // зовем друзей
+    // Р·РѕРІРµРј РґСЂСѓР·РµР№
     npc.SendMessage( MSG_GROUP_ATTACK, attacker.Id, MESSAGE_TO_WHO_SEES_ME );
 
     if( npc.VarFear <= npc.VarMaxFear && npc.Stat[ ST_CURRENT_HP ] < npc.Stat[ ST_MAX_LIFE ] / 5 )

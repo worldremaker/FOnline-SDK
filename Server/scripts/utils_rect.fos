@@ -2,7 +2,7 @@
 #define __UTILS_RECT__
 // Author: heX
 // ver 1.0
-// написано в полном соответствии с WinAPI
+// РЅР°РїРёСЃР°РЅРѕ РІ РїРѕР»РЅРѕРј СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРё СЃ WinAPI
 
 class TRect {
     int Left;

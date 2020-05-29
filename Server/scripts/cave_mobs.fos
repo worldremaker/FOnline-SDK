@@ -1,5 +1,5 @@
 // Author: rifleman17
-// Скрипт генератора мобов в пещерах, аналог оригинальному из Ф2
+// РЎРєСЂРёРїС‚ РіРµРЅРµСЂР°С‚РѕСЂР° РјРѕР±РѕРІ РІ РїРµС‰РµСЂР°С…, Р°РЅР°Р»РѕРі РѕСЂРёРіРёРЅР°Р»СЊРЅРѕРјСѓ РёР· Р¤2
 
 #include "_ai.fos"
 #include "_bags.fos"
@@ -16,12 +16,12 @@
 #define SCRIPT_DCLAW       ( "mob@_MobInit" )
 #define SCRIPT_ECRAT       ( "mob@_MobInit" )
 #define SCRIPT_ROBBER      ( "cave_mobs@_CaveNpcInit" )
-#define MESSAGE_ATTACK     ( 32 )                   // Сообщение от игрока "атакуйте меня". Отсылается всем видимым мобам, см. encounter_npc.fos
+#define MESSAGE_ATTACK     ( 32 )                   // РЎРѕРѕР±С‰РµРЅРёРµ РѕС‚ РёРіСЂРѕРєР° "Р°С‚Р°РєСѓР№С‚Рµ РјРµРЅСЏ". РћС‚СЃС‹Р»Р°РµС‚СЃСЏ РІСЃРµРј РІРёРґРёРјС‹Рј РјРѕР±Р°Рј, СЃРј. encounter_npc.fos
 #define PID_CHEST          ( PID_CHEST )
-#define ENTIRE_DIST        ( Random( 2, 5 ) )       // Дистанция от контрольного гекса до точки установки Криттера
-#define AI_ROBBERS         ( AIPACKET_MERC_RAIDER ) // Общий аи пакет для рейдеров в пещерах
-#define SEE_PLAYER_FROM    ( 12020 )                // начало строк "увидел игрока
-#define SEE_PLAYER_TO      ( 12038 )                // конец строк "увидел игрока"
+#define ENTIRE_DIST        ( Random( 2, 5 ) )       // Р”РёСЃС‚Р°РЅС†РёСЏ РѕС‚ РєРѕРЅС‚СЂРѕР»СЊРЅРѕРіРѕ РіРµРєСЃР° РґРѕ С‚РѕС‡РєРё СѓСЃС‚Р°РЅРѕРІРєРё РљСЂРёС‚С‚РµСЂР°
+#define AI_ROBBERS         ( AIPACKET_MERC_RAIDER ) // РћР±С‰РёР№ Р°Рё РїР°РєРµС‚ РґР»СЏ СЂРµР№РґРµСЂРѕРІ РІ РїРµС‰РµСЂР°С…
+#define SEE_PLAYER_FROM    ( 12020 )                // РЅР°С‡Р°Р»Рѕ СЃС‚СЂРѕРє "СѓРІРёРґРµР» РёРіСЂРѕРєР°
+#define SEE_PLAYER_TO      ( 12038 )                // РєРѕРЅРµС† СЃС‚СЂРѕРє "СѓРІРёРґРµР» РёРіСЂРѕРєР°"
 
 import void _NpcInit( Critter& npc, bool firstTime ) from "encounter_npc";
 import bool AddAttackPlane( Critter& npc, uint priority, Critter& target, bool run ) from "npc_planes";

@@ -3,9 +3,9 @@
 #include "utils_for_array.fos"
 #include "_animation.fos"
 
-#define MSG_IM_HAVE_ILLEGAL_ITEMS    ( 129 )  // Номер сообщения, отсылаемого игроком, если у него в инвентаре есть запрещенные предметы
+#define MSG_IM_HAVE_ILLEGAL_ITEMS    ( 129 )  // РќРѕРјРµСЂ СЃРѕРѕР±С‰РµРЅРёСЏ, РѕС‚СЃС‹Р»Р°РµРјРѕРіРѕ РёРіСЂРѕРєРѕРј, РµСЃР»Рё Сѓ РЅРµРіРѕ РІ РёРЅРІРµРЅС‚Р°СЂРµ РµСЃС‚СЊ Р·Р°РїСЂРµС‰РµРЅРЅС‹Рµ РїСЂРµРґРјРµС‚С‹
 #define MSG_CANCEL_PICKUP            ( 500 )
-#define STR_NO_ILLEGAL_ITEMS         ( 5200 ) // Номер строки "ты зачем принес сюда это!"
+#define STR_NO_ILLEGAL_ITEMS         ( 5200 ) // РќРѕРјРµСЂ СЃС‚СЂРѕРєРё "С‚С‹ Р·Р°С‡РµРј РїСЂРёРЅРµСЃ СЃСЋРґР° СЌС‚Рѕ!"
 #define PLANE_LOOT                   ( 30 )
 
 import bool AddAttackPlane( Critter& npc, uint priority, uint critId, bool run ) from "npc_planes";

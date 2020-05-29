@@ -4,13 +4,13 @@
 #include "entire.fos"
 #include "utils_for_array.fos"
 
-#define ENTIRE_ITEM      ( 0 )                                    // Гекс для расположения итема
-#define TABLE_COLUMNS    ( 6 )                                    // число колонок в таблице
-#define TABLE_ITEMS      ( items_table.length() / TABLE_COLUMNS ) // всего определений итемов
+#define ENTIRE_ITEM      ( 0 )                                    // Р“РµРєСЃ РґР»СЏ СЂР°СЃРїРѕР»РѕР¶РµРЅРёСЏ РёС‚РµРјР°
+#define TABLE_COLUMNS    ( 6 )                                    // С‡РёСЃР»Рѕ РєРѕР»РѕРЅРѕРє РІ С‚Р°Р±Р»РёС†Рµ
+#define TABLE_ITEMS      ( items_table.length() / TABLE_COLUMNS ) // РІСЃРµРіРѕ РѕРїСЂРµРґРµР»РµРЅРёР№ РёС‚РµРјРѕРІ
 
-#define MAX_TRIES        ( ETYPE_DEFAULT )                        // максимальное число попыток найти подходящую по типу энкаунтера строку в таблице итемов
-#define MIN_ITEMS        ( 0 )                                    // минимальное число итемов на энке
-#define MAX_ITEMS        ( 8 )                                    // Максимальное
+#define MAX_TRIES        ( ETYPE_DEFAULT )                        // РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ С‡РёСЃР»Рѕ РїРѕРїС‹С‚РѕРє РЅР°Р№С‚Рё РїРѕРґС…РѕРґСЏС‰СѓСЋ РїРѕ С‚РёРїСѓ СЌРЅРєР°СѓРЅС‚РµСЂР° СЃС‚СЂРѕРєСѓ РІ С‚Р°Р±Р»РёС†Рµ РёС‚РµРјРѕРІ
+#define MIN_ITEMS        ( 0 )                                    // РјРёРЅРёРјР°Р»СЊРЅРѕРµ С‡РёСЃР»Рѕ РёС‚РµРјРѕРІ РЅР° СЌРЅРєРµ
+#define MAX_ITEMS        ( 8 )                                    // РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ
 
 #define _GetType         # (idx)    ( items_table[ TABLE_COLUMNS * ( 0 + idx ) + 1 ] )
 #define _GetPid          # (idx)    ( items_table[ TABLE_COLUMNS * ( 0 + idx ) + 0 ] )
@@ -19,7 +19,7 @@
 #define _GetGex          # (idx)     ( items_table[ TABLE_COLUMNS * ( 0 + idx ) + 5 ] )
 #define _IsCave          # (mapPid)  ( mapPid == MAP_e_cave0_in || mapPid == MAP_e_cave1_in || mapPid == MAP_e_cave2_in || mapPid == MAP_e_cave3_in || mapPid == MAP_e_cave4_in || mapPid == MAP_e_cave5_in || mapPid == MAP_e_coast5_cave )
 
-// Фильтр таблицы по типу энка и гексу
+// Р¤РёР»СЊС‚СЂ С‚Р°Р±Р»РёС†С‹ РїРѕ С‚РёРїСѓ СЌРЅРєР° Рё РіРµРєСЃСѓ
 uint16[] @ GetItemsInfo( uint8 eType, uint8 hex )
 {
     uint16[] infos;

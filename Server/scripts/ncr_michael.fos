@@ -1,59 +1,59 @@
 // Author: rifleman17
-// Майкл хочет пройти внутрь города, игроки ему помогают
-// после того, как диалогом вызывается соотвествующая функция, майrл отправляется к воротам, происходит небольшая сценка с охраной и он проходит внутрь
-// движение нужно начинать не сразу, а через некоторое время
-// Для квеста "Пропуск"
+// РњР°Р№РєР» С…РѕС‡РµС‚ РїСЂРѕР№С‚Рё РІРЅСѓС‚СЂСЊ РіРѕСЂРѕРґР°, РёРіСЂРѕРєРё РµРјСѓ РїРѕРјРѕРіР°СЋС‚
+// РїРѕСЃР»Рµ С‚РѕРіРѕ, РєР°Рє РґРёР°Р»РѕРіРѕРј РІС‹Р·С‹РІР°РµС‚СЃСЏ СЃРѕРѕС‚РІРµСЃС‚РІСѓСЋС‰Р°СЏ С„СѓРЅРєС†РёСЏ, РјР°Р№rР» РѕС‚РїСЂР°РІР»СЏРµС‚СЃСЏ Рє РІРѕСЂРѕС‚Р°Рј, РїСЂРѕРёСЃС…РѕРґРёС‚ РЅРµР±РѕР»СЊС€Р°СЏ СЃС†РµРЅРєР° СЃ РѕС…СЂР°РЅРѕР№ Рё РѕРЅ РїСЂРѕС…РѕРґРёС‚ РІРЅСѓС‚СЂСЊ
+// РґРІРёР¶РµРЅРёРµ РЅСѓР¶РЅРѕ РЅР°С‡РёРЅР°С‚СЊ РЅРµ СЃСЂР°Р·Сѓ, Р° С‡РµСЂРµР· РЅРµРєРѕС‚РѕСЂРѕРµ РІСЂРµРјСЏ
+// Р”Р»СЏ РєРІРµСЃС‚Р° "РџСЂРѕРїСѓСЃРє"
 
 #include "_macros.fos"
 #include "_maps.fos"
 #include "entire.fos"
 
-#define HEX_EXIT_GRID                  ( 17 )                         // гекс перехода базар/центр города
-#define NPC_ROLE_PRIVATE               ( 317 )                        // рядовой на воротах (юг)
-#define NPC_ROLE_MAIN                  ( 318 )                        // командир охраны на воротах (север)
-#define MSG_NUM_INCOMING_MIKE          ( 317 )                        // номер сообщения - Майк приблежается.
-#define MSG_NUM_INCOMING_MIKE_GUARD    ( 318 )                        // номер сообщения - Майк приблежается.
-#define HEX_NEW_MIKE_HOME              ( 171 )                        // номер гекса новой домашней позиции майка
+#define HEX_EXIT_GRID                  ( 17 )                         // РіРµРєСЃ РїРµСЂРµС…РѕРґР° Р±Р°Р·Р°СЂ/С†РµРЅС‚СЂ РіРѕСЂРѕРґР°
+#define NPC_ROLE_PRIVATE               ( 317 )                        // СЂСЏРґРѕРІРѕР№ РЅР° РІРѕСЂРѕС‚Р°С… (СЋРі)
+#define NPC_ROLE_MAIN                  ( 318 )                        // РєРѕРјР°РЅРґРёСЂ РѕС…СЂР°РЅС‹ РЅР° РІРѕСЂРѕС‚Р°С… (СЃРµРІРµСЂ)
+#define MSG_NUM_INCOMING_MIKE          ( 317 )                        // РЅРѕРјРµСЂ СЃРѕРѕР±С‰РµРЅРёСЏ - РњР°Р№Рє РїСЂРёР±Р»РµР¶Р°РµС‚СЃСЏ.
+#define MSG_NUM_INCOMING_MIKE_GUARD    ( 318 )                        // РЅРѕРјРµСЂ СЃРѕРѕР±С‰РµРЅРёСЏ - РњР°Р№Рє РїСЂРёР±Р»РµР¶Р°РµС‚СЃСЏ.
+#define HEX_NEW_MIKE_HOME              ( 171 )                        // РЅРѕРјРµСЂ РіРµРєСЃР° РЅРѕРІРѕР№ РґРѕРјР°С€РЅРµР№ РїРѕР·РёС†РёРё РјР°Р№РєР°
 
-#define MSG_NUM_START_MOVE             ( 2910 )                       // {2910}{}{Посмотрим, что изменилось в Республике...}
-#define MSG_NUM_SEE_MIKE               ( 2911 )                       // {2911}{}{Бог ты мой, это же Майкл! Майкл, какими судьбами?}
-#define MSG_NUM_SHOUT                  ( 2912 )                       // {2912}{}{Отставить базар! Ему разрешено пройти.}
+#define MSG_NUM_START_MOVE             ( 2910 )                       // {2910}{}{РџРѕСЃРјРѕС‚СЂРёРј, С‡С‚Рѕ РёР·РјРµРЅРёР»РѕСЃСЊ РІ Р РµСЃРїСѓР±Р»РёРєРµ...}
+#define MSG_NUM_SEE_MIKE               ( 2911 )                       // {2911}{}{Р‘РѕРі С‚С‹ РјРѕР№, СЌС‚Рѕ Р¶Рµ РњР°Р№РєР»! РњР°Р№РєР», РєР°РєРёРјРё СЃСѓРґСЊР±Р°РјРё?}
+#define MSG_NUM_SHOUT                  ( 2912 )                       // {2912}{}{РћС‚СЃС‚Р°РІРёС‚СЊ Р±Р°Р·Р°СЂ! Р•РјСѓ СЂР°Р·СЂРµС€РµРЅРѕ РїСЂРѕР№С‚Рё.}
 
 import bool AddMiscPlane( Critter& npc, uint priority, uint waitSecond, string@ funcName ) from "npc_planes";
 
-// вызов из диалога - начало движения
+// РІС‹Р·РѕРІ РёР· РґРёР°Р»РѕРіР° - РЅР°С‡Р°Р»Рѕ РґРІРёР¶РµРЅРёСЏ
 void r_PrepareComing( Critter& player, Critter@ npc, int val )
 {
-    // движение начинаем через 3 игровые минуты
+    // РґРІРёР¶РµРЅРёРµ РЅР°С‡РёРЅР°РµРј С‡РµСЂРµР· 3 РёРіСЂРѕРІС‹Рµ РјРёРЅСѓС‚С‹
     AddMiscPlane( npc, 2, __FullSecond + 3 * 60, "ncr_michael@plane_StartMichaelMove" );
 
     npc.StatBase[ ST_VAR1 ] =         MSG_NUM_INCOMING_MIKE;
     npc.SetEvent( CRITTER_EVENT_PLANE_END, "_MichaelPlaneEnd" );
 }
 
-// начало движения
+// РЅР°С‡Р°Р»Рѕ РґРІРёР¶РµРЅРёСЏ
 void plane_StartMichaelMove( Critter& npc )
 {
-    // сообщаем миру о начале движения
-    npc.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_TEXT, MSG_NUM_START_MOVE ); // "Посмотрим, что изменилось в Республике...");
-    // координаты гекса, до которого должен дойти майкл
+    // СЃРѕРѕР±С‰Р°РµРј РјРёСЂСѓ Рѕ РЅР°С‡Р°Р»Рµ РґРІРёР¶РµРЅРёСЏ
+    npc.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_TEXT, MSG_NUM_START_MOVE ); // "РџРѕСЃРјРѕС‚СЂРёРј, С‡С‚Рѕ РёР·РјРµРЅРёР»РѕСЃСЊ РІ Р РµСЃРїСѓР±Р»РёРєРµ...");
+    // РєРѕРѕСЂРґРёРЅР°С‚С‹ РіРµРєСЃР°, РґРѕ РєРѕС‚РѕСЂРѕРіРѕ РґРѕР»Р¶РµРЅ РґРѕР№С‚Рё РјР°Р№РєР»
     uint16 hx = npc.HexX;
     uint16 hy = npc.HexY;
-    // не найден гекс, идти некуда
+    // РЅРµ РЅР°Р№РґРµРЅ РіРµРєСЃ, РёРґС‚Рё РЅРµРєСѓРґР°
     if( !GetNearEntire( npc.GetMap(), HEX_EXIT_GRID, hx, hy ) )
     {
         Log( "Entire Hex not found, " + GetLastError() );
         return;
     }
-    // при установке новой домащней позиции, Майкл туда проследует, когда закончит все текущие планы
+    // РїСЂРё СѓСЃС‚Р°РЅРѕРІРєРµ РЅРѕРІРѕР№ РґРѕРјР°С‰РЅРµР№ РїРѕР·РёС†РёРё, РњР°Р№РєР» С‚СѓРґР° РїСЂРѕСЃР»РµРґСѓРµС‚, РєРѕРіРґР° Р·Р°РєРѕРЅС‡РёС‚ РІСЃРµ С‚РµРєСѓС‰РёРµ РїР»Р°РЅС‹
     npc.SetHomePos( hx, hy, Random( 0, 5 ) );
 }
 
-// завершение выполнения некоего плана
+// Р·Р°РІРµСЂС€РµРЅРёРµ РІС‹РїРѕР»РЅРµРЅРёСЏ РЅРµРєРѕРµРіРѕ РїР»Р°РЅР°
 int _MichaelPlaneEnd( Critter& npc, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem )
 {
     // npc.Say(SAY_NORM_ON_HEAD, "Plane end. ID: " + plane.Identifier + " reason: " + reason);
-    // завершен план следования к экзит гриду
+    // Р·Р°РІРµСЂС€РµРЅ РїР»Р°РЅ СЃР»РµРґРѕРІР°РЅРёСЏ Рє СЌРєР·РёС‚ РіСЂРёРґСѓ
     uint   mapId = 0;
     uint16 hx = 0, hy = 0;
     uint8  dir = 0;
@@ -62,9 +62,9 @@ int _MichaelPlaneEnd( Critter& npc, NpcPlane& plane, int reason, Critter@ someCr
     if( npc.Stat[ ST_VAR1 ] == MSG_NUM_INCOMING_MIKE && npc.GetMapId() == mapId && npc.HexX == hx && npc.HexY == hy )
     {
         npc.StatBase[ ST_VAR1 ] = 0;
-        // майкл отправляет сообщение "Я пришел" для охранников на входе города
+        // РјР°Р№РєР» РѕС‚РїСЂР°РІР»СЏРµС‚ СЃРѕРѕР±С‰РµРЅРёРµ "РЇ РїСЂРёС€РµР»" РґР»СЏ РѕС…СЂР°РЅРЅРёРєРѕРІ РЅР° РІС…РѕРґРµ РіРѕСЂРѕРґР°
         npc.SendMessage( MSG_NUM_INCOMING_MIKE, 0, MESSAGE_TO_WHO_SEES_ME );
-        // телепорт майкла в центр города. Будет торчать в баре Дасти
+        // С‚РµР»РµРїРѕСЂС‚ РјР°Р№РєР»Р° РІ С†РµРЅС‚СЂ РіРѕСЂРѕРґР°. Р‘СѓРґРµС‚ С‚РѕСЂС‡Р°С‚СЊ РІ Р±Р°СЂРµ Р”Р°СЃС‚Рё
         Map@ map = GetMapByPid( MAP_ncr_downtown, 0 );
         Map@ map_bazaar = npc.GetMap();
         if( not valid( map ) )
@@ -73,7 +73,7 @@ int _MichaelPlaneEnd( Critter& npc, NpcPlane& plane, int reason, Critter@ someCr
             return PLANE_RUN_GLOBAL;
         }
 
-        // транзит
+        // С‚СЂР°РЅР·РёС‚
         if( npc.TransitToMap( map.Id, HEX_NEW_MIKE_HOME ) == false )
         {
             Log( "Michael teleport error " + GetLastError() );
@@ -81,8 +81,8 @@ int _MichaelPlaneEnd( Critter& npc, NpcPlane& plane, int reason, Critter@ someCr
         }
 
         npc.SetHomePos( npc.HexX, npc.HexY, npc.Dir );
-        // если будет очищена карта центра города, прощаемся с Майком, он свою роль уже выполнил
-        // а вот если будет очищена карта Базара, а Майкл уже телепортирован в центр города, копию в центре городу нужно удалить, иначе будет существовать два майкла
+        // РµСЃР»Рё Р±СѓРґРµС‚ РѕС‡РёС‰РµРЅР° РєР°СЂС‚Р° С†РµРЅС‚СЂР° РіРѕСЂРѕРґР°, РїСЂРѕС‰Р°РµРјСЃСЏ СЃ РњР°Р№РєРѕРј, РѕРЅ СЃРІРѕСЋ СЂРѕР»СЊ СѓР¶Рµ РІС‹РїРѕР»РЅРёР»
+        // Р° РІРѕС‚ РµСЃР»Рё Р±СѓРґРµС‚ РѕС‡РёС‰РµРЅР° РєР°СЂС‚Р° Р‘Р°Р·Р°СЂР°, Р° РњР°Р№РєР» СѓР¶Рµ С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РІ С†РµРЅС‚СЂ РіРѕСЂРѕРґР°, РєРѕРїРёСЋ РІ С†РµРЅС‚СЂРµ РіРѕСЂРѕРґСѓ РЅСѓР¶РЅРѕ СѓРґР°Р»РёС‚СЊ, РёРЅР°С‡Рµ Р±СѓРґРµС‚ СЃСѓС‰РµСЃС‚РІРѕРІР°С‚СЊ РґРІР° РјР°Р№РєР»Р°
         map_bazaar.SetData( 0, npc.Id );
         map_bazaar.SetEvent( MAP_EVENT_FINISH, "_eOnFinishMap" );
     }
@@ -90,7 +90,7 @@ int _MichaelPlaneEnd( Critter& npc, NpcPlane& plane, int reason, Critter@ someCr
     return PLANE_RUN_GLOBAL;
 }
 
-// для рядового охранника, слева у входа стоит
+// РґР»СЏ СЂСЏРґРѕРІРѕРіРѕ РѕС…СЂР°РЅРЅРёРєР°, СЃР»РµРІР° Сѓ РІС…РѕРґР° СЃС‚РѕРёС‚
 void _PrivateGuardInit( Critter& npc, bool firstTime )
 {
     if( firstTime )
@@ -100,7 +100,7 @@ void _PrivateGuardInit( Critter& npc, bool firstTime )
     }
 }
 
-// для главного охранника (справа у входа в город)
+// РґР»СЏ РіР»Р°РІРЅРѕРіРѕ РѕС…СЂР°РЅРЅРёРєР° (СЃРїСЂР°РІР° Сѓ РІС…РѕРґР° РІ РіРѕСЂРѕРґ)
 void _MainGuardInit( Critter& npc, bool firstTime )
 {
     if( firstTime )
@@ -110,32 +110,32 @@ void _MainGuardInit( Critter& npc, bool firstTime )
     }
 }
 
-// обработка сообщения от майкла "я пришел"
+// РѕР±СЂР°Р±РѕС‚РєР° СЃРѕРѕР±С‰РµРЅРёСЏ РѕС‚ РјР°Р№РєР»Р° "СЏ РїСЂРёС€РµР»"
 void _NpcOnMessage( Critter& npcB, Critter& npcA, int num, int val )
 {
-    // сначала говорит рядовой
+    // СЃРЅР°С‡Р°Р»Р° РіРѕРІРѕСЂРёС‚ СЂСЏРґРѕРІРѕР№
     if( num == MSG_NUM_INCOMING_MIKE && npcB.Stat[ ST_NPC_ROLE ] == NPC_ROLE_PRIVATE )
     {
-        npcB.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_TEXT, MSG_NUM_SEE_MIKE );    // Say(SAY_NORM_ON_HEAD,"Бог ты мой, это же Майкл! Майкл, какими судьбами?");
+        npcB.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_TEXT, MSG_NUM_SEE_MIKE );    // Say(SAY_NORM_ON_HEAD,"Р‘РѕРі С‚С‹ РјРѕР№, СЌС‚Рѕ Р¶Рµ РњР°Р№РєР»! РњР°Р№РєР», РєР°РєРёРјРё СЃСѓРґСЊР±Р°РјРё?");
 
         npcB.SendMessage( MSG_NUM_INCOMING_MIKE_GUARD, 0, MESSAGE_TO_WHO_SEES_ME );
     }
-    // ему отвечает сержант
+    // РµРјСѓ РѕС‚РІРµС‡Р°РµС‚ СЃРµСЂР¶Р°РЅС‚
     if( num == MSG_NUM_INCOMING_MIKE_GUARD && npcB.Stat[ ST_NPC_ROLE ]  == NPC_ROLE_MAIN )
     {
-        // отвечает не мгновенно, иначе непонятно. кто первым прокомментировал появление Майкла
+        // РѕС‚РІРµС‡Р°РµС‚ РЅРµ РјРіРЅРѕРІРµРЅРЅРѕ, РёРЅР°С‡Рµ РЅРµРїРѕРЅСЏС‚РЅРѕ. РєС‚Рѕ РїРµСЂРІС‹Рј РїСЂРѕРєРѕРјРјРµРЅС‚РёСЂРѕРІР°Р» РїРѕСЏРІР»РµРЅРёРµ РњР°Р№РєР»Р°
         AddMiscPlane( npcB, 2, __FullSecond + 60, "ncr_michael@plane_MainGuardAnswer" );
 
     }
 }
-// ответ Сержанта у ворот
+// РѕС‚РІРµС‚ РЎРµСЂР¶Р°РЅС‚Р° Сѓ РІРѕСЂРѕС‚
 void plane_MainGuardAnswer( Critter& npc )
 {
-    npc.SayMsg( SAY_SHOUT_ON_HEAD, TEXTMSG_TEXT, MSG_NUM_SHOUT ); // npc.Say(SAY_SHOUT_ON_HEAD,"Отставить базар! Ему разрешено пройти.");
+    npc.SayMsg( SAY_SHOUT_ON_HEAD, TEXTMSG_TEXT, MSG_NUM_SHOUT ); // npc.Say(SAY_SHOUT_ON_HEAD,"РћС‚СЃС‚Р°РІРёС‚СЊ Р±Р°Р·Р°СЂ! Р•РјСѓ СЂР°Р·СЂРµС€РµРЅРѕ РїСЂРѕР№С‚Рё.");
 
 }
-// при очистке карты базара, если Майкл уже там нужно удалить его копию
-// иначе будет существовать два Майкла одновременно
+// РїСЂРё РѕС‡РёСЃС‚РєРµ РєР°СЂС‚С‹ Р±Р°Р·Р°СЂР°, РµСЃР»Рё РњР°Р№РєР» СѓР¶Рµ С‚Р°Рј РЅСѓР¶РЅРѕ СѓРґР°Р»РёС‚СЊ РµРіРѕ РєРѕРїРёСЋ
+// РёРЅР°С‡Рµ Р±СѓРґРµС‚ СЃСѓС‰РµСЃС‚РІРѕРІР°С‚СЊ РґРІР° РњР°Р№РєР»Р° РѕРґРЅРѕРІСЂРµРјРµРЅРЅРѕ
 void _eOnFinishMap( Map& map, bool deleted )
 {
     Map @ map_downtown = GetMapByPid( MAP_ncr_downtown, 0 );

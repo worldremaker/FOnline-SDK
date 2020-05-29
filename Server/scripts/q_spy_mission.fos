@@ -3,28 +3,28 @@
 #define DL                        # ( str )
 // #define DL #(str) Log(str)
 
-#define PLAYER_Q_ST_BEGINCATCH    ( 17 )             // статус квеста "вы начали процесс слежки
-#define PLAYER_Q_ST_CATCHED       ( 18 )             // статус квеста "вас засекли"
-#define PLAYER_Q_ST_FAILLEFT      ( 19 )             // статус квеста "вы покинули место не дослушав"
-#define PLAYER_Q_ST_COMPLETE      ( 20 )             // статус квеста "вас незаметили!"
+#define PLAYER_Q_ST_BEGINCATCH    ( 17 )             // СЃС‚Р°С‚СѓСЃ РєРІРµСЃС‚Р° "РІС‹ РЅР°С‡Р°Р»Рё РїСЂРѕС†РµСЃСЃ СЃР»РµР¶РєРё
+#define PLAYER_Q_ST_CATCHED       ( 18 )             // СЃС‚Р°С‚СѓСЃ РєРІРµСЃС‚Р° "РІР°СЃ Р·Р°СЃРµРєР»Рё"
+#define PLAYER_Q_ST_FAILLEFT      ( 19 )             // СЃС‚Р°С‚СѓСЃ РєРІРµСЃС‚Р° "РІС‹ РїРѕРєРёРЅСѓР»Рё РјРµСЃС‚Рѕ РЅРµ РґРѕСЃР»СѓС€Р°РІ"
+#define PLAYER_Q_ST_COMPLETE      ( 20 )             // СЃС‚Р°С‚СѓСЃ РєРІРµСЃС‚Р° "РІР°СЃ РЅРµР·Р°РјРµС‚РёР»Рё!"
 
 import bool AddAttackPlane( Critter& npc, uint priority, Critter& target ) from "npc_planes";
 
-// catcher - нпц, который ловит сникера
-// catchRadius - радиус, в котором он его ищет
-// minSneak - навык сника, при котором игрок не будет замечен
-// checkTime - время, в реальных минутах, через которое производится проверка
-// varStatNum - номер переменной, в которой хранится статус поиска сникера (0 = закончен, 1 = активен)
-// varQuest - номер квестовой переменной для игрока
-// strAlarm - номер строки в диалоге нпц с сообщением "поймали сникера"
-// возвращает true - если все нормально, false - если провал
+// catcher - РЅРїС†, РєРѕС‚РѕСЂС‹Р№ Р»РѕРІРёС‚ СЃРЅРёРєРµСЂР°
+// catchRadius - СЂР°РґРёСѓСЃ, РІ РєРѕС‚РѕСЂРѕРј РѕРЅ РµРіРѕ РёС‰РµС‚
+// minSneak - РЅР°РІС‹Рє СЃРЅРёРєР°, РїСЂРё РєРѕС‚РѕСЂРѕРј РёРіСЂРѕРє РЅРµ Р±СѓРґРµС‚ Р·Р°РјРµС‡РµРЅ
+// checkTime - РІСЂРµРјСЏ, РІ СЂРµР°Р»СЊРЅС‹С… РјРёРЅСѓС‚Р°С…, С‡РµСЂРµР· РєРѕС‚РѕСЂРѕРµ РїСЂРѕРёР·РІРѕРґРёС‚СЃСЏ РїСЂРѕРІРµСЂРєР°
+// varStatNum - РЅРѕРјРµСЂ РїРµСЂРµРјРµРЅРЅРѕР№, РІ РєРѕС‚РѕСЂРѕР№ С…СЂР°РЅРёС‚СЃСЏ СЃС‚Р°С‚СѓСЃ РїРѕРёСЃРєР° СЃРЅРёРєРµСЂР° (0 = Р·Р°РєРѕРЅС‡РµРЅ, 1 = Р°РєС‚РёРІРµРЅ)
+// varQuest - РЅРѕРјРµСЂ РєРІРµСЃС‚РѕРІРѕР№ РїРµСЂРµРјРµРЅРЅРѕР№ РґР»СЏ РёРіСЂРѕРєР°
+// strAlarm - РЅРѕРјРµСЂ СЃС‚СЂРѕРєРё РІ РґРёР°Р»РѕРіРµ РЅРїС† СЃ СЃРѕРѕР±С‰РµРЅРёРµРј "РїРѕР№РјР°Р»Рё СЃРЅРёРєРµСЂР°"
+// РІРѕР·РІСЂР°С‰Р°РµС‚ true - РµСЃР»Рё РІСЃРµ РЅРѕСЂРјР°Р»СЊРЅРѕ, false - РµСЃР»Рё РїСЂРѕРІР°Р»
 bool BeginSpyControl( Critter& catcher, uint catchRadius, uint minSneak, uint checkTime, uint varStatNum, uint varQuest, uint strAlarm ) // export
 {
     uint[] values = { catchRadius, minSneak, checkTime, catcher.Id, varStatNum, varQuest, strAlarm };
     SpyControl @ sc = GetSpyConFromArgs( values );
     DL( "spy control created" );
     Critter @[] critters;
-    // находим всех игроков в доступном радиусе, независимо от того в снике он или нет, и записываем в массив потенциальных сникеров
+    // РЅР°С…РѕРґРёРј РІСЃРµС… РёРіСЂРѕРєРѕРІ РІ РґРѕСЃС‚СѓРїРЅРѕРј СЂР°РґРёСѓСЃРµ, РЅРµР·Р°РІРёСЃРёРјРѕ РѕС‚ С‚РѕРіРѕ РІ СЃРЅРёРєРµ РѕРЅ РёР»Рё РЅРµС‚, Рё Р·Р°РїРёСЃС‹РІР°РµРј РІ РјР°СЃСЃРёРІ РїРѕС‚РµРЅС†РёР°Р»СЊРЅС‹С… СЃРЅРёРєРµСЂРѕРІ
     if( !valid( sc ) )
     {
         DL( "bad spuy control class" );
@@ -71,17 +71,17 @@ uint e_DefaultHandler( uint[] @ values )
         return 0;
     }
 
-    // проверка статуса поиска
+    // РїСЂРѕРІРµСЂРєР° СЃС‚Р°С‚СѓСЃР° РїРѕРёСЃРєР°
     GameVar @ sV = GetLocalVar( sc.CatchStatusVar, sc.CatcherId );
     if( valid( sV ) )
     {
         if( sV.GetValue() == 0 )
         {
-            // поиск закончен
+            // РїРѕРёСЃРє Р·Р°РєРѕРЅС‡РµРЅ
             sc.CompleteQuest();
             return 0;
         }
-        // нпц убит
+        // РЅРїС† СѓР±РёС‚
         Critter @ npc = sc.Catcher();
         if( !valid( npc ) )
             return 0;
@@ -90,7 +90,7 @@ uint e_DefaultHandler( uint[] @ values )
             sc.QuestFailedCatchedPlayer();
             return 0;
         }
-    }     // иначе поиск будет всегда
+    }     // РёРЅР°С‡Рµ РїРѕРёСЃРє Р±СѓРґРµС‚ РІСЃРµРіРґР°
 
     uint nextCatch = sc.CreateCatchCheckTimeEvent();
     if( nextCatch == 0 )
@@ -107,7 +107,7 @@ uint e_DefaultHandler( uint[] @ values )
         DL( "catch someione" );
         sc.QuestFailedCatchedPlayer();
         sc.BeginAttack();
-        sV = 0;        // не факт что нужно это делать... но на всякий случай
+        sV = 0;        // РЅРµ С„Р°РєС‚ С‡С‚Рѕ РЅСѓР¶РЅРѕ СЌС‚Рѕ РґРµР»Р°С‚СЊ... РЅРѕ РЅР° РІСЃСЏРєРёР№ СЃР»СѓС‡Р°Р№
         return 0;
     }
 
@@ -140,23 +140,23 @@ SpyControl @ GetSpyConFromArgs( uint[] values )
     return sc;
 }
 
-// вспомогательный класс для контроля игроков, находящихся в снике рядом с неким нпц
-// во время растянутого во времени процесса
+// РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№ РєР»Р°СЃСЃ РґР»СЏ РєРѕРЅС‚СЂРѕР»СЏ РёРіСЂРѕРєРѕРІ, РЅР°С…РѕРґСЏС‰РёС…СЃСЏ РІ СЃРЅРёРєРµ СЂСЏРґРѕРј СЃ РЅРµРєРёРј РЅРїС†
+// РІРѕ РІСЂРµРјСЏ СЂР°СЃС‚СЏРЅСѓС‚РѕРіРѕ РІРѕ РІСЂРµРјРµРЅРё РїСЂРѕС†РµСЃСЃР°
 class SpyControl
 {
     SpyControl()
     {}
 
-    uint SpyCatchRadius; // радиус поиска сникера
-    int  MinSneakToHide; // минимальный уровень, который стропроцентно будет незаметен
-    uint SpyCheckTime;   // время в которое происходит поиск шпиона
+    uint SpyCatchRadius; // СЂР°РґРёСѓСЃ РїРѕРёСЃРєР° СЃРЅРёРєРµСЂР°
+    int  MinSneakToHide; // РјРёРЅРёРјР°Р»СЊРЅС‹Р№ СѓСЂРѕРІРµРЅСЊ, РєРѕС‚РѕСЂС‹Р№ СЃС‚СЂРѕРїСЂРѕС†РµРЅС‚РЅРѕ Р±СѓРґРµС‚ РЅРµР·Р°РјРµС‚РµРЅ
+    uint SpyCheckTime;   // РІСЂРµРјСЏ РІ РєРѕС‚РѕСЂРѕРµ РїСЂРѕРёСЃС…РѕРґРёС‚ РїРѕРёСЃРє С€РїРёРѕРЅР°
 
-    uint CatcherId;      // Id того, кто ловит сникера
-    uint CatchStatusVar; // номер локальной переменной для кетчера, в которой хранится состояние "закончена поимка или нет"
-    uint[] sneakerIds;   // список id игроков в снике/не снике
-    uint DialStrAlarm;   // номер строки, в которой хранится текст, произносимый нпц при обнаружении игрока
+    uint CatcherId;      // Id С‚РѕРіРѕ, РєС‚Рѕ Р»РѕРІРёС‚ СЃРЅРёРєРµСЂР°
+    uint CatchStatusVar; // РЅРѕРјРµСЂ Р»РѕРєР°Р»СЊРЅРѕР№ РїРµСЂРµРјРµРЅРЅРѕР№ РґР»СЏ РєРµС‚С‡РµСЂР°, РІ РєРѕС‚РѕСЂРѕР№ С…СЂР°РЅРёС‚СЃСЏ СЃРѕСЃС‚РѕСЏРЅРёРµ "Р·Р°РєРѕРЅС‡РµРЅР° РїРѕРёРјРєР° РёР»Рё РЅРµС‚"
+    uint[] sneakerIds;   // СЃРїРёСЃРѕРє id РёРіСЂРѕРєРѕРІ РІ СЃРЅРёРєРµ/РЅРµ СЃРЅРёРєРµ
+    uint DialStrAlarm;   // РЅРѕРјРµСЂ СЃС‚СЂРѕРєРё, РІ РєРѕС‚РѕСЂРѕР№ С…СЂР°РЅРёС‚СЃСЏ С‚РµРєСЃС‚, РїСЂРѕРёР·РЅРѕСЃРёРјС‹Р№ РЅРїС† РїСЂРё РѕР±РЅР°СЂСѓР¶РµРЅРёРё РёРіСЂРѕРєР°
 
-    uint QuestVar;       // номер квестовой переменной, в которой хранится статус квеста на сник
+    uint QuestVar;       // РЅРѕРјРµСЂ РєРІРµСЃС‚РѕРІРѕР№ РїРµСЂРµРјРµРЅРЅРѕР№, РІ РєРѕС‚РѕСЂРѕР№ С…СЂР°РЅРёС‚СЃСЏ СЃС‚Р°С‚СѓСЃ РєРІРµСЃС‚Р° РЅР° СЃРЅРёРє
 
     Critter @ Catcher()
     {
@@ -178,8 +178,8 @@ class SpyControl
         return CreateTimeEvent( __FullSecond + this.SpyCheckTime, "q_spy_mission@e_DefaultHandler", values, false );
     }
 
-    // true - нашли когото
-    // false - нет
+    // true - РЅР°С€Р»Рё РєРѕРіРѕС‚Рѕ
+    // false - РЅРµС‚
     bool TryCatchSpy()
     {
         Critter @ catcher = this.Catcher();
@@ -214,7 +214,7 @@ class SpyControl
         return false;
     }
 
-    // для тех, кто слинял, квест пропал
+    // РґР»СЏ С‚РµС…, РєС‚Рѕ СЃР»РёРЅСЏР», РєРІРµСЃС‚ РїСЂРѕРїР°Р»
     void QuestFailedLeftPlayers()
     {
         Critter @ cr = this.Catcher();
@@ -252,7 +252,7 @@ class SpyControl
         }
     }
 
-    // если кого-то заметили, квест пропал для всех
+    // РµСЃР»Рё РєРѕРіРѕ-С‚Рѕ Р·Р°РјРµС‚РёР»Рё, РєРІРµСЃС‚ РїСЂРѕРїР°Р» РґР»СЏ РІСЃРµС…
     void QuestFailedCatchedPlayer()
     {
         for( uint i = 0; i < this.sneakerIds.length(); i++ )
@@ -268,7 +268,7 @@ class SpyControl
         }
     }
 
-    // атака всех игроков в радиусе видимости
+    // Р°С‚Р°РєР° РІСЃРµС… РёРіСЂРѕРєРѕРІ РІ СЂР°РґРёСѓСЃРµ РІРёРґРёРјРѕСЃС‚Рё
     void BeginAttack()
     {
         Critter @cr = this.Catcher();
@@ -295,7 +295,7 @@ class SpyControl
         cr.SayMsg( SAY_SHOUT_ON_HEAD, TEXTMSG_DLG, DLGSTR( cr.StatBase[ ST_DIALOG_ID ], this.DialStrAlarm ) );
     }
 
-    // завершение квеста для всех, кто присутстсвовал при всем докладе
+    // Р·Р°РІРµСЂС€РµРЅРёРµ РєРІРµСЃС‚Р° РґР»СЏ РІСЃРµС…, РєС‚Рѕ РїСЂРёСЃСѓС‚СЃС‚СЃРІРѕРІР°Р» РїСЂРё РІСЃРµРј РґРѕРєР»Р°РґРµ
     void CompleteQuest()
     {
         Critter @ cr = this.Catcher();
@@ -334,17 +334,17 @@ class SpyControl
     }
 }
 
-#define STR_ALARM        ( 1 )                               // статус квеста "вас незаметили!"
-#define ROLE_LYNETT      ( 34 )                              // роль - Линетт
-#define ROLE_MACLUR      ( 35 )                              // роль - Макклюр
+#define STR_ALARM        ( 1 )                               // СЃС‚Р°С‚СѓСЃ РєРІРµСЃС‚Р° "РІР°СЃ РЅРµР·Р°РјРµС‚РёР»Рё!"
+#define ROLE_LYNETT      ( 34 )                              // СЂРѕР»СЊ - Р›РёРЅРµС‚С‚
+#define ROLE_MACLUR      ( 35 )                              // СЂРѕР»СЊ - РњР°РєРєР»СЋСЂ
 
-#define STR_FIRST_RPT    ( 3180 )                            // первая строка доклада в FOTEXT
-#define STR_LAST_RPT     ( 3205 )                            // последняя строка доклада в FOTEXT
+#define STR_FIRST_RPT    ( 3180 )                            // РїРµСЂРІР°СЏ СЃС‚СЂРѕРєР° РґРѕРєР»Р°РґР° РІ FOTEXT
+#define STR_LAST_RPT     ( 3205 )                            // РїРѕСЃР»РµРґРЅСЏСЏ СЃС‚СЂРѕРєР° РґРѕРєР»Р°РґР° РІ FOTEXT
 
-#define VAR_QUEST        ( LVAR_q_ncr_santiago_spy_mission ) // квестовая переменная
-#define VAR_ALARM        ( LVAR_spy_cath_active )            // переменная состояния
+#define VAR_QUEST        ( LVAR_q_ncr_santiago_spy_mission ) // РєРІРµСЃС‚РѕРІР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ
+#define VAR_ALARM        ( LVAR_spy_cath_active )            // РїРµСЂРµРјРµРЅРЅР°СЏ СЃРѕСЃС‚РѕСЏРЅРёСЏ
 
-#define PLANE_ID_MOVE    ( 124 )                             // ид плана "подойти к линетт"
+#define PLANE_ID_MOVE    ( 124 )                             // РёРґ РїР»Р°РЅР° "РїРѕРґРѕР№С‚Рё Рє Р»РёРЅРµС‚С‚"
 
 import uint GetNearFullSecond( uint16 year, uint16 month, uint16 day, uint16 hour, uint16 minute, uint16 second ) from "time";
 import bool AddWalkPlane( Critter& npc, uint priority, int identifier, uint identifierExt, uint16 hexX, uint16 hexY, uint8 dir, bool run, uint cut ) from "npc_planes";
@@ -362,7 +362,7 @@ void _VCityMapInit( Map& map, bool firstTime )
     }
 }
 
-// начало сцены рапорта
+// РЅР°С‡Р°Р»Рѕ СЃС†РµРЅС‹ СЂР°РїРѕСЂС‚Р°
 uint e_BeginReport( uint[] @ values )
 {
     Critter @ maclure = GetCritter( values[ 0 ] );

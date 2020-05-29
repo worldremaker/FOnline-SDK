@@ -1,14 +1,14 @@
 #include "_macros.fos"
 #include "_dialogs.fos"
 
-// Квест "Семья". Вэлери
-#define LOC_NAME             # (locId)               ( ( locId + 100 ) * 1000 )    // поиск названия локации в файле FOGM.msg
-#define NPC_NAME             # (dialogId)            ( ( dialogId ) * 1000 + 100 ) // поиск имени НПЦ в файле FODLG.msg
-#define MAIL_VAL0            ( 1234 )                                              // Условный код для проверок в диалоге.
-#define STR_LOW_SPEECH       ( 5800 )                                              // Строка при чтении письма - низкая речь.
-#define STR_HIGH_SPEECH      ( 5801 )                                              // Строка при чтении письма - высокая речь.
-#define STR_HIGH_SPEECH2     ( 5802 )                                              // Чтобы сократить объем текста - выводим за два приема.
-#define MIN_SPEECH           ( 100 )                                               // Минимальная речь для того, чтобы прочесть письмо.
+// РљРІРµСЃС‚ "РЎРµРјСЊСЏ". Р’СЌР»РµСЂРё
+#define LOC_NAME             # (locId)               ( ( locId + 100 ) * 1000 )    // РїРѕРёСЃРє РЅР°Р·РІР°РЅРёСЏ Р»РѕРєР°С†РёРё РІ С„Р°Р№Р»Рµ FOGM.msg
+#define NPC_NAME             # (dialogId)            ( ( dialogId ) * 1000 + 100 ) // РїРѕРёСЃРє РёРјРµРЅРё РќРџР¦ РІ С„Р°Р№Р»Рµ FODLG.msg
+#define MAIL_VAL0            ( 1234 )                                              // РЈСЃР»РѕРІРЅС‹Р№ РєРѕРґ РґР»СЏ РїСЂРѕРІРµСЂРѕРє РІ РґРёР°Р»РѕРіРµ.
+#define STR_LOW_SPEECH       ( 5800 )                                              // РЎС‚СЂРѕРєР° РїСЂРё С‡С‚РµРЅРёРё РїРёСЃСЊРјР° - РЅРёР·РєР°СЏ СЂРµС‡СЊ.
+#define STR_HIGH_SPEECH      ( 5801 )                                              // РЎС‚СЂРѕРєР° РїСЂРё С‡С‚РµРЅРёРё РїРёСЃСЊРјР° - РІС‹СЃРѕРєР°СЏ СЂРµС‡СЊ.
+#define STR_HIGH_SPEECH2     ( 5802 )                                              // Р§С‚РѕР±С‹ СЃРѕРєСЂР°С‚РёС‚СЊ РѕР±СЉРµРј С‚РµРєСЃС‚Р° - РІС‹РІРѕРґРёРј Р·Р° РґРІР° РїСЂРёРµРјР°.
+#define MIN_SPEECH           ( 100 )                                               // РњРёРЅРёРјР°Р»СЊРЅР°СЏ СЂРµС‡СЊ РґР»СЏ С‚РѕРіРѕ, С‡С‚РѕР±С‹ РїСЂРѕС‡РµСЃС‚СЊ РїРёСЃСЊРјРѕ.
 
 void r_GiveMail( Critter& cr, Critter @ npc )
 {
@@ -75,7 +75,7 @@ bool d_NoMail( Critter& cr, Critter @ npc )
     return ( !d_HasMail( cr, npc ) );
 }
 
-// Квест, "Свет мой, Зеркальце". ГУ, Хелен Трой
+// РљРІРµСЃС‚, "РЎРІРµС‚ РјРѕР№, Р—РµСЂРєР°Р»СЊС†Рµ". Р“РЈ, РҐРµР»РµРЅ РўСЂРѕР№
 #define HOLO_MSG_ID          ( 55 )
 #define STR_LOW_SCIENCE      ( 5805 )
 #define STR_HIGH_SCIENCE     ( 5806 )
@@ -129,7 +129,7 @@ bool _HoloUse( Item& item, Critter& cr, Critter@ onCritter, Item@ onItem, Scener
     return true;
 }
 
-// Клиника для доктора Блэка.
+// РљР»РёРЅРёРєР° РґР»СЏ РґРѕРєС‚РѕСЂР° Р‘Р»СЌРєР°.
 #define BLACK_JACK_PID       ( 267 )
 import void CancelMerc( Critter& merc ) from "merc";
 
@@ -156,7 +156,7 @@ bool d_CheckNotBlackHere( Critter& player, Critter @ npc )
     return ( !d_CheckIsBlackHere( player, npc ) );
 }
 
-// Проказник Баркус
+// РџСЂРѕРєР°Р·РЅРёРє Р‘Р°СЂРєСѓСЃ
 #define STR_BARKUS_MALE      ( 1 )
 #define STR_BARKUS_FEMALE    ( 2 )
 void _BarkusInit( Critter& cr, bool firstTime )
@@ -173,14 +173,14 @@ void _BarkusShowCr( Critter& cr, Critter& showCrit )
         if( valid( qVar ) && qVar.GetValue() >= 7 )
         {
             cr.SayMsg( SAY_NORM, TEXTMSG_TEXT, DLGSTR( cr.Stat[ ST_DIALOG_ID ], ( cr.Stat[ ST_GENDER ] == 0 ? STR_BARKUS_MALE : STR_BARKUS_FEMALE ) ) );
-            cr.StatBase[ ST_VAR2 ] = __FullSecond + __TimeMultiplier * 30;         // Не чаще двух раз в минуту
+            cr.StatBase[ ST_VAR2 ] = __FullSecond + __TimeMultiplier * 30;         // РќРµ С‡Р°С‰Рµ РґРІСѓС… СЂР°Р· РІ РјРёРЅСѓС‚Сѓ
         }
     }
 }
 
 
-// Диалог посетителей бара у стойки
-#define ROLE_BAR_TALKER      ( 56 )     // Роль говорунов
+// Р”РёР°Р»РѕРі РїРѕСЃРµС‚РёС‚РµР»РµР№ Р±Р°СЂР° Сѓ СЃС‚РѕР№РєРё
+#define ROLE_BAR_TALKER      ( 56 )     // Р РѕР»СЊ РіРѕРІРѕСЂСѓРЅРѕРІ
 
 import void BeginDialog( Critter& cr, int dialog ) from "npc_dialog";
 

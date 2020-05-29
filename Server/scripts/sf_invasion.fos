@@ -1,5 +1,5 @@
 // Author: rifleman17
-// Нашествие болотников на Сан-Франциско.
+// РќР°С€РµСЃС‚РІРёРµ Р±РѕР»РѕС‚РЅРёРєРѕРІ РЅР° РЎР°РЅ-Р¤СЂР°РЅС†РёСЃРєРѕ.
 #include "_macros.fos"
 #include "_teams.fos"
 #include "_npc_pids.fos"
@@ -9,30 +9,30 @@
 #include "_ai.fos"
 #include "time.fos"
 
-#define BOLO_PID                 ( Random( NPC_PID_GiantWasp, NPC_PID_GiantBeetle ) ) // прототип криттера Болотник.
-#define BOLO_TEAM                ( TEAM_Slaver )                                      // команда болотников.
+#define BOLO_PID                 ( Random( NPC_PID_GiantWasp, NPC_PID_GiantBeetle ) ) // РїСЂРѕС‚РѕС‚РёРї РєСЂРёС‚С‚РµСЂР° Р‘РѕР»РѕС‚РЅРёРє.
+#define BOLO_TEAM                ( TEAM_Slaver )                                      // РєРѕРјР°РЅРґР° Р±РѕР»РѕС‚РЅРёРєРѕРІ.
 
-#define ENTIRE_BARRICADES        ( 154 )                                              // Обязательные баррикады
-#define ENTIRE_DEAD_BOS          ( 155 )                                              // Мертвые члены BOS
-#define ENTIRE_INVASION          ( 126 )                                              // СФ доки, начало вторжения болотников
-#define ENTIRE_SPAWN_PRIVATE     ( 157 )                                              // Место спавна бойцов BOS
-#define ENTIRE_SPAWN_CORPORAL    ( 158 )                                              // Место спавна руководителей обороны (выдают мешки)
-#define ENTIRE_PATROLINVASION    ( 159 )                                              // Если нельзя достать ни одну цель, болотники буду перемещаться между этими гексами
-#define ENTIRE_EXIT_SF           ( 160 )                                              // Гекс выхода из доков. Все болотники будут стремиться добраться до него. Если добираются - переключается счетчик, и болотники удаляются.
-#define NPC_PID_BOS_PRIVATE      ( 132 )                                              // Рядовой боец БС
-#define BAG_PRIVATE              ( BAG_NCR_Caravan_NCRRangerMale )                    // Сумка рядового
-#define DIALOG_PRIVATE           ( DIALOG_sf_bro_private )                            // Диалог рядового
-#define NPC_PID_BOS_CORPORAL     ( NPC_PID_BountyHunter_10 )                          // Один из лидеров БС
-#define BAG_CORPORAL             ( BAG_VaultCity_Military )                           // Сумка лидера
-#define DIALOG_CORPORAL          ( DIALOG_sf_bro_paladin )                            // Диалог лидера
-#define MAX_BOLO_ON_MAP          ( 15 )                                               // Максимальное число болотников на карте
+#define ENTIRE_BARRICADES        ( 154 )                                              // РћР±СЏР·Р°С‚РµР»СЊРЅС‹Рµ Р±Р°СЂСЂРёРєР°РґС‹
+#define ENTIRE_DEAD_BOS          ( 155 )                                              // РњРµСЂС‚РІС‹Рµ С‡Р»РµРЅС‹ BOS
+#define ENTIRE_INVASION          ( 126 )                                              // РЎР¤ РґРѕРєРё, РЅР°С‡Р°Р»Рѕ РІС‚РѕСЂР¶РµРЅРёСЏ Р±РѕР»РѕС‚РЅРёРєРѕРІ
+#define ENTIRE_SPAWN_PRIVATE     ( 157 )                                              // РњРµСЃС‚Рѕ СЃРїР°РІРЅР° Р±РѕР№С†РѕРІ BOS
+#define ENTIRE_SPAWN_CORPORAL    ( 158 )                                              // РњРµСЃС‚Рѕ СЃРїР°РІРЅР° СЂСѓРєРѕРІРѕРґРёС‚РµР»РµР№ РѕР±РѕСЂРѕРЅС‹ (РІС‹РґР°СЋС‚ РјРµС€РєРё)
+#define ENTIRE_PATROLINVASION    ( 159 )                                              // Р•СЃР»Рё РЅРµР»СЊР·СЏ РґРѕСЃС‚Р°С‚СЊ РЅРё РѕРґРЅСѓ С†РµР»СЊ, Р±РѕР»РѕС‚РЅРёРєРё Р±СѓРґСѓ РїРµСЂРµРјРµС‰Р°С‚СЊСЃСЏ РјРµР¶РґСѓ СЌС‚РёРјРё РіРµРєСЃР°РјРё
+#define ENTIRE_EXIT_SF           ( 160 )                                              // Р“РµРєСЃ РІС‹С…РѕРґР° РёР· РґРѕРєРѕРІ. Р’СЃРµ Р±РѕР»РѕС‚РЅРёРєРё Р±СѓРґСѓС‚ СЃС‚СЂРµРјРёС‚СЊСЃСЏ РґРѕР±СЂР°С‚СЊСЃСЏ РґРѕ РЅРµРіРѕ. Р•СЃР»Рё РґРѕР±РёСЂР°СЋС‚СЃСЏ - РїРµСЂРµРєР»СЋС‡Р°РµС‚СЃСЏ СЃС‡РµС‚С‡РёРє, Рё Р±РѕР»РѕС‚РЅРёРєРё СѓРґР°Р»СЏСЋС‚СЃСЏ.
+#define NPC_PID_BOS_PRIVATE      ( 132 )                                              // Р СЏРґРѕРІРѕР№ Р±РѕРµС† Р‘РЎ
+#define BAG_PRIVATE              ( BAG_NCR_Caravan_NCRRangerMale )                    // РЎСѓРјРєР° СЂСЏРґРѕРІРѕРіРѕ
+#define DIALOG_PRIVATE           ( DIALOG_sf_bro_private )                            // Р”РёР°Р»РѕРі СЂСЏРґРѕРІРѕРіРѕ
+#define NPC_PID_BOS_CORPORAL     ( NPC_PID_BountyHunter_10 )                          // РћРґРёРЅ РёР· Р»РёРґРµСЂРѕРІ Р‘РЎ
+#define BAG_CORPORAL             ( BAG_VaultCity_Military )                           // РЎСѓРјРєР° Р»РёРґРµСЂР°
+#define DIALOG_CORPORAL          ( DIALOG_sf_bro_paladin )                            // Р”РёР°Р»РѕРі Р»РёРґРµСЂР°
+#define MAX_BOLO_ON_MAP          ( 15 )                                               // РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ С‡РёСЃР»Рѕ Р±РѕР»РѕС‚РЅРёРєРѕРІ РЅР° РєР°СЂС‚Рµ
 
 // Debug Log
 // #define DL#(s) (Log(s))
 #define DL                       # ( s )
 
-const uint[] Num_BoloInvaders = { 3, 4, 5, 6, 7, 8, 10, 12, 13, 15 }; // Возрастающее число атакующих болотников. В момент начала вторжения = 3, каждые сутки добавляется +1..3 болотник.
-uint  CurrentInvasionStage = 0;                                       // Текущее состояние процесса нападения
+const uint[] Num_BoloInvaders = { 3, 4, 5, 6, 7, 8, 10, 12, 13, 15 }; // Р’РѕР·СЂР°СЃС‚Р°СЋС‰РµРµ С‡РёСЃР»Рѕ Р°С‚Р°РєСѓСЋС‰РёС… Р±РѕР»РѕС‚РЅРёРєРѕРІ. Р’ РјРѕРјРµРЅС‚ РЅР°С‡Р°Р»Р° РІС‚РѕСЂР¶РµРЅРёСЏ = 3, РєР°Р¶РґС‹Рµ СЃСѓС‚РєРё РґРѕР±Р°РІР»СЏРµС‚СЃСЏ +1..3 Р±РѕР»РѕС‚РЅРёРє.
+uint  CurrentInvasionStage = 0;                                       // РўРµРєСѓС‰РµРµ СЃРѕСЃС‚РѕСЏРЅРёРµ РїСЂРѕС†РµСЃСЃР° РЅР°РїР°РґРµРЅРёСЏ
 
 import bool GetFreeHex( Map& map, uint radius, uint16& hx, uint16& hy ) from "caravan";
 import bool GetNearEntire( Map& map, int number, uint16& hx, uint16& hy ) from "entire";
@@ -44,7 +44,7 @@ import bool _SandBagSkill( Item& item, Critter& cr, int skill ) from "sandbag";
 
 #include "mirelurk_combat.fos"
 
-// Добавление болотника на нужную карту
+// Р”РѕР±Р°РІР»РµРЅРёРµ Р±РѕР»РѕС‚РЅРёРєР° РЅР° РЅСѓР¶РЅСѓСЋ РєР°СЂС‚Сѓ
 Critter @ GetBoloInvader( Map & map )
 {
     uint16 x = 0;
@@ -66,8 +66,8 @@ Critter @ GetBoloInvader( Map & map )
     return bolo;
 }
 
-// Число болотников, которое можно добавить
-// stage - текущее состояние процесса вторжения
+// Р§РёСЃР»Рѕ Р±РѕР»РѕС‚РЅРёРєРѕРІ, РєРѕС‚РѕСЂРѕРµ РјРѕР¶РЅРѕ РґРѕР±Р°РІРёС‚СЊ
+// stage - С‚РµРєСѓС‰РµРµ СЃРѕСЃС‚РѕСЏРЅРёРµ РїСЂРѕС†РµСЃСЃР° РІС‚РѕСЂР¶РµРЅРёСЏ
 uint _Num( Map& map, uint stage )
 {
     uint num = Num_BoloInvaders[ stage ];
@@ -76,7 +76,7 @@ uint _Num( Map& map, uint stage )
     return ( ( num + realNum ) > MAX_BOLO_ON_MAP ? ( MAX_BOLO_ON_MAP > realNum ? MAX_BOLO_ON_MAP - realNum : 0 ) : num );
 }
 
-// Добавление болотников на карту
+// Р”РѕР±Р°РІР»РµРЅРёРµ Р±РѕР»РѕС‚РЅРёРєРѕРІ РЅР° РєР°СЂС‚Сѓ
 void SpawnBolos( Map& map, uint stage )
 {
     DL( "Begin spawn" );
@@ -87,7 +87,7 @@ void SpawnBolos( Map& map, uint stage )
     }
 }
 
-/* Мертвый паладин на случайных энкаунтерах. У первых трех счастливчиков есть шанс найти ПА */
+/* РњРµСЂС‚РІС‹Р№ РїР°Р»Р°РґРёРЅ РЅР° СЃР»СѓС‡Р°Р№РЅС‹С… СЌРЅРєР°СѓРЅС‚РµСЂР°С…. РЈ РїРµСЂРІС‹С… С‚СЂРµС… СЃС‡Р°СЃС‚Р»РёРІС‡РёРєРѕРІ РµСЃС‚СЊ С€Р°РЅСЃ РЅР°Р№С‚Рё РџРђ */
 void _DeadPaladinInit( Critter& cr, bool firstTime )
 {
     if( firstTime )
@@ -203,24 +203,24 @@ void _BosInit( Critter& cr, bool firstTime )
 
 int _BosPlaneEnd( Critter& cr, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem )
 {
-    if( reason == REASON_GAG_ITEM )  // бойцы братства не должны ломать баррикады
+    if( reason == REASON_GAG_ITEM )  // Р±РѕР№С†С‹ Р±СЂР°С‚СЃС‚РІР° РЅРµ РґРѕР»Р¶РЅС‹ Р»РѕРјР°С‚СЊ Р±Р°СЂСЂРёРєР°РґС‹
     {
         return PLANE_DISCARD;
     }
     return PLANE_RUN_GLOBAL;
 }
 
-// * Расписание глобальных эвентов и нападения на Доки ******************************** //
+// * Р Р°СЃРїРёСЃР°РЅРёРµ РіР»РѕР±Р°Р»СЊРЅС‹С… СЌРІРµРЅС‚РѕРІ Рё РЅР°РїР°РґРµРЅРёСЏ РЅР° Р”РѕРєРё ******************************** //
 
 #define FIRST_SIEGE_TIME          ( GetNearFullSecond( 0, 1, 1, 0, 0, 0 ) )
 #define NEXT_SIEGE_TIME           ( GetNearFullSecond( 0, 1, 1, 0, 0, 0 ) - __FullSecond )
 
-#define SECOND_STAGE_TIME         ( __FullSecond + 1 * 30 * 24 * 60 * 60 )                 // начало второго этапа через 30 дней
-#define NEXT_SECOND_STAGE_TIME    ( 1 * 30 * 24 * 60 * 60 )                                // повторение нападений каждые 30 дней
-#define END_STAGE_TIME            ( __FullSecond + 4 * 30 * 24 * 60 * 60 )                 // завершение всех этапов через 120 дней
-#define FIRST_DOCKS_TIME          ( GetNearFullSecond( 0, 0, 0, 1, 0, 0 ) )                // время первой волны атак на доки
-#define NEXT_DOCKS_TIME           ( GetNearFullSecond( 0, 0, 0, 1, 0, 0 ) - __FullSecond ) // время последующей волны атак на доки
-#define THIRD_STAGE_TIME          ( __FullSecond + 1 * 30 * 24 * 60 * 60 )                 // начало третьего этапа через 30 дней после начала второго// obsolete
+#define SECOND_STAGE_TIME         ( __FullSecond + 1 * 30 * 24 * 60 * 60 )                 // РЅР°С‡Р°Р»Рѕ РІС‚РѕСЂРѕРіРѕ СЌС‚Р°РїР° С‡РµСЂРµР· 30 РґРЅРµР№
+#define NEXT_SECOND_STAGE_TIME    ( 1 * 30 * 24 * 60 * 60 )                                // РїРѕРІС‚РѕСЂРµРЅРёРµ РЅР°РїР°РґРµРЅРёР№ РєР°Р¶РґС‹Рµ 30 РґРЅРµР№
+#define END_STAGE_TIME            ( __FullSecond + 4 * 30 * 24 * 60 * 60 )                 // Р·Р°РІРµСЂС€РµРЅРёРµ РІСЃРµС… СЌС‚Р°РїРѕРІ С‡РµСЂРµР· 120 РґРЅРµР№
+#define FIRST_DOCKS_TIME          ( GetNearFullSecond( 0, 0, 0, 1, 0, 0 ) )                // РІСЂРµРјСЏ РїРµСЂРІРѕР№ РІРѕР»РЅС‹ Р°С‚Р°Рє РЅР° РґРѕРєРё
+#define NEXT_DOCKS_TIME           ( GetNearFullSecond( 0, 0, 0, 1, 0, 0 ) - __FullSecond ) // РІСЂРµРјСЏ РїРѕСЃР»РµРґСѓСЋС‰РµР№ РІРѕР»РЅС‹ Р°С‚Р°Рє РЅР° РґРѕРєРё
+#define THIRD_STAGE_TIME          ( __FullSecond + 1 * 30 * 24 * 60 * 60 )                 // РЅР°С‡Р°Р»Рѕ С‚СЂРµС‚СЊРµРіРѕ СЌС‚Р°РїР° С‡РµСЂРµР· 30 РґРЅРµР№ РїРѕСЃР»Рµ РЅР°С‡Р°Р»Р° РІС‚РѕСЂРѕРіРѕ// obsolete
 
 #define LAIR_GLOBAL_X             ( 496 )
 #define LAIR_GLOBAL_Y             ( 1232 )
@@ -229,10 +229,10 @@ void SheduleSFInvasion()
 {
     CreateTimeEvent( FIRST_SIEGE_TIME, "e_FirstStage", true );
     GameVar @ counter = GetGlobalVar( GVAR_sf_bos_armour_counter );
-    counter = 3;     // 3 случайных встречи с мертвым паладином БС с ПА
+    counter = 3;     // 3 СЃР»СѓС‡Р°Р№РЅС‹С… РІСЃС‚СЂРµС‡Рё СЃ РјРµСЂС‚РІС‹Рј РїР°Р»Р°РґРёРЅРѕРј Р‘РЎ СЃ РџРђ
 }
 
-// Первый этап - простое переключение переменной
+// РџРµСЂРІС‹Р№ СЌС‚Р°Рї - РїСЂРѕСЃС‚РѕРµ РїРµСЂРµРєР»СЋС‡РµРЅРёРµ РїРµСЂРµРјРµРЅРЅРѕР№
 uint e_FirstStage( uint[] @ values )
 {
     DL( "Mirelurk invasion first stage begin" );
@@ -243,11 +243,11 @@ uint e_FirstStage( uint[] @ values )
     }
     CreateTimeEvent( SECOND_STAGE_TIME, "e_SecondStage", true );
     CreateTimeEvent( END_STAGE_TIME, "e_EndInvasion", true );
-    return NEXT_SIEGE_TIME;     // Следующее нашествие будет через год
+    return NEXT_SIEGE_TIME;     // РЎР»РµРґСѓСЋС‰РµРµ РЅР°С€РµСЃС‚РІРёРµ Р±СѓРґРµС‚ С‡РµСЂРµР· РіРѕРґ
 }
 
 
-// Второй этап - нападение на Доки в несколько стадий
+// Р’С‚РѕСЂРѕР№ СЌС‚Р°Рї - РЅР°РїР°РґРµРЅРёРµ РЅР° Р”РѕРєРё РІ РЅРµСЃРєРѕР»СЊРєРѕ СЃС‚Р°РґРёР№
 uint e_SecondStage( uint[] @ values )
 {
     DL( "Second stage!" );
@@ -256,7 +256,7 @@ uint e_SecondStage( uint[] @ values )
         return 0;
     if( stage.GetValue() == 0 )
         return 0;
-    if( stage.GetValue() == 1 )  // Первое событие второго этапа
+    if( stage.GetValue() == 1 )  // РџРµСЂРІРѕРµ СЃРѕР±С‹С‚РёРµ РІС‚РѕСЂРѕРіРѕ СЌС‚Р°РїР°
     {
         stage = 2;
         // CreateTimeEvent(THIRD_STAGE_TIME, "e_ThirdStageBegin", true);
@@ -266,7 +266,7 @@ uint e_SecondStage( uint[] @ values )
     return NEXT_SECOND_STAGE_TIME;
 }
 
-// Втрожение болотников в район Доков СФ
+// Р’С‚СЂРѕР¶РµРЅРёРµ Р±РѕР»РѕС‚РЅРёРєРѕРІ РІ СЂР°Р№РѕРЅ Р”РѕРєРѕРІ РЎР¤
 uint e_DockInvasion( uint[] @ values )
 {
     DL( "Docks invasion, Previous Wave=" + CurrentInvasionStage );
@@ -279,21 +279,21 @@ uint e_DockInvasion( uint[] @ values )
     if( !valid( map ) )
         return 0;
 
-    // Паладины БС и мешки
+    // РџР°Р»Р°РґРёРЅС‹ Р‘РЎ Рё РјРµС€РєРё
     SpawnSandBags( map );
     SpawnBos( map );
-    // Болотники
+    // Р‘РѕР»РѕС‚РЅРёРєРё
     SpawnBolos( map, CurrentInvasionStage );
-    // Проигрывание сирены на карте доков
+    // РџСЂРѕРёРіСЂС‹РІР°РЅРёРµ СЃРёСЂРµРЅС‹ РЅР° РєР°СЂС‚Рµ РґРѕРєРѕРІ
     map.PlaySound( "AIRSIREN.OGG" );
-    // То же, в Чайна Тауне
+    // РўРѕ Р¶Рµ, РІ Р§Р°Р№РЅР° РўР°СѓРЅРµ
     @map = GetMapByPid( MAP_sf_china, 0 );
     map.PlaySound( "AIRSIREN.OGG" );
     CurrentInvasionStage++;
     return NEXT_DOCKS_TIME;
 }
 
-// Завершение всех этапов - истекло время
+// Р—Р°РІРµСЂС€РµРЅРёРµ РІСЃРµС… СЌС‚Р°РїРѕРІ - РёСЃС‚РµРєР»Рѕ РІСЂРµРјСЏ
 uint e_EndInvasion( uint[] @ values )
 {
     DL( "mirelurk Invasion ended" );

@@ -1,18 +1,18 @@
-// Функции для использования в диалогах
-// **************************************** Функции - условия **************************************/
-// НПЦ является чьим-то мерком
+// Р¤СѓРЅРєС†РёРё РґР»СЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РІ РґРёР°Р»РѕРіР°С…
+// **************************************** Р¤СѓРЅРєС†РёРё - СѓСЃР»РѕРІРёСЏ **************************************/
+// РќРџР¦ СЏРІР»СЏРµС‚СЃСЏ С‡СЊРёРј-С‚Рѕ РјРµСЂРєРѕРј
 bool d_NpcIsMerc( Critter& player, Critter@ npc )
 {
     if( !valid( npc ) )
         return false;
     return IsMerc( npc );
 }
-// НПЦ не является чьим-то мерком
+// РќРџР¦ РЅРµ СЏРІР»СЏРµС‚СЃСЏ С‡СЊРёРј-С‚Рѕ РјРµСЂРєРѕРј
 bool d_NpcIsNotMerc( Critter& player, Critter@ npc )
 {
     return !d_NpcIsMerc( player, npc );
 }
-// НПЦ - мерк данного игрока
+// РќРџР¦ - РјРµСЂРє РґР°РЅРЅРѕРіРѕ РёРіСЂРѕРєР°
 bool d_NpcIsPlayerMerc( Critter& player, Critter@ npc )
 {
     if( !valid( npc ) )
@@ -21,16 +21,16 @@ bool d_NpcIsPlayerMerc( Critter& player, Critter@ npc )
         return false;
     return ( uint( npc.MasterId ) == player.Id );
 }
-// НПЦ - не мерк данного игрока
+// РќРџР¦ - РЅРµ РјРµСЂРє РґР°РЅРЅРѕРіРѕ РёРіСЂРѕРєР°
 bool d_NpcIsNotPlayerMerc( Critter& player, Critter@ npc )
 {
     return !d_NpcIsPlayerMerc( player, npc );
 }
-// Проверка какого-то из параметров мерка
-// param - номер параметра (см. MERC_... параметры в _defines.fos)
-// value - проверяемое значение.
-// true - значение параметра мерка равно указанному значению
-// false - npc не мерк, или значение параметра не равно указанному значению
+// РџСЂРѕРІРµСЂРєР° РєР°РєРѕРіРѕ-С‚Рѕ РёР· РїР°СЂР°РјРµС‚СЂРѕРІ РјРµСЂРєР°
+// param - РЅРѕРјРµСЂ РїР°СЂР°РјРµС‚СЂР° (СЃРј. MERC_... РїР°СЂР°РјРµС‚СЂС‹ РІ _defines.fos)
+// value - РїСЂРѕРІРµСЂСЏРµРјРѕРµ Р·РЅР°С‡РµРЅРёРµ.
+// true - Р·РЅР°С‡РµРЅРёРµ РїР°СЂР°РјРµС‚СЂР° РјРµСЂРєР° СЂР°РІРЅРѕ СѓРєР°Р·Р°РЅРЅРѕРјСѓ Р·РЅР°С‡РµРЅРёСЋ
+// false - npc РЅРµ РјРµСЂРє, РёР»Рё Р·РЅР°С‡РµРЅРёРµ РїР°СЂР°РјРµС‚СЂР° РЅРµ СЂР°РІРЅРѕ СѓРєР°Р·Р°РЅРЅРѕРјСѓ Р·РЅР°С‡РµРЅРёСЋ
 bool d_CheckMercParamIsValue( Critter& player, Critter @npc, int param, int value )
 {
     if( !valid( npc ) )
@@ -42,13 +42,13 @@ bool d_CheckMercParamIsValue( Critter& player, Critter @npc, int param, int valu
     return ( npc.Merc[ param ] == value );
 
 }
-// инверсия проверки d_CheckMercParamIsValue
+// РёРЅРІРµСЂСЃРёСЏ РїСЂРѕРІРµСЂРєРё d_CheckMercParamIsValue
 bool d_CheckMercParamIsNotValue( Critter& player, Critter @npc, int param, int value )
 {
     return !d_CheckMercParamIsValue( player, npc, param, value );
 }
 
-// Проверка: У лидера группы, в которой находится игрок, достаточно харизмы для найма ОДНОГО нпц
+// РџСЂРѕРІРµСЂРєР°: РЈ Р»РёРґРµСЂР° РіСЂСѓРїРїС‹, РІ РєРѕС‚РѕСЂРѕР№ РЅР°С…РѕРґРёС‚СЃСЏ РёРіСЂРѕРє, РґРѕСЃС‚Р°С‚РѕС‡РЅРѕ С…Р°СЂРёР·РјС‹ РґР»СЏ РЅР°Р№РјР° РћР”РќРћР“Рћ РЅРїС†
 bool d_CharismaOk( Critter& player, Critter @ npc )
 {
     Critter @ leader = player.GetFollowLeader();
@@ -63,7 +63,7 @@ bool d_NotCharismaOk( Critter& player, Critter @ npc )
     return ( !d_CharismaOk( player, npc ) );
 }
 
-// Проверка, что мерк с Id, сохраненным в переменной находится неподалеку
+// РџСЂРѕРІРµСЂРєР°, С‡С‚Рѕ РјРµСЂРє СЃ Id, СЃРѕС…СЂР°РЅРµРЅРЅС‹Рј РІ РїРµСЂРµРјРµРЅРЅРѕР№ РЅР°С…РѕРґРёС‚СЃСЏ РЅРµРїРѕРґР°Р»РµРєСѓ
 bool d_CheckMercNear( Critter& player, Critter @ npc, int varNum, int radius )
 {
     if( varNum == 0 )
@@ -92,10 +92,10 @@ bool d_NotMercNear( Critter& player, Critter @ npc, int varNum, int radius )
 {
     return !d_CheckMercNear( player, npc, varNum, radius );
 }
-// **************************************** Функции - результаты **************************************/
-// Добавление мерка игроку
-// производится добавление стандартного спутника (см. таблицу _mercInfo)
-// Добавление производится только для нпц, который не является чьим то мерком
+// **************************************** Р¤СѓРЅРєС†РёРё - СЂРµР·СѓР»СЊС‚Р°С‚С‹ **************************************/
+// Р”РѕР±Р°РІР»РµРЅРёРµ РјРµСЂРєР° РёРіСЂРѕРєСѓ
+// РїСЂРѕРёР·РІРѕРґРёС‚СЃСЏ РґРѕР±Р°РІР»РµРЅРёРµ СЃС‚Р°РЅРґР°СЂС‚РЅРѕРіРѕ СЃРїСѓС‚РЅРёРєР° (СЃРј. С‚Р°Р±Р»РёС†Сѓ _mercInfo)
+// Р”РѕР±Р°РІР»РµРЅРёРµ РїСЂРѕРёР·РІРѕРґРёС‚СЃСЏ С‚РѕР»СЊРєРѕ РґР»СЏ РЅРїС†, РєРѕС‚РѕСЂС‹Р№ РЅРµ СЏРІР»СЏРµС‚СЃСЏ С‡СЊРёРј С‚Рѕ РјРµСЂРєРѕРј
 void r_AddMerc2Player( Critter& player, Critter @ npc )
 {
     if( !valid( npc ) )
@@ -115,7 +115,7 @@ void r_AddMerc2Player( Critter& player, Critter @ npc, int type )
 
     Merc2Player( player, npc, uint16( type ) );
 }
-// Отмена мерка у игрока, мерк необязательно является мерком именно этого игрока
+// РћС‚РјРµРЅР° РјРµСЂРєР° Сѓ РёРіСЂРѕРєР°, РјРµСЂРє РЅРµРѕР±СЏР·Р°С‚РµР»СЊРЅРѕ СЏРІР»СЏРµС‚СЃСЏ РјРµСЂРєРѕРј РёРјРµРЅРЅРѕ СЌС‚РѕРіРѕ РёРіСЂРѕРєР°
 void r_CancelMerc( Critter& player, Critter @ npc )
 {
     if( !valid( npc ) )
@@ -125,7 +125,7 @@ void r_CancelMerc( Critter& player, Critter @ npc )
 
     CancelMerc( npc );
 }
-// Отмена мерка данного игрока. Если нпц - чужой мерк, отмены не будет
+// РћС‚РјРµРЅР° РјРµСЂРєР° РґР°РЅРЅРѕРіРѕ РёРіСЂРѕРєР°. Р•СЃР»Рё РЅРїС† - С‡СѓР¶РѕР№ РјРµСЂРє, РѕС‚РјРµРЅС‹ РЅРµ Р±СѓРґРµС‚
 void r_CancelPlayerMerc( Critter& player, Critter @ npc )
 {
     if( !valid( npc ) )
@@ -137,10 +137,10 @@ void r_CancelPlayerMerc( Critter& player, Critter @ npc )
 
     CancelMerc( npc );
 }
-// Установка параметров мерка
-// сработает только, если нпц является чьим-то мерком
-// param - номер параметра (см. MERC_... параметры в _defines.fos)
-// value - значение
+// РЈСЃС‚Р°РЅРѕРІРєР° РїР°СЂР°РјРµС‚СЂРѕРІ РјРµСЂРєР°
+// СЃСЂР°Р±РѕС‚Р°РµС‚ С‚РѕР»СЊРєРѕ, РµСЃР»Рё РЅРїС† СЏРІР»СЏРµС‚СЃСЏ С‡СЊРёРј-С‚Рѕ РјРµСЂРєРѕРј
+// param - РЅРѕРјРµСЂ РїР°СЂР°РјРµС‚СЂР° (СЃРј. MERC_... РїР°СЂР°РјРµС‚СЂС‹ РІ _defines.fos)
+// value - Р·РЅР°С‡РµРЅРёРµ
 void r_SetMercParameter( Critter& player, Critter @ npc, int param, int value )
 {
     if( !valid( npc ) )
@@ -148,11 +148,11 @@ void r_SetMercParameter( Critter& player, Critter @ npc, int param, int value )
     if( !IsMerc( npc ) )
         return;
     if( param < MERC_BEGIN || param > MERC_END )
-        return;                                      // Неправильный номер параметра
+        return;                                      // РќРµРїСЂР°РІРёР»СЊРЅС‹Р№ РЅРѕРјРµСЂ РїР°СЂР°РјРµС‚СЂР°
     npc.MercBase[ param ] = value;
 }
 
-// Специальный метод для сохранения Id мерка в переменную
+// РЎРїРµС†РёР°Р»СЊРЅС‹Р№ РјРµС‚РѕРґ РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ Id РјРµСЂРєР° РІ РїРµСЂРµРјРµРЅРЅСѓСЋ
 void r_SaveMercId( Critter& player, Critter @ npc, int varNum )
 {
     if( !valid( npc ) )
@@ -163,7 +163,7 @@ void r_SaveMercId( Critter& player, Critter @ npc, int varNum )
         var = npc.Id;
     }
 }
-// Отмена мерка через Id, в переменной
+// РћС‚РјРµРЅР° РјРµСЂРєР° С‡РµСЂРµР· Id, РІ РїРµСЂРµРјРµРЅРЅРѕР№
 void r_CancelMerc( Critter& player, Critter @ npc, int varNum )
 {
     GameVar @ var = GetLocalVar( varNum, player.Id );
@@ -194,8 +194,8 @@ void r_FollowMaster( Critter& player, Critter@ npc )
         npc.MercBase[ MERC_WAIT_FOR_MASTER ] = 0;
 }
 
-// Функции-диалоги
-// Имя хозяина
+// Р¤СѓРЅРєС†РёРё-РґРёР°Р»РѕРіРё
+// РРјСЏ С…РѕР·СЏРёРЅР°
 void dlg_Master( Critter& player, Critter@ npc, string@ masterName )
 {
     if( !IS_DIALOG_GENERATED( masterName ) || !valid( npc ) )
