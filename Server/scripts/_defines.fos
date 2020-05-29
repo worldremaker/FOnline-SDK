@@ -188,6 +188,11 @@
 #define MAP_EVENT_TURN_BASED_PROCESS             ( 11 )
 #define MAP_EVENT_MAX                            ( 12 )
 
+// Location events, description see in templates.fos
+#define LOCATION_EVENT_FINISH                    ( 0 )
+#define LOCATION_EVENT_ENTER                     ( 1 )
+#define LOCATION_EVENT_MAX                       ( 2 )
+
 // Item events, description see in templates.fos
 #define ITEM_EVENT_FINISH                        ( 0 )
 #define ITEM_EVENT_ATTACK                        ( 1 )

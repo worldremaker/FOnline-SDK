@@ -3,8 +3,8 @@
 
 //
 // FOnline engine structures, for native working
-// Last update 27.04.2013
-// Server version 516, MSVS 2010, GCC 4.7.2
+// Last update 01.09.2013
+// Server version 519, MSVS 2010, GCC 4.7.2
 // Default calling convention - cdecl
 //
 
@@ -1635,7 +1635,7 @@ struct Map
     const ProtoMap* Proto;
 
     const bool      NeedProcess;
-    const uint      FuncId[ MAP_EVENT_MAX ];
+    const int       FuncId[ MAP_EVENT_MAX ];
     const uint      LoopEnabled[ MAP_LOOP_FUNC_MAX ];
     const uint      LoopLastTick[ MAP_LOOP_FUNC_MAX ];
     const uint      LoopWaitTick[ MAP_LOOP_FUNC_MAX ];
@@ -1708,6 +1708,7 @@ struct Location
 
     const ProtoLocation* Proto;
     const int            GeckCount;
+    const int            FuncId[ LOCATION_EVENT_MAX ];
 
     const bool           IsNotValid;
     const int16          RefCounter;
@@ -1965,7 +1966,7 @@ inline void static_asserts()
     STATIC_ASSERT( offsetof( SceneryToClient, Reserved1 )      == 30   );
     STATIC_ASSERT( offsetof( Map, RefCounter )                 == 794  );
     STATIC_ASSERT( offsetof( ProtoLocation, GeckVisible )      == 76   );
-    STATIC_ASSERT( offsetof( Location, RefCounter )            == 282  );
+    STATIC_ASSERT( offsetof( Location, RefCounter )            == 290  );
 
     # ifdef __SERVER
     STATIC_ASSERT( offsetof( ProtoMap, HexFlags )              == 304  );

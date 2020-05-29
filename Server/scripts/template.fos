@@ -216,6 +216,14 @@ void _FuncName( Map& map )
 void _FuncName( Map& map, Critter& cr, bool beginTurn )
 // Обработка пошагового боя. Вызывается в начале (beginTurn == true) и в конце (beginTurn == false) хода криттера.
 
+// Location
+// LOCATION_EVENT_FINISH
+void _FuncName( Location& loc, bool deleted )
+// Завершение работы локации.
+// LOCATION_EVENT_ENTER
+bool _FuncName( Location& loc, Critter& cr )
+// При входе группы игроков на локацию с глобальной карты. При true группа входит на локацию, при false нет.
+
 // Item
 // ITEM_EVENT_FINISH
 void _FuncName( Item& item, bool deleted )
