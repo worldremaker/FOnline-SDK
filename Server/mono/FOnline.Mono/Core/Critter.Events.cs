@@ -370,7 +370,46 @@ namespace FOnline
         }
         public Critter From { get; private set; }
     }
-
+    public enum NpcPlaneEventResult : uint
+    {
+        RunGlobal = 0,
+        Keep = 1,
+        Discard = 2
+    }
+    public class CritterEventPlaneBeginEndArgs : CritterEventArgs
+    {
+        public CritterEventPlaneBeginEndArgs (Critter cr, NpcPlane plane, int reason, Critter some_cr, Item some_item)
+        : base(cr)
+        {
+            this.Plane = plane;
+            this.Reason = reason;
+            this.SomeCr = some_cr;
+            this.SomeItem = some_item;
+        }
+        public NpcPlane Plane { get; private set; }
+        public int Reason { get; private set; }
+        public Critter SomeCr { get; private set; }
+        public Item SomeItem { get; private set; }
+        public NpcPlaneEventResult? Result { get; set; }
+    }
+    public class CritterEventPlaneRunArgs : CritterEventArgs
+    {
+        public CritterEventPlaneRunArgs (Critter cr, NpcPlane plane, int reason, uint p0, uint p1, uint p2)
+            : base(cr)
+        {
+            this.Plane = plane;
+            this.Reason = reason;
+            this.Param0 = p0;
+            this.Param1 = p1;
+            this.Param2 = p2;
+        }
+        public NpcPlane Plane { get; private set; }
+        public int Reason { get; private set; }
+        public uint Param0 { get; set; }
+        public uint Param1 { get; set; }
+        public uint Param2 { get; set; }
+        public NpcPlaneEventResult? Result { get; set; }
+    }
     // // // // // // // // // // // // //
     
 	public partial class Critter
@@ -779,6 +818,51 @@ namespace FOnline
         {
             if (SmthTurnBasedProcess != null)
                 SmthTurnBasedProcess(this, new CritterSmthTurnBasedProcessEventArgs(this, from_cr, map, begin_turn));
+        }
+        public virtual event EventHandler<CritterEventPlaneBeginEndArgs> PlaneBegin;
+        // called by engine
+        bool RaiseEventPlaneBegin(IntPtr plane, int reason, Critter some_cr, Item some_item, ref uint res)
+        {
+            var args = new CritterEventPlaneBeginEndArgs(this, new NpcPlane(plane), reason, some_cr, some_item);
+            if (PlaneBegin != null)
+                PlaneBegin(this, args);
+            if (args.Result.HasValue)
+            {
+                res = (uint)args.Result.Value;
+                return true;
+            }
+            return false;
+        }
+        public virtual event EventHandler<CritterEventPlaneBeginEndArgs> PlaneEnd;
+        // called by engine
+        bool RaiseEventPlaneEnd(IntPtr plane, int reason, Critter some_cr, Item some_item, ref uint res)
+        {
+            var args = new CritterEventPlaneBeginEndArgs(this, new NpcPlane(plane), reason, some_cr, some_item);
+            if (PlaneEnd != null)
+                PlaneEnd(this, args);
+            if (args.Result.HasValue)
+            {
+                res = (uint)args.Result.Value;
+                return true;
+            }
+            return false;
+        }
+        public virtual event EventHandler<CritterEventPlaneRunArgs> PlaneRun;
+        // called by engine
+        bool RaiseEventPlaneRun(IntPtr plane, int reason, ref uint p0, ref uint p1, ref uint p2, ref uint res)
+        {
+            var args = new CritterEventPlaneRunArgs(this, new NpcPlane(plane), reason, p0, p1, p2);
+            if (PlaneRun != null)
+                PlaneRun(this, args);
+            if (args.Result.HasValue)
+            {
+                p0 = args.Param0;
+                p1 = args.Param1;
+                p2 = args.Param2;
+                res = (uint)args.Result.Value;
+                return true;
+            }
+            return false;
         }
 	}
 }
