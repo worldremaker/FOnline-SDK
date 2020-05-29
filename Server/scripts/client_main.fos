@@ -210,16 +210,17 @@ bool key_down( uint8 key )
     if( __OpenGLRendering )
     {
         if( AltDown && key == DIK_Q )
-            SetEffect( EFFECT_FLUSH, EFFECT_FLUSH_MAP, "Flush_Map.glsl" );
+            SetEffect( EFFECT_FLUSH_MAP, 0, null );
         if( AltDown && key == DIK_W )
-            SetEffect( EFFECT_FLUSH, EFFECT_FLUSH_MAP, "Flush_Map_BlackWhite.glsl" );
+            SetEffect( EFFECT_FLUSH_MAP, 0, "Flush_Map_BlackWhite.glsl" );
     }
     else
     {
+        int effectType = EFFECT_2D_GENERIC | EFFECT_2D_CRITTER | EFFECT_2D_TILE | EFFECT_2D_ROOF | EFFECT_2D_RAIN;
         if( AltDown && key == DIK_Q )
-            SetEffect( EFFECT_2D, -1, "2D_Default.fx" );
+            SetEffect( effectType, 0, null );
         if( AltDown && key == DIK_W )
-            SetEffect( EFFECT_2D, -1, "2D_BlackWhite.fx" );
+            SetEffect( effectType, 0, "2D_BlackWhite.fx" );
     }
 
     if( key == DIK_Z )
