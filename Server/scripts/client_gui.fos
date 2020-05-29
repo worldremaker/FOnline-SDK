@@ -312,7 +312,7 @@ class GUIScreen : IGUIScreenOpt
             }
             else if( IsCloseOnMiss )
             {
-                ::HideScreen( 0, 0, 0, 0 );
+                HideScreen( 0, 0, 0, 0 );
                 return true;
             }
         }
@@ -712,8 +712,8 @@ void GUI_ShowScreen( int screenIndex, int p0, int p1, int p2 )
         // Set screen cursor
         if( screen.IsAutoCursor )
         {
-            screen.AutoCursorPrev = ::GetCurrentCursor();
-            ::ChangeCursor( screen.AutoCursorType );
+            screen.AutoCursorPrev = GetCurrentCursor();
+            ChangeCursor( screen.AutoCursorType );
         }
 
         // Call init callbacks
@@ -758,7 +758,7 @@ void GUI_HideScreen( int screenIndex, int p0, int p1, int p2 )
             // Restore cursor
             if( screen.IsAutoCursor )
             {
-                ::ChangeCursor( screen.AutoCursorPrev );
+                ChangeCursor( screen.AutoCursorPrev );
             }
 
             // Store position for non-multiinstance screens
@@ -773,17 +773,29 @@ void GUI_HideScreen( int screenIndex, int p0, int p1, int p2 )
     }
 }
 
-void GUI_Render()
+void GUI_Render( bool mainScreen )
 {
-    for( uint i = 0, j = ActiveScreens.length(); i < j; i++ )
+    if( mainScreen )
     {
-        GUIScreen@ screen = ActiveScreens[ i ];
-        if( screen.IsHardcoded )
+        if( ActiveScreens.length() > 0 )
         {
-            ::DrawHardcodedScreen( screen.Index );
-            ::GetHardcodedScreenPos( screen.Index, screen.PosX, screen.PosY );
+            GUIScreen@ screen = ActiveScreens[ 0 ];
+            DrawHardcodedScreen( screen.Index );
+            GetHardcodedScreenPos( screen.Index, screen.PosX, screen.PosY );
         }
-        screen.Draw();
+    }
+    else
+    {
+        for( uint i = 1, j = ActiveScreens.length(); i < j; i++ )
+        {
+            GUIScreen@ screen = ActiveScreens[ i ];
+            if( screen.IsHardcoded )
+            {
+                DrawHardcodedScreen( screen.Index );
+                GetHardcodedScreenPos( screen.Index, screen.PosX, screen.PosY );
+            }
+            screen.Draw();
+        }
     }
 }
 
@@ -930,7 +942,7 @@ bool ProcessKey( uint8 key, string& text, uint8& letter )
         bool shiftDown = ( KeyPressed[ DIK_LSHIFT ] || KeyPressed[ DIK_RSHIFT ] );
         uint len = text.length();
         text.resize( text.length() + 1 );
-        text[ len ] = k.Char[ ::GetKeybLang() * 2 + ( shiftDown ? 1 : 0 ) ];
+        text[ len ] = k.Char[ GetKeybLang() * 2 + ( shiftDown ? 1 : 0 ) ];
         letter = text[ len ];
         return true;
     }
