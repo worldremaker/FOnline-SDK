@@ -1,6 +1,0 @@
-FOnline SDK
-
-Revision: 360
-Date:     12.03.2012
-Size:     575 Mb
-Link:     http://www.fonline.ru/files/FOnline_r360_2012-03.zip

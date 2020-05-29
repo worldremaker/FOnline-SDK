@@ -1,6 +1,0 @@
-FOnline SDK
-
-Revision: 338
-Date:     05.01.2012
-Size:     577 Mb
-Link:     http://www.fonline.ru/files/FOnline_r338_2012-01.zip
