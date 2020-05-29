@@ -1,0 +1,177 @@
+// Author: rifleman17
+// Музыкальный автомат. В предмет бросается монетка, он проигрывает одну случайную мелодию
+
+#include "_macros.fos"
+
+#define SILENCE_TIME      ( REAL_MINUTE( 3 ) )
+#define STR_OUTOFORDER    ( 25 )
+#define STR_LOWMONEY      ( 26 )
+#define PLAY_RADIUS       ( 25 )
+#define PRICE             ( 10 )
+
+import void PlayMusic( Critter& cr, string& musicName, uint pos, uint repeat ) from "media";
+
+const string[] trackList =
+{
+    "akiss.acm", "Maybe.ogg", "ccboogie.ogg", "ppmamma.ogg"
+};
+
+void _JukeBoxInit( Item& item, bool firstTime )
+{
+    item.SetEvent( ITEM_EVENT_USE_ON_ME, "_UseOnJukeBox" );
+}
+
+bool _UseOnJukeBox( Item& item, Critter& cr, Item@ usedItem )
+{
+    if( valid( usedItem ) && usedItem.GetProtoId() == PID_BOTTLE_CAPS )
+    {
+        if( usedItem.GetCount() < PRICE )
+        {
+            // Не хватает денег
+            cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, STR_LOWMONEY, "$price" + PRICE );
+            return true;
+        }
+        else
+        {
+            GameVar@ lastTimeUsed = GetLocalVar( LIVAR_last_used, item.Id );
+            if( valid( lastTimeUsed ) && lastTimeUsed > 0 && uint( lastTimeUsed.GetValue() ) + SILENCE_TIME > __FullSecond )
+            {
+                // Недавно использовался
+                cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, STR_OUTOFORDER );
+                return true;
+            }
+            else
+            {
+                uint   idx = Random( 0, trackList.length() - 1 );
+                uint16 x = 0, y = 0;
+                Map @ map = item.GetMapPosition( x, y );
+                if( valid( map ) )
+                {
+                    SETFLAG( item.Flags, ITEM_SHOW_ANIM );
+                    item.Update();
+                    CreateTimeEvent( __FullSecond + REAL_SECOND( 30 ), "e_OffJukeBox", item.Id, true );
+                    Critter@[] critters;
+                    map.GetCrittersHex( x, y, PLAY_RADIUS, FIND_ALL | FIND_ONLY_PLAYERS, critters );
+                    _SubItem( usedItem, 10 );
+                    lastTimeUsed = __FullSecond;
+                    for( uint i = 0, l = critters.length(); i < l; i++ )
+                    {
+                        Critter@ cr = critters[ i ];
+                        if( valid( cr ) )
+                            PlayMusic( cr, trackList[ idx ], 0, 0 );
+                    }
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+
+uint e_OffJukeBox( uint[] @ values )
+{
+    Item@ item = GetItem( values[ 0 ] );
+    if( valid( item ) )
+    {
+        UNSETFLAG( item.Flags, ITEM_SHOW_ANIM );
+        item.Update();
+    }
+    return 0;
+}
+
+// Покупка автоматов в Нью-Рено
+import uint GetLocId( Critter& player ) from "quest_warehouse";
+
+#define ENTIRE_JB         ( 142 )
+
+bool d_JukeboxesCheck( Critter& player, Critter@ npc )
+{
+    Map@ map = GetMapByPid( MAP_newr_eld, 0 );
+    if( valid( map ) )
+    {
+        if( map.GetItems( PID_JUKEBOX_OFF, null ) > 0 )
+            return true;
+    }
+    return false;
+}
+
+bool d_NotJukeboxesCheck( Critter& player, Critter@ npc )
+{
+    return !d_JukeboxesCheck( player, npc );
+}
+
+bool d_CanPlaceJukeBox( Critter& player, Critter@ npc )
+{
+    Location@ loc = GetLocation( GetLocId( player ) );
+    if( valid( loc ) )
+    {
+        Map@ map = loc.GetMapByIndex( 0 );
+        if( valid( map ) )
+        {
+            if( map.CountEntire( ENTIRE_JB ) == 1 )
+            {
+                if( map.GetItems( PID_JUKEBOX_OFF, null ) == 0 )
+                    return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool d_CanNotPlaceJukeBox( Critter& player, Critter@npc )
+{
+    return !d_CanPlaceJukeBox( player, npc );
+}
+
+bool d_AlreadyHasJukeBox( Critter& player, Critter@ npc )
+{
+    Location@ loc = GetLocation( GetLocId( player ) );
+    if( valid( loc ) )
+    {
+        Map@ map = loc.GetMapByIndex( 0 );
+        if( valid( map ) )
+        {
+            if( map.CountEntire( ENTIRE_JB ) == 1 )
+            {
+                if( map.GetItems( PID_JUKEBOX, null ) > 0 )
+                    return true;
+            }
+        }
+    }
+    return false;
+}
+
+void r_SellJukeBox( Critter& player, Critter@ npc )
+{
+    Location@ loc = GetLocation( GetLocId( player ) );
+    if( valid( loc ) )
+    {
+        Map@ map = loc.GetMapByIndex( 0 );
+        if( valid( map ) )
+        {
+            if( map.CountEntire( ENTIRE_JB ) == 1 )
+            {
+                if( map.GetItems( PID_JUKEBOX_OFF, null ) == 0 )
+                {
+                    uint16 hX = 0;
+                    uint16 hY = 0;
+                    if( map.GetEntireCoords( ENTIRE_JB, 0, hX, hY ) )
+                    {
+                        map.AddItem( hX, hY, PID_JUKEBOX, 1 );
+                        Map@ mapEld = GetMapByPid( MAP_newr_eld, 0 );
+                        if( valid( mapEld ) )
+                        {
+                            Item@[] items;
+                            if( mapEld.GetItems( PID_JUKEBOX_OFF, items ) > 0 )
+                            {
+                                Item@ item = items[ 0 ];
+                                if( valid( item ) )
+                                    DeleteItem( item );
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

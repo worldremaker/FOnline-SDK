@@ -1,0 +1,39 @@
+// Author: Тринитротолуол
+
+// Для квеста "Проучить Дантона".
+
+#include "_macros.fos"
+
+#define ROLE_DANTON    ( 210 )
+
+void InitDantonKilling( Map& map, bool firstTime )
+{
+    Critter@ danton = map.GetNpc( ROLE_DANTON, FIND_ALL, 0 );
+    if( not valid( danton ) )
+    {
+        Log( "ERROR: critter not valid" );
+        return;
+    }
+    danton.SetEvent( CRITTER_EVENT_DEAD, "_DantonDead" );
+    danton.ModeBase[ MODE_NO_SUPPLY ] = 1;
+}
+
+void _DantonDead( Critter& danton, Critter@ player )
+{
+    if( not valid( player ) )
+        return;
+    if( player.IsNpc() )
+        return;
+
+    GameVar@ var = GetLocalVar( LVAR_q_klam_josall_danton, player.Id );
+    if( not valid( var ) )
+    {
+        Log( "ERROR: not valid GameVar №" + LVAR_q_klam_josall_danton );
+        return;
+    }
+    if( var != 1 )
+        return;
+
+    var = 2;
+    danton.EraseEnemyFromStack( player.Id );
+}

@@ -1,0 +1,243 @@
+#include "fighter_pattern.fos"
+#include "guard_lib.fos"
+#include "guard_lib_events.fos"
+#include "_dialogs.fos"
+#include "utils_for_array.fos"
+
+#define MSG_IM_HAVE_ILLEGAL_ITEMS    ( 129 )  // Номер сообщения, отсылаемого игроком, если у него в инвентаре есть запрещенные предметы
+#define STR_NO_ILLEGAL_ITEMS         ( 5200 ) // Номер строки "ты зачем принес сюда это!"
+
+import bool AddPickPlane( Critter& npc, uint priority, Item@ item, uint useItemId, bool toOpen ) from "npc_planes";
+import bool AddAttackPlane( Critter& npc, uint priority, uint critId ) from "npc_planes";
+
+class CGuardsManagerForHell : CGuardsManager
+{
+    CGuardsManagerForHell()
+    {
+        super();
+        Dialog = DIALOG_hell_guard;
+    }
+}
+
+// класс с алгоритмом
+CGuardsManagerForHell Grd;
+
+bool GuardItemTest( Item@ item ) // export
+{
+    return Grd.GuardItemTest( item );
+}
+
+// /////////
+// Функция для универсальных охранников:
+// /////////
+
+void _GuardInit1( Critter& cr, bool firstTime ) // Охрана поверхности Ада. "1" потому, что просто Init уже есть в GuardLib.
+{
+    cr.StatBase[ ST_BONUS_LOOK ] = 30;
+    cr.StatBase[ ST_CRITICAL_CHANCE ] = 30;
+    cr.StatBase[ ST_ACTION_POINTS ] = 12;
+    cr.StatBase[ ST_MAX_LIFE ] = 100;
+    cr.ModeBase[ MODE_NO_STEAL ] = 1;
+    cr.ModeBase[ MODE_NO_ENEMY_STACK ] = 1;
+    cr.ModeBase[ MODE_NO_PUSH ] = 1;
+    cr.ModeBase[ MODE_NO_SUPPLY ] = 1;
+    cr.PerkBase[ PE_TERMINATOR ] = 1; // Так надо.
+
+    FighterPattern @ fp = FighterPattern();
+    fp.ForceArmourLvl = 6;            // возможный максимум на текущий момент
+    fp.MustHealLvl = 60;              // процент здоровья, при котором нпц начнет лечиться
+    fp.ForceCritterArmour( cr );
+    fp._SetOnAttackedEvents( cr );
+    cr._CanGenStim = 1000;            // число стимпаков
+
+    // Выше - всё из fighter pattern.
+    // Ниже - из библиотеки охраны, только npc заменён на cr.
+
+    cr.SetEvent( CRITTER_EVENT_SHOW_CRITTER, "_GuardOnAddCritter" );
+    cr.SetEvent( CRITTER_EVENT_HIDE_CRITTER, "_GuardOnRemoveCritter" );
+    cr.SetEvent( CRITTER_EVENT_PLANE_END, "_GuardEndPlane" );
+    cr.SetEvent( CRITTER_EVENT_MESSAGE, "_GuardOnMessage" );
+    cr.SetEvent( CRITTER_EVENT_MESSAGE, "_GuardMessage" );
+    cr.SetEvent( CRITTER_EVENT_SMTH_MOVE_ITEM, "_GuardOnMoveItem" );
+    cr.SetEvent( CRITTER_EVENT_SMTH_STEALING, "_GuardStealing" );
+    cr.SetEvent( CRITTER_EVENT_SMTH_ATTACK, "_GuardOnSmthAttack" );
+    cr.SetEvent( CRITTER_EVENT_SMTH_USE_ITEM, "_GuardSmthUseItem" );
+    cr.SetEvent( CRITTER_EVENT_SMTH_DROP_ITEM, "_GuardSmthDropItem" );
+
+    // Костыль для неработающей TeamId=16.
+    cr.SetEvent( CRITTER_EVENT_SMTH_ATTACK, "_TurretSmthAttack" );
+
+    if( not firstTime && cr.GetTimeEvents( CTE_OBSERVING, null, null, null ) == 0 )
+        cr.AddTimeEvent( "cte_Observing", OBSERV_PERIOD, CTE_OBSERVING );
+}
+
+void _GuardInit2( Critter& cr, bool firstTime ) // Охрана репликационных центров.
+{
+    cr.StatBase[ ST_BONUS_LOOK ] = 50;
+    cr.StatBase[ ST_CRITICAL_CHANCE ] = 95;
+    cr.StatBase[ ST_ACTION_POINTS ] = 16;
+    cr.StatBase[ ST_MAX_LIFE ] = 150;
+    cr.PerkBase[ PE_BETTER_CRITICALS ] = 1;
+    cr.ModeBase[ MODE_NO_STEAL ] = 1;
+    cr.ModeBase[ MODE_NO_DROP ] = 1;
+    cr.ModeBase[ MODE_NO_LOOT ] = 1;
+    cr.ModeBase[ MODE_NO_ENEMY_STACK ] = 1;
+    cr.ModeBase[ MODE_NO_PUSH ] = 1;
+    cr.PerkBase[ PE_TERMINATOR ] = 1;
+
+    FighterPattern @ fp = FighterPattern();
+    fp.ForceArmourLvl = 6;
+    fp.MustHealLvl = 60;
+    fp.ForceCritterArmour( cr );
+    fp._SetOnAttackedEvents( cr );
+    cr._CanGenStim = 1000;
+
+    cr.SetEvent( CRITTER_EVENT_SHOW_CRITTER, "_GuardOnAddCritter" );
+    cr.SetEvent( CRITTER_EVENT_HIDE_CRITTER, "_GuardOnRemoveCritter" );
+    cr.SetEvent( CRITTER_EVENT_PLANE_END, "_GuardEndPlane" );
+    cr.SetEvent( CRITTER_EVENT_MESSAGE, "_GuardOnMessage" );
+    cr.SetEvent( CRITTER_EVENT_MESSAGE, "_GuardMessage" );
+    cr.SetEvent( CRITTER_EVENT_SMTH_MOVE_ITEM, "_GuardOnMoveItem" );
+    cr.SetEvent( CRITTER_EVENT_SMTH_STEALING, "_GuardStealing" );
+    cr.SetEvent( CRITTER_EVENT_SMTH_ATTACK, "_GuardOnSmthAttack" );
+    cr.SetEvent( CRITTER_EVENT_SMTH_USE_ITEM, "_GuardSmthUseItem" );
+    cr.SetEvent( CRITTER_EVENT_SMTH_DROP_ITEM, "_GuardSmthDropItem" );
+    cr.SetEvent( CRITTER_EVENT_SMTH_ATTACK, "_TurretSmthAttack" );
+
+    if( not firstTime && cr.GetTimeEvents( CTE_OBSERVING, null, null, null ) == 0 )
+        cr.AddTimeEvent( "cte_Observing", OBSERV_PERIOD, CTE_OBSERVING );
+}
+
+void _GuardMessage( Critter& cr, Critter& fromCr, int message, int value )
+{
+    if( message == MSG_IM_HAVE_ILLEGAL_ITEMS )
+    {
+        AddAttackPlane( cr, 0, value );
+        Critter @ target = GetCritter( value );
+        if( !valid( target ) )
+            return;
+        if( target.IsNpc() )
+            return;
+        if( Random( 0, 4 ) == 1 )
+            cr.SayMsg( SAY_SHOUT, TEXTMSG_TEXT, STR_NO_ILLEGAL_ITEMS, GetPlayerName( value ) );
+    }
+}
+
+void _GuardSmthStealing( Critter& guard, Critter& fromCr, Critter& thief, bool success, Item& item, uint count )
+{
+    if( thief.IsPlayer() && guard.IsLife() )
+    {
+        AddAttackPlane( guard, 0, thief, 1 );
+    }
+}
+
+void _GuardSmthDropItem( Critter& npc, Critter& fromCr, Item& item )
+{
+    if( fromCr.IsPlayer() && npc.IsLife() )
+    {
+        uint pid = item.GetProtoId();
+        if( pid == PID_ACTIVE_PLASTIC_EXPLOSIVE || pid == PID_ACTIVE_MINE || pid == PID_ACTIVE_DYNAMITE )
+        {
+            AddAttackPlane( npc, 0, fromCr );
+        }
+    }
+    if( !npc.IsLife() )
+        return;
+    if( !CheckItemIsIllegal( item ) )
+        return;
+    AddPickPlane( npc, AI_PLANE_ATTACK_PRIORITY, item, 0, true );
+}
+
+void _GuardSmthUseItem( Critter& npc, Critter& fromCr, Item& item, Critter@ onCritter, Item@ onItem, Scenery@ onScenery )
+{
+    if( fromCr.IsPlayer() && npc.IsLife() )
+    {
+        uint pid = item.GetProtoId();
+        if( pid == PID_PLASTIC_EXPLOSIVES || pid == PID_MINE || pid == PID_TOGGLE_SWITCH || pid == PID_DYNAMITE )
+        {
+            AddAttackPlane( npc, 0, fromCr );
+        }
+    }
+}
+
+// Illegal items list and checks
+
+const uint16[] Pids_IllegalItems =
+{
+    PID_ACTIVE_DYNAMITE, PID_ACTIVE_PLASTIC_EXPLOSIVE, PID_ACTIVE_MINE, PID_TOGGLE_SWITCH
+};
+
+bool HasIllegalItems( Critter& cr )
+{
+    Item@[] items;
+    if( cr.GetItems( -1, items ) == 0 )
+        return false;
+    for( uint i = 0, l = items.length(); i < l; i++ )
+    {
+        if( CheckItemIsIllegal( items[ i ] ) )
+            return true;
+    }
+    return false;
+}
+
+bool CheckItemIsIllegal( Item @ item )
+{
+    if( !valid( item ) )
+        return false;
+    return Present( item.GetProtoId(), Pids_IllegalItems );
+}
+
+// Аналогичное для турелей, но они не кричат:
+
+void _TurretInit( Critter& cr, bool firstTime )
+{
+    cr.StatBase[ ST_BONUS_LOOK ] = 30;
+    cr.PerkBase[ PE_TERMINATOR ] = 1;
+    cr.ModeBase[ MODE_NO_STEAL ] = 1;
+    cr.ModeBase[ MODE_NO_ENEMY_STACK ] = 1;
+    cr.ModeBase[ MODE_NO_SUPPLY ] = 1;
+
+    FighterPattern @ fp = FighterPattern();
+    fp.ForceArmourLvl = 6;  // возможный максимум на текущий момент
+    fp.MustHealLvl = 60;    // процент здоровья, при котором нпц начнет лечиться
+    fp.ForceCritterArmour( cr );
+    fp._SetOnAttackedEvents( cr );
+    // Выше - всё из fighter pattern.
+    // Ниже - из библиотеки охраны, только npc заменён на cr.
+
+    cr.SetEvent( CRITTER_EVENT_SHOW_CRITTER, "_GuardOnAddCritter" );
+    cr.SetEvent( CRITTER_EVENT_HIDE_CRITTER, "_GuardOnRemoveCritter" );
+    cr.SetEvent( CRITTER_EVENT_PLANE_END, "_GuardEndPlane" );
+    cr.SetEvent( CRITTER_EVENT_SMTH_MOVE_ITEM, "_GuardOnMoveItem" );
+    cr.SetEvent( CRITTER_EVENT_SMTH_ATTACK, "_GuardOnSmthAttack" );
+    cr.SetEvent( CRITTER_EVENT_SMTH_ATTACK, "_TurretSmthAttack" );
+
+    if( not firstTime && cr.GetTimeEvents( CTE_OBSERVING, null, null, null ) == 0 )
+        cr.AddTimeEvent( "cte_Observing", OBSERV_PERIOD, CTE_OBSERVING );
+}
+
+void _TurretSmthAttack( Critter& turret, Critter& attacker, Critter& target )
+{
+    if( attacker.IsPlayer() )
+        AddAttackPlane( turret, 0, attacker );
+}
+
+// Усиление для гражданских
+
+void _PowerInit( Critter& cr, bool firstTime )
+{
+    cr.StatBase[ ST_BONUS_LOOK ] = 30;
+    cr.StatBase[ ST_CRITICAL_CHANCE ] = 30;
+    cr.StatBase[ ST_ACTION_POINTS ] = 12;
+    cr.ModeBase[ MODE_NO_ENEMY_STACK ] = 1;
+    cr.ModeBase[ MODE_NO_PUSH ] = 1;
+    cr.PerkBase[ PE_TERMINATOR ] = 1;
+    cr.StatBase[ ST_TALK_DISTANCE ] = 5;
+    cr.ModeBase[ MODE_NO_SUPPLY ] = 1;
+    FighterPattern @ fp = FighterPattern();
+    fp.ForceArmourLvl = 6;  // возможный максимум на текущий момент
+    fp.MustHealLvl = 60;    // процент здоровья, при котором нпц начнет лечиться
+    fp.ForceCritterArmour( cr );
+    fp._SetOnAttackedEvents( cr );
+    cr._CanGenStim = 1000;  // число стимпаков
+}

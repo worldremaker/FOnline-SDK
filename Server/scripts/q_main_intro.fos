@@ -1,0 +1,302 @@
+// Author: rifleman17
+#include "_macros.fos"
+#include "_colors.fos"
+#include "_animation.fos"
+#include "entire.fos"
+
+
+#define INTRO_WORLD_X              ( 5 )    // координаты расположения стартовой локации на глобале, ось Х
+#define INTRO_WORLD_Y              ( 5 )    // координаты расположения стартовой локации на глобале, ось У
+#define ENTIRE_ENTRANCE1           ( 0 )    // номер Entire-гекса, на котором начинает игрок
+#define ENTIRE_ENTRANCE2           ( 240 )  // номер Entire-гекса, на котором начинает игрок
+#define TRIBAL_INT                 ( 3 )    // максимальный интелект, при котором вместо кожаной куртки у игрока будет скин дикаря
+#define MAINQ_ST_START_COMPLETE    ( 1 )    // Сюжетный квест: игрок вышел со стартовой локации. Используется при проверке, где должен появиться игрок
+#define MAINQ_ST_INTRO_COMPLETE    ( 2 )    // Сюжетный квест: игрок вышел из локации интро.
+#define HOLODISK_INFO_INTRO        ( 43 )   // номер голодиска, выдаваемого в центре репликации по завершению интерлюдии
+#define STR_NOTIFY_HOLODISK        ( 6000 ) // В вашем Пипбое записана важная информация.
+
+// #define DL                         # (s) ( Log( "" + s ) )
+#define DL                         # (s)
+import void ReplicateCritter( Critter& cr )  from "replication";
+import void FlushScreen( Critter& cr, uint fromColor, uint toColor, uint timeMs ) from "effects";
+
+// Статус основного квеста
+bool SetMainQuest( uint playerId, int value )
+{
+    GameVar @ qVar = GetLocalVar( LVAR_q_main_quest, playerId );
+    if( !valid( qVar ) )
+        return false;
+
+    qVar = value;
+    return true;
+}
+
+// Проверка: Вышел ли игрок со стартовой локации
+bool CheckPlayerCompleteStart( Critter& player )
+{
+    GameVar @ storyLine = GetLocalVar( LVAR_q_main_quest, player.Id );
+    if( !valid( storyLine ) )
+    {
+        Log( "Main quest not FOUND!" );
+        return true;
+    }
+    return ( storyLine.GetValue() >= MAINQ_ST_START_COMPLETE );
+
+}
+
+// Проверка: Вышел ли игрок со второй сюжетной карты
+bool CheckPlayerCompleteIntro( Critter& player )
+{
+    GameVar @ storyLine = GetLocalVar( LVAR_q_main_quest, player.Id );
+    if( !valid( storyLine ) )
+    {
+        Log( "Main quest not FOUND!" );
+        return true;
+    }
+    return ( storyLine.GetValue() >= MAINQ_ST_INTRO_COMPLETE );
+
+}
+
+// Создание локации начала игры для персонажа, который только что был зарегистрирован
+// Возвращает истину если локация нужна, создалась и игрок телепортирован на карту
+bool SetPlayerStartLocation( Critter& player )
+{
+    // Стартовые локации не нужно сохранять. Иначе, если регистрировать тучу персонажей, для каждого придется сохранить свою локацию
+    uint locId = CreateLocation( LOCATION_IntroMartin, INTRO_WORLD_X, INTRO_WORLD_Y, null );
+    if( locId == 0 )
+        return false;
+    Location @ loc = GetLocation( locId );
+    if( !valid( loc ) )
+        return false;
+    Map @ map = loc.GetMapByIndex( 0 );
+    if( !valid( map ) )
+        return false;
+    if( !player.TransitToMap( map.Id, ( Random( 0, 1 ) == 0 ? ENTIRE_ENTRANCE1 : ENTIRE_ENTRANCE2 ) ) )
+        return false;
+
+    // Изменение типа криттера, чтобы не было пижамы с рождения
+    #ifndef PLAYERS_3D
+    int crType = ( player.Stat[ ST_GENDER ] == GENDER_MALE ? CRTYPE_DW_LEATHER_JACKET_M : CRTYPE_DW_LEATHER_JACKET_F );
+    if( player.Stat[ ST_INTELLECT ] <= TRIBAL_INT )
+        crType = ( player.Stat[ ST_GENDER ] == GENDER_MALE ? CRTYPE_DW_TRIBAL_M : CRTYPE_DW_TRIBAL_F );
+    player.ChangeCrType( crType );
+    player.StatBase[ ST_BASE_CRTYPE ] = crType;
+    #endif
+    #ifdef PLAYERS_3D
+    if( player.Stat[ ST_INTELLECT ] > TRIBAL_INT )
+    {
+        // Leather jacket set
+        player.StatBase[ ST_ANIM3D_LAYERS + ANIM3D_LAYER_BODY ] = ATTRIBUTE_Body_LeatherOutfit;
+        player.StatBase[ ST_ANIM3D_LAYERS + ANIM3D_LAYER_HANDS ] = ATTRIBUTE_Hands_LeatherOutfit;
+        player.StatBase[ ST_ANIM3D_LAYERS + ANIM3D_LAYER_FEET ] = ATTRIBUTE_Feet_LeatherOutfit;
+    }
+    else
+    {
+        // Naked
+        player.StatBase[ ST_ANIM3D_LAYERS + ANIM3D_LAYER_BODY ] = 1000;        // Some unaviable value
+    }
+    #endif
+
+    DL( "Player successfully transited to start location  LocId=" + locId );
+    return true;
+}
+
+// Отправляет игрока на вторую локацию
+// Возвращает истину если локация нужна, создалась и игрок телепортирован на карту
+bool SetPlayerIntroLocation( Critter& player )
+{
+    uint locId = CreateLocation( LOCATION_IntroInit, INTRO_WORLD_X, INTRO_WORLD_Y, null );
+    if( locId == 0 )
+        return false;
+    Location @ loc = GetLocation( locId );
+    if( !valid( loc ) )
+        return false;
+    Map @ map = loc.GetMapByIndex( 0 );
+    if( !valid( map ) )
+        return false;
+    player.TransitToMap( map.Id, ENTIRE_ENTRANCE1 );
+    DL( "Player successfully transited to intro_init location" );
+    return true;
+}
+
+// Пытается установить начальную локацию для игрока (либо стартовая карта с виком/кессиди итд, либо вторая карта с убийством
+// true - локация была установлена
+// false - не получилось установить, или уже не требуется
+bool SetPlayerStoryLineLocation( Critter& player ) // Export
+{
+    // Игрок уже завершил вступление
+    if( CheckPlayerCompleteIntro( player ) )
+        return false;
+    if( !CheckPlayerCompleteStart( player ) )
+    {
+        // Игрок только зарегистрировался, или в последний раз вышел в оффлайн из стартовой локации
+        return SetPlayerStartLocation( player );
+    }
+    else
+    {
+        // Игрок уже выходил из стартовой локации
+        return SetPlayerIntroLocation( player );
+    }
+}
+
+// Перенос игрока со стартовой локации в результате диалога с ключевым персонажем
+void r_TransitToIntro( Critter& player, Critter @ npc )
+{
+    SetPlayerIntroLocation( player );
+    SetMainQuest( player.Id, MAINQ_ST_START_COMPLETE );
+}
+
+// обработка триггеров входа в лифт
+void t_KillPlayerOnIntro( Critter& player, Scenery& trigger, bool entered, uint8 dir )
+{
+    player.Wait( 3000 );
+    FlushScreen( player, COLOR_BLACK, COLOR_BLACK, 5000 );
+
+    CreateTimeEvent( __FullSecond + REAL_MS( 750 ), "e_KillPlayer", player.Id, true );
+    CreateTimeEvent( __FullSecond + REAL_MS( 1000 ), "e_OnPlayerDead", player.Id, true );
+    CreateTimeEvent( __FullSecond + REAL_SECOND( 5 ), "e_ReplicateCritter", player.Id, true );
+    SetMainQuest( player.Id, MAINQ_ST_INTRO_COMPLETE );
+}
+
+import void door_open( Critter& player, Scenery& trigger, bool entered, uint8 dir, int entireNum ) from "trigger";
+
+// Гром и молния при инициации
+#define HEX_LIGHTNING    ( 323 )
+void t_Initiation( Critter& player, Scenery& trigger, bool entered, uint8 dir, int param )
+{
+    Map@ map = player.GetMap();
+    if( valid( map ) )
+    {
+        if( entered && player.IsPlayer() )
+        {
+            GameVar@ status = GetLocalVar( LMVAR_q_intro_initiated, map.Id );
+            if( valid( status ) && status == 0 )
+            {
+                status = 1;
+                player.Wait( 3000 );
+                uint[] values = { map.Id, player.Id };
+                CreateTimeEvent( __FullSecond + REAL_SECOND( 1 ), "e_SmallEffect", values, true );
+                CreateTimeEvent( __FullSecond + REAL_SECOND( 5 ), "e_MainEffect", values, true );
+                return;
+            }
+        }
+        GameVar@ doorsOpened = GetLocalVar( LMVAR_intro_doors_open, map.Id );
+        if( valid( doorsOpened ) && doorsOpened == 0 )
+            return;
+    }
+    door_open( player, trigger, entered, dir, param );
+}
+
+uint e_SmallEffect( uint[] @ values )
+{
+    uint mapId = values[ 0 ];
+    uint crId = values[ 1 ];
+    if( mapId > 0 && crId > 0 )
+    {
+        Map@     map = GetMap( mapId );
+        Critter@ cr = GetCritter( crId );
+        if( valid( cr ) )
+        {
+            Map@ mapCr = cr.GetMap();
+            if( valid( map ) && valid( mapCr ) && ( mapCr.Id == map.Id ) )
+            {
+                GameVar@ doorsOpened = GetLocalVar( LMVAR_intro_doors_open, map.Id );
+                if( valid( doorsOpened ) && doorsOpened == 0 )
+                {
+                    Entire[] entires;
+                    if( ParseEntires( map, entires, HEX_LIGHTNING ) > 0 )
+                    {
+                        for( uint i = 0, l = entires.length(); i < l; i++ )
+                        {
+                            map.RunEffect( PID_EXPLODE_EMP, entires[ i ].HexX, entires[ i ].HexY, Random( 1, 2 ) );
+                        }
+                    }
+                    return REAL_SECOND( 1 );
+                }
+            }
+        }
+    }
+    return 0;
+}
+
+uint e_MainEffect( uint[] @ values )
+{
+    uint mapId = values[ 0 ];
+    uint crId = values[ 1 ];
+    if( mapId > 0 && crId > 0 )
+    {
+        Map@     map = GetMap( mapId );
+        Critter@ cr = GetCritter( crId );
+        if( valid( cr ) )
+        {
+            Map@ mapCr = cr.GetMap();
+            if( valid( map ) && valid( mapCr ) && ( mapCr.Id == map.Id ) )
+            {
+                GameVar@ doorsOpened = GetLocalVar( LMVAR_intro_doors_open, map.Id );
+                if( valid( doorsOpened ) && doorsOpened == 0 )
+                {
+                    map.RunEffect( PID_EXPLODE_EMP, cr.HexX, cr.HexY, 3 );
+                    doorsOpened = 1;
+                    cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 20 );
+                }
+            }
+        }
+    }
+    return 0;
+}
+
+uint e_KillPlayer( uint[] @ values )
+{
+    Critter @ player = GetCritter( values[ 0 ] );
+    if( !valid( player ) )
+        return 0;
+    player.PlaySound( "WA@2XXX1.acm", true );  // выстрел
+    return 0;
+}
+
+uint e_OnPlayerDead( uint[] @ values )
+{
+    Critter @ player = GetCritter( values[ 0 ] );
+    if( !valid( player ) )
+        return 0;
+    player.PlaySound( ( player.Stat[ ST_GENDER ] == GENDER_MALE ? "HFXXXBF.acm" : "HMXXXBF.acm" ), true ); // стон
+    player.ToDead( 0, null );
+    return 0;
+}
+
+uint e_ReplicateCritter( uint[] @ values )
+{
+    Critter @ player = GetCritter( values[ 0 ] );
+    if( !valid( player ) )
+        return 0;
+
+    #ifndef PLAYERS_3D
+    int crType = ( player.Stat[ ST_GENDER ] == GENDER_MALE ? CRTYPE_DEFAULT_M : CRTYPE_DEFAULT_F );
+    player.ChangeCrType( crType );
+    player.StatBase[ ST_BASE_CRTYPE ] = 0;
+    #endif
+    #ifdef PLAYERS_3D
+    player.StatBase[ ST_ANIM3D_LAYERS + ANIM3D_LAYER_BODY ] = 0;
+    player.StatBase[ ST_ANIM3D_LAYERS + ANIM3D_LAYER_HANDS ] = 0;
+    player.StatBase[ ST_ANIM3D_LAYERS + ANIM3D_LAYER_FEET ] = 0;
+    #endif
+
+    player.AddHolodiskInfo( HOLODISK_INFO_INTRO );
+    CreateTimeEvent( __FullSecond + REAL_SECOND( 3 ), "e_ShowMessage", player.Id, true );
+    ReplicateCritter( player );
+    return 0;
+}
+
+uint e_ShowMessage( uint[] @ values )
+{
+    Critter @ player = GetCritter( values[ 0 ] );
+    player.StatBase[ ST_REPLICATION_COUNT ] = 0;
+    player.StatBase[ ST_REPLICATION_MONEY ] = 0;
+    player.ShowScreen( SCREEN_DIALOGBOX, 0, "answer_None" );
+    player.SayMsg( SAY_DIALOGBOX_TEXT, TEXTMSG_TEXT, STR_NOTIFY_HOLODISK );
+    player.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, STR_NOTIFY_HOLODISK );
+    return 0;
+}
+
+void answer_None( Critter& player, uint answerI, string& answerS )
+{}

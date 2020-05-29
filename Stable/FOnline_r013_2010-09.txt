@@ -1,0 +1,15 @@
+FOnline SDK
+
+Revision: 13
+Date:     02.09.2010
+Size:     58 Mb
+Link:     http://www.fonline.ru/files/FOnline_v1_020910.zip
+
+Missed files:
+\Client\master.dat               Take from original Fallout2
+\Client\critter.dat              Take from original Fallout2
+\Client\cablack.dat              Take here http://svn2.xp-dev.com/svn/fonline_sdk/Client/cablack.dat
+\Client\longhairdude.dat         Take here http://svn2.xp-dev.com/svn/fonline_sdk/Client/longhairdude.dat
+\Client\vaultboy.dat             Take here http://svn2.xp-dev.com/svn/fonline_sdk/Client/vaultboy.dat
+\Client\data\video\*.*           Take here http://svn2.xp-dev.com/svn/fonline_sdk/Client/data/video/*.*
+\Client\data\sound\music\*.*     Take here http://svn2.xp-dev.com/svn/fonline_sdk/Client/sound/music/*.*
